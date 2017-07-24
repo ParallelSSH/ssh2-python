@@ -44,10 +44,10 @@ cdef extern from "libssh2.h" nogil:
     int libssh2_session_supported_algs(LIBSSH2_SESSION* session,
                                        int method_type,
                                        const char*** algs)
-    # void LIBSSH2_ALLOC_FUNC(void *name(size_t count, void **abstract))
-    # LIBSSH2_SESSION *libssh2_session_init_ex(LIBSSH2_ALLOC_FUNC((*my_alloc)),
-    #                                          LIBSSH2_FREE_FUNC((*my_free)),
-    #                                          LIBSSH2_REALLOC_FUNC((*my_realloc)), void *abstract)
+    LIBSSH2_SESSION *libssh2_session_init_ex((void *),
+                                             (void *),
+                                             (void *),
+                                             (void *))
     LIBSSH2_SESSION *libssh2_session_init()
     void **libssh2_session_abstract(LIBSSH2_SESSION *session)
     void *libssh2_session_callback_set(LIBSSH2_SESSION *session,
@@ -60,10 +60,11 @@ cdef extern from "libssh2.h" nogil:
     int libssh2_session_handshake(LIBSSH2_SESSION *session,
                                   libssh2_socket_t sock)
     int libssh2_session_disconnect_ex(LIBSSH2_SESSION *session,
-                                              int reason,
-                                              const char *description,
-                                              const char *lang)
-    libssh2_session_disconnect(int session, const char *description)
+                                      int reason,
+                                      const char *description,
+                                      const char *lang)
+    int libssh2_session_disconnect(LIBSSH2_SESSION *session,
+                                   const char *description)
     int libssh2_session_free(LIBSSH2_SESSION *session)
     const char *libssh2_hostkey_hash(LIBSSH2_SESSION *session,
                                      int hash_type)
@@ -89,14 +90,12 @@ cdef extern from "libssh2.h" nogil:
                                 const char *username,
                                 unsigned int username_len)
     int libssh2_userauth_authenticated(LIBSSH2_SESSION *session)
-    # void LIBSSH2_PASSWD_CHANGEREQ_FUNC((LIBSSH2_SESSION *session, char **newpw, int *newpw_len, \
-    #                                     **abstract))
-    # int libssh2_userauth_password_ex(LIBSSH2_SESSION *session,
-    #                                  const char *username,
-    #                                  unsigned int username_len,
-    #                                  const char *password,
-    #                                  unsigned int password_len,
-    #                                  ((*passwd_change_cb)))
+    int libssh2_userauth_password_ex(LIBSSH2_SESSION *session,
+                                     const char *username,
+                                     unsigned int username_len,
+                                     const char *password,
+                                     unsigned int password_len,
+                                     (void *))
     int libssh2_userauth_password(LIBSSH2_SESSION *session,
                                   const char *username, const char *password)
     int libssh2_userauth_publickey_fromfile_ex(LIBSSH2_SESSION *session,
@@ -110,13 +109,11 @@ cdef extern from "libssh2.h" nogil:
                                             const char *publickey,
                                             const char *privatekey,
                                             const char *passphrase)
-    # int libssh2_userauth_publickey(LIBSSH2_SESSION *session,
-    #                                const char *username,
-    #                                const unsigned char *pubkeydata,
-    #                                size_t pubkeydata_len,
-    #                                (LIBSSH2_SESSION *session, unsigned char **sig, size_t *sig_len, \
-    #                                 const unsigned char *data, size_t data_len, void **abstract)(*sign_callback),
-    #                                void **abstract)
+    int libssh2_userauth_publickey(LIBSSH2_SESSION *session,
+                                   const char *username,
+                                   const unsigned char *pubkeydata,
+                                   size_t pubkeydata_len,
+                                   (void *), (void *))
     int libssh2_userauth_hostbased_fromfile_ex(
         LIBSSH2_SESSION *session,
         const char *username,
@@ -160,7 +157,7 @@ cdef extern from "libssh2.h" nogil:
         unsigned int channel_type_len,
         unsigned int window_size, unsigned int packet_size,
         const char *message, unsigned int message_len)
-    int libssh2_channel_open_session(LIBSSH2_SESSION *session)
+    LIBSSH2_CHANNEL *libssh2_channel_open_session(LIBSSH2_SESSION *session)
     LIBSSH2_CHANNEL *libssh2_channel_direct_tcpip_ex(
         LIBSSH2_SESSION *session, const char *host,
         int port, const char *shost, int sport)
