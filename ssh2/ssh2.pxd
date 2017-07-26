@@ -22,6 +22,9 @@ cdef extern from "libssh2.h" nogil:
     enum:
         _LIBSSH2_SESSION_BLOCK_INBOUND "LIBSSH2_SESSION_BLOCK_INBOUND"
         _LIBSSH2_SESSION_BLOCK_OUTBOUND "LIBSSH2_SESSION_BLOCK_OUTBOUND"
+        LIBSSH2_VERSION_MAJOR
+        LIBSSH2_VERSION_MINOR
+        LIBSSH2_VERSION_PATCH
     ctypedef long long libssh2_int64_t
     ctypedef struct stat
     ctypedef struct libssh2_struct_stat
@@ -135,6 +138,7 @@ cdef extern from "libssh2.h" nogil:
         const char *privatekey,
         const char *passphrase,
         const char *hostname)
+    # IF LIBSSH2_VERSION_MAJOR >= and LIBSSH2_VERSION_MINOR >= 5:
     int libssh2_userauth_publickey_frommemory(
         LIBSSH2_SESSION *session,
         const char *username,

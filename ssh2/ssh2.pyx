@@ -131,8 +131,7 @@ cdef class SFTP:
         self._sftp = NULL
 
     def __dealloc__(self):
-        with nogil:
-            sftp.libssh2_sftp_shutdown(self._sftp)
+        sftp.libssh2_sftp_shutdown(self._sftp)
 
     def get_channel(self):
         cdef LIBSSH2_CHANNEL *_channel
@@ -260,6 +259,13 @@ cdef class SFTPAttributes:
         self._attrs = NULL
 
 
+# cdef class SFTPFile:
+#     cdef SFTPHandle _handle
+
+#     def __cinit__(self, SFTPHandle _handle):
+#         self._handle = _handle
+
+
 cdef class SFTPHandle:
     cdef sftp.LIBSSH2_SFTP_HANDLE *_handle
 
@@ -267,12 +273,41 @@ cdef class SFTPHandle:
         self._handle = NULL
 
     def __dealloc__(self):
-        with nogil:
-            if self._handle is not NULL:
-                sftp.libssh2_sftp_close_handle(self._handle)
+        if self._handle is not NULL:
+            sftp.libssh2_sftp_close_handle(self._handle)
 
-    def read(self, char *buf, size_t buffer_maxlen):
-        raise NotImplementedError
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        cdef bytes data
+        data = self.read()
+        if len(data) == 0:
+            raise StopIteration
+        return data
+
+    def close(self):
+        cdef int rc
+        with nogil:
+            rc = sftp.libssh2_sftp_close_handle(self._handle)
+        return rc
+
+    def read(self, size_t buffer_maxlen=1024):
+        cdef ssize_t rc
+        cdef bytes buf
+        cdef char *cbuf
+        with nogil:
+            cbuf = <char *>malloc(sizeof(char)*buffer_maxlen)
+            rc = sftp.libssh2_sftp_read(
+                self._handle, cbuf, buffer_maxlen)
+        try:
+            if rc > 0:
+                buf = cbuf[:rc]
+            else:
+                buf = b''
+        finally:
+            free(cbuf)
+        return buf
 
     def readdir_ex(self, char *buffer, size_t buffer_maxlen,
                    char *longentry,
@@ -419,12 +454,28 @@ cdef class Channel:
         return bool(rc)
 
     def send_eof(self):
+        """Tell the remote host that no further data will be sent on the
+        specified channel. Processes typically interpret this as a closed stdin
+        descriptor.
+
+        Return 0 on success or negative on failure.
+        It returns LIBSSH2_ERROR_EAGAIN when it would otherwise block
+
+        :rtype: int
+        """
         cdef int rc
         with nogil:
             rc = ssh2.libssh2_channel_send_eof(self._channel)
         return rc
 
     def wait_eof(self):
+        """Wait for the remote end to acknowledge an EOF request
+
+        Return 0 on success or negative on failure. It returns
+        LIBSSH2_ERROR_EAGAIN when it would otherwise block
+
+        :rtype: int
+        """
         cdef int rc
         with nogil:
             rc = ssh2.libssh2_channel_wait_eof(self._channel)
@@ -455,12 +506,25 @@ cdef class Channel:
                 self._channel, varname, value)
         return rc
 
+    def window_read_ex(self, unsigned long read_avail,
+                       unsigned long window_size_initial):
+        cdef unsigned long rc
+        with nogil:
+            rc = ssh2.libssh2_channel_window_read_ex(
+                self._channel, &read_avail, &window_size_initial)
+        return rc
+
+    def window_read(self):
+        cdef unsigned long rc
+        with nogil:
+            rc = ssh2.libssh2_channel_window_read(self._channel)
+        return rc
+
+
 cdef class Session:
     cdef ssh2.LIBSSH2_SESSION *_session
 
     """LibSSH2 Session class providing session functions"""
-
-    # TODO: Handle errors, check for EAGAIN, raise exceptions
 
     def __cinit__(self):
         self._session = ssh2.libssh2_session_init()
@@ -657,3 +721,27 @@ cdef class Session:
         if _sftp is NULL:
             return
         return PySFTP(_sftp)
+
+    def last_error(self):
+        cdef char **_error_msg = NULL
+        cdef bytes msg
+        cdef int errmsg_len = 0
+        cdef int rc
+        with nogil:
+            rc = ssh2.libssh2_session_last_error(
+                self._session, _error_msg, &errmsg_len, 0)
+        if errmsg_len > 0 and _error_msg is not NULL:
+            for line in _error_msg[errmsg_len]:
+                msg += line
+        else:
+            msg = b''
+        return msg
+
+    # def scp_recv64(self, const char *path, stat *sb):
+    #     cdef ssh2.LIBSSH2_CHANNEL *_channel
+    #     with nogil:
+    #         _channel = ssh2.libssh2_scp_recv(
+    #             self._session, path, sb)
+    #     if _channel is NULL:
+    #         return
+    #     return PyChannel(_channel)
