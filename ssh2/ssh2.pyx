@@ -89,6 +89,18 @@ cdef object PyListener(LIBSSH2_LISTENER *listener):
     return _listener
 
 
+cdef object PySFTPHandle(sftp.LIBSSH2_SFTP_HANDLE *handle):
+    cdef SFTPHandle _handle = SFTPHandle()
+    _handle._handle = handle
+    return _handle
+
+
+cdef object PySFTP(sftp.LIBSSH2_SFTP *sftp):
+    cdef SFTP _sftp = SFTP()
+    _sftp._sftp = sftp
+    return _sftp
+
+
 cdef class Listener:
     cdef ssh2.LIBSSH2_LISTENER *_listener
 
@@ -130,13 +142,188 @@ cdef class SFTP:
             return
         return PyChannel(_channel)
 
+    def open_ex(self, const char *filename,
+                unsigned int filename_len,
+                unsigned long flags,
+                long mode, int open_type):
+        cdef sftp.LIBSSH2_SFTP_HANDLE *_handle
+        with nogil:
+            _handle = sftp.libssh2_sftp_open_ex(
+                self._sftp, filename, filename_len, flags,
+                mode, open_type)
+        if _handle is NULL:
+            return
+        return PySFTPHandle(_handle)
 
+    def open(self, const char *filename,
+             unsigned long flags,
+             long mode):
+        cdef sftp.LIBSSH2_SFTP_HANDLE *_handle
+        with nogil:
+            _handle = sftp.libssh2_sftp_open(
+                self._sftp, filename, flags, mode)
+        if _handle is NULL:
+            return
+        return PySFTPHandle(_handle)
+
+    def opendir(self, const char *path):
+        cdef sftp.LIBSSH2_SFTP_HANDLE *_handle
+        with nogil:
+            _handle = sftp.libssh2_sftp_opendir(self._sftp, path)
+        if _handle is NULL:
+            return
+        return PySFTPHandle(_handle)
+
+    def rename_ex(self, const char *source_filename,
+                  unsigned int source_filename_len,
+                  const char *dest_filename,
+                  unsigned int dest_filename_len,
+                  long flags):
+        cdef int rc
+        with nogil:
+            rc = sftp.libssh2_sftp_rename_ex(
+                self._sftp, source_filename, source_filename_len,
+                dest_filename, dest_filename_len, flags)
+        return rc
+
+    def rename(self, const char *source_filename, const char *dest_filename):
+        cdef int rc
+        with nogil:
+            rc = sftp.libssh2_sftp_rename(
+                self._sftp, source_filename, dest_filename)
+        return rc
+
+    def unlink(self, const char *filename):
+        cdef int rc
+        with nogil:
+            rc = sftp.libssh2_sftp_unlink(self._sftp, filename)
+        return rc
+
+    def fstatvfs(self):
+        raise NotImplementedError
+
+    def statvfs(self):
+        raise NotImplementedError
+
+    def mkdir(self, const char *path, long mode):
+        cdef int rc
+        with nogil:
+            rc = sftp.libssh2_sftp_mkdir(self._sftp, path, mode)
+        return rc
+
+    def rmdir(self, const char *path):
+        cdef int rc
+        with nogil:
+            rc = sftp.libssh2_sftp_rmdir(self._sftp, path)
+        return rc
+
+    def stat(self, const char *path, SFTPAttributes attrs):
+        cdef int rc
+        with nogil:
+            rc = sftp.libssh2_sftp_stat(
+                self._sftp, path, attrs._attrs)
+        return rc
+
+    def lstat(self, const char *path, SFTPAttributes attrs):
+        cdef int rc
+        with nogil:
+            rc = sftp.libssh2_sftp_lstat(
+                self._sftp, path, attrs._attrs)
+        return rc
+
+    def setstat(self, const char *path, SFTPAttributes attrs):
+        cdef int rc
+        with nogil:
+            rc = sftp.libssh2_sftp_setstat(
+                self._sftp, path, attrs._attrs)
+        return rc
+
+    def symlink(self, const char *path, char *target):
+        cdef int rc
+        with nogil:
+            rc = sftp.libssh2_sftp_symlink(self._sftp, path, target)
+        return rc
+
+    def realpath(self, const char *path, char *target,
+                 unsigned int maxlen):
+        cdef int rc
+        with nogil:
+            rc = sftp.libssh2_sftp_realpath(
+                self._sftp, path, target, maxlen)
+        return rc
+
+
+cdef class SFTPAttributes:
+    cdef sftp.LIBSSH2_SFTP_ATTRIBUTES *_attrs
+
+    def __cinit__(self):
+        self._attrs = NULL
+
+
+cdef class SFTPHandle:
+    cdef sftp.LIBSSH2_SFTP_HANDLE *_handle
+
+    def __cinit__(self):
+        self._handle = NULL
+
+    def __dealloc__(self):
+        with nogil:
+            if self._handle is not NULL:
+                sftp.libssh2_sftp_close_handle(self._handle)
+
+    def read(self, char *buf, size_t buffer_maxlen):
+        raise NotImplementedError
+
+    def readdir_ex(self, char *buffer, size_t buffer_maxlen,
+                   char *longentry,
+                   size_t longentry_maxlen,
+                   SFTPAttributes attrs):
+        raise NotImplementedError
+
+    def readdir(self, char *buffer, size_t buffer_maxlen,
+                SFTPAttributes attrs):
+        raise NotImplementedError
+
+    def write(self, const char *buf, size_t count):
+        raise NotImplementedError
+
+    def fsync(self):
+        raise NotImplementedError
+
+    def seek(self, size_t offset):
+        raise NotImplementedError
+
+    def seek64(self, size_t offset):
+        raise NotImplementedError
+
+    def rewind(self):
+        raise NotImplementedError
+
+    def tell(self):
+        raise NotImplementedError
+
+    def tell64(self):
+        raise NotImplementedError
+
+    def fstat_ex(self, SFTPAttributes attrs, int setstat):
+        raise NotImplementedError
+
+    def fstat(self, SFTPAttributes attrs):
+        raise NotImplementedError
+
+    def fsetstat(self, SFTPAttributes attrs):
+        raise NotImplementedError
 
 cdef class Channel:
     cdef ssh2.LIBSSH2_CHANNEL *_channel
 
     def __cinit__(self):
         self._channel = NULL
+
+    def __dealloc__(self):
+        with nogil:
+            if self._channel is not NULL:
+                ssh2.libssh2_channel_close(self._channel)
 
     def pty(self, term="vt100"):
         cdef const char *_term = term
@@ -462,3 +649,11 @@ cdef class Session:
         if listener is NULL:
             return
         return PyListener(listener)
+
+    def sftp_init(self):
+        cdef sftp.LIBSSH2_SFTP *_sftp
+        with nogil:
+            _sftp = sftp.libssh2_sftp_init(self._session)
+        if _sftp is NULL:
+            return
+        return PySFTP(_sftp)
