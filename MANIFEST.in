@@ -1,2 +1,0 @@
-include libssh2/*.c
-include libssh2/*.h

@@ -26,6 +26,7 @@ extensions = [
               sources=sources,
               libraries=['ssh2'],
               # extra_compile_args=["-O3"],
+              extra_compile_args=["-ggdb"],
           ),
 ]
 

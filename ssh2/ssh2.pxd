@@ -19,6 +19,9 @@ from libc.time cimport time_t
 cdef extern from "libssh2.h" nogil:
     ctypedef int libssh2_socket_t
     int libssh2_init(int flags)
+    enum:
+        _LIBSSH2_SESSION_BLOCK_INBOUND "LIBSSH2_SESSION_BLOCK_INBOUND"
+        _LIBSSH2_SESSION_BLOCK_OUTBOUND "LIBSSH2_SESSION_BLOCK_OUTBOUND"
     ctypedef long long libssh2_int64_t
     ctypedef struct stat
     ctypedef struct libssh2_struct_stat
@@ -167,7 +170,8 @@ cdef extern from "libssh2.h" nogil:
     LIBSSH2_LISTENER *libssh2_channel_forward_listen_ex(
         LIBSSH2_SESSION *session, const char *host,
         int port, int *bound_port, int queue_maxsize)
-    libssh2_channel_forward_listen(LIBSSH2_SESSION *session, int port)
+    LIBSSH2_LISTENER *libssh2_channel_forward_listen(
+        LIBSSH2_SESSION *session, int port)
     int libssh2_channel_forward_cancel(LIBSSH2_LISTENER *listener)
     LIBSSH2_CHANNEL *libssh2_channel_forward_accept(
         LIBSSH2_LISTENER *listener)
