@@ -1364,7 +1364,7 @@ static PyObject *__pyx_builtin_TypeError;
 static PyObject *__pyx_builtin_NotImplementedError;
 static PyObject *__pyx_builtin_StopIteration;
 static PyObject *__pyx_builtin_MemoryError;
-static const char __pyx_k__7[] = "";
+static const char __pyx_k__8[] = "";
 static const char __pyx_k_buf[] = "buf";
 static const char __pyx_k_new[] = "__new__";
 static const char __pyx_k_dict[] = "__dict__";
@@ -1486,7 +1486,7 @@ static PyObject *__pyx_kp_s_SSH_session_startup_failed_with;
 static PyObject *__pyx_n_s_StopIteration;
 static PyObject *__pyx_n_s_TypeError;
 static PyObject *__pyx_kp_s_Unable_to_connect_to_agent;
-static PyObject *__pyx_kp_b__7;
+static PyObject *__pyx_kp_b__8;
 static PyObject *__pyx_n_s_attrs;
 static PyObject *__pyx_n_s_blockdirections;
 static PyObject *__pyx_n_s_bound_port;
@@ -1589,48 +1589,46 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_8Listener_4forward_cancel(struct __pyx_obj
 static PyObject *__pyx_pf_4ssh2_4ssh2_8Listener_6__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_Listener *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_4ssh2_4ssh2_8Listener_8__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_Listener *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static int __pyx_pf_4ssh2_4ssh2_4SFTP___cinit__(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self); /* proto */
-static void __pyx_pf_4ssh2_4ssh2_4SFTP_2__dealloc__(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_4get_channel(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_6open_ex(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_filename, unsigned int __pyx_v_filename_len, unsigned long __pyx_v_flags, long __pyx_v_mode, int __pyx_v_open_type); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_8open(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_filename, unsigned long __pyx_v_flags, long __pyx_v_mode); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_10opendir(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_12rename_ex(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_source_filename, unsigned int __pyx_v_source_filename_len, char const *__pyx_v_dest_filename, unsigned int __pyx_v_dest_filename_len, long __pyx_v_flags); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_14rename(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_source_filename, char const *__pyx_v_dest_filename); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_16unlink(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_filename); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_18fstatvfs(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_20statvfs(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_22mkdir(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, long __pyx_v_mode); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_24rmdir(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_26stat(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_28lstat(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_30setstat(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_32symlink(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, char *__pyx_v_target); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_34realpath(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, char *__pyx_v_target, unsigned int __pyx_v_maxlen); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_36__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_38__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_2get_channel(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_4open_ex(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_filename, unsigned int __pyx_v_filename_len, unsigned long __pyx_v_flags, long __pyx_v_mode, int __pyx_v_open_type); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_6open(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_filename, unsigned long __pyx_v_flags, long __pyx_v_mode); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_8opendir(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_10rename_ex(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_source_filename, unsigned int __pyx_v_source_filename_len, char const *__pyx_v_dest_filename, unsigned int __pyx_v_dest_filename_len, long __pyx_v_flags); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_12rename(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_source_filename, char const *__pyx_v_dest_filename); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_14unlink(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_filename); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_16fstatvfs(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_18statvfs(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_20mkdir(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, long __pyx_v_mode); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_22rmdir(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_24stat(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_26lstat(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_28setstat(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_30symlink(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, char *__pyx_v_target); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_32realpath(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, char *__pyx_v_target, unsigned int __pyx_v_maxlen); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_34__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_36__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static int __pyx_pf_4ssh2_4ssh2_14SFTPAttributes___cinit__(struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_4ssh2_4ssh2_14SFTPAttributes_2__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_4ssh2_4ssh2_14SFTPAttributes_4__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static int __pyx_pf_4ssh2_4ssh2_10SFTPHandle___cinit__(struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self); /* proto */
-static void __pyx_pf_4ssh2_4ssh2_10SFTPHandle_2__dealloc__(struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_4__iter__(struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_6__next__(struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_8close(struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_10read(struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, size_t __pyx_v_buffer_maxlen); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_12readdir_ex(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED char *__pyx_v_buffer, CYTHON_UNUSED size_t __pyx_v_buffer_maxlen, CYTHON_UNUSED char *__pyx_v_longentry, CYTHON_UNUSED size_t __pyx_v_longentry_maxlen, CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_14readdir(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED char *__pyx_v_buffer, CYTHON_UNUSED size_t __pyx_v_buffer_maxlen, CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_16write(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED char const *__pyx_v_buf, CYTHON_UNUSED size_t __pyx_v_count); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_18fsync(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_20seek(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED size_t __pyx_v_offset); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_22seek64(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED size_t __pyx_v_offset); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_24rewind(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_26tell(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_28tell64(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_30fstat_ex(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs, CYTHON_UNUSED int __pyx_v_setstat); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_32fstat(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_34fsetstat(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_36__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_38__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_2__iter__(struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_4__next__(struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_6close(struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_8read(struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, size_t __pyx_v_buffer_maxlen); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_10readdir_ex(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED char *__pyx_v_buffer, CYTHON_UNUSED size_t __pyx_v_buffer_maxlen, CYTHON_UNUSED char *__pyx_v_longentry, CYTHON_UNUSED size_t __pyx_v_longentry_maxlen, CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_12readdir(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED char *__pyx_v_buffer, CYTHON_UNUSED size_t __pyx_v_buffer_maxlen, CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_14write(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED char const *__pyx_v_buf, CYTHON_UNUSED size_t __pyx_v_count); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_16fsync(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_18seek(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED size_t __pyx_v_offset); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_20seek64(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED size_t __pyx_v_offset); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_22rewind(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_24tell(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_26tell64(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_28fstat_ex(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs, CYTHON_UNUSED int __pyx_v_setstat); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_30fstat(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_32fsetstat(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_34__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_36__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static int __pyx_pf_4ssh2_4ssh2_7Channel___cinit__(struct __pyx_obj_4ssh2_4ssh2_Channel *__pyx_v_self); /* proto */
 static void __pyx_pf_4ssh2_4ssh2_7Channel_2__dealloc__(struct __pyx_obj_4ssh2_4ssh2_Channel *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_4ssh2_4ssh2_7Channel_4pty(struct __pyx_obj_4ssh2_4ssh2_Channel *__pyx_v_self, PyObject *__pyx_v_term); /* proto */
@@ -1693,13 +1691,13 @@ static PyObject *__pyx_tp_new_4ssh2_4ssh2_Channel(PyTypeObject *t, PyObject *a, 
 static PyObject *__pyx_tp_new_4ssh2_4ssh2_Session(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_222419149;
+static size_t __pyx_k__7;
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_tuple__2;
 static PyObject *__pyx_tuple__3;
 static PyObject *__pyx_tuple__4;
 static PyObject *__pyx_tuple__5;
 static PyObject *__pyx_tuple__6;
-static PyObject *__pyx_tuple__8;
 static PyObject *__pyx_tuple__9;
 static PyObject *__pyx_tuple__10;
 static PyObject *__pyx_tuple__11;
@@ -1708,23 +1706,24 @@ static PyObject *__pyx_tuple__13;
 static PyObject *__pyx_tuple__14;
 static PyObject *__pyx_tuple__15;
 static PyObject *__pyx_tuple__16;
-static PyObject *__pyx_tuple__18;
-static PyObject *__pyx_tuple__20;
-static PyObject *__pyx_tuple__22;
-static PyObject *__pyx_tuple__24;
-static PyObject *__pyx_tuple__26;
-static PyObject *__pyx_tuple__28;
-static PyObject *__pyx_tuple__30;
-static PyObject *__pyx_tuple__32;
-static PyObject *__pyx_codeobj__17;
-static PyObject *__pyx_codeobj__19;
-static PyObject *__pyx_codeobj__21;
-static PyObject *__pyx_codeobj__23;
-static PyObject *__pyx_codeobj__25;
-static PyObject *__pyx_codeobj__27;
-static PyObject *__pyx_codeobj__29;
-static PyObject *__pyx_codeobj__31;
-static PyObject *__pyx_codeobj__33;
+static PyObject *__pyx_tuple__17;
+static PyObject *__pyx_tuple__19;
+static PyObject *__pyx_tuple__21;
+static PyObject *__pyx_tuple__23;
+static PyObject *__pyx_tuple__25;
+static PyObject *__pyx_tuple__27;
+static PyObject *__pyx_tuple__29;
+static PyObject *__pyx_tuple__31;
+static PyObject *__pyx_tuple__33;
+static PyObject *__pyx_codeobj__18;
+static PyObject *__pyx_codeobj__20;
+static PyObject *__pyx_codeobj__22;
+static PyObject *__pyx_codeobj__24;
+static PyObject *__pyx_codeobj__26;
+static PyObject *__pyx_codeobj__28;
+static PyObject *__pyx_codeobj__30;
+static PyObject *__pyx_codeobj__32;
+static PyObject *__pyx_codeobj__34;
 
 /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
@@ -5014,7 +5013,7 @@ static int __pyx_pf_4ssh2_4ssh2_4SFTP___cinit__(struct __pyx_obj_4ssh2_4ssh2_SFT
  *     def __cinit__(self):
  *         self._sftp = NULL             # <<<<<<<<<<<<<<
  * 
- *     def __dealloc__(self):
+ *     # def __dealloc__(self):
  */
   __pyx_v_self->_sftp = NULL;
 
@@ -5032,52 +5031,8 @@ static int __pyx_pf_4ssh2_4ssh2_4SFTP___cinit__(struct __pyx_obj_4ssh2_4ssh2_SFT
   return __pyx_r;
 }
 
-/* "ssh2/ssh2.pyx":133
- *         self._sftp = NULL
- * 
- *     def __dealloc__(self):             # <<<<<<<<<<<<<<
- *         sftp.libssh2_sftp_shutdown(self._sftp)
- * 
- */
-
-/* Python wrapper */
-static void __pyx_pw_4ssh2_4ssh2_4SFTP_3__dealloc__(PyObject *__pyx_v_self); /*proto*/
-static void __pyx_pw_4ssh2_4ssh2_4SFTP_3__dealloc__(PyObject *__pyx_v_self) {
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__dealloc__ (wrapper)", 0);
-  __pyx_pf_4ssh2_4ssh2_4SFTP_2__dealloc__(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-}
-
-static void __pyx_pf_4ssh2_4ssh2_4SFTP_2__dealloc__(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self) {
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__dealloc__", 0);
-
-  /* "ssh2/ssh2.pyx":134
- * 
- *     def __dealloc__(self):
- *         sftp.libssh2_sftp_shutdown(self._sftp)             # <<<<<<<<<<<<<<
- * 
- *     def get_channel(self):
- */
-  libssh2_sftp_shutdown(__pyx_v_self->_sftp);
-
-  /* "ssh2/ssh2.pyx":133
- *         self._sftp = NULL
- * 
- *     def __dealloc__(self):             # <<<<<<<<<<<<<<
- *         sftp.libssh2_sftp_shutdown(self._sftp)
- * 
- */
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-}
-
 /* "ssh2/ssh2.pyx":136
- *         sftp.libssh2_sftp_shutdown(self._sftp)
+ *     #     sftp.libssh2_sftp_shutdown(self._sftp)
  * 
  *     def get_channel(self):             # <<<<<<<<<<<<<<
  *         cdef LIBSSH2_CHANNEL *_channel
@@ -5085,20 +5040,20 @@ static void __pyx_pf_4ssh2_4ssh2_4SFTP_2__dealloc__(struct __pyx_obj_4ssh2_4ssh2
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_5get_channel(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_4SFTP_4get_channel[] = "SFTP.get_channel(self)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_5get_channel(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_3get_channel(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_4SFTP_2get_channel[] = "SFTP.get_channel(self)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_3get_channel(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_channel (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_4get_channel(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_2get_channel(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_4get_channel(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_2get_channel(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self) {
   LIBSSH2_CHANNEL *__pyx_v__channel;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -5195,7 +5150,7 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_4get_channel(struct __pyx_obj_4ssh2_
   goto __pyx_L0;
 
   /* "ssh2/ssh2.pyx":136
- *         sftp.libssh2_sftp_shutdown(self._sftp)
+ *     #     sftp.libssh2_sftp_shutdown(self._sftp)
  * 
  *     def get_channel(self):             # <<<<<<<<<<<<<<
  *         cdef LIBSSH2_CHANNEL *_channel
@@ -5222,9 +5177,9 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_4get_channel(struct __pyx_obj_4ssh2_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_7open_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_4SFTP_6open_ex[] = "SFTP.open_ex(self, const char *filename, unsigned int filename_len, unsigned long flags, long mode, int open_type)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_7open_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_5open_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_4SFTP_4open_ex[] = "SFTP.open_ex(self, const char *filename, unsigned int filename_len, unsigned long flags, long mode, int open_type)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_5open_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   char const *__pyx_v_filename;
   unsigned int __pyx_v_filename_len;
   unsigned long __pyx_v_flags;
@@ -5309,14 +5264,14 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_7open_ex(PyObject *__pyx_v_self, PyO
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_6open_ex(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), __pyx_v_filename, __pyx_v_filename_len, __pyx_v_flags, __pyx_v_mode, __pyx_v_open_type);
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_4open_ex(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), __pyx_v_filename, __pyx_v_filename_len, __pyx_v_flags, __pyx_v_mode, __pyx_v_open_type);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_6open_ex(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_filename, unsigned int __pyx_v_filename_len, unsigned long __pyx_v_flags, long __pyx_v_mode, int __pyx_v_open_type) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_4open_ex(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_filename, unsigned int __pyx_v_filename_len, unsigned long __pyx_v_flags, long __pyx_v_mode, int __pyx_v_open_type) {
   LIBSSH2_SFTP_HANDLE *__pyx_v__handle;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -5440,9 +5395,9 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_6open_ex(struct __pyx_obj_4ssh2_4ssh
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_9open(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_4SFTP_8open[] = "SFTP.open(self, const char *filename, unsigned long flags, long mode)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_9open(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_7open(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_4SFTP_6open[] = "SFTP.open(self, const char *filename, unsigned long flags, long mode)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_7open(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   char const *__pyx_v_filename;
   unsigned long __pyx_v_flags;
   long __pyx_v_mode;
@@ -5505,14 +5460,14 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_9open(PyObject *__pyx_v_self, PyObje
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_8open(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), __pyx_v_filename, __pyx_v_flags, __pyx_v_mode);
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_6open(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), __pyx_v_filename, __pyx_v_flags, __pyx_v_mode);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_8open(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_filename, unsigned long __pyx_v_flags, long __pyx_v_mode) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_6open(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_filename, unsigned long __pyx_v_flags, long __pyx_v_mode) {
   LIBSSH2_SFTP_HANDLE *__pyx_v__handle;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -5636,9 +5591,9 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_8open(struct __pyx_obj_4ssh2_4ssh2_S
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_11opendir(PyObject *__pyx_v_self, PyObject *__pyx_arg_path); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_4SFTP_10opendir[] = "SFTP.opendir(self, const char *path)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_11opendir(PyObject *__pyx_v_self, PyObject *__pyx_arg_path) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_9opendir(PyObject *__pyx_v_self, PyObject *__pyx_arg_path); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_4SFTP_8opendir[] = "SFTP.opendir(self, const char *path)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_9opendir(PyObject *__pyx_v_self, PyObject *__pyx_arg_path) {
   char const *__pyx_v_path;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -5652,14 +5607,14 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_11opendir(PyObject *__pyx_v_self, Py
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_10opendir(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), ((char const *)__pyx_v_path));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_8opendir(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), ((char const *)__pyx_v_path));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_10opendir(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_8opendir(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path) {
   LIBSSH2_SFTP_HANDLE *__pyx_v__handle;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -5783,9 +5738,9 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_10opendir(struct __pyx_obj_4ssh2_4ss
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_13rename_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_4SFTP_12rename_ex[] = "SFTP.rename_ex(self, const char *source_filename, unsigned int source_filename_len, const char *dest_filename, unsigned int dest_filename_len, long flags)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_13rename_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_11rename_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_4SFTP_10rename_ex[] = "SFTP.rename_ex(self, const char *source_filename, unsigned int source_filename_len, const char *dest_filename, unsigned int dest_filename_len, long flags)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_11rename_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   char const *__pyx_v_source_filename;
   unsigned int __pyx_v_source_filename_len;
   char const *__pyx_v_dest_filename;
@@ -5870,14 +5825,14 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_13rename_ex(PyObject *__pyx_v_self, 
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_12rename_ex(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), __pyx_v_source_filename, __pyx_v_source_filename_len, __pyx_v_dest_filename, __pyx_v_dest_filename_len, __pyx_v_flags);
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_10rename_ex(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), __pyx_v_source_filename, __pyx_v_source_filename_len, __pyx_v_dest_filename, __pyx_v_dest_filename_len, __pyx_v_flags);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_12rename_ex(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_source_filename, unsigned int __pyx_v_source_filename_len, char const *__pyx_v_dest_filename, unsigned int __pyx_v_dest_filename_len, long __pyx_v_flags) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_10rename_ex(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_source_filename, unsigned int __pyx_v_source_filename_len, char const *__pyx_v_dest_filename, unsigned int __pyx_v_dest_filename_len, long __pyx_v_flags) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -5970,9 +5925,9 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_12rename_ex(struct __pyx_obj_4ssh2_4
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_15rename(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_4SFTP_14rename[] = "SFTP.rename(self, const char *source_filename, const char *dest_filename)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_15rename(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_13rename(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_4SFTP_12rename[] = "SFTP.rename(self, const char *source_filename, const char *dest_filename)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_13rename(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   char const *__pyx_v_source_filename;
   char const *__pyx_v_dest_filename;
   PyObject *__pyx_r = 0;
@@ -6024,14 +5979,14 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_15rename(PyObject *__pyx_v_self, PyO
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_14rename(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), __pyx_v_source_filename, __pyx_v_dest_filename);
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_12rename(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), __pyx_v_source_filename, __pyx_v_dest_filename);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_14rename(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_source_filename, char const *__pyx_v_dest_filename) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_12rename(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_source_filename, char const *__pyx_v_dest_filename) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -6124,9 +6079,9 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_14rename(struct __pyx_obj_4ssh2_4ssh
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_17unlink(PyObject *__pyx_v_self, PyObject *__pyx_arg_filename); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_4SFTP_16unlink[] = "SFTP.unlink(self, const char *filename)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_17unlink(PyObject *__pyx_v_self, PyObject *__pyx_arg_filename) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_15unlink(PyObject *__pyx_v_self, PyObject *__pyx_arg_filename); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_4SFTP_14unlink[] = "SFTP.unlink(self, const char *filename)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_15unlink(PyObject *__pyx_v_self, PyObject *__pyx_arg_filename) {
   char const *__pyx_v_filename;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -6140,14 +6095,14 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_17unlink(PyObject *__pyx_v_self, PyO
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_16unlink(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), ((char const *)__pyx_v_filename));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_14unlink(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), ((char const *)__pyx_v_filename));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_16unlink(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_filename) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_14unlink(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_filename) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -6240,20 +6195,20 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_16unlink(struct __pyx_obj_4ssh2_4ssh
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_19fstatvfs(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_4SFTP_18fstatvfs[] = "SFTP.fstatvfs(self)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_19fstatvfs(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_17fstatvfs(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_4SFTP_16fstatvfs[] = "SFTP.fstatvfs(self)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_17fstatvfs(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("fstatvfs (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_18fstatvfs(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_16fstatvfs(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_18fstatvfs(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_16fstatvfs(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("fstatvfs", 0);
@@ -6294,20 +6249,20 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_18fstatvfs(CYTHON_UNUSED struct __py
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_21statvfs(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_4SFTP_20statvfs[] = "SFTP.statvfs(self)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_21statvfs(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_19statvfs(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_4SFTP_18statvfs[] = "SFTP.statvfs(self)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_19statvfs(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("statvfs (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_20statvfs(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_18statvfs(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_20statvfs(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_18statvfs(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("statvfs", 0);
@@ -6348,9 +6303,9 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_20statvfs(CYTHON_UNUSED struct __pyx
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_23mkdir(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_4SFTP_22mkdir[] = "SFTP.mkdir(self, const char *path, long mode)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_23mkdir(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_21mkdir(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_4SFTP_20mkdir[] = "SFTP.mkdir(self, const char *path, long mode)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_21mkdir(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   char const *__pyx_v_path;
   long __pyx_v_mode;
   PyObject *__pyx_r = 0;
@@ -6402,14 +6357,14 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_23mkdir(PyObject *__pyx_v_self, PyOb
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_22mkdir(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), __pyx_v_path, __pyx_v_mode);
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_20mkdir(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), __pyx_v_path, __pyx_v_mode);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_22mkdir(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, long __pyx_v_mode) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_20mkdir(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, long __pyx_v_mode) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -6502,9 +6457,9 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_22mkdir(struct __pyx_obj_4ssh2_4ssh2
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_25rmdir(PyObject *__pyx_v_self, PyObject *__pyx_arg_path); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_4SFTP_24rmdir[] = "SFTP.rmdir(self, const char *path)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_25rmdir(PyObject *__pyx_v_self, PyObject *__pyx_arg_path) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_23rmdir(PyObject *__pyx_v_self, PyObject *__pyx_arg_path); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_4SFTP_22rmdir[] = "SFTP.rmdir(self, const char *path)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_23rmdir(PyObject *__pyx_v_self, PyObject *__pyx_arg_path) {
   char const *__pyx_v_path;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -6518,14 +6473,14 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_25rmdir(PyObject *__pyx_v_self, PyOb
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_24rmdir(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), ((char const *)__pyx_v_path));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_22rmdir(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), ((char const *)__pyx_v_path));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_24rmdir(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_22rmdir(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -6618,9 +6573,9 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_24rmdir(struct __pyx_obj_4ssh2_4ssh2
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_27stat(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_4SFTP_26stat[] = "SFTP.stat(self, const char *path, SFTPAttributes attrs)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_27stat(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_25stat(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_4SFTP_24stat[] = "SFTP.stat(self, const char *path, SFTPAttributes attrs)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_25stat(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   char const *__pyx_v_path;
   struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs = 0;
   PyObject *__pyx_r = 0;
@@ -6673,7 +6628,7 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_27stat(PyObject *__pyx_v_self, PyObj
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_attrs), __pyx_ptype_4ssh2_4ssh2_SFTPAttributes, 1, "attrs", 0))) __PYX_ERR(1, 219, __pyx_L1_error)
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_26stat(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), __pyx_v_path, __pyx_v_attrs);
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_24stat(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), __pyx_v_path, __pyx_v_attrs);
 
   /* function exit code */
   goto __pyx_L0;
@@ -6684,7 +6639,7 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_27stat(PyObject *__pyx_v_self, PyObj
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_26stat(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_24stat(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -6777,9 +6732,9 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_26stat(struct __pyx_obj_4ssh2_4ssh2_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_29lstat(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_4SFTP_28lstat[] = "SFTP.lstat(self, const char *path, SFTPAttributes attrs)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_29lstat(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_27lstat(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_4SFTP_26lstat[] = "SFTP.lstat(self, const char *path, SFTPAttributes attrs)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_27lstat(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   char const *__pyx_v_path;
   struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs = 0;
   PyObject *__pyx_r = 0;
@@ -6832,7 +6787,7 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_29lstat(PyObject *__pyx_v_self, PyOb
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_attrs), __pyx_ptype_4ssh2_4ssh2_SFTPAttributes, 1, "attrs", 0))) __PYX_ERR(1, 226, __pyx_L1_error)
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_28lstat(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), __pyx_v_path, __pyx_v_attrs);
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_26lstat(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), __pyx_v_path, __pyx_v_attrs);
 
   /* function exit code */
   goto __pyx_L0;
@@ -6843,7 +6798,7 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_29lstat(PyObject *__pyx_v_self, PyOb
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_28lstat(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_26lstat(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -6936,9 +6891,9 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_28lstat(struct __pyx_obj_4ssh2_4ssh2
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_31setstat(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_4SFTP_30setstat[] = "SFTP.setstat(self, const char *path, SFTPAttributes attrs)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_31setstat(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_29setstat(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_4SFTP_28setstat[] = "SFTP.setstat(self, const char *path, SFTPAttributes attrs)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_29setstat(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   char const *__pyx_v_path;
   struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs = 0;
   PyObject *__pyx_r = 0;
@@ -6991,7 +6946,7 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_31setstat(PyObject *__pyx_v_self, Py
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_attrs), __pyx_ptype_4ssh2_4ssh2_SFTPAttributes, 1, "attrs", 0))) __PYX_ERR(1, 233, __pyx_L1_error)
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_30setstat(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), __pyx_v_path, __pyx_v_attrs);
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_28setstat(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), __pyx_v_path, __pyx_v_attrs);
 
   /* function exit code */
   goto __pyx_L0;
@@ -7002,7 +6957,7 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_31setstat(PyObject *__pyx_v_self, Py
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_30setstat(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_28setstat(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -7095,9 +7050,9 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_30setstat(struct __pyx_obj_4ssh2_4ss
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_33symlink(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_4SFTP_32symlink[] = "SFTP.symlink(self, const char *path, char *target)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_33symlink(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_31symlink(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_4SFTP_30symlink[] = "SFTP.symlink(self, const char *path, char *target)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_31symlink(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   char const *__pyx_v_path;
   char *__pyx_v_target;
   PyObject *__pyx_r = 0;
@@ -7149,14 +7104,14 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_33symlink(PyObject *__pyx_v_self, Py
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_32symlink(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), __pyx_v_path, __pyx_v_target);
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_30symlink(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), __pyx_v_path, __pyx_v_target);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_32symlink(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, char *__pyx_v_target) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_30symlink(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, char *__pyx_v_target) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -7249,9 +7204,9 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_32symlink(struct __pyx_obj_4ssh2_4ss
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_35realpath(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_4SFTP_34realpath[] = "SFTP.realpath(self, const char *path, char *target, unsigned int maxlen)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_35realpath(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_33realpath(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_4SFTP_32realpath[] = "SFTP.realpath(self, const char *path, char *target, unsigned int maxlen)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_33realpath(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   char const *__pyx_v_path;
   char *__pyx_v_target;
   unsigned int __pyx_v_maxlen;
@@ -7314,14 +7269,14 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_35realpath(PyObject *__pyx_v_self, P
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_34realpath(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), __pyx_v_path, __pyx_v_target, __pyx_v_maxlen);
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_32realpath(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), __pyx_v_path, __pyx_v_target, __pyx_v_maxlen);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_34realpath(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, char *__pyx_v_target, unsigned int __pyx_v_maxlen) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_32realpath(struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, char const *__pyx_v_path, char *__pyx_v_target, unsigned int __pyx_v_maxlen) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -7412,20 +7367,20 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_34realpath(struct __pyx_obj_4ssh2_4s
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_37__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_4SFTP_36__reduce_cython__[] = "SFTP.__reduce_cython__(self)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_37__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_35__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_4SFTP_34__reduce_cython__[] = "SFTP.__reduce_cython__(self)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_35__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_36__reduce_cython__(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_34__reduce_cython__(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_36__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_34__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -7467,20 +7422,20 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_36__reduce_cython__(CYTHON_UNUSED st
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_39__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_4SFTP_38__setstate_cython__[] = "SFTP.__setstate_cython__(self, __pyx_state)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_39__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_37__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_4SFTP_36__setstate_cython__[] = "SFTP.__setstate_cython__(self, __pyx_state)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_4SFTP_37__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_38__setstate_cython__(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_4SFTP_36__setstate_cython__(((struct __pyx_obj_4ssh2_4ssh2_SFTP *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_38__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_4SFTP_36__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTP *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -7709,7 +7664,7 @@ static int __pyx_pf_4ssh2_4ssh2_10SFTPHandle___cinit__(struct __pyx_obj_4ssh2_4s
  *     def __cinit__(self):
  *         self._handle = NULL             # <<<<<<<<<<<<<<
  * 
- *     def __dealloc__(self):
+ *     # def __dealloc__(self):
  */
   __pyx_v_self->_handle = NULL;
 
@@ -7727,72 +7682,8 @@ static int __pyx_pf_4ssh2_4ssh2_10SFTPHandle___cinit__(struct __pyx_obj_4ssh2_4s
   return __pyx_r;
 }
 
-/* "ssh2/ssh2.pyx":275
- *         self._handle = NULL
- * 
- *     def __dealloc__(self):             # <<<<<<<<<<<<<<
- *         if self._handle is not NULL:
- *             sftp.libssh2_sftp_close_handle(self._handle)
- */
-
-/* Python wrapper */
-static void __pyx_pw_4ssh2_4ssh2_10SFTPHandle_3__dealloc__(PyObject *__pyx_v_self); /*proto*/
-static void __pyx_pw_4ssh2_4ssh2_10SFTPHandle_3__dealloc__(PyObject *__pyx_v_self) {
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__dealloc__ (wrapper)", 0);
-  __pyx_pf_4ssh2_4ssh2_10SFTPHandle_2__dealloc__(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-}
-
-static void __pyx_pf_4ssh2_4ssh2_10SFTPHandle_2__dealloc__(struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self) {
-  __Pyx_RefNannyDeclarations
-  int __pyx_t_1;
-  __Pyx_RefNannySetupContext("__dealloc__", 0);
-
-  /* "ssh2/ssh2.pyx":276
- * 
- *     def __dealloc__(self):
- *         if self._handle is not NULL:             # <<<<<<<<<<<<<<
- *             sftp.libssh2_sftp_close_handle(self._handle)
- * 
- */
-  __pyx_t_1 = ((__pyx_v_self->_handle != NULL) != 0);
-  if (__pyx_t_1) {
-
-    /* "ssh2/ssh2.pyx":277
- *     def __dealloc__(self):
- *         if self._handle is not NULL:
- *             sftp.libssh2_sftp_close_handle(self._handle)             # <<<<<<<<<<<<<<
- * 
- *     def __iter__(self):
- */
-    libssh2_sftp_close_handle(__pyx_v_self->_handle);
-
-    /* "ssh2/ssh2.pyx":276
- * 
- *     def __dealloc__(self):
- *         if self._handle is not NULL:             # <<<<<<<<<<<<<<
- *             sftp.libssh2_sftp_close_handle(self._handle)
- * 
- */
-  }
-
-  /* "ssh2/ssh2.pyx":275
- *         self._handle = NULL
- * 
- *     def __dealloc__(self):             # <<<<<<<<<<<<<<
- *         if self._handle is not NULL:
- *             sftp.libssh2_sftp_close_handle(self._handle)
- */
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-}
-
 /* "ssh2/ssh2.pyx":279
- *             sftp.libssh2_sftp_close_handle(self._handle)
+ *     #         sftp.libssh2_sftp_close_handle(self._handle)
  * 
  *     def __iter__(self):             # <<<<<<<<<<<<<<
  *         return self
@@ -7800,19 +7691,19 @@ static void __pyx_pf_4ssh2_4ssh2_10SFTPHandle_2__dealloc__(struct __pyx_obj_4ssh
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_5__iter__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_5__iter__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_3__iter__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_3__iter__(PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__iter__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_4__iter__(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_2__iter__(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_4__iter__(struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_2__iter__(struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__iter__", 0);
@@ -7830,7 +7721,7 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_4__iter__(struct __pyx_obj_4s
   goto __pyx_L0;
 
   /* "ssh2/ssh2.pyx":279
- *             sftp.libssh2_sftp_close_handle(self._handle)
+ *     #         sftp.libssh2_sftp_close_handle(self._handle)
  * 
  *     def __iter__(self):             # <<<<<<<<<<<<<<
  *         return self
@@ -7853,19 +7744,19 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_4__iter__(struct __pyx_obj_4s
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_7__next__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_7__next__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_5__next__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_5__next__(PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__next__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_6__next__(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_4__next__(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_6__next__(struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_4__next__(struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self) {
   PyObject *__pyx_v_data = 0;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -7984,20 +7875,20 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_6__next__(struct __pyx_obj_4s
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_9close(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_8close[] = "SFTPHandle.close(self)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_9close(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_7close(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_6close[] = "SFTPHandle.close(self)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_7close(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("close (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_8close(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_6close(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_8close(struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_6close(struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -8053,7 +7944,7 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_8close(struct __pyx_obj_4ssh2
  *             rc = sftp.libssh2_sftp_close_handle(self._handle)
  *         return rc             # <<<<<<<<<<<<<<
  * 
- *     def read(self, size_t buffer_maxlen=1024):
+ *     def read(self, size_t buffer_maxlen=ssh2._LIBSSH2_CHANNEL_WINDOW_DEFAULT):
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 293, __pyx_L1_error)
@@ -8084,15 +7975,15 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_8close(struct __pyx_obj_4ssh2
 /* "ssh2/ssh2.pyx":295
  *         return rc
  * 
- *     def read(self, size_t buffer_maxlen=1024):             # <<<<<<<<<<<<<<
+ *     def read(self, size_t buffer_maxlen=ssh2._LIBSSH2_CHANNEL_WINDOW_DEFAULT):             # <<<<<<<<<<<<<<
  *         cdef ssize_t rc
  *         cdef bytes buf
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_11read(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_10read[] = "SFTPHandle.read(self, size_t buffer_maxlen=1024)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_11read(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_9read(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_8read[] = "SFTPHandle.read(self, size_t buffer_maxlen=ssh2._LIBSSH2_CHANNEL_WINDOW_DEFAULT)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_9read(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   size_t __pyx_v_buffer_maxlen;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -8131,7 +8022,7 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_11read(PyObject *__pyx_v_self
     if (values[0]) {
       __pyx_v_buffer_maxlen = __Pyx_PyInt_As_size_t(values[0]); if (unlikely((__pyx_v_buffer_maxlen == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(1, 295, __pyx_L3_error)
     } else {
-      __pyx_v_buffer_maxlen = ((size_t)0x400);
+      __pyx_v_buffer_maxlen = __pyx_k__7;
     }
   }
   goto __pyx_L4_argument_unpacking_done;
@@ -8142,14 +8033,14 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_11read(PyObject *__pyx_v_self
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_10read(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self), __pyx_v_buffer_maxlen);
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_8read(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self), __pyx_v_buffer_maxlen);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_10read(struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, size_t __pyx_v_buffer_maxlen) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_8read(struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, size_t __pyx_v_buffer_maxlen) {
   Py_ssize_t __pyx_v_rc;
   PyObject *__pyx_v_buf = 0;
   char *__pyx_v_cbuf;
@@ -8270,8 +8161,8 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_10read(struct __pyx_obj_4ssh2
  *             free(cbuf)
  */
     /*else*/ {
-      __Pyx_INCREF(__pyx_kp_b__7);
-      __pyx_v_buf = __pyx_kp_b__7;
+      __Pyx_INCREF(__pyx_kp_b__8);
+      __pyx_v_buf = __pyx_kp_b__8;
     }
     __pyx_L9:;
   }
@@ -8339,7 +8230,7 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_10read(struct __pyx_obj_4ssh2
   /* "ssh2/ssh2.pyx":295
  *         return rc
  * 
- *     def read(self, size_t buffer_maxlen=1024):             # <<<<<<<<<<<<<<
+ *     def read(self, size_t buffer_maxlen=ssh2._LIBSSH2_CHANNEL_WINDOW_DEFAULT):             # <<<<<<<<<<<<<<
  *         cdef ssize_t rc
  *         cdef bytes buf
  */
@@ -8365,9 +8256,9 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_10read(struct __pyx_obj_4ssh2
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_13readdir_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_12readdir_ex[] = "SFTPHandle.readdir_ex(self, char *buffer, size_t buffer_maxlen, char *longentry, size_t longentry_maxlen, SFTPAttributes attrs)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_13readdir_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_11readdir_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_10readdir_ex[] = "SFTPHandle.readdir_ex(self, char *buffer, size_t buffer_maxlen, char *longentry, size_t longentry_maxlen, SFTPAttributes attrs)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_11readdir_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   CYTHON_UNUSED char *__pyx_v_buffer;
   CYTHON_UNUSED size_t __pyx_v_buffer_maxlen;
   CYTHON_UNUSED char *__pyx_v_longentry;
@@ -8453,7 +8344,7 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_13readdir_ex(PyObject *__pyx_
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_attrs), __pyx_ptype_4ssh2_4ssh2_SFTPAttributes, 1, "attrs", 0))) __PYX_ERR(1, 315, __pyx_L1_error)
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_12readdir_ex(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self), __pyx_v_buffer, __pyx_v_buffer_maxlen, __pyx_v_longentry, __pyx_v_longentry_maxlen, __pyx_v_attrs);
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_10readdir_ex(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self), __pyx_v_buffer, __pyx_v_buffer_maxlen, __pyx_v_longentry, __pyx_v_longentry_maxlen, __pyx_v_attrs);
 
   /* function exit code */
   goto __pyx_L0;
@@ -8464,7 +8355,7 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_13readdir_ex(PyObject *__pyx_
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_12readdir_ex(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED char *__pyx_v_buffer, CYTHON_UNUSED size_t __pyx_v_buffer_maxlen, CYTHON_UNUSED char *__pyx_v_longentry, CYTHON_UNUSED size_t __pyx_v_longentry_maxlen, CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_10readdir_ex(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED char *__pyx_v_buffer, CYTHON_UNUSED size_t __pyx_v_buffer_maxlen, CYTHON_UNUSED char *__pyx_v_longentry, CYTHON_UNUSED size_t __pyx_v_longentry_maxlen, CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("readdir_ex", 0);
@@ -8505,9 +8396,9 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_12readdir_ex(CYTHON_UNUSED st
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_15readdir(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_14readdir[] = "SFTPHandle.readdir(self, char *buffer, size_t buffer_maxlen, SFTPAttributes attrs)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_15readdir(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_13readdir(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_12readdir[] = "SFTPHandle.readdir(self, char *buffer, size_t buffer_maxlen, SFTPAttributes attrs)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_13readdir(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   CYTHON_UNUSED char *__pyx_v_buffer;
   CYTHON_UNUSED size_t __pyx_v_buffer_maxlen;
   CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs = 0;
@@ -8571,7 +8462,7 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_15readdir(PyObject *__pyx_v_s
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_attrs), __pyx_ptype_4ssh2_4ssh2_SFTPAttributes, 1, "attrs", 0))) __PYX_ERR(1, 319, __pyx_L1_error)
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_14readdir(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self), __pyx_v_buffer, __pyx_v_buffer_maxlen, __pyx_v_attrs);
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_12readdir(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self), __pyx_v_buffer, __pyx_v_buffer_maxlen, __pyx_v_attrs);
 
   /* function exit code */
   goto __pyx_L0;
@@ -8582,7 +8473,7 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_15readdir(PyObject *__pyx_v_s
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_14readdir(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED char *__pyx_v_buffer, CYTHON_UNUSED size_t __pyx_v_buffer_maxlen, CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_12readdir(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED char *__pyx_v_buffer, CYTHON_UNUSED size_t __pyx_v_buffer_maxlen, CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("readdir", 0);
@@ -8623,9 +8514,9 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_14readdir(CYTHON_UNUSED struc
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_17write(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_16write[] = "SFTPHandle.write(self, const char *buf, size_t count)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_17write(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_15write(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_14write[] = "SFTPHandle.write(self, const char *buf, size_t count)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_15write(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   CYTHON_UNUSED char const *__pyx_v_buf;
   CYTHON_UNUSED size_t __pyx_v_count;
   PyObject *__pyx_r = 0;
@@ -8677,14 +8568,14 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_17write(PyObject *__pyx_v_sel
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_16write(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self), __pyx_v_buf, __pyx_v_count);
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_14write(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self), __pyx_v_buf, __pyx_v_count);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_16write(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED char const *__pyx_v_buf, CYTHON_UNUSED size_t __pyx_v_count) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_14write(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED char const *__pyx_v_buf, CYTHON_UNUSED size_t __pyx_v_count) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("write", 0);
@@ -8725,20 +8616,20 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_16write(CYTHON_UNUSED struct 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_19fsync(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_18fsync[] = "SFTPHandle.fsync(self)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_19fsync(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_17fsync(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_16fsync[] = "SFTPHandle.fsync(self)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_17fsync(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("fsync (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_18fsync(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_16fsync(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_18fsync(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_16fsync(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("fsync", 0);
@@ -8779,9 +8670,9 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_18fsync(CYTHON_UNUSED struct 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_21seek(PyObject *__pyx_v_self, PyObject *__pyx_arg_offset); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_20seek[] = "SFTPHandle.seek(self, size_t offset)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_21seek(PyObject *__pyx_v_self, PyObject *__pyx_arg_offset) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_19seek(PyObject *__pyx_v_self, PyObject *__pyx_arg_offset); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_18seek[] = "SFTPHandle.seek(self, size_t offset)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_19seek(PyObject *__pyx_v_self, PyObject *__pyx_arg_offset) {
   CYTHON_UNUSED size_t __pyx_v_offset;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -8795,14 +8686,14 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_21seek(PyObject *__pyx_v_self
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_20seek(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self), ((size_t)__pyx_v_offset));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_18seek(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self), ((size_t)__pyx_v_offset));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_20seek(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED size_t __pyx_v_offset) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_18seek(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED size_t __pyx_v_offset) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("seek", 0);
@@ -8843,9 +8734,9 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_20seek(CYTHON_UNUSED struct _
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_23seek64(PyObject *__pyx_v_self, PyObject *__pyx_arg_offset); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_22seek64[] = "SFTPHandle.seek64(self, size_t offset)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_23seek64(PyObject *__pyx_v_self, PyObject *__pyx_arg_offset) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_21seek64(PyObject *__pyx_v_self, PyObject *__pyx_arg_offset); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_20seek64[] = "SFTPHandle.seek64(self, size_t offset)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_21seek64(PyObject *__pyx_v_self, PyObject *__pyx_arg_offset) {
   CYTHON_UNUSED size_t __pyx_v_offset;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -8859,14 +8750,14 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_23seek64(PyObject *__pyx_v_se
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_22seek64(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self), ((size_t)__pyx_v_offset));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_20seek64(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self), ((size_t)__pyx_v_offset));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_22seek64(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED size_t __pyx_v_offset) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_20seek64(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED size_t __pyx_v_offset) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("seek64", 0);
@@ -8907,20 +8798,20 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_22seek64(CYTHON_UNUSED struct
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_25rewind(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_24rewind[] = "SFTPHandle.rewind(self)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_25rewind(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_23rewind(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_22rewind[] = "SFTPHandle.rewind(self)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_23rewind(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("rewind (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_24rewind(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_22rewind(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_24rewind(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_22rewind(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("rewind", 0);
@@ -8961,20 +8852,20 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_24rewind(CYTHON_UNUSED struct
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_27tell(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_26tell[] = "SFTPHandle.tell(self)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_27tell(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_25tell(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_24tell[] = "SFTPHandle.tell(self)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_25tell(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("tell (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_26tell(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_24tell(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_26tell(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_24tell(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("tell", 0);
@@ -9015,20 +8906,20 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_26tell(CYTHON_UNUSED struct _
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_29tell64(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_28tell64[] = "SFTPHandle.tell64(self)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_29tell64(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_27tell64(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_26tell64[] = "SFTPHandle.tell64(self)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_27tell64(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("tell64 (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_28tell64(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_26tell64(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_28tell64(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_26tell64(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("tell64", 0);
@@ -9069,9 +8960,9 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_28tell64(CYTHON_UNUSED struct
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_31fstat_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_30fstat_ex[] = "SFTPHandle.fstat_ex(self, SFTPAttributes attrs, int setstat)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_31fstat_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_29fstat_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_28fstat_ex[] = "SFTPHandle.fstat_ex(self, SFTPAttributes attrs, int setstat)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_29fstat_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs = 0;
   CYTHON_UNUSED int __pyx_v_setstat;
   PyObject *__pyx_r = 0;
@@ -9124,7 +9015,7 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_31fstat_ex(PyObject *__pyx_v_
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_attrs), __pyx_ptype_4ssh2_4ssh2_SFTPAttributes, 1, "attrs", 0))) __PYX_ERR(1, 343, __pyx_L1_error)
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_30fstat_ex(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self), __pyx_v_attrs, __pyx_v_setstat);
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_28fstat_ex(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self), __pyx_v_attrs, __pyx_v_setstat);
 
   /* function exit code */
   goto __pyx_L0;
@@ -9135,7 +9026,7 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_31fstat_ex(PyObject *__pyx_v_
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_30fstat_ex(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs, CYTHON_UNUSED int __pyx_v_setstat) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_28fstat_ex(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs, CYTHON_UNUSED int __pyx_v_setstat) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("fstat_ex", 0);
@@ -9176,14 +9067,14 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_30fstat_ex(CYTHON_UNUSED stru
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_33fstat(PyObject *__pyx_v_self, PyObject *__pyx_v_attrs); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_32fstat[] = "SFTPHandle.fstat(self, SFTPAttributes attrs)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_33fstat(PyObject *__pyx_v_self, PyObject *__pyx_v_attrs) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_31fstat(PyObject *__pyx_v_self, PyObject *__pyx_v_attrs); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_30fstat[] = "SFTPHandle.fstat(self, SFTPAttributes attrs)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_31fstat(PyObject *__pyx_v_self, PyObject *__pyx_v_attrs) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("fstat (wrapper)", 0);
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_attrs), __pyx_ptype_4ssh2_4ssh2_SFTPAttributes, 1, "attrs", 0))) __PYX_ERR(1, 346, __pyx_L1_error)
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_32fstat(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self), ((struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *)__pyx_v_attrs));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_30fstat(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self), ((struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *)__pyx_v_attrs));
 
   /* function exit code */
   goto __pyx_L0;
@@ -9194,7 +9085,7 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_33fstat(PyObject *__pyx_v_sel
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_32fstat(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_30fstat(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("fstat", 0);
@@ -9235,14 +9126,14 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_32fstat(CYTHON_UNUSED struct 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_35fsetstat(PyObject *__pyx_v_self, PyObject *__pyx_v_attrs); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_34fsetstat[] = "SFTPHandle.fsetstat(self, SFTPAttributes attrs)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_35fsetstat(PyObject *__pyx_v_self, PyObject *__pyx_v_attrs) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_33fsetstat(PyObject *__pyx_v_self, PyObject *__pyx_v_attrs); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_32fsetstat[] = "SFTPHandle.fsetstat(self, SFTPAttributes attrs)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_33fsetstat(PyObject *__pyx_v_self, PyObject *__pyx_v_attrs) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("fsetstat (wrapper)", 0);
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_attrs), __pyx_ptype_4ssh2_4ssh2_SFTPAttributes, 1, "attrs", 0))) __PYX_ERR(1, 349, __pyx_L1_error)
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_34fsetstat(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self), ((struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *)__pyx_v_attrs));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_32fsetstat(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self), ((struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *)__pyx_v_attrs));
 
   /* function exit code */
   goto __pyx_L0;
@@ -9253,7 +9144,7 @@ static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_35fsetstat(PyObject *__pyx_v_
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_34fsetstat(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_32fsetstat(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPAttributes *__pyx_v_attrs) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("fsetstat", 0);
@@ -9292,20 +9183,20 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_34fsetstat(CYTHON_UNUSED stru
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_37__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_36__reduce_cython__[] = "SFTPHandle.__reduce_cython__(self)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_37__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_35__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_34__reduce_cython__[] = "SFTPHandle.__reduce_cython__(self)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_35__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_36__reduce_cython__(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_34__reduce_cython__(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_36__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_34__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -9317,7 +9208,7 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_36__reduce_cython__(CYTHON_UN
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -9347,20 +9238,20 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_36__reduce_cython__(CYTHON_UN
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_39__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_38__setstate_cython__[] = "SFTPHandle.__setstate_cython__(self, __pyx_state)";
-static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_39__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_37__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static char __pyx_doc_4ssh2_4ssh2_10SFTPHandle_36__setstate_cython__[] = "SFTPHandle.__setstate_cython__(self, __pyx_state)";
+static PyObject *__pyx_pw_4ssh2_4ssh2_10SFTPHandle_37__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_38__setstate_cython__(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_4ssh2_4ssh2_10SFTPHandle_36__setstate_cython__(((struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_38__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_36__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_4ssh2_SFTPHandle *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -9371,7 +9262,7 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_10SFTPHandle_38__setstate_cython__(CYTHON_
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -10583,8 +10474,8 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_7Channel_12read_ex(struct __pyx_obj_4ssh2_
  *             free(cbuf)
  */
     /*else*/ {
-      __Pyx_INCREF(__pyx_kp_b__7);
-      __pyx_v_buf = __pyx_kp_b__7;
+      __Pyx_INCREF(__pyx_kp_b__8);
+      __pyx_v_buf = __pyx_kp_b__8;
     }
     __pyx_L9:;
   }
@@ -11892,7 +11783,7 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_7Channel_34__reduce_cython__(CYTHON_UNUSED
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -11946,7 +11837,7 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_7Channel_36__setstate_cython__(CYTHON_UNUS
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -13263,7 +13154,7 @@ static LIBSSH2_AGENT *__pyx_f_4ssh2_4ssh2_7Session_connect_agent(struct __pyx_ob
  *         return agent
  * 
  */
-                __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4ssh2_4ssh2_AgentConnectError), __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 622, __pyx_L12_error)
+                __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4ssh2_4ssh2_AgentConnectError), __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 622, __pyx_L12_error)
                 __Pyx_GOTREF(__pyx_t_2);
                 __Pyx_Raise(__pyx_t_2, 0, 0, 0);
                 __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -13524,7 +13415,7 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_7Session_16userauth_agent(struct __pyx_obj
  *                         "Failure requesting identities from agent")
  *             while 1:
  */
-                __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4ssh2_4ssh2_AgentListIdentitiesError), __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 640, __pyx_L8_error)
+                __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4ssh2_4ssh2_AgentListIdentitiesError), __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 640, __pyx_L8_error)
                 __Pyx_GOTREF(__pyx_t_2);
                 __Pyx_Raise(__pyx_t_2, 0, 0, 0);
                 __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -15177,8 +15068,8 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_7Session_32last_error(struct __pyx_obj_4ss
  * 
  */
   /*else*/ {
-    __Pyx_INCREF(__pyx_kp_b__7);
-    __pyx_v_msg = __pyx_kp_b__7;
+    __Pyx_INCREF(__pyx_kp_b__8);
+    __pyx_v_msg = __pyx_kp_b__8;
   }
   __pyx_L6:;
 
@@ -15249,7 +15140,7 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_7Session_34__reduce_cython__(CYTHON_UNUSED
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__15, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -15303,7 +15194,7 @@ static PyObject *__pyx_pf_4ssh2_4ssh2_7Session_36__setstate_cython__(CYTHON_UNUS
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__15, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__16, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -19645,36 +19536,28 @@ static void __pyx_tp_dealloc_4ssh2_4ssh2_SFTP(PyObject *o) {
     if (PyObject_CallFinalizerFromDealloc(o)) return;
   }
   #endif
-  {
-    PyObject *etype, *eval, *etb;
-    PyErr_Fetch(&etype, &eval, &etb);
-    ++Py_REFCNT(o);
-    __pyx_pw_4ssh2_4ssh2_4SFTP_3__dealloc__(o);
-    --Py_REFCNT(o);
-    PyErr_Restore(etype, eval, etb);
-  }
   (*Py_TYPE(o)->tp_free)(o);
 }
 
 static PyMethodDef __pyx_methods_4ssh2_4ssh2_SFTP[] = {
-  {"get_channel", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_5get_channel, METH_NOARGS, __pyx_doc_4ssh2_4ssh2_4SFTP_4get_channel},
-  {"open_ex", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_7open_ex, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_4SFTP_6open_ex},
-  {"open", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_9open, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_4SFTP_8open},
-  {"opendir", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_11opendir, METH_O, __pyx_doc_4ssh2_4ssh2_4SFTP_10opendir},
-  {"rename_ex", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_13rename_ex, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_4SFTP_12rename_ex},
-  {"rename", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_15rename, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_4SFTP_14rename},
-  {"unlink", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_17unlink, METH_O, __pyx_doc_4ssh2_4ssh2_4SFTP_16unlink},
-  {"fstatvfs", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_19fstatvfs, METH_NOARGS, __pyx_doc_4ssh2_4ssh2_4SFTP_18fstatvfs},
-  {"statvfs", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_21statvfs, METH_NOARGS, __pyx_doc_4ssh2_4ssh2_4SFTP_20statvfs},
-  {"mkdir", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_23mkdir, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_4SFTP_22mkdir},
-  {"rmdir", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_25rmdir, METH_O, __pyx_doc_4ssh2_4ssh2_4SFTP_24rmdir},
-  {"stat", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_27stat, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_4SFTP_26stat},
-  {"lstat", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_29lstat, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_4SFTP_28lstat},
-  {"setstat", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_31setstat, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_4SFTP_30setstat},
-  {"symlink", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_33symlink, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_4SFTP_32symlink},
-  {"realpath", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_35realpath, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_4SFTP_34realpath},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_37__reduce_cython__, METH_NOARGS, __pyx_doc_4ssh2_4ssh2_4SFTP_36__reduce_cython__},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_39__setstate_cython__, METH_O, __pyx_doc_4ssh2_4ssh2_4SFTP_38__setstate_cython__},
+  {"get_channel", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_3get_channel, METH_NOARGS, __pyx_doc_4ssh2_4ssh2_4SFTP_2get_channel},
+  {"open_ex", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_5open_ex, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_4SFTP_4open_ex},
+  {"open", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_7open, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_4SFTP_6open},
+  {"opendir", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_9opendir, METH_O, __pyx_doc_4ssh2_4ssh2_4SFTP_8opendir},
+  {"rename_ex", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_11rename_ex, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_4SFTP_10rename_ex},
+  {"rename", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_13rename, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_4SFTP_12rename},
+  {"unlink", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_15unlink, METH_O, __pyx_doc_4ssh2_4ssh2_4SFTP_14unlink},
+  {"fstatvfs", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_17fstatvfs, METH_NOARGS, __pyx_doc_4ssh2_4ssh2_4SFTP_16fstatvfs},
+  {"statvfs", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_19statvfs, METH_NOARGS, __pyx_doc_4ssh2_4ssh2_4SFTP_18statvfs},
+  {"mkdir", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_21mkdir, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_4SFTP_20mkdir},
+  {"rmdir", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_23rmdir, METH_O, __pyx_doc_4ssh2_4ssh2_4SFTP_22rmdir},
+  {"stat", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_25stat, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_4SFTP_24stat},
+  {"lstat", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_27lstat, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_4SFTP_26lstat},
+  {"setstat", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_29setstat, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_4SFTP_28setstat},
+  {"symlink", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_31symlink, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_4SFTP_30symlink},
+  {"realpath", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_33realpath, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_4SFTP_32realpath},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_35__reduce_cython__, METH_NOARGS, __pyx_doc_4ssh2_4ssh2_4SFTP_34__reduce_cython__},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_4ssh2_4ssh2_4SFTP_37__setstate_cython__, METH_O, __pyx_doc_4ssh2_4ssh2_4SFTP_36__setstate_cython__},
   {0, 0, 0, 0}
 };
 
@@ -19845,35 +19728,27 @@ static void __pyx_tp_dealloc_4ssh2_4ssh2_SFTPHandle(PyObject *o) {
     if (PyObject_CallFinalizerFromDealloc(o)) return;
   }
   #endif
-  {
-    PyObject *etype, *eval, *etb;
-    PyErr_Fetch(&etype, &eval, &etb);
-    ++Py_REFCNT(o);
-    __pyx_pw_4ssh2_4ssh2_10SFTPHandle_3__dealloc__(o);
-    --Py_REFCNT(o);
-    PyErr_Restore(etype, eval, etb);
-  }
   (*Py_TYPE(o)->tp_free)(o);
 }
 
 static PyMethodDef __pyx_methods_4ssh2_4ssh2_SFTPHandle[] = {
-  {"__next__", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_7__next__, METH_NOARGS|METH_COEXIST, 0},
-  {"close", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_9close, METH_NOARGS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_8close},
-  {"read", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_11read, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_10read},
-  {"readdir_ex", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_13readdir_ex, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_12readdir_ex},
-  {"readdir", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_15readdir, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_14readdir},
-  {"write", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_17write, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_16write},
-  {"fsync", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_19fsync, METH_NOARGS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_18fsync},
-  {"seek", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_21seek, METH_O, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_20seek},
-  {"seek64", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_23seek64, METH_O, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_22seek64},
-  {"rewind", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_25rewind, METH_NOARGS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_24rewind},
-  {"tell", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_27tell, METH_NOARGS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_26tell},
-  {"tell64", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_29tell64, METH_NOARGS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_28tell64},
-  {"fstat_ex", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_31fstat_ex, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_30fstat_ex},
-  {"fstat", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_33fstat, METH_O, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_32fstat},
-  {"fsetstat", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_35fsetstat, METH_O, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_34fsetstat},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_37__reduce_cython__, METH_NOARGS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_36__reduce_cython__},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_39__setstate_cython__, METH_O, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_38__setstate_cython__},
+  {"__next__", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_5__next__, METH_NOARGS|METH_COEXIST, 0},
+  {"close", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_7close, METH_NOARGS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_6close},
+  {"read", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_9read, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_8read},
+  {"readdir_ex", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_11readdir_ex, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_10readdir_ex},
+  {"readdir", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_13readdir, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_12readdir},
+  {"write", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_15write, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_14write},
+  {"fsync", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_17fsync, METH_NOARGS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_16fsync},
+  {"seek", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_19seek, METH_O, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_18seek},
+  {"seek64", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_21seek64, METH_O, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_20seek64},
+  {"rewind", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_23rewind, METH_NOARGS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_22rewind},
+  {"tell", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_25tell, METH_NOARGS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_24tell},
+  {"tell64", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_27tell64, METH_NOARGS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_26tell64},
+  {"fstat_ex", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_29fstat_ex, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_28fstat_ex},
+  {"fstat", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_31fstat, METH_O, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_30fstat},
+  {"fsetstat", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_33fsetstat, METH_O, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_32fsetstat},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_35__reduce_cython__, METH_NOARGS, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_34__reduce_cython__},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_4ssh2_4ssh2_10SFTPHandle_37__setstate_cython__, METH_O, __pyx_doc_4ssh2_4ssh2_10SFTPHandle_36__setstate_cython__},
   {0, 0, 0, 0}
 };
 
@@ -19908,8 +19783,8 @@ static PyTypeObject __pyx_type_4ssh2_4ssh2_SFTPHandle = {
   0, /*tp_clear*/
   0, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
-  __pyx_pw_4ssh2_4ssh2_10SFTPHandle_5__iter__, /*tp_iter*/
-  __pyx_pw_4ssh2_4ssh2_10SFTPHandle_7__next__, /*tp_iternext*/
+  __pyx_pw_4ssh2_4ssh2_10SFTPHandle_3__iter__, /*tp_iter*/
+  __pyx_pw_4ssh2_4ssh2_10SFTPHandle_5__next__, /*tp_iternext*/
   __pyx_methods_4ssh2_4ssh2_SFTPHandle, /*tp_methods*/
   0, /*tp_members*/
   0, /*tp_getset*/
@@ -20205,7 +20080,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_StopIteration, __pyx_k_StopIteration, sizeof(__pyx_k_StopIteration), 0, 0, 1, 1},
   {&__pyx_n_s_TypeError, __pyx_k_TypeError, sizeof(__pyx_k_TypeError), 0, 0, 1, 1},
   {&__pyx_kp_s_Unable_to_connect_to_agent, __pyx_k_Unable_to_connect_to_agent, sizeof(__pyx_k_Unable_to_connect_to_agent), 0, 0, 1, 0},
-  {&__pyx_kp_b__7, __pyx_k__7, sizeof(__pyx_k__7), 0, 0, 0, 0},
+  {&__pyx_kp_b__8, __pyx_k__8, sizeof(__pyx_k__8), 0, 0, 0, 0},
   {&__pyx_n_s_attrs, __pyx_k_attrs, sizeof(__pyx_k_attrs), 0, 0, 1, 1},
   {&__pyx_n_s_blockdirections, __pyx_k_blockdirections, sizeof(__pyx_k_blockdirections), 0, 0, 1, 1},
   {&__pyx_n_s_bound_port, __pyx_k_bound_port, sizeof(__pyx_k_bound_port), 0, 0, 1, 1},
@@ -20364,18 +20239,18 @@ static int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 2, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__8);
-  __Pyx_GIVEREF(__pyx_tuple__8);
+  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__9);
+  __Pyx_GIVEREF(__pyx_tuple__9);
 
   /* "(tree fragment)":4
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 4, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__9);
-  __Pyx_GIVEREF(__pyx_tuple__9);
+  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__10);
+  __Pyx_GIVEREF(__pyx_tuple__10);
 
   /* "(tree fragment)":2
  * def __reduce_cython__(self):
@@ -20383,18 +20258,18 @@ static int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 2, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__10);
-  __Pyx_GIVEREF(__pyx_tuple__10);
+  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__11);
+  __Pyx_GIVEREF(__pyx_tuple__11);
 
   /* "(tree fragment)":4
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 4, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__11);
-  __Pyx_GIVEREF(__pyx_tuple__11);
+  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__12);
+  __Pyx_GIVEREF(__pyx_tuple__12);
 
   /* "ssh2/ssh2.pyx":622
  *                 ssh2.libssh2_agent_free(agent)
@@ -20403,9 +20278,9 @@ static int __Pyx_InitCachedConstants(void) {
  *         return agent
  * 
  */
-  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_s_Unable_to_connect_to_agent); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(1, 622, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__12);
-  __Pyx_GIVEREF(__pyx_tuple__12);
+  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_s_Unable_to_connect_to_agent); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(1, 622, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__13);
+  __Pyx_GIVEREF(__pyx_tuple__13);
 
   /* "ssh2/ssh2.pyx":640
  *                 self._clear_agent(agent)
@@ -20414,9 +20289,9 @@ static int __Pyx_InitCachedConstants(void) {
  *                         "Failure requesting identities from agent")
  *             while 1:
  */
-  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_s_Failure_requesting_identities_fr); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(1, 640, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__13);
-  __Pyx_GIVEREF(__pyx_tuple__13);
+  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_kp_s_Failure_requesting_identities_fr); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(1, 640, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__14);
+  __Pyx_GIVEREF(__pyx_tuple__14);
 
   /* "(tree fragment)":2
  * def __reduce_cython__(self):
@@ -20424,18 +20299,18 @@ static int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 2, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__14);
-  __Pyx_GIVEREF(__pyx_tuple__14);
+  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__15);
+  __Pyx_GIVEREF(__pyx_tuple__15);
 
   /* "(tree fragment)":4
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 4, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__15);
-  __Pyx_GIVEREF(__pyx_tuple__15);
+  __pyx_tuple__16 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__16);
+  __Pyx_GIVEREF(__pyx_tuple__16);
 
   /* "ssh2/ssh2.pyx":69
  * 
@@ -20444,48 +20319,48 @@ static int __Pyx_InitCachedConstants(void) {
  *     cdef int directions = session.blockdirections()
  *     if directions == 0:
  */
-  __pyx_tuple__16 = PyTuple_Pack(5, __pyx_n_s_socket, __pyx_n_s_session, __pyx_n_s_directions, __pyx_n_s_readfds, __pyx_n_s_writefds); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(1, 69, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__16);
-  __Pyx_GIVEREF(__pyx_tuple__16);
-  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(2, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ssh2_ssh2_pyx, __pyx_n_s_wait_socket, 69, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(1, 69, __pyx_L1_error)
+  __pyx_tuple__17 = PyTuple_Pack(5, __pyx_n_s_socket, __pyx_n_s_session, __pyx_n_s_directions, __pyx_n_s_readfds, __pyx_n_s_writefds); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(1, 69, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__17);
+  __Pyx_GIVEREF(__pyx_tuple__17);
+  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(2, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ssh2_ssh2_pyx, __pyx_n_s_wait_socket, 69, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(1, 69, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_AgentError(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     if __pyx_checksum != 0xd41d8cd:
  *         from pickle import PickleError
  */
-  __pyx_tuple__18 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_PickleError, __pyx_n_s_result); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__18);
-  __Pyx_GIVEREF(__pyx_tuple__18);
-  __pyx_codeobj__19 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__18, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_AgentError, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__19)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_tuple__20 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_PickleError, __pyx_n_s_result); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__20);
-  __Pyx_GIVEREF(__pyx_tuple__20);
-  __pyx_codeobj__21 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_AuthenticationFai, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__21)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_tuple__22 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_PickleError, __pyx_n_s_result); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__22);
-  __Pyx_GIVEREF(__pyx_tuple__22);
-  __pyx_codeobj__23 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__22, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_AgentConnectError, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__23)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_tuple__24 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_PickleError, __pyx_n_s_result); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__24);
-  __Pyx_GIVEREF(__pyx_tuple__24);
-  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_AgentAuthenticati, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_tuple__26 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_PickleError, __pyx_n_s_result); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__26);
-  __Pyx_GIVEREF(__pyx_tuple__26);
-  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_AgentListIdentiti, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_tuple__28 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_PickleError, __pyx_n_s_result); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__28);
-  __Pyx_GIVEREF(__pyx_tuple__28);
-  __pyx_codeobj__29 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__28, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_AgentGetIdentityE, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__29)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_tuple__30 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_PickleError, __pyx_n_s_result); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__30);
-  __Pyx_GIVEREF(__pyx_tuple__30);
-  __pyx_codeobj__31 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__30, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_SessionStartupErr, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__31)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_tuple__32 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_PickleError, __pyx_n_s_result); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__32);
-  __Pyx_GIVEREF(__pyx_tuple__32);
-  __pyx_codeobj__33 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__32, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_ChannelException, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__33)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_tuple__19 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_PickleError, __pyx_n_s_result); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__19);
+  __Pyx_GIVEREF(__pyx_tuple__19);
+  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_AgentError, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_tuple__21 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_PickleError, __pyx_n_s_result); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__21);
+  __Pyx_GIVEREF(__pyx_tuple__21);
+  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_AuthenticationFai, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_tuple__23 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_PickleError, __pyx_n_s_result); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__23);
+  __Pyx_GIVEREF(__pyx_tuple__23);
+  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_AgentConnectError, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_tuple__25 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_PickleError, __pyx_n_s_result); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__25);
+  __Pyx_GIVEREF(__pyx_tuple__25);
+  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_AgentAuthenticati, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_tuple__27 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_PickleError, __pyx_n_s_result); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__27);
+  __Pyx_GIVEREF(__pyx_tuple__27);
+  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__27, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_AgentListIdentiti, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_tuple__29 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_PickleError, __pyx_n_s_result); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__29);
+  __Pyx_GIVEREF(__pyx_tuple__29);
+  __pyx_codeobj__30 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__29, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_AgentGetIdentityE, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__30)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_tuple__31 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_PickleError, __pyx_n_s_result); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__31);
+  __Pyx_GIVEREF(__pyx_tuple__31);
+  __pyx_codeobj__32 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__31, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_SessionStartupErr, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__32)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_tuple__33 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_PickleError, __pyx_n_s_result); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__33);
+  __Pyx_GIVEREF(__pyx_tuple__33);
+  __pyx_codeobj__34 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__33, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_ChannelException, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__34)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -20815,6 +20690,15 @@ PyMODINIT_FUNC PyInit_ssh2(void)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_wait_socket, __pyx_t_2) < 0) __PYX_ERR(1, 69, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "ssh2/ssh2.pyx":295
+ *         return rc
+ * 
+ *     def read(self, size_t buffer_maxlen=ssh2._LIBSSH2_CHANNEL_WINDOW_DEFAULT):             # <<<<<<<<<<<<<<
+ *         cdef ssize_t rc
+ *         cdef bytes buf
+ */
+  __pyx_k__7 = LIBSSH2_CHANNEL_WINDOW_DEFAULT;
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_AgentError(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<

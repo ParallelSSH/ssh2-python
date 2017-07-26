@@ -130,8 +130,8 @@ cdef class SFTP:
     def __cinit__(self):
         self._sftp = NULL
 
-    def __dealloc__(self):
-        sftp.libssh2_sftp_shutdown(self._sftp)
+    # def __dealloc__(self):
+    #     sftp.libssh2_sftp_shutdown(self._sftp)
 
     def get_channel(self):
         cdef LIBSSH2_CHANNEL *_channel
@@ -272,9 +272,9 @@ cdef class SFTPHandle:
     def __cinit__(self):
         self._handle = NULL
 
-    def __dealloc__(self):
-        if self._handle is not NULL:
-            sftp.libssh2_sftp_close_handle(self._handle)
+    # def __dealloc__(self):
+    #     if self._handle is not NULL:
+    #         sftp.libssh2_sftp_close_handle(self._handle)
 
     def __iter__(self):
         return self
@@ -292,7 +292,7 @@ cdef class SFTPHandle:
             rc = sftp.libssh2_sftp_close_handle(self._handle)
         return rc
 
-    def read(self, size_t buffer_maxlen=1024):
+    def read(self, size_t buffer_maxlen=ssh2._LIBSSH2_CHANNEL_WINDOW_DEFAULT):
         cdef ssize_t rc
         cdef bytes buf
         cdef char *cbuf
