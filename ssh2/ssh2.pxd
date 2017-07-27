@@ -15,6 +15,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 from libc.time cimport time_t
+from posix.types cimport off_t
 
 cdef extern from "libssh2.h" nogil:
     ctypedef int libssh2_socket_t
@@ -25,9 +26,13 @@ cdef extern from "libssh2.h" nogil:
         _LIBSSH2_VERSION_MAJOR "LIBSSH2_VERSION_MAJOR"
         _LIBSSH2_VERSION_MINOR "LIBSSH2_VERSION_MINOR"
         _LIBSSH2_VERSION_PATCH "LIBSSH2_VERSION_PATCH"
+        _LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA "LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA"
+        _LIBSSH2_CHANNEL_FLUSH_ALL "LIBSSH2_CHANNEL_FLUSH_ALL"
     ctypedef long long libssh2_int64_t
     ctypedef struct stat
-    ctypedef struct libssh2_struct_stat
+    ctypedef off_t libssh2_struct_stat_size
+    ctypedef struct libssh2_struct_stat:
+        libssh2_struct_stat_size st_size
     ctypedef struct LIBSSH2_SESSION:
         pass
     ctypedef struct LIBSSH2_CHANNEL:

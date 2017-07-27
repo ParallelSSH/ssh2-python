@@ -25,9 +25,23 @@ cdef extern from "libssh2_sftp.h" nogil:
     ctypedef struct LIBSSH2_SFTP_HANDLE:
         pass
     ctypedef struct LIBSSH2_SFTP_ATTRIBUTES:
-        pass
+        unsigned long flags
+        uint64_t filesize
+        unsigned long uid, gid
+        unsigned long permissions
+        unsigned long atime, mtime
     ctypedef struct LIBSSH2_SFTP_STATVFS:
-        pass
+        uint64_t  f_bsize # file system block size
+        uint64_t  f_frsize   # fragment size
+        uint64_t  f_blocks   # size of fs in f_frsize units
+        uint64_t  f_bfree    # free blocks
+        uint64_t  f_bavail   # free blocks for non-root
+        uint64_t  f_files    # inodes
+        uint64_t  f_ffree    # free inodes
+        uint64_t  f_favail   # free inodes for non-root
+        uint64_t  f_fsid     # file system ID
+        uint64_t  f_flag     # mount flags
+        uint64_t  f_namemax  # maximum filename length
     LIBSSH2_SFTP *libssh2_sftp_init(LIBSSH2_SESSION *session)
     int libssh2_sftp_shutdown(LIBSSH2_SFTP *sftp)
     unsigned long libssh2_sftp_last_error(LIBSSH2_SFTP *sftp)
