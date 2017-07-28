@@ -40,10 +40,10 @@ if USING_CYTHON:
                          })
 
 setup(
-    name='libssh2-python',
+    name='ssh2-python',
     # version=versioneer.get_version(),
-    version='0.1a0',
-    url='https://github.com/ParallelSSH/libssh2_python',
+    version='0.1b1',
+    url='https://github.com/ParallelSSH/ssh2-python',
     license='LGPLv2',
     author='Panos Kittenis',
     author_email='22e889d8@opayq.com',

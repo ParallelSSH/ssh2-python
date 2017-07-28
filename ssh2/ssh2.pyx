@@ -53,7 +53,7 @@ def version(int required_version=0):
     return version
 
 
-def exit():
+def ssh2_exit():
     """Call libssh2_exit"""
     ssh2.libssh2_exit()
 
@@ -132,26 +132,26 @@ def wait_socket(_socket, Session session):
     return select(readfds, writefds, ())
 
 
-cdef object PyChannel(LIBSSH2_CHANNEL *channel):
-    cdef Channel _channel = Channel()
+cdef object PyChannel(LIBSSH2_CHANNEL *channel, Session session):
+    cdef Channel _channel = Channel(session)
     _channel._channel = channel
     return _channel
 
 
-cdef object PyListener(LIBSSH2_LISTENER *listener):
-    cdef Listener _listener = Listener()
+cdef object PyListener(LIBSSH2_LISTENER *listener, Session session):
+    cdef Listener _listener = Listener(session)
     _listener._listener = listener
     return _listener
 
 
-cdef object PySFTPHandle(sftp.LIBSSH2_SFTP_HANDLE *handle):
-    cdef SFTPHandle _handle = SFTPHandle()
+cdef object PySFTPHandle(sftp.LIBSSH2_SFTP_HANDLE *handle, SFTP sftp):
+    cdef SFTPHandle _handle = SFTPHandle(sftp)
     _handle._handle = handle
     return _handle
 
 
-cdef object PySFTP(sftp.LIBSSH2_SFTP *sftp):
-    cdef SFTP _sftp = SFTP()
+cdef object PySFTP(sftp.LIBSSH2_SFTP *sftp, Session session):
+    cdef SFTP _sftp = SFTP(session)
     _sftp._sftp = sftp
     return _sftp
 
@@ -207,8 +207,7 @@ cdef class Agent:
 
     def __dealloc__(self):
         with nogil:
-            if self._agent is not NULL:
-                clear_agent(self._agent)
+            clear_agent(self._agent)
 
     def list_identities(self):
         """This method is a no-op - use get_identities to list and retrieve
@@ -268,9 +267,11 @@ cdef class Agent:
 
 cdef class Listener:
     cdef ssh2.LIBSSH2_LISTENER *_listener
+    cdef Session _session
 
-    def __cinit__(self):
+    def __cinit__(self, session):
         self._listener = NULL
+        self._session = session
 
     def forward_accept(self):
         cdef LIBSSH2_CHANNEL *channel
@@ -279,7 +280,7 @@ cdef class Listener:
                 self._listener)
         if channel is NULL:
             return
-        return PyChannel(channel)
+        return PyChannel(channel, self._session)
 
     def forward_cancel(self):
         cdef int rc
@@ -291,20 +292,13 @@ cdef class Listener:
 
 cdef class SFTP:
     cdef sftp.LIBSSH2_SFTP *_sftp
-    # cdef list _handles
+    cdef Session _session
 
-    def __cinit__(self):
+    def __cinit__(self, session):
         self._sftp = NULL
-        # self._handles = []
+        self._session = session
 
-    # TODO - Per channel
-    # def __dealloc__(self):
-    #     sftp.libssh2_sftp_shutdown(self._sftp)
-    #     for _handle in self._handles:
-    #         _handle.close()
-    #     # sftp.libssh2_sftp_shutdown(self._sftp)
-
-    def shutdown(self):
+    def __dealloc__(self):
         with nogil:
             sftp.libssh2_sftp_shutdown(self._sftp)
 
@@ -314,7 +308,7 @@ cdef class SFTP:
             _channel = sftp.libssh2_sftp_get_channel(self._sftp)
         if _channel is NULL:
             return
-        return PyChannel(_channel)
+        return PyChannel(_channel, self._session)
 
     def open_ex(self, const char *filename,
                 unsigned int filename_len,
@@ -328,8 +322,7 @@ cdef class SFTP:
                 mode, open_type)
         if _handle is NULL:
             return
-        handle = PySFTPHandle(_handle)
-        # self._handles.append(handle)
+        handle = PySFTPHandle(_handle, self)
         return handle
 
     def open(self, const char *filename,
@@ -342,8 +335,7 @@ cdef class SFTP:
                 self._sftp, filename, flags, mode)
         if _handle is NULL:
             return
-        handle = PySFTPHandle(_handle)
-        # self._handles.append(handle)
+        handle = PySFTPHandle(_handle, self)
         return handle
 
     def opendir(self, const char *path):
@@ -352,7 +344,7 @@ cdef class SFTP:
             _handle = sftp.libssh2_sftp_opendir(self._sftp, path)
         if _handle is NULL:
             return
-        return PySFTPHandle(_handle)
+        return PySFTPHandle(_handle, self)
 
     def rename_ex(self, const char *source_filename,
                   unsigned int source_filename_len,
@@ -442,22 +434,21 @@ cdef class SFTPAttributes:
 
 cdef class SFTPHandle:
     cdef sftp.LIBSSH2_SFTP_HANDLE *_handle
+    cdef SFTP _sftp
 
-    def __cinit__(self):
+    def __cinit__(self, sftp):
         self._handle = NULL
+        self._sftp = sftp
 
-    # TODO - Per channel
-    # def __dealloc__(self):
-    #     if self._handle is not NULL:
-    #         sftp.libssh2_sftp_close_handle(self._handle)
-    #         self._handle = NULL
+    def __dealloc__(self):
+        with nogil:
+            sftp.libssh2_sftp_close_handle(self._handle)
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        cdef bytes data
-        data = self.read()
+        cdef bytes data = self.read()
         if len(data) == 0:
             raise StopIteration
         return data
@@ -528,18 +519,15 @@ cdef class SFTPHandle:
 
 cdef class Channel:
     cdef ssh2.LIBSSH2_CHANNEL *_channel
+    cdef Session _session
 
-    def __cinit__(self):
+    def __cinit__(self, session):
         self._channel = NULL
+        self._session = session
 
-    # TODO - Reference cycles causing segfaults when channel
-    # objects are GC'd before session objects. Session created
-    # references need references in their objects to be GC'd
-    # prior to session
-    # def __dealloc__(self):
-    #     with nogil:
-    #         if self._channel is not NULL:
-    #             ssh2.libssh2_channel_free(self._channel)
+    def __dealloc__(self):
+        with nogil:
+            ssh2.libssh2_channel_free(self._channel)
 
     def pty(self, term="vt100"):
         cdef const char *_term = term
@@ -701,6 +689,9 @@ cdef class Channel:
             rc = ssh2.libssh2_channel_get_exit_status(self._channel)
         return rc
 
+    def get_exit_signal(self):
+        pass
+
     def setenv(self, const char *varname, const char *value):
         cdef int rc
         with nogil:
@@ -777,12 +768,14 @@ cdef class Session:
     """LibSSH2 Session class providing session functions"""
 
     def __cinit__(self):
-        self._session = ssh2.libssh2_session_init()
-        if self._session is NULL:
-            raise MemoryError
+        with nogil:
+            self._session = ssh2.libssh2_session_init()
+            if self._session is NULL:
+                with gil:
+                    raise MemoryError
 
     def __dealloc__(self):
-        if self._session is not NULL:
+        with nogil:
             ssh2.libssh2_session_disconnect(
                 self._session, "end")
             ssh2.libssh2_session_free(self._session)
@@ -799,7 +792,7 @@ cdef class Session:
             if rc != 0 and rc != _LIBSSH2_ERROR_EAGAIN:
                 with gil:
                     raise SessionHandshakeError(
-                        "SSH session startup failed with error code %s",
+                        "SSH session handshake failed with error code %s",
                         rc)
         return rc
 
@@ -971,7 +964,7 @@ cdef class Session:
                 self._session)
         if channel is NULL:
             return None
-        return PyChannel(channel)
+        return PyChannel(channel, self)
 
     def direct_tcpip_ex(self, const char *host, int port,
                         const char *shost, int sport):
@@ -981,7 +974,7 @@ cdef class Session:
                 self._session, host, port, shost, sport)
         if channel is NULL:
             return
-        return PyChannel(channel)
+        return PyChannel(channel, self)
 
     def direct_tcpip(self, const char *host, int port):
         cdef LIBSSH2_CHANNEL *channel
@@ -990,7 +983,7 @@ cdef class Session:
                 self._session, host, port)
         if channel is NULL:
             return
-        return PyChannel(channel)
+        return PyChannel(channel, self)
 
     def blockdirections(self):
         cdef int rc
@@ -1006,7 +999,7 @@ cdef class Session:
                 self._session, port)
         if listener is NULL:
             return
-        return PyListener(listener)
+        return PyListener(listener, self)
 
     def forward_listen_ex(self, const char *host, int port,
                           int bound_port, int queue_maxsize):
@@ -1016,7 +1009,7 @@ cdef class Session:
                 self._session, host, port, &bound_port, queue_maxsize)
         if listener is NULL:
             return
-        return PyListener(listener)
+        return PyListener(listener, self)
 
     def sftp_init(self):
         cdef sftp.LIBSSH2_SFTP *_sftp
@@ -1024,7 +1017,7 @@ cdef class Session:
             _sftp = sftp.libssh2_sftp_init(self._session)
         if _sftp is NULL:
             return
-        return PySFTP(_sftp)
+        return PySFTP(_sftp, self)
 
     def last_error(self):
         cdef char **_error_msg = NULL
