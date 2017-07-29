@@ -21,19 +21,27 @@ names = 'ssh2/*'
 ext = 'pyx' if USING_CYTHON else 'c'
 sources = ['ssh2/*.%s' % (ext,)]
 
-extensions = [
-    Extension('ssh2/*',
-              sources=sources,
-              libraries=['ssh2'],
-              # extra_compile_args=["-O3"],
-              extra_compile_args=["-ggdb"],
-              # For conditional compilation
-              # pyrex_compile_time_env
-    )
-    # for ext in extensions
-]
 
-if ext == 'c':
+if USING_CYTHON:
+    extensions = [
+        Extension('ssh2/*',
+                  sources=sources,
+                  libraries=['ssh2'],
+                  # extra_compile_args=["-O3"],
+                  extra_compile_args=["-ggdb"],
+                  # For conditional compilation
+                  # pyrex_compile_time_env
+        )
+        # for ext in extensions
+    ]
+    extensions = cythonize(
+        extensions,
+        compiler_directives={'embedsignature': True,
+                             'optimize.use_switch': True,
+                             # 'boundscheck': False,
+                             'wraparound': False,
+                         })
+else:
     sources = glob(sources[0])
     # names = [ for s in sources]
     extensions = [
@@ -46,16 +54,6 @@ if ext == 'c':
                   # pyrex_compile_time_env
         )
         for i in range(len(sources))]
-
-
-if USING_CYTHON:
-    extensions = cythonize(
-        extensions,
-        compiler_directives={'embedsignature': True,
-                             'optimize.use_switch': True,
-                             # 'boundscheck': False,
-                             'wraparound': False,
-                         })
 
 setup(
     name='ssh2-python',
