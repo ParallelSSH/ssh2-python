@@ -15,14 +15,39 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 cimport c_ssh2
-cimport c_sftp
-from session cimport Session
 
 
-cdef object PySFTPHandle(c_sftp.LIBSSH2_SFTP_HANDLE *handle, SFTP sftp)
-cdef object PySFTP(c_sftp.LIBSSH2_SFTP *sftp, Session session)
+cdef object PyPublicKey(c_ssh2.libssh2_agent_publickey *pkey):
+    cdef PublicKey _pkey = PublicKey()
+    _pkey._pkey = pkey
+    return _pkey
 
 
-cdef class SFTP:
-    cdef c_sftp.LIBSSH2_SFTP *_sftp
-    cdef Session _session
+cdef class PublicKey:
+
+    def __cinit__(self):
+        self._pkey = NULL
+
+    @property
+    def blob(self):
+        if self._pkey is NULL:
+            return
+        return self._pkey.blob[:self._pkey.blob_len]
+
+    @property
+    def magic(self):
+        if self._pkey is NULL:
+            return
+        return self._pkey.magic
+
+    @property
+    def blob_len(self):
+        if self._pkey is NULL:
+            return
+        return self._pkey.blob_len
+
+    @property
+    def comment(self):
+        if self._pkey is NULL:
+            return
+        return self._pkey.comment

@@ -19,15 +19,19 @@ else:
 
 ext = 'pyx' if USING_CYTHON else 'c'
 
-sources = glob.glob("ssh2/*.%s" % (ext,))
+sources = glob.glob("ssh2/ext/*.%s" % (ext,))
+extensions = sources
 
 extensions = [
-    Extension("ssh2.ssh2",
-              sources=sources,
+    Extension('ssh2/*',
+              sources=['ssh2/*.pyx'],
               libraries=['ssh2'],
               # extra_compile_args=["-O3"],
               extra_compile_args=["-ggdb"],
-          ),
+              # For conditional compilation
+              # pyrex_compile_time_env
+    )
+    # for ext in extensions
 ]
 
 if USING_CYTHON:
@@ -42,7 +46,7 @@ if USING_CYTHON:
 setup(
     name='ssh2-python',
     # version=versioneer.get_version(),
-    version='0.1b1',
+    version='0.2.0',
     url='https://github.com/ParallelSSH/ssh2-python',
     license='LGPLv2',
     author='Panos Kittenis',
