@@ -1,4 +1,5 @@
 import unittest
+import pwd
 import os
 import socket
 
@@ -23,7 +24,7 @@ class SSH2TestCase(unittest.TestCase):
         self.port = 2222
         self.server = OpenSSHServer()
         self.server.start_server()
-        self.user = os.getlogin()
+        self.user = pwd.getpwuid(os.geteuid()).pw_name
 
     def setUp(self):
         self.session = Session()

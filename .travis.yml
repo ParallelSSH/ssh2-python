@@ -1,0 +1,24 @@
+language: python
+cache: pip
+sudo: false
+notifications:
+  email: false
+python:
+  - 2.6
+  - 2.7
+  - 3.4
+  - 3.5
+  - 3.6
+matrix:
+  allow_failures:
+    - python: 2.6
+addons:
+  apt:
+    packages:
+      - libssh2-1-dev
+      - openssh-server
+install:
+  - python setup.py build_ext --inplace
+  - chmod 600 embedded_server/rsa.key
+script:
+  - nosetests

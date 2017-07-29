@@ -31,7 +31,7 @@ class OpenSSHServer(object):
         self.server_proc = None
 
     def start_server(self):
-        cmd = ['/usr/sbin/sshd', '-q', '-D', '-p', str(self.port),
+        cmd = ['/usr/sbin/sshd', '-D', '-p', str(self.port),
                '-h', SERVER_KEY, '-f', SSHD_CONFIG]
         server = Popen(cmd)
         self.server_proc = server
