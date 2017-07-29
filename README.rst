@@ -118,7 +118,7 @@ Performance of above example, compared with Paramiko.
      sys	0m0.021s
 
 
-See `examples directory < link >`_ for more complete example scripts.
+See `examples directory <https://github.com/ParallelSSH/ssh2-python/tree/master/examples>`_ for more complete example scripts.
 
 .. _libssh2: https://www.libssh2.org
 .. _Cython: https://www.cython.org
