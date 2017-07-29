@@ -15,14 +15,10 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 cimport c_ssh2
-cimport c_sftp
-from session cimport Session
 
 
-cdef object PySFTPHandle(c_sftp.LIBSSH2_SFTP_HANDLE *handle, SFTP sftp)
-cdef object PySFTP(c_sftp.LIBSSH2_SFTP *sftp, Session session)
-
-
-cdef class SFTP:
-    cdef c_sftp.LIBSSH2_SFTP *_sftp
-    cdef Session _session
+cdef class Session:
+    cdef c_ssh2.LIBSSH2_SESSION *_session
+    cdef c_ssh2.LIBSSH2_AGENT * init_connect_agent(self) nogil
+    cdef c_ssh2.LIBSSH2_AGENT * _agent_init(self)
+    cdef object socket

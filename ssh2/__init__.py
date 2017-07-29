@@ -1,1 +1,1 @@
-from .ssh2 import Session, Channel
+from .session import Session

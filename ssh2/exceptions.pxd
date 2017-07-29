@@ -14,15 +14,37 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-cimport c_ssh2
-cimport c_sftp
-from session cimport Session
+cdef class AgentError(Exception):
+    pass
 
 
-cdef object PySFTPHandle(c_sftp.LIBSSH2_SFTP_HANDLE *handle, SFTP sftp)
-cdef object PySFTP(c_sftp.LIBSSH2_SFTP *sftp, Session session)
+cdef class AuthenticationError(Exception):
+    pass
 
 
-cdef class SFTP:
-    cdef c_sftp.LIBSSH2_SFTP *_sftp
-    cdef Session _session
+cdef class AgentConnectError(AgentError):
+    pass
+
+
+cdef class AgentAuthenticationError(AuthenticationError):
+    pass
+
+
+cdef class AgentListIdentitiesError(AgentError):
+    pass
+
+
+cdef class AgentGetIdentityError(AgentError):
+    pass
+
+
+cdef class SessionStartupError(Exception):
+    pass
+
+
+cdef class SessionHandshakeError(Exception):
+    pass
+
+
+cdef class ChannelError(Exception):
+    pass
