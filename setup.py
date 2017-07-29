@@ -3,7 +3,6 @@ from __future__ import print_function
 import platform
 import os
 import sys
-import glob
 
 # import versioneer
 from setuptools import setup, find_packages, Extension
@@ -18,9 +17,6 @@ else:
     USING_CYTHON = True
 
 ext = 'pyx' if USING_CYTHON else 'c'
-
-sources = glob.glob("ssh2/ext/*.%s" % (ext,))
-extensions = sources
 
 extensions = [
     Extension('ssh2/*',
