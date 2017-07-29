@@ -24,11 +24,12 @@ print(session.userauth_list(user))
 session.agent_auth(user)
 
 # Agent capabilities
-# agent = session.agent_init()
-# agent.connect()
-# identities = agent.get_identities(user)
-# print(identities)
-# print(identities[0].magic)
+agent = session.agent_init()
+agent.connect()
+identities = agent.get_identities(user)
+print(identities)
+print(identities[0].magic)
+del agent
 
 # Public key blob available as identities[0].blob
 

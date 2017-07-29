@@ -3,6 +3,7 @@ from __future__ import print_function
 import platform
 import os
 import sys
+from glob import glob
 
 # import versioneer
 from setuptools import setup, find_packages, Extension
@@ -16,11 +17,13 @@ except ImportError:
 else:
     USING_CYTHON = True
 
+names = 'ssh2/*'
 ext = 'pyx' if USING_CYTHON else 'c'
+sources = ['ssh2/*.%s' % (ext,)]
 
 extensions = [
     Extension('ssh2/*',
-              sources=['ssh2/*.pyx'],
+              sources=sources,
               libraries=['ssh2'],
               # extra_compile_args=["-O3"],
               extra_compile_args=["-ggdb"],
@@ -29,6 +32,21 @@ extensions = [
     )
     # for ext in extensions
 ]
+
+if ext == 'c':
+    sources = glob(sources[0])
+    # names = [ for s in sources]
+    extensions = [
+        Extension(sources[i].split('.')[0].replace('/', '.'),
+                  sources=[sources[i]],
+                  libraries=['ssh2'],
+                  # extra_compile_args=["-O3"],
+                  extra_compile_args=["-ggdb"],
+                  # For conditional compilation
+                  # pyrex_compile_time_env
+        )
+        for i in range(len(sources))]
+
 
 if USING_CYTHON:
     extensions = cythonize(
