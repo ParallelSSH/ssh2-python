@@ -58,7 +58,7 @@ else:
 setup(
     name='ssh2-python',
     # version=versioneer.get_version(),
-    version='0.2.0',
+    version='0.2.1',
     url='https://github.com/ParallelSSH/ssh2-python',
     license='LGPLv2',
     author='Panos Kittenis',
@@ -77,4 +77,5 @@ setup(
         'Programming Language :: Python :: 3',
     ],
     ext_modules=extensions,
+    package_data={'ssh2': ['*.pxd']},
 )
