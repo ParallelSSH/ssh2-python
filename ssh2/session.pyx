@@ -86,9 +86,9 @@ cdef class Session:
             rc = c_ssh2.libssh2_userauth_authenticated(self._session)
         return bool(rc)
 
-    def userauth_list(self, bytes username):
-        cdef size_t username_len = len(username)
-        cdef char *_username = username
+    def userauth_list(self, username):
+        cdef char *_username = to_bytes(username)
+        cdef size_t username_len = len(_username)
         cdef char *_auth
         cdef bytes auth
         with nogil:
@@ -97,7 +97,7 @@ cdef class Session:
         if _auth is NULL:
             return
         auth = _auth
-        return auth.split(',')
+        return _auth.split(b',')
 
     def userauth_publickey_fromfile(self, username,
                                     publickey,
@@ -124,16 +124,21 @@ cdef class Session:
         return rc
 
     def userauth_hostbased_fromfile(self,
-                                    const char *username,
-                                    const char *publickey,
-                                    const char *privatekey,
-                                    const char *passphrase,
-                                    const char *hostname):
+                                    username,
+                                    publickey,
+                                    privatekey,
+                                    passphrase,
+                                    hostname):
         cdef int rc
+        cdef char *_username = to_bytes(username)
+        cdef char *_publickey = to_bytes(publickey)
+        cdef char *_privatekey = to_bytes(privatekey)
+        cdef char *_passphrase = to_bytes(passphrase)
+        cdef char *_hostname = to_bytes(hostname)
         with nogil:
             rc = c_ssh2.libssh2_userauth_hostbased_fromfile(
-                self._session, username, publickey,
-                privatekey, passphrase, hostname)
+                self._session, _username, _publickey,
+                _privatekey, _passphrase, _hostname)
         return rc
 
     # def userauth_publickey_frommemory(self,
@@ -152,11 +157,13 @@ cdef class Session:
     #             privatekeydata_len, passphrase)
     #     return rc
 
-    def userauth_password(self, const char *username, const char *password):
+    def userauth_password(self, username, password):
         cdef int rc
+        cdef const char *_username = to_bytes(username)
+        cdef const char *_password = to_bytes(password)
         with nogil:
             rc = c_ssh2.libssh2_userauth_password(
-                self._session, username, password)
+                self._session, _username, _password)
         return rc
 
     def agent_init(self):

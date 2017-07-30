@@ -33,8 +33,16 @@ class SSH2TestCase(unittest.TestCase):
         sock.connect((self.host, self.port))
         self.sock = sock
 
-    def test_init(self):
+    def test_fromfile_auth(self):
         self.session.handshake(self.sock)
-        self.session.userauth_publickey_fromfile(
-            self.user, PKEY_FILENAME, PKEY_FILENAME + ".pub",
+        rc = self.session.userauth_publickey_fromfile(
+            self.user, PKEY_FILENAME + ".pub", PKEY_FILENAME,
             '')
+        self.assertEqual(rc, 0)
+        self.assertTrue(self.session.userauth_authenticated())
+
+    def test_auth_list(self):
+        self.session.handshake(self.sock)
+        auth_list = self.session.userauth_list(self.user)
+        expected = [b'publickey', b'password', b'keyboard-interactive']
+        self.assertListEqual(auth_list, expected)
