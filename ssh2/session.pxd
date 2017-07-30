@@ -21,4 +21,3 @@ cdef class Session:
     cdef c_ssh2.LIBSSH2_SESSION *_session
     cdef c_ssh2.LIBSSH2_AGENT * init_connect_agent(self) nogil except NULL
     cdef c_ssh2.LIBSSH2_AGENT * _agent_init(self)
-    cdef object socket

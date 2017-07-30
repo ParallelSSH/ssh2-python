@@ -4,6 +4,7 @@ import platform
 import os
 import sys
 from glob import glob
+from multiprocessing import cpu_count
 
 # import versioneer
 from setuptools import setup, find_packages, Extension
@@ -17,39 +18,36 @@ except ImportError:
 else:
     USING_CYTHON = True
 
-names = 'ssh2/*'
 ext = 'pyx' if USING_CYTHON else 'c'
 sources = ['ssh2/*.%s' % (ext,)]
-
+_libs = ['ssh2']
+_comp_args = ["-ggdb"] # , "-O3"]
 
 if USING_CYTHON:
     extensions = [
         Extension('ssh2/*',
                   sources=sources,
-                  libraries=['ssh2'],
-                  # extra_compile_args=["-O3"],
-                  extra_compile_args=["-ggdb"],
+                  libraries=_libs,
+                  extra_compile_args=_comp_args,
                   # For conditional compilation
                   # pyrex_compile_time_env
         )
-        # for ext in extensions
     ]
     extensions = cythonize(
         extensions,
         compiler_directives={'embedsignature': True,
                              'optimize.use_switch': True,
-                             # 'boundscheck': False,
+                             'boundscheck': False,
                              'wraparound': False,
-                         })
+                         },
+        nthreads=cpu_count())
 else:
     sources = glob(sources[0])
-    # names = [ for s in sources]
     extensions = [
         Extension(sources[i].split('.')[0].replace('/', '.'),
                   sources=[sources[i]],
-                  libraries=['ssh2'],
-                  # extra_compile_args=["-O3"],
-                  extra_compile_args=["-ggdb"],
+                  libraries=_libs,
+                  extra_compile_args=_comp_args,
                   # For conditional compilation
                   # pyrex_compile_time_env
         )

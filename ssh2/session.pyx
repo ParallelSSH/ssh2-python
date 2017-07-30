@@ -26,6 +26,7 @@ from exceptions cimport SessionHandshakeError, SessionStartupError, \
     AgentConnectError, AgentListIdentitiesError, AgentGetIdentityError
 from listener cimport PyListener
 from sftp cimport PySFTP
+from utils cimport to_bytes
 
 
 cdef class Session:
@@ -86,8 +87,8 @@ cdef class Session:
         return bool(rc)
 
     def userauth_list(self, bytes username):
-        cdef char *_username = username
         cdef size_t username_len = len(username)
+        cdef char *_username = username
         cdef char *_auth
         cdef bytes auth
         with nogil:
@@ -98,14 +99,18 @@ cdef class Session:
         auth = _auth
         return auth.split(',')
 
-    def userauth_publickey_fromfile(self, const char *username,
-                                    const char *publickey,
-                                    const char *privatekey,
-                                    const char *passphrase):
+    def userauth_publickey_fromfile(self, username,
+                                    publickey,
+                                    privatekey,
+                                    passphrase):
         cdef int rc
+        cdef char *_username = to_bytes(username)
+        cdef char *_publickey = to_bytes(publickey)
+        cdef char *_privatekey = to_bytes(privatekey)
+        cdef char *_passphrase = to_bytes(passphrase)
         with nogil:
             rc = c_ssh2.libssh2_userauth_publickey_fromfile(
-                self._session, username, publickey, privatekey, passphrase)
+                self._session, _username, _publickey, _privatekey, _passphrase)
         return rc
 
     def userauth_publickey(self, const char *username,

@@ -16,8 +16,21 @@
 
 import select
 
+from cpython.version cimport PY_MAJOR_VERSION
+
 cimport c_ssh2
 from session cimport Session
+
+
+ENCODING='utf-8'
+
+
+cdef char* to_bytes(_str):
+    if isinstance(_str, bytes):
+        return _str
+    elif isinstance(_str, unicode):
+        return _str.encode(ENCODING)
+    return _str
 
 
 def version(int required_version=0):
