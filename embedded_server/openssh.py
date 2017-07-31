@@ -41,6 +41,7 @@ class OpenSSHServer(object):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         while sock.connect_ex(('127.0.0.1', self.port)) != 0:
             sleep(.1)
+        sleep(.1)
         del sock
 
     def stop(self):

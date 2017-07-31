@@ -174,7 +174,7 @@ Clients using this library can be much simpler to use than interfacing with the 
    import os
    import socket
 
-   from ssh2 import Session
+   from ssh2.session import Session
 
    host = 'localhost'
    user = os.getlogin()

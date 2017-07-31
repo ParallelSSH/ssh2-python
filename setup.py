@@ -6,7 +6,7 @@ import sys
 from glob import glob
 from multiprocessing import cpu_count
 
-# import versioneer
+import versioneer
 from setuptools import setup, find_packages, Extension
 
 cpython = platform.python_implementation() == 'CPython'
@@ -55,16 +55,15 @@ else:
 
 setup(
     name='ssh2-python',
-    # version=versioneer.get_version(),
-    version='0.2.1',
+    version=versioneer.get_version(),
+    cmdclass=versioneer.get_cmdclass(),
     url='https://github.com/ParallelSSH/ssh2-python',
     license='LGPLv2',
     author='Panos Kittenis',
     author_email='22e889d8@opayq.com',
     description=('Python bindings for libssh2 based on Cython'),
     long_description=open('README.rst').read(),
-    packages=find_packages(
-        '.', exclude=('embedded_server', 'embedded_server.*')),
+    packages=find_packages('.'),
     zip_safe=False,
     include_package_data=True,
     platforms='any',

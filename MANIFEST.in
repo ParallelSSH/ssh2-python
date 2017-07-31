@@ -1,0 +1,3 @@
+recursive-exclude embedded_server *
+include versioneer.py
+include ssh2/_version.py

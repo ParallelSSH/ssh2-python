@@ -2,7 +2,7 @@ from __future__ import print_function
 import os
 import socket
 
-from ssh2 import Session
+from ssh2.session import Session
 from ssh2.utils import version
 
 # Connection settings
