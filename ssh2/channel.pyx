@@ -22,6 +22,7 @@ cimport error_codes
 
 from session cimport Session
 from exceptions cimport ChannelError
+# from utils cimport to_bytes
 
 
 cdef object PyChannel(c_ssh2.LIBSSH2_CHANNEL *channel, Session session):
@@ -32,7 +33,7 @@ cdef object PyChannel(c_ssh2.LIBSSH2_CHANNEL *channel, Session session):
 
 cdef class Channel:
 
-    def __cinit__(self, session):
+    def __cinit__(self, Session session):
         self._channel = NULL
         self._session = session
 
@@ -201,7 +202,36 @@ cdef class Channel:
         return rc
 
     def get_exit_signal(self):
-        pass
+        cdef char *exitsignal = <char *>b'none'
+        cdef size_t *exitsignal_len = <size_t *>0
+        cdef char *errmsg = <char *>b'none'
+        cdef size_t *errmsg_len = <size_t *>0
+        cdef char *langtag = <char *>b'none'
+        cdef size_t *langtag_len = <size_t *>0
+        cdef int rc
+        cdef bytes py_exitsignal = None
+        cdef bytes py_errmsg = None
+        cdef bytes py_langtag = None
+        cdef size_t py_siglen = 0
+        cdef size_t py_errlen = 0
+        cdef size_t py_langlen = 0
+        with nogil:
+            rc = c_ssh2.libssh2_channel_get_exit_signal(
+                self._channel, &exitsignal, exitsignal_len, &errmsg,
+                errmsg_len, &langtag, langtag_len)
+            if exitsignal_len is not NULL:
+                py_siglen = <size_t>exitsignal_len
+            if errmsg_len is not NULL:
+                py_errlen = <size_t>errmsg_len
+            if langtag_len is not NULL:
+                py_langlen = <size_t>langtag_len
+        if py_siglen > 0:
+            py_exitsignal = exitsignal[:py_siglen]
+        if py_errlen > 0:
+            py_errmsg = errmsg[:py_errlen]
+        if py_langlen > 0:
+            py_langtag = langtag[:py_langlen]
+        return rc, py_exitsignal, py_errmsg, py_langtag
 
     def setenv(self, const char *varname, const char *value):
         cdef int rc

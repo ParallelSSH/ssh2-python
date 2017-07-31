@@ -700,9 +700,9 @@ static const char *__pyx_filename;
 static const char *__pyx_f[] = {
   "ssh2/session.pyx",
   "stringsource",
-  "env_2/lib/python2.7/site-packages/Cython/Includes/cpython/type.pxd",
-  "env_2/lib/python2.7/site-packages/Cython/Includes/cpython/bool.pxd",
-  "env_2/lib/python2.7/site-packages/Cython/Includes/cpython/complex.pxd",
+  "type.pxd",
+  "bool.pxd",
+  "complex.pxd",
   "ssh2/agent.pxd",
   "ssh2/channel.pxd",
   "ssh2/exceptions.pxd",
@@ -726,16 +726,17 @@ struct __pyx_obj_4ssh2_8listener_Listener;
 struct __pyx_obj_4ssh2_4sftp_SFTP;
 struct __pyx_obj_4ssh2_7session_Session;
 
-/* "agent.pxd":23
+/* "agent.pxd":24
  * 
  * 
  * cdef class Agent:             # <<<<<<<<<<<<<<
  *     cdef c_ssh2.LIBSSH2_AGENT *_agent
- * 
+ *     cdef Session _session
  */
 struct __pyx_obj_4ssh2_5agent_Agent {
   PyObject_HEAD
   LIBSSH2_AGENT *_agent;
+  struct __pyx_obj_4ssh2_7session_Session *_session;
 };
 
 
@@ -1241,7 +1242,7 @@ static PyTypeObject *__pyx_ptype_7cpython_7complex_complex = 0;
 
 /* Module declarations from 'ssh2.agent' */
 static PyTypeObject *__pyx_ptype_4ssh2_5agent_Agent = 0;
-static PyObject *(*__pyx_f_4ssh2_5agent_PyAgent)(LIBSSH2_AGENT *); /*proto*/
+static PyObject *(*__pyx_f_4ssh2_5agent_PyAgent)(LIBSSH2_AGENT *, struct __pyx_obj_4ssh2_7session_Session *); /*proto*/
 static int (*__pyx_f_4ssh2_5agent_auth_identity)(char const *, LIBSSH2_AGENT *, struct libssh2_agent_publickey **, struct libssh2_agent_publickey *); /*proto*/
 static void (*__pyx_f_4ssh2_5agent_clear_agent)(LIBSSH2_AGENT *); /*proto*/
 
@@ -3369,7 +3370,7 @@ static PyObject *__pyx_pf_4ssh2_7session_7Session_24agent_init(struct __pyx_obj_
  *         cdef c_ssh2.LIBSSH2_AGENT *agent = self._agent_init()
  *         if agent is NULL:             # <<<<<<<<<<<<<<
  *             return
- *         return PyAgent(agent)
+ *         return PyAgent(agent, self)
  */
   __pyx_t_1 = ((__pyx_v_agent == NULL) != 0);
   if (__pyx_t_1) {
@@ -3378,7 +3379,7 @@ static PyObject *__pyx_pf_4ssh2_7session_7Session_24agent_init(struct __pyx_obj_
  *         cdef c_ssh2.LIBSSH2_AGENT *agent = self._agent_init()
  *         if agent is NULL:
  *             return             # <<<<<<<<<<<<<<
- *         return PyAgent(agent)
+ *         return PyAgent(agent, self)
  * 
  */
     __Pyx_XDECREF(__pyx_r);
@@ -3390,19 +3391,19 @@ static PyObject *__pyx_pf_4ssh2_7session_7Session_24agent_init(struct __pyx_obj_
  *         cdef c_ssh2.LIBSSH2_AGENT *agent = self._agent_init()
  *         if agent is NULL:             # <<<<<<<<<<<<<<
  *             return
- *         return PyAgent(agent)
+ *         return PyAgent(agent, self)
  */
   }
 
   /* "ssh2/session.pyx":173
  *         if agent is NULL:
  *             return
- *         return PyAgent(agent)             # <<<<<<<<<<<<<<
+ *         return PyAgent(agent, self)             # <<<<<<<<<<<<<<
  * 
  *     cdef c_ssh2.LIBSSH2_AGENT * _agent_init(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __pyx_f_4ssh2_5agent_PyAgent(__pyx_v_agent); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 173, __pyx_L1_error)
+  __pyx_t_2 = __pyx_f_4ssh2_5agent_PyAgent(__pyx_v_agent, __pyx_v_self); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 173, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -3428,7 +3429,7 @@ static PyObject *__pyx_pf_4ssh2_7session_7Session_24agent_init(struct __pyx_obj_
 }
 
 /* "ssh2/session.pyx":175
- *         return PyAgent(agent)
+ *         return PyAgent(agent, self)
  * 
  *     cdef c_ssh2.LIBSSH2_AGENT * _agent_init(self):             # <<<<<<<<<<<<<<
  *         cdef c_ssh2.LIBSSH2_AGENT *agent
@@ -3562,7 +3563,7 @@ static LIBSSH2_AGENT *__pyx_f_4ssh2_7session_7Session__agent_init(struct __pyx_o
   }
 
   /* "ssh2/session.pyx":175
- *         return PyAgent(agent)
+ *         return PyAgent(agent, self)
  * 
  *     cdef c_ssh2.LIBSSH2_AGENT * _agent_init(self):             # <<<<<<<<<<<<<<
  *         cdef c_ssh2.LIBSSH2_AGENT *agent
@@ -6023,7 +6024,7 @@ PyMODINIT_FUNC PyInit_session(void)
   0); if (unlikely(!__pyx_ptype_7cpython_4type_type)) __PYX_ERR(2, 9, __pyx_L1_error)
   __pyx_ptype_7cpython_4bool_bool = __Pyx_ImportType(__Pyx_BUILTIN_MODULE_NAME, "bool", sizeof(PyBoolObject), 0); if (unlikely(!__pyx_ptype_7cpython_4bool_bool)) __PYX_ERR(3, 8, __pyx_L1_error)
   __pyx_ptype_7cpython_7complex_complex = __Pyx_ImportType(__Pyx_BUILTIN_MODULE_NAME, "complex", sizeof(PyComplexObject), 0); if (unlikely(!__pyx_ptype_7cpython_7complex_complex)) __PYX_ERR(4, 15, __pyx_L1_error)
-  __pyx_ptype_4ssh2_5agent_Agent = __Pyx_ImportType("ssh2.agent", "Agent", sizeof(struct __pyx_obj_4ssh2_5agent_Agent), 1); if (unlikely(!__pyx_ptype_4ssh2_5agent_Agent)) __PYX_ERR(5, 23, __pyx_L1_error)
+  __pyx_ptype_4ssh2_5agent_Agent = __Pyx_ImportType("ssh2.agent", "Agent", sizeof(struct __pyx_obj_4ssh2_5agent_Agent), 1); if (unlikely(!__pyx_ptype_4ssh2_5agent_Agent)) __PYX_ERR(5, 24, __pyx_L1_error)
   __pyx_ptype_4ssh2_7channel_Channel = __Pyx_ImportType("ssh2.channel", "Channel", sizeof(struct __pyx_obj_4ssh2_7channel_Channel), 1); if (unlikely(!__pyx_ptype_4ssh2_7channel_Channel)) __PYX_ERR(6, 24, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_AgentError = __Pyx_ImportType("ssh2.exceptions", "AgentError", sizeof(struct __pyx_obj_4ssh2_10exceptions_AgentError), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_AgentError)) __PYX_ERR(7, 17, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_AuthenticationError = __Pyx_ImportType("ssh2.exceptions", "AuthenticationError", sizeof(struct __pyx_obj_4ssh2_10exceptions_AuthenticationError), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_AuthenticationError)) __PYX_ERR(7, 21, __pyx_L1_error)
@@ -6039,7 +6040,7 @@ PyMODINIT_FUNC PyInit_session(void)
   /*--- Variable import code ---*/
   /*--- Function import code ---*/
   __pyx_t_1 = __Pyx_ImportModule("ssh2.agent"); if (!__pyx_t_1) __PYX_ERR(0, 1, __pyx_L1_error)
-  if (__Pyx_ImportFunction(__pyx_t_1, "PyAgent", (void (**)(void))&__pyx_f_4ssh2_5agent_PyAgent, "PyObject *(LIBSSH2_AGENT *)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ImportFunction(__pyx_t_1, "PyAgent", (void (**)(void))&__pyx_f_4ssh2_5agent_PyAgent, "PyObject *(LIBSSH2_AGENT *, struct __pyx_obj_4ssh2_7session_Session *)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   if (__Pyx_ImportFunction(__pyx_t_1, "auth_identity", (void (**)(void))&__pyx_f_4ssh2_5agent_auth_identity, "int (char const *, LIBSSH2_AGENT *, struct libssh2_agent_publickey **, struct libssh2_agent_publickey *)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   if (__Pyx_ImportFunction(__pyx_t_1, "clear_agent", (void (**)(void))&__pyx_f_4ssh2_5agent_clear_agent, "void (LIBSSH2_AGENT *)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   Py_DECREF(__pyx_t_1); __pyx_t_1 = 0;

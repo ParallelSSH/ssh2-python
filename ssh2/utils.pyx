@@ -14,7 +14,7 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-import select
+from select import select
 
 from cpython.version cimport PY_MAJOR_VERSION
 
@@ -55,11 +55,11 @@ def ssh2_exit():
     c_ssh2.libssh2_exit()
 
 
-def wait_socket(_socket, Session session):
+def wait_socket(_socket, Session session, timeout=1):
     """Helper function for testing non-blocking mode.
 
-    This function does not block and will cause high CPU usage if used in
-    a loop - to be used only for testing purposes.
+    This function blocks the calling thread for <timeout> seconds -
+    to be used only for testing purposes.
     """
     cdef int directions = session.blockdirections()
     if directions == 0:
@@ -68,4 +68,4 @@ def wait_socket(_socket, Session session):
               if (directions & c_ssh2._LIBSSH2_SESSION_BLOCK_INBOUND) else ()
     writefds = [_socket] \
                if (directions & c_ssh2._LIBSSH2_SESSION_BLOCK_OUTBOUND) else ()
-    return select(readfds, writefds, ())
+    return select(readfds, writefds, (), timeout)

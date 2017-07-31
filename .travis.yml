@@ -20,5 +20,7 @@ addons:
 install:
   - python setup.py build_ext --inplace
   - chmod 600 embedded_server/rsa.key
+  - eval "$(ssh-agent -s)"
 script:
   - nosetests
+  - flake8 ssh2

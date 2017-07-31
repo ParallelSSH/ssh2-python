@@ -170,7 +170,7 @@ cdef class Session:
         cdef c_ssh2.LIBSSH2_AGENT *agent = self._agent_init()
         if agent is NULL:
             return
-        return PyAgent(agent)
+        return PyAgent(agent, self)
 
     cdef c_ssh2.LIBSSH2_AGENT * _agent_init(self):
         cdef c_ssh2.LIBSSH2_AGENT *agent

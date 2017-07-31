@@ -15,13 +15,15 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 cimport c_ssh2
+from session cimport Session
 
 
-cdef object PyAgent(c_ssh2.LIBSSH2_AGENT *agent)
+cdef object PyAgent(c_ssh2.LIBSSH2_AGENT *agent, Session session)
 
 
 cdef class Agent:
     cdef c_ssh2.LIBSSH2_AGENT *_agent
+    cdef Session _session
 
 
 cdef int auth_identity(const char *username,
