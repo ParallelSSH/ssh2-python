@@ -169,7 +169,7 @@ cdef class Session:
                     raise MemoryError
             return agent
 
-    cdef c_ssh2.LIBSSH2_AGENT * init_connect_agent(self) nogil:
+    cdef c_ssh2.LIBSSH2_AGENT * init_connect_agent(self) nogil except NULL:
         agent = c_ssh2.libssh2_agent_init(self._session)
         if agent is NULL:
             with gil:
