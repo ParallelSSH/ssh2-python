@@ -32,7 +32,7 @@ class OpenSSHServer(object):
 
     def start_server(self):
         cmd = ['/usr/sbin/sshd', '-D', '-p', str(self.port),
-               '-h', SERVER_KEY, '-f', SSHD_CONFIG]
+               '-q', '-h', SERVER_KEY, '-f', SSHD_CONFIG]
         server = Popen(cmd)
         self.server_proc = server
         self._wait_for_port()
@@ -41,7 +41,7 @@ class OpenSSHServer(object):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         while sock.connect_ex(('127.0.0.1', self.port)) != 0:
             sleep(.1)
-        sleep(.2)
+        sleep(.3)
         del sock
 
     def stop(self):

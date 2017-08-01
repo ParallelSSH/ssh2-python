@@ -93,14 +93,14 @@ cdef class Agent:
                 prev = identity
         return identities
 
-    def userauth(self, username,
+    def userauth(self, username not None,
                  PublicKey pkey):
         """Perform user authentication with specific public key
 
         :param username: User name to authenticate as
         :type username: str
         :param pkey: Public key to authenticate with
-        :type pkey: py:class:`PublicKey`
+        :type pkey: py:class:`ssh2.pkey.PublicKey`
 
         :raises: :py:class:`ssh2.exceptions.AgentAuthenticationError` on errors
           authenticating.
@@ -120,12 +120,21 @@ cdef class Agent:
         return rc
 
     def disconnect(self):
+        """Disconnect from agent.
+
+        :rtype: int"""
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_agent_disconnect(self._agent)
         return rc
 
     def connect(self):
+        """Connect to agent.
+
+        :raises: :py:class:`ssh2.exceptions.AgentConnectError` on errors
+          connecting to agent.
+
+        :rtype: int"""
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_agent_connect(self._agent)

@@ -16,7 +16,6 @@
 
 from cpython cimport PyObject_AsFileDescriptor
 from libc.stdint cimport uint64_t
-from libc.stdlib cimport malloc, free
 from libc.time cimport time_t
 
 cimport c_ssh2
@@ -27,7 +26,7 @@ from exceptions cimport SessionHandshakeError, SessionStartupError, \
     AgentConnectError, AgentListIdentitiesError, AgentGetIdentityError
 from listener cimport PyListener
 from sftp cimport PySFTP
-from utils cimport to_bytes
+from utils cimport to_bytes, to_str
 
 
 cdef class Session:
@@ -77,33 +76,47 @@ cdef class Session:
         return rc
 
     def setblocking(self, bint blocking):
+        """Set session blocking mode on/off.
+
+        :param blocking: ``False`` for non-blocking, ``True`` for blocking.
+          Session default is blocking unless set otherwise.
+        :type blocking: bool"""
         with nogil:
             c_ssh2.libssh2_session_set_blocking(
                 self._session, blocking)
 
     def userauth_authenticated(self):
+        """True/False for is user authenticated or not.
+
+        :rtype: bool"""
         cdef bint rc
         with nogil:
             rc = c_ssh2.libssh2_userauth_authenticated(self._session)
         return bool(rc)
 
-    def userauth_list(self, username):
+    def userauth_list(self, username not None):
+        """Retrieve available authentication method list.
+
+        :rtype: list"""
         cdef char *_username = to_bytes(username)
         cdef size_t username_len = len(_username)
         cdef char *_auth
-        cdef bytes auth
+        cdef str auth
         with nogil:
             _auth = c_ssh2.libssh2_userauth_list(
                 self._session, _username, username_len)
         if _auth is NULL:
             return
-        auth = _auth
-        return _auth.split(b',')
+        auth = to_str(_auth)
+        return auth.split(',')
 
-    def userauth_publickey_fromfile(self, username,
-                                    publickey,
-                                    privatekey,
-                                    passphrase):
+    def userauth_publickey_fromfile(self, username not None,
+                                    publickey not None,
+                                    privatekey not None,
+                                    passphrase not None):
+        """Authenticate with public key from file.
+
+        :rtype: int"""
         cdef int rc
         cdef char *_username = to_bytes(username)
         cdef char *_publickey = to_bytes(publickey)
@@ -114,8 +127,8 @@ cdef class Session:
                 self._session, _username, _publickey, _privatekey, _passphrase)
         return rc
 
-    def userauth_publickey(self, username,
-                           bytes pubkeydata):
+    def userauth_publickey(self, username not None,
+                           bytes pubkeydata not None):
         """Perform public key authentication with provided public key data
 
         :param username: User name to authenticate as
@@ -136,11 +149,11 @@ cdef class Session:
         return rc
 
     def userauth_hostbased_fromfile(self,
-                                    username,
-                                    publickey,
-                                    privatekey,
-                                    passphrase,
-                                    hostname):
+                                    username not None,
+                                    publickey not None,
+                                    privatekey not None,
+                                    passphrase not None,
+                                    hostname not None):
         cdef int rc
         cdef char *_username = to_bytes(username)
         cdef char *_publickey = to_bytes(publickey)
@@ -169,7 +182,13 @@ cdef class Session:
     #             privatekeydata_len, passphrase)
     #     return rc
 
-    def userauth_password(self, username, password):
+    def userauth_password(self, username not None, password not None):
+        """Perform password authentication
+
+        :param username: User name to authenticate.
+        :type username: str
+        :param password: Password
+        :type password: str"""
         cdef int rc
         cdef const char *_username = to_bytes(username)
         cdef const char *_password = to_bytes(password)
@@ -208,7 +227,7 @@ cdef class Session:
                 raise AgentConnectError("Unable to connect to agent")
         return agent
 
-    def agent_auth(self, username):
+    def agent_auth(self, username not None):
         """Convenience function for performing user authentication via SSH Agent.
 
         Initialises, connects to, gets list of identities from and attempts
@@ -269,8 +288,8 @@ cdef class Session:
                     return None
         return PyChannel(channel, self)
 
-    def direct_tcpip_ex(self, host, int port,
-                        shost, int sport):
+    def direct_tcpip_ex(self, host not None, int port,
+                        shost not None, int sport):
         cdef c_ssh2.LIBSSH2_CHANNEL *channel
         cdef char *_host = to_bytes(host)
         cdef char *_shost = to_bytes(shost)
@@ -282,7 +301,7 @@ cdef class Session:
                     return
         return PyChannel(channel, self)
 
-    def direct_tcpip(self, host, int port):
+    def direct_tcpip(self, host not None, int port):
         cdef c_ssh2.LIBSSH2_CHANNEL *channel
         cdef char *_host = to_bytes(host)
         with nogil:
@@ -309,7 +328,7 @@ cdef class Session:
             return
         return PyListener(listener, self)
 
-    def forward_listen_ex(self, host, int port,
+    def forward_listen_ex(self, host not None, int port,
                           int bound_port, int queue_maxsize):
         cdef c_ssh2.LIBSSH2_LISTENER *listener
         cdef char *_host = to_bytes(host)
@@ -352,13 +371,13 @@ cdef class Session:
             msg = b''
         return msg
 
-    def scp_recv(self, path):
+    def scp_recv(self, path not None):
         raise NotImplementedError
 
-    def scp_send(self, path, int mode, size_t size):
+    def scp_send(self, path not None, int mode, size_t size):
         raise NotImplementedError
 
-    def scp_send64(self, path, int mode, uint64_t size,
+    def scp_send64(self, path not None, int mode, uint64_t size,
                    time_t mtime, time_t atime):
         raise NotImplementedError
 

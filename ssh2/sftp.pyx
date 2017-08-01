@@ -19,6 +19,32 @@ from libc.stdlib cimport malloc, free
 cimport c_ssh2
 cimport c_sftp
 from channel cimport Channel, PyChannel
+from utils cimport to_bytes
+
+# File Transfer Flags
+LIBSSH2_FXF_READ = c_sftp.LIBSSH2_FXF_READ
+LIBSSH2_FXF_WRITE = c_sftp.LIBSSH2_FXF_WRITE
+LIBSSH2_FXF_APPEND = c_sftp.LIBSSH2_FXF_APPEND
+LIBSSH2_FXF_CREAT = c_sftp.LIBSSH2_FXF_CREAT
+LIBSSH2_FXF_TRUNC = c_sftp.LIBSSH2_FXF_TRUNC
+LIBSSH2_FXF_EXCL = c_sftp.LIBSSH2_FXF_EXCL
+
+# File mode masks
+# Read, write, execute/search by owner
+LIBSSH2_SFTP_S_IRWXU = c_sftp.LIBSSH2_SFTP_S_IRWXU
+LIBSSH2_SFTP_S_IRUSR = c_sftp.LIBSSH2_SFTP_S_IRUSR
+LIBSSH2_SFTP_S_IWUSR = c_sftp.LIBSSH2_SFTP_S_IWUSR
+LIBSSH2_SFTP_S_IXUSR = c_sftp.LIBSSH2_SFTP_S_IXUSR
+# Read, write, execute/search by group
+LIBSSH2_SFTP_S_IRWXG = c_sftp.LIBSSH2_SFTP_S_IRWXG
+LIBSSH2_SFTP_S_IRGRP = c_sftp.LIBSSH2_SFTP_S_IRGRP
+LIBSSH2_SFTP_S_IWGRP = c_sftp.LIBSSH2_SFTP_S_IWGRP
+LIBSSH2_SFTP_S_IXGRP = c_sftp.LIBSSH2_SFTP_S_IXGRP
+# Read, write, execute/search by others
+LIBSSH2_SFTP_S_IRWXO = c_sftp.LIBSSH2_SFTP_S_IRWXO
+LIBSSH2_SFTP_S_IROTH = c_sftp.LIBSSH2_SFTP_S_IROTH
+LIBSSH2_SFTP_S_IWOTH = c_sftp.LIBSSH2_SFTP_S_IWOTH
+LIBSSH2_SFTP_S_IXOTH = c_sftp.LIBSSH2_SFTP_S_IXOTH
 
 
 cdef object PySFTPHandle(c_sftp.LIBSSH2_SFTP_HANDLE *handle, SFTP sftp):
@@ -66,23 +92,45 @@ cdef class SFTP:
         handle = PySFTPHandle(_handle, self)
         return handle
 
-    def open(self, const char *filename,
+    def open(self, filename not None,
              unsigned long flags,
              long mode):
+        """Open file handle for file name.
+
+        :param filename: Name of file to open.
+        :type filename: str
+        :param flags: One or more LIBSSH2_FXF_* flags. Can be ``0`` for
+          reading. Eg for reading flags is ``LIBSSH2_FXF_READ``, for writing
+          ``LIBSSH2_FXF_WRITE``, for both
+          ``LIBSSH2_FXF_READ`` | ``LIBSSH2_FXF_WRITE``.
+        :type flags: int
+        :param mode: File permissions mode. ``0`` for reading. For writing
+          one or more LIBSSH2_SFTP_S_* flags. Eg, for 664 permission mask
+          (read/write owner/group, read other), mode is ``LIBSSH2_SFTP_S_IRUSR |
+          LIBSSH2_SFTP_S_IWUSR | LIBSSH2_SFTP_S_IRGRP | LIBSSH2_SFTP_IROTH``
+        :type mode: int"""
         cdef c_sftp.LIBSSH2_SFTP_HANDLE *_handle
         cdef SFTPHandle handle
+        cdef char *_filename = to_bytes(filename)
         with nogil:
             _handle = c_sftp.libssh2_sftp_open(
-                self._sftp, filename, flags, mode)
+                self._sftp, _filename, flags, mode)
         if _handle is NULL:
             return
         handle = PySFTPHandle(_handle, self)
         return handle
 
-    def opendir(self, const char *path):
+    def opendir(self, path not None):
+        """Open handle to directory path.
+
+        :param path: Path of directory
+        :type path: str
+
+        :rtype: :py:class:`ssh2.sftp.SFTPHandle` or `None`"""
         cdef c_sftp.LIBSSH2_SFTP_HANDLE *_handle
+        cdef char *_path = to_bytes(path)
         with nogil:
-            _handle = c_sftp.libssh2_sftp_opendir(self._sftp, path)
+            _handle = c_sftp.libssh2_sftp_opendir(self._sftp, _path)
         if _handle is NULL:
             return
         return PySFTPHandle(_handle, self)
@@ -99,17 +147,30 @@ cdef class SFTP:
                 dest_filename, dest_filename_len, flags)
         return rc
 
-    def rename(self, const char *source_filename, const char *dest_filename):
+    def rename(self, source_filename not None, dest_filename not None):
+        """Rename file.
+
+        :param source_filename: Old name of file.
+        :type source_filename: str
+        :param dest_filename: New name of file.
+        :type dest_filename: str"""
         cdef int rc
+        cdef char *_source_filename = to_bytes(source_filename)
+        cdef char *_dest_filename = to_bytes(dest_filename)
         with nogil:
             rc = c_sftp.libssh2_sftp_rename(
-                self._sftp, source_filename, dest_filename)
+                self._sftp, _source_filename, _dest_filename)
         return rc
 
-    def unlink(self, const char *filename):
+    def unlink(self, filename not None):
+        """Delete/unlink file.
+
+        :param filename: Name of file to delete/unlink.
+        :type filename: str"""
         cdef int rc
+        cdef char *_filename = to_bytes(filename)
         with nogil:
-            rc = c_sftp.libssh2_sftp_unlink(self._sftp, filename)
+            rc = c_sftp.libssh2_sftp_unlink(self._sftp, _filename)
         return rc
 
     def fstatvfs(self):
@@ -118,51 +179,79 @@ cdef class SFTP:
     def statvfs(self):
         raise NotImplementedError
 
-    def mkdir(self, const char *path, long mode):
+    def mkdir(self, path not None, long mode):
+        """Make directory.
+
+        :param path: Path of directory to create.
+        :type path: str
+        :param mode: Permissions mode of new directory.
+        :type mode: int
+
+        :rtype: int"""
         cdef int rc
+        cdef char *_path = path
         with nogil:
-            rc = c_sftp.libssh2_sftp_mkdir(self._sftp, path, mode)
+            rc = c_sftp.libssh2_sftp_mkdir(self._sftp, _path, mode)
         return rc
 
-    def rmdir(self, const char *path):
+    def rmdir(self, path not None):
+        """Remove directory.
+
+        :param path: Directory path to remove.
+        :type path: str
+
+        :rtype: int"""
         cdef int rc
+        cdef char *_path = to_bytes(path)
         with nogil:
-            rc = c_sftp.libssh2_sftp_rmdir(self._sftp, path)
+            rc = c_sftp.libssh2_sftp_rmdir(self._sftp, _path)
         return rc
 
-    def stat(self, const char *path, SFTPAttributes attrs):
+    def stat(self, path not None, SFTPAttributes attrs):
+        """Stat file.
+
+        :param path: Path of file to stat.
+        :type path: str
+
+        :rtype: :py:class:`ssh2.sftp.SFTPAttributes`"""
         cdef int rc
+        cdef char *_path = to_bytes(path)
         with nogil:
             rc = c_sftp.libssh2_sftp_stat(
-                self._sftp, path, attrs._attrs)
+                self._sftp, _path, attrs._attrs)
         return rc
 
-    def lstat(self, const char *path, SFTPAttributes attrs):
+    def lstat(self, path not None, SFTPAttributes attrs):
         cdef int rc
+        cdef char *_path = to_bytes(path)
         with nogil:
             rc = c_sftp.libssh2_sftp_lstat(
-                self._sftp, path, attrs._attrs)
+                self._sftp, _path, attrs._attrs)
         return rc
 
-    def setstat(self, const char *path, SFTPAttributes attrs):
+    def setstat(self, path not None, SFTPAttributes attrs):
         cdef int rc
+        cdef char *_path = to_bytes(path)
         with nogil:
             rc = c_sftp.libssh2_sftp_setstat(
-                self._sftp, path, attrs._attrs)
+                self._sftp, _path, attrs._attrs)
         return rc
 
-    def symlink(self, const char *path, char *target):
+    def symlink(self, path not None, char *target):
         cdef int rc
+        cdef char *_path = to_bytes(path)
         with nogil:
-            rc = c_sftp.libssh2_sftp_symlink(self._sftp, path, target)
+            rc = c_sftp.libssh2_sftp_symlink(self._sftp, _path, target)
         return rc
 
-    def realpath(self, const char *path, char *target,
+    def realpath(self, path not None, target not None,
                  unsigned int maxlen):
         cdef int rc
+        cdef char *_path = to_bytes(path)
+        cdef char *_target = to_bytes(target)
         with nogil:
             rc = c_sftp.libssh2_sftp_realpath(
-                self._sftp, path, target, maxlen)
+                self._sftp, _path, _target, maxlen)
         return rc
 
 
@@ -206,6 +295,9 @@ cdef class SFTPHandle:
         cdef char *cbuf
         with nogil:
             cbuf = <char *>malloc(sizeof(char)*buffer_maxlen)
+            if cbuf is NULL:
+                with gil:
+                    raise MemoryError
             rc = c_sftp.libssh2_sftp_read(
                 self._handle, cbuf, buffer_maxlen)
         try:
@@ -256,5 +348,3 @@ cdef class SFTPHandle:
 
     def fsetstat(self, SFTPAttributes attrs):
         raise NotImplementedError
-
-

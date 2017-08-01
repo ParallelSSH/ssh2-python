@@ -26,7 +26,7 @@ session.agent_auth(user)
 # Agent capabilities
 agent = session.agent_init()
 agent.connect()
-identities = agent.get_identities(user)
+identities = agent.get_identities()
 print(identities)
 print(identities[0].magic)
 del agent

@@ -990,8 +990,8 @@ static PyObject *__pyx_f_4ssh2_4pkey_PyPublicKey(struct libssh2_agent_publickey 
   return __pyx_r;
 }
 
-/* "ssh2/pkey.pyx":28
- * cdef class PublicKey:
+/* "ssh2/pkey.pyx":31
+ *     Can be used for authentication via :py:func:`ssh2.agent.Agent.userauth`"""
  * 
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         self._pkey = NULL
@@ -1019,7 +1019,7 @@ static int __pyx_pf_4ssh2_4pkey_9PublicKey___cinit__(struct __pyx_obj_4ssh2_4pke
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "ssh2/pkey.pyx":29
+  /* "ssh2/pkey.pyx":32
  * 
  *     def __cinit__(self):
  *         self._pkey = NULL             # <<<<<<<<<<<<<<
@@ -1028,8 +1028,8 @@ static int __pyx_pf_4ssh2_4pkey_9PublicKey___cinit__(struct __pyx_obj_4ssh2_4pke
  */
   __pyx_v_self->_pkey = NULL;
 
-  /* "ssh2/pkey.pyx":28
- * cdef class PublicKey:
+  /* "ssh2/pkey.pyx":31
+ *     Can be used for authentication via :py:func:`ssh2.agent.Agent.userauth`"""
  * 
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         self._pkey = NULL
@@ -1042,7 +1042,7 @@ static int __pyx_pf_4ssh2_4pkey_9PublicKey___cinit__(struct __pyx_obj_4ssh2_4pke
   return __pyx_r;
 }
 
-/* "ssh2/pkey.pyx":32
+/* "ssh2/pkey.pyx":35
  * 
  *     @property
  *     def blob(self):             # <<<<<<<<<<<<<<
@@ -1070,7 +1070,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_4blob___get__(struct __pyx_obj_
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "ssh2/pkey.pyx":37
+  /* "ssh2/pkey.pyx":40
  *         :rtype: bytes
  *         """
  *         if self._pkey is NULL:             # <<<<<<<<<<<<<<
@@ -1080,7 +1080,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_4blob___get__(struct __pyx_obj_
   __pyx_t_1 = ((__pyx_v_self->_pkey == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "ssh2/pkey.pyx":38
+    /* "ssh2/pkey.pyx":41
  *         """
  *         if self._pkey is NULL:
  *             return             # <<<<<<<<<<<<<<
@@ -1091,7 +1091,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_4blob___get__(struct __pyx_obj_
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "ssh2/pkey.pyx":37
+    /* "ssh2/pkey.pyx":40
  *         :rtype: bytes
  *         """
  *         if self._pkey is NULL:             # <<<<<<<<<<<<<<
@@ -1100,7 +1100,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_4blob___get__(struct __pyx_obj_
  */
   }
 
-  /* "ssh2/pkey.pyx":39
+  /* "ssh2/pkey.pyx":42
  *         if self._pkey is NULL:
  *             return
  *         return self._pkey.blob[:self._pkey.blob_len]             # <<<<<<<<<<<<<<
@@ -1108,13 +1108,13 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_4blob___get__(struct __pyx_obj_
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyBytes_FromStringAndSize(((const char*)__pyx_v_self->_pkey->blob) + 0, __pyx_v_self->_pkey->blob_len - 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 39, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBytes_FromStringAndSize(((const char*)__pyx_v_self->_pkey->blob) + 0, __pyx_v_self->_pkey->blob_len - 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/pkey.pyx":32
+  /* "ssh2/pkey.pyx":35
  * 
  *     @property
  *     def blob(self):             # <<<<<<<<<<<<<<
@@ -1133,7 +1133,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_4blob___get__(struct __pyx_obj_
   return __pyx_r;
 }
 
-/* "ssh2/pkey.pyx":42
+/* "ssh2/pkey.pyx":45
  * 
  *     @property
  *     def magic(self):             # <<<<<<<<<<<<<<
@@ -1161,7 +1161,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_5magic___get__(struct __pyx_obj
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "ssh2/pkey.pyx":47
+  /* "ssh2/pkey.pyx":50
  *         :rtype: int
  *         """
  *         if self._pkey is NULL:             # <<<<<<<<<<<<<<
@@ -1171,7 +1171,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_5magic___get__(struct __pyx_obj
   __pyx_t_1 = ((__pyx_v_self->_pkey == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "ssh2/pkey.pyx":48
+    /* "ssh2/pkey.pyx":51
  *         """
  *         if self._pkey is NULL:
  *             return             # <<<<<<<<<<<<<<
@@ -1182,7 +1182,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_5magic___get__(struct __pyx_obj
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "ssh2/pkey.pyx":47
+    /* "ssh2/pkey.pyx":50
  *         :rtype: int
  *         """
  *         if self._pkey is NULL:             # <<<<<<<<<<<<<<
@@ -1191,7 +1191,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_5magic___get__(struct __pyx_obj
  */
   }
 
-  /* "ssh2/pkey.pyx":49
+  /* "ssh2/pkey.pyx":52
  *         if self._pkey is NULL:
  *             return
  *         return self._pkey.magic             # <<<<<<<<<<<<<<
@@ -1199,13 +1199,13 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_5magic___get__(struct __pyx_obj
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->_pkey->magic); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 49, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->_pkey->magic); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 52, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/pkey.pyx":42
+  /* "ssh2/pkey.pyx":45
  * 
  *     @property
  *     def magic(self):             # <<<<<<<<<<<<<<
@@ -1224,7 +1224,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_5magic___get__(struct __pyx_obj
   return __pyx_r;
 }
 
-/* "ssh2/pkey.pyx":52
+/* "ssh2/pkey.pyx":55
  * 
  *     @property
  *     def blob_len(self):             # <<<<<<<<<<<<<<
@@ -1252,7 +1252,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_8blob_len___get__(struct __pyx_
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "ssh2/pkey.pyx":57
+  /* "ssh2/pkey.pyx":60
  *         :rtype: int
  *         """
  *         if self._pkey is NULL:             # <<<<<<<<<<<<<<
@@ -1262,7 +1262,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_8blob_len___get__(struct __pyx_
   __pyx_t_1 = ((__pyx_v_self->_pkey == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "ssh2/pkey.pyx":58
+    /* "ssh2/pkey.pyx":61
  *         """
  *         if self._pkey is NULL:
  *             return             # <<<<<<<<<<<<<<
@@ -1273,7 +1273,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_8blob_len___get__(struct __pyx_
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "ssh2/pkey.pyx":57
+    /* "ssh2/pkey.pyx":60
  *         :rtype: int
  *         """
  *         if self._pkey is NULL:             # <<<<<<<<<<<<<<
@@ -1282,7 +1282,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_8blob_len___get__(struct __pyx_
  */
   }
 
-  /* "ssh2/pkey.pyx":59
+  /* "ssh2/pkey.pyx":62
  *         if self._pkey is NULL:
  *             return
  *         return self._pkey.blob_len             # <<<<<<<<<<<<<<
@@ -1290,13 +1290,13 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_8blob_len___get__(struct __pyx_
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyInt_FromSize_t(__pyx_v_self->_pkey->blob_len); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 59, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_FromSize_t(__pyx_v_self->_pkey->blob_len); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/pkey.pyx":52
+  /* "ssh2/pkey.pyx":55
  * 
  *     @property
  *     def blob_len(self):             # <<<<<<<<<<<<<<
@@ -1315,7 +1315,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_8blob_len___get__(struct __pyx_
   return __pyx_r;
 }
 
-/* "ssh2/pkey.pyx":62
+/* "ssh2/pkey.pyx":65
  * 
  *     @property
  *     def comment(self):             # <<<<<<<<<<<<<<
@@ -1343,7 +1343,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_7comment___get__(struct __pyx_o
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "ssh2/pkey.pyx":67
+  /* "ssh2/pkey.pyx":70
  *         :rtype: bytes
  *         """
  *         if self._pkey is NULL:             # <<<<<<<<<<<<<<
@@ -1353,7 +1353,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_7comment___get__(struct __pyx_o
   __pyx_t_1 = ((__pyx_v_self->_pkey == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "ssh2/pkey.pyx":68
+    /* "ssh2/pkey.pyx":71
  *         """
  *         if self._pkey is NULL:
  *             return             # <<<<<<<<<<<<<<
@@ -1363,7 +1363,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_7comment___get__(struct __pyx_o
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "ssh2/pkey.pyx":67
+    /* "ssh2/pkey.pyx":70
  *         :rtype: bytes
  *         """
  *         if self._pkey is NULL:             # <<<<<<<<<<<<<<
@@ -1372,19 +1372,19 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_7comment___get__(struct __pyx_o
  */
   }
 
-  /* "ssh2/pkey.pyx":69
+  /* "ssh2/pkey.pyx":72
  *         if self._pkey is NULL:
  *             return
  *         return self._pkey.comment             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyBytes_FromString(__pyx_v_self->_pkey->comment); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 69, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBytes_FromString(__pyx_v_self->_pkey->comment); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/pkey.pyx":62
+  /* "ssh2/pkey.pyx":65
  * 
  *     @property
  *     def comment(self):             # <<<<<<<<<<<<<<
@@ -1592,7 +1592,7 @@ static PyTypeObject __pyx_type_4ssh2_4pkey_PublicKey = {
   0, /*tp_setattro*/
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE, /*tp_flags*/
-  0, /*tp_doc*/
+  "Extension class for representing public key data from libssh2.\n\n    Can be used for authentication via :py:func:`ssh2.agent.Agent.userauth`", /*tp_doc*/
   0, /*tp_traverse*/
   0, /*tp_clear*/
   0, /*tp_richcompare*/

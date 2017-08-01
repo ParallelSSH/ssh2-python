@@ -43,7 +43,7 @@ cdef class Channel:
             c_ssh2.libssh2_channel_free(self._channel)
 
     def pty(self, term="vt100"):
-        cdef const char *_term = term
+        cdef const char *_term = to_bytes(term)
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_request_pty(
@@ -55,7 +55,7 @@ cdef class Channel:
                         rc)
         return rc
 
-    def execute(self, command):
+    def execute(self, command not None):
         """Execute command.
 
         :param command: Command to execute
@@ -78,7 +78,7 @@ cdef class Channel:
                         command, rc)
         return rc
 
-    def subsystem(self, subsystem):
+    def subsystem(self, subsystem not None):
         """Request subsystem from channel
 
         :param subsystem: Name of subsystem
@@ -117,6 +117,9 @@ cdef class Channel:
         cdef char *cbuf
         with nogil:
             cbuf = <char *>malloc(sizeof(char)*size)
+            if cbuf is NULL:
+                with gil:
+                    raise MemoryError
             rc = c_ssh2.libssh2_channel_read_ex(
                 self._channel, stream_id, cbuf, size)
         try:
@@ -139,7 +142,7 @@ cdef class Channel:
         return self.read_ex(size=size, stream_id=c_ssh2._SSH_EXTENDED_DATA_STDERR)
 
     def eof(self):
-        """Get channel EOF status
+        """Get channel EOF status.
 
         :rtype: bool"""
         cdef int rc
@@ -153,7 +156,7 @@ cdef class Channel:
         descriptor.
 
         Return 0 on success or negative on failure.
-        It returns LIBSSH2_ERROR_EAGAIN when it would otherwise block
+        It returns LIBSSH2_ERROR_EAGAIN when it would otherwise block.
 
         :rtype: int
         """
@@ -166,7 +169,8 @@ cdef class Channel:
         """Wait for the remote end to acknowledge an EOF request
 
         Return 0 on success or negative on failure. It returns
-        LIBSSH2_ERROR_EAGAIN when it would otherwise block
+        :py:class:`ssh2.error_codes.LIBSSH2_ERROR_EAGAIN` when it
+        would otherwise block.
 
         :rtype: int
         """
@@ -176,6 +180,7 @@ cdef class Channel:
         return rc
 
     def close(self):
+        """Close channel. Typically done to be able to get exit status."""
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_close(self._channel)
@@ -203,18 +208,30 @@ cdef class Channel:
         return rc
 
     def wait_closed(self):
+        """Wait for server to acknowledge channel close command."""
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_wait_closed(self._channel)
         return rc
 
     def get_exit_status(self):
+        """Get exit status of command.
+
+        Note that ``0`` is also failure code for this function.
+
+        Best used in non-blocking mode to avoid it being impossible to tell if
+        ``0`` indicates failure or an actual exit status of ``0``"""
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_get_exit_status(self._channel)
         return rc
 
     def get_exit_signal(self):
+        """Get exit signal, message and language tag, if any, for command.
+
+        Returns (returncode, exit signal, error message, language tag) tuple.
+
+        :rtype: tuple(int, bytes, bytes, bytes)"""
         cdef char *exitsignal = <char *>b'none'
         cdef size_t *exitsignal_len = <size_t *>0
         cdef char *errmsg = <char *>b'none'
@@ -246,7 +263,15 @@ cdef class Channel:
             py_langtag = langtag[:py_langlen]
         return rc, py_exitsignal, py_errmsg, py_langtag
 
-    def setenv(self, varname, value):
+    def setenv(self, varname not None, value not None):
+        """Set environment variable on channel.
+
+        :param varname: Name of variable to set.
+        :type varname: str
+        :param value: Value of variable.
+        :type value: str
+
+        :rtype: int"""
         cdef int rc
         cdef char *_varname = to_bytes(varname)
         cdef char *_value = to_bytes(value)
@@ -282,8 +307,13 @@ cdef class Channel:
             rc = c_ssh2.libssh2_channel_window_write(self._channel)
         return rc
 
-    def write(self, buf):
-        """Write buffer to stdin"""
+    def write(self, buf not None):
+        """Write buffer to stdin
+
+        :param buf: Buffer to write
+        :type buf: str
+
+        :rtype: int"""
         cdef const char *_buf = to_bytes(buf)
         cdef size_t buflen = len(_buf)
         cdef ssize_t rc
@@ -291,8 +321,15 @@ cdef class Channel:
             rc = c_ssh2.libssh2_channel_write(self._channel, _buf, buflen)
         return rc
 
-    def write_ex(self, int stream_id, buf):
-        """Write buffer to specified stream id"""
+    def write_ex(self, int stream_id, buf not None):
+        """Write buffer to specified stream id.
+
+        :param stream_id: Id of stream to write to
+        :type stream_id: int
+        :param buf: Buffer to write
+        :type buf: str
+
+        :rtype: int"""
         cdef const char *_buf = to_bytes(buf)
         cdef size_t buflen = len(_buf)
         cdef ssize_t rc
@@ -301,8 +338,13 @@ cdef class Channel:
                 self._channel, stream_id, _buf, buflen)
         return rc
 
-    def write_stderr(self, buf):
-        """Write buffer to stderr"""
+    def write_stderr(self, buf not None):
+        """Write buffer to stderr.
+
+        :param buf: Buffer to write
+        :type buf: str
+
+        :rtype: int"""
         cdef const char *_buf = to_bytes(buf)
         cdef size_t buflen = len(_buf)
         cdef ssize_t rc

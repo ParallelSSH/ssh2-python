@@ -24,6 +24,9 @@ cdef object PyPublicKey(c_ssh2.libssh2_agent_publickey *pkey):
 
 
 cdef class PublicKey:
+    """Extension class for representing public key data from libssh2.
+
+    Can be used for authentication via :py:func:`ssh2.agent.Agent.userauth`"""
 
     def __cinit__(self):
         self._pkey = NULL

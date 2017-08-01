@@ -5,7 +5,7 @@ RhostsRSAAuthentication no
 HostbasedAuthentication no
 IgnoreUserKnownHosts yes
 GSSAPIAuthentication no
-
+ListenAddress 127.0.0.1
 KeyRegenerationInterval 3600
 ServerKeyBits 1024
 

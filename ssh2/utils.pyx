@@ -33,6 +33,13 @@ cdef char* to_bytes(_str):
     return _str
 
 
+cdef object to_str(char *c_str):
+    if PY_MAJOR_VERSION < 3:
+        return c_str
+    _len = len(c_str)
+    return c_str[:_len].decode(ENCODING)
+
+
 def version(int required_version=0):
     """Get libssh2 version string.
 
@@ -55,7 +62,7 @@ def ssh2_exit():
     c_ssh2.libssh2_exit()
 
 
-def wait_socket(_socket, Session session, timeout=0):
+def wait_socket(_socket not None, Session session, timeout=1):
     """Helper function for testing non-blocking mode.
 
     This function blocks the calling thread for <timeout> seconds -

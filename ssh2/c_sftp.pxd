@@ -42,6 +42,31 @@ cdef extern from "libssh2_sftp.h" nogil:
         uint64_t  f_fsid     # file system ID
         uint64_t  f_flag     # mount flags
         uint64_t  f_namemax  # maximum filename length
+    # SFTP File Transfer Flags
+    enum:
+        LIBSSH2_FXF_READ
+        LIBSSH2_FXF_WRITE
+        LIBSSH2_FXF_APPEND
+        LIBSSH2_FXF_CREAT
+        LIBSSH2_FXF_TRUNC
+        LIBSSH2_FXF_EXCL
+    # SFTP File modes
+    enum:
+        # Read, write, execute/search by owner
+        LIBSSH2_SFTP_S_IRWXU        # RWX mask for owner
+        LIBSSH2_SFTP_S_IRUSR        # R for owner
+        LIBSSH2_SFTP_S_IWUSR        # W for owner
+        LIBSSH2_SFTP_S_IXUSR        # X for owner
+        # Read, write, execute/search by group
+        LIBSSH2_SFTP_S_IRWXG        # RWX mask for group
+        LIBSSH2_SFTP_S_IRGRP        # R for group
+        LIBSSH2_SFTP_S_IWGRP        # W for group
+        LIBSSH2_SFTP_S_IXGRP        # X for group
+        # Read, write, execute/search by others
+        LIBSSH2_SFTP_S_IRWXO        # RWX mask for other
+        LIBSSH2_SFTP_S_IROTH        # R for other
+        LIBSSH2_SFTP_S_IWOTH        # W for other
+        LIBSSH2_SFTP_S_IXOTH        # X for other
     LIBSSH2_SFTP *libssh2_sftp_init(LIBSSH2_SESSION *session)
     int libssh2_sftp_shutdown(LIBSSH2_SFTP *sftp)
     unsigned long libssh2_sftp_last_error(LIBSSH2_SFTP *sftp)
