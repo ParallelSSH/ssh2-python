@@ -124,6 +124,23 @@ class SSH2TestCase(unittest.TestCase):
         chan = self.session.open_session()
         chan.execute('echo something')
         _in = 'stderr'
-        chan.write_stderr(_in + '\n')
+        self.assertTrue(chan.write_stderr(_in + '\n') > 0)
         chan.close()
         chan.wait_closed()
+
+    def test_sftp(self):
+        self._auth()
+        sftp = self.session.sftp_init()
+        self.assertTrue(sftp is not None)
+        test_file_data = b'test' + os.linesep
+        remote_filename = os.sep.join([os.path.dirname(__file__),
+                                       'remote_test_file'])
+        with open(remote_filename, 'wb') as test_fh:
+            test_fh.write(test_file_data)
+        remote_fh = sftp.open(remote_filename, 0, 0)
+        self.assertTrue(remote_fh is not None)
+        remote_data = ""
+        for data in remote_fh:
+            remote_data += data
+        self.assertEqual(remote_fh.close(), 0)
+        self.assertEqual(remote_data, test_file_data)
