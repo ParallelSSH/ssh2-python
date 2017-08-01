@@ -39,7 +39,7 @@ _____________
 
 Majority of the `libssh2`_ API has been implemented. ``ssh2-python`` is a thin wrapper of ``libssh2`` - its code examples can be ported straight over to Python with only minimal changes.
 
-Some parts are yet to be implemented though majority of the API is complete. Note current restriction on byte strings in examples section.
+Some parts are yet to be implemented though majority of the API is complete.
 
 *Library is at the moment available as source code only. Binary releases to follow.*
 
@@ -47,7 +47,7 @@ Some parts are yet to be implemented though majority of the API is complete. Not
 Examples
 ___________
 
-Currently all string arguments are assumed to be byte strings - Python 3 users should use ``b'<string>'``.
+Both byte and unicode strings are accepted as arguments and encoded appropriately. To change default encoding change the value of ``ssh2.utils.ENCODING``. Channel output is always byte strings.
 
 See `Complete Example`_ for a complete example including socket connect.
 
@@ -203,15 +203,14 @@ Clients using this library can be much simpler to use than interfacing with the 
    Exit status: 2
 
 
-SSH Functionality currently provided
-_____________________________________
+SSH Functionality currently implemented
+________________________________________
 
 
-* SSH channel operations (exec,shell,subsystem)
+* SSH channel operations (exec,shell,subsystem) and methods
 * SSH agent
 * Public key authentication and management
-* SFTP
-* SCP
+* SFTP open, close, read
 * SSH port forwarding and tunnelling
 * Non-blocking mode
 * Listener for port forwarding
