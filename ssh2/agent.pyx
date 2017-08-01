@@ -18,6 +18,7 @@ cimport c_ssh2
 from pkey cimport PublicKey, PyPublicKey
 from exceptions cimport AgentConnectError, AgentListIdentitiesError, \
     AgentGetIdentityError, AgentAuthenticationError
+from utils cimport to_bytes
 
 
 cdef int auth_identity(const char *username,
@@ -64,15 +65,16 @@ cdef class Agent:
             clear_agent(self._agent)
 
     def list_identities(self):
-        """This method is a no-op - use get_identities to list and retrieve
+        """This method is a no-op - use
+          :py:func:`ssh2.agent.Agent.get_identities` to list and retrieve
         identities
         """
         pass
 
-    def get_identities(self, const char *username):
+    def get_identities(self):
         """List and get identities from agent
 
-        :rtype: list(:py:class:`PublicKey`)
+        :rtype: list(:py:class:`ssh2.pkey.PublicKey`)
         """
         cdef int rc
         cdef list identities = []
@@ -91,7 +93,7 @@ cdef class Agent:
                 prev = identity
         return identities
 
-    def userauth(self, const char *username,
+    def userauth(self, username,
                  PublicKey pkey):
         """Perform user authentication with specific public key
 
@@ -99,11 +101,17 @@ cdef class Agent:
         :type username: str
         :param pkey: Public key to authenticate with
         :type pkey: py:class:`PublicKey`
+
+        :raises: :py:class:`ssh2.exceptions.AgentAuthenticationError` on errors
+          authenticating.
+
+        :rtype: int
         """
         cdef int rc
+        cdef char *_username = to_bytes(username)
         with nogil:
             rc = c_ssh2.libssh2_agent_userauth(
-                self._agent, username, pkey._pkey)
+                self._agent, _username, pkey._pkey)
             if rc != 0 and rc != c_ssh2._LIBSSH2_ERROR_EAGAIN:
                 with gil:
                     raise AgentAuthenticationError(

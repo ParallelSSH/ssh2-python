@@ -704,7 +704,7 @@ struct __pyx_obj_4ssh2_7session_Session;
  * 
  * cdef class Session:             # <<<<<<<<<<<<<<
  *     cdef c_ssh2.LIBSSH2_SESSION *_session
- *     cdef c_ssh2.LIBSSH2_AGENT * init_connect_agent(self) nogil
+ *     cdef c_ssh2.LIBSSH2_AGENT * init_connect_agent(self) nogil except NULL
  */
 struct __pyx_obj_4ssh2_7session_Session {
   PyObject_HEAD
@@ -1034,7 +1034,6 @@ static PyObject *__pyx_pf_4ssh2_5utils_version(CYTHON_UNUSED PyObject *__pyx_sel
 static PyObject *__pyx_pf_4ssh2_5utils_2ssh2_exit(CYTHON_UNUSED PyObject *__pyx_self); /* proto */
 static PyObject *__pyx_pf_4ssh2_5utils_4wait_socket(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v__socket, struct __pyx_obj_4ssh2_7session_Session *__pyx_v_session, PyObject *__pyx_v_timeout); /* proto */
 static PyObject *__pyx_int_0;
-static PyObject *__pyx_int_1;
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_tuple__4;
 static PyObject *__pyx_codeobj__2;
@@ -1447,14 +1446,14 @@ static PyObject *__pyx_pf_4ssh2_5utils_2ssh2_exit(CYTHON_UNUSED PyObject *__pyx_
 /* "ssh2/utils.pyx":58
  * 
  * 
- * def wait_socket(_socket, Session session, timeout=1):             # <<<<<<<<<<<<<<
+ * def wait_socket(_socket, Session session, timeout=0):             # <<<<<<<<<<<<<<
  *     """Helper function for testing non-blocking mode.
  * 
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_4ssh2_5utils_5wait_socket(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_5utils_4wait_socket[] = "wait_socket(_socket, Session session, timeout=1)\nHelper function for testing non-blocking mode.\n\n    This function blocks the calling thread for <timeout> seconds -\n    to be used only for testing purposes.\n    ";
+static char __pyx_doc_4ssh2_5utils_4wait_socket[] = "wait_socket(_socket, Session session, timeout=0)\nHelper function for testing non-blocking mode.\n\n    This function blocks the calling thread for <timeout> seconds -\n    to be used only for testing purposes.\n    ";
 static PyMethodDef __pyx_mdef_4ssh2_5utils_5wait_socket = {"wait_socket", (PyCFunction)__pyx_pw_4ssh2_5utils_5wait_socket, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_5utils_4wait_socket};
 static PyObject *__pyx_pw_4ssh2_5utils_5wait_socket(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v__socket = 0;
@@ -1466,7 +1465,7 @@ static PyObject *__pyx_pw_4ssh2_5utils_5wait_socket(PyObject *__pyx_self, PyObje
   {
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_socket,&__pyx_n_s_session,&__pyx_n_s_timeout,0};
     PyObject* values[3] = {0,0,0};
-    values[2] = ((PyObject *)__pyx_int_1);
+    values[2] = ((PyObject *)__pyx_int_0);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
@@ -1751,7 +1750,7 @@ static PyObject *__pyx_pf_4ssh2_5utils_4wait_socket(CYTHON_UNUSED PyObject *__py
   /* "ssh2/utils.pyx":58
  * 
  * 
- * def wait_socket(_socket, Session session, timeout=1):             # <<<<<<<<<<<<<<
+ * def wait_socket(_socket, Session session, timeout=0):             # <<<<<<<<<<<<<<
  *     """Helper function for testing non-blocking mode.
  * 
  */
@@ -1851,7 +1850,7 @@ static int __Pyx_InitCachedConstants(void) {
   /* "ssh2/utils.pyx":58
  * 
  * 
- * def wait_socket(_socket, Session session, timeout=1):             # <<<<<<<<<<<<<<
+ * def wait_socket(_socket, Session session, timeout=0):             # <<<<<<<<<<<<<<
  *     """Helper function for testing non-blocking mode.
  * 
  */
@@ -1869,7 +1868,6 @@ static int __Pyx_InitCachedConstants(void) {
 static int __Pyx_InitGlobals(void) {
   if (__Pyx_InitStrings(__pyx_string_tab) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_int_1 = PyInt_FromLong(1); if (unlikely(!__pyx_int_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -2029,7 +2027,7 @@ PyMODINIT_FUNC PyInit_utils(void)
   /* "ssh2/utils.pyx":58
  * 
  * 
- * def wait_socket(_socket, Session session, timeout=1):             # <<<<<<<<<<<<<<
+ * def wait_socket(_socket, Session session, timeout=0):             # <<<<<<<<<<<<<<
  *     """Helper function for testing non-blocking mode.
  * 
  */

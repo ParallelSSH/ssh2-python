@@ -138,9 +138,12 @@ class SSH2TestCase(unittest.TestCase):
         with open(remote_filename, 'wb') as test_fh:
             test_fh.write(test_file_data)
         remote_fh = sftp.open(remote_filename, 0, 0)
-        self.assertTrue(remote_fh is not None)
-        remote_data = ""
-        for data in remote_fh:
-            remote_data += data
-        self.assertEqual(remote_fh.close(), 0)
-        self.assertEqual(remote_data, test_file_data)
+        try:
+            self.assertTrue(remote_fh is not None)
+            remote_data = ""
+            for data in remote_fh:
+                remote_data += data
+            self.assertEqual(remote_fh.close(), 0)
+            self.assertEqual(remote_data, test_file_data)
+        finally:
+            os.unlink(remote_filename)

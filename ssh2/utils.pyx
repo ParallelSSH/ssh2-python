@@ -55,7 +55,7 @@ def ssh2_exit():
     c_ssh2.libssh2_exit()
 
 
-def wait_socket(_socket, Session session, timeout=1):
+def wait_socket(_socket, Session session, timeout=0):
     """Helper function for testing non-blocking mode.
 
     This function blocks the calling thread for <timeout> seconds -

@@ -30,24 +30,40 @@ cdef class PublicKey:
 
     @property
     def blob(self):
+        """Blob of public key data.
+
+        :rtype: bytes
+        """
         if self._pkey is NULL:
             return
         return self._pkey.blob[:self._pkey.blob_len]
 
     @property
     def magic(self):
+        """Magic number of public key.
+
+        :rtype: int
+        """
         if self._pkey is NULL:
             return
         return self._pkey.magic
 
     @property
     def blob_len(self):
+        """Blob length of public key.
+
+        :rtype: int
+        """
         if self._pkey is NULL:
             return
         return self._pkey.blob_len
 
     @property
     def comment(self):
+        """Public key comment
+
+        :rtype: bytes
+        """
         if self._pkey is NULL:
             return
         return self._pkey.comment

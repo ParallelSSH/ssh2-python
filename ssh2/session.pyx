@@ -15,11 +15,12 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 from cpython cimport PyObject_AsFileDescriptor
+from libc.stdint cimport uint64_t
 from libc.stdlib cimport malloc, free
+from libc.time cimport time_t
 
 cimport c_ssh2
 cimport c_sftp
-# cimport error_codes
 from agent cimport PyAgent, auth_identity, clear_agent
 from channel cimport PyChannel
 from exceptions cimport SessionHandshakeError, SessionStartupError, \
@@ -113,13 +114,24 @@ cdef class Session:
                 self._session, _username, _publickey, _privatekey, _passphrase)
         return rc
 
-    def userauth_publickey(self, const char *username,
-                           const unsigned char *pubkeydata,
-                           size_t pubkeydata_len):
+    def userauth_publickey(self, username,
+                           bytes pubkeydata):
+        """Perform public key authentication with provided public key data
+
+        :param username: User name to authenticate as
+        :type username: str
+        :param pubkeydata: Public key data
+        :type pubkeydata: bytes
+
+        :rtype: int
+        """
         cdef int rc
+        cdef char *_username = to_bytes(username)
+        cdef unsigned char *_pubkeydata = pubkeydata
+        cdef size_t pubkeydata_len = len(pubkeydata)
         with nogil:
             rc = c_ssh2.libssh2_userauth_publickey(
-                self._session, username, pubkeydata,
+                self._session, _username, _pubkeydata,
                 pubkeydata_len, NULL, NULL)
         return rc
 
@@ -167,6 +179,10 @@ cdef class Session:
         return rc
 
     def agent_init(self):
+        """Initialise SSH agent.
+
+        :rtype: :py:class:`ssh2.agent.Agent`
+        """
         cdef c_ssh2.LIBSSH2_AGENT *agent = self._agent_init()
         if agent is NULL:
             return
@@ -192,7 +208,7 @@ cdef class Session:
                 raise AgentConnectError("Unable to connect to agent")
         return agent
 
-    def agent_auth(self, const char *username):
+    def agent_auth(self, username):
         """Convenience function for performing user authentication via SSH Agent.
 
         Initialises, connects to, gets list of identities from and attempts
@@ -207,15 +223,20 @@ cdef class Session:
         better than calling the individual Agent class functions from
         Python.
 
-        :raises: MemoryError on error initialising agent
-        :raises: AgentConnectError on error connecting to agent
-        :raises: AgentListIdentitiesError on error getting identities from agent
-        :raises: AgentAuthenticationFailure on no successful authentication with
+        :raises: :py:class:`MemoryError` on error initialising agent
+        :raises: :py:class:`ssh2.exceptions.AgentConnectError` on error
+          connecting to agent
+        :raises: :py:class:`ssh2.exceptions.AgentListIdentitiesError` on error
+          getting identities from agent
+        :raises: :py:class:`ssh2.exceptions.AgentAuthenticationFailure` on no
+          successful authentication with
         all available identities
-        :raises: AgentGetIdentityError on error getting known identity from agent
+        :raises: :py:class:`ssh2.exceptions.AgentGetIdentityError` on error
+          getting known identity from agent
 
         :rtype: None
         """
+        cdef char *_username = to_bytes(username)
         cdef c_ssh2.LIBSSH2_AGENT *agent = NULL
         cdef c_ssh2.libssh2_agent_publickey *identity = NULL
         cdef c_ssh2.libssh2_agent_publickey *prev = NULL
@@ -227,14 +248,18 @@ cdef class Session:
                     raise AgentListIdentitiesError(
                         "Failure requesting identities from agent")
             while 1:
-                auth_identity(username, agent, &identity, prev)
+                auth_identity(_username, agent, &identity, prev)
                 if c_ssh2.libssh2_agent_userauth(
-                        agent, username, identity) == 0:
+                        agent, _username, identity) == 0:
                     break
                 prev = identity
             clear_agent(agent)
 
     def open_session(self):
+        """Open new channel session.
+
+        :rtype: :py:class:`ssh2.channel.Channel`
+        """
         cdef c_ssh2.LIBSSH2_CHANNEL *channel
         with nogil:
             channel = c_ssh2.libssh2_channel_open_session(
@@ -244,22 +269,25 @@ cdef class Session:
                     return None
         return PyChannel(channel, self)
 
-    def direct_tcpip_ex(self, const char *host, int port,
-                        const char *shost, int sport):
+    def direct_tcpip_ex(self, host, int port,
+                        shost, int sport):
         cdef c_ssh2.LIBSSH2_CHANNEL *channel
+        cdef char *_host = to_bytes(host)
+        cdef char *_shost = to_bytes(shost)
         with nogil:
             channel = c_ssh2.libssh2_channel_direct_tcpip_ex(
-                self._session, host, port, shost, sport)
+                self._session, _host, port, _shost, sport)
             if channel is NULL:
                 with gil:
                     return
         return PyChannel(channel, self)
 
-    def direct_tcpip(self, const char *host, int port):
+    def direct_tcpip(self, host, int port):
         cdef c_ssh2.LIBSSH2_CHANNEL *channel
+        cdef char *_host = to_bytes(host)
         with nogil:
             channel = c_ssh2.libssh2_channel_direct_tcpip(
-                self._session, host, port)
+                self._session, _host, port)
             if channel is NULL:
                 with gil:
                     return
@@ -281,17 +309,22 @@ cdef class Session:
             return
         return PyListener(listener, self)
 
-    def forward_listen_ex(self, const char *host, int port,
+    def forward_listen_ex(self, host, int port,
                           int bound_port, int queue_maxsize):
         cdef c_ssh2.LIBSSH2_LISTENER *listener
+        cdef char *_host = to_bytes(host)
         with nogil:
             listener = c_ssh2.libssh2_channel_forward_listen_ex(
-                self._session, host, port, &bound_port, queue_maxsize)
+                self._session, _host, port, &bound_port, queue_maxsize)
         if listener is NULL:
             return
         return PyListener(listener, self)
 
     def sftp_init(self):
+        """Initialise SFTP channel.
+
+        :rtype: :py:class:`ssh2.sftp.SFTP`
+        """
         cdef c_sftp.LIBSSH2_SFTP *_sftp
         with nogil:
             _sftp = c_sftp.libssh2_sftp_init(self._session)
@@ -300,6 +333,11 @@ cdef class Session:
         return PySFTP(_sftp, self)
 
     def last_error(self):
+        """Retrieve last error message from libssh2, if any.
+        Returns empty string on no error message.
+
+        :rtype: str
+        """
         cdef char **_error_msg = NULL
         cdef bytes msg
         cdef int errmsg_len = 0
@@ -308,11 +346,21 @@ cdef class Session:
             rc = c_ssh2.libssh2_session_last_error(
                 self._session, _error_msg, &errmsg_len, 0)
         if errmsg_len > 0 and _error_msg is not NULL:
-            for line in _error_msg[errmsg_len]:
+            for line in _error_msg[:errmsg_len]:
                 msg += line
         else:
             msg = b''
         return msg
+
+    def scp_recv(self, path):
+        raise NotImplementedError
+
+    def scp_send(self, path, int mode, size_t size):
+        raise NotImplementedError
+
+    def scp_send64(self, path, int mode, uint64_t size,
+                   time_t mtime, time_t atime):
+        raise NotImplementedError
 
     # cdef c_ssh2.LIBSSH2_CHANNEL * scp_recv2(
     #     self, const char *path, libssh2_struct_stat *stat):

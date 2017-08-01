@@ -22,7 +22,7 @@ cimport error_codes
 
 from session cimport Session
 from exceptions cimport ChannelError
-# from utils cimport to_bytes
+from utils cimport to_bytes
 
 
 cdef object PyChannel(c_ssh2.LIBSSH2_CHANNEL *channel, Session session):
@@ -39,6 +39,7 @@ cdef class Channel:
 
     def __dealloc__(self):
         with nogil:
+            c_ssh2.libssh2_channel_close(self._channel)
             c_ssh2.libssh2_channel_free(self._channel)
 
     def pty(self, term="vt100"):
@@ -54,11 +55,22 @@ cdef class Channel:
                         rc)
         return rc
 
-    def execute(self, const char *command):
+    def execute(self, command):
+        """Execute command.
+
+        :param command: Command to execute
+        :type command: str
+
+        :raises: :py:class:`ssh2.exceptions.ChannelError` on errors executing
+          command
+
+        :rtype: int
+        """
         cdef int rc
+        cdef char *_command = to_bytes(command)
         with nogil:
             rc = c_ssh2.libssh2_channel_exec(
-                self._channel, command)
+                self._channel, _command)
             if rc != 0 and rc != c_ssh2._LIBSSH2_ERROR_EAGAIN:
                 with gil:
                     raise ChannelError(
@@ -66,15 +78,16 @@ cdef class Channel:
                         command, rc)
         return rc
 
-    def subsystem(self, const char *subsystem):
+    def subsystem(self, subsystem):
         """Request subsystem from channel
 
         :param subsystem: Name of subsystem
         :type subsystem: str"""
         cdef int rc
+        cdef char *_subsystem = to_bytes(subsystem)
         with nogil:
             rc = c_ssh2.libssh2_channel_subsystem(
-                self._channel, subsystem)
+                self._channel, _subsystem)
             if rc != 0 and rc != c_ssh2._LIBSSH2_ERROR_EAGAIN:
                 with gil:
                     raise ChannelError(
@@ -233,11 +246,13 @@ cdef class Channel:
             py_langtag = langtag[:py_langlen]
         return rc, py_exitsignal, py_errmsg, py_langtag
 
-    def setenv(self, const char *varname, const char *value):
+    def setenv(self, varname, value):
         cdef int rc
+        cdef char *_varname = to_bytes(varname)
+        cdef char *_value = to_bytes(value)
         with nogil:
             rc = c_ssh2.libssh2_channel_setenv(
-                self._channel, varname, value)
+                self._channel, _varname, _value)
         return rc
 
     def window_read_ex(self, unsigned long read_avail,
@@ -267,29 +282,29 @@ cdef class Channel:
             rc = c_ssh2.libssh2_channel_window_write(self._channel)
         return rc
 
-    def write(self, bytes buf):
+    def write(self, buf):
         """Write buffer to stdin"""
-        cdef const char *_buf = buf
-        cdef size_t buflen = len(buf)
+        cdef const char *_buf = to_bytes(buf)
+        cdef size_t buflen = len(_buf)
         cdef ssize_t rc
         with nogil:
             rc = c_ssh2.libssh2_channel_write(self._channel, _buf, buflen)
         return rc
 
-    def write_ex(self, int stream_id, bytes buf):
+    def write_ex(self, int stream_id, buf):
         """Write buffer to specified stream id"""
-        cdef const char *_buf = buf
-        cdef size_t buflen = len(buf)
+        cdef const char *_buf = to_bytes(buf)
+        cdef size_t buflen = len(_buf)
         cdef ssize_t rc
         with nogil:
             rc = c_ssh2.libssh2_channel_write_ex(
                 self._channel, stream_id, _buf, buflen)
         return rc
 
-    def write_stderr(self, bytes buf):
+    def write_stderr(self, buf):
         """Write buffer to stderr"""
-        cdef const char *_buf = buf
-        cdef size_t buflen = len(buf)
+        cdef const char *_buf = to_bytes(buf)
+        cdef size_t buflen = len(_buf)
         cdef ssize_t rc
         with nogil:
             rc = c_ssh2.libssh2_channel_write_stderr(
