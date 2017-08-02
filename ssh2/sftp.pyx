@@ -283,6 +283,12 @@ cdef class SFTPHandle:
             raise StopIteration
         return data
 
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        self.close()
+
     def close(self):
         cdef int rc
         with nogil:
