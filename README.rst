@@ -156,7 +156,6 @@ SFTP Read
            open(<file to write>, 'wb') as local_fh:
        for data in remote_fh:
            local_fh.write(data)
-   fh.close()
 
 
 Complete Example
@@ -211,7 +210,8 @@ ________________________________________
 * SSH channel operations (exec,shell,subsystem) and methods
 * SSH agent
 * Public key authentication and management
-* SFTP open, close, read
+* SFTP operations
+* SFTP file handles and attributes
 * SSH port forwarding and tunnelling
 * Non-blocking mode
 * Listener for port forwarding
