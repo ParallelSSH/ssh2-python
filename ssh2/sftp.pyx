@@ -14,12 +14,14 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
+from libc.stdint cimport uint64_t
 from libc.stdlib cimport malloc, free
 
 cimport c_ssh2
 cimport c_sftp
 from channel cimport Channel, PyChannel
 from utils cimport to_bytes
+
 
 # File Transfer Flags
 LIBSSH2_FXF_READ = c_sftp.LIBSSH2_FXF_READ
@@ -254,13 +256,27 @@ cdef class SFTP:
                 self._sftp, _path, _target, maxlen)
         return rc
 
+    def last_error(self):
+        cdef unsigned long rc
+        with nogil:
+            rc = c_sftp.libssh2_sftp_last_error(self._sftp)
+        return rc
+
 
 cdef class SFTPAttributes:
     cdef c_sftp.LIBSSH2_SFTP_ATTRIBUTES *_attrs
 
     def __cinit__(self):
-        self._attrs = NULL
+        with nogil:
+            self._attrs = <c_sftp.LIBSSH2_SFTP_ATTRIBUTES *>malloc(
+                sizeof(c_sftp.LIBSSH2_SFTP_ATTRIBUTES))
+            if self._attrs is NULL:
+                with gil:
+                    raise MemoryError
 
+    def __dealloc__(self):
+        with nogil:
+            free(self._attrs)
 
 cdef class SFTPHandle:
     cdef c_sftp.LIBSSH2_SFTP_HANDLE *_handle
@@ -319,38 +335,64 @@ cdef class SFTPHandle:
                    char *longentry,
                    size_t longentry_maxlen,
                    SFTPAttributes attrs):
+        cdef char *cbuf
         raise NotImplementedError
 
-    def readdir(self, char *buffer, size_t buffer_maxlen,
-                SFTPAttributes attrs):
+    def readdir(self, SFTPAttributes attrs,
+                size_t buffer_maxlen=c_ssh2._LIBSSH2_CHANNEL_WINDOW_DEFAULT):
+        cdef char *cbuf
         raise NotImplementedError
 
-    def write(self, const char *buf, size_t count):
-        raise NotImplementedError
+    def write(self, bytes buf):
+        cdef size_t _size = len(buf)
+        cdef char *cbuf = buf
+        cdef ssize_t rc
+        with nogil:
+            rc = c_sftp.libssh2_sftp_write(self._handle, cbuf, _size)
+        return rc
 
     def fsync(self):
         raise NotImplementedError
 
     def seek(self, size_t offset):
-        raise NotImplementedError
+        with nogil:
+            c_sftp.libssh2_sftp_seek(self._handle, offset)
 
-    def seek64(self, size_t offset):
-        raise NotImplementedError
+    def seek64(self, uint64_t offset):
+        with nogil:
+            c_sftp.libssh2_sftp_seek64(self._handle, offset)
 
     def rewind(self):
-        raise NotImplementedError
+        with nogil:
+            c_sftp.libssh2_sftp_rewind(self._handle)
 
     def tell(self):
-        raise NotImplementedError
+        cdef size_t rc
+        with nogil:
+            rc = c_sftp.libssh2_sftp_tell(self._handle)
+        return rc
 
     def tell64(self):
-        raise NotImplementedError
+        cdef uint64_t rc
+        with nogil:
+            rc = c_sftp.libssh2_sftp_tell(self._handle)
+        return rc
 
     def fstat_ex(self, SFTPAttributes attrs, int setstat):
-        raise NotImplementedError
+        cdef int rc
+        with nogil:
+            rc = c_sftp.libssh2_sftp_fstat_ex(
+                self._handle, attrs._attrs, setstat)
+        return rc
 
     def fstat(self, SFTPAttributes attrs):
-        raise NotImplementedError
+        cdef int rc
+        with nogil:
+            rc = c_sftp.libssh2_sftp_fstat(self._handle, attrs._attrs)
+        return rc
 
     def fsetstat(self, SFTPAttributes attrs):
-        raise NotImplementedError
+        cdef int rc
+        with nogil:
+            rc = c_sftp.libssh2_sftp_fsetstat(self._handle, attrs._attrs)
+        return rc

@@ -7,6 +7,7 @@ from sys import version_info
 
 from ssh2.session import Session
 from ssh2.utils import wait_socket
+from ssh2.sftp import SFTPAttributes
 from embedded_server.openssh import OpenSSHServer
 
 
@@ -186,3 +187,8 @@ class SSH2TestCase(unittest.TestCase):
         size, data = chan.read()
         self.assertTrue(size > 0)
         self.assertEqual(data.decode('utf-8'), expected)
+
+    def test_sftp_attrs(self):
+        attrs = SFTPAttributes()
+        self.assertTrue(attrs is not None)
+        del attrs
