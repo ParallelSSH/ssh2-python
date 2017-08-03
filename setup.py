@@ -61,9 +61,10 @@ setup(
     license='LGPLv2',
     author='Panos Kittenis',
     author_email='22e889d8@opayq.com',
-    description=('Python bindings for libssh2 based on Cython'),
+    description=('Super fast SSH library - bindings for libssh2'),
     long_description=open('README.rst').read(),
-    packages=find_packages('.'),
+    packages=find_packages(
+        'ssh2', exclude=('embedded_server', 'embedded_server.*')),
     zip_safe=False,
     include_package_data=True,
     platforms='any',

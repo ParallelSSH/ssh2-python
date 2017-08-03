@@ -1,8 +1,9 @@
 language: python
 cache: pip
-sudo: false
 notifications:
   email: false
+services:
+  - docker
 python:
   - 2.6
   - 2.7
@@ -23,14 +24,21 @@ install:
   - chmod 600 embedded_server/rsa.key
   - eval "$(ssh-agent -s)"
 script:
-  # - nosetests
-  - flake8 ssh2
+  - docker/build-packages.sh
 deploy:
-  provider: pypi
-  on:
-    tags: true
-    repo: ParallelSSH/ssh2-python
-  distributions: sdist
-  user: pkittenis
-  password:
-    secure: "eEBo76bmNWArLOzLNkv8whYO81HqkYpwUu3RqBHv6PNW/sI70VSIVfPTWo8ThlNkYSBy1Sxci6eU+Vd8qYH/vaCbl4068BkzroGUqGMLHXLRLEPQjO2pxTvnQ7Nbj/Mi9enoslLJKflx2USy2iPz1yGCWZrPzjLWmEMcx6j5e3fEUGF2p6p01w/zWxmiSoyJgBsby9P8Fl5nflsNMVR/or8frK4K1T6Y2oTuEx9aYymmBPFOO5DHaedDxnhZ04KKaACIECvKrT5V3PMM1jrE3qu6hJ1LS0/mSivEdCwCszHanjIQy/enkNtLgxVm4jIRUjuAwL1MmxPtkAUcKrQor1YokMqm5fExdwvnp+qjtyejfA3IvT93nYvCj4IEYNMDtUGFUBjsYLqg7Ked/jvO53Ek5WEAE/Mx8F/OAtuvkpEeUKTIWxfd+V0b7pgShVuU5zFyi3y97vpRtdwqzOFr8QT3Hq+g/RIdghPQ9pGQ3GOomTMO1B7mAyOG6SYyQM/wra2h2dQTHCbgzAtsPzZLiZhWIGcU7/mGLm0kZBT6McnH2//hsIPXG8S94u2MWE0KRH5YhJ/2ATWneYyFHWQfwqDeR/1CZe66gFcPJ9cOIG+8pcmXueLhnueDbh2EWa8jmumtrAz+z+rcokih0c7catT7pByDv24Ouuw2Yf3my60="
+  - provider: pypi
+    on:
+      repo: ParallelSSH/ssh2-python
+      tags: true
+    distributions: sdist
+    user: pkittenis
+    password:
+      secure: "eEBo76bmNWArLOzLNkv8whYO81HqkYpwUu3RqBHv6PNW/sI70VSIVfPTWo8ThlNkYSBy1Sxci6eU+Vd8qYH/vaCbl4068BkzroGUqGMLHXLRLEPQjO2pxTvnQ7Nbj/Mi9enoslLJKflx2USy2iPz1yGCWZrPzjLWmEMcx6j5e3fEUGF2p6p01w/zWxmiSoyJgBsby9P8Fl5nflsNMVR/or8frK4K1T6Y2oTuEx9aYymmBPFOO5DHaedDxnhZ04KKaACIECvKrT5V3PMM1jrE3qu6hJ1LS0/mSivEdCwCszHanjIQy/enkNtLgxVm4jIRUjuAwL1MmxPtkAUcKrQor1YokMqm5fExdwvnp+qjtyejfA3IvT93nYvCj4IEYNMDtUGFUBjsYLqg7Ked/jvO53Ek5WEAE/Mx8F/OAtuvkpEeUKTIWxfd+V0b7pgShVuU5zFyi3y97vpRtdwqzOFr8QT3Hq+g/RIdghPQ9pGQ3GOomTMO1B7mAyOG6SYyQM/wra2h2dQTHCbgzAtsPzZLiZhWIGcU7/mGLm0kZBT6McnH2//hsIPXG8S94u2MWE0KRH5YhJ/2ATWneYyFHWQfwqDeR/1CZe66gFcPJ9cOIG+8pcmXueLhnueDbh2EWa8jmumtrAz+z+rcokih0c7catT7pByDv24Ouuw2Yf3my60="
+  - provider: releases
+    skip_cleanup: true
+    api_key:
+      secure: i1Dr0k393wXBsCKST5ckeTPdZT+hjkikHCGgMSEkJxw+Q8m/Sgq9bbBalkJZDZDc8t0a/nE4ioEXoYO+PT9wRSpjLbjDVwRoWde5PVHaR3JviiwxULEynFLbvdJ1S2O/zRM37YMVgIIXN/2SWSXvQcQznrrvjtBoV+nZfYHX2WZQruq1nQXcPvTJPeZtCBsWaA3TwbVobnOJdb3TFxnHybN3N4gCTOkurek0V7OSMpjd1qgSzNMDIhjXKf/ZB9bcuusXo2QSnzUDJo3S6QE4FBxKohVom7z4AQ8+iRVPkkrWezBo089vzPzfZN/C5+8xQAUfZ6bVNdS6DfI80+55s6Xj7BFEKQW9Kh3Em0GpipHxdxiBf176xktY9EROkDkwDHlsbE7JRRQUmfmJe+0yCo+gg9uAsz5XHNrQgU5BxKhVzggMA/VU+clJ51WfbYGJAvVs/NjHQb/A9CzYKdBamUvy3YY2dxLbdohR7TZMM0JWYmZcmSiaOiZxrCT3ThlQ/J9o9r6TFWvkVjvt+ozABsx0OvtNrdkp7VvFbSQGvmTzGnPM2O5xqzWrM73Z7g8Ahw1g08FDN0JAO8n/Y0tb/xpVAFBmkQTJpQk7f4kQAHWlZKEYN2wEnX+hptjXfDjMYGX9Tc5vdDQJ3oTxnCt+y7Vl9IplT0a5GTTE0l8Pyc4=
+    file: '*.{deb,rpm}'
+    on:
+      repo: ParallelSSH/ssh2-python
+      tags: true
