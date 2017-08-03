@@ -9,7 +9,8 @@ Super fast SSH2 protocol library. ``ssh2-python`` provides Python bindings for `
 .. image:: https://img.shields.io/pypi/v/ssh2-python.svg
   :target: https://pypi.python.org/pypi/ssh2-python
   :alt: Latest Version
-
+.. image:: https://travis-ci.org/ParallelSSH/ssh2-python.svg?branch=master
+   :target: https://travis-ci.org/ParallelSSH/ssh2-python
 
 Installation
 ______________
@@ -30,7 +31,7 @@ RedHat
    
 .. code-block:: shell
 
-   yum install libssh2-devel python-dev
+   yum install libssh2-devel python-devel
    pip install ssh2-python
 
 

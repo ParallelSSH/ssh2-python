@@ -2,6 +2,7 @@ language: python
 cache: pip
 notifications:
   email: false
+sudo: required
 services:
   - docker
 python:
@@ -19,11 +20,14 @@ addons:
       - libssh2-1-dev
       - openssh-server
 install:
-  - pip install flake8
+  - pip install flake8 jinja2
   - python setup.py build_ext --inplace
   - eval "$(ssh-agent -s)"
 script:
+  - nosetests
+  - flake8 ssh2
   - docker/build-packages.sh
+  - ls -ltrh
 deploy:
   - provider: pypi
     on:
