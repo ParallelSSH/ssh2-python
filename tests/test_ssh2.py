@@ -1,3 +1,4 @@
+import platform
 import unittest
 import pwd
 import os
@@ -12,7 +13,7 @@ from embedded_server.openssh import OpenSSHServer
 
 
 PKEY_FILENAME = os.path.sep.join([os.path.dirname(__file__), 'unit_test_key'])
-PUB_FILE = "{}.pub".format(PKEY_FILENAME)
+PUB_FILE = "%s.pub" % (PKEY_FILENAME,)
 
 
 class SSH2TestCase(unittest.TestCase):
@@ -160,7 +161,10 @@ class SSH2TestCase(unittest.TestCase):
         self.assertEqual(self._auth(), 0)
         sftp = self.session.sftp_init()
         self.assertTrue(sftp is not None)
-        test_file_data = b'test' + os.linesep
+        if int(platform.python_version_tuple()[0]) >= 3:
+            test_file_data = b'test' + bytes(os.linesep, 'utf-8')
+        else:
+            test_file_data = b'test' + os.linesep
         remote_filename = os.sep.join([os.path.dirname(__file__),
                                        'remote_test_file'])
         with open(remote_filename, 'wb') as test_fh:
@@ -168,7 +172,7 @@ class SSH2TestCase(unittest.TestCase):
         remote_fh = sftp.open(remote_filename, 0, 0)
         try:
             self.assertTrue(remote_fh is not None)
-            remote_data = ""
+            remote_data = b""
             for data in remote_fh:
                 remote_data += data
             self.assertEqual(remote_fh.close(), 0)
@@ -183,7 +187,7 @@ class SSH2TestCase(unittest.TestCase):
         _val = 'value'
         self.assertEqual(chan.setenv('LC_MY_VAR', _val), 0)
         chan.execute('env | grep LC_MY_VAR')
-        expected = u'{}={}\n'.format(_var, _val)
+        expected = u'%s=%s\n' % (_var, _val)
         size, data = chan.read()
         self.assertTrue(size > 0)
         self.assertEqual(data.decode('utf-8'), expected)

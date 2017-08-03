@@ -281,14 +281,18 @@ cdef class SFTPAttributes:
 cdef class SFTPHandle:
     cdef c_sftp.LIBSSH2_SFTP_HANDLE *_handle
     cdef SFTP _sftp
+    cdef bint closed
 
     def __cinit__(self, sftp):
         self._handle = NULL
         self._sftp = sftp
+        self.closed = 0
 
     def __dealloc__(self):
-        with nogil:
-            c_sftp.libssh2_sftp_close_handle(self._handle)
+        if self.closed == 0:
+            with nogil:
+                c_sftp.libssh2_sftp_close_handle(self._handle)
+            self.closed = 1
 
     def __iter__(self):
         return self
@@ -307,8 +311,10 @@ cdef class SFTPHandle:
 
     def close(self):
         cdef int rc
-        with nogil:
-            rc = c_sftp.libssh2_sftp_close_handle(self._handle)
+        if self.closed == 0:
+            with nogil:
+                rc = c_sftp.libssh2_sftp_close_handle(self._handle)
+            self.closed = 1
         return rc
 
     def read(self, size_t buffer_maxlen=c_ssh2._LIBSSH2_CHANNEL_WINDOW_DEFAULT):

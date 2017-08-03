@@ -1,14 +1,9 @@
 Protocol 2
-UsePrivilegeSeparation no
 UsePAM no
-RhostsRSAAuthentication no
-HostbasedAuthentication no
+HostbasedAuthentication yes
 IgnoreUserKnownHosts yes
-GSSAPIAuthentication no
 ListenAddress 127.0.0.1
-KeyRegenerationInterval 3600
-ServerKeyBits 1024
 
 AcceptEnv LANG LC_*
-Subsystem sftp /usr/lib/openssh/sftp-server
+Subsystem sftp internal-sftp
 AuthorizedKeysFile {{parent_dir}}/authorized_keys

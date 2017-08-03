@@ -66,3 +66,4 @@ class OpenSSHServer(object):
 
     def __del__(self):
         self.stop()
+        os.unlink(SSHD_CONFIG)
