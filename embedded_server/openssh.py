@@ -16,23 +16,38 @@
 
 import os
 import socket
-
 from subprocess import Popen
 from time import sleep
+from sys import version_info
 
+from jinja2 import Template
 
-SERVER_KEY = os.path.sep.join([os.path.dirname(__file__), 'rsa.key'])
-SSHD_CONFIG = os.path.sep.join([os.path.dirname(__file__), 'sshd_config'])
+DIR_NAME = os.path.dirname(__file__)
+SERVER_KEY = os.path.abspath(os.path.sep.join([DIR_NAME, 'rsa.key']))
+SSHD_CONFIG_TMPL = os.path.abspath(os.path.sep.join(
+    [DIR_NAME, 'sshd_config.tmpl']))
+SSHD_CONFIG = os.path.abspath(os.path.sep.join([DIR_NAME, 'sshd_config']))
 
 class OpenSSHServer(object):
 
     def __init__(self, port=2222):
         self.port = port
         self.server_proc = None
+        _mask = int('0600') if version_info <= (2,) else 0o600
+        os.chmod(SERVER_KEY, _mask)
+        self.make_config()
+
+    def make_config(self):
+        with open(SSHD_CONFIG_TMPL) as fh:
+            tmpl = fh.read()
+        template = Template(tmpl)
+        with open(SSHD_CONFIG, 'w') as fh:
+            fh.write(template.render(parent_dir=os.path.abspath(DIR_NAME)))
+            fh.write(os.linesep)
 
     def start_server(self):
         cmd = ['/usr/sbin/sshd', '-D', '-p', str(self.port),
-               '-q', '-h', SERVER_KEY, '-f', SSHD_CONFIG]
+               '-h', SERVER_KEY, '-f', SSHD_CONFIG]
         server = Popen(cmd)
         self.server_proc = server
         self._wait_for_port()

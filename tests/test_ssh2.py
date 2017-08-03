@@ -3,6 +3,7 @@ import pwd
 import os
 import socket
 import time
+from sys import version_info
 
 from ssh2.session import Session
 from ssh2.utils import wait_socket
@@ -24,6 +25,8 @@ class SSH2TestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
+        _mask = int('0600') if version_info <= (2,) else 0o600
+        os.chmod(PKEY_FILENAME, _mask)
         cls.host = '127.0.0.1'
         cls.port = 2222
         cls.server = OpenSSHServer()
@@ -64,7 +67,7 @@ class SSH2TestCase(unittest.TestCase):
         self.assertTrue(agent.connect() == 0)
 
     def test_execute(self):
-        self._auth()
+        self.assertEqual(self._auth(), 0)
         chan = self.session.open_session()
         self.assertTrue(chan is not None)
         self.assertTrue(chan.execute(self.cmd) == 0)
@@ -76,7 +79,7 @@ class SSH2TestCase(unittest.TestCase):
         self.assertTrue(chan.wait_eof() == 0)
 
     def test_exit_code(self):
-        self._auth()
+        self.assertEqual(self._auth(), 0)
         chan = self.session.open_session()
         chan.execute('exit 2')
         chan.wait_eof()
@@ -86,7 +89,7 @@ class SSH2TestCase(unittest.TestCase):
         self.assertEqual(exit_code, 2)
 
     def test_long_running_execute(self):
-        self._auth()
+        self.assertEqual(self._auth(), 0)
         chan = self.session.open_session()
         chan.execute('sleep 1; exit 3')
         self.assertTrue(chan.wait_eof() == 0)
@@ -95,7 +98,7 @@ class SSH2TestCase(unittest.TestCase):
         self.assertEqual(chan.get_exit_status(), 3)
 
     def test_read_stderr(self):
-        self._auth()
+        self.assertEqual(self._auth(), 0)
         chan = self.session.open_session()
         expected = ['stderr output']
         chan.execute('echo "stderr output" >&2')
@@ -105,7 +108,7 @@ class SSH2TestCase(unittest.TestCase):
         self.assertListEqual(expected, lines)
 
     def test_pty(self):
-        self._auth()
+        self.assertEqual(self._auth(), 0)
         chan = self.session.open_session()
         self.assertTrue(chan.pty() == 0)
         _out = u'stderr output'
@@ -118,7 +121,7 @@ class SSH2TestCase(unittest.TestCase):
         self.assertListEqual(expected, lines)
 
     def test_write_stdin(self):
-        self._auth()
+        self.assertEqual(self._auth(), 0)
         _in = u'writing to stdin'
         chan = self.session.open_session()
         chan.execute('cat')
@@ -131,7 +134,7 @@ class SSH2TestCase(unittest.TestCase):
         self.assertListEqual([_in], lines)
 
     def test_write_ex(self):
-        self._auth()
+        self.assertEqual(self._auth(), 0)
         _in = u'writing to stdin'
         chan = self.session.open_session()
         chan.execute('cat')
@@ -144,7 +147,7 @@ class SSH2TestCase(unittest.TestCase):
         self.assertListEqual([_in], lines)
 
     def test_write_stderr(self):
-        self._auth()
+        self.assertEqual(self._auth(), 0)
         chan = self.session.open_session()
         chan.execute('echo something')
         _in = u'stderr'
@@ -173,7 +176,7 @@ class SSH2TestCase(unittest.TestCase):
             os.unlink(remote_filename)
 
     def test_setenv(self):
-        self._auth()
+        self.assertEqual(self._auth(), 0)
         chan = self.session.open_session()
         _var = 'LC_MY_VAR'
         _val = 'value'
