@@ -2,18 +2,22 @@ language: python
 cache: pip
 notifications:
   email: false
-sudo: required
+sudo: false
 services:
   - docker
 python:
-  - 2.6
   - 2.7
   - 3.4
   - 3.5
   - 3.6
-matrix:
-  allow_failures:
-    - python: 2.6
+jobs:
+  include:
+    - stage: build_packages
+      python: 3.6
+      install: skip
+      script:
+        - ./docker/build-packages.sh
+        - ls -ltrh *.{rpm,deb}
 addons:
   apt:
     packages:
@@ -26,8 +30,6 @@ install:
 script:
   - nosetests
   - flake8 ssh2
-  - docker/build-packages.sh
-  - ls -ltrh
 deploy:
   - provider: pypi
     on:

@@ -152,9 +152,9 @@ SFTP Read
 .. code-block:: python
 
    sftp = session.sftp_init()
-   fh = sftp.open(<file path>, 0, 0)
-   with open(<file to write>, 'wb') as local_fh:
-       for data in fh:
+   with sftp.open(<remote file to read>, 0, 0) as remote_fh, \
+           open(<file to write>, 'wb') as local_fh:
+       for data in remote_fh:
            local_fh.write(data)
    fh.close()
 
