@@ -32,6 +32,7 @@ jobs:
         - ls -ltrh *.{rpm,deb}
       deploy:
         - provider: pypi
+          skip_cleanup: true
           on:
             repo: ParallelSSH/ssh2-python
             tags: true
