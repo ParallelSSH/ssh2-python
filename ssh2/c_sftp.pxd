@@ -42,6 +42,16 @@ cdef extern from "libssh2_sftp.h" nogil:
         uint64_t  f_fsid     # file system ID
         uint64_t  f_flag     # mount flags
         uint64_t  f_namemax  # maximum filename length
+    # SFTP File types
+    enum:
+        LIBSSH2_SFTP_S_IFMT         # type of file mask
+        LIBSSH2_SFTP_S_IFIFO        # named pipe (fifo)
+        LIBSSH2_SFTP_S_IFCHR        # character special
+        LIBSSH2_SFTP_S_IFDIR        # directory
+        LIBSSH2_SFTP_S_IFBLK        # block special
+        LIBSSH2_SFTP_S_IFREG        # regular
+        LIBSSH2_SFTP_S_IFLNK        # symbolic link
+        LIBSSH2_SFTP_S_IFSOCK       # socket
     # SFTP File Transfer Flags
     enum:
         LIBSSH2_FXF_READ
@@ -67,6 +77,13 @@ cdef extern from "libssh2_sftp.h" nogil:
         LIBSSH2_SFTP_S_IROTH        # R for other
         LIBSSH2_SFTP_S_IWOTH        # W for other
         LIBSSH2_SFTP_S_IXOTH        # X for other
+    int LIBSSH2_SFTP_S_ISLNK(unsigned long m)
+    int LIBSSH2_SFTP_S_ISREG(unsigned long m)
+    int LIBSSH2_SFTP_S_ISDIR(unsigned long m)
+    int LIBSSH2_SFTP_S_ISCHR(unsigned long m)
+    int LIBSSH2_SFTP_S_ISBLK(unsigned long m)
+    int LIBSSH2_SFTP_S_ISFIFO(unsigned long m)
+    int LIBSSH2_SFTP_S_ISSOCK(unsigned long m)
     LIBSSH2_SFTP *libssh2_sftp_init(LIBSSH2_SESSION *session)
     int libssh2_sftp_shutdown(LIBSSH2_SFTP *sftp)
     unsigned long libssh2_sftp_last_error(LIBSSH2_SFTP *sftp)

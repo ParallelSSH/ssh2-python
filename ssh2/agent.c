@@ -711,6 +711,8 @@ struct __pyx_obj_4ssh2_10exceptions_AgentGetIdentityError;
 struct __pyx_obj_4ssh2_10exceptions_SessionStartupError;
 struct __pyx_obj_4ssh2_10exceptions_SessionHandshakeError;
 struct __pyx_obj_4ssh2_10exceptions_ChannelError;
+struct __pyx_obj_4ssh2_10exceptions_SFTPHandleError;
+struct __pyx_obj_4ssh2_10exceptions_SFTPBufferTooSmall;
 struct __pyx_obj_4ssh2_5agent_Agent;
 
 /* "session.pxd":20
@@ -840,8 +842,32 @@ struct __pyx_obj_4ssh2_10exceptions_SessionHandshakeError {
  * 
  * cdef class ChannelError(Exception):             # <<<<<<<<<<<<<<
  *     pass
+ * 
  */
 struct __pyx_obj_4ssh2_10exceptions_ChannelError {
+  PyBaseExceptionObject __pyx_base;
+};
+
+
+/* "exceptions.pxd":53
+ * 
+ * 
+ * cdef class SFTPHandleError(Exception):             # <<<<<<<<<<<<<<
+ *     pass
+ * 
+ */
+struct __pyx_obj_4ssh2_10exceptions_SFTPHandleError {
+  PyBaseExceptionObject __pyx_base;
+};
+
+
+/* "exceptions.pxd":57
+ * 
+ * 
+ * cdef class SFTPBufferTooSmall(Exception):             # <<<<<<<<<<<<<<
+ *     pass
+ */
+struct __pyx_obj_4ssh2_10exceptions_SFTPBufferTooSmall {
   PyBaseExceptionObject __pyx_base;
 };
 
@@ -1130,6 +1156,8 @@ static PyTypeObject *__pyx_ptype_4ssh2_10exceptions_AgentGetIdentityError = 0;
 static PyTypeObject *__pyx_ptype_4ssh2_10exceptions_SessionStartupError = 0;
 static PyTypeObject *__pyx_ptype_4ssh2_10exceptions_SessionHandshakeError = 0;
 static PyTypeObject *__pyx_ptype_4ssh2_10exceptions_ChannelError = 0;
+static PyTypeObject *__pyx_ptype_4ssh2_10exceptions_SFTPHandleError = 0;
+static PyTypeObject *__pyx_ptype_4ssh2_10exceptions_SFTPBufferTooSmall = 0;
 
 /* Module declarations from 'ssh2.utils' */
 static char *(*__pyx_f_4ssh2_5utils_to_bytes)(PyObject *); /*proto*/
@@ -3066,6 +3094,8 @@ PyMODINIT_FUNC PyInit_agent(void)
   __pyx_ptype_4ssh2_10exceptions_SessionStartupError = __Pyx_ImportType("ssh2.exceptions", "SessionStartupError", sizeof(struct __pyx_obj_4ssh2_10exceptions_SessionStartupError), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_SessionStartupError)) __PYX_ERR(4, 41, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_SessionHandshakeError = __Pyx_ImportType("ssh2.exceptions", "SessionHandshakeError", sizeof(struct __pyx_obj_4ssh2_10exceptions_SessionHandshakeError), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_SessionHandshakeError)) __PYX_ERR(4, 45, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_ChannelError = __Pyx_ImportType("ssh2.exceptions", "ChannelError", sizeof(struct __pyx_obj_4ssh2_10exceptions_ChannelError), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_ChannelError)) __PYX_ERR(4, 49, __pyx_L1_error)
+  __pyx_ptype_4ssh2_10exceptions_SFTPHandleError = __Pyx_ImportType("ssh2.exceptions", "SFTPHandleError", sizeof(struct __pyx_obj_4ssh2_10exceptions_SFTPHandleError), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_SFTPHandleError)) __PYX_ERR(4, 53, __pyx_L1_error)
+  __pyx_ptype_4ssh2_10exceptions_SFTPBufferTooSmall = __Pyx_ImportType("ssh2.exceptions", "SFTPBufferTooSmall", sizeof(struct __pyx_obj_4ssh2_10exceptions_SFTPBufferTooSmall), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_SFTPBufferTooSmall)) __PYX_ERR(4, 57, __pyx_L1_error)
   /*--- Variable import code ---*/
   /*--- Function import code ---*/
   __pyx_t_1 = __Pyx_ImportModule("ssh2.pkey"); if (!__pyx_t_1) __PYX_ERR(1, 1, __pyx_L1_error)

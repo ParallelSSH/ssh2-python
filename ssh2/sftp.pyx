@@ -19,9 +19,14 @@ from libc.stdlib cimport malloc, free
 
 cimport c_ssh2
 cimport c_sftp
+from error_codes cimport _LIBSSH2_ERROR_EAGAIN, _LIBSSH2_ERROR_BUFFER_TOO_SMALL
 from channel cimport Channel, PyChannel
-from utils cimport to_bytes
+from utils cimport to_bytes, to_str
+from exceptions cimport SFTPHandleError, SFTPBufferTooSmall
 
+
+# File types
+# TODO
 
 # File Transfer Flags
 LIBSSH2_FXF_READ = c_sftp.LIBSSH2_FXF_READ
@@ -209,27 +214,43 @@ cdef class SFTP:
             rc = c_sftp.libssh2_sftp_rmdir(self._sftp, _path)
         return rc
 
-    def stat(self, path not None, SFTPAttributes attrs):
+    def stat(self, path not None):
         """Stat file.
 
         :param path: Path of file to stat.
         :type path: str
 
-        :rtype: :py:class:`ssh2.sftp.SFTPAttributes`"""
+        :rtype: :py:class:`ssh2.sftp.SFTPAttributes` or LIBSSH2_ERROR_EAGAIN"""
         cdef int rc
         cdef char *_path = to_bytes(path)
+        cdef SFTPAttributes attrs = SFTPAttributes()
         with nogil:
             rc = c_sftp.libssh2_sftp_stat(
                 self._sftp, _path, attrs._attrs)
-        return rc
+            if rc != c_ssh2._LIBSSH2_ERROR_EAGAIN and rc != 0:
+                with gil:
+                    raise SFTPHandleError(
+                        "Error with stat on file %s - code %s",
+                        path, rc)
+        if rc == c_ssh2._LIBSSH2_ERROR_EAGAIN:
+            return rc
+        return attrs
 
-    def lstat(self, path not None, SFTPAttributes attrs):
+    def lstat(self, path not None):
         cdef int rc
         cdef char *_path = to_bytes(path)
+        cdef SFTPAttributes attrs = SFTPAttributes()
         with nogil:
             rc = c_sftp.libssh2_sftp_lstat(
                 self._sftp, _path, attrs._attrs)
-        return rc
+            if rc != 0 and rc != c_ssh2._LIBSSH2_ERROR_EAGAIN:
+                with gil:
+                    raise SFTPHandleError(
+                        "Error with stat on file %s - code %s",
+                        path, rc)
+        if rc == c_ssh2._LIBSSH2_ERROR_EAGAIN:
+            return rc
+        return attrs
 
     def setstat(self, path not None, SFTPAttributes attrs):
         cdef int rc
@@ -239,22 +260,54 @@ cdef class SFTP:
                 self._sftp, _path, attrs._attrs)
         return rc
 
-    def symlink(self, path not None, char *target):
-        cdef int rc
-        cdef char *_path = to_bytes(path)
-        with nogil:
-            rc = c_sftp.libssh2_sftp_symlink(self._sftp, _path, target)
-        return rc
-
-    def realpath(self, path not None, target not None,
-                 unsigned int maxlen):
+    def symlink(self, path not None, target not None):
         cdef int rc
         cdef char *_path = to_bytes(path)
         cdef char *_target = to_bytes(target)
         with nogil:
-            rc = c_sftp.libssh2_sftp_realpath(
-                self._sftp, _path, _target, maxlen)
+            rc = c_sftp.libssh2_sftp_symlink(self._sftp, _path, _target)
         return rc
+
+    def realpath(self, path not None, size_t max_len=256):
+        """Get real path for path.
+
+        :param: Path name to get real path for.
+        :type param: str
+        :param max_len: Max size of returned real path.
+        :type max_len: int
+
+        :raises: :py:class:`ssh2.exceptions.SFTPHandleError` on errors getting
+          real path.
+        :raises: :py:class:`ssh2.exceptions.SFTPBufferTooSmall` on max_len less
+          than real path length."""
+        cdef char *_target = <char *>malloc(sizeof(char)*max_len)
+        if _target == NULL:
+            raise MemoryError
+        cdef int rc
+        cdef char *_path = to_bytes(path)
+        cdef bytes realpath
+        try:
+            with nogil:
+                rc = c_sftp.libssh2_sftp_realpath(
+                    self._sftp, _path, _target, max_len)
+                if rc == _LIBSSH2_ERROR_BUFFER_TOO_SMALL:
+                    with gil:
+                        raise SFTPBufferTooSmall(
+                            "Buffer too small to fit realpath for %s "
+                            "- max size %s. Error code %s",
+                            path, max_len, rc)
+                elif rc != c_ssh2._LIBSSH2_ERROR_EAGAIN and rc < 0:
+                    with gil:
+                        raise SFTPHandleError(
+                            "Error getting real path for %s - error code %s",
+                            path, rc)
+                elif rc == c_ssh2._LIBSSH2_ERROR_EAGAIN:
+                    with gil:
+                        return rc
+            realpath = _target[:rc]
+            return to_str(realpath)
+        finally:
+            free(_target)
 
     def last_error(self):
         cdef unsigned long rc
@@ -273,10 +326,73 @@ cdef class SFTPAttributes:
             if self._attrs is NULL:
                 with gil:
                     raise MemoryError
+            self._attrs.flags = 0
+            self._attrs.filesize = 0
+            self._attrs.uid = 0
+            self._attrs.gid = 0
+            self._attrs.permissions = 0
+            self._attrs.atime = 0
+            self._attrs.mtime = 0
 
     def __dealloc__(self):
         with nogil:
             free(self._attrs)
+
+    @property
+    def flags(self):
+        return self._attrs.flags
+
+    @flags.setter
+    def flags(self, unsigned long flags):
+        self._attrs.flags = flags
+
+    @property
+    def filesize(self):
+        return self._attrs.filesize
+
+    @filesize.setter
+    def filesize(self, uint64_t filesize):
+        self._attrs.filesize = filesize
+
+    @property
+    def uid(self):
+        return self._attrs.uid
+
+    @uid.setter
+    def uid(self, unsigned long uid):
+        self._attrs.uid = uid
+
+    @property
+    def gid(self):
+        return self._attrs.gid
+
+    @gid.setter
+    def gid(self, unsigned long gid):
+        self._attrs.gid = gid
+
+    @property
+    def permissions(self):
+        return self._attrs.permissions
+
+    @permissions.setter
+    def permissions(self, unsigned long permissions):
+        self._attrs.permissions = permissions
+
+    @property
+    def atime(self):
+        return self._attrs.atime
+
+    @atime.setter
+    def atime(self, unsigned long atime):
+        self._attrs.atime = atime
+
+    @property
+    def mtime(self):
+        return self._attrs.mtime
+
+    @mtime.setter
+    def mtime(self, unsigned long mtime):
+        self._attrs.mtime = mtime
 
 
 cdef class SFTPHandle:
@@ -316,6 +432,8 @@ cdef class SFTPHandle:
             with nogil:
                 rc = c_sftp.libssh2_sftp_close_handle(self._handle)
             self.closed = 1
+        else:
+            return
         return rc
 
     def read(self, size_t buffer_maxlen=c_ssh2._LIBSSH2_CHANNEL_WINDOW_DEFAULT):

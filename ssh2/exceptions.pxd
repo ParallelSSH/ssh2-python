@@ -48,3 +48,11 @@ cdef class SessionHandshakeError(Exception):
 
 cdef class ChannelError(Exception):
     pass
+
+
+cdef class SFTPHandleError(Exception):
+    pass
+
+
+cdef class SFTPBufferTooSmall(Exception):
+    pass

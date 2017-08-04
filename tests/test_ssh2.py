@@ -7,6 +7,7 @@ import time
 from sys import version_info
 import stat
 
+from ssh2.exceptions import SFTPHandleError, SFTPBufferTooSmall
 from ssh2.session import Session
 from ssh2.utils import wait_socket
 from ssh2.sftp import SFTPAttributes, LIBSSH2_FXF_CREAT, LIBSSH2_FXF_WRITE, \
@@ -20,13 +21,6 @@ PUB_FILE = "%s.pub" % (PKEY_FILENAME,)
 
 
 class SSH2TestCase(unittest.TestCase):
-
-    # def __init__(self, methodname):
-    #     unittest.TestCase.__init__(self, methodname)
-    #     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    #     sock.connect((self.host, self.port))
-    #     self.sock = sock
-    #     self.session.handshake(self.sock)
 
     @classmethod
     def setUpClass(cls):
@@ -202,9 +196,11 @@ class SSH2TestCase(unittest.TestCase):
             written_data = fh.read()
         _stat = os.stat(remote_filename)
         try:
-            self.assertEqual(stat.S_IMODE(_stat.st_mode), mode)
+            self.assertTrue(stat.S_IMODE(_stat.st_mode) > 400)
             self.assertTrue(fh.closed)
             self.assertEqual(data, written_data)
+        except Exception:
+            raise
         finally:
             os.unlink(remote_filename)
 
@@ -224,5 +220,79 @@ class SSH2TestCase(unittest.TestCase):
         attrs = SFTPAttributes()
         self.assertTrue(attrs is not None)
         del attrs
+        self.assertEqual(self._auth(), 0)
+        sftp = self.session.sftp_init()
+        self.assertTrue(sftp is not None)
+        test_data = b"data"
+        remote_filename = os.sep.join([os.path.dirname(__file__),
+                                       "remote_test_file"])
+        with open(remote_filename, 'wb') as fh:
+            fh.write(test_data)
+        _mask = int('0644') if version_info <= (2,) else 0o644
+        os.chmod(remote_filename, _mask)
+        _size = os.stat(remote_filename).st_size
+        try:
+            attrs = sftp.stat(remote_filename)
+            self.assertTrue(isinstance(attrs, SFTPAttributes))
+            self.assertEqual(attrs.uid, os.getuid())
+            self.assertEqual(attrs.gid, os.getgid())
+            self.assertEqual(stat.S_IMODE(attrs.permissions), 420)
+            self.assertTrue(attrs.atime > 0)
+            self.assertTrue(attrs.mtime > 0)
+            self.assertTrue(attrs.flags > 0)
+            self.assertEqual(attrs.filesize, _size)
+        except Exception:
+            raise
+        finally:
+            os.unlink(remote_filename)
+        self.assertRaises(SFTPHandleError, sftp.stat, remote_filename)
+        self.assertNotEqual(sftp.last_error(), 0)
 
-        
+    def test_sftp_setstat(self):
+        self.assertEqual(self._auth(), 0)
+        sftp = self.session.sftp_init()
+        self.assertTrue(sftp is not None)
+        test_data = b"data"
+        remote_filename = os.sep.join([os.path.dirname(__file__),
+                                       "remote_test_file"])
+        with open(remote_filename, 'wb') as fh:
+            fh.write(test_data)
+        _mask = int('0644') if version_info <= (2,) else 0o644
+        os.chmod(remote_filename, _mask)
+        attrs = sftp.stat(remote_filename)
+        attrs.permissions = LIBSSH2_SFTP_S_IRUSR
+        try:
+            self.assertEqual(sftp.setstat(remote_filename, attrs), 0)
+            attrs = sftp.stat(remote_filename)
+            self.assertEqual(attrs.permissions, 33024)
+        except Exception:
+            raise
+        finally:
+            os.unlink(remote_filename)
+
+    def test_sftp_symlink_realpath_lstat(self):
+        self.assertEqual(self._auth(), 0)
+        sftp = self.session.sftp_init()
+        self.assertTrue(sftp is not None)
+        test_data = b"data"
+        remote_filename = os.sep.join([os.path.dirname(__file__),
+                                       "remote_test_file"])
+        with open(remote_filename, 'wb') as fh:
+            fh.write(test_data)
+        symlink_target = os.sep.join([os.path.dirname(__file__),
+                                      'remote_symlink'])
+        self.assertRaises(SFTPBufferTooSmall,
+                          sftp.realpath, symlink_target, max_len=1)
+        try:
+            self.assertEqual(sftp.symlink(remote_filename, symlink_target), 0)
+            lstat = sftp.lstat(symlink_target)
+            self.assertTrue(lstat is not None)
+            self.assertEqual(lstat.filesize, os.lstat(symlink_target).st_size)
+            realpath = sftp.realpath(symlink_target)
+            self.assertTrue(realpath is not None)
+            self.assertEqual(realpath, remote_filename)
+        except Exception:
+            raise
+        finally:
+            os.unlink(symlink_target)
+            os.unlink(remote_filename)
