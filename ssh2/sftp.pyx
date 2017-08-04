@@ -109,7 +109,7 @@ cdef class SFTP:
         :param mode: File permissions mode. ``0`` for reading. For writing
           one or more LIBSSH2_SFTP_S_* flags. Eg, for 664 permission mask
           (read/write owner/group, read other), mode is ``LIBSSH2_SFTP_S_IRUSR |
-          LIBSSH2_SFTP_S_IWUSR | LIBSSH2_SFTP_S_IRGRP | LIBSSH2_SFTP_IROTH``
+          LIBSSH2_SFTP_S_IWUSR | LIBSSH2_SFTP_S_IRGRP | LIBSSH2_SFTP_S_IROTH``
         :type mode: int"""
         cdef c_sftp.LIBSSH2_SFTP_HANDLE *_handle
         cdef SFTPHandle handle
@@ -277,6 +277,7 @@ cdef class SFTPAttributes:
     def __dealloc__(self):
         with nogil:
             free(self._attrs)
+
 
 cdef class SFTPHandle:
     cdef c_sftp.LIBSSH2_SFTP_HANDLE *_handle

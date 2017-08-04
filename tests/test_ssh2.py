@@ -5,10 +5,13 @@ import os
 import socket
 import time
 from sys import version_info
+import stat
 
 from ssh2.session import Session
 from ssh2.utils import wait_socket
-from ssh2.sftp import SFTPAttributes
+from ssh2.sftp import SFTPAttributes, LIBSSH2_FXF_CREAT, LIBSSH2_FXF_WRITE, \
+    LIBSSH2_SFTP_S_IRUSR, LIBSSH2_SFTP_S_IRGRP, LIBSSH2_SFTP_S_IWUSR, \
+    LIBSSH2_SFTP_S_IROTH
 from embedded_server.openssh import OpenSSHServer
 
 
@@ -157,7 +160,7 @@ class SSH2TestCase(unittest.TestCase):
         chan.close()
         chan.wait_closed()
 
-    def test_sftp(self):
+    def test_sftp_read(self):
         self.assertEqual(self._auth(), 0)
         sftp = self.session.sftp_init()
         self.assertTrue(sftp is not None)
@@ -180,6 +183,31 @@ class SSH2TestCase(unittest.TestCase):
             finally:
                 os.unlink(remote_filename)
 
+    def test_sftp_write(self):
+        self.assertEqual(self._auth(), 0)
+        sftp = self.session.sftp_init()
+        self.assertTrue(sftp is not None)
+        data = b"test file data"
+        remote_filename = os.sep.join([os.path.dirname(__file__),
+                                       "remote_test_file"])
+        mode = LIBSSH2_SFTP_S_IRUSR | \
+               LIBSSH2_SFTP_S_IWUSR | \
+               LIBSSH2_SFTP_S_IRGRP | \
+               LIBSSH2_SFTP_S_IROTH
+        with sftp.open(remote_filename,
+                       LIBSSH2_FXF_CREAT | LIBSSH2_FXF_WRITE,
+                       mode) as remote_fh:
+            remote_fh.write(data)
+        with open(remote_filename, 'rb') as fh:
+            written_data = fh.read()
+        _stat = os.stat(remote_filename)
+        try:
+            self.assertEqual(stat.S_IMODE(_stat.st_mode), mode)
+            self.assertTrue(fh.closed)
+            self.assertEqual(data, written_data)
+        finally:
+            os.unlink(remote_filename)
+
     def test_setenv(self):
         self.assertEqual(self._auth(), 0)
         chan = self.session.open_session()
@@ -196,3 +224,5 @@ class SSH2TestCase(unittest.TestCase):
         attrs = SFTPAttributes()
         self.assertTrue(attrs is not None)
         del attrs
+
+        
