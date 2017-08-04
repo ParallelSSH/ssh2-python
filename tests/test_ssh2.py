@@ -270,6 +270,17 @@ class SSH2TestCase(unittest.TestCase):
         finally:
             os.unlink(remote_filename)
 
+    def test_realpath_failure(self):
+        self.assertEqual(self._auth(), 0)
+        sftp = self.session.sftp_init()
+        self.assertTrue(sftp is not None)
+        # Depends on library version which error is returned
+        try:
+            self.assertRaises(SFTPBufferTooSmall,
+                              sftp.realpath, 'fake path', max_len=1)
+        except SFTPHandleError:
+            pass
+
     def test_sftp_symlink_realpath_lstat(self):
         self.assertEqual(self._auth(), 0)
         sftp = self.session.sftp_init()
@@ -281,8 +292,6 @@ class SSH2TestCase(unittest.TestCase):
             fh.write(test_data)
         symlink_target = os.sep.join([os.path.dirname(__file__),
                                       'remote_symlink'])
-        self.assertRaises(SFTPBufferTooSmall,
-                          sftp.realpath, symlink_target, max_len=1)
         try:
             self.assertEqual(sftp.symlink(remote_filename, symlink_target), 0)
             lstat = sftp.lstat(symlink_target)
