@@ -2,7 +2,7 @@ language: python
 cache: pip
 notifications:
   email: false
-sudo: false
+sudo: true
 services:
   - docker
 python:
@@ -29,6 +29,7 @@ jobs:
       install: skip
       script:
         - ./docker/build-packages.sh
+        - sudo chown -R ${USER} *
         - ls -ltrh *.{rpm,deb}
       deploy:
         - provider: pypi
