@@ -307,6 +307,23 @@ cdef class Channel:
             rc = c_ssh2.libssh2_channel_window_write(self._channel)
         return rc
 
+    def receive_window_adjust(self, unsigned long adjustment,
+                              unsigned long force):
+        cdef unsigned long rc
+        with nogil:
+            rc = c_ssh2.libssh2_channel_receive_window_adjust(
+                self._channel, adjustment, force)
+        return rc
+
+    def receive_window_adjust2(self, unsigned long adjustment,
+                               unsigned long force):
+        cdef unsigned long rc
+        cdef unsigned int storewindow = 0
+        with nogil:
+            rc = c_ssh2.libssh2_channel_receive_window_adjust2(
+                self._channel, adjustment, force, &storewindow)
+        return rc
+
     def write(self, buf not None):
         """Write buffer to stdin
 
@@ -353,8 +370,61 @@ cdef class Channel:
                 self._channel, _buf, buflen)
         return rc
 
-    def x11_req(self):
-        raise NotImplementedError
+    def x11_req(self, int screen_number):
+        cdef int rc
+        with nogil:
+            rc = c_ssh2.libssh2_channel_x11_req(
+                self._channel, screen_number)
+        return rc
 
-    def x11_req_ex(self):
-        raise NotImplementedError
+    def x11_req_ex(self, int single_connection,
+                   const char *auth_proto,
+                   const char *auth_cookie,
+                   int screen_number):
+        cdef int rc
+        with nogil:
+            rc = c_ssh2.libssh2_channel_x11_req_ex(
+                self._channel, single_connection,
+                auth_proto, auth_cookie, screen_number)
+        return rc
+
+    def process_startup(self, request, message):
+        """Startup process on server for request with message.
+
+        Request is a supported SSH subsystem and clients would typically use
+        one of execute/shell/subsystem functions depending on request type."""
+        cdef char *_request = to_bytes(request)
+        cdef char *_message = to_bytes(message)
+        cdef size_t r_len = len(_request)
+        cdef size_t m_len = len(_message)
+        cdef int rc
+        with nogil:
+            rc = c_ssh2.libssh2_channel_process_startup(
+                self._channel, _request, r_len, _message, m_len)
+        return rc
+
+    def poll_channel_read(self, int extended):
+        """Deprecated - use blockdirections and socket polling instead"""
+        cdef int rc
+        with nogil:
+            rc = c_ssh2.libssh2_poll_channel_read(self._channel, extended)
+        return rc
+
+    def handle_extended_data(self, int ignore_mode):
+        """Deprecated, use handle_extended_data2"""
+        with nogil:
+            c_ssh2.libssh2_channel_handle_extended_data(
+                self._channel, ignore_mode)
+
+    def handle_extended_data2(self, int ignore_mode):
+        cdef int rc
+        with nogil:
+            rc = c_ssh2.libssh2_channel_handle_extended_data2(
+                self._channel, ignore_mode)
+        return rc
+
+    def ignore_extended_data(self, int ignore_mode):
+        """Deprecated, use handle_extended_data2"""
+        with nogil:
+            c_ssh2.libssh2_channel_handle_extended_data(
+                self._channel, ignore_mode)

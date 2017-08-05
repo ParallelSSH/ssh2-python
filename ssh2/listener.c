@@ -3,18 +3,18 @@
 /* BEGIN: Cython Metadata
 {
     "distutils": {
-        "depends": [], 
+        "depends": [],
         "extra_compile_args": [
             "-ggdb"
-        ], 
+        ],
         "libraries": [
             "ssh2"
-        ], 
-        "name": "ssh2.listener", 
+        ],
+        "name": "ssh2.listener",
         "sources": [
             "ssh2/listener.pyx"
         ]
-    }, 
+    },
     "module_name": "ssh2.listener"
 }
 END: Cython Metadata */
@@ -488,6 +488,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 
 #define __PYX_HAVE__ssh2__listener
 #define __PYX_HAVE_API__ssh2__listener
+#include <stdint.h>
 #include <stddef.h>
 #include <time.h>
 #include <sys/types.h>
@@ -971,6 +972,8 @@ static int __Pyx_ImportFunction(PyObject *module, const char *funcname, void (**
 /* InitStrings.proto */
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
+
+/* Module declarations from 'libc.stdint' */
 
 /* Module declarations from 'libc.stddef' */
 

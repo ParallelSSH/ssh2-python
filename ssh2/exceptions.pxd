@@ -22,7 +22,7 @@ cdef class AuthenticationError(Exception):
     pass
 
 
-cdef class AgentConnectError(AgentError):
+cdef class AgentConnectionError(AgentError):
     pass
 
 

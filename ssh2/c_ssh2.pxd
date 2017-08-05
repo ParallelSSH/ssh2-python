@@ -14,8 +14,11 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
+from libc.stdint cimport uint64_t
 from libc.time cimport time_t
-from posix.types cimport off_t
+from posix.types cimport (blkcnt_t, blksize_t, dev_t, gid_t, ino_t, mode_t,
+                          nlink_t, off_t, time_t, uid_t)
+
 
 cdef extern from "libssh2.h" nogil:
     ctypedef int libssh2_socket_t
@@ -29,10 +32,35 @@ cdef extern from "libssh2.h" nogil:
         _LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA "LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA"
         _LIBSSH2_CHANNEL_FLUSH_ALL "LIBSSH2_CHANNEL_FLUSH_ALL"
     ctypedef long long libssh2_int64_t
-    ctypedef struct stat
-    ctypedef off_t libssh2_struct_stat_size
+    ctypedef struct stat:
+        dev_t   st_dev
+        ino_t   st_ino
+        mode_t  st_mode
+        nlink_t st_nlink
+        uid_t   st_uid
+        gid_t   st_gid
+        dev_t   st_rdev
+        off_t   st_size
+        blksize_t st_blksize
+        blkcnt_t st_blocks
+        time_t  st_atime
+        time_t  st_mtime
+        time_t st_ctime
+    ctypedef uint64_t libssh2_struct_stat_size
     ctypedef struct libssh2_struct_stat:
-        libssh2_struct_stat_size st_size
+        dev_t   st_dev
+        ino_t   st_ino    
+        unsigned long st_mode
+        nlink_t st_nlink
+        uid_t   st_uid
+        gid_t   st_gid
+        dev_t   st_rdev
+        uint64_t st_size
+        blksize_t st_blksize
+        blkcnt_t st_blocks
+        time_t  st_atime
+        time_t  st_mtime
+        time_t st_ctime
     ctypedef struct LIBSSH2_SESSION:
         pass
     ctypedef struct LIBSSH2_CHANNEL:

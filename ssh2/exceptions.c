@@ -5,15 +5,15 @@
     "distutils": {
         "extra_compile_args": [
             "-ggdb"
-        ], 
+        ],
         "libraries": [
             "ssh2"
-        ], 
-        "name": "ssh2.exceptions", 
+        ],
+        "name": "ssh2.exceptions",
         "sources": [
             "ssh2/exceptions.pyx"
         ]
-    }, 
+    },
     "module_name": "ssh2.exceptions"
 }
 END: Cython Metadata */
@@ -694,7 +694,7 @@ static const char *__pyx_f[] = {
 /*--- Type declarations ---*/
 struct __pyx_obj_4ssh2_10exceptions_AgentError;
 struct __pyx_obj_4ssh2_10exceptions_AuthenticationError;
-struct __pyx_obj_4ssh2_10exceptions_AgentConnectError;
+struct __pyx_obj_4ssh2_10exceptions_AgentConnectionError;
 struct __pyx_obj_4ssh2_10exceptions_AgentAuthenticationError;
 struct __pyx_obj_4ssh2_10exceptions_AgentListIdentitiesError;
 struct __pyx_obj_4ssh2_10exceptions_AgentGetIdentityError;
@@ -731,11 +731,11 @@ struct __pyx_obj_4ssh2_10exceptions_AuthenticationError {
 /* "ssh2/exceptions.pxd":25
  * 
  * 
- * cdef class AgentConnectError(AgentError):             # <<<<<<<<<<<<<<
+ * cdef class AgentConnectionError(AgentError):             # <<<<<<<<<<<<<<
  *     pass
  * 
  */
-struct __pyx_obj_4ssh2_10exceptions_AgentConnectError {
+struct __pyx_obj_4ssh2_10exceptions_AgentConnectionError {
   struct __pyx_obj_4ssh2_10exceptions_AgentError __pyx_base;
 };
 
@@ -956,7 +956,7 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 /* Module declarations from 'ssh2.exceptions' */
 static PyTypeObject *__pyx_ptype_4ssh2_10exceptions_AgentError = 0;
 static PyTypeObject *__pyx_ptype_4ssh2_10exceptions_AuthenticationError = 0;
-static PyTypeObject *__pyx_ptype_4ssh2_10exceptions_AgentConnectError = 0;
+static PyTypeObject *__pyx_ptype_4ssh2_10exceptions_AgentConnectionError = 0;
 static PyTypeObject *__pyx_ptype_4ssh2_10exceptions_AgentAuthenticationError = 0;
 static PyTypeObject *__pyx_ptype_4ssh2_10exceptions_AgentListIdentitiesError = 0;
 static PyTypeObject *__pyx_ptype_4ssh2_10exceptions_AgentGetIdentityError = 0;
@@ -977,7 +977,7 @@ static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_tp_new_4ssh2_10exceptions_AgentError(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_4ssh2_10exceptions_AuthenticationError(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
-static PyObject *__pyx_tp_new_4ssh2_10exceptions_AgentConnectError(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_4ssh2_10exceptions_AgentConnectionError(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_4ssh2_10exceptions_AgentAuthenticationError(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_4ssh2_10exceptions_AgentListIdentitiesError(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_4ssh2_10exceptions_AgentGetIdentityError(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -1159,16 +1159,16 @@ static PyTypeObject __pyx_type_4ssh2_10exceptions_AuthenticationError = {
   #endif
 };
 
-static PyObject *__pyx_tp_new_4ssh2_10exceptions_AgentConnectError(PyTypeObject *t, PyObject *a, PyObject *k) {
+static PyObject *__pyx_tp_new_4ssh2_10exceptions_AgentConnectionError(PyTypeObject *t, PyObject *a, PyObject *k) {
   PyObject *o = __pyx_tp_new_4ssh2_10exceptions_AgentError(t, a, k);
   if (unlikely(!o)) return 0;
   return o;
 }
 
-static PyTypeObject __pyx_type_4ssh2_10exceptions_AgentConnectError = {
+static PyTypeObject __pyx_type_4ssh2_10exceptions_AgentConnectionError = {
   PyVarObject_HEAD_INIT(0, 0)
-  "ssh2.exceptions.AgentConnectError", /*tp_name*/
-  sizeof(struct __pyx_obj_4ssh2_10exceptions_AgentConnectError), /*tp_basicsize*/
+  "ssh2.exceptions.AgentConnectionError", /*tp_name*/
+  sizeof(struct __pyx_obj_4ssh2_10exceptions_AgentConnectionError), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_4ssh2_10exceptions_AgentError, /*tp_dealloc*/
   0, /*tp_print*/
@@ -1208,7 +1208,7 @@ static PyTypeObject __pyx_type_4ssh2_10exceptions_AgentConnectError = {
   0, /*tp_dictoffset*/
   0, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_4ssh2_10exceptions_AgentConnectError, /*tp_new*/
+  __pyx_tp_new_4ssh2_10exceptions_AgentConnectionError, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -1986,11 +1986,11 @@ PyMODINIT_FUNC PyInit_exceptions(void)
   __pyx_type_4ssh2_10exceptions_AuthenticationError.tp_print = 0;
   if (PyObject_SetAttrString(__pyx_m, "AuthenticationError", (PyObject *)&__pyx_type_4ssh2_10exceptions_AuthenticationError) < 0) __PYX_ERR(1, 21, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_AuthenticationError = &__pyx_type_4ssh2_10exceptions_AuthenticationError;
-  __pyx_type_4ssh2_10exceptions_AgentConnectError.tp_base = __pyx_ptype_4ssh2_10exceptions_AgentError;
-  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_AgentConnectError) < 0) __PYX_ERR(1, 25, __pyx_L1_error)
-  __pyx_type_4ssh2_10exceptions_AgentConnectError.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "AgentConnectError", (PyObject *)&__pyx_type_4ssh2_10exceptions_AgentConnectError) < 0) __PYX_ERR(1, 25, __pyx_L1_error)
-  __pyx_ptype_4ssh2_10exceptions_AgentConnectError = &__pyx_type_4ssh2_10exceptions_AgentConnectError;
+  __pyx_type_4ssh2_10exceptions_AgentConnectionError.tp_base = __pyx_ptype_4ssh2_10exceptions_AgentError;
+  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_AgentConnectionError) < 0) __PYX_ERR(1, 25, __pyx_L1_error)
+  __pyx_type_4ssh2_10exceptions_AgentConnectionError.tp_print = 0;
+  if (PyObject_SetAttrString(__pyx_m, "AgentConnectionError", (PyObject *)&__pyx_type_4ssh2_10exceptions_AgentConnectionError) < 0) __PYX_ERR(1, 25, __pyx_L1_error)
+  __pyx_ptype_4ssh2_10exceptions_AgentConnectionError = &__pyx_type_4ssh2_10exceptions_AgentConnectionError;
   __pyx_type_4ssh2_10exceptions_AgentAuthenticationError.tp_base = __pyx_ptype_4ssh2_10exceptions_AuthenticationError;
   if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_AgentAuthenticationError) < 0) __PYX_ERR(1, 29, __pyx_L1_error)
   __pyx_type_4ssh2_10exceptions_AgentAuthenticationError.tp_print = 0;

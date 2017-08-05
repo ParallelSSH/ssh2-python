@@ -23,10 +23,11 @@ cimport c_sftp
 from agent cimport PyAgent, auth_identity, clear_agent
 from channel cimport PyChannel
 from exceptions cimport SessionHandshakeError, SessionStartupError, \
-    AgentConnectError, AgentListIdentitiesError, AgentGetIdentityError
+    AgentConnectionError, AgentListIdentitiesError, AgentGetIdentityError
 from listener cimport PyListener
 from sftp cimport PySFTP
 from utils cimport to_bytes, to_str
+from fileinfo cimport FileInfo
 
 
 cdef class Session:
@@ -75,7 +76,7 @@ cdef class Session:
                         rc)
         return rc
 
-    def setblocking(self, bint blocking):
+    def set_blocking(self, bint blocking):
         """Set session blocking mode on/off.
 
         :param blocking: ``False`` for non-blocking, ``True`` for blocking.
@@ -84,6 +85,33 @@ cdef class Session:
         with nogil:
             c_ssh2.libssh2_session_set_blocking(
                 self._session, blocking)
+
+    def get_blocking(self):
+        """Get session blocking mode enabled True/False.
+
+        :rtype: bool"""
+        cdef int rc
+        with nogil:
+            rc = c_ssh2.libssh2_session_get_blocking(self._session)
+        return bool(rc)
+
+    def set_timeout(self, long timeout):
+        """Set the timeout in milliseconds for how long a blocking the libssh2
+        function calls may wait until they consider the situation an error and
+        return :py:class:`ssh2.error_codes.LIBSSH2_ERROR_TIMEOUT`.
+
+        By default or if you set the timeout to zero, libssh2 has no timeout
+        for blocking functions.
+        :param timeout: Milliseconds to wait before timeout."""
+        with nogil:
+            c_ssh2.libssh2_session_set_timeout(self._session, timeout)
+
+    def get_timeout(self):
+        """Get current session timeout setting"""
+        cdef long timeout
+        with nogil:
+            timeout = c_ssh2.libssh2_session_get_timeout(self._session)
+        return timeout
 
     def userauth_authenticated(self):
         """True/False for is user authenticated or not.
@@ -224,7 +252,7 @@ cdef class Session:
         if c_ssh2.libssh2_agent_connect(agent) != 0:
             c_ssh2.libssh2_agent_free(agent)
             with gil:
-                raise AgentConnectError("Unable to connect to agent")
+                raise AgentConnectionError("Unable to connect to agent")
         return agent
 
     def agent_auth(self, username not None):
@@ -371,20 +399,48 @@ cdef class Session:
             msg = b''
         return msg
 
-    def scp_recv(self, path not None):
-        raise NotImplementedError
+    def scp_recv2(self, path not None):
+        """Receive file via SCP.
+
+        :param path: File path to receive.
+        :type path: str
+
+        :rtype: tuple(:py:class:`ssh2.channel.Channel`,
+          :py:class:`ssh2.fileinfo.FileInfo)"""
+        cdef FileInfo fileinfo = FileInfo()
+        cdef char *_path = to_bytes(path)
+        cdef c_ssh2.LIBSSH2_CHANNEL *channel
+        with nogil:
+            channel = c_ssh2.libssh2_scp_recv2(
+                self._session, _path, fileinfo._stat)
+        if channel is not NULL:
+            return PyChannel(channel, self), fileinfo
 
     def scp_send(self, path not None, int mode, size_t size):
-        raise NotImplementedError
+        """Send file via SCP.
+
+        :param path: Local file path to send.
+        :type path: str
+        :param mode: File mode.
+        :type mode: int
+        :param size: size of file
+        :type size: int
+
+        :rtype: :py:class:`ssh2.channel.Channel`"""
+        cdef char *_path = to_bytes(path)
+        cdef c_ssh2.LIBSSH2_CHANNEL *channel
+        with nogil:
+            channel = c_ssh2.libssh2_scp_send(
+                self._session, _path, mode, size)
+        if channel is not NULL:
+            return PyChannel(channel, self)
 
     def scp_send64(self, path not None, int mode, uint64_t size,
                    time_t mtime, time_t atime):
-        raise NotImplementedError
-
-    # cdef c_ssh2.LIBSSH2_CHANNEL * scp_recv2(
-    #     self, const char *path, libssh2_struct_stat *stat):
-    #     cdef c_ssh2.LIBSSH2_CHANNEL *_channel
-    #     with nogil:
-    #         _channel = c_ssh2.libssh2_scp_recv2(
-    #             self._session, path, stat)
-    #     return _channel
+        cdef char *_path = to_bytes(path)
+        cdef c_ssh2.LIBSSH2_CHANNEL *channel
+        with nogil:
+            channel = c_ssh2.libssh2_scp_send64(
+                self._session, _path, mode, size, mtime, atime)
+        if channel is not NULL:
+            return PyChannel(channel, self)

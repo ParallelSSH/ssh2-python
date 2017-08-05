@@ -3,18 +3,18 @@
 /* BEGIN: Cython Metadata
 {
     "distutils": {
-        "depends": [], 
+        "depends": [],
         "extra_compile_args": [
             "-ggdb"
-        ], 
+        ],
         "libraries": [
             "ssh2"
-        ], 
-        "name": "ssh2.agent", 
+        ],
+        "name": "ssh2.agent",
         "sources": [
             "ssh2/agent.pyx"
         ]
-    }, 
+    },
     "module_name": "ssh2.agent"
 }
 END: Cython Metadata */
@@ -488,6 +488,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 
 #define __PYX_HAVE__ssh2__agent
 #define __PYX_HAVE_API__ssh2__agent
+#include <stdint.h>
 #include <stddef.h>
 #include <time.h>
 #include <sys/types.h>
@@ -704,7 +705,7 @@ struct __pyx_obj_4ssh2_7session_Session;
 struct __pyx_obj_4ssh2_4pkey_PublicKey;
 struct __pyx_obj_4ssh2_10exceptions_AgentError;
 struct __pyx_obj_4ssh2_10exceptions_AuthenticationError;
-struct __pyx_obj_4ssh2_10exceptions_AgentConnectError;
+struct __pyx_obj_4ssh2_10exceptions_AgentConnectionError;
 struct __pyx_obj_4ssh2_10exceptions_AgentAuthenticationError;
 struct __pyx_obj_4ssh2_10exceptions_AgentListIdentitiesError;
 struct __pyx_obj_4ssh2_10exceptions_AgentGetIdentityError;
@@ -768,11 +769,11 @@ struct __pyx_obj_4ssh2_10exceptions_AuthenticationError {
 /* "exceptions.pxd":25
  * 
  * 
- * cdef class AgentConnectError(AgentError):             # <<<<<<<<<<<<<<
+ * cdef class AgentConnectionError(AgentError):             # <<<<<<<<<<<<<<
  *     pass
  * 
  */
-struct __pyx_obj_4ssh2_10exceptions_AgentConnectError {
+struct __pyx_obj_4ssh2_10exceptions_AgentConnectionError {
   struct __pyx_obj_4ssh2_10exceptions_AgentError __pyx_base;
 };
 
@@ -1131,6 +1132,8 @@ static int __Pyx_ImportFunction(PyObject *module, const char *funcname, void (**
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 
+/* Module declarations from 'libc.stdint' */
+
 /* Module declarations from 'libc.stddef' */
 
 /* Module declarations from 'libc.time' */
@@ -1149,7 +1152,7 @@ static PyObject *(*__pyx_f_4ssh2_4pkey_PyPublicKey)(struct libssh2_agent_publick
 /* Module declarations from 'ssh2.exceptions' */
 static PyTypeObject *__pyx_ptype_4ssh2_10exceptions_AgentError = 0;
 static PyTypeObject *__pyx_ptype_4ssh2_10exceptions_AuthenticationError = 0;
-static PyTypeObject *__pyx_ptype_4ssh2_10exceptions_AgentConnectError = 0;
+static PyTypeObject *__pyx_ptype_4ssh2_10exceptions_AgentConnectionError = 0;
 static PyTypeObject *__pyx_ptype_4ssh2_10exceptions_AgentAuthenticationError = 0;
 static PyTypeObject *__pyx_ptype_4ssh2_10exceptions_AgentListIdentitiesError = 0;
 static PyTypeObject *__pyx_ptype_4ssh2_10exceptions_AgentGetIdentityError = 0;
@@ -2483,7 +2486,7 @@ static PyObject *__pyx_pf_4ssh2_5agent_5Agent_10disconnect(struct __pyx_obj_4ssh
 
 /* Python wrapper */
 static PyObject *__pyx_pw_4ssh2_5agent_5Agent_13connect(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_5agent_5Agent_12connect[] = "Agent.connect(self)\nConnect to agent.\n\n        :raises: :py:class:`ssh2.exceptions.AgentConnectError` on errors\n          connecting to agent.\n\n        :rtype: int";
+static char __pyx_doc_4ssh2_5agent_5Agent_12connect[] = "Agent.connect(self)\nConnect to agent.\n\n        :raises: :py:class:`ssh2.exceptions.AgentConnectionError` on errors\n          connecting to agent.\n\n        :rtype: int";
 static PyObject *__pyx_pw_4ssh2_5agent_5Agent_13connect(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -2532,7 +2535,7 @@ static PyObject *__pyx_pf_4ssh2_5agent_5Agent_12connect(struct __pyx_obj_4ssh2_5
  *             rc = c_ssh2.libssh2_agent_connect(self._agent)
  *             if rc != 0:             # <<<<<<<<<<<<<<
  *                 with gil:
- *                     raise AgentConnectError("Unable to connect to agent")
+ *                     raise AgentConnectionError("Unable to connect to agent")
  */
         __pyx_t_1 = ((__pyx_v_rc != 0) != 0);
         if (__pyx_t_1) {
@@ -2541,7 +2544,7 @@ static PyObject *__pyx_pf_4ssh2_5agent_5Agent_12connect(struct __pyx_obj_4ssh2_5
  *             rc = c_ssh2.libssh2_agent_connect(self._agent)
  *             if rc != 0:
  *                 with gil:             # <<<<<<<<<<<<<<
- *                     raise AgentConnectError("Unable to connect to agent")
+ *                     raise AgentConnectionError("Unable to connect to agent")
  *         return rc
  */
           {
@@ -2553,10 +2556,10 @@ static PyObject *__pyx_pf_4ssh2_5agent_5Agent_12connect(struct __pyx_obj_4ssh2_5
                 /* "ssh2/agent.pyx":143
  *             if rc != 0:
  *                 with gil:
- *                     raise AgentConnectError("Unable to connect to agent")             # <<<<<<<<<<<<<<
+ *                     raise AgentConnectionError("Unable to connect to agent")             # <<<<<<<<<<<<<<
  *         return rc
  */
-                __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4ssh2_10exceptions_AgentConnectError), __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 143, __pyx_L8_error)
+                __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4ssh2_10exceptions_AgentConnectionError), __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 143, __pyx_L8_error)
                 __Pyx_GOTREF(__pyx_t_2);
                 __Pyx_Raise(__pyx_t_2, 0, 0, 0);
                 __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -2567,7 +2570,7 @@ static PyObject *__pyx_pf_4ssh2_5agent_5Agent_12connect(struct __pyx_obj_4ssh2_5
  *             rc = c_ssh2.libssh2_agent_connect(self._agent)
  *             if rc != 0:
  *                 with gil:             # <<<<<<<<<<<<<<
- *                     raise AgentConnectError("Unable to connect to agent")
+ *                     raise AgentConnectionError("Unable to connect to agent")
  *         return rc
  */
               /*finally:*/ {
@@ -2585,7 +2588,7 @@ static PyObject *__pyx_pf_4ssh2_5agent_5Agent_12connect(struct __pyx_obj_4ssh2_5
  *             rc = c_ssh2.libssh2_agent_connect(self._agent)
  *             if rc != 0:             # <<<<<<<<<<<<<<
  *                 with gil:
- *                     raise AgentConnectError("Unable to connect to agent")
+ *                     raise AgentConnectionError("Unable to connect to agent")
  */
         }
       }
@@ -2618,7 +2621,7 @@ static PyObject *__pyx_pf_4ssh2_5agent_5Agent_12connect(struct __pyx_obj_4ssh2_5
 
   /* "ssh2/agent.pyx":144
  *                 with gil:
- *                     raise AgentConnectError("Unable to connect to agent")
+ *                     raise AgentConnectionError("Unable to connect to agent")
  *         return rc             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
@@ -2947,7 +2950,7 @@ static int __Pyx_InitCachedConstants(void) {
   /* "ssh2/agent.pyx":143
  *             if rc != 0:
  *                 with gil:
- *                     raise AgentConnectError("Unable to connect to agent")             # <<<<<<<<<<<<<<
+ *                     raise AgentConnectionError("Unable to connect to agent")             # <<<<<<<<<<<<<<
  *         return rc
  */
   __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_Unable_to_connect_to_agent); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(1, 143, __pyx_L1_error)
@@ -3087,7 +3090,7 @@ PyMODINIT_FUNC PyInit_agent(void)
   __pyx_ptype_4ssh2_4pkey_PublicKey = __Pyx_ImportType("ssh2.pkey", "PublicKey", sizeof(struct __pyx_obj_4ssh2_4pkey_PublicKey), 1); if (unlikely(!__pyx_ptype_4ssh2_4pkey_PublicKey)) __PYX_ERR(3, 23, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_AgentError = __Pyx_ImportType("ssh2.exceptions", "AgentError", sizeof(struct __pyx_obj_4ssh2_10exceptions_AgentError), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_AgentError)) __PYX_ERR(4, 17, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_AuthenticationError = __Pyx_ImportType("ssh2.exceptions", "AuthenticationError", sizeof(struct __pyx_obj_4ssh2_10exceptions_AuthenticationError), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_AuthenticationError)) __PYX_ERR(4, 21, __pyx_L1_error)
-  __pyx_ptype_4ssh2_10exceptions_AgentConnectError = __Pyx_ImportType("ssh2.exceptions", "AgentConnectError", sizeof(struct __pyx_obj_4ssh2_10exceptions_AgentConnectError), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_AgentConnectError)) __PYX_ERR(4, 25, __pyx_L1_error)
+  __pyx_ptype_4ssh2_10exceptions_AgentConnectionError = __Pyx_ImportType("ssh2.exceptions", "AgentConnectionError", sizeof(struct __pyx_obj_4ssh2_10exceptions_AgentConnectionError), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_AgentConnectionError)) __PYX_ERR(4, 25, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_AgentAuthenticationError = __Pyx_ImportType("ssh2.exceptions", "AgentAuthenticationError", sizeof(struct __pyx_obj_4ssh2_10exceptions_AgentAuthenticationError), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_AgentAuthenticationError)) __PYX_ERR(4, 29, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_AgentListIdentitiesError = __Pyx_ImportType("ssh2.exceptions", "AgentListIdentitiesError", sizeof(struct __pyx_obj_4ssh2_10exceptions_AgentListIdentitiesError), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_AgentListIdentitiesError)) __PYX_ERR(4, 33, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_AgentGetIdentityError = __Pyx_ImportType("ssh2.exceptions", "AgentGetIdentityError", sizeof(struct __pyx_obj_4ssh2_10exceptions_AgentGetIdentityError), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_AgentGetIdentityError)) __PYX_ERR(4, 37, __pyx_L1_error)

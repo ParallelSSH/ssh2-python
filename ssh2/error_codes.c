@@ -3,18 +3,18 @@
 /* BEGIN: Cython Metadata
 {
     "distutils": {
-        "depends": [], 
+        "depends": [],
         "extra_compile_args": [
             "-ggdb"
-        ], 
+        ],
         "libraries": [
             "ssh2"
-        ], 
-        "name": "ssh2.error_codes", 
+        ],
+        "name": "ssh2.error_codes",
         "sources": [
             "ssh2/error_codes.pyx"
         ]
-    }, 
+    },
     "module_name": "ssh2.error_codes"
 }
 END: Cython Metadata */
@@ -489,6 +489,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #define __PYX_HAVE__ssh2__error_codes
 #define __PYX_HAVE_API__ssh2__error_codes
 #include "libssh2.h"
+#include <stdint.h>
 #include <stddef.h>
 #include <time.h>
 #include <sys/types.h>
@@ -818,6 +819,8 @@ static int __Pyx_check_binary_version(void);
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 
+/* Module declarations from 'libc.stdint' */
+
 /* Module declarations from 'libc.stddef' */
 
 /* Module declarations from 'libc.time' */
@@ -837,7 +840,9 @@ static const char __pyx_k_LIBSSH2_ERROR_NONE[] = "LIBSSH2_ERROR_NONE";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_LIBSSH2_ERROR_EAGAIN[] = "LIBSSH2_ERROR_EAGAIN";
 static const char __pyx_k_LIBSSH2CHANNEL_EAGAIN[] = "LIBSSH2CHANNEL_EAGAIN";
+static const char __pyx_k_LIBSSH2_ERROR_TIMEOUT[] = "LIBSSH2_ERROR_TIMEOUT";
 static const char __pyx_k_LIBSSH2_ERROR_SOCKET_RECV[] = "LIBSSH2_ERROR_SOCKET_RECV";
+static const char __pyx_k_LIBSSH2_ERROR_SOCKET_TIMEOUT[] = "LIBSSH2_ERROR_SOCKET_TIMEOUT";
 static const char __pyx_k_LIBSSH2_SESSION_BLOCK_INBOUND[] = "LIBSSH2_SESSION_BLOCK_INBOUND";
 static const char __pyx_k_LIBSSH2_SESSION_BLOCK_OUTBOUND[] = "LIBSSH2_SESSION_BLOCK_OUTBOUND";
 static const char __pyx_k_LIBSSH2_ERROR_AUTHENTICATION_FAI[] = "LIBSSH2_ERROR_AUTHENTICATION_FAILED";
@@ -846,6 +851,8 @@ static PyObject *__pyx_n_s_LIBSSH2_ERROR_AUTHENTICATION_FAI;
 static PyObject *__pyx_n_s_LIBSSH2_ERROR_EAGAIN;
 static PyObject *__pyx_n_s_LIBSSH2_ERROR_NONE;
 static PyObject *__pyx_n_s_LIBSSH2_ERROR_SOCKET_RECV;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_SOCKET_TIMEOUT;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_TIMEOUT;
 static PyObject *__pyx_n_s_LIBSSH2_SESSION_BLOCK_INBOUND;
 static PyObject *__pyx_n_s_LIBSSH2_SESSION_BLOCK_OUTBOUND;
 static PyObject *__pyx_n_s_cline_in_traceback;
@@ -880,6 +887,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_LIBSSH2_ERROR_EAGAIN, __pyx_k_LIBSSH2_ERROR_EAGAIN, sizeof(__pyx_k_LIBSSH2_ERROR_EAGAIN), 0, 0, 1, 1},
   {&__pyx_n_s_LIBSSH2_ERROR_NONE, __pyx_k_LIBSSH2_ERROR_NONE, sizeof(__pyx_k_LIBSSH2_ERROR_NONE), 0, 0, 1, 1},
   {&__pyx_n_s_LIBSSH2_ERROR_SOCKET_RECV, __pyx_k_LIBSSH2_ERROR_SOCKET_RECV, sizeof(__pyx_k_LIBSSH2_ERROR_SOCKET_RECV), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_SOCKET_TIMEOUT, __pyx_k_LIBSSH2_ERROR_SOCKET_TIMEOUT, sizeof(__pyx_k_LIBSSH2_ERROR_SOCKET_TIMEOUT), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_TIMEOUT, __pyx_k_LIBSSH2_ERROR_TIMEOUT, sizeof(__pyx_k_LIBSSH2_ERROR_TIMEOUT), 0, 0, 1, 1},
   {&__pyx_n_s_LIBSSH2_SESSION_BLOCK_INBOUND, __pyx_k_LIBSSH2_SESSION_BLOCK_INBOUND, sizeof(__pyx_k_LIBSSH2_SESSION_BLOCK_INBOUND), 0, 0, 1, 1},
   {&__pyx_n_s_LIBSSH2_SESSION_BLOCK_OUTBOUND, __pyx_k_LIBSSH2_SESSION_BLOCK_OUTBOUND, sizeof(__pyx_k_LIBSSH2_SESSION_BLOCK_OUTBOUND), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
@@ -1092,6 +1101,27 @@ PyMODINIT_FUNC PyInit_error_codes(void)
   __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_SESSION_BLOCK_OUTBOUND); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_SESSION_BLOCK_OUTBOUND, __pyx_t_1) < 0) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":31
+ * # LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA = c_ssh2._LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA
+ * # LIBSSH2_CHANNEL_FLUSH_ALL = c_ssh2._LIBSSH2_CHANNEL_FLUSH_ALL
+ * LIBSSH2_ERROR_TIMEOUT = error_codes._LIBSSH2_ERROR_TIMEOUT             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_SOCKET_TIMEOUT = error_codes._LIBSSH2_ERROR_SOCKET_TIMEOUT
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_TIMEOUT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_TIMEOUT, __pyx_t_1) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":32
+ * # LIBSSH2_CHANNEL_FLUSH_ALL = c_ssh2._LIBSSH2_CHANNEL_FLUSH_ALL
+ * LIBSSH2_ERROR_TIMEOUT = error_codes._LIBSSH2_ERROR_TIMEOUT
+ * LIBSSH2_ERROR_SOCKET_TIMEOUT = error_codes._LIBSSH2_ERROR_SOCKET_TIMEOUT             # <<<<<<<<<<<<<<
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_SOCKET_TIMEOUT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_SOCKET_TIMEOUT, __pyx_t_1) < 0) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "ssh2/error_codes.pyx":1

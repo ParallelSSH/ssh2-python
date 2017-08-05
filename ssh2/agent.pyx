@@ -16,7 +16,7 @@
 
 cimport c_ssh2
 from pkey cimport PublicKey, PyPublicKey
-from exceptions cimport AgentConnectError, AgentListIdentitiesError, \
+from exceptions cimport AgentConnectionError, AgentListIdentitiesError, \
     AgentGetIdentityError, AgentAuthenticationError
 from utils cimport to_bytes
 
@@ -131,7 +131,7 @@ cdef class Agent:
     def connect(self):
         """Connect to agent.
 
-        :raises: :py:class:`ssh2.exceptions.AgentConnectError` on errors
+        :raises: :py:class:`ssh2.exceptions.AgentConnectionError` on errors
           connecting to agent.
 
         :rtype: int"""
@@ -140,5 +140,5 @@ cdef class Agent:
             rc = c_ssh2.libssh2_agent_connect(self._agent)
             if rc != 0:
                 with gil:
-                    raise AgentConnectError("Unable to connect to agent")
+                    raise AgentConnectionError("Unable to connect to agent")
         return rc
