@@ -13,6 +13,7 @@ for x in `ls -1d docker/{fedora,centos}*`; do
     docker build --cache-from $docker_tag $x -t $name
     docker tag $name $docker_tag
     docker push $docker_tag
+    sudo rm -rf build dist
     docker run -v "$(pwd):/src/" "$name" --rpm-dist $dist -s python -t rpm setup.py
 done
 
@@ -23,5 +24,20 @@ for x in `ls -1d docker/{debian,ubuntu}*`; do
     docker build --cache-from $docker_tag $x -t $name
     docker tag $name $docker_tag
     docker push $docker_tag
+    sudo rm -rf build dist
     docker run -v "$(pwd):/src/" "$name" --iteration $name -s python -t deb setup.py
+done
+
+sudo chown -R ${USER} *
+
+ls -ltrh *.{rpm,deb}
+
+for x in *.rpm; do
+    echo "Package: $x"
+    rpm -qlp $x
+done
+
+for x in *.deb; do
+    echo "Package: $x"
+    dpkg-deb -c $x
 done

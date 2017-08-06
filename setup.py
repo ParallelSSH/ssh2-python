@@ -64,7 +64,7 @@ setup(
     description=('Super fast SSH library - bindings for libssh2'),
     long_description=open('README.rst').read(),
     packages=find_packages(
-        'ssh2', exclude=('embedded_server', 'embedded_server.*')),
+        '.', exclude=('embedded_server', 'embedded_server.*')),
     zip_safe=False,
     include_package_data=True,
     platforms='any',

@@ -2,7 +2,7 @@ language: python
 cache: pip
 notifications:
   email: false
-sudo: true
+sudo: required
 services:
   - docker
 python:
@@ -32,10 +32,6 @@ jobs:
         - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
       script:
         - ./docker/build-packages.sh
-        - sudo chown -R ${USER} *
-        - ls -ltrh *.{rpm,deb}
-        - for x in *.rpm; do echo "Package: $x"; rpm -qlp $x; done
-        - for x in *.deb; do echo "Package: $x"; dpkg-deb -c $x; done
       deploy:
         - provider: pypi
           skip_cleanup: true
