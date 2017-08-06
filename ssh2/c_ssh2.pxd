@@ -16,7 +16,7 @@
 
 from libc.stdint cimport uint64_t
 from libc.time cimport time_t
-from posix.types cimport (blkcnt_t, blksize_t, dev_t, gid_t, ino_t, mode_t,
+from posix.types cimport (blkcnt_t, blksize_t, dev_t, gid_t, ino_t,
                           nlink_t, off_t, time_t, uid_t)
 
 
@@ -32,20 +32,6 @@ cdef extern from "libssh2.h" nogil:
         _LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA "LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA"
         _LIBSSH2_CHANNEL_FLUSH_ALL "LIBSSH2_CHANNEL_FLUSH_ALL"
     ctypedef long long libssh2_int64_t
-    ctypedef struct stat:
-        dev_t   st_dev
-        ino_t   st_ino
-        mode_t  st_mode
-        nlink_t st_nlink
-        uid_t   st_uid
-        gid_t   st_gid
-        dev_t   st_rdev
-        off_t   st_size
-        blksize_t st_blksize
-        blkcnt_t st_blocks
-        time_t  st_atime
-        time_t  st_mtime
-        time_t st_ctime
     ctypedef uint64_t libssh2_struct_stat_size
     ctypedef struct libssh2_struct_stat:
         dev_t   st_dev
@@ -325,7 +311,7 @@ cdef extern from "libssh2.h" nogil:
     # libssh2_scp_recv is DEPRECATED, do not use!
     LIBSSH2_CHANNEL *libssh2_scp_recv(LIBSSH2_SESSION *session,
                                       const char *path,
-                                      stat *sb)
+                                      libssh2_struct_stat *sb)
     # Use libssh2_scp_recv2 for large (> 2GB) file support on windows
     LIBSSH2_CHANNEL *libssh2_scp_recv2(LIBSSH2_SESSION *session,
                                        const char *path,

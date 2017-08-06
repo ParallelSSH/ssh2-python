@@ -399,22 +399,30 @@ cdef class Session:
             msg = b''
         return msg
 
-    def scp_recv2(self, path not None):
-        """Receive file via SCP.
-
-        :param path: File path to receive.
-        :type path: str
-
-        :rtype: tuple(:py:class:`ssh2.channel.Channel`,
-          :py:class:`ssh2.fileinfo.FileInfo)"""
-        cdef FileInfo fileinfo = FileInfo()
+    def scp_recv(self, path not None):
         cdef char *_path = to_bytes(path)
+        cdef FileInfo fileinfo = FileInfo()
         cdef c_ssh2.LIBSSH2_CHANNEL *channel
         with nogil:
-            channel = c_ssh2.libssh2_scp_recv2(
+            channel = c_ssh2.libssh2_scp_recv(
                 self._session, _path, fileinfo._stat)
         if channel is not NULL:
             return PyChannel(channel, self), fileinfo
+
+    # def scp_recv2(self, path not None):
+    #     """Receive file via SCP.
+    #     :param path: File path to receive.
+    #     :type path: str
+    #     :rtype: tuple(:py:class:`ssh2.channel.Channel`,
+    #       :py:class:`ssh2.fileinfo.FileInfo)"""
+    #     cdef FileInfo fileinfo = FileInfo()
+    #     cdef char *_path = to_bytes(path)
+    #     cdef c_ssh2.LIBSSH2_CHANNEL *channel
+    #     with nogil:
+    #         channel = c_ssh2.libssh2_scp_recv2(
+    #             self._session, _path, fileinfo._stat)
+    #     if channel is not NULL:
+    #         return PyChannel(channel, self), fileinfo
 
     def scp_send(self, path not None, int mode, size_t size):
         """Send file via SCP.

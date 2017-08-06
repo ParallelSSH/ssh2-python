@@ -331,6 +331,31 @@ class SSH2TestCase(unittest.TestCase):
         finally:
             os.unlink(remote_filename)
 
+    def test_scp_recv(self):
+        self.assertEqual(self._auth(), 0)
+        test_data = b"data"
+        remote_filename = os.sep.join([os.path.dirname(__file__),
+                                       "remote_test_file"])
+        with open(remote_filename, 'wb') as fh:
+            fh.write(test_data)
+        try:
+            (file_chan, fileinfo) = self.session.scp_recv(remote_filename)
+        except TypeError:
+            os.unlink(remote_filename)
+            raise
+        try:
+            total = 0
+            size, data = file_chan.read(size=fileinfo.st_size)
+            total += size
+            while total < fileinfo.st_size:
+                total += size
+                size, data = file_chan.read()
+            self.assertEqual(total, fileinfo.st_size)
+        except Exception:
+            raise
+        finally:
+            os.unlink(remote_filename)
+
     def test_scp_send(self):
         self.assertEqual(self._auth(), 0)
         test_data = b"data"
