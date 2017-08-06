@@ -709,7 +709,6 @@ static const char *__pyx_f[] = {
   "ssh2/exceptions.pxd",
   "ssh2/listener.pxd",
   "ssh2/sftp.pxd",
-  "ssh2/fileinfo.pxd",
   "ssh2/statinfo.pxd",
 };
 
@@ -729,7 +728,6 @@ struct __pyx_obj_4ssh2_10exceptions_SFTPHandleError;
 struct __pyx_obj_4ssh2_10exceptions_SFTPBufferTooSmall;
 struct __pyx_obj_4ssh2_8listener_Listener;
 struct __pyx_obj_4ssh2_4sftp_SFTP;
-struct __pyx_obj_4ssh2_8fileinfo_FileInfo;
 struct __pyx_obj_4ssh2_8statinfo_StatInfo;
 struct __pyx_obj_4ssh2_7session_Session;
 
@@ -917,19 +915,6 @@ struct __pyx_obj_4ssh2_4sftp_SFTP {
   PyObject_HEAD
   LIBSSH2_SFTP *_sftp;
   struct __pyx_obj_4ssh2_7session_Session *_session;
-};
-
-
-/* "fileinfo.pxd":3
- * cimport c_ssh2
- * 
- * cdef class FileInfo:             # <<<<<<<<<<<<<<
- *     """Representation of stat structure"""
- *     cdef c_ssh2.libssh2_struct_stat* _stat
- */
-struct __pyx_obj_4ssh2_8fileinfo_FileInfo {
-  PyObject_HEAD
-  libssh2_struct_stat *_stat;
 };
 
 
@@ -1341,9 +1326,6 @@ static PyObject *(*__pyx_f_4ssh2_4sftp_PySFTP)(LIBSSH2_SFTP *, struct __pyx_obj_
 /* Module declarations from 'ssh2.utils' */
 static char *(*__pyx_f_4ssh2_5utils_to_bytes)(PyObject *); /*proto*/
 static PyObject *(*__pyx_f_4ssh2_5utils_to_str)(char *); /*proto*/
-
-/* Module declarations from 'ssh2.fileinfo' */
-static PyTypeObject *__pyx_ptype_4ssh2_8fileinfo_FileInfo = 0;
 
 /* Module declarations from 'ssh2.statinfo' */
 static PyTypeObject *__pyx_ptype_4ssh2_8statinfo_StatInfo = 0;
@@ -7178,8 +7160,7 @@ PyMODINIT_FUNC PyInit_session(void)
   __pyx_ptype_4ssh2_10exceptions_SFTPBufferTooSmall = __Pyx_ImportType("ssh2.exceptions", "SFTPBufferTooSmall", sizeof(struct __pyx_obj_4ssh2_10exceptions_SFTPBufferTooSmall), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_SFTPBufferTooSmall)) __PYX_ERR(7, 57, __pyx_L1_error)
   __pyx_ptype_4ssh2_8listener_Listener = __Pyx_ImportType("ssh2.listener", "Listener", sizeof(struct __pyx_obj_4ssh2_8listener_Listener), 1); if (unlikely(!__pyx_ptype_4ssh2_8listener_Listener)) __PYX_ERR(8, 24, __pyx_L1_error)
   __pyx_ptype_4ssh2_4sftp_SFTP = __Pyx_ImportType("ssh2.sftp", "SFTP", sizeof(struct __pyx_obj_4ssh2_4sftp_SFTP), 1); if (unlikely(!__pyx_ptype_4ssh2_4sftp_SFTP)) __PYX_ERR(9, 26, __pyx_L1_error)
-  __pyx_ptype_4ssh2_8fileinfo_FileInfo = __Pyx_ImportType("ssh2.fileinfo", "FileInfo", sizeof(struct __pyx_obj_4ssh2_8fileinfo_FileInfo), 1); if (unlikely(!__pyx_ptype_4ssh2_8fileinfo_FileInfo)) __PYX_ERR(10, 3, __pyx_L1_error)
-  __pyx_ptype_4ssh2_8statinfo_StatInfo = __Pyx_ImportType("ssh2.statinfo", "StatInfo", sizeof(struct __pyx_obj_4ssh2_8statinfo_StatInfo), 1); if (unlikely(!__pyx_ptype_4ssh2_8statinfo_StatInfo)) __PYX_ERR(11, 4, __pyx_L1_error)
+  __pyx_ptype_4ssh2_8statinfo_StatInfo = __Pyx_ImportType("ssh2.statinfo", "StatInfo", sizeof(struct __pyx_obj_4ssh2_8statinfo_StatInfo), 1); if (unlikely(!__pyx_ptype_4ssh2_8statinfo_StatInfo)) __PYX_ERR(10, 4, __pyx_L1_error)
   /*--- Variable import code ---*/
   /*--- Function import code ---*/
   __pyx_t_1 = __Pyx_ImportModule("ssh2.agent"); if (!__pyx_t_1) __PYX_ERR(0, 1, __pyx_L1_error)

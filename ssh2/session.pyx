@@ -27,7 +27,7 @@ from exceptions cimport SessionHandshakeError, SessionStartupError, \
 from listener cimport PyListener
 from sftp cimport PySFTP
 from utils cimport to_bytes, to_str
-from fileinfo cimport FileInfo
+# from fileinfo cimport FileInfo
 from statinfo cimport StatInfo
 
 
