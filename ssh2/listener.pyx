@@ -14,6 +14,8 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
+# cython: embedsignature=True, boundscheck=False, optimize.use_switch=True, wraparound=False
+
 cimport c_ssh2
 from session cimport Session
 from channel cimport PyChannel

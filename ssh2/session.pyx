@@ -14,6 +14,8 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
+# cython: embedsignature=True, boundscheck=False, optimize.use_switch=True, wraparound=False
+
 from cpython cimport PyObject_AsFileDescriptor
 from libc.stdint cimport uint64_t
 from libc.time cimport time_t
@@ -27,7 +29,8 @@ from exceptions cimport SessionHandshakeError, SessionStartupError, \
 from listener cimport PyListener
 from sftp cimport PySFTP
 from utils cimport to_bytes, to_str
-# from fileinfo cimport FileInfo
+IF EMBEDDED_LIB:
+    from fileinfo cimport FileInfo
 from statinfo cimport StatInfo
 
 
@@ -195,21 +198,22 @@ cdef class Session:
                 _privatekey, _passphrase, _hostname)
         return rc
 
-    # def userauth_publickey_frommemory(self,
-    #                                   const char *username,
-    #                                   const char *publickeyfiledata,
-    #                                   const char *privatekeyfiledata,
-    #                                   const char *passphrase):
-    #     cdef int rc
-    #     cdef size_t username_len, pubkeydata_len, privatekeydata_len
-    #     username_len, pubkeydata_len, privatekeydata_len = \
-    #         len(username), len(publickeyfiledata), len(privatekeyfiledata)
-    #     with nogil:
-    #         rc = c_ssh2.libssh2_userauth_publickey_frommemory(
-    #             self._session, username, username_len, publickeyfiledata,
-    #             pubkeydata_len, privatekeyfiledata,
-    #             privatekeydata_len, passphrase)
-    #     return rc
+    IF EMBEDDED_LIB:
+        def userauth_publickey_frommemory(self,
+                                          const char *username,
+                                          const char *publickeyfiledata,
+                                          const char *privatekeyfiledata,
+                                          const char *passphrase):
+            cdef int rc
+            cdef size_t username_len, pubkeydata_len, privatekeydata_len
+            username_len, pubkeydata_len, privatekeydata_len = \
+                len(username), len(publickeyfiledata), len(privatekeyfiledata)
+            with nogil:
+                rc = c_ssh2.libssh2_userauth_publickey_frommemory(
+                    self._session, username, username_len, publickeyfiledata,
+                    pubkeydata_len, privatekeyfiledata,
+                    privatekeydata_len, passphrase)
+            return rc
 
     def userauth_password(self, username not None, password not None):
         """Perform password authentication
@@ -410,20 +414,21 @@ cdef class Session:
         if channel is not NULL:
             return PyChannel(channel, self), statinfo
 
-    # def scp_recv2(self, path not None):
-    #     """Receive file via SCP.
-    #     :param path: File path to receive.
-    #     :type path: str
-    #     :rtype: tuple(:py:class:`ssh2.channel.Channel`,
-    #       :py:class:`ssh2.fileinfo.FileInfo)"""
-    #     cdef FileInfo fileinfo = FileInfo()
-    #     cdef char *_path = to_bytes(path)
-    #     cdef c_ssh2.LIBSSH2_CHANNEL *channel
-    #     with nogil:
-    #         channel = c_ssh2.libssh2_scp_recv2(
-    #             self._session, _path, fileinfo._stat)
-    #     if channel is not NULL:
-    #         return PyChannel(channel, self), fileinfo
+    IF EMBEDDED_LIB:
+        def scp_recv2(self, path not None):
+            """Receive file via SCP.
+            :param path: File path to receive.
+            :type path: str
+            :rtype: tuple(:py:class:`ssh2.channel.Channel`,
+            :py:class:`ssh2.fileinfo.FileInfo)"""
+            cdef FileInfo fileinfo = FileInfo()
+            cdef char *_path = to_bytes(path)
+            cdef c_ssh2.LIBSSH2_CHANNEL *channel
+            with nogil:
+                channel = c_ssh2.libssh2_scp_recv2(
+                    self._session, _path, fileinfo._stat)
+            if channel is not NULL:
+                return PyChannel(channel, self), fileinfo
 
     def scp_send(self, path not None, int mode, size_t size):
         """Send file via SCP.

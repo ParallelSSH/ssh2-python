@@ -306,7 +306,8 @@ class SSH2TestCase(unittest.TestCase):
             os.unlink(symlink_target)
             os.unlink(remote_filename)
 
-    @unittest.expectedFailure
+    @unittest.skipUnless(hasattr(Session, 'scp_recv64'),
+                         "Function not supported by libssh2")
     def test_scp_recv2(self):        
         self.assertEqual(self._auth(), 0)
         test_data = b"data"

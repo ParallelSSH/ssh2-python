@@ -7,56 +7,47 @@ from glob import glob
 from multiprocessing import cpu_count
 
 import versioneer
-from setuptools import setup, find_packages, Extension
+from setuptools import setup, find_packages
 
 cpython = platform.python_implementation() == 'CPython'
 
 try:
     from Cython.Build import cythonize
+    from Cython.Distutils.extension import Extension
+    from Cython.Distutils import build_ext
 except ImportError:
+    from setuptools import Extension
     USING_CYTHON = False
 else:
     USING_CYTHON = True
 
 ext = 'pyx' if USING_CYTHON else 'c'
-sources = ['ssh2/*.%s' % (ext,)]
+sources = glob('ssh2/*.%s' % (ext,))
 _libs = ['ssh2']
 _comp_args = ["-ggdb"] # , "-O3"]
+_embedded_lib = bool(os.environ.get('EMBEDDED_LIB'))
+cython_args = {'cython_compile_time_env': {'EMBEDDED_LIB': _embedded_lib}} \
+              if USING_CYTHON else {}
 
+extensions = [
+    Extension(sources[i].split('.')[0].replace('/', '.'),
+              sources=[sources[i]],
+              libraries=_libs,
+              extra_compile_args=_comp_args,
+              **cython_args
+              # For conditional compilation
+              # pyrex_compile_time_env
+    )
+    for i in range(len(sources))]
+
+cmdclass = versioneer.get_cmdclass()
 if USING_CYTHON:
-    extensions = [
-        Extension('ssh2/*',
-                  sources=sources,
-                  libraries=_libs,
-                  extra_compile_args=_comp_args,
-                  # For conditional compilation
-                  # pyrex_compile_time_env
-        )
-    ]
-    extensions = cythonize(
-        extensions,
-        compiler_directives={'embedsignature': True,
-                             'optimize.use_switch': True,
-                             'boundscheck': False,
-                             'wraparound': False,
-                         },
-        nthreads=cpu_count())
-else:
-    sources = glob(sources[0])
-    extensions = [
-        Extension(sources[i].split('.')[0].replace('/', '.'),
-                  sources=[sources[i]],
-                  libraries=_libs,
-                  extra_compile_args=_comp_args,
-                  # For conditional compilation
-                  # pyrex_compile_time_env
-        )
-        for i in range(len(sources))]
+    cmdclass['build_ext'] = build_ext
 
 setup(
     name='ssh2-python',
     version=versioneer.get_version(),
-    cmdclass=versioneer.get_cmdclass(),
+    cmdclass=cmdclass,
     url='https://github.com/ParallelSSH/ssh2-python',
     license='LGPLv2',
     author='Panos Kittenis',
