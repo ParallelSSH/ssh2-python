@@ -28,6 +28,7 @@ from listener cimport PyListener
 from sftp cimport PySFTP
 from utils cimport to_bytes, to_str
 from fileinfo cimport FileInfo
+from statinfo cimport StatInfo
 
 
 cdef class Session:
@@ -401,13 +402,13 @@ cdef class Session:
 
     def scp_recv(self, path not None):
         cdef char *_path = to_bytes(path)
-        cdef FileInfo fileinfo = FileInfo()
+        cdef StatInfo statinfo = StatInfo()
         cdef c_ssh2.LIBSSH2_CHANNEL *channel
         with nogil:
             channel = c_ssh2.libssh2_scp_recv(
-                self._session, _path, fileinfo._stat)
+                self._session, _path, statinfo._stat)
         if channel is not NULL:
-            return PyChannel(channel, self), fileinfo
+            return PyChannel(channel, self), statinfo
 
     # def scp_recv2(self, path not None):
     #     """Receive file via SCP.

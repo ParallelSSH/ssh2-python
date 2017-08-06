@@ -18,6 +18,7 @@ from libc.stdint cimport uint64_t
 from libc.time cimport time_t
 from posix.types cimport (blkcnt_t, blksize_t, dev_t, gid_t, ino_t,
                           nlink_t, off_t, time_t, uid_t)
+from posix.stat cimport struct_stat
 
 
 cdef extern from "libssh2.h" nogil:
@@ -311,7 +312,7 @@ cdef extern from "libssh2.h" nogil:
     # libssh2_scp_recv is DEPRECATED, do not use!
     LIBSSH2_CHANNEL *libssh2_scp_recv(LIBSSH2_SESSION *session,
                                       const char *path,
-                                      libssh2_struct_stat *sb)
+                                      struct_stat *sb)
     # Use libssh2_scp_recv2 for large (> 2GB) file support on windows
     LIBSSH2_CHANNEL *libssh2_scp_recv2(LIBSSH2_SESSION *session,
                                        const char *path,
