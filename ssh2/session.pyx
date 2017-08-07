@@ -345,7 +345,7 @@ cdef class Session:
                     return
         return PyChannel(channel, self)
 
-    def blockdirections(self):
+    def block_directions(self):
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_session_block_directions(

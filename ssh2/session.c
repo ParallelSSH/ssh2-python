@@ -1407,7 +1407,7 @@ static PyObject *__pyx_pf_4ssh2_7session_7Session_32agent_auth(struct __pyx_obj_
 static PyObject *__pyx_pf_4ssh2_7session_7Session_34open_session(struct __pyx_obj_4ssh2_7session_Session *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_4ssh2_7session_7Session_36direct_tcpip_ex(struct __pyx_obj_4ssh2_7session_Session *__pyx_v_self, PyObject *__pyx_v_host, int __pyx_v_port, PyObject *__pyx_v_shost, int __pyx_v_sport); /* proto */
 static PyObject *__pyx_pf_4ssh2_7session_7Session_38direct_tcpip(struct __pyx_obj_4ssh2_7session_Session *__pyx_v_self, PyObject *__pyx_v_host, int __pyx_v_port); /* proto */
-static PyObject *__pyx_pf_4ssh2_7session_7Session_40blockdirections(struct __pyx_obj_4ssh2_7session_Session *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_7session_7Session_40block_directions(struct __pyx_obj_4ssh2_7session_Session *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_4ssh2_7session_7Session_42forward_listen(struct __pyx_obj_4ssh2_7session_Session *__pyx_v_self, int __pyx_v_port); /* proto */
 static PyObject *__pyx_pf_4ssh2_7session_7Session_44forward_listen_ex(struct __pyx_obj_4ssh2_7session_Session *__pyx_v_self, PyObject *__pyx_v_host, int __pyx_v_port, int __pyx_v_bound_port, int __pyx_v_queue_maxsize); /* proto */
 static PyObject *__pyx_pf_4ssh2_7session_7Session_46sftp_init(struct __pyx_obj_4ssh2_7session_Session *__pyx_v_self); /* proto */
@@ -5204,7 +5204,7 @@ static PyObject *__pyx_pf_4ssh2_7session_7Session_38direct_tcpip(struct __pyx_ob
  *                     return
  *         return PyChannel(channel, self)             # <<<<<<<<<<<<<<
  * 
- *     def blockdirections(self):
+ *     def block_directions(self):
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2 = __pyx_f_4ssh2_7channel_PyChannel(__pyx_v_channel, __pyx_v_self); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 346, __pyx_L1_error)
@@ -5235,34 +5235,34 @@ static PyObject *__pyx_pf_4ssh2_7session_7Session_38direct_tcpip(struct __pyx_ob
 /* "ssh2/session.pyx":348
  *         return PyChannel(channel, self)
  * 
- *     def blockdirections(self):             # <<<<<<<<<<<<<<
+ *     def block_directions(self):             # <<<<<<<<<<<<<<
  *         cdef int rc
  *         with nogil:
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7session_7Session_41blockdirections(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_7session_7Session_40blockdirections[] = "Session.blockdirections(self)";
-static PyObject *__pyx_pw_4ssh2_7session_7Session_41blockdirections(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_7session_7Session_41block_directions(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_7session_7Session_40block_directions[] = "Session.block_directions(self)";
+static PyObject *__pyx_pw_4ssh2_7session_7Session_41block_directions(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("blockdirections (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_7session_7Session_40blockdirections(((struct __pyx_obj_4ssh2_7session_Session *)__pyx_v_self));
+  __Pyx_RefNannySetupContext("block_directions (wrapper)", 0);
+  __pyx_r = __pyx_pf_4ssh2_7session_7Session_40block_directions(((struct __pyx_obj_4ssh2_7session_Session *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7session_7Session_40blockdirections(struct __pyx_obj_4ssh2_7session_Session *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_7session_7Session_40block_directions(struct __pyx_obj_4ssh2_7session_Session *__pyx_v_self) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("blockdirections", 0);
+  __Pyx_RefNannySetupContext("block_directions", 0);
 
   /* "ssh2/session.pyx":350
- *     def blockdirections(self):
+ *     def block_directions(self):
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
  *             rc = c_ssh2.libssh2_session_block_directions(
@@ -5287,7 +5287,7 @@ static PyObject *__pyx_pf_4ssh2_7session_7Session_40blockdirections(struct __pyx
       }
 
       /* "ssh2/session.pyx":350
- *     def blockdirections(self):
+ *     def block_directions(self):
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
  *             rc = c_ssh2.libssh2_session_block_directions(
@@ -5322,7 +5322,7 @@ static PyObject *__pyx_pf_4ssh2_7session_7Session_40blockdirections(struct __pyx
   /* "ssh2/session.pyx":348
  *         return PyChannel(channel, self)
  * 
- *     def blockdirections(self):             # <<<<<<<<<<<<<<
+ *     def block_directions(self):             # <<<<<<<<<<<<<<
  *         cdef int rc
  *         with nogil:
  */
@@ -5330,7 +5330,7 @@ static PyObject *__pyx_pf_4ssh2_7session_7Session_40blockdirections(struct __pyx
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("ssh2.session.Session.blockdirections", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("ssh2.session.Session.block_directions", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -6810,7 +6810,7 @@ static PyMethodDef __pyx_methods_4ssh2_7session_Session[] = {
   {"open_session", (PyCFunction)__pyx_pw_4ssh2_7session_7Session_35open_session, METH_NOARGS, __pyx_doc_4ssh2_7session_7Session_34open_session},
   {"direct_tcpip_ex", (PyCFunction)__pyx_pw_4ssh2_7session_7Session_37direct_tcpip_ex, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_36direct_tcpip_ex},
   {"direct_tcpip", (PyCFunction)__pyx_pw_4ssh2_7session_7Session_39direct_tcpip, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_38direct_tcpip},
-  {"blockdirections", (PyCFunction)__pyx_pw_4ssh2_7session_7Session_41blockdirections, METH_NOARGS, __pyx_doc_4ssh2_7session_7Session_40blockdirections},
+  {"block_directions", (PyCFunction)__pyx_pw_4ssh2_7session_7Session_41block_directions, METH_NOARGS, __pyx_doc_4ssh2_7session_7Session_40block_directions},
   {"forward_listen", (PyCFunction)__pyx_pw_4ssh2_7session_7Session_43forward_listen, METH_O, __pyx_doc_4ssh2_7session_7Session_42forward_listen},
   {"forward_listen_ex", (PyCFunction)__pyx_pw_4ssh2_7session_7Session_45forward_listen_ex, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_44forward_listen_ex},
   {"sftp_init", (PyCFunction)__pyx_pw_4ssh2_7session_7Session_47sftp_init, METH_NOARGS, __pyx_doc_4ssh2_7session_7Session_46sftp_init},

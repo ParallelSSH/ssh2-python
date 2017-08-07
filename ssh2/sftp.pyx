@@ -16,6 +16,7 @@
 
 # cython: embedsignature=True, boundscheck=False, optimize.use_switch=True, wraparound=False
 
+from contextlib import contextmanager
 from libc.stdint cimport uint64_t
 from libc.stdlib cimport malloc, free
 
@@ -129,6 +130,7 @@ cdef class SFTP:
         handle = PySFTPHandle(_handle, self)
         return handle
 
+    @contextmanager
     def opendir(self, path not None):
         """Open handle to directory path.
 
@@ -138,11 +140,12 @@ cdef class SFTP:
         :rtype: :py:class:`ssh2.sftp.SFTPHandle` or `None`"""
         cdef c_sftp.LIBSSH2_SFTP_HANDLE *_handle
         cdef char *_path = to_bytes(path)
+        cdef SFTPHandle handle
         with nogil:
             _handle = c_sftp.libssh2_sftp_opendir(self._sftp, _path)
         if _handle is NULL:
             return
-        return PySFTPHandle(_handle, self)
+        yield PySFTPHandle(_handle, self)
 
     def rename_ex(self, const char *source_filename,
                   unsigned int source_filename_len,
@@ -458,17 +461,90 @@ cdef class SFTPHandle:
             free(cbuf)
         return buf
 
-    def readdir_ex(self, char *buffer, size_t buffer_maxlen,
-                   char *longentry,
-                   size_t longentry_maxlen,
-                   SFTPAttributes attrs):
-        cdef char *cbuf
-        raise NotImplementedError
+    def readdir_ex(self,
+                   size_t longentry_maxlen=1024,
+                   size_t buffer_maxlen=1024):
+        """Get directory listing from file handle, if any.
 
-    def readdir(self, SFTPAttributes attrs,
-                size_t buffer_maxlen=c_ssh2._LIBSSH2_CHANNEL_WINDOW_DEFAULT):
+        File handle *must* be opened with :py:func:`ssh2.sftp.SFTP.readdir()`
+
+        This function is a generator and should be iterated on.
+
+        :param buffer_maxlen: Max length of returned buffer.
+        :param longentry_maxlen: Max length of filename in listing.
+
+        :rtype: bytes"""
+        buf, entry, attrs = self._readdir_ex(
+            longentry_maxlen=longentry_maxlen,
+            buffer_maxlen=buffer_maxlen)
+        while len(buf) > 0:
+            yield buf, entry, attrs
+            buf, entry, attrs = self._readdir_ex(
+                longentry_maxlen=longentry_maxlen,
+                buffer_maxlen=buffer_maxlen)
+
+    def _readdir_ex(self,
+                    size_t longentry_maxlen=1024,
+                    size_t buffer_maxlen=1024):
+        cdef bytes buf
+        cdef bytes filename
         cdef char *cbuf
-        raise NotImplementedError
+        cdef char *longentry
+        cdef SFTPAttributes attrs = SFTPAttributes()
+        with nogil:
+            cbuf = <char *>malloc(sizeof(char)*buffer_maxlen)
+            longentry = <char *>malloc(sizeof(char)*longentry_maxlen)
+            if cbuf is NULL or longentry is NULL:
+                with gil:
+                    raise MemoryError
+            rc = c_sftp.libssh2_sftp_readdir_ex(
+                self._handle, cbuf, buffer_maxlen, longentry,
+                longentry_maxlen, attrs._attrs)
+        try:
+            if rc > 0:
+                buf = cbuf[:rc]
+            else:
+                buf = b''
+        finally:
+            free(cbuf)
+            free(longentry)
+        return buf, longentry, attrs
+
+    def readdir(self, size_t buffer_maxlen=1024):
+        """Get directory listing from file handle, if any.
+
+        This function is a generator and should be iterated on.
+
+        File handle *must* be opened with :py:func:`ssh2.sftp.SFTP.readdir()`
+
+        :param buffer_maxlen: Max length of returned file entry.
+
+        :rtype: iter(bytes)"""
+        buf, attrs = self._readdir(buffer_maxlen)
+        while len(buf) > 0:
+            yield buf, attrs
+            buf, attrs = self._readdir(buffer_maxlen)
+
+    def _readdir(self,
+                size_t buffer_maxlen=1024):
+        cdef bytes buf
+        cdef char *cbuf
+        cdef SFTPAttributes attrs = SFTPAttributes()
+        with nogil:
+            cbuf = <char *>malloc(sizeof(char)*buffer_maxlen)
+            if cbuf is NULL:
+                with gil:
+                    raise MemoryError
+            rc = c_sftp.libssh2_sftp_readdir(
+                self._handle, cbuf, buffer_maxlen, attrs._attrs)
+        try:
+            if rc > 0:
+                buf = cbuf[:rc]
+            else:
+                buf = b''
+        finally:
+            free(cbuf)
+        return buf, attrs
 
     def write(self, bytes buf):
         cdef size_t _size = len(buf)
@@ -478,8 +554,17 @@ cdef class SFTPHandle:
             rc = c_sftp.libssh2_sftp_write(self._handle, cbuf, _size)
         return rc
 
-    def fsync(self):
-        raise NotImplementedError
+    IF EMBEDDED_LIB:
+        def fsync(self):
+            """Sync file handle data.
+
+            Available from libssh2 >= ``1.4.4``
+
+            :rtype: int"""
+            cdef int rc
+            with nogil:
+                rc = c_sftp.libssh2_sftp_fsync(self._handle)
+            return rc
 
     def seek(self, size_t offset):
         with nogil:
@@ -512,13 +597,23 @@ cdef class SFTPHandle:
                 self._handle, attrs._attrs, setstat)
         return rc
 
-    def fstat(self, SFTPAttributes attrs):
+    def fstat(self):
+        """Get file stat attributes from handle.
+
+        :rtype: tuple(int, :py:class:`ssh2.sftp.SFTPAttributes`)"""
         cdef int rc
+        cdef SFTPAttributes attrs = SFTPAttributes()
         with nogil:
             rc = c_sftp.libssh2_sftp_fstat(self._handle, attrs._attrs)
-        return rc
+        if rc != 0:
+            return rc
+        return attrs
 
     def fsetstat(self, SFTPAttributes attrs):
+        """Set file handle attributes.
+
+        :param attrs: Attributes to set.
+        :type attrs: :py:class:`ssh2.sftp.SFTPAttributes`"""
         cdef int rc
         with nogil:
             rc = c_sftp.libssh2_sftp_fsetstat(self._handle, attrs._attrs)
