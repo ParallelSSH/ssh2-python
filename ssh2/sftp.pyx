@@ -16,6 +16,46 @@
 
 # cython: embedsignature=True, boundscheck=False, optimize.use_switch=True, wraparound=False, binding=True
 
+"""
+SFTP channel, handle and attributes classes and related SFTP flags.
+
+File transfer flags
+--------------------
+:var LIBSSH2_FXF_READ: File read flag
+:var LIBSSH2_FXF_WRITE: File write flag
+:var LIBSSH2_FXF_APPEND: File append flag
+:var LIBSSH2_FXF_CREAT: File create flag
+:var LIBSSH2_FXF_TRUNC: File truncate flag
+:var LIBSSH2_FXF_EXCL: Exclusive file flag
+
+File mode masks
+-----------------
+
+Owner masks
+_____________
+
+:var LIBSSH2_SFTP_S_IRWXU: Read/write/execute
+:var LIBSSH2_SFTP_S_IRUSR: Read
+:var LIBSSH2_SFTP_S_IWUSR: Write
+:var LIBSSH2_SFTP_S_IXUSR: Execute
+
+Group masks
+____________
+
+:var LIBSSH2_SFTP_S_IRWXG: Read/write/execute
+:var LIBSSH2_SFTP_S_IRGRP: Read
+:var LIBSSH2_SFTP_S_IWUSR: Write
+:var LIBSSH2_SFTP_S_IXUSR: Execute
+
+Other masks
+____________
+
+:var LIBSSH2_SFTP_S_IRWXO: Read/write/execute
+:var LIBSSH2_SFTP_S_IROTH: Read
+:var LIBSSH2_SFTP_S_IWOTH: Write
+:var LIBSSH2_SFTP_S_IXOTH: Execute
+"""
+
 from contextlib import contextmanager
 from libc.stdlib cimport malloc, free
 
@@ -27,11 +67,11 @@ from utils cimport to_bytes, to_str
 from exceptions cimport SFTPHandleError, SFTPBufferTooSmall
 from sftp_handle cimport SFTPHandle, PySFTPHandle, SFTPAttributes, SFTPStatVFS
 
-
 # File types
 # TODO
 
 # File Transfer Flags
+
 LIBSSH2_FXF_READ = c_sftp.LIBSSH2_FXF_READ
 LIBSSH2_FXF_WRITE = c_sftp.LIBSSH2_FXF_WRITE
 LIBSSH2_FXF_APPEND = c_sftp.LIBSSH2_FXF_APPEND
@@ -67,6 +107,10 @@ cdef object PySFTP(c_sftp.LIBSSH2_SFTP *sftp, Session session):
 
 
 cdef class SFTP:
+    """SFTP session.
+
+    :param session: Session that initiated SFTP.
+    :type session: :py:class:`ssh2.session.Session` pointer"""
 
     def __cinit__(self, session):
         self._sftp = NULL
@@ -77,6 +121,7 @@ cdef class SFTP:
             c_sftp.libssh2_sftp_shutdown(self._sftp)
 
     def get_channel(self):
+        """Get new channel from the SFTP session"""
         cdef c_ssh2.LIBSSH2_CHANNEL *_channel
         with nogil:
             _channel = c_sftp.libssh2_sftp_get_channel(self._sftp)
@@ -107,14 +152,27 @@ cdef class SFTP:
         :param filename: Name of file to open.
         :type filename: str
         :param flags: One or more LIBSSH2_FXF_* flags. Can be ``0`` for
-          reading. Eg for reading flags is ``LIBSSH2_FXF_READ``, for writing
-          ``LIBSSH2_FXF_WRITE``, for both
-          ``LIBSSH2_FXF_READ`` | ``LIBSSH2_FXF_WRITE``.
+          reading.
+
+          Eg for reading flags is ``LIBSSH2_FXF_READ``,
+
+          for writing ``LIBSSH2_FXF_WRITE``,
+
+          for both ``LIBSSH2_FXF_READ`` | ``LIBSSH2_FXF_WRITE``.
         :type flags: int
-        :param mode: File permissions mode. ``0`` for reading. For writing
-          one or more LIBSSH2_SFTP_S_* flags. Eg, for 664 permission mask
-          (read/write owner/group, read other), mode is ``LIBSSH2_SFTP_S_IRUSR |
-          LIBSSH2_SFTP_S_IWUSR | LIBSSH2_SFTP_S_IRGRP | LIBSSH2_SFTP_S_IROTH``
+        :param mode: File permissions mode. ``0`` for reading.
+
+          For writing one or more LIBSSH2_SFTP_S_* flags.
+
+          Eg, for 664 permission mask (read/write owner/group, read other),
+
+          mode is
+
+          ``LIBSSH2_SFTP_S_IRUSR | LIBSSH2_SFTP_S_IWUSR | \``
+
+          ``LIBSSH2_SFTP_S_IRGRP | LIBSSH2_SFTP_S_IWGRP | \``
+
+          ``LIBSSH2_SFTP_S_IROTH``
         :type mode: int"""
         cdef c_sftp.LIBSSH2_SFTP_HANDLE *_handle
         cdef SFTPHandle handle
@@ -183,7 +241,7 @@ cdef class SFTP:
         return rc
 
     def statvfs(self, path):
-        """Get file system statistics
+        """Get file system statistics from path.
 
         :rtype: `ssh2.sftp.SFTPStatVFS` or int of error code"""
         cdef SFTPStatVFS vfs = SFTPStatVFS(self)
@@ -247,6 +305,7 @@ cdef class SFTP:
         return attrs
 
     def lstat(self, path not None):
+        """Link stat a file."""
         cdef int rc
         cdef char *_path = to_bytes(path)
         cdef SFTPAttributes attrs = SFTPAttributes()
@@ -263,6 +322,14 @@ cdef class SFTP:
         return attrs
 
     def setstat(self, path not None, SFTPAttributes attrs):
+        """Set file attributes.
+
+        :param path: File path.
+        :type path: str
+        :param attrs: File attributes to set.
+        :type attrs: :py:class:`ssh2.sftp.SFTPAttributes`
+
+        :rtype: int"""
         cdef int rc
         cdef char *_path = to_bytes(path)
         with nogil:
@@ -271,6 +338,14 @@ cdef class SFTP:
         return rc
 
     def symlink(self, path not None, target not None):
+        """Create symlink.
+
+        :param path: Source file path.
+        :type path: str
+        :param target: Target file path.
+        :type target: str
+
+        :rtype: int"""
         cdef int rc
         cdef char *_path = to_bytes(path)
         cdef char *_target = to_bytes(target)
@@ -320,6 +395,9 @@ cdef class SFTP:
             free(_target)
 
     def last_error(self):
+        """Get last error code from SFTP channel.
+
+        :rtype: int"""
         cdef unsigned long rc
         with nogil:
             rc = c_sftp.libssh2_sftp_last_error(self._sftp)

@@ -34,6 +34,10 @@ IF EMBEDDED_LIB:
 from statinfo cimport StatInfo
 
 
+LIBSSH2_SESSION_BLOCK_INBOUND = c_ssh2._LIBSSH2_SESSION_BLOCK_INBOUND
+LIBSSH2_SESSION_BLOCK_OUTBOUND = c_ssh2._LIBSSH2_SESSION_BLOCK_OUTBOUND
+
+
 cdef class Session:
 
     """LibSSH2 Session class providing session functions"""
@@ -276,13 +280,12 @@ cdef class Session:
         Python.
 
         :raises: :py:class:`MemoryError` on error initialising agent
-        :raises: :py:class:`ssh2.exceptions.AgentConnectError` on error
+        :raises: :py:class:`ssh2.exceptions.AgentConnectionError` on error
           connecting to agent
         :raises: :py:class:`ssh2.exceptions.AgentListIdentitiesError` on error
           getting identities from agent
         :raises: :py:class:`ssh2.exceptions.AgentAuthenticationFailure` on no
-          successful authentication with
-        all available identities
+          successful authentication with all available identities.
         :raises: :py:class:`ssh2.exceptions.AgentGetIdentityError` on error
           getting known identity from agent
 
@@ -346,6 +349,26 @@ cdef class Session:
         return PyChannel(channel, self)
 
     def block_directions(self):
+        """Get blocked directions for the current session.
+
+        From libssh2 documentation:
+
+        Can be a combination of:
+
+        ``ssh2.session.LIBSSH2_SESSION_BLOCK_INBOUND``: Inbound direction
+        blocked.
+
+        ``ssh2.session.LIBSSH2_SESSION_BLOCK_OUTBOUND``: Outbound direction
+        blocked.
+
+        Application should wait for data to be available for socket prior to
+        calling a libssh2 function again. If ``LIBSSH2_SESSION_BLOCK_INBOUND``
+        is set select should contain the session socket in readfds set.
+
+        Correspondingly in case of ``LIBSSH2_SESSION_BLOCK_OUTBOUND`` writefds
+        set should contain the socket.
+
+        :rtype: int"""
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_session_block_directions(
@@ -353,6 +376,12 @@ cdef class Session:
         return rc
 
     def forward_listen(self, int port):
+        """Create forward listener on port.
+
+        :param port: Port to listen on.
+        :type port: int
+
+        :rtype: :py:class:`ssh2.listener.Listener` or None"""
         cdef c_ssh2.LIBSSH2_LISTENER *listener
         with nogil:
             listener = c_ssh2.libssh2_channel_forward_listen(
@@ -405,6 +434,15 @@ cdef class Session:
         return msg
 
     def scp_recv(self, path not None):
+        """Receive file via SCP.
+
+        Deprecated in favour or recv2 (requires libssh2 >= 1.7).
+
+        :param path: File path to receive.
+        :type path: str
+
+        :rtype: tuple(:py:class:`ssh2.channel.Channel`,
+          :py:class:`ssh2.statinfo.StatInfo`) or None"""
         cdef char *_path = to_bytes(path)
         cdef StatInfo statinfo = StatInfo()
         cdef c_ssh2.LIBSSH2_CHANNEL *channel
@@ -417,10 +455,14 @@ cdef class Session:
     IF EMBEDDED_LIB:
         def scp_recv2(self, path not None):
             """Receive file via SCP.
+
+            Available only on libssh2 >= 1.7.
+
             :param path: File path to receive.
             :type path: str
+
             :rtype: tuple(:py:class:`ssh2.channel.Channel`,
-            :py:class:`ssh2.fileinfo.FileInfo)"""
+            :py:class:`ssh2.fileinfo.FileInfo`) or None"""
             cdef FileInfo fileinfo = FileInfo()
             cdef char *_path = to_bytes(path)
             cdef c_ssh2.LIBSSH2_CHANNEL *channel
@@ -431,7 +473,7 @@ cdef class Session:
                 return PyChannel(channel, self), fileinfo
 
     def scp_send(self, path not None, int mode, size_t size):
-        """Send file via SCP.
+        """Deprecated in favour of scp_send64. Send file via SCP.
 
         :param path: Local file path to send.
         :type path: str
@@ -451,6 +493,16 @@ cdef class Session:
 
     def scp_send64(self, path not None, int mode, uint64_t size,
                    time_t mtime, time_t atime):
+        """Send file via SCP.
+
+        :param path: Local file path to send.
+        :type path: str
+        :param mode: File mode.
+        :type mode: int
+        :param size: size of file
+        :type size: int
+
+        :rtype: :py:class:`ssh2.channel.Channel`"""
         cdef char *_path = to_bytes(path)
         cdef c_ssh2.LIBSSH2_CHANNEL *channel
         with nogil:

@@ -11,14 +11,22 @@ Super fast SSH2 protocol library. ``ssh2-python`` provides Python bindings for `
   :alt: Latest Version
 .. image:: https://travis-ci.org/ParallelSSH/ssh2-python.svg?branch=master
    :target: https://travis-ci.org/ParallelSSH/ssh2-python
+.. image:: https://readthedocs.org/projects/ssh2-python/badge/?version=latest
+   :target: http://ssh2-python.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation
 
 Installation
 ______________
 
+System packages are available on the `latest releases page <https://github.com/ParallelSSH/ssh2-python/releases/latest>`_ built on Centos/RedHat 6/7, Ubuntu 14.04/16.04, Debian 7/8 and Fedora 22/23/24.
+
+Installation from Source
+_________________________
+
 Install ``libssh2`` and Python header files.
 
 Ubuntu
-----------
+--------
 
 .. code-block:: shell
 
@@ -35,18 +43,17 @@ RedHat
    pip install ssh2-python
 
 
-Feature Set
+API Feature Set
+________________
+
+Currently the entirety of the `libssh2`_ API has been implemented. `API documentation is available <https://readthedocs.org/projects/ssh2-python/badge/?version=latest>`_ for ``ssh2-python``.
+
+Complete example scripts for various operations can be found in the `examples directory`.
+
+In addition, ``ssh2-python`` is a thin wrapper of ``libssh2`` with Python semantics - its code examples can be ported straight over to Python with only minimal changes.
+
+Quick Start
 _____________
-
-Majority of the `libssh2`_ API has been implemented. ``ssh2-python`` is a thin wrapper of ``libssh2`` - its code examples can be ported straight over to Python with only minimal changes.
-
-Some parts are yet to be implemented though majority of the API is complete.
-
-*Library is at the moment available as source code only. Binary releases to follow.*
-
-
-Examples
-___________
 
 Both byte and unicode strings are accepted as arguments and encoded appropriately. To change default encoding change the value of ``ssh2.utils.ENCODING``. Channel output is always byte strings.
 
@@ -214,7 +221,9 @@ ________________________________________
 * SFTP file handles and attributes
 * SSH port forwarding and tunnelling
 * Non-blocking mode
+* SCP send and receive
 * Listener for port forwarding
+* Subsystem support
 
 And more, as per `libssh2`_ functionality.
 

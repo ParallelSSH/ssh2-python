@@ -68,16 +68,14 @@ cdef class Agent:
 
     def list_identities(self):
         """This method is a no-op - use
-          :py:func:`ssh2.agent.Agent.get_identities` to list and retrieve
-        identities
-        """
+        :py:func:`ssh2.agent.Agent.get_identities()` to list and retrieve
+        identities."""
         pass
 
     def get_identities(self):
         """List and get identities from agent
 
-        :rtype: list(:py:class:`ssh2.pkey.PublicKey`)
-        """
+        :rtype: list(:py:class:`ssh2.pkey.PublicKey`)"""
         cdef int rc
         cdef list identities = []
         cdef c_ssh2.libssh2_agent_publickey *identity = NULL
@@ -102,13 +100,12 @@ cdef class Agent:
         :param username: User name to authenticate as
         :type username: str
         :param pkey: Public key to authenticate with
-        :type pkey: py:class:`ssh2.pkey.PublicKey`
+        :type pkey: :py:class:`ssh2.pkey.PublicKey`
 
         :raises: :py:class:`ssh2.exceptions.AgentAuthenticationError` on errors
           authenticating.
 
-        :rtype: int
-        """
+        :rtype: int"""
         cdef int rc
         cdef char *_username = to_bytes(username)
         with nogil:

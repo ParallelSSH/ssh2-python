@@ -1,3 +1,5 @@
 cython
 flake8
 jinja2
+sphinx
+sphinx_rtd_theme

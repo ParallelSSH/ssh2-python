@@ -21,7 +21,7 @@ from posix.stat cimport struct_stat
 
 
 cdef class StatInfo:
-    """Representation of stat structure - older version"""
+    """Representation of stat structure - libssh2 <1.7 version"""
 
     def __cinit__(self):
         with nogil:

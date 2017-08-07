@@ -16,13 +16,16 @@
 
 # cython: embedsignature=True, boundscheck=False, optimize.use_switch=True, wraparound=False
 
+"""Available only when built on libssh2 >= ``1.7``"""
+
 from libc.stdlib cimport malloc, free
 
 cimport c_ssh2
 
+
 IF EMBEDDED_LIB:
     cdef class FileInfo:
-        """Representation of stat structure"""
+        """Representation of stat structure - libssh2 >= 1.7"""
 
         def __cinit__(self):
             with nogil:

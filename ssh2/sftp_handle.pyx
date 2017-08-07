@@ -138,6 +138,10 @@ cdef class SFTPHandle:
         self.close()
 
     def close(self):
+        """Close handle. Called automatically when object is deleted
+        and/or garbage collected.
+
+        :rtype: int"""
         cdef int rc
         if self.closed == 0:
             with nogil:
@@ -148,6 +152,12 @@ cdef class SFTPHandle:
         return rc
 
     def read(self, size_t buffer_maxlen=c_ssh2._LIBSSH2_CHANNEL_WINDOW_DEFAULT):
+        """Read buffer from file handle.
+
+        :param buffer_maxlen: Max length of buffer to return.
+        :type buffer_maxlen: int
+
+        :rtype: bytes"""
         cdef ssize_t rc
         cdef bytes buf
         cdef char *cbuf
@@ -253,6 +263,12 @@ cdef class SFTPHandle:
         return rc, buf, attrs
 
     def write(self, bytes buf):
+        """Write buffer to file handle.
+
+        :param buf: Buffer to write.
+        :type buf: bytes
+
+        :rtype: int"""
         cdef size_t _size = len(buf)
         cdef char *cbuf = buf
         cdef ssize_t rc
@@ -273,30 +289,57 @@ cdef class SFTPHandle:
             return rc
 
     def seek(self, size_t offset):
+        """Deprecated, use seek64.
+
+        Seek file to given offset.
+
+        :param offset: Offset to seek to.
+        :type offset: int
+
+        :rtype: None"""
         with nogil:
             c_sftp.libssh2_sftp_seek(self._handle, offset)
 
     def seek64(self, uint64_t offset):
+        """Seek file to given 64-bit offset.
+
+        :param offset: Offset to seek to.
+        :type offset: int
+
+        :rtype: None"""
         with nogil:
             c_sftp.libssh2_sftp_seek64(self._handle, offset)
 
     def rewind(self):
+        """Rewind file handle to beginning of file.
+
+        :rtype: None"""
         with nogil:
             c_sftp.libssh2_sftp_rewind(self._handle)
 
     def tell(self):
+        """Deprecated, use tell64.
+
+        Get current file handle offset.
+
+        :rtype: int"""
         cdef size_t rc
         with nogil:
             rc = c_sftp.libssh2_sftp_tell(self._handle)
         return rc
 
     def tell64(self):
+        """Get current file handle 64-bit offset.
+
+        :rtype: int"""
         cdef uint64_t rc
         with nogil:
             rc = c_sftp.libssh2_sftp_tell(self._handle)
         return rc
 
     def fstat_ex(self, SFTPAttributes attrs, int setstat):
+        """Get or set file attributes. Clients would typically use one of the
+        fstat or fsetstat functions instead"""
         cdef int rc
         with nogil:
             rc = c_sftp.libssh2_sftp_fstat_ex(

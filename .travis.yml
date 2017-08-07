@@ -6,7 +6,6 @@ sudo: required
 services:
   - docker
 python:
-  - 2.6
   - 2.7
   - 3.4
   - 3.5
@@ -26,8 +25,6 @@ script:
   - nosetests
   - flake8 ssh2
 jobs:
-  allow_failures:
-    - python: 2.6
   include:
     - stage: build_packages
       python: 3.6

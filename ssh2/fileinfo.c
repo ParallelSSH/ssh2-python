@@ -825,6 +825,7 @@ int __pyx_module_is_main_ssh2__fileinfo = 0;
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
+static const char __pyx_k_Available_only_when_built_on_lib[] = "Available only when built on libssh2 >= ``1.7``";
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_test;
@@ -841,7 +842,7 @@ static struct PyModuleDef __pyx_moduledef = {
     PyModuleDef_HEAD_INIT,
   #endif
     "fileinfo",
-    0, /* m_doc */
+    __pyx_k_Available_only_when_built_on_lib, /* m_doc */
     -1, /* m_size */
     __pyx_methods /* m_methods */,
     NULL, /* m_reload */
@@ -923,7 +924,7 @@ PyMODINIT_FUNC PyInit_fileinfo(void)
   #endif
   /*--- Module creation code ---*/
   #if PY_MAJOR_VERSION < 3
-  __pyx_m = Py_InitModule4("fileinfo", __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
+  __pyx_m = Py_InitModule4("fileinfo", __pyx_methods, __pyx_k_Available_only_when_built_on_lib, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
   #else
   __pyx_m = PyModule_Create(&__pyx_moduledef);
   #endif

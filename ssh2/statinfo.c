@@ -954,7 +954,7 @@ static PyObject *__pyx_tuple_;
 static PyObject *__pyx_tuple__2;
 
 /* "ssh2/statinfo.pyx":26
- *     """Representation of stat structure - older version"""
+ *     """Representation of stat structure - libssh2 <1.7 version"""
  * 
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         with nogil:
@@ -1094,7 +1094,7 @@ static int __pyx_pf_4ssh2_8statinfo_8StatInfo___cinit__(struct __pyx_obj_4ssh2_8
   }
 
   /* "ssh2/statinfo.pyx":26
- *     """Representation of stat structure - older version"""
+ *     """Representation of stat structure - libssh2 <1.7 version"""
  * 
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         with nogil:
@@ -2112,7 +2112,7 @@ static PyTypeObject __pyx_type_4ssh2_8statinfo_StatInfo = {
   0, /*tp_setattro*/
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE, /*tp_flags*/
-  "Representation of stat structure - older version", /*tp_doc*/
+  "Representation of stat structure - libssh2 <1.7 version", /*tp_doc*/
   0, /*tp_traverse*/
   0, /*tp_clear*/
   0, /*tp_richcompare*/
