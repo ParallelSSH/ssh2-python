@@ -13,3 +13,8 @@ cdef class SFTPHandle:
 
 cdef class SFTPAttributes:
     cdef c_sftp.LIBSSH2_SFTP_ATTRIBUTES *_attrs
+
+
+cdef class SFTPStatVFS:
+    cdef c_sftp.LIBSSH2_SFTP_STATVFS *_ptr
+    cdef object _sftp_ref

@@ -202,3 +202,34 @@ class SFTPTestCase(SSH2TestCase):
             raise
         finally:
             os.unlink(remote_filename)
+        with sftp.open(remote_filename, 0, 0) as fh:
+            self.assertEqual(fh.fsync(), 0)
+
+    def test_statvfs(self):
+        self.assertEqual(self._auth(), 0)
+        sftp = self.session.sftp_init()
+        vfs = sftp.statvfs('.')
+        self.assertTrue(vfs is not None)
+        self.assertTrue(vfs.f_files > 0)
+        self.assertTrue(vfs.f_bsize > 0)
+        self.assertTrue(vfs.f_namemax > 0)
+
+    def test_fstatvfs(self):
+        self.assertEqual(self._auth(), 0)
+        sftp = self.session.sftp_init()
+        test_data = b"data"
+        remote_filename = os.sep.join([os.path.dirname(__file__),
+                                       "remote_test_file"])
+        with open(remote_filename, 'wb') as fh:
+            fh.write(test_data)
+        try:
+            with sftp.open(remote_filename, 0, 0) as fh:
+                vfs = fh.fstatvfs()
+                self.assertTrue(vfs is not None)
+                self.assertTrue(vfs.f_files > 0)
+                self.assertTrue(vfs.f_bsize > 0)
+                self.assertTrue(vfs.f_namemax > 0)
+        except Exception:
+            raise
+        finally:
+            os.unlink(remote_filename)

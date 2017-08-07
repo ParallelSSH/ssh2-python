@@ -324,3 +324,100 @@ cdef class SFTPHandle:
         with nogil:
             rc = c_sftp.libssh2_sftp_fsetstat(self._handle, attrs._attrs)
         return rc
+
+    def fstatvfs(self):
+        """Get file system statistics for handle
+
+        :rtype: `ssh2.sftp.SFTPStatVFS` or int of error code"""
+        cdef SFTPStatVFS vfs = SFTPStatVFS(self)
+        with nogil:
+            rc = c_sftp.libssh2_sftp_fstatvfs(self._handle, vfs._ptr)
+        if rc != 0:
+            return rc
+        return vfs
+
+
+cdef class SFTPStatVFS:
+    """File system statistics"""
+
+    def __cinit__(self, _sftp_ref):
+        self._sftp_ref = _sftp_ref
+        with nogil:
+            self._ptr = <c_sftp.LIBSSH2_SFTP_STATVFS *>malloc(
+                sizeof(c_sftp.LIBSSH2_SFTP_STATVFS))
+            if self._ptr is NULL:
+                with gil:
+                    raise MemoryError
+            self._ptr.f_bsize = 0
+            self._ptr.f_frsize = 0
+            self._ptr.f_blocks = 0
+            self._ptr.f_bfree = 0
+            self._ptr.f_bavail = 0
+            self._ptr.f_files = 0
+            self._ptr.f_ffree = 0
+            self._ptr.f_favail = 0
+            self._ptr.f_fsid = 0
+            self._ptr.f_flag = 0
+            self._ptr.f_namemax = 0
+
+    def __dealloc__(self):
+        with nogil:
+            free(self._ptr)
+
+    @property
+    def f_bsize(self):
+        """File system block size"""
+        return self._ptr.f_bsize
+
+    @property
+    def f_frsize(self):
+        """Fragment size"""
+        return self._ptr.f_frsize
+
+    @property
+    def f_blocks(self):
+        """Size of fs in f_frsize units"""
+        return self._ptr.f_blocks
+
+    @property
+    def f_bfree(self):
+        """Free blocks"""
+        return self._ptr.f_bfree
+
+    @property
+    def f_bavail(self):
+        """Free blocks for non-root"""
+        return self._ptr.f_bavail
+
+    @property
+    def f_files(self):
+        """Inodes"""
+        return self._ptr.f_files
+
+    @property
+    def f_ffree(self):
+        """Free inodes"""
+        return self._ptr.f_ffree
+
+    @property
+    def f_favail(self):
+        """Free inodes for non-root"""
+        return self._ptr.f_favail
+
+    @property
+    def f_fsid(self):
+        """File system ID"""
+        return self._ptr.f_fsid
+
+    @property
+    def f_flag(self):
+        """File system mount flags.
+
+        This property is a bit mask with defined bits
+        ``LIBSSH2_SFTP_ST_RDONLY`` and ``LIBSSH2_SFTP_ST_NOSUID``"""
+        return self._ptr.f_flag
+
+    @property
+    def f_namemax(self):
+        """Maximum filename length"""
+        return self._ptr.f_namemax

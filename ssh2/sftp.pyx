@@ -25,7 +25,7 @@ from error_codes cimport _LIBSSH2_ERROR_EAGAIN, _LIBSSH2_ERROR_BUFFER_TOO_SMALL
 from channel cimport Channel, PyChannel
 from utils cimport to_bytes, to_str
 from exceptions cimport SFTPHandleError, SFTPBufferTooSmall
-from sftp_handle cimport SFTPHandle, PySFTPHandle, SFTPAttributes
+from sftp_handle cimport SFTPHandle, PySFTPHandle, SFTPAttributes, SFTPStatVFS
 
 
 # File types
@@ -55,6 +55,9 @@ LIBSSH2_SFTP_S_IRWXO = c_sftp.LIBSSH2_SFTP_S_IRWXO
 LIBSSH2_SFTP_S_IROTH = c_sftp.LIBSSH2_SFTP_S_IROTH
 LIBSSH2_SFTP_S_IWOTH = c_sftp.LIBSSH2_SFTP_S_IWOTH
 LIBSSH2_SFTP_S_IXOTH = c_sftp.LIBSSH2_SFTP_S_IXOTH
+
+LIBSSH2_SFTP_ST_RDONLY = c_sftp.LIBSSH2_SFTP_ST_RDONLY
+LIBSSH2_SFTP_ST_NOSUID = c_sftp.LIBSSH2_SFTP_ST_NOSUID
 
 
 cdef object PySFTP(c_sftp.LIBSSH2_SFTP *sftp, Session session):
@@ -179,11 +182,19 @@ cdef class SFTP:
             rc = c_sftp.libssh2_sftp_unlink(self._sftp, _filename)
         return rc
 
-    def fstatvfs(self):
-        raise NotImplementedError
+    def statvfs(self, path):
+        """Get file system statistics
 
-    def statvfs(self):
-        raise NotImplementedError
+        :rtype: `ssh2.sftp.SFTPStatVFS` or int of error code"""
+        cdef SFTPStatVFS vfs = SFTPStatVFS(self)
+        cdef char *_path = to_bytes(path)
+        cdef size_t path_len = len(_path)
+        with nogil:
+            rc = c_sftp.libssh2_sftp_statvfs(
+                self._sftp, _path, path_len, vfs._ptr)
+        if rc != 0:
+            return rc
+        return vfs
 
     def mkdir(self, path not None, long mode):
         """Make directory.

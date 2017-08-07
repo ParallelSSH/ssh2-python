@@ -30,8 +30,12 @@ cdef extern from "libssh2_sftp.h" nogil:
         unsigned long uid, gid
         unsigned long permissions
         unsigned long atime, mtime
+    # SFTP statvfs flag bits
+    enum:
+        LIBSSH2_SFTP_ST_RDONLY
+        LIBSSH2_SFTP_ST_NOSUID
     ctypedef struct LIBSSH2_SFTP_STATVFS:
-        uint64_t  f_bsize # file system block size
+        uint64_t  f_bsize    # file system block size
         uint64_t  f_frsize   # fragment size
         uint64_t  f_blocks   # size of fs in f_frsize units
         uint64_t  f_bfree    # free blocks

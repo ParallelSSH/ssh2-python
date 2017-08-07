@@ -885,7 +885,7 @@ struct __pyx_obj_4ssh2_8listener_Listener {
 };
 
 
-/* "sftp.pxd":26
+/* "sftp.pxd":25
  * 
  * 
  * cdef class SFTP:             # <<<<<<<<<<<<<<
@@ -7140,7 +7140,7 @@ PyMODINIT_FUNC PyInit_session(void)
   __pyx_ptype_4ssh2_10exceptions_SFTPHandleError = __Pyx_ImportType("ssh2.exceptions", "SFTPHandleError", sizeof(struct __pyx_obj_4ssh2_10exceptions_SFTPHandleError), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_SFTPHandleError)) __PYX_ERR(7, 53, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_SFTPBufferTooSmall = __Pyx_ImportType("ssh2.exceptions", "SFTPBufferTooSmall", sizeof(struct __pyx_obj_4ssh2_10exceptions_SFTPBufferTooSmall), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_SFTPBufferTooSmall)) __PYX_ERR(7, 57, __pyx_L1_error)
   __pyx_ptype_4ssh2_8listener_Listener = __Pyx_ImportType("ssh2.listener", "Listener", sizeof(struct __pyx_obj_4ssh2_8listener_Listener), 1); if (unlikely(!__pyx_ptype_4ssh2_8listener_Listener)) __PYX_ERR(8, 24, __pyx_L1_error)
-  __pyx_ptype_4ssh2_4sftp_SFTP = __Pyx_ImportType("ssh2.sftp", "SFTP", sizeof(struct __pyx_obj_4ssh2_4sftp_SFTP), 1); if (unlikely(!__pyx_ptype_4ssh2_4sftp_SFTP)) __PYX_ERR(9, 26, __pyx_L1_error)
+  __pyx_ptype_4ssh2_4sftp_SFTP = __Pyx_ImportType("ssh2.sftp", "SFTP", sizeof(struct __pyx_obj_4ssh2_4sftp_SFTP), 1); if (unlikely(!__pyx_ptype_4ssh2_4sftp_SFTP)) __PYX_ERR(9, 25, __pyx_L1_error)
   __pyx_ptype_4ssh2_8statinfo_StatInfo = __Pyx_ImportType("ssh2.statinfo", "StatInfo", sizeof(struct __pyx_obj_4ssh2_8statinfo_StatInfo), 1); if (unlikely(!__pyx_ptype_4ssh2_8statinfo_StatInfo)) __PYX_ERR(10, 4, __pyx_L1_error)
   /*--- Variable import code ---*/
   /*--- Function import code ---*/
