@@ -28,9 +28,10 @@ jobs:
   include:
     - stage: build_packages
       python: 3.6
-      install:
+      install: skip
+      script: skip
+      before_deploy:
         - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-      script:
         - ./docker/build-packages.sh
       deploy:
         - provider: pypi
