@@ -4,15 +4,16 @@ import stat
 from sys import version_info
 from unittest import skipUnless
 
-from .base_test import SSH2TestCase, setUpModule
-from ssh2.sftp import SFTPHandle
+from .base_test import SSH2TestCase
+from ssh2.sftp_handle import SFTPHandle, SFTPAttributes
 from ssh2.exceptions import SFTPHandleError, SFTPBufferTooSmall
-from ssh2.sftp import SFTPAttributes, LIBSSH2_FXF_CREAT, LIBSSH2_FXF_WRITE, \
+from ssh2.sftp import LIBSSH2_FXF_CREAT, LIBSSH2_FXF_WRITE, \
     LIBSSH2_SFTP_S_IRUSR, LIBSSH2_SFTP_S_IRGRP, LIBSSH2_SFTP_S_IWUSR, \
     LIBSSH2_SFTP_S_IROTH
 
 
 class SFTPTestCase(SSH2TestCase):
+
     def test_sftp_read(self):
         self.assertEqual(self._auth(), 0)
         sftp = self.session.sftp_init()
@@ -29,7 +30,7 @@ class SFTPTestCase(SSH2TestCase):
             try:
                 self.assertTrue(remote_fh is not None)
                 remote_data = b""
-                for data in remote_fh:
+                for rc, data in remote_fh:
                     remote_data += data
                 self.assertEqual(remote_fh.close(), 0)
                 self.assertEqual(remote_data, test_file_data)
@@ -63,10 +64,12 @@ class SFTPTestCase(SSH2TestCase):
         finally:
             os.unlink(remote_filename)
 
-    def test_sftp_attrs(self):
+    def test_sftp_attrs_cls(self):
         attrs = SFTPAttributes()
         self.assertTrue(attrs is not None)
         del attrs
+
+    def test_sftp_stat(self):
         self.assertEqual(self._auth(), 0)
         sftp = self.session.sftp_init()
         self.assertTrue(sftp is not None)
@@ -180,7 +183,7 @@ class SFTPTestCase(SSH2TestCase):
         with sftp.opendir('.') as fh:
             dir_data = list(fh.readdir())
         self.assertTrue(len(dir_data) > 0)
-        self.assertTrue(b'..' in (_ls for (_ls, _) in dir_data))
+        self.assertTrue(b'..' in (_ls for (_, _ls, _) in dir_data))
 
     @skipUnless(hasattr(SFTPHandle, 'fsync'),
                 "Function not supported by libssh2")

@@ -19,7 +19,6 @@ cimport c_sftp
 from session cimport Session
 
 
-cdef object PySFTPHandle(c_sftp.LIBSSH2_SFTP_HANDLE *handle, SFTP sftp)
 cdef object PySFTP(c_sftp.LIBSSH2_SFTP *sftp, Session session)
 
 

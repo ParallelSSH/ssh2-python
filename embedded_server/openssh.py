@@ -28,6 +28,7 @@ SSHD_CONFIG_TMPL = os.path.abspath(os.path.sep.join(
     [DIR_NAME, 'sshd_config.tmpl']))
 SSHD_CONFIG = os.path.abspath(os.path.sep.join([DIR_NAME, 'sshd_config']))
 
+
 class OpenSSHServer(object):
 
     def __init__(self, port=2222):

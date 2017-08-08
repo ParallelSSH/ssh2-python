@@ -11,15 +11,20 @@ from embedded_server.openssh import OpenSSHServer
 PKEY_FILENAME = os.path.sep.join([os.path.dirname(__file__), 'unit_test_key'])
 PUB_FILE = "%s.pub" % (PKEY_FILENAME,)
 
-server = OpenSSHServer()
-
-def setUpModule():
-    _mask = int('0600') if version_info <= (2,) else 0o600
-    os.chmod(PKEY_FILENAME, _mask)
-    server.start_server()
-
 
 class SSH2TestCase(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        _mask = int('0600') if version_info <= (2,) else 0o600
+        os.chmod(PKEY_FILENAME, _mask)
+        cls.server = OpenSSHServer()
+        cls.server.start_server()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.server.stop()
+        del cls.server
 
     def setUp(self):
         self.host = '127.0.0.1'

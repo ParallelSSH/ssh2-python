@@ -4,6 +4,7 @@ from unittest import skipUnless
 from .base_test import SSH2TestCase
 from ssh2.session import Session
 
+
 class SessionTestCase(SSH2TestCase):
 
     def test_fromfile_auth(self):
