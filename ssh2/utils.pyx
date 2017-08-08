@@ -70,7 +70,7 @@ def wait_socket(_socket not None, Session session, timeout=1):
     This function blocks the calling thread for <timeout> seconds -
     to be used only for testing purposes.
     """
-    cdef int directions = session.blockdirections()
+    cdef int directions = session.block_directions()
     if directions == 0:
         return 0
     readfds = [_socket] \

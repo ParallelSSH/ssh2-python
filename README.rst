@@ -11,14 +11,14 @@ Super fast SSH2 protocol library. ``ssh2-python`` provides Python bindings for `
   :alt: Latest Version
 .. image:: https://travis-ci.org/ParallelSSH/ssh2-python.svg?branch=master
    :target: https://travis-ci.org/ParallelSSH/ssh2-python
-.. image:: https://readthedocs.org/projects/ssh2-python/badge/?version=latest
-   :target: http://ssh2-python.readthedocs.io/en/latest/?badge=latest
-   :alt: Documentation
+
 
 Installation
 ______________
 
+
 System packages are available on the `latest releases page <https://github.com/ParallelSSH/ssh2-python/releases/latest>`_ built on Centos/RedHat 6/7, Ubuntu 14.04/16.04, Debian 7/8 and Fedora 22/23/24.
+
 
 Installation from Source
 _________________________
@@ -46,14 +46,17 @@ RedHat
 API Feature Set
 ________________
 
-Currently the entirety of the `libssh2`_ API has been implemented. `API documentation is available <https://readthedocs.org/projects/ssh2-python/badge/?version=latest>`_ for ``ssh2-python``.
 
-Complete example scripts for various operations can be found in the `examples directory`.
+Currently the vast majority of the `libssh2`_ API has been implemented with only few exceptions.
 
-In addition, ``ssh2-python`` is a thin wrapper of ``libssh2`` with Python semantics - its code examples can be ported straight over to Python with only minimal changes.
+Complete example scripts for various operations can be found in the `examples directory`_.
+
+In addition, as ``ssh2-python`` is a thin wrapper of ``libssh2`` with Python semantics, its code examples can be ported straight over to Python with only minimal changes.
+
 
 Quick Start
 _____________
+
 
 Both byte and unicode strings are accepted as arguments and encoded appropriately. To change default encoding change the value of ``ssh2.utils.ENCODING``. Channel output is always byte strings.
 
@@ -124,7 +127,7 @@ Exit Code
 
 .. code-block:: python
 
-   print("Exit status: {}".format(channel.get_exit_status()))
+   print("Exit status: %s" % (channel.get_exit_status()))
 
 
 .. code-block:: python
@@ -161,7 +164,7 @@ SFTP Read
    sftp = session.sftp_init()
    with sftp.open(<remote file to read>, 0, 0) as remote_fh, \
            open(<file to write>, 'wb') as local_fh:
-       for data in remote_fh:
+       for size, data in remote_fh:
            local_fh.write(data)
 
 
@@ -169,6 +172,8 @@ Complete Example
 __________________
 
 A simple usage example looks very similar to ``libssh2`` `usage examples <https://www.libssh2.org/examples/>`_.
+
+See `examples directory <https://github.com/ParallelSSH/ssh2-python/tree/master/examples>`_ for more complete example scripts.
 
 As mentioned, ``ssh2-python`` is intentially a thin wrapper over ``libssh2`` and directly maps most of its API.
 
@@ -239,13 +244,13 @@ Extension features:
 * Very low overhead
 * Super fast as a consequence of the excellent C library it uses and that it uses native code prodigiously
 * Object oriented - memory freed automatically and safely as objects expire
-* Use Python semantics where applicable, such as iterator support for SFTP file handles
+* Use Python semantics where applicable, such as iterator support for reading from SFTP file handles
 * Expose errors as Python exceptions where possible
 * Provide access to ``libssh2`` error code definitions
 
 
-Comparison with other Python SSH2 libraries
----------------------------------------------
+Comparison with other Python SSH libraries
+-------------------------------------------
 
 Performance of above example, compared with Paramiko.
 
@@ -269,7 +274,6 @@ Performance of above example, compared with Paramiko.
      sys	0m0.021s
 
 
-See `examples directory <https://github.com/ParallelSSH/ssh2-python/tree/master/examples>`_ for more complete example scripts.
-
 .. _libssh2: https://www.libssh2.org
 .. _Cython: https://www.cython.org
+.. _`examples directory`: https://github.com/ParallelSSH/ssh2-python/tree/master/examples

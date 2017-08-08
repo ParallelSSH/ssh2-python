@@ -1,6 +1,23 @@
 Change Log
 =============
 
+0.5.0
+------
+
+Changes
+_________
+
+* Implemented SFTP statvfs and SFTP handle fstatvfs methods and integration tests.
+* Implemented SFTPStatVFS extension class for file system statistics.
+* SFTP read and readdir functions now return size/error code along with data.
+* SFTP handle fstat now returns attributes.
+* Implemented SFTP handle readdir* methods as python generators,
+* SFTP openddir can now be used as a context manager.
+* Block directions function renamed to match libssh2.
+* Example scripts.
+* All session authentication methods now raise ``AuthenticationError`` on failure.
+
+
 0.4.0
 ------
 

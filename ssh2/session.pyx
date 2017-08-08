@@ -25,7 +25,8 @@ cimport c_sftp
 from agent cimport PyAgent, auth_identity, clear_agent
 from channel cimport PyChannel
 from exceptions cimport SessionHandshakeError, SessionStartupError, \
-    AgentConnectionError, AgentListIdentitiesError, AgentGetIdentityError
+    AgentConnectionError, AgentListIdentitiesError, AgentGetIdentityError, \
+    AuthenticationError
 from listener cimport PyListener
 from sftp cimport PySFTP
 from utils cimport to_bytes, to_str
@@ -161,6 +162,12 @@ cdef class Session:
         with nogil:
             rc = c_ssh2.libssh2_userauth_publickey_fromfile(
                 self._session, _username, _publickey, _privatekey, _passphrase)
+            if rc != 0 and rc != c_ssh2._LIBSSH2_ERROR_EAGAIN:
+                with gil:
+                    raise AuthenticationError(
+                        "Error authenticating user %s with private key %s and"
+                        "public key %s",
+                        username, privatekey, publickey)
         return rc
 
     def userauth_publickey(self, username not None,
@@ -172,8 +179,7 @@ cdef class Session:
         :param pubkeydata: Public key data
         :type pubkeydata: bytes
 
-        :rtype: int
-        """
+        :rtype: int"""
         cdef int rc
         cdef char *_username = to_bytes(username)
         cdef unsigned char *_pubkeydata = pubkeydata
@@ -182,6 +188,11 @@ cdef class Session:
             rc = c_ssh2.libssh2_userauth_publickey(
                 self._session, _username, _pubkeydata,
                 pubkeydata_len, NULL, NULL)
+            if rc != 0 and rc != c_ssh2._LIBSSH2_ERROR_EAGAIN:
+                with gil:
+                    raise AuthenticationError(
+                        "Error authenticating user %s with public key data",
+                        username)
         return rc
 
     def userauth_hostbased_fromfile(self,
@@ -200,6 +211,12 @@ cdef class Session:
             rc = c_ssh2.libssh2_userauth_hostbased_fromfile(
                 self._session, _username, _publickey,
                 _privatekey, _passphrase, _hostname)
+            if rc != 0 and rc != c_ssh2._LIBSSH2_ERROR_EAGAIN:
+                with gil:
+                    raise AuthenticationError(
+                        "Error authenticating user %s with private key %s and"
+                        "public key %s for host %s",
+                        username, privatekey, publickey, hostname)
         return rc
 
     IF EMBEDDED_LIB:
@@ -232,6 +249,11 @@ cdef class Session:
         with nogil:
             rc = c_ssh2.libssh2_userauth_password(
                 self._session, _username, _password)
+            if rc != 0 and rc != c_ssh2._LIBSSH2_ERROR_EAGAIN:
+                with gil:
+                    raise AuthenticationError(
+                        "Error authenticating user %s with password",
+                        username)
         return rc
 
     def agent_init(self):
@@ -271,7 +293,7 @@ cdef class Session:
         authentication with each identity from SSH agent.
 
         Note that agent connections cannot be used in non-blocking mode -
-        clients should call `setblocking(0)` _after_ calling this function.
+        clients should call `set_blocking(0)` *after* calling this function.
 
         On completion, or any errors, agent is disconnected and resources freed.
 
@@ -289,8 +311,7 @@ cdef class Session:
         :raises: :py:class:`ssh2.exceptions.AgentGetIdentityError` on error
           getting known identity from agent
 
-        :rtype: None
-        """
+        :rtype: None"""
         cdef char *_username = to_bytes(username)
         cdef c_ssh2.LIBSSH2_AGENT *agent = NULL
         cdef c_ssh2.libssh2_agent_publickey *identity = NULL

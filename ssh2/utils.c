@@ -997,11 +997,11 @@ static const char __pyx_k_pyx_vtable[] = "__pyx_vtable__";
 static const char __pyx_k_ssh2_utils[] = "ssh2.utils";
 static const char __pyx_k_wait_socket[] = "wait_socket";
 static const char __pyx_k_ssh2_utils_pyx[] = "ssh2/utils.pyx";
-static const char __pyx_k_blockdirections[] = "blockdirections";
+static const char __pyx_k_block_directions[] = "block_directions";
 static const char __pyx_k_required_version[] = "required_version";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static PyObject *__pyx_n_s_ENCODING;
-static PyObject *__pyx_n_s_blockdirections;
+static PyObject *__pyx_n_s_block_directions;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_decode;
 static PyObject *__pyx_n_s_directions;
@@ -1700,11 +1700,11 @@ static PyObject *__pyx_pf_4ssh2_5utils_4wait_socket(CYTHON_UNUSED PyObject *__py
   /* "ssh2/utils.pyx":73
  *     to be used only for testing purposes.
  *     """
- *     cdef int directions = session.blockdirections()             # <<<<<<<<<<<<<<
+ *     cdef int directions = session.block_directions()             # <<<<<<<<<<<<<<
  *     if directions == 0:
  *         return 0
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_session), __pyx_n_s_blockdirections); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_session), __pyx_n_s_block_directions); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -1730,7 +1730,7 @@ static PyObject *__pyx_pf_4ssh2_5utils_4wait_socket(CYTHON_UNUSED PyObject *__py
 
   /* "ssh2/utils.pyx":74
  *     """
- *     cdef int directions = session.blockdirections()
+ *     cdef int directions = session.block_directions()
  *     if directions == 0:             # <<<<<<<<<<<<<<
  *         return 0
  *     readfds = [_socket] \
@@ -1739,7 +1739,7 @@ static PyObject *__pyx_pf_4ssh2_5utils_4wait_socket(CYTHON_UNUSED PyObject *__py
   if (__pyx_t_5) {
 
     /* "ssh2/utils.pyx":75
- *     cdef int directions = session.blockdirections()
+ *     cdef int directions = session.block_directions()
  *     if directions == 0:
  *         return 0             # <<<<<<<<<<<<<<
  *     readfds = [_socket] \
@@ -1752,7 +1752,7 @@ static PyObject *__pyx_pf_4ssh2_5utils_4wait_socket(CYTHON_UNUSED PyObject *__py
 
     /* "ssh2/utils.pyx":74
  *     """
- *     cdef int directions = session.blockdirections()
+ *     cdef int directions = session.block_directions()
  *     if directions == 0:             # <<<<<<<<<<<<<<
  *         return 0
  *     readfds = [_socket] \
@@ -1944,7 +1944,7 @@ static struct PyModuleDef __pyx_moduledef = {
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_ENCODING, __pyx_k_ENCODING, sizeof(__pyx_k_ENCODING), 0, 0, 1, 1},
-  {&__pyx_n_s_blockdirections, __pyx_k_blockdirections, sizeof(__pyx_k_blockdirections), 0, 0, 1, 1},
+  {&__pyx_n_s_block_directions, __pyx_k_block_directions, sizeof(__pyx_k_block_directions), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_decode, __pyx_k_decode, sizeof(__pyx_k_decode), 0, 0, 1, 1},
   {&__pyx_n_s_directions, __pyx_k_directions, sizeof(__pyx_k_directions), 0, 0, 1, 1},
