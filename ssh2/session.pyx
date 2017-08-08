@@ -22,6 +22,7 @@ from libc.time cimport time_t
 
 cimport c_ssh2
 cimport c_sftp
+cimport c_pkey
 from agent cimport PyAgent, auth_identity, clear_agent
 from channel cimport PyChannel
 from exceptions cimport SessionHandshakeError, SessionStartupError, \
@@ -29,6 +30,7 @@ from exceptions cimport SessionHandshakeError, SessionStartupError, \
     AuthenticationError
 from listener cimport PyListener
 from sftp cimport PySFTP
+from publickey cimport PyPublicKeySystem
 from utils cimport to_bytes, to_str
 IF EMBEDDED_LIB:
     from fileinfo cimport FileInfo
@@ -531,3 +533,12 @@ cdef class Session:
                 self._session, _path, mode, size, mtime, atime)
         if channel is not NULL:
             return PyChannel(channel, self)
+
+    def publickey_init(self):
+        """Initialise public key subsystem for managing remote server
+        public keys"""
+        cdef c_pkey.LIBSSH2_PUBLICKEY *_pkey
+        with nogil:
+            _pkey= c_pkey.libssh2_publickey_init(self._session)
+        if _pkey is not NULL:
+            return PyPublicKeySystem(_pkey, self)

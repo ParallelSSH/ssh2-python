@@ -58,6 +58,7 @@ ____________
 
 from libc.stdlib cimport malloc, free
 
+from session cimport Session
 cimport c_ssh2
 cimport c_sftp
 from error_codes cimport _LIBSSH2_ERROR_EAGAIN, _LIBSSH2_ERROR_BUFFER_TOO_SMALL
@@ -69,6 +70,7 @@ from sftp_handle cimport SFTPHandle, PySFTPHandle, SFTPAttributes, SFTPStatVFS
 # File types
 # TODO
 
+
 # File Transfer Flags
 
 LIBSSH2_FXF_READ = c_sftp.LIBSSH2_FXF_READ
@@ -77,6 +79,7 @@ LIBSSH2_FXF_APPEND = c_sftp.LIBSSH2_FXF_APPEND
 LIBSSH2_FXF_CREAT = c_sftp.LIBSSH2_FXF_CREAT
 LIBSSH2_FXF_TRUNC = c_sftp.LIBSSH2_FXF_TRUNC
 LIBSSH2_FXF_EXCL = c_sftp.LIBSSH2_FXF_EXCL
+
 
 # File mode masks
 # Read, write, execute/search by owner
