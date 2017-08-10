@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-"""Example script for SFTP read"""
+"""Example script for non-blocking SFTP read"""
 
 from __future__ import print_function
 
@@ -62,8 +62,9 @@ def main():
         size, data = fh.read()
     for size, data in fh:
         pass
-    # fh.close()
-    # Handle is closed when object is garbage collected
+    # Handle is also closed when object is garbage collected.
+    # It is safe to close it explicitly as well.
+    fh.close()
     print("Finished file read in %s" % (datetime.now() - now,))
 
 

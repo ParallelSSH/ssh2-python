@@ -5,6 +5,8 @@ from sys import version_info
 from unittest import skipUnless
 
 from .base_test import SSH2TestCase
+from ssh2.error_codes import LIBSSH2_ERROR_EAGAIN
+from ssh2.utils import wait_socket
 from ssh2.sftp_handle import SFTPHandle, SFTPAttributes
 from ssh2.exceptions import SFTPHandleError, SFTPBufferTooSmall
 from ssh2.sftp import LIBSSH2_FXF_CREAT, LIBSSH2_FXF_WRITE, \
@@ -233,3 +235,17 @@ class SFTPTestCase(SSH2TestCase):
             raise
         finally:
             os.unlink(remote_filename)
+
+    def test_readdir_nonblocking(self):
+        self.assertEqual(self._auth(), 0)
+        sftp = self.session.sftp_init()
+        with sftp.opendir('.') as fh:
+            self.session.set_blocking(False)
+            dir_data = []
+            for size, buf, attrs in fh.readdir():
+                if size == LIBSSH2_ERROR_EAGAIN:
+                    wait_socket(self.sock, self.session)
+                    continue
+                dir_data.append(buf)
+        self.assertTrue(len(dir_data) > 0)
+        self.assertTrue(b'..' in dir_data)

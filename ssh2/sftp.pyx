@@ -14,7 +14,7 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-# cython: embedsignature=True, boundscheck=False, optimize.use_switch=True, wraparound=False, binding=True
+# cython: embedsignature=True, boundscheck=False, optimize.use_switch=True, wraparound=False
 
 """
 SFTP channel, handle and attributes classes and related SFTP flags.
@@ -56,7 +56,6 @@ ____________
 :var LIBSSH2_SFTP_S_IXOTH: Execute
 """
 
-from contextlib import contextmanager
 from libc.stdlib cimport malloc, free
 
 cimport c_ssh2
@@ -175,17 +174,14 @@ cdef class SFTP:
           ``LIBSSH2_SFTP_S_IROTH``
         :type mode: int"""
         cdef c_sftp.LIBSSH2_SFTP_HANDLE *_handle
-        cdef SFTPHandle handle
         cdef char *_filename = to_bytes(filename)
         with nogil:
             _handle = c_sftp.libssh2_sftp_open(
                 self._sftp, _filename, flags, mode)
         if _handle is NULL:
             return
-        handle = PySFTPHandle(_handle, self)
-        return handle
+        return PySFTPHandle(_handle, self)
 
-    @contextmanager
     def opendir(self, path not None):
         """Open handle to directory path.
 
@@ -195,12 +191,11 @@ cdef class SFTP:
         :rtype: :py:class:`ssh2.sftp.SFTPHandle` or `None`"""
         cdef c_sftp.LIBSSH2_SFTP_HANDLE *_handle
         cdef char *_path = to_bytes(path)
-        cdef SFTPHandle handle
         with nogil:
             _handle = c_sftp.libssh2_sftp_opendir(self._sftp, _path)
         if _handle is NULL:
             return
-        yield PySFTPHandle(_handle, self)
+        return PySFTPHandle(_handle, self)
 
     def rename_ex(self, const char *source_filename,
                   unsigned int source_filename_len,
