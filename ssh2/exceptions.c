@@ -686,8 +686,8 @@ struct __pyx_obj_4ssh2_10exceptions_ChannelError;
 struct __pyx_obj_4ssh2_10exceptions_SFTPHandleError;
 struct __pyx_obj_4ssh2_10exceptions_SFTPBufferTooSmall;
 
-/* "ssh2/exceptions.pxd":17
- * # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+/* "ssh2/exceptions.pxd":18
+ * 
  * 
  * cdef class AgentError(Exception):             # <<<<<<<<<<<<<<
  *     pass
@@ -698,7 +698,7 @@ struct __pyx_obj_4ssh2_10exceptions_AgentError {
 };
 
 
-/* "ssh2/exceptions.pxd":21
+/* "ssh2/exceptions.pxd":22
  * 
  * 
  * cdef class AuthenticationError(Exception):             # <<<<<<<<<<<<<<
@@ -710,7 +710,7 @@ struct __pyx_obj_4ssh2_10exceptions_AuthenticationError {
 };
 
 
-/* "ssh2/exceptions.pxd":25
+/* "ssh2/exceptions.pxd":26
  * 
  * 
  * cdef class AgentConnectionError(AgentError):             # <<<<<<<<<<<<<<
@@ -722,7 +722,7 @@ struct __pyx_obj_4ssh2_10exceptions_AgentConnectionError {
 };
 
 
-/* "ssh2/exceptions.pxd":29
+/* "ssh2/exceptions.pxd":30
  * 
  * 
  * cdef class AgentAuthenticationError(AuthenticationError):             # <<<<<<<<<<<<<<
@@ -734,7 +734,7 @@ struct __pyx_obj_4ssh2_10exceptions_AgentAuthenticationError {
 };
 
 
-/* "ssh2/exceptions.pxd":33
+/* "ssh2/exceptions.pxd":34
  * 
  * 
  * cdef class AgentListIdentitiesError(AgentError):             # <<<<<<<<<<<<<<
@@ -746,7 +746,7 @@ struct __pyx_obj_4ssh2_10exceptions_AgentListIdentitiesError {
 };
 
 
-/* "ssh2/exceptions.pxd":37
+/* "ssh2/exceptions.pxd":38
  * 
  * 
  * cdef class AgentGetIdentityError(AgentError):             # <<<<<<<<<<<<<<
@@ -758,7 +758,7 @@ struct __pyx_obj_4ssh2_10exceptions_AgentGetIdentityError {
 };
 
 
-/* "ssh2/exceptions.pxd":41
+/* "ssh2/exceptions.pxd":42
  * 
  * 
  * cdef class SessionStartupError(Exception):             # <<<<<<<<<<<<<<
@@ -770,7 +770,7 @@ struct __pyx_obj_4ssh2_10exceptions_SessionStartupError {
 };
 
 
-/* "ssh2/exceptions.pxd":45
+/* "ssh2/exceptions.pxd":46
  * 
  * 
  * cdef class SessionHandshakeError(Exception):             # <<<<<<<<<<<<<<
@@ -782,7 +782,7 @@ struct __pyx_obj_4ssh2_10exceptions_SessionHandshakeError {
 };
 
 
-/* "ssh2/exceptions.pxd":49
+/* "ssh2/exceptions.pxd":50
  * 
  * 
  * cdef class ChannelError(Exception):             # <<<<<<<<<<<<<<
@@ -794,7 +794,7 @@ struct __pyx_obj_4ssh2_10exceptions_ChannelError {
 };
 
 
-/* "ssh2/exceptions.pxd":53
+/* "ssh2/exceptions.pxd":54
  * 
  * 
  * cdef class SFTPHandleError(Exception):             # <<<<<<<<<<<<<<
@@ -806,7 +806,7 @@ struct __pyx_obj_4ssh2_10exceptions_SFTPHandleError {
 };
 
 
-/* "ssh2/exceptions.pxd":57
+/* "ssh2/exceptions.pxd":58
  * 
  * 
  * cdef class SFTPBufferTooSmall(Exception):             # <<<<<<<<<<<<<<
@@ -1959,59 +1959,59 @@ PyMODINIT_FUNC PyInit_exceptions(void)
   /*--- Function export code ---*/
   /*--- Type init code ---*/
   __pyx_type_4ssh2_10exceptions_AgentError.tp_base = (&((PyTypeObject*)PyExc_Exception)[0]);
-  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_AgentError) < 0) __PYX_ERR(1, 17, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_AgentError) < 0) __PYX_ERR(1, 18, __pyx_L1_error)
   __pyx_type_4ssh2_10exceptions_AgentError.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "AgentError", (PyObject *)&__pyx_type_4ssh2_10exceptions_AgentError) < 0) __PYX_ERR(1, 17, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "AgentError", (PyObject *)&__pyx_type_4ssh2_10exceptions_AgentError) < 0) __PYX_ERR(1, 18, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_AgentError = &__pyx_type_4ssh2_10exceptions_AgentError;
   __pyx_type_4ssh2_10exceptions_AuthenticationError.tp_base = (&((PyTypeObject*)PyExc_Exception)[0]);
-  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_AuthenticationError) < 0) __PYX_ERR(1, 21, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_AuthenticationError) < 0) __PYX_ERR(1, 22, __pyx_L1_error)
   __pyx_type_4ssh2_10exceptions_AuthenticationError.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "AuthenticationError", (PyObject *)&__pyx_type_4ssh2_10exceptions_AuthenticationError) < 0) __PYX_ERR(1, 21, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "AuthenticationError", (PyObject *)&__pyx_type_4ssh2_10exceptions_AuthenticationError) < 0) __PYX_ERR(1, 22, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_AuthenticationError = &__pyx_type_4ssh2_10exceptions_AuthenticationError;
   __pyx_type_4ssh2_10exceptions_AgentConnectionError.tp_base = __pyx_ptype_4ssh2_10exceptions_AgentError;
-  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_AgentConnectionError) < 0) __PYX_ERR(1, 25, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_AgentConnectionError) < 0) __PYX_ERR(1, 26, __pyx_L1_error)
   __pyx_type_4ssh2_10exceptions_AgentConnectionError.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "AgentConnectionError", (PyObject *)&__pyx_type_4ssh2_10exceptions_AgentConnectionError) < 0) __PYX_ERR(1, 25, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "AgentConnectionError", (PyObject *)&__pyx_type_4ssh2_10exceptions_AgentConnectionError) < 0) __PYX_ERR(1, 26, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_AgentConnectionError = &__pyx_type_4ssh2_10exceptions_AgentConnectionError;
   __pyx_type_4ssh2_10exceptions_AgentAuthenticationError.tp_base = __pyx_ptype_4ssh2_10exceptions_AuthenticationError;
-  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_AgentAuthenticationError) < 0) __PYX_ERR(1, 29, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_AgentAuthenticationError) < 0) __PYX_ERR(1, 30, __pyx_L1_error)
   __pyx_type_4ssh2_10exceptions_AgentAuthenticationError.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "AgentAuthenticationError", (PyObject *)&__pyx_type_4ssh2_10exceptions_AgentAuthenticationError) < 0) __PYX_ERR(1, 29, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "AgentAuthenticationError", (PyObject *)&__pyx_type_4ssh2_10exceptions_AgentAuthenticationError) < 0) __PYX_ERR(1, 30, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_AgentAuthenticationError = &__pyx_type_4ssh2_10exceptions_AgentAuthenticationError;
   __pyx_type_4ssh2_10exceptions_AgentListIdentitiesError.tp_base = __pyx_ptype_4ssh2_10exceptions_AgentError;
-  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_AgentListIdentitiesError) < 0) __PYX_ERR(1, 33, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_AgentListIdentitiesError) < 0) __PYX_ERR(1, 34, __pyx_L1_error)
   __pyx_type_4ssh2_10exceptions_AgentListIdentitiesError.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "AgentListIdentitiesError", (PyObject *)&__pyx_type_4ssh2_10exceptions_AgentListIdentitiesError) < 0) __PYX_ERR(1, 33, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "AgentListIdentitiesError", (PyObject *)&__pyx_type_4ssh2_10exceptions_AgentListIdentitiesError) < 0) __PYX_ERR(1, 34, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_AgentListIdentitiesError = &__pyx_type_4ssh2_10exceptions_AgentListIdentitiesError;
   __pyx_type_4ssh2_10exceptions_AgentGetIdentityError.tp_base = __pyx_ptype_4ssh2_10exceptions_AgentError;
-  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_AgentGetIdentityError) < 0) __PYX_ERR(1, 37, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_AgentGetIdentityError) < 0) __PYX_ERR(1, 38, __pyx_L1_error)
   __pyx_type_4ssh2_10exceptions_AgentGetIdentityError.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "AgentGetIdentityError", (PyObject *)&__pyx_type_4ssh2_10exceptions_AgentGetIdentityError) < 0) __PYX_ERR(1, 37, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "AgentGetIdentityError", (PyObject *)&__pyx_type_4ssh2_10exceptions_AgentGetIdentityError) < 0) __PYX_ERR(1, 38, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_AgentGetIdentityError = &__pyx_type_4ssh2_10exceptions_AgentGetIdentityError;
   __pyx_type_4ssh2_10exceptions_SessionStartupError.tp_base = (&((PyTypeObject*)PyExc_Exception)[0]);
-  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_SessionStartupError) < 0) __PYX_ERR(1, 41, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_SessionStartupError) < 0) __PYX_ERR(1, 42, __pyx_L1_error)
   __pyx_type_4ssh2_10exceptions_SessionStartupError.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "SessionStartupError", (PyObject *)&__pyx_type_4ssh2_10exceptions_SessionStartupError) < 0) __PYX_ERR(1, 41, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "SessionStartupError", (PyObject *)&__pyx_type_4ssh2_10exceptions_SessionStartupError) < 0) __PYX_ERR(1, 42, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_SessionStartupError = &__pyx_type_4ssh2_10exceptions_SessionStartupError;
   __pyx_type_4ssh2_10exceptions_SessionHandshakeError.tp_base = (&((PyTypeObject*)PyExc_Exception)[0]);
-  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_SessionHandshakeError) < 0) __PYX_ERR(1, 45, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_SessionHandshakeError) < 0) __PYX_ERR(1, 46, __pyx_L1_error)
   __pyx_type_4ssh2_10exceptions_SessionHandshakeError.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "SessionHandshakeError", (PyObject *)&__pyx_type_4ssh2_10exceptions_SessionHandshakeError) < 0) __PYX_ERR(1, 45, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "SessionHandshakeError", (PyObject *)&__pyx_type_4ssh2_10exceptions_SessionHandshakeError) < 0) __PYX_ERR(1, 46, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_SessionHandshakeError = &__pyx_type_4ssh2_10exceptions_SessionHandshakeError;
   __pyx_type_4ssh2_10exceptions_ChannelError.tp_base = (&((PyTypeObject*)PyExc_Exception)[0]);
-  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_ChannelError) < 0) __PYX_ERR(1, 49, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_ChannelError) < 0) __PYX_ERR(1, 50, __pyx_L1_error)
   __pyx_type_4ssh2_10exceptions_ChannelError.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "ChannelError", (PyObject *)&__pyx_type_4ssh2_10exceptions_ChannelError) < 0) __PYX_ERR(1, 49, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "ChannelError", (PyObject *)&__pyx_type_4ssh2_10exceptions_ChannelError) < 0) __PYX_ERR(1, 50, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_ChannelError = &__pyx_type_4ssh2_10exceptions_ChannelError;
   __pyx_type_4ssh2_10exceptions_SFTPHandleError.tp_base = (&((PyTypeObject*)PyExc_Exception)[0]);
-  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_SFTPHandleError) < 0) __PYX_ERR(1, 53, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_SFTPHandleError) < 0) __PYX_ERR(1, 54, __pyx_L1_error)
   __pyx_type_4ssh2_10exceptions_SFTPHandleError.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "SFTPHandleError", (PyObject *)&__pyx_type_4ssh2_10exceptions_SFTPHandleError) < 0) __PYX_ERR(1, 53, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "SFTPHandleError", (PyObject *)&__pyx_type_4ssh2_10exceptions_SFTPHandleError) < 0) __PYX_ERR(1, 54, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_SFTPHandleError = &__pyx_type_4ssh2_10exceptions_SFTPHandleError;
   __pyx_type_4ssh2_10exceptions_SFTPBufferTooSmall.tp_base = (&((PyTypeObject*)PyExc_Exception)[0]);
-  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_SFTPBufferTooSmall) < 0) __PYX_ERR(1, 57, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_4ssh2_10exceptions_SFTPBufferTooSmall) < 0) __PYX_ERR(1, 58, __pyx_L1_error)
   __pyx_type_4ssh2_10exceptions_SFTPBufferTooSmall.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "SFTPBufferTooSmall", (PyObject *)&__pyx_type_4ssh2_10exceptions_SFTPBufferTooSmall) < 0) __PYX_ERR(1, 57, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "SFTPBufferTooSmall", (PyObject *)&__pyx_type_4ssh2_10exceptions_SFTPBufferTooSmall) < 0) __PYX_ERR(1, 58, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_SFTPBufferTooSmall = &__pyx_type_4ssh2_10exceptions_SFTPBufferTooSmall;
   /*--- Type import code ---*/
   /*--- Variable import code ---*/

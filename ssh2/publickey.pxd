@@ -14,46 +14,12 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
+# cython: embedsignature=True, boundscheck=False, optimize.use_switch=True, wraparound=False
 
-cdef class AgentError(Exception):
-    pass
-
-
-cdef class AuthenticationError(Exception):
-    pass
+from session cimport Session
+cimport c_pkey
 
 
-cdef class AgentConnectionError(AgentError):
-    pass
-
-
-cdef class AgentAuthenticationError(AuthenticationError):
-    pass
-
-
-cdef class AgentListIdentitiesError(AgentError):
-    pass
-
-
-cdef class AgentGetIdentityError(AgentError):
-    pass
-
-
-cdef class SessionStartupError(Exception):
-    pass
-
-
-cdef class SessionHandshakeError(Exception):
-    pass
-
-
-cdef class ChannelError(Exception):
-    pass
-
-
-cdef class SFTPHandleError(Exception):
-    pass
-
-
-cdef class SFTPBufferTooSmall(Exception):
-    pass
+cdef object PyPublicKeyList(c_pkey.libssh2_publickey_list *_list)
+cdef object PyPublicKeySystem(c_pkey.LIBSSH2_PUBLICKEY *_pkey_s,
+                              Session session)
