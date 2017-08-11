@@ -837,7 +837,6 @@ static const char __pyx_k_LIBSSH2_ERROR_COMPRESS[] = "LIBSSH2_ERROR_COMPRESS";
 static const char __pyx_k_LIBSSH2_ERROR_BAD_SOCKET[] = "LIBSSH2_ERROR_BAD_SOCKET";
 static const char __pyx_k_LIBSSH2_ERROR_BANNER_RECV[] = "LIBSSH2_ERROR_BANNER_RECV";
 static const char __pyx_k_LIBSSH2_ERROR_BANNER_SEND[] = "LIBSSH2_ERROR_BANNER_SEND";
-static const char __pyx_k_LIBSSH2_ERROR_KNOWN_HOSTS[] = "LIBSSH2_ERROR_KNOWN_HOSTS";
 static const char __pyx_k_LIBSSH2_ERROR_METHOD_NONE[] = "LIBSSH2_ERROR_METHOD_NONE";
 static const char __pyx_k_LIBSSH2_ERROR_SOCKET_NONE[] = "LIBSSH2_ERROR_SOCKET_NONE";
 static const char __pyx_k_LIBSSH2_ERROR_SOCKET_RECV[] = "LIBSSH2_ERROR_SOCKET_RECV";
@@ -893,7 +892,6 @@ static PyObject *__pyx_n_s_LIBSSH2_ERROR_HOSTKEY_SIGN;
 static PyObject *__pyx_n_s_LIBSSH2_ERROR_INVAL;
 static PyObject *__pyx_n_s_LIBSSH2_ERROR_INVALID_POLL_TYPE;
 static PyObject *__pyx_n_s_LIBSSH2_ERROR_KEY_EXCHANGE_FAILU;
-static PyObject *__pyx_n_s_LIBSSH2_ERROR_KNOWN_HOSTS;
 static PyObject *__pyx_n_s_LIBSSH2_ERROR_METHOD_NONE;
 static PyObject *__pyx_n_s_LIBSSH2_ERROR_METHOD_NOT_SUPPORT;
 static PyObject *__pyx_n_s_LIBSSH2_ERROR_NONE;
@@ -965,7 +963,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_LIBSSH2_ERROR_INVAL, __pyx_k_LIBSSH2_ERROR_INVAL, sizeof(__pyx_k_LIBSSH2_ERROR_INVAL), 0, 0, 1, 1},
   {&__pyx_n_s_LIBSSH2_ERROR_INVALID_POLL_TYPE, __pyx_k_LIBSSH2_ERROR_INVALID_POLL_TYPE, sizeof(__pyx_k_LIBSSH2_ERROR_INVALID_POLL_TYPE), 0, 0, 1, 1},
   {&__pyx_n_s_LIBSSH2_ERROR_KEY_EXCHANGE_FAILU, __pyx_k_LIBSSH2_ERROR_KEY_EXCHANGE_FAILU, sizeof(__pyx_k_LIBSSH2_ERROR_KEY_EXCHANGE_FAILU), 0, 0, 1, 1},
-  {&__pyx_n_s_LIBSSH2_ERROR_KNOWN_HOSTS, __pyx_k_LIBSSH2_ERROR_KNOWN_HOSTS, sizeof(__pyx_k_LIBSSH2_ERROR_KNOWN_HOSTS), 0, 0, 1, 1},
   {&__pyx_n_s_LIBSSH2_ERROR_METHOD_NONE, __pyx_k_LIBSSH2_ERROR_METHOD_NONE, sizeof(__pyx_k_LIBSSH2_ERROR_METHOD_NONE), 0, 0, 1, 1},
   {&__pyx_n_s_LIBSSH2_ERROR_METHOD_NOT_SUPPORT, __pyx_k_LIBSSH2_ERROR_METHOD_NOT_SUPPORT, sizeof(__pyx_k_LIBSSH2_ERROR_METHOD_NOT_SUPPORT), 0, 0, 1, 1},
   {&__pyx_n_s_LIBSSH2_ERROR_NONE, __pyx_k_LIBSSH2_ERROR_NONE, sizeof(__pyx_k_LIBSSH2_ERROR_NONE), 0, 0, 1, 1},
@@ -1609,7 +1606,7 @@ PyMODINIT_FUNC PyInit_error_codes(void)
  * LIBSSH2_ERROR_SOCKET_RECV = error_codes._LIBSSH2_ERROR_SOCKET_RECV
  * LIBSSH2_ERROR_ENCRYPT = error_codes._LIBSSH2_ERROR_ENCRYPT             # <<<<<<<<<<<<<<
  * LIBSSH2_ERROR_BAD_SOCKET = error_codes._LIBSSH2_ERROR_BAD_SOCKET
- * LIBSSH2_ERROR_KNOWN_HOSTS = error_codes._LIBSSH2_ERROR_KNOWN_HOSTS
+ * IF EMBEDDED_LIB:
  */
   __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_ENCRYPT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -1620,21 +1617,12 @@ PyMODINIT_FUNC PyInit_error_codes(void)
  * LIBSSH2_ERROR_SOCKET_RECV = error_codes._LIBSSH2_ERROR_SOCKET_RECV
  * LIBSSH2_ERROR_ENCRYPT = error_codes._LIBSSH2_ERROR_ENCRYPT
  * LIBSSH2_ERROR_BAD_SOCKET = error_codes._LIBSSH2_ERROR_BAD_SOCKET             # <<<<<<<<<<<<<<
- * LIBSSH2_ERROR_KNOWN_HOSTS = error_codes._LIBSSH2_ERROR_KNOWN_HOSTS
+ * IF EMBEDDED_LIB:
+ *     LIBSSH2_ERROR_KNOWN_HOSTS = error_codes._LIBSSH2_ERROR_KNOWN_HOSTS
  */
   __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_BAD_SOCKET); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_BAD_SOCKET, __pyx_t_1) < 0) __PYX_ERR(0, 73, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "ssh2/error_codes.pyx":74
- * LIBSSH2_ERROR_ENCRYPT = error_codes._LIBSSH2_ERROR_ENCRYPT
- * LIBSSH2_ERROR_BAD_SOCKET = error_codes._LIBSSH2_ERROR_BAD_SOCKET
- * LIBSSH2_ERROR_KNOWN_HOSTS = error_codes._LIBSSH2_ERROR_KNOWN_HOSTS             # <<<<<<<<<<<<<<
- */
-  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_KNOWN_HOSTS); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_KNOWN_HOSTS, __pyx_t_1) < 0) __PYX_ERR(0, 74, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "ssh2/error_codes.pyx":1
