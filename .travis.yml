@@ -34,15 +34,6 @@ jobs:
         - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
         - ./docker/build-packages.sh
       deploy:
-        - provider: pypi
-          skip_cleanup: true
-          on:
-            repo: ParallelSSH/ssh2-python
-            tags: true
-          distributions: sdist
-          user: pkittenis
-          password:
-            secure: "eEBo76bmNWArLOzLNkv8whYO81HqkYpwUu3RqBHv6PNW/sI70VSIVfPTWo8ThlNkYSBy1Sxci6eU+Vd8qYH/vaCbl4068BkzroGUqGMLHXLRLEPQjO2pxTvnQ7Nbj/Mi9enoslLJKflx2USy2iPz1yGCWZrPzjLWmEMcx6j5e3fEUGF2p6p01w/zWxmiSoyJgBsby9P8Fl5nflsNMVR/or8frK4K1T6Y2oTuEx9aYymmBPFOO5DHaedDxnhZ04KKaACIECvKrT5V3PMM1jrE3qu6hJ1LS0/mSivEdCwCszHanjIQy/enkNtLgxVm4jIRUjuAwL1MmxPtkAUcKrQor1YokMqm5fExdwvnp+qjtyejfA3IvT93nYvCj4IEYNMDtUGFUBjsYLqg7Ked/jvO53Ek5WEAE/Mx8F/OAtuvkpEeUKTIWxfd+V0b7pgShVuU5zFyi3y97vpRtdwqzOFr8QT3Hq+g/RIdghPQ9pGQ3GOomTMO1B7mAyOG6SYyQM/wra2h2dQTHCbgzAtsPzZLiZhWIGcU7/mGLm0kZBT6McnH2//hsIPXG8S94u2MWE0KRH5YhJ/2ATWneYyFHWQfwqDeR/1CZe66gFcPJ9cOIG+8pcmXueLhnueDbh2EWa8jmumtrAz+z+rcokih0c7catT7pByDv24Ouuw2Yf3my60="
         - provider: releases
           skip_cleanup: true
           api_key:
@@ -52,3 +43,17 @@ jobs:
           on:
             repo: ParallelSSH/ssh2-python
             tags: true
+    - stage: deploy_pypi
+      python: 3.6
+      install: skip
+      script: skip
+      deploy:
+        - provider: pypi
+          skip_cleanup: true
+          on:
+            repo: ParallelSSH/ssh2-python
+            tags: true
+          distributions: sdist
+          user: pkittenis
+          password:
+            secure: "eEBo76bmNWArLOzLNkv8whYO81HqkYpwUu3RqBHv6PNW/sI70VSIVfPTWo8ThlNkYSBy1Sxci6eU+Vd8qYH/vaCbl4068BkzroGUqGMLHXLRLEPQjO2pxTvnQ7Nbj/Mi9enoslLJKflx2USy2iPz1yGCWZrPzjLWmEMcx6j5e3fEUGF2p6p01w/zWxmiSoyJgBsby9P8Fl5nflsNMVR/or8frK4K1T6Y2oTuEx9aYymmBPFOO5DHaedDxnhZ04KKaACIECvKrT5V3PMM1jrE3qu6hJ1LS0/mSivEdCwCszHanjIQy/enkNtLgxVm4jIRUjuAwL1MmxPtkAUcKrQor1YokMqm5fExdwvnp+qjtyejfA3IvT93nYvCj4IEYNMDtUGFUBjsYLqg7Ked/jvO53Ek5WEAE/Mx8F/OAtuvkpEeUKTIWxfd+V0b7pgShVuU5zFyi3y97vpRtdwqzOFr8QT3Hq+g/RIdghPQ9pGQ3GOomTMO1B7mAyOG6SYyQM/wra2h2dQTHCbgzAtsPzZLiZhWIGcU7/mGLm0kZBT6McnH2//hsIPXG8S94u2MWE0KRH5YhJ/2ATWneYyFHWQfwqDeR/1CZe66gFcPJ9cOIG+8pcmXueLhnueDbh2EWa8jmumtrAz+z+rcokih0c7catT7pByDv24Ouuw2Yf3my60="
