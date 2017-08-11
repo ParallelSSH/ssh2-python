@@ -104,7 +104,7 @@ cdef extern from "libssh2_sftp.h" nogil:
         LIBSSH2_SFTP *sftp, const char *path)
     ssize_t libssh2_sftp_read(LIBSSH2_SFTP_HANDLE *handle,
                               char *buffer, size_t buffer_maxlen)
-    int libssh2_sftp_readdir_ex(LIBSSH2_SFTP_HANDLE *handle, \
+    int libssh2_sftp_readdir_ex(LIBSSH2_SFTP_HANDLE *handle,
                                 char *buffer, size_t buffer_maxlen,
                                 char *longentry,
                                 size_t longentry_maxlen,
@@ -183,4 +183,3 @@ cdef extern from "libssh2_sftp.h" nogil:
                               char *target, unsigned int maxlen)
     int libssh2_sftp_realpath(LIBSSH2_SFTP *sftp, const char *path,
                               char *target, unsigned int maxlen)
-    

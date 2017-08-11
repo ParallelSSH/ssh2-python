@@ -821,25 +821,97 @@ int __pyx_module_is_main_ssh2__error_codes = 0;
 /* Implementation of 'ssh2.error_codes' */
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_test[] = "__test__";
+static const char __pyx_k_LIBSSH2_ERROR_FILE[] = "LIBSSH2_ERROR_FILE";
 static const char __pyx_k_LIBSSH2_ERROR_NONE[] = "LIBSSH2_ERROR_NONE";
+static const char __pyx_k_LIBSSH2_ERROR_ZLIB[] = "LIBSSH2_ERROR_ZLIB";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
+static const char __pyx_k_LIBSSH2_ERROR_INVAL[] = "LIBSSH2_ERROR_INVAL";
+static const char __pyx_k_LIBSSH2_ERROR_PROTO[] = "LIBSSH2_ERROR_PROTO";
 static const char __pyx_k_LIBSSH2_ERROR_EAGAIN[] = "LIBSSH2_ERROR_EAGAIN";
 static const char __pyx_k_LIBSSH2CHANNEL_EAGAIN[] = "LIBSSH2CHANNEL_EAGAIN";
+static const char __pyx_k_LIBSSH2_ERROR_BAD_USE[] = "LIBSSH2_ERROR_BAD_USE";
+static const char __pyx_k_LIBSSH2_ERROR_DECRYPT[] = "LIBSSH2_ERROR_DECRYPT";
+static const char __pyx_k_LIBSSH2_ERROR_ENCRYPT[] = "LIBSSH2_ERROR_ENCRYPT";
 static const char __pyx_k_LIBSSH2_ERROR_TIMEOUT[] = "LIBSSH2_ERROR_TIMEOUT";
+static const char __pyx_k_LIBSSH2_ERROR_COMPRESS[] = "LIBSSH2_ERROR_COMPRESS";
+static const char __pyx_k_LIBSSH2_ERROR_BAD_SOCKET[] = "LIBSSH2_ERROR_BAD_SOCKET";
+static const char __pyx_k_LIBSSH2_ERROR_BANNER_RECV[] = "LIBSSH2_ERROR_BANNER_RECV";
+static const char __pyx_k_LIBSSH2_ERROR_BANNER_SEND[] = "LIBSSH2_ERROR_BANNER_SEND";
+static const char __pyx_k_LIBSSH2_ERROR_KNOWN_HOSTS[] = "LIBSSH2_ERROR_KNOWN_HOSTS";
+static const char __pyx_k_LIBSSH2_ERROR_METHOD_NONE[] = "LIBSSH2_ERROR_METHOD_NONE";
+static const char __pyx_k_LIBSSH2_ERROR_SOCKET_NONE[] = "LIBSSH2_ERROR_SOCKET_NONE";
 static const char __pyx_k_LIBSSH2_ERROR_SOCKET_RECV[] = "LIBSSH2_ERROR_SOCKET_RECV";
+static const char __pyx_k_LIBSSH2_ERROR_HOSTKEY_INIT[] = "LIBSSH2_ERROR_HOSTKEY_INIT";
+static const char __pyx_k_LIBSSH2_ERROR_HOSTKEY_SIGN[] = "LIBSSH2_ERROR_HOSTKEY_SIGN";
+static const char __pyx_k_LIBSSH2_ERROR_SCP_PROTOCOL[] = "LIBSSH2_ERROR_SCP_PROTOCOL";
+static const char __pyx_k_LIBSSH2_ERROR_SFTP_PROTOCOL[] = "LIBSSH2_ERROR_SFTP_PROTOCOL";
+static const char __pyx_k_LIBSSH2_ERROR_AGENT_PROTOCOL[] = "LIBSSH2_ERROR_AGENT_PROTOCOL";
+static const char __pyx_k_LIBSSH2_ERROR_CHANNEL_CLOSED[] = "LIBSSH2_ERROR_CHANNEL_CLOSED";
+static const char __pyx_k_LIBSSH2_ERROR_REQUEST_DENIED[] = "LIBSSH2_ERROR_REQUEST_DENIED";
 static const char __pyx_k_LIBSSH2_ERROR_SOCKET_TIMEOUT[] = "LIBSSH2_ERROR_SOCKET_TIMEOUT";
-static const char __pyx_k_LIBSSH2_SESSION_BLOCK_INBOUND[] = "LIBSSH2_SESSION_BLOCK_INBOUND";
-static const char __pyx_k_LIBSSH2_SESSION_BLOCK_OUTBOUND[] = "LIBSSH2_SESSION_BLOCK_OUTBOUND";
+static const char __pyx_k_LIBSSH2_ERROR_CHANNEL_FAILURE[] = "LIBSSH2_ERROR_CHANNEL_FAILURE";
+static const char __pyx_k_LIBSSH2_ERROR_CHANNEL_UNKNOWN[] = "LIBSSH2_ERROR_CHANNEL_UNKNOWN";
+static const char __pyx_k_LIBSSH2_ERROR_OUT_OF_BOUNDARY[] = "LIBSSH2_ERROR_OUT_OF_BOUNDARY";
+static const char __pyx_k_LIBSSH2_ERROR_BUFFER_TOO_SMALL[] = "LIBSSH2_ERROR_BUFFER_TOO_SMALL";
+static const char __pyx_k_LIBSSH2_ERROR_CHANNEL_EOF_SENT[] = "LIBSSH2_ERROR_CHANNEL_EOF_SENT";
+static const char __pyx_k_LIBSSH2_ERROR_PASSWORD_EXPIRED[] = "LIBSSH2_ERROR_PASSWORD_EXPIRED";
+static const char __pyx_k_LIBSSH2_ERROR_INVALID_POLL_TYPE[] = "LIBSSH2_ERROR_INVALID_POLL_TYPE";
+static const char __pyx_k_LIBSSH2_ERROR_SOCKET_DISCONNECT[] = "LIBSSH2_ERROR_SOCKET_DISCONNECT";
 static const char __pyx_k_LIBSSH2_ERROR_AUTHENTICATION_FAI[] = "LIBSSH2_ERROR_AUTHENTICATION_FAILED";
+static const char __pyx_k_LIBSSH2_ERROR_CHANNEL_OUTOFORDER[] = "LIBSSH2_ERROR_CHANNEL_OUTOFORDER";
+static const char __pyx_k_LIBSSH2_ERROR_CHANNEL_PACKET_EXC[] = "LIBSSH2_ERROR_CHANNEL_PACKET_EXCEEDED";
+static const char __pyx_k_LIBSSH2_ERROR_CHANNEL_REQUEST_DE[] = "LIBSSH2_ERROR_CHANNEL_REQUEST_DENIED";
+static const char __pyx_k_LIBSSH2_ERROR_CHANNEL_WINDOW_EXC[] = "LIBSSH2_ERROR_CHANNEL_WINDOW_EXCEEDED";
+static const char __pyx_k_LIBSSH2_ERROR_KEY_EXCHANGE_FAILU[] = "LIBSSH2_ERROR_KEY_EXCHANGE_FAILURE";
+static const char __pyx_k_LIBSSH2_ERROR_METHOD_NOT_SUPPORT[] = "LIBSSH2_ERROR_METHOD_NOT_SUPPORTED";
+static const char __pyx_k_LIBSSH2_ERROR_PUBLICKEY_PROTOCOL[] = "LIBSSH2_ERROR_PUBLICKEY_PROTOCOL";
+static const char __pyx_k_LIBSSH2_ERROR_PUBLICKEY_UNRECOGN[] = "LIBSSH2_ERROR_PUBLICKEY_UNRECOGNIZED";
+static const char __pyx_k_LIBSSH2_ERROR_PUBLICKEY_UNVERIFI[] = "LIBSSH2_ERROR_PUBLICKEY_UNVERIFIED";
 static PyObject *__pyx_n_s_LIBSSH2CHANNEL_EAGAIN;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_AGENT_PROTOCOL;
 static PyObject *__pyx_n_s_LIBSSH2_ERROR_AUTHENTICATION_FAI;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_BAD_SOCKET;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_BAD_USE;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_BANNER_RECV;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_BANNER_SEND;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_BUFFER_TOO_SMALL;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_CHANNEL_CLOSED;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_CHANNEL_EOF_SENT;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_CHANNEL_FAILURE;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_CHANNEL_OUTOFORDER;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_CHANNEL_PACKET_EXC;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_CHANNEL_REQUEST_DE;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_CHANNEL_UNKNOWN;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_CHANNEL_WINDOW_EXC;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_COMPRESS;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_DECRYPT;
 static PyObject *__pyx_n_s_LIBSSH2_ERROR_EAGAIN;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_ENCRYPT;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_FILE;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_HOSTKEY_INIT;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_HOSTKEY_SIGN;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_INVAL;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_INVALID_POLL_TYPE;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_KEY_EXCHANGE_FAILU;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_KNOWN_HOSTS;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_METHOD_NONE;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_METHOD_NOT_SUPPORT;
 static PyObject *__pyx_n_s_LIBSSH2_ERROR_NONE;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_OUT_OF_BOUNDARY;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_PASSWORD_EXPIRED;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_PROTO;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_PUBLICKEY_PROTOCOL;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_PUBLICKEY_UNRECOGN;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_PUBLICKEY_UNVERIFI;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_REQUEST_DENIED;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_SCP_PROTOCOL;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_SFTP_PROTOCOL;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_SOCKET_DISCONNECT;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_SOCKET_NONE;
 static PyObject *__pyx_n_s_LIBSSH2_ERROR_SOCKET_RECV;
 static PyObject *__pyx_n_s_LIBSSH2_ERROR_SOCKET_TIMEOUT;
 static PyObject *__pyx_n_s_LIBSSH2_ERROR_TIMEOUT;
-static PyObject *__pyx_n_s_LIBSSH2_SESSION_BLOCK_INBOUND;
-static PyObject *__pyx_n_s_LIBSSH2_SESSION_BLOCK_OUTBOUND;
+static PyObject *__pyx_n_s_LIBSSH2_ERROR_ZLIB;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_test;
@@ -868,14 +940,50 @@ static struct PyModuleDef __pyx_moduledef = {
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_LIBSSH2CHANNEL_EAGAIN, __pyx_k_LIBSSH2CHANNEL_EAGAIN, sizeof(__pyx_k_LIBSSH2CHANNEL_EAGAIN), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_AGENT_PROTOCOL, __pyx_k_LIBSSH2_ERROR_AGENT_PROTOCOL, sizeof(__pyx_k_LIBSSH2_ERROR_AGENT_PROTOCOL), 0, 0, 1, 1},
   {&__pyx_n_s_LIBSSH2_ERROR_AUTHENTICATION_FAI, __pyx_k_LIBSSH2_ERROR_AUTHENTICATION_FAI, sizeof(__pyx_k_LIBSSH2_ERROR_AUTHENTICATION_FAI), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_BAD_SOCKET, __pyx_k_LIBSSH2_ERROR_BAD_SOCKET, sizeof(__pyx_k_LIBSSH2_ERROR_BAD_SOCKET), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_BAD_USE, __pyx_k_LIBSSH2_ERROR_BAD_USE, sizeof(__pyx_k_LIBSSH2_ERROR_BAD_USE), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_BANNER_RECV, __pyx_k_LIBSSH2_ERROR_BANNER_RECV, sizeof(__pyx_k_LIBSSH2_ERROR_BANNER_RECV), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_BANNER_SEND, __pyx_k_LIBSSH2_ERROR_BANNER_SEND, sizeof(__pyx_k_LIBSSH2_ERROR_BANNER_SEND), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_BUFFER_TOO_SMALL, __pyx_k_LIBSSH2_ERROR_BUFFER_TOO_SMALL, sizeof(__pyx_k_LIBSSH2_ERROR_BUFFER_TOO_SMALL), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_CHANNEL_CLOSED, __pyx_k_LIBSSH2_ERROR_CHANNEL_CLOSED, sizeof(__pyx_k_LIBSSH2_ERROR_CHANNEL_CLOSED), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_CHANNEL_EOF_SENT, __pyx_k_LIBSSH2_ERROR_CHANNEL_EOF_SENT, sizeof(__pyx_k_LIBSSH2_ERROR_CHANNEL_EOF_SENT), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_CHANNEL_FAILURE, __pyx_k_LIBSSH2_ERROR_CHANNEL_FAILURE, sizeof(__pyx_k_LIBSSH2_ERROR_CHANNEL_FAILURE), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_CHANNEL_OUTOFORDER, __pyx_k_LIBSSH2_ERROR_CHANNEL_OUTOFORDER, sizeof(__pyx_k_LIBSSH2_ERROR_CHANNEL_OUTOFORDER), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_CHANNEL_PACKET_EXC, __pyx_k_LIBSSH2_ERROR_CHANNEL_PACKET_EXC, sizeof(__pyx_k_LIBSSH2_ERROR_CHANNEL_PACKET_EXC), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_CHANNEL_REQUEST_DE, __pyx_k_LIBSSH2_ERROR_CHANNEL_REQUEST_DE, sizeof(__pyx_k_LIBSSH2_ERROR_CHANNEL_REQUEST_DE), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_CHANNEL_UNKNOWN, __pyx_k_LIBSSH2_ERROR_CHANNEL_UNKNOWN, sizeof(__pyx_k_LIBSSH2_ERROR_CHANNEL_UNKNOWN), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_CHANNEL_WINDOW_EXC, __pyx_k_LIBSSH2_ERROR_CHANNEL_WINDOW_EXC, sizeof(__pyx_k_LIBSSH2_ERROR_CHANNEL_WINDOW_EXC), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_COMPRESS, __pyx_k_LIBSSH2_ERROR_COMPRESS, sizeof(__pyx_k_LIBSSH2_ERROR_COMPRESS), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_DECRYPT, __pyx_k_LIBSSH2_ERROR_DECRYPT, sizeof(__pyx_k_LIBSSH2_ERROR_DECRYPT), 0, 0, 1, 1},
   {&__pyx_n_s_LIBSSH2_ERROR_EAGAIN, __pyx_k_LIBSSH2_ERROR_EAGAIN, sizeof(__pyx_k_LIBSSH2_ERROR_EAGAIN), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_ENCRYPT, __pyx_k_LIBSSH2_ERROR_ENCRYPT, sizeof(__pyx_k_LIBSSH2_ERROR_ENCRYPT), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_FILE, __pyx_k_LIBSSH2_ERROR_FILE, sizeof(__pyx_k_LIBSSH2_ERROR_FILE), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_HOSTKEY_INIT, __pyx_k_LIBSSH2_ERROR_HOSTKEY_INIT, sizeof(__pyx_k_LIBSSH2_ERROR_HOSTKEY_INIT), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_HOSTKEY_SIGN, __pyx_k_LIBSSH2_ERROR_HOSTKEY_SIGN, sizeof(__pyx_k_LIBSSH2_ERROR_HOSTKEY_SIGN), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_INVAL, __pyx_k_LIBSSH2_ERROR_INVAL, sizeof(__pyx_k_LIBSSH2_ERROR_INVAL), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_INVALID_POLL_TYPE, __pyx_k_LIBSSH2_ERROR_INVALID_POLL_TYPE, sizeof(__pyx_k_LIBSSH2_ERROR_INVALID_POLL_TYPE), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_KEY_EXCHANGE_FAILU, __pyx_k_LIBSSH2_ERROR_KEY_EXCHANGE_FAILU, sizeof(__pyx_k_LIBSSH2_ERROR_KEY_EXCHANGE_FAILU), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_KNOWN_HOSTS, __pyx_k_LIBSSH2_ERROR_KNOWN_HOSTS, sizeof(__pyx_k_LIBSSH2_ERROR_KNOWN_HOSTS), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_METHOD_NONE, __pyx_k_LIBSSH2_ERROR_METHOD_NONE, sizeof(__pyx_k_LIBSSH2_ERROR_METHOD_NONE), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_METHOD_NOT_SUPPORT, __pyx_k_LIBSSH2_ERROR_METHOD_NOT_SUPPORT, sizeof(__pyx_k_LIBSSH2_ERROR_METHOD_NOT_SUPPORT), 0, 0, 1, 1},
   {&__pyx_n_s_LIBSSH2_ERROR_NONE, __pyx_k_LIBSSH2_ERROR_NONE, sizeof(__pyx_k_LIBSSH2_ERROR_NONE), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_OUT_OF_BOUNDARY, __pyx_k_LIBSSH2_ERROR_OUT_OF_BOUNDARY, sizeof(__pyx_k_LIBSSH2_ERROR_OUT_OF_BOUNDARY), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_PASSWORD_EXPIRED, __pyx_k_LIBSSH2_ERROR_PASSWORD_EXPIRED, sizeof(__pyx_k_LIBSSH2_ERROR_PASSWORD_EXPIRED), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_PROTO, __pyx_k_LIBSSH2_ERROR_PROTO, sizeof(__pyx_k_LIBSSH2_ERROR_PROTO), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_PUBLICKEY_PROTOCOL, __pyx_k_LIBSSH2_ERROR_PUBLICKEY_PROTOCOL, sizeof(__pyx_k_LIBSSH2_ERROR_PUBLICKEY_PROTOCOL), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_PUBLICKEY_UNRECOGN, __pyx_k_LIBSSH2_ERROR_PUBLICKEY_UNRECOGN, sizeof(__pyx_k_LIBSSH2_ERROR_PUBLICKEY_UNRECOGN), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_PUBLICKEY_UNVERIFI, __pyx_k_LIBSSH2_ERROR_PUBLICKEY_UNVERIFI, sizeof(__pyx_k_LIBSSH2_ERROR_PUBLICKEY_UNVERIFI), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_REQUEST_DENIED, __pyx_k_LIBSSH2_ERROR_REQUEST_DENIED, sizeof(__pyx_k_LIBSSH2_ERROR_REQUEST_DENIED), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_SCP_PROTOCOL, __pyx_k_LIBSSH2_ERROR_SCP_PROTOCOL, sizeof(__pyx_k_LIBSSH2_ERROR_SCP_PROTOCOL), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_SFTP_PROTOCOL, __pyx_k_LIBSSH2_ERROR_SFTP_PROTOCOL, sizeof(__pyx_k_LIBSSH2_ERROR_SFTP_PROTOCOL), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_SOCKET_DISCONNECT, __pyx_k_LIBSSH2_ERROR_SOCKET_DISCONNECT, sizeof(__pyx_k_LIBSSH2_ERROR_SOCKET_DISCONNECT), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_SOCKET_NONE, __pyx_k_LIBSSH2_ERROR_SOCKET_NONE, sizeof(__pyx_k_LIBSSH2_ERROR_SOCKET_NONE), 0, 0, 1, 1},
   {&__pyx_n_s_LIBSSH2_ERROR_SOCKET_RECV, __pyx_k_LIBSSH2_ERROR_SOCKET_RECV, sizeof(__pyx_k_LIBSSH2_ERROR_SOCKET_RECV), 0, 0, 1, 1},
   {&__pyx_n_s_LIBSSH2_ERROR_SOCKET_TIMEOUT, __pyx_k_LIBSSH2_ERROR_SOCKET_TIMEOUT, sizeof(__pyx_k_LIBSSH2_ERROR_SOCKET_TIMEOUT), 0, 0, 1, 1},
   {&__pyx_n_s_LIBSSH2_ERROR_TIMEOUT, __pyx_k_LIBSSH2_ERROR_TIMEOUT, sizeof(__pyx_k_LIBSSH2_ERROR_TIMEOUT), 0, 0, 1, 1},
-  {&__pyx_n_s_LIBSSH2_SESSION_BLOCK_INBOUND, __pyx_k_LIBSSH2_SESSION_BLOCK_INBOUND, sizeof(__pyx_k_LIBSSH2_SESSION_BLOCK_INBOUND), 0, 0, 1, 1},
-  {&__pyx_n_s_LIBSSH2_SESSION_BLOCK_OUTBOUND, __pyx_k_LIBSSH2_SESSION_BLOCK_OUTBOUND, sizeof(__pyx_k_LIBSSH2_SESSION_BLOCK_OUTBOUND), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_ERROR_ZLIB, __pyx_k_LIBSSH2_ERROR_ZLIB, sizeof(__pyx_k_LIBSSH2_ERROR_ZLIB), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
@@ -992,121 +1100,541 @@ PyMODINIT_FUNC PyInit_error_codes(void)
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "ssh2/error_codes.pyx":23
+  /* "ssh2/error_codes.pyx":21
  * 
  * 
  * LIBSSH2_ERROR_NONE = error_codes._LIBSSH2_ERROR_NONE             # <<<<<<<<<<<<<<
- * LIBSSH2_ERROR_NONE = error_codes._LIBSSH2_ERROR_NONE
- * LIBSSH2CHANNEL_EAGAIN = error_codes._LIBSSH2CHANNEL_EAGAIN
+ * LIBSSH2_ERROR_SOCKET_NONE = error_codes._LIBSSH2_ERROR_SOCKET_NONE
+ * LIBSSH2_ERROR_BANNER_RECV = error_codes._LIBSSH2_ERROR_BANNER_RECV
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_NONE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_NONE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_NONE, __pyx_t_1) < 0) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_NONE, __pyx_t_1) < 0) __PYX_ERR(0, 21, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":22
+ * 
+ * LIBSSH2_ERROR_NONE = error_codes._LIBSSH2_ERROR_NONE
+ * LIBSSH2_ERROR_SOCKET_NONE = error_codes._LIBSSH2_ERROR_SOCKET_NONE             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_BANNER_RECV = error_codes._LIBSSH2_ERROR_BANNER_RECV
+ * LIBSSH2_ERROR_BANNER_SEND = error_codes._LIBSSH2_ERROR_BANNER_SEND
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_SOCKET_NONE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_SOCKET_NONE, __pyx_t_1) < 0) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":23
+ * LIBSSH2_ERROR_NONE = error_codes._LIBSSH2_ERROR_NONE
+ * LIBSSH2_ERROR_SOCKET_NONE = error_codes._LIBSSH2_ERROR_SOCKET_NONE
+ * LIBSSH2_ERROR_BANNER_RECV = error_codes._LIBSSH2_ERROR_BANNER_RECV             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_BANNER_SEND = error_codes._LIBSSH2_ERROR_BANNER_SEND
+ * LIBSSH2_ERROR_KEY_EXCHANGE_FAILURE \
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_BANNER_RECV); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_BANNER_RECV, __pyx_t_1) < 0) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "ssh2/error_codes.pyx":24
- * 
- * LIBSSH2_ERROR_NONE = error_codes._LIBSSH2_ERROR_NONE
- * LIBSSH2_ERROR_NONE = error_codes._LIBSSH2_ERROR_NONE             # <<<<<<<<<<<<<<
- * LIBSSH2CHANNEL_EAGAIN = error_codes._LIBSSH2CHANNEL_EAGAIN
- * LIBSSH2_ERROR_EAGAIN = error_codes._LIBSSH2_ERROR_EAGAIN
+ * LIBSSH2_ERROR_SOCKET_NONE = error_codes._LIBSSH2_ERROR_SOCKET_NONE
+ * LIBSSH2_ERROR_BANNER_RECV = error_codes._LIBSSH2_ERROR_BANNER_RECV
+ * LIBSSH2_ERROR_BANNER_SEND = error_codes._LIBSSH2_ERROR_BANNER_SEND             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_KEY_EXCHANGE_FAILURE \
+ *     = error_codes._LIBSSH2_ERROR_KEY_EXCHANGE_FAILURE
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_NONE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_BANNER_SEND); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_NONE, __pyx_t_1) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "ssh2/error_codes.pyx":25
- * LIBSSH2_ERROR_NONE = error_codes._LIBSSH2_ERROR_NONE
- * LIBSSH2_ERROR_NONE = error_codes._LIBSSH2_ERROR_NONE
- * LIBSSH2CHANNEL_EAGAIN = error_codes._LIBSSH2CHANNEL_EAGAIN             # <<<<<<<<<<<<<<
- * LIBSSH2_ERROR_EAGAIN = error_codes._LIBSSH2_ERROR_EAGAIN
- * LIBSSH2_ERROR_AUTHENTICATION_FAILED = error_codes._LIBSSH2_ERROR_AUTHENTICATION_FAILED
- */
-  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_EAGAIN); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 25, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2CHANNEL_EAGAIN, __pyx_t_1) < 0) __PYX_ERR(0, 25, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_BANNER_SEND, __pyx_t_1) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "ssh2/error_codes.pyx":26
- * LIBSSH2_ERROR_NONE = error_codes._LIBSSH2_ERROR_NONE
- * LIBSSH2CHANNEL_EAGAIN = error_codes._LIBSSH2CHANNEL_EAGAIN
- * LIBSSH2_ERROR_EAGAIN = error_codes._LIBSSH2_ERROR_EAGAIN             # <<<<<<<<<<<<<<
- * LIBSSH2_ERROR_AUTHENTICATION_FAILED = error_codes._LIBSSH2_ERROR_AUTHENTICATION_FAILED
- * LIBSSH2_ERROR_SOCKET_RECV = error_codes._LIBSSH2_ERROR_SOCKET_RECV
+ * LIBSSH2_ERROR_BANNER_SEND = error_codes._LIBSSH2_ERROR_BANNER_SEND
+ * LIBSSH2_ERROR_KEY_EXCHANGE_FAILURE \
+ *     = error_codes._LIBSSH2_ERROR_KEY_EXCHANGE_FAILURE             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_TIMEOUT = error_codes._LIBSSH2_ERROR_TIMEOUT
+ * LIBSSH2_ERROR_HOSTKEY_INIT = error_codes._LIBSSH2_ERROR_HOSTKEY_INIT
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_EAGAIN); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_KEY_EXCHANGE_FAILURE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_EAGAIN, __pyx_t_1) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_KEY_EXCHANGE_FAILU, __pyx_t_1) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "ssh2/error_codes.pyx":27
- * LIBSSH2CHANNEL_EAGAIN = error_codes._LIBSSH2CHANNEL_EAGAIN
- * LIBSSH2_ERROR_EAGAIN = error_codes._LIBSSH2_ERROR_EAGAIN
- * LIBSSH2_ERROR_AUTHENTICATION_FAILED = error_codes._LIBSSH2_ERROR_AUTHENTICATION_FAILED             # <<<<<<<<<<<<<<
- * LIBSSH2_ERROR_SOCKET_RECV = error_codes._LIBSSH2_ERROR_SOCKET_RECV
- * LIBSSH2_SESSION_BLOCK_INBOUND = c_ssh2._LIBSSH2_SESSION_BLOCK_INBOUND
+ * LIBSSH2_ERROR_KEY_EXCHANGE_FAILURE \
+ *     = error_codes._LIBSSH2_ERROR_KEY_EXCHANGE_FAILURE
+ * LIBSSH2_ERROR_TIMEOUT = error_codes._LIBSSH2_ERROR_TIMEOUT             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_HOSTKEY_INIT = error_codes._LIBSSH2_ERROR_HOSTKEY_INIT
+ * LIBSSH2_ERROR_HOSTKEY_SIGN = error_codes._LIBSSH2_ERROR_HOSTKEY_SIGN
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_AUTHENTICATION_FAILED); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_TIMEOUT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 27, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_AUTHENTICATION_FAI, __pyx_t_1) < 0) __PYX_ERR(0, 27, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_TIMEOUT, __pyx_t_1) < 0) __PYX_ERR(0, 27, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "ssh2/error_codes.pyx":28
- * LIBSSH2_ERROR_EAGAIN = error_codes._LIBSSH2_ERROR_EAGAIN
- * LIBSSH2_ERROR_AUTHENTICATION_FAILED = error_codes._LIBSSH2_ERROR_AUTHENTICATION_FAILED
- * LIBSSH2_ERROR_SOCKET_RECV = error_codes._LIBSSH2_ERROR_SOCKET_RECV             # <<<<<<<<<<<<<<
- * LIBSSH2_SESSION_BLOCK_INBOUND = c_ssh2._LIBSSH2_SESSION_BLOCK_INBOUND
- * LIBSSH2_SESSION_BLOCK_OUTBOUND = c_ssh2._LIBSSH2_SESSION_BLOCK_OUTBOUND
+ *     = error_codes._LIBSSH2_ERROR_KEY_EXCHANGE_FAILURE
+ * LIBSSH2_ERROR_TIMEOUT = error_codes._LIBSSH2_ERROR_TIMEOUT
+ * LIBSSH2_ERROR_HOSTKEY_INIT = error_codes._LIBSSH2_ERROR_HOSTKEY_INIT             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_HOSTKEY_SIGN = error_codes._LIBSSH2_ERROR_HOSTKEY_SIGN
+ * LIBSSH2_ERROR_DECRYPT = error_codes._LIBSSH2_ERROR_DECRYPT
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_SOCKET_RECV); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_HOSTKEY_INIT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_SOCKET_RECV, __pyx_t_1) < 0) __PYX_ERR(0, 28, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_HOSTKEY_INIT, __pyx_t_1) < 0) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "ssh2/error_codes.pyx":29
- * LIBSSH2_ERROR_AUTHENTICATION_FAILED = error_codes._LIBSSH2_ERROR_AUTHENTICATION_FAILED
- * LIBSSH2_ERROR_SOCKET_RECV = error_codes._LIBSSH2_ERROR_SOCKET_RECV
- * LIBSSH2_SESSION_BLOCK_INBOUND = c_ssh2._LIBSSH2_SESSION_BLOCK_INBOUND             # <<<<<<<<<<<<<<
- * LIBSSH2_SESSION_BLOCK_OUTBOUND = c_ssh2._LIBSSH2_SESSION_BLOCK_OUTBOUND
- * # LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA = c_ssh2._LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA
+ * LIBSSH2_ERROR_TIMEOUT = error_codes._LIBSSH2_ERROR_TIMEOUT
+ * LIBSSH2_ERROR_HOSTKEY_INIT = error_codes._LIBSSH2_ERROR_HOSTKEY_INIT
+ * LIBSSH2_ERROR_HOSTKEY_SIGN = error_codes._LIBSSH2_ERROR_HOSTKEY_SIGN             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_DECRYPT = error_codes._LIBSSH2_ERROR_DECRYPT
+ * LIBSSH2_ERROR_SOCKET_DISCONNECT = error_codes._LIBSSH2_ERROR_SOCKET_DISCONNECT
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_SESSION_BLOCK_INBOUND); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_HOSTKEY_SIGN); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_SESSION_BLOCK_INBOUND, __pyx_t_1) < 0) __PYX_ERR(0, 29, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_HOSTKEY_SIGN, __pyx_t_1) < 0) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "ssh2/error_codes.pyx":30
- * LIBSSH2_ERROR_SOCKET_RECV = error_codes._LIBSSH2_ERROR_SOCKET_RECV
- * LIBSSH2_SESSION_BLOCK_INBOUND = c_ssh2._LIBSSH2_SESSION_BLOCK_INBOUND
- * LIBSSH2_SESSION_BLOCK_OUTBOUND = c_ssh2._LIBSSH2_SESSION_BLOCK_OUTBOUND             # <<<<<<<<<<<<<<
- * # LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA = c_ssh2._LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA
- * # LIBSSH2_CHANNEL_FLUSH_ALL = c_ssh2._LIBSSH2_CHANNEL_FLUSH_ALL
+ * LIBSSH2_ERROR_HOSTKEY_INIT = error_codes._LIBSSH2_ERROR_HOSTKEY_INIT
+ * LIBSSH2_ERROR_HOSTKEY_SIGN = error_codes._LIBSSH2_ERROR_HOSTKEY_SIGN
+ * LIBSSH2_ERROR_DECRYPT = error_codes._LIBSSH2_ERROR_DECRYPT             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_SOCKET_DISCONNECT = error_codes._LIBSSH2_ERROR_SOCKET_DISCONNECT
+ * LIBSSH2_ERROR_PROTO = error_codes._LIBSSH2_ERROR_PROTO
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_SESSION_BLOCK_OUTBOUND); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_DECRYPT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 30, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_SESSION_BLOCK_OUTBOUND, __pyx_t_1) < 0) __PYX_ERR(0, 30, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_DECRYPT, __pyx_t_1) < 0) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":31
+ * LIBSSH2_ERROR_HOSTKEY_SIGN = error_codes._LIBSSH2_ERROR_HOSTKEY_SIGN
+ * LIBSSH2_ERROR_DECRYPT = error_codes._LIBSSH2_ERROR_DECRYPT
+ * LIBSSH2_ERROR_SOCKET_DISCONNECT = error_codes._LIBSSH2_ERROR_SOCKET_DISCONNECT             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_PROTO = error_codes._LIBSSH2_ERROR_PROTO
+ * LIBSSH2_ERROR_PASSWORD_EXPIRED = error_codes._LIBSSH2_ERROR_PASSWORD_EXPIRED
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_SOCKET_DISCONNECT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_SOCKET_DISCONNECT, __pyx_t_1) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":32
+ * LIBSSH2_ERROR_DECRYPT = error_codes._LIBSSH2_ERROR_DECRYPT
+ * LIBSSH2_ERROR_SOCKET_DISCONNECT = error_codes._LIBSSH2_ERROR_SOCKET_DISCONNECT
+ * LIBSSH2_ERROR_PROTO = error_codes._LIBSSH2_ERROR_PROTO             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_PASSWORD_EXPIRED = error_codes._LIBSSH2_ERROR_PASSWORD_EXPIRED
+ * LIBSSH2_ERROR_FILE = error_codes._LIBSSH2_ERROR_FILE
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_PROTO); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_PROTO, __pyx_t_1) < 0) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "ssh2/error_codes.pyx":33
- * # LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA = c_ssh2._LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA
- * # LIBSSH2_CHANNEL_FLUSH_ALL = c_ssh2._LIBSSH2_CHANNEL_FLUSH_ALL
- * LIBSSH2_ERROR_TIMEOUT = error_codes._LIBSSH2_ERROR_TIMEOUT             # <<<<<<<<<<<<<<
- * LIBSSH2_ERROR_SOCKET_TIMEOUT = error_codes._LIBSSH2_ERROR_SOCKET_TIMEOUT
+ * LIBSSH2_ERROR_SOCKET_DISCONNECT = error_codes._LIBSSH2_ERROR_SOCKET_DISCONNECT
+ * LIBSSH2_ERROR_PROTO = error_codes._LIBSSH2_ERROR_PROTO
+ * LIBSSH2_ERROR_PASSWORD_EXPIRED = error_codes._LIBSSH2_ERROR_PASSWORD_EXPIRED             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_FILE = error_codes._LIBSSH2_ERROR_FILE
+ * LIBSSH2_ERROR_METHOD_NONE \
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_TIMEOUT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_PASSWORD_EXPIRED); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_TIMEOUT, __pyx_t_1) < 0) __PYX_ERR(0, 33, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_PASSWORD_EXPIRED, __pyx_t_1) < 0) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "ssh2/error_codes.pyx":34
- * # LIBSSH2_CHANNEL_FLUSH_ALL = c_ssh2._LIBSSH2_CHANNEL_FLUSH_ALL
- * LIBSSH2_ERROR_TIMEOUT = error_codes._LIBSSH2_ERROR_TIMEOUT
- * LIBSSH2_ERROR_SOCKET_TIMEOUT = error_codes._LIBSSH2_ERROR_SOCKET_TIMEOUT             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_PROTO = error_codes._LIBSSH2_ERROR_PROTO
+ * LIBSSH2_ERROR_PASSWORD_EXPIRED = error_codes._LIBSSH2_ERROR_PASSWORD_EXPIRED
+ * LIBSSH2_ERROR_FILE = error_codes._LIBSSH2_ERROR_FILE             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_METHOD_NONE \
+ *     = error_codes._LIBSSH2_ERROR_METHOD_NONE
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_SOCKET_TIMEOUT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_FILE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_SOCKET_TIMEOUT, __pyx_t_1) < 0) __PYX_ERR(0, 34, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_FILE, __pyx_t_1) < 0) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":36
+ * LIBSSH2_ERROR_FILE = error_codes._LIBSSH2_ERROR_FILE
+ * LIBSSH2_ERROR_METHOD_NONE \
+ *     = error_codes._LIBSSH2_ERROR_METHOD_NONE             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_AUTHENTICATION_FAILED \
+ *     = error_codes._LIBSSH2_ERROR_AUTHENTICATION_FAILED
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_METHOD_NONE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_METHOD_NONE, __pyx_t_1) < 0) __PYX_ERR(0, 36, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":38
+ *     = error_codes._LIBSSH2_ERROR_METHOD_NONE
+ * LIBSSH2_ERROR_AUTHENTICATION_FAILED \
+ *     = error_codes._LIBSSH2_ERROR_AUTHENTICATION_FAILED             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_PUBLICKEY_UNRECOGNIZED \
+ *     = error_codes._LIBSSH2_ERROR_PUBLICKEY_UNRECOGNIZED
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_AUTHENTICATION_FAILED); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_AUTHENTICATION_FAI, __pyx_t_1) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":40
+ *     = error_codes._LIBSSH2_ERROR_AUTHENTICATION_FAILED
+ * LIBSSH2_ERROR_PUBLICKEY_UNRECOGNIZED \
+ *     = error_codes._LIBSSH2_ERROR_PUBLICKEY_UNRECOGNIZED             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_PUBLICKEY_UNVERIFIED \
+ *     = error_codes._LIBSSH2_ERROR_PUBLICKEY_UNVERIFIED
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_AUTHENTICATION_FAILED); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_PUBLICKEY_UNRECOGN, __pyx_t_1) < 0) __PYX_ERR(0, 40, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":42
+ *     = error_codes._LIBSSH2_ERROR_PUBLICKEY_UNRECOGNIZED
+ * LIBSSH2_ERROR_PUBLICKEY_UNVERIFIED \
+ *     = error_codes._LIBSSH2_ERROR_PUBLICKEY_UNVERIFIED             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_CHANNEL_OUTOFORDER = error_codes._LIBSSH2_ERROR_CHANNEL_OUTOFORDER
+ * LIBSSH2_ERROR_CHANNEL_FAILURE = error_codes._LIBSSH2_ERROR_CHANNEL_FAILURE
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_PUBLICKEY_UNVERIFIED); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_PUBLICKEY_UNVERIFI, __pyx_t_1) < 0) __PYX_ERR(0, 42, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":43
+ * LIBSSH2_ERROR_PUBLICKEY_UNVERIFIED \
+ *     = error_codes._LIBSSH2_ERROR_PUBLICKEY_UNVERIFIED
+ * LIBSSH2_ERROR_CHANNEL_OUTOFORDER = error_codes._LIBSSH2_ERROR_CHANNEL_OUTOFORDER             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_CHANNEL_FAILURE = error_codes._LIBSSH2_ERROR_CHANNEL_FAILURE
+ * LIBSSH2_ERROR_CHANNEL_REQUEST_DENIED \
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_CHANNEL_OUTOFORDER); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_CHANNEL_OUTOFORDER, __pyx_t_1) < 0) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":44
+ *     = error_codes._LIBSSH2_ERROR_PUBLICKEY_UNVERIFIED
+ * LIBSSH2_ERROR_CHANNEL_OUTOFORDER = error_codes._LIBSSH2_ERROR_CHANNEL_OUTOFORDER
+ * LIBSSH2_ERROR_CHANNEL_FAILURE = error_codes._LIBSSH2_ERROR_CHANNEL_FAILURE             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_CHANNEL_REQUEST_DENIED \
+ *     = error_codes._LIBSSH2_ERROR_CHANNEL_REQUEST_DENIED
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_CHANNEL_FAILURE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_CHANNEL_FAILURE, __pyx_t_1) < 0) __PYX_ERR(0, 44, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":46
+ * LIBSSH2_ERROR_CHANNEL_FAILURE = error_codes._LIBSSH2_ERROR_CHANNEL_FAILURE
+ * LIBSSH2_ERROR_CHANNEL_REQUEST_DENIED \
+ *     = error_codes._LIBSSH2_ERROR_CHANNEL_REQUEST_DENIED             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_CHANNEL_UNKNOWN = error_codes._LIBSSH2_ERROR_CHANNEL_UNKNOWN
+ * LIBSSH2_ERROR_CHANNEL_WINDOW_EXCEEDED \
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_CHANNEL_REQUEST_DENIED); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_CHANNEL_REQUEST_DE, __pyx_t_1) < 0) __PYX_ERR(0, 46, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":47
+ * LIBSSH2_ERROR_CHANNEL_REQUEST_DENIED \
+ *     = error_codes._LIBSSH2_ERROR_CHANNEL_REQUEST_DENIED
+ * LIBSSH2_ERROR_CHANNEL_UNKNOWN = error_codes._LIBSSH2_ERROR_CHANNEL_UNKNOWN             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_CHANNEL_WINDOW_EXCEEDED \
+ *     = error_codes._LIBSSH2_ERROR_CHANNEL_WINDOW_EXCEEDED
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_CHANNEL_UNKNOWN); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_CHANNEL_UNKNOWN, __pyx_t_1) < 0) __PYX_ERR(0, 47, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":49
+ * LIBSSH2_ERROR_CHANNEL_UNKNOWN = error_codes._LIBSSH2_ERROR_CHANNEL_UNKNOWN
+ * LIBSSH2_ERROR_CHANNEL_WINDOW_EXCEEDED \
+ *     = error_codes._LIBSSH2_ERROR_CHANNEL_WINDOW_EXCEEDED             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_CHANNEL_PACKET_EXCEEDED \
+ *     = error_codes._LIBSSH2_ERROR_CHANNEL_PACKET_EXCEEDED
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_CHANNEL_WINDOW_EXCEEDED); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_CHANNEL_WINDOW_EXC, __pyx_t_1) < 0) __PYX_ERR(0, 49, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":51
+ *     = error_codes._LIBSSH2_ERROR_CHANNEL_WINDOW_EXCEEDED
+ * LIBSSH2_ERROR_CHANNEL_PACKET_EXCEEDED \
+ *     = error_codes._LIBSSH2_ERROR_CHANNEL_PACKET_EXCEEDED             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_CHANNEL_CLOSED = error_codes._LIBSSH2_ERROR_CHANNEL_CLOSED
+ * LIBSSH2_ERROR_CHANNEL_EOF_SENT = error_codes._LIBSSH2_ERROR_CHANNEL_EOF_SENT
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_CHANNEL_PACKET_EXCEEDED); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_CHANNEL_PACKET_EXC, __pyx_t_1) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":52
+ * LIBSSH2_ERROR_CHANNEL_PACKET_EXCEEDED \
+ *     = error_codes._LIBSSH2_ERROR_CHANNEL_PACKET_EXCEEDED
+ * LIBSSH2_ERROR_CHANNEL_CLOSED = error_codes._LIBSSH2_ERROR_CHANNEL_CLOSED             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_CHANNEL_EOF_SENT = error_codes._LIBSSH2_ERROR_CHANNEL_EOF_SENT
+ * LIBSSH2_ERROR_SCP_PROTOCOL = error_codes._LIBSSH2_ERROR_SCP_PROTOCOL
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_CHANNEL_CLOSED); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_CHANNEL_CLOSED, __pyx_t_1) < 0) __PYX_ERR(0, 52, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":53
+ *     = error_codes._LIBSSH2_ERROR_CHANNEL_PACKET_EXCEEDED
+ * LIBSSH2_ERROR_CHANNEL_CLOSED = error_codes._LIBSSH2_ERROR_CHANNEL_CLOSED
+ * LIBSSH2_ERROR_CHANNEL_EOF_SENT = error_codes._LIBSSH2_ERROR_CHANNEL_EOF_SENT             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_SCP_PROTOCOL = error_codes._LIBSSH2_ERROR_SCP_PROTOCOL
+ * LIBSSH2_ERROR_ZLIB = error_codes._LIBSSH2_ERROR_ZLIB
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_CHANNEL_EOF_SENT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_CHANNEL_EOF_SENT, __pyx_t_1) < 0) __PYX_ERR(0, 53, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":54
+ * LIBSSH2_ERROR_CHANNEL_CLOSED = error_codes._LIBSSH2_ERROR_CHANNEL_CLOSED
+ * LIBSSH2_ERROR_CHANNEL_EOF_SENT = error_codes._LIBSSH2_ERROR_CHANNEL_EOF_SENT
+ * LIBSSH2_ERROR_SCP_PROTOCOL = error_codes._LIBSSH2_ERROR_SCP_PROTOCOL             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_ZLIB = error_codes._LIBSSH2_ERROR_ZLIB
+ * LIBSSH2_ERROR_SOCKET_TIMEOUT = error_codes._LIBSSH2_ERROR_SOCKET_TIMEOUT
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_SCP_PROTOCOL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_SCP_PROTOCOL, __pyx_t_1) < 0) __PYX_ERR(0, 54, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":55
+ * LIBSSH2_ERROR_CHANNEL_EOF_SENT = error_codes._LIBSSH2_ERROR_CHANNEL_EOF_SENT
+ * LIBSSH2_ERROR_SCP_PROTOCOL = error_codes._LIBSSH2_ERROR_SCP_PROTOCOL
+ * LIBSSH2_ERROR_ZLIB = error_codes._LIBSSH2_ERROR_ZLIB             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_SOCKET_TIMEOUT = error_codes._LIBSSH2_ERROR_SOCKET_TIMEOUT
+ * LIBSSH2_ERROR_SFTP_PROTOCOL = error_codes._LIBSSH2_ERROR_SFTP_PROTOCOL
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_ZLIB); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_ZLIB, __pyx_t_1) < 0) __PYX_ERR(0, 55, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":56
+ * LIBSSH2_ERROR_SCP_PROTOCOL = error_codes._LIBSSH2_ERROR_SCP_PROTOCOL
+ * LIBSSH2_ERROR_ZLIB = error_codes._LIBSSH2_ERROR_ZLIB
+ * LIBSSH2_ERROR_SOCKET_TIMEOUT = error_codes._LIBSSH2_ERROR_SOCKET_TIMEOUT             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_SFTP_PROTOCOL = error_codes._LIBSSH2_ERROR_SFTP_PROTOCOL
+ * LIBSSH2_ERROR_REQUEST_DENIED = error_codes._LIBSSH2_ERROR_REQUEST_DENIED
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_SOCKET_TIMEOUT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_SOCKET_TIMEOUT, __pyx_t_1) < 0) __PYX_ERR(0, 56, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":57
+ * LIBSSH2_ERROR_ZLIB = error_codes._LIBSSH2_ERROR_ZLIB
+ * LIBSSH2_ERROR_SOCKET_TIMEOUT = error_codes._LIBSSH2_ERROR_SOCKET_TIMEOUT
+ * LIBSSH2_ERROR_SFTP_PROTOCOL = error_codes._LIBSSH2_ERROR_SFTP_PROTOCOL             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_REQUEST_DENIED = error_codes._LIBSSH2_ERROR_REQUEST_DENIED
+ * LIBSSH2_ERROR_METHOD_NOT_SUPPORTED \
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_SFTP_PROTOCOL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_SFTP_PROTOCOL, __pyx_t_1) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":58
+ * LIBSSH2_ERROR_SOCKET_TIMEOUT = error_codes._LIBSSH2_ERROR_SOCKET_TIMEOUT
+ * LIBSSH2_ERROR_SFTP_PROTOCOL = error_codes._LIBSSH2_ERROR_SFTP_PROTOCOL
+ * LIBSSH2_ERROR_REQUEST_DENIED = error_codes._LIBSSH2_ERROR_REQUEST_DENIED             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_METHOD_NOT_SUPPORTED \
+ *     = error_codes._LIBSSH2_ERROR_METHOD_NOT_SUPPORTED
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_REQUEST_DENIED); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_REQUEST_DENIED, __pyx_t_1) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":60
+ * LIBSSH2_ERROR_REQUEST_DENIED = error_codes._LIBSSH2_ERROR_REQUEST_DENIED
+ * LIBSSH2_ERROR_METHOD_NOT_SUPPORTED \
+ *     = error_codes._LIBSSH2_ERROR_METHOD_NOT_SUPPORTED             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_INVAL = error_codes._LIBSSH2_ERROR_INVAL
+ * LIBSSH2_ERROR_INVALID_POLL_TYPE = error_codes._LIBSSH2_ERROR_INVALID_POLL_TYPE
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_METHOD_NOT_SUPPORTED); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_METHOD_NOT_SUPPORT, __pyx_t_1) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":61
+ * LIBSSH2_ERROR_METHOD_NOT_SUPPORTED \
+ *     = error_codes._LIBSSH2_ERROR_METHOD_NOT_SUPPORTED
+ * LIBSSH2_ERROR_INVAL = error_codes._LIBSSH2_ERROR_INVAL             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_INVALID_POLL_TYPE = error_codes._LIBSSH2_ERROR_INVALID_POLL_TYPE
+ * LIBSSH2_ERROR_PUBLICKEY_PROTOCOL = error_codes._LIBSSH2_ERROR_PUBLICKEY_PROTOCOL
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_INVAL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_INVAL, __pyx_t_1) < 0) __PYX_ERR(0, 61, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":62
+ *     = error_codes._LIBSSH2_ERROR_METHOD_NOT_SUPPORTED
+ * LIBSSH2_ERROR_INVAL = error_codes._LIBSSH2_ERROR_INVAL
+ * LIBSSH2_ERROR_INVALID_POLL_TYPE = error_codes._LIBSSH2_ERROR_INVALID_POLL_TYPE             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_PUBLICKEY_PROTOCOL = error_codes._LIBSSH2_ERROR_PUBLICKEY_PROTOCOL
+ * LIBSSH2_ERROR_EAGAIN = error_codes._LIBSSH2_ERROR_EAGAIN
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_INVALID_POLL_TYPE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 62, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_INVALID_POLL_TYPE, __pyx_t_1) < 0) __PYX_ERR(0, 62, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":63
+ * LIBSSH2_ERROR_INVAL = error_codes._LIBSSH2_ERROR_INVAL
+ * LIBSSH2_ERROR_INVALID_POLL_TYPE = error_codes._LIBSSH2_ERROR_INVALID_POLL_TYPE
+ * LIBSSH2_ERROR_PUBLICKEY_PROTOCOL = error_codes._LIBSSH2_ERROR_PUBLICKEY_PROTOCOL             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_EAGAIN = error_codes._LIBSSH2_ERROR_EAGAIN
+ * LIBSSH2CHANNEL_EAGAIN = error_codes._LIBSSH2CHANNEL_EAGAIN
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_PUBLICKEY_PROTOCOL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_PUBLICKEY_PROTOCOL, __pyx_t_1) < 0) __PYX_ERR(0, 63, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":64
+ * LIBSSH2_ERROR_INVALID_POLL_TYPE = error_codes._LIBSSH2_ERROR_INVALID_POLL_TYPE
+ * LIBSSH2_ERROR_PUBLICKEY_PROTOCOL = error_codes._LIBSSH2_ERROR_PUBLICKEY_PROTOCOL
+ * LIBSSH2_ERROR_EAGAIN = error_codes._LIBSSH2_ERROR_EAGAIN             # <<<<<<<<<<<<<<
+ * LIBSSH2CHANNEL_EAGAIN = error_codes._LIBSSH2CHANNEL_EAGAIN
+ * LIBSSH2_ERROR_BUFFER_TOO_SMALL = error_codes._LIBSSH2_ERROR_BUFFER_TOO_SMALL
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_EAGAIN); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_EAGAIN, __pyx_t_1) < 0) __PYX_ERR(0, 64, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":65
+ * LIBSSH2_ERROR_PUBLICKEY_PROTOCOL = error_codes._LIBSSH2_ERROR_PUBLICKEY_PROTOCOL
+ * LIBSSH2_ERROR_EAGAIN = error_codes._LIBSSH2_ERROR_EAGAIN
+ * LIBSSH2CHANNEL_EAGAIN = error_codes._LIBSSH2CHANNEL_EAGAIN             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_BUFFER_TOO_SMALL = error_codes._LIBSSH2_ERROR_BUFFER_TOO_SMALL
+ * LIBSSH2_ERROR_BAD_USE = error_codes._LIBSSH2_ERROR_BAD_USE
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_EAGAIN); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2CHANNEL_EAGAIN, __pyx_t_1) < 0) __PYX_ERR(0, 65, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":66
+ * LIBSSH2_ERROR_EAGAIN = error_codes._LIBSSH2_ERROR_EAGAIN
+ * LIBSSH2CHANNEL_EAGAIN = error_codes._LIBSSH2CHANNEL_EAGAIN
+ * LIBSSH2_ERROR_BUFFER_TOO_SMALL = error_codes._LIBSSH2_ERROR_BUFFER_TOO_SMALL             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_BAD_USE = error_codes._LIBSSH2_ERROR_BAD_USE
+ * LIBSSH2_ERROR_COMPRESS = error_codes._LIBSSH2_ERROR_COMPRESS
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_BUFFER_TOO_SMALL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_BUFFER_TOO_SMALL, __pyx_t_1) < 0) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":67
+ * LIBSSH2CHANNEL_EAGAIN = error_codes._LIBSSH2CHANNEL_EAGAIN
+ * LIBSSH2_ERROR_BUFFER_TOO_SMALL = error_codes._LIBSSH2_ERROR_BUFFER_TOO_SMALL
+ * LIBSSH2_ERROR_BAD_USE = error_codes._LIBSSH2_ERROR_BAD_USE             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_COMPRESS = error_codes._LIBSSH2_ERROR_COMPRESS
+ * LIBSSH2_ERROR_OUT_OF_BOUNDARY = error_codes._LIBSSH2_ERROR_OUT_OF_BOUNDARY
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_BAD_USE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_BAD_USE, __pyx_t_1) < 0) __PYX_ERR(0, 67, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":68
+ * LIBSSH2_ERROR_BUFFER_TOO_SMALL = error_codes._LIBSSH2_ERROR_BUFFER_TOO_SMALL
+ * LIBSSH2_ERROR_BAD_USE = error_codes._LIBSSH2_ERROR_BAD_USE
+ * LIBSSH2_ERROR_COMPRESS = error_codes._LIBSSH2_ERROR_COMPRESS             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_OUT_OF_BOUNDARY = error_codes._LIBSSH2_ERROR_OUT_OF_BOUNDARY
+ * LIBSSH2_ERROR_AGENT_PROTOCOL = error_codes._LIBSSH2_ERROR_AGENT_PROTOCOL
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_COMPRESS); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_COMPRESS, __pyx_t_1) < 0) __PYX_ERR(0, 68, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":69
+ * LIBSSH2_ERROR_BAD_USE = error_codes._LIBSSH2_ERROR_BAD_USE
+ * LIBSSH2_ERROR_COMPRESS = error_codes._LIBSSH2_ERROR_COMPRESS
+ * LIBSSH2_ERROR_OUT_OF_BOUNDARY = error_codes._LIBSSH2_ERROR_OUT_OF_BOUNDARY             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_AGENT_PROTOCOL = error_codes._LIBSSH2_ERROR_AGENT_PROTOCOL
+ * LIBSSH2_ERROR_SOCKET_RECV = error_codes._LIBSSH2_ERROR_SOCKET_RECV
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_OUT_OF_BOUNDARY); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_OUT_OF_BOUNDARY, __pyx_t_1) < 0) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":70
+ * LIBSSH2_ERROR_COMPRESS = error_codes._LIBSSH2_ERROR_COMPRESS
+ * LIBSSH2_ERROR_OUT_OF_BOUNDARY = error_codes._LIBSSH2_ERROR_OUT_OF_BOUNDARY
+ * LIBSSH2_ERROR_AGENT_PROTOCOL = error_codes._LIBSSH2_ERROR_AGENT_PROTOCOL             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_SOCKET_RECV = error_codes._LIBSSH2_ERROR_SOCKET_RECV
+ * LIBSSH2_ERROR_ENCRYPT = error_codes._LIBSSH2_ERROR_ENCRYPT
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_AGENT_PROTOCOL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_AGENT_PROTOCOL, __pyx_t_1) < 0) __PYX_ERR(0, 70, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":71
+ * LIBSSH2_ERROR_OUT_OF_BOUNDARY = error_codes._LIBSSH2_ERROR_OUT_OF_BOUNDARY
+ * LIBSSH2_ERROR_AGENT_PROTOCOL = error_codes._LIBSSH2_ERROR_AGENT_PROTOCOL
+ * LIBSSH2_ERROR_SOCKET_RECV = error_codes._LIBSSH2_ERROR_SOCKET_RECV             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_ENCRYPT = error_codes._LIBSSH2_ERROR_ENCRYPT
+ * LIBSSH2_ERROR_BAD_SOCKET = error_codes._LIBSSH2_ERROR_BAD_SOCKET
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_SOCKET_RECV); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_SOCKET_RECV, __pyx_t_1) < 0) __PYX_ERR(0, 71, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":72
+ * LIBSSH2_ERROR_AGENT_PROTOCOL = error_codes._LIBSSH2_ERROR_AGENT_PROTOCOL
+ * LIBSSH2_ERROR_SOCKET_RECV = error_codes._LIBSSH2_ERROR_SOCKET_RECV
+ * LIBSSH2_ERROR_ENCRYPT = error_codes._LIBSSH2_ERROR_ENCRYPT             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_BAD_SOCKET = error_codes._LIBSSH2_ERROR_BAD_SOCKET
+ * LIBSSH2_ERROR_KNOWN_HOSTS = error_codes._LIBSSH2_ERROR_KNOWN_HOSTS
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_ENCRYPT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_ENCRYPT, __pyx_t_1) < 0) __PYX_ERR(0, 72, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":73
+ * LIBSSH2_ERROR_SOCKET_RECV = error_codes._LIBSSH2_ERROR_SOCKET_RECV
+ * LIBSSH2_ERROR_ENCRYPT = error_codes._LIBSSH2_ERROR_ENCRYPT
+ * LIBSSH2_ERROR_BAD_SOCKET = error_codes._LIBSSH2_ERROR_BAD_SOCKET             # <<<<<<<<<<<<<<
+ * LIBSSH2_ERROR_KNOWN_HOSTS = error_codes._LIBSSH2_ERROR_KNOWN_HOSTS
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_BAD_SOCKET); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_BAD_SOCKET, __pyx_t_1) < 0) __PYX_ERR(0, 73, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/error_codes.pyx":74
+ * LIBSSH2_ERROR_ENCRYPT = error_codes._LIBSSH2_ERROR_ENCRYPT
+ * LIBSSH2_ERROR_BAD_SOCKET = error_codes._LIBSSH2_ERROR_BAD_SOCKET
+ * LIBSSH2_ERROR_KNOWN_HOSTS = error_codes._LIBSSH2_ERROR_KNOWN_HOSTS             # <<<<<<<<<<<<<<
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(LIBSSH2_ERROR_KNOWN_HOSTS); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_ERROR_KNOWN_HOSTS, __pyx_t_1) < 0) __PYX_ERR(0, 74, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "ssh2/error_codes.pyx":1

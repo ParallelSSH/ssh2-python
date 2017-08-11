@@ -14,9 +14,10 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
+from session cimport Session
+
 cimport c_ssh2
 cimport c_sftp
-from session cimport Session
 
 
 cdef object PySFTP(c_sftp.LIBSSH2_SFTP *sftp, Session session)

@@ -19,11 +19,14 @@ ______________
 
 System packages are available on the `latest releases page <https://github.com/ParallelSSH/ssh2-python/releases/latest>`_ built on Centos/RedHat 6/7, Ubuntu 14.04/16.04, Debian 7/8 and Fedora 22/23/24.
 
+The library has *no dependencies* other than ``libssh2``.
+
 
 Installation from Source
 _________________________
 
 Install ``libssh2`` and Python header files.
+
 
 Ubuntu
 --------
@@ -57,10 +60,13 @@ In addition, as ``ssh2-python`` is a thin wrapper of ``libssh2`` with Python sem
 Quick Start
 _____________
 
-
-Both byte and unicode strings are accepted as arguments and encoded appropriately. To change default encoding change the value of ``ssh2.utils.ENCODING``. Channel output is always byte strings.
+Both byte and unicode strings are accepted as arguments and encoded appropriately. To change default encoding, ``utf-8``, change the value of ``ssh2.utils.ENCODING``. Channel output is always byte strings.
 
 See `Complete Example`_ for a complete example including socket connect.
+
+Please use either the issue tracker for reporting issues with code or the `mail group`_ for discussion and questions.
+
+Contributions are most welcome!
 
 
 Authentication Methods
@@ -220,7 +226,7 @@ ________________________________________
 
 
 * SSH channel operations (exec,shell,subsystem) and methods
-* SSH agent
+* SSH agent functionality
 * Public key authentication and management
 * SFTP operations
 * SFTP file handles and attributes
@@ -277,3 +283,4 @@ Performance of above example, compared with Paramiko.
 .. _libssh2: https://www.libssh2.org
 .. _Cython: https://www.cython.org
 .. _`examples directory`: https://github.com/ParallelSSH/ssh2-python/tree/master/examples
+.. _`mail group`: https://groups.google.com/forum/#!forum/ssh2-python

@@ -14,17 +14,14 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-# cython: embedsignature=True, boundscheck=False, optimize.use_switch=True, wraparound=False
-
 from libc.stdlib cimport malloc, free
+from session cimport Session
+from exceptions cimport ChannelError
+from utils cimport to_bytes
 
 cimport c_ssh2
 cimport sftp
 cimport error_codes
-
-from session cimport Session
-from exceptions cimport ChannelError
-from utils cimport to_bytes
 
 
 cdef object PyChannel(c_ssh2.LIBSSH2_CHANNEL *channel, Session session):
@@ -50,7 +47,7 @@ cdef class Channel:
         with nogil:
             rc = c_ssh2.libssh2_channel_request_pty(
                 self._channel, _term)
-            if rc != 0 and rc != c_ssh2._LIBSSH2_ERROR_EAGAIN:
+            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
                 with gil:
                     raise ChannelError(
                         "Error requesting PTY with error code %s",
@@ -73,7 +70,7 @@ cdef class Channel:
         with nogil:
             rc = c_ssh2.libssh2_channel_exec(
                 self._channel, _command)
-            if rc != 0 and rc != c_ssh2._LIBSSH2_ERROR_EAGAIN:
+            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
                 with gil:
                     raise ChannelError(
                         "Error executing command %s - error code %s",
@@ -90,7 +87,7 @@ cdef class Channel:
         with nogil:
             rc = c_ssh2.libssh2_channel_subsystem(
                 self._channel, _subsystem)
-            if rc != 0 and rc != c_ssh2._LIBSSH2_ERROR_EAGAIN:
+            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
                 with gil:
                     raise ChannelError(
                         "Error requesting subsystem %s - error code %s",
@@ -141,7 +138,8 @@ cdef class Channel:
         Negative values are error codes.
 
         :rtype: (int, bytes)"""
-        return self.read_ex(size=size, stream_id=c_ssh2._SSH_EXTENDED_DATA_STDERR)
+        return self.read_ex(
+            size=size, stream_id=c_ssh2.SSH_EXTENDED_DATA_STDERR)
 
     def eof(self):
         """Get channel EOF status.

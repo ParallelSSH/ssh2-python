@@ -14,15 +14,12 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-# cython: embedsignature=True, boundscheck=False, optimize.use_switch=True, wraparound=False
-
 from select import select
 
 from cpython.version cimport PY_MAJOR_VERSION
 
-cimport c_ssh2
 from session cimport Session
-
+cimport c_ssh2
 
 ENCODING='utf-8'
 
@@ -74,7 +71,7 @@ def wait_socket(_socket not None, Session session, timeout=1):
     if directions == 0:
         return 0
     readfds = [_socket] \
-              if (directions & c_ssh2._LIBSSH2_SESSION_BLOCK_INBOUND) else ()
+        if (directions & c_ssh2.LIBSSH2_SESSION_BLOCK_INBOUND) else ()
     writefds = [_socket] \
-               if (directions & c_ssh2._LIBSSH2_SESSION_BLOCK_OUTBOUND) else ()
+        if (directions & c_ssh2.LIBSSH2_SESSION_BLOCK_OUTBOUND) else ()
     return select(readfds, writefds, (), timeout)

@@ -16,8 +16,8 @@
 
 from libc.stdint cimport uint64_t
 from libc.time cimport time_t
-from posix.types cimport (blkcnt_t, blksize_t, dev_t, gid_t, ino_t,
-                          nlink_t, off_t, time_t, uid_t)
+from posix.types cimport blkcnt_t, blksize_t, dev_t, gid_t, ino_t, \
+    nlink_t, off_t, time_t, uid_t
 from posix.stat cimport struct_stat
 
 
@@ -25,18 +25,18 @@ cdef extern from "libssh2.h" nogil:
     ctypedef int libssh2_socket_t
     int libssh2_init(int flags)
     enum:
-        _LIBSSH2_SESSION_BLOCK_INBOUND "LIBSSH2_SESSION_BLOCK_INBOUND"
-        _LIBSSH2_SESSION_BLOCK_OUTBOUND "LIBSSH2_SESSION_BLOCK_OUTBOUND"
-        _LIBSSH2_VERSION_MAJOR "LIBSSH2_VERSION_MAJOR"
-        _LIBSSH2_VERSION_MINOR "LIBSSH2_VERSION_MINOR"
-        _LIBSSH2_VERSION_PATCH "LIBSSH2_VERSION_PATCH"
-        _LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA "LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA"
-        _LIBSSH2_CHANNEL_FLUSH_ALL "LIBSSH2_CHANNEL_FLUSH_ALL"
+        LIBSSH2_SESSION_BLOCK_INBOUND
+        LIBSSH2_SESSION_BLOCK_OUTBOUND
+        LIBSSH2_VERSION_MAJOR
+        LIBSSH2_VERSION_MINOR
+        LIBSSH2_VERSION_PATCH
+        LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA
+        LIBSSH2_CHANNEL_FLUSH_ALL
     ctypedef long long libssh2_int64_t
     ctypedef uint64_t libssh2_struct_stat_size
     ctypedef struct libssh2_struct_stat:
         dev_t   st_dev
-        ino_t   st_ino    
+        ino_t   st_ino
         unsigned long st_mode
         nlink_t st_nlink
         uid_t   st_uid
@@ -169,15 +169,16 @@ cdef extern from "libssh2.h" nogil:
         const char *passphrase)
     int libssh2_poll(LIBSSH2_POLLFD *fds, unsigned int nfds,
                      long timeout)
-    int _LIBSSH2_CHANNEL_WINDOW_DEFAULT "LIBSSH2_CHANNEL_WINDOW_DEFAULT"
-    int _LIBSSH2_CHANNEL_PACKET_DEFAULT "LIBSSH2_CHANNEL_PACKET_DEFAULT"
-    int _LIBSSH2_CHANNEL_MINADJUST "LIBSSH2_CHANNEL_MINADJUST"
-    int _LIBSSH2_CHANNEL_EXTENDED_DATA_NORMAL "LIBSSH2_CHANNEL_EXTENDED_DATA_NORMAL"
-    int _LIBSSH2_CHANNEL_EXTENDED_DATA_IGNORE "LIBSSH2_CHANNEL_EXTENDED_DATA_IGNORE"
-    int _LIBSSH2_CHANNEL_EXTENDED_DATA_MERGE "LIBSSH2_CHANNEL_EXTENDED_DATA_MERGE"
-    int _LIBSSH2CHANNEL_EAGAIN "LIBSSH2CHANNEL_EAGAIN"
-    int _LIBSSH2_ERROR_EAGAIN "LIBSSH2_ERROR_EAGAIN"
-    int _SSH_EXTENDED_DATA_STDERR "SSH_EXTENDED_DATA_STDERR"
+    enum:
+        LIBSSH2_CHANNEL_WINDOW_DEFAULT
+        LIBSSH2_CHANNEL_PACKET_DEFAULT
+        LIBSSH2_CHANNEL_MINADJUST
+        LIBSSH2_CHANNEL_EXTENDED_DATA_NORMAL
+        LIBSSH2_CHANNEL_EXTENDED_DATA_IGNORE
+        LIBSSH2_CHANNEL_EXTENDED_DATA_MERGE
+        LIBSSH2CHANNEL_EAGAIN
+        LIBSSH2_ERROR_EAGAIN
+        SSH_EXTENDED_DATA_STDERR
     LIBSSH2_CHANNEL *libssh2_channel_open_ex(
         LIBSSH2_SESSION *session, const char *channel_type,
         unsigned int channel_type_len,
@@ -348,8 +349,8 @@ cdef extern from "libssh2.h" nogil:
         const char *comment, size_t commentlen, int typemask,
         libssh2_knownhost **store)
     int libssh2_knownhost_check(LIBSSH2_KNOWNHOSTS *hosts,
-                                const char *host, const char *key, size_t keylen,
-                                int typemask,
+                                const char *host, const char *key,
+                                size_t keylen, int typemask,
                                 libssh2_knownhost **knownhost)
     int libssh2_knownhost_checkp(LIBSSH2_KNOWNHOSTS *hosts,
                                  const char *host, int port,
@@ -390,17 +391,16 @@ cdef extern from "libssh2.h" nogil:
                                libssh2_agent_publickey *identity)
     int libssh2_agent_disconnect(LIBSSH2_AGENT *agent)
     void libssh2_agent_free(LIBSSH2_AGENT *agent)
-    void libssh2_keepalive_config (LIBSSH2_SESSION *session,
-                                   int want_reply,
-                                   unsigned interval)
-    int libssh2_keepalive_send (LIBSSH2_SESSION *session,
-                                int *seconds_to_next)
+    void libssh2_keepalive_config(LIBSSH2_SESSION *session,
+                                  int want_reply,
+                                  unsigned interval)
+    int libssh2_keepalive_send(LIBSSH2_SESSION *session,
+                               int *seconds_to_next)
     int libssh2_trace(LIBSSH2_SESSION *session, int bitmask)
-    ctypedef void (*libssh2_trace_handler_func)(LIBSSH2_SESSION*,
-                                                void*,
-                                                const char *,
-                                                size_t)
+    ctypedef void(*libssh2_trace_handler_func)(LIBSSH2_SESSION*,
+                                               void*,
+                                               const char *,
+                                               size_t)
     int libssh2_trace_sethandler(LIBSSH2_SESSION *session,
                                  void* context,
                                  libssh2_trace_handler_func callback)
-    

@@ -14,15 +14,10 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-# cython: embedsignature=True, boundscheck=False, optimize.use_switch=True, wraparound=False
-
 from cpython cimport PyObject_AsFileDescriptor
 from libc.stdint cimport uint64_t
 from libc.time cimport time_t
 
-cimport c_ssh2
-cimport c_sftp
-cimport c_pkey
 from agent cimport PyAgent, auth_identity, clear_agent
 from channel cimport PyChannel
 from exceptions cimport SessionHandshakeError, SessionStartupError, \
@@ -32,13 +27,17 @@ from listener cimport PyListener
 from sftp cimport PySFTP
 from publickey cimport PyPublicKeySystem
 from utils cimport to_bytes, to_str
+from statinfo cimport StatInfo
 IF EMBEDDED_LIB:
     from fileinfo cimport FileInfo
-from statinfo cimport StatInfo
+
+cimport c_ssh2
+cimport c_sftp
+cimport c_pkey
 
 
-LIBSSH2_SESSION_BLOCK_INBOUND = c_ssh2._LIBSSH2_SESSION_BLOCK_INBOUND
-LIBSSH2_SESSION_BLOCK_OUTBOUND = c_ssh2._LIBSSH2_SESSION_BLOCK_OUTBOUND
+LIBSSH2_SESSION_BLOCK_INBOUND = c_ssh2.LIBSSH2_SESSION_BLOCK_INBOUND
+LIBSSH2_SESSION_BLOCK_OUTBOUND = c_ssh2.LIBSSH2_SESSION_BLOCK_OUTBOUND
 
 
 cdef class Session:
@@ -67,7 +66,7 @@ cdef class Session:
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_session_handshake(self._session, _sock)
-            if rc != 0 and rc != c_ssh2._LIBSSH2_ERROR_EAGAIN:
+            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
                 with gil:
                     raise SessionHandshakeError(
                         "SSH session handshake failed with error code %s",
@@ -80,7 +79,7 @@ cdef class Session:
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_session_startup(self._session, _sock)
-            if rc != 0 and rc != c_ssh2._LIBSSH2_ERROR_EAGAIN:
+            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
                 with gil:
                     raise SessionStartupError(
                         "SSH session startup failed with error code %s",
@@ -164,7 +163,7 @@ cdef class Session:
         with nogil:
             rc = c_ssh2.libssh2_userauth_publickey_fromfile(
                 self._session, _username, _publickey, _privatekey, _passphrase)
-            if rc != 0 and rc != c_ssh2._LIBSSH2_ERROR_EAGAIN:
+            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
                 with gil:
                     raise AuthenticationError(
                         "Error authenticating user %s with private key %s and"
@@ -190,7 +189,7 @@ cdef class Session:
             rc = c_ssh2.libssh2_userauth_publickey(
                 self._session, _username, _pubkeydata,
                 pubkeydata_len, NULL, NULL)
-            if rc != 0 and rc != c_ssh2._LIBSSH2_ERROR_EAGAIN:
+            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
                 with gil:
                     raise AuthenticationError(
                         "Error authenticating user %s with public key data",
@@ -213,7 +212,7 @@ cdef class Session:
             rc = c_ssh2.libssh2_userauth_hostbased_fromfile(
                 self._session, _username, _publickey,
                 _privatekey, _passphrase, _hostname)
-            if rc != 0 and rc != c_ssh2._LIBSSH2_ERROR_EAGAIN:
+            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
                 with gil:
                     raise AuthenticationError(
                         "Error authenticating user %s with private key %s and"
@@ -251,7 +250,7 @@ cdef class Session:
         with nogil:
             rc = c_ssh2.libssh2_userauth_password(
                 self._session, _username, _password)
-            if rc != 0 and rc != c_ssh2._LIBSSH2_ERROR_EAGAIN:
+            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
                 with gil:
                     raise AuthenticationError(
                         "Error authenticating user %s with password",

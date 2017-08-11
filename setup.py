@@ -27,8 +27,15 @@ _libs = ['ssh2']
 # _comp_args = ["-ggdb"]
 _comp_args = ["-O3"]
 _embedded_lib = bool(os.environ.get('EMBEDDED_LIB'))
-cython_args = {'cython_compile_time_env': {'EMBEDDED_LIB': _embedded_lib}} \
-              if USING_CYTHON else {}
+cython_directives = {'embedsignature': True,
+                     'boundscheck': False,
+                     'optimize.use_switch': True,
+                     'wraparound': False,
+}
+cython_args = {
+    'cython_directives': cython_directives,
+    'cython_compile_time_env': {'EMBEDDED_LIB': _embedded_lib}} \
+    if USING_CYTHON else {}
 
 extensions = [
     Extension(sources[i].split('.')[0].replace('/', '.'),

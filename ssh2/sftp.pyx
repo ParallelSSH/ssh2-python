@@ -14,7 +14,6 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-# cython: embedsignature=True, boundscheck=False, optimize.use_switch=True, wraparound=False
 
 """
 SFTP channel, handle and attributes classes and related SFTP flags.
@@ -59,13 +58,15 @@ ____________
 from libc.stdlib cimport malloc, free
 
 from session cimport Session
-cimport c_ssh2
-cimport c_sftp
-from error_codes cimport _LIBSSH2_ERROR_EAGAIN, _LIBSSH2_ERROR_BUFFER_TOO_SMALL
+from error_codes cimport _LIBSSH2_ERROR_BUFFER_TOO_SMALL
 from channel cimport Channel, PyChannel
 from utils cimport to_bytes, to_str
 from exceptions cimport SFTPHandleError, SFTPBufferTooSmall
 from sftp_handle cimport SFTPHandle, PySFTPHandle, SFTPAttributes, SFTPStatVFS
+
+cimport c_ssh2
+cimport c_sftp
+
 
 # File types
 # TODO
@@ -293,12 +294,12 @@ cdef class SFTP:
         with nogil:
             rc = c_sftp.libssh2_sftp_stat(
                 self._sftp, _path, attrs._attrs)
-            if rc != c_ssh2._LIBSSH2_ERROR_EAGAIN and rc != 0:
+            if rc != c_ssh2.LIBSSH2_ERROR_EAGAIN and rc != 0:
                 with gil:
                     raise SFTPHandleError(
                         "Error with stat on file %s - code %s",
                         path, rc)
-        if rc == c_ssh2._LIBSSH2_ERROR_EAGAIN:
+        if rc == c_ssh2.LIBSSH2_ERROR_EAGAIN:
             return rc
         return attrs
 
@@ -310,12 +311,12 @@ cdef class SFTP:
         with nogil:
             rc = c_sftp.libssh2_sftp_lstat(
                 self._sftp, _path, attrs._attrs)
-            if rc != 0 and rc != c_ssh2._LIBSSH2_ERROR_EAGAIN:
+            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
                 with gil:
                     raise SFTPHandleError(
                         "Error with stat on file %s - code %s",
                         path, rc)
-        if rc == c_ssh2._LIBSSH2_ERROR_EAGAIN:
+        if rc == c_ssh2.LIBSSH2_ERROR_EAGAIN:
             return rc
         return attrs
 
@@ -379,12 +380,12 @@ cdef class SFTP:
                             "Buffer too small to fit realpath for %s "
                             "- max size %s. Error code %s",
                             path, max_len, rc)
-                elif rc != c_ssh2._LIBSSH2_ERROR_EAGAIN and rc < 0:
+                elif rc != c_ssh2.LIBSSH2_ERROR_EAGAIN and rc < 0:
                     with gil:
                         raise SFTPHandleError(
                             "Error getting real path for %s - error code %s",
                             path, rc)
-                elif rc == c_ssh2._LIBSSH2_ERROR_EAGAIN:
+                elif rc == c_ssh2.LIBSSH2_ERROR_EAGAIN:
                     with gil:
                         return rc
             realpath = _target[:rc]

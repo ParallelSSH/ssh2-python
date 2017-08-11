@@ -14,8 +14,6 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-# cython: embedsignature=True, boundscheck=False, optimize.use_switch=True, wraparound=False
-
 from libc.stdint cimport uint64_t
 from libc.stdlib cimport malloc, free
 
@@ -127,7 +125,7 @@ cdef class SFTPHandle:
         cdef int rc
         cdef bytes data
         rc, data = self.read()
-        if rc != c_ssh2._LIBSSH2_ERROR_EAGAIN and len(data) == 0:
+        if rc != c_ssh2.LIBSSH2_ERROR_EAGAIN and len(data) == 0:
             raise StopIteration
         return rc, data
 
@@ -151,7 +149,7 @@ cdef class SFTPHandle:
             return
         return rc
 
-    def read(self, size_t buffer_maxlen=c_ssh2._LIBSSH2_CHANNEL_WINDOW_DEFAULT):
+    def read(self, size_t buffer_maxlen=c_ssh2.LIBSSH2_CHANNEL_WINDOW_DEFAULT):
         """Read buffer from file handle.
 
         :param buffer_maxlen: Max length of buffer to return.
@@ -193,7 +191,7 @@ cdef class SFTPHandle:
         rc, buf, entry, attrs = self._readdir_ex(
             longentry_maxlen=longentry_maxlen,
             buffer_maxlen=buffer_maxlen)
-        while rc == c_ssh2._LIBSSH2_ERROR_EAGAIN or len(buf) > 0:
+        while rc == c_ssh2.LIBSSH2_ERROR_EAGAIN or len(buf) > 0:
             yield rc, buf, entry, attrs
             rc, buf, entryb, attrs = self._readdir_ex(
                 longentry_maxlen=longentry_maxlen,
@@ -237,12 +235,12 @@ cdef class SFTPHandle:
 
         :rtype: iter(bytes)"""
         rc, buf, attrs = self._readdir(buffer_maxlen)
-        while rc == c_ssh2._LIBSSH2_ERROR_EAGAIN or len(buf) > 0:
+        while rc == c_ssh2.LIBSSH2_ERROR_EAGAIN or len(buf) > 0:
             yield rc, buf, attrs
             rc, buf, attrs = self._readdir(buffer_maxlen)
 
     def _readdir(self,
-                size_t buffer_maxlen=1024):
+                 size_t buffer_maxlen=1024):
         cdef bytes buf
         cdef char *cbuf
         cdef SFTPAttributes attrs = SFTPAttributes()

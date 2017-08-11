@@ -14,8 +14,6 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-# cython: embedsignature=True, boundscheck=False, optimize.use_switch=True, wraparound=False
-
 from libc.stdlib cimport malloc, free
 from posix.stat cimport struct_stat
 
@@ -81,4 +79,3 @@ cdef class StatInfo:
     @property
     def st_ctime(self):
         return self._stat.st_ctime
-

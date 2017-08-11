@@ -14,14 +14,11 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-# cython: embedsignature=True, boundscheck=False, optimize.use_switch=True, wraparound=False
-
-cimport c_ssh2
 from pkey cimport PublicKey, PyPublicKey
 from exceptions cimport AgentConnectionError, AgentListIdentitiesError, \
     AgentGetIdentityError, AgentAuthenticationError
 from utils cimport to_bytes
-
+cimport c_ssh2
 
 cdef int auth_identity(const char *username,
                        c_ssh2.LIBSSH2_AGENT *agent,
@@ -84,7 +81,7 @@ cdef class Agent:
             if c_ssh2.libssh2_agent_list_identities(self._agent) != 0:
                 with gil:
                     raise AgentListIdentitiesError(
-                        "Failure requesting identities from agent." \
+                        "Failure requesting identities from agent."
                         "Agent must be connected first")
             while c_ssh2.libssh2_agent_get_identity(
                     self._agent, &identity, prev) == 0:
@@ -111,7 +108,7 @@ cdef class Agent:
         with nogil:
             rc = c_ssh2.libssh2_agent_userauth(
                 self._agent, _username, pkey._pkey)
-            if rc != 0 and rc != c_ssh2._LIBSSH2_ERROR_EAGAIN:
+            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
                 with gil:
                     raise AgentAuthenticationError(
                         "Error authenticating user %s with provided public key",
