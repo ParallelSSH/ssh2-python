@@ -1,6 +1,15 @@
 Change Log
 =============
 
+0.5.1
+++++++
+
+Changes
+--------
+
+* Implemented public key subsystem for public key management on remote servers
+* Added all libssh2 error codes to ``ssh2.error_codes``
+
 0.5.0
 ++++++
 
