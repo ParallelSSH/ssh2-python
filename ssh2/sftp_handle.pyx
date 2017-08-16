@@ -14,7 +14,6 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-from libc.stdint cimport uint64_t
 from libc.stdlib cimport malloc, free
 
 cimport c_ssh2
@@ -61,7 +60,7 @@ cdef class SFTPAttributes:
         return self._attrs.filesize
 
     @filesize.setter
-    def filesize(self, uint64_t filesize):
+    def filesize(self, c_ssh2.libssh2_uint64_t filesize):
         self._attrs.filesize = filesize
 
     @property
@@ -298,7 +297,7 @@ cdef class SFTPHandle:
         with nogil:
             c_sftp.libssh2_sftp_seek(self._handle, offset)
 
-    def seek64(self, uint64_t offset):
+    def seek64(self, c_ssh2.libssh2_uint64_t offset):
         """Seek file to given 64-bit offset.
 
         :param offset: Offset to seek to.
@@ -330,7 +329,7 @@ cdef class SFTPHandle:
         """Get current file handle 64-bit offset.
 
         :rtype: int"""
-        cdef uint64_t rc
+        cdef c_ssh2.libssh2_uint64_t rc
         with nogil:
             rc = c_sftp.libssh2_sftp_tell(self._handle)
         return rc

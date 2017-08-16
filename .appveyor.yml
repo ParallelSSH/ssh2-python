@@ -1,0 +1,46 @@
+environment:
+  matrix:
+    - TARGET_ARCH: "x64"
+      CONDA_PY: "27"
+      PY_CONDITION: "python >=2.7,<3"
+      CONDA_INSTALL_LOCN: "C:\\Miniconda-x64"
+    - TARGET_ARCH: "x64"
+      CONDA_PY: "35"
+      PY_CONDITION: "python >=3.5,<3.6"
+      CONDA_INSTALL_LOCN: "C:\\Miniconda35-x64"
+    - TARGET_ARCH: "x64"
+      CONDA_PY: "36"
+      PY_CONDITION: "python >=3.6"
+      CONDA_INSTALL_LOCN: "C:\\Miniconda36-x64"
+
+matrix:
+  fast_finish: true
+
+cache:
+  - "%TMP%\\py\\"
+
+build: false
+install:
+  - set CONDA_NPY=19
+  # Remove cygwin (and therefore the git that comes with it).
+  - rmdir C:\cygwin /s /q
+  # Use the pre-installed Miniconda for the desired arch
+  - set PATH=%CONDA_INSTALL_LOCN%/Library/bin;%CONDA_INSTALL_LOCN%/Scripts;%PATH%
+  - conda update --yes --quiet conda
+  - call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
+  - conda config --add channels conda-forge
+  - conda config --set show_channel_urls true
+  - conda install --yes --quiet conda-build-all
+  - conda update --yes conda-build
+  - conda install --yes --quiet conda-forge-build-setup
+  - run_conda_forge_build_setup
+  - conda build conda-recipe
+
+test_script:
+  - python ci\move-conda-package.py
+
+platform:
+  - x64
+
+artifacts:
+  - path: '*.tar.bz2'

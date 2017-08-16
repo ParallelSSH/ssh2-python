@@ -14,9 +14,7 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-from libc.stdint cimport uint64_t
-
-from c_ssh2 cimport LIBSSH2_SESSION, LIBSSH2_CHANNEL
+from c_ssh2 cimport LIBSSH2_SESSION, LIBSSH2_CHANNEL, libssh2_uint64_t
 
 
 cdef extern from "libssh2_sftp.h" nogil:
@@ -26,7 +24,7 @@ cdef extern from "libssh2_sftp.h" nogil:
         pass
     ctypedef struct LIBSSH2_SFTP_ATTRIBUTES:
         unsigned long flags
-        uint64_t filesize
+        libssh2_uint64_t filesize
         unsigned long uid, gid
         unsigned long permissions
         unsigned long atime, mtime
@@ -35,17 +33,17 @@ cdef extern from "libssh2_sftp.h" nogil:
         LIBSSH2_SFTP_ST_RDONLY
         LIBSSH2_SFTP_ST_NOSUID
     ctypedef struct LIBSSH2_SFTP_STATVFS:
-        uint64_t  f_bsize    # file system block size
-        uint64_t  f_frsize   # fragment size
-        uint64_t  f_blocks   # size of fs in f_frsize units
-        uint64_t  f_bfree    # free blocks
-        uint64_t  f_bavail   # free blocks for non-root
-        uint64_t  f_files    # inodes
-        uint64_t  f_ffree    # free inodes
-        uint64_t  f_favail   # free inodes for non-root
-        uint64_t  f_fsid     # file system ID
-        uint64_t  f_flag     # mount flags
-        uint64_t  f_namemax  # maximum filename length
+        libssh2_uint64_t  f_bsize    # file system block size
+        libssh2_uint64_t  f_frsize   # fragment size
+        libssh2_uint64_t  f_blocks   # size of fs in f_frsize units
+        libssh2_uint64_t  f_bfree    # free blocks
+        libssh2_uint64_t  f_bavail   # free blocks for non-root
+        libssh2_uint64_t  f_files    # inodes
+        libssh2_uint64_t  f_ffree    # free inodes
+        libssh2_uint64_t  f_favail   # free inodes for non-root
+        libssh2_uint64_t  f_fsid     # file system ID
+        libssh2_uint64_t  f_flag     # mount flags
+        libssh2_uint64_t  f_namemax  # maximum filename length
     # SFTP File types
     enum:
         LIBSSH2_SFTP_S_IFMT         # type of file mask
@@ -120,10 +118,10 @@ cdef extern from "libssh2_sftp.h" nogil:
     int libssh2_sftp_closedir(LIBSSH2_SFTP_HANDLE *handle)
     void libssh2_sftp_seek(LIBSSH2_SFTP_HANDLE *handle, size_t offset)
     void libssh2_sftp_seek64(LIBSSH2_SFTP_HANDLE *handle,
-                             uint64_t offset)
+                             libssh2_uint64_t offset)
     void libssh2_sftp_rewind(LIBSSH2_SFTP_HANDLE *handle)
     size_t libssh2_sftp_tell(LIBSSH2_SFTP_HANDLE *handle)
-    uint64_t libssh2_sftp_tell64(LIBSSH2_SFTP_HANDLE *handle)
+    libssh2_uint64_t libssh2_sftp_tell64(LIBSSH2_SFTP_HANDLE *handle)
     int libssh2_sftp_fstat_ex(LIBSSH2_SFTP_HANDLE *handle,
                               LIBSSH2_SFTP_ATTRIBUTES *attrs,
                               int setstat)

@@ -15,7 +15,6 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 from cpython cimport PyObject_AsFileDescriptor
-from libc.stdint cimport uint64_t
 from libc.time cimport time_t
 
 from agent cimport PyAgent, auth_identity, clear_agent
@@ -513,7 +512,7 @@ cdef class Session:
         if channel is not NULL:
             return PyChannel(channel, self)
 
-    def scp_send64(self, path not None, int mode, uint64_t size,
+    def scp_send64(self, path not None, int mode, c_ssh2.libssh2_uint64_t size,
                    time_t mtime, time_t atime):
         """Send file via SCP.
 

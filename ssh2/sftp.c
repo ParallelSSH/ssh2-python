@@ -469,12 +469,10 @@ static CYTHON_INLINE float __PYX_NAN() {
 
 #define __PYX_HAVE__ssh2__sftp
 #define __PYX_HAVE_API__ssh2__sftp
-#include <stdint.h>
 #include <stddef.h>
 #include <time.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <unistd.h>
 #include "libssh2.h"
 #include "libssh2_sftp.h"
 #include <string.h>
@@ -1194,15 +1192,13 @@ static int __Pyx_ImportFunction(PyObject *module, const char *funcname, void (**
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 
-/* Module declarations from 'libc.stdint' */
-
 /* Module declarations from 'libc.stddef' */
 
 /* Module declarations from 'libc.time' */
 
 /* Module declarations from 'posix.types' */
 
-/* Module declarations from 'posix.stat' */
+/* Module declarations from 'ssh2.c_stat' */
 
 /* Module declarations from 'ssh2.c_ssh2' */
 
