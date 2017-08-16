@@ -11,7 +11,7 @@ Super fast SSH2 protocol library. ``ssh2-python`` provides Python bindings for `
   :alt: Latest Version
 .. image:: https://travis-ci.org/ParallelSSH/ssh2-python.svg?branch=master
    :target: https://travis-ci.org/ParallelSSH/ssh2-python
-.. image:: https://ci.appveyor.com/api/projects/status/github/parallelssh/ssh2-python/branch/master?svg=true
+.. image:: https://ci.appveyor.com/api/projects/status/github/parallelssh/ssh2-python?svg=true&branch=master
    :target: https://ci.appveyor.com/project/pkittenis/ssh2-python
 
 Installation
