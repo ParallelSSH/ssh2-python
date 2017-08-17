@@ -4,12 +4,11 @@
 
 package:
   name: {{ name|lower }}
-  version: {{ GIT_DESCRIBE_TAG }}
+  version: {{ version }}
 
 source:
   path: ../
-  fn: {{ name }}-{{ GIT_DESCRIBE_TAG }}.tar.gz
-  # url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  # fn: {{ name }}-{{ GIT_DESCRIBE_TAG }}.tar.gz
   # sha256: {{ sha256 }}
 
 build:
@@ -17,7 +16,6 @@ build:
     - vc9  # [win and py27]
     - vc10  # [win and py34]
     - vc14  # [win and py35]
-  # skip: true  # [win]
   number: 0
   script:
     - python setup.py install --single-version-externally-managed --record record.txt  # [unix]
@@ -32,12 +30,10 @@ requirements:
     - setuptools
     - gcc  # [unix]
     - libssh2
-    - openssl 1.0.*
   run:
     - python
     - libssh2
     - gcc  # [unix]
-    - openssl 1.0.*
 
 test:
   imports:
