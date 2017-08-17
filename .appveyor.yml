@@ -51,7 +51,6 @@ after_test:
   - conda2wheel *.tar.bz2 -d lib_deps/* -s ssh2 -w .
   - ls *.whl
   - python -c "from __future__ import print_function; import pip; print(pip.pep425tags.get_supported())"
-  - ps: python -V
   - ps: pip install -v (Get-ChildItem *.whl)
   - python -c "from ssh2.session import Session; Session()"
 
