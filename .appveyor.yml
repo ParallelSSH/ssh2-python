@@ -44,8 +44,13 @@ after_test:
   - my_pip\Scripts\activate
   - pip install -U pip wheel
   - pip install https://github.com/pkittenis/conda2wheel/archive/master.zip
-  - ls %CONDA_INSTALL_LOCN%/Library/bin
-  - conda2wheel *.tar.bz2 -w .
+  - ls %CONDA_INSTALL_LOCN%/Library/bin/
+  - ls %CONDA_INSTALL_LOCN%/libs/
+  - mkdir lib_deps
+  - cp %CONDA_INSTALL_LOCN%/Library/bin/*.dll lib_deps/
+  - rm -f lib_deps/atl90.dll lib_deps/yaml.dll
+  - cp %CONDA_INSTALL_LOCN%/libs/libssh2.lib lib_deps/
+  - conda2wheel *.tar.bz2 -d lib_deps/* -s ssh2 -w .
   - ls *.whl
 
 platform:
