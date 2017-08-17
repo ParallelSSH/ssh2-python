@@ -39,10 +39,10 @@ test_script:
   - conda build conda-recipe
 
 after_test:
+  - python ci\move-conda-package.py
   - pip install https://github.com/pkittenis/conda2wheel/archive/master.zip
   - conda2wheel *.tar.bz2 -w .
   - ls *.whl
-  - python ci\move-conda-package.py
 
 platform:
   - x64
