@@ -39,9 +39,9 @@ install:
 
 before_test:
   - conda config --set anaconda_upload yes
-  - anaconda login --username parallelssh --password %ANACONDA_PASSWORD%
 
 test_script:
+  - anaconda login --username parallelssh --password %ANACONDA_PASSWORD%
   - conda build conda-recipe
 
 after_test:
