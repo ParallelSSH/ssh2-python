@@ -37,7 +37,6 @@ install:
 
 test_script:
   - conda build conda-recipe
-  - python setup.py bdist_wheel
 
 after_test:
   - ls dist/*.whl
