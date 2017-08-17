@@ -43,22 +43,24 @@ test_script:
 after_test:
   - python ci\move-conda-package.py
   - python ci/appveyor/anaconda_upload.py
-  # # Wheel builds
-  # - virtualenv my_pip
-  # - my_pip\Scripts\activate
-  # - pip install -U pip wheel
-  # - pip install https://github.com/pkittenis/conda2wheel/archive/master.zip
-  # - ls %CONDA_INSTALL_LOCN%/Library/bin/
-  # - mkdir lib_deps
-  # - cp %CONDA_INSTALL_LOCN%/Library/bin/*.dll lib_deps/
-  # - rm -f lib_deps/atl90.dll lib_deps/yaml.dll
-  # - conda2wheel *.tar.bz2 -d lib_deps/* -s ssh2 -w .
-  # - ls *.whl
-  # - python -c "from __future__ import print_function; import pip; print(pip.pep425tags.get_supported())"
-  # - ps: pip install -v (Get-ChildItem *.whl)
-  # - mkdir temp
-  # - cd temp
-  # - python -c "from ssh2.session import Session; Session()"
+
+  ### Wheel builds
+  - virtualenv my_pip
+  - my_pip\Scripts\activate
+  - pip install -U pip wheel
+  - pip install https://github.com/pkittenis/conda2wheel/archive/master.zip
+  - ls %CONDA_INSTALL_LOCN%/Library/bin/
+  - mkdir lib_deps
+  - cp %CONDA_INSTALL_LOCN%/Library/bin/*.dll lib_deps/
+  - rm -f lib_deps/atl90.dll lib_deps/yaml.dll
+  - conda2wheel *.tar.bz2 -d lib_deps/* -s ssh2 -w .
+  - ls *.whl
+  - python -c "from __future__ import print_function; import pip; print(pip.pep425tags.get_supported())"
+  - ps: pip install -v (Get-ChildItem *.whl)
+  - mkdir temp
+  - cd temp
+  - python -c "from ssh2.session import Session; Session()"
+  - cd ..
 
 platform:
   - x64
