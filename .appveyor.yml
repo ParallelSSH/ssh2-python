@@ -45,11 +45,9 @@ after_test:
   - pip install -U pip wheel
   - pip install https://github.com/pkittenis/conda2wheel/archive/master.zip
   - ls %CONDA_INSTALL_LOCN%/Library/bin/
-  - ls %CONDA_INSTALL_LOCN%/PC/VS*/amd64
   - mkdir lib_deps
   - cp %CONDA_INSTALL_LOCN%/Library/bin/*.dll lib_deps/
   - rm -f lib_deps/atl90.dll lib_deps/yaml.dll
-  - cp %CONDA_INSTALL_LOCN%//PC/VS*/amd64/libssh2* lib_deps/
   - conda2wheel *.tar.bz2 -d lib_deps/* -s ssh2 -w .
   - ls *.whl
 
