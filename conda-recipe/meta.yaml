@@ -27,10 +27,12 @@ requirements:
     - setuptools
     - gcc  # [unix]
     - libssh2
+    - openssl 1.0.*
   run:
     - python
     - libssh2
     - gcc  # [unix]
+    - openssl 1.0.*
 
 test:
   imports:
