@@ -34,7 +34,11 @@ install:
   - conda update --yes conda-build
   - conda install --yes --quiet conda-forge-build-setup
   - run_conda_forge_build_setup
+
+script:
   - conda build conda-recipe
+  - python setup.py bdist_wheel
+  - ls dist/*.whl
 
 test_script:
   - python ci\move-conda-package.py
