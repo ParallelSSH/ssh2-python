@@ -4,11 +4,11 @@
 
 package:
   name: {{ name|lower }}
-  version: {{ version }}
+  version: {{ GIT_DESCRIBE_TAG }}
 
 source:
   path: ../
-  # fn: {{ name }}-{{ version }}.tar.gz
+  fn: {{ name }}-{{ GIT_DESCRIBE_TAG }}.tar.gz
   # url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   # sha256: {{ sha256 }}
 
