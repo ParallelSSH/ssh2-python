@@ -1,71 +1,106 @@
 environment:
-  ANACONDA_TOKEN:
-    secure: Smr59t2qZau9N3ee1UuOYzuGkoJNKyqR/nzBY+5GYZmbhxWJRPJiGhvSBvbKYlkH
+  global:
+    # SDK v7.0 MSVC Express 2008's SetEnv.cmd script will fail if the
+    # /E:ON and /V:ON options are not enabled in the batch script intepreter
+    # See: http://stackoverflow.com/a/13751649/163740
+    CMD_IN_ENV: "cmd /E:ON /V:ON /C .\\ci\\appveyor\\run_with_env.cmd"
+
   matrix:
-    - TARGET_ARCH: "x64"
-      CONDA_PY: "27"
-      PY_CONDITION: "python >=2.7,<3"
-      CONDA_INSTALL_LOCN: "C:\\Miniconda-x64"
-    - TARGET_ARCH: "x64"
-      CONDA_PY: "35"
-      PY_CONDITION: "python >=3.5,<3.6"
-      CONDA_INSTALL_LOCN: "C:\\Miniconda35-x64"
-    - TARGET_ARCH: "x64"
-      CONDA_PY: "36"
-      PY_CONDITION: "python >=3.6"
-      CONDA_INSTALL_LOCN: "C:\\Miniconda36-x64"
 
-matrix:
-  fast_finish: true
+    # - PYTHON: "C:\\Python27"
+    #   PYTHON_VERSION: "2.7.x" # currently 2.7.9
+    #   PYTHON_ARCH: "32"
 
-cache:
-  - "%TMP%\\py\\"
+    - PYTHON: "C:\\Python27-x64"
+      PYTHON_VERSION: "2.7.x" # currently 2.7.9
+      PYTHON_ARCH: "64"
 
-build: false
+    # - PYTHON: "C:\\Python34"
+    #   PYTHON_VERSION: "3.4.x" # currently 3.4.3
+    #   PYTHON_ARCH: "32"
+
+    # - PYTHON: "C:\\Python34-x64"
+    #   PYTHON_VERSION: "3.4.x" # currently 3.4.3
+    #   PYTHON_ARCH: "64"
+
+    # Python versions not pre-installed
+
+    # Python 2.6.6 is the latest Python 2.6 with a Windows installer
+    # See: https://github.com/ogrisel/python-appveyor-demo/issues/10
+
+    # - PYTHON: "C:\\Python35"
+    #   PYTHON_VERSION: "3.5.0"
+    #   PYTHON_ARCH: "32"
+
+    - PYTHON: "C:\\Python35-x64"
+      PYTHON_VERSION: "3.5.0"
+      PYTHON_ARCH: "64"
+
 install:
-  - set CONDA_NPY=19
-  # Remove cygwin (and therefore the git that comes with it).
-  - rmdir C:\cygwin /s /q
-  # Use the pre-installed Miniconda for the desired arch
-  - set PATH=%CONDA_INSTALL_LOCN%/Library/bin;%CONDA_INSTALL_LOCN%/Scripts;%PATH%
-  - conda update --yes --quiet conda
-  - call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
-  - conda config --add channels conda-forge
-  - conda config --set show_channel_urls true
-  - conda install --yes --quiet conda-build-all
-  - conda update --yes conda-build
-  - conda install --yes --quiet conda-forge-build-setup
-  - run_conda_forge_build_setup
-  - conda update -y conda-build
+  # If there is a newer build queued for the same PR, cancel this one.
+  # The AppVeyor 'rollout builds' option is supposed to serve the same
+  # purpose but it is problematic because it tends to cancel builds pushed
+  # directly to master instead of just PR builds (or the converse).
+  # credits: JuliaLang developers.
+  - ps: if ($env:APPVEYOR_PULL_REQUEST_NUMBER -and $env:APPVEYOR_BUILD_NUMBER -ne ((Invoke-RestMethod `
+        https://ci.appveyor.com/api/projects/$env:APPVEYOR_ACCOUNT_NAME/$env:APPVEYOR_PROJECT_SLUG/history?recordsNumber=50).builds | `
+        Where-Object pullRequestId -eq $env:APPVEYOR_PULL_REQUEST_NUMBER)[0].buildNumber) { `
+          throw "There are newer queued builds for this pull request, failing early." }
+  - ECHO "Filesystem root:"
+  - ps: "ls \"C:/\""
 
-test_script:
-  - conda build conda-recipe
+  - ECHO "Installed SDKs:"
+  - ps: "ls \"C:/Program Files/Microsoft SDKs/Windows\""
+
+  # Install Python (from the official .msi of http://python.org) and pip when
+  # not already installed.
+  - ps: if (-not(Test-Path($env:PYTHON))) { & appveyor\install.ps1 }
+
+  # Prepend newly installed Python to the PATH of this build (this cannot be
+  # done from inside the powershell script as it would require to restart
+  # the parent CMD process).
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+
+  # Check that we have the expected version and architecture for Python
+  - "python --version"
+  - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
+
+  # Upgrade to the latest version of pip to avoid it displaying warnings
+  # about it being out of date.
+  - "pip install --disable-pip-version-check --user --upgrade pip"
+
+  # Install the build dependencies of the project. If some dependencies contain
+  # compiled extensions and are not provided as pre-built wheel packages,
+  # pip will build them from source using the MSVC compiler matching the
+  # target Python version and architecture
+  - "%CMD_IN_ENV% pip install -r requirements_dev.txt"
+
+build_script:
+  # Build the compiled extension
+  - "%CMD_IN_ENV% ci\\appveyor\\build_ssh2.bat"
+  - "SET PATH=%APPVEYOR_BUILD_FOLDER%\\src;%PATH%"
+  - "%CMD_IN_ENV% python setup.py build_ext"
+  - "%CMD_IN_ENV% python setup.py install"
+  - mkdir temp
+  - cd temp
+  - python -c "from ssh2.session import Session; Session()"
+  - cd ..
+
+# test_script:
+#   # Run the project tests
+#   - "%CMD_IN_ENV% python setup.py nosetests"
 
 after_test:
-  - python ci\move-conda-package.py
-  - python ci/appveyor/anaconda_upload.py
-
-  ### Wheel builds
-  # - virtualenv my_pip
-  # - my_pip\Scripts\activate
-  # - pip install -U pip wheel
-  # - pip install https://github.com/pkittenis/conda2wheel/archive/master.zip
-  # - ls %CONDA_INSTALL_LOCN%/Library/bin/
-  # - mkdir lib_deps
-  # - cp %CONDA_INSTALL_LOCN%/Library/bin/*.dll lib_deps/
-  # - rm -f lib_deps/atl90.dll lib_deps/yaml.dll
-  # - conda2wheel *.tar.bz2 -d lib_deps/* -s ssh2 -w .
-  # - ls *.whl
-  # - python -c "from __future__ import print_function; import pip; print(pip.pep425tags.get_supported())"
-  # - ps: pip install -v (Get-ChildItem *.whl)
-  # - mkdir temp
-  # - cd temp
-  # - python -c "from ssh2.session import Session; Session()"
-  # - cd ..
-
-platform:
-  - x64
+  # If tests are successful, create binary packages for the project.
+  - "%CMD_IN_ENV% python setup.py bdist_wheel"
+  - "%CMD_IN_ENV% python setup.py bdist_wininst"
+  - "%CMD_IN_ENV% python setup.py bdist_msi"
+  - ps: "ls dist"
 
 artifacts:
-  - path: '*.tar.bz2'
-  - path: '*.whl'
+  # Archive the generated packages in the ci.appveyor.com build report.
+  - path: dist\*
+
+#on_success:
+#  - TODO: upload the content of dist/*.whl to a public wheelhouse
+#
