@@ -50,6 +50,7 @@ after_test:
   - rm -f lib_deps/atl90.dll lib_deps/yaml.dll
   - conda2wheel *.tar.bz2 -d lib_deps/* -s ssh2 -w .
   - ls *.whl
+  - ps: python -V
   - ps: pip install (Get-ChildItem *.whl)
   - python -c "from ssh2.session import Session; Session()"
 
