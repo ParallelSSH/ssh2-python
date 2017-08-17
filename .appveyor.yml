@@ -37,15 +37,12 @@ install:
   - conda install --yes --quiet conda-forge-build-setup
   - run_conda_forge_build_setup
 
-before_test:
-  - conda config --set anaconda_upload yes
-
 test_script:
-  - anaconda login --username parallelssh --password %ANACONDA_PASSWORD%
   - conda build conda-recipe
 
 after_test:
   - python ci\move-conda-package.py
+  - python ci/appveyor/anaconda_upload.py
   # # Wheel builds
   # - virtualenv my_pip
   # - my_pip\Scripts\activate
