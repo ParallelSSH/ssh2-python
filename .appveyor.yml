@@ -1,7 +1,6 @@
 environment:
   ANACONDA_PASSWORD:
     secure: vvR/686dUU6s6RP5H7eAhATE/MArXhN6qyaM6Jeb7k4=
-  EMBEDDED_LIB: 1  # [unix]
   matrix:
     - TARGET_ARCH: "x64"
       CONDA_PY: "27"
