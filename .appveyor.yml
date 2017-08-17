@@ -52,6 +52,8 @@ after_test:
   - ls *.whl
   - python -c "from __future__ import print_function; import pip; print(pip.pep425tags.get_supported())"
   - ps: pip install -v (Get-ChildItem *.whl)
+  - mkdir temp
+  - cd temp
   - python -c "from ssh2.session import Session; Session()"
 
 platform:
