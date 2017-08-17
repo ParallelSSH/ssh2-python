@@ -39,7 +39,6 @@ test_script:
   - conda build conda-recipe
 
 after_test:
-  - ls dist/*.whl
   - python ci\move-conda-package.py
 
 platform:
