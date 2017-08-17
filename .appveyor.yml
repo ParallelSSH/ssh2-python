@@ -51,7 +51,7 @@ after_test:
   - conda2wheel *.tar.bz2 -d lib_deps/* -s ssh2 -w .
   - ls *.whl
   - ps: python -V
-  - ps: pip install (Get-ChildItem *.whl)
+  - ps: pip install -v (Get-ChildItem *.whl)
   - python -c "from ssh2.session import Session; Session()"
 
 platform:
