@@ -1,15 +1,12 @@
 {% set name = "ssh2-python" %}
 {% set version = GIT_DESCRIBE_TAG %}
-# {% set sha256 = "e5e77801a7a0d49799e288ecbd189b4d1c23eeadcf9c6f4ce80b31b7d397babe" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  path: ../
-  # fn: {{ name }}-{{ GIT_DESCRIBE_TAG }}.tar.gz
-  # sha256: {{ sha256 }}
+  git_url: https://github.com/ParallelSSH/ssh2-python.git
 
 build:
   features:
