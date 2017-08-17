@@ -39,6 +39,9 @@ test_script:
   - conda build conda-recipe
 
 after_test:
+  - pip install conda2wheel
+  - conda2wheel *.tar.bz2 -w .
+  - ls *.whl
   - python ci\move-conda-package.py
 
 platform:
@@ -46,3 +49,4 @@ platform:
 
 artifacts:
   - path: '*.tar.bz2'
+  - path: '*.whl'
