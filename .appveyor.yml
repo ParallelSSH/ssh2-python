@@ -9,34 +9,42 @@ environment:
     # - PYTHON: "C:\\Python27"
     #   PYTHON_VERSION: "2.7"
     #   PYTHON_ARCH: "32"
+    #   MSVC_VER: "8"
 
     # - PYTHON: "C:\\Python27-x64"
     #   PYTHON_VERSION: "2.7"
     #   PYTHON_ARCH: "64"
+    #   MSVC_VER: "8"
 
     # - PYTHON: "C:\\Python34"
     #   PYTHON_VERSION: "3.4"
     #   PYTHON_ARCH: "32"
+    #   MSVC_VER: "10"
 
     # - PYTHON: "C:\\Python34-x64"
     #   PYTHON_VERSION: "3.4"
     #   PYTHON_ARCH: "64"
+    #   MSVC_VER: "10"
 
     - PYTHON: "C:\\Python35"
       PYTHON_VERSION: "3.5"
       PYTHON_ARCH: "32"
+      MSVC_VER: "14"
 
     - PYTHON: "C:\\Python35-x64"
       PYTHON_VERSION: "3.5"
       PYTHON_ARCH: "64"
+      MSVC_VER: "14"
 
     - PYTHON: "C:\\Python36"
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "32"
+      MSVC_VER: "14"
 
     - PYTHON: "C:\\Python36-x64"
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "64"
+      MSVC_VER: "14"
 
 install:
   # If there is a newer build queued for the same PR, cancel this one.
