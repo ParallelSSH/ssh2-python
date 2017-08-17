@@ -40,8 +40,10 @@ test_script:
 
 after_test:
   - python ci\move-conda-package.py
-  - pip install https://github.com/pkittenis/conda2wheel/archive/master.zip
+  - virtualenv my_pip
+  - my_pip/activate.bat
   - pip install -U pip wheel
+  - pip install https://github.com/pkittenis/conda2wheel/archive/master.zip
   - ls %CONDA_INSTALL_LOCN%/Library/bin
   - conda2wheel *.tar.bz2 -w .
   - ls *.whl
