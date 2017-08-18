@@ -99,7 +99,3 @@ artifacts:
   # Archive the generated packages in the ci.appveyor.com build report.
   - path: *.whl
   - path: *.exe
-
-#on_success:
-#  - TODO: upload the content of dist/*.whl to a public wheelhouse
-#
