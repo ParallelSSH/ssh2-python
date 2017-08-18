@@ -80,6 +80,7 @@ build_script:
   # Build the compiled extension
   - "%CMD_IN_ENV% ci\\appveyor\\build_ssh2.bat"
   - "SET PATH=C:/Program Files/libssh2/lib/;C:/Program Files/libssh2;%PATH%"
+  - rm -f ssh2/*.c
   - "%CMD_IN_ENV% python setup.py build_ext"
   - "%CMD_IN_ENV% python setup.py install"
   - mkdir temp
