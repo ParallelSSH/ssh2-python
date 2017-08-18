@@ -1,6 +1,6 @@
 environment:
   ANACONDA_TOKEN:
-    secure: qJ1DBAUwKG2N78d9+SYunKcbNQxFeVI+SYDAnr9XCbupLMmhDtYneHNLZmJl+rUf
+    secure: Smr59t2qZau9N3ee1UuOYzuGkoJNKyqR/nzBY+5GYZmbhxWJRPJiGhvSBvbKYlkH
   matrix:
     - TARGET_ARCH: "x64"
       CONDA_PY: "27"

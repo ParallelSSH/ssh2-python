@@ -10,4 +10,4 @@ cmd.extend(glob('*.tar.bz2'))
 try:
     subprocess.check_call(cmd)
 except subprocess.CalledProcessError:
-    traceback.print_exc()
+    sys.exit(1)
