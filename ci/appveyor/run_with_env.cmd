@@ -57,10 +57,12 @@ IF "%PYTHON_ARCH%"=="64" (
     )  ELSE (
         ECHO Using default MSVC build environment for 64 bit architecture
         ECHO Executing: %COMMAND_TO_RUN%
+        "%WIN_SDK_ROOT%\%WINDOWS_SDK_VERSION%\Bin\SetEnv.cmd" /x64 /release
         call %COMMAND_TO_RUN% || EXIT 1
     )
 ) ELSE (
     ECHO Using default MSVC build environment for 32 bit architecture
     ECHO Executing: %COMMAND_TO_RUN%
+    "%WIN_SDK_ROOT%\%WINDOWS_SDK_VERSION%\Bin\SetEnv.cmd" /release
     call %COMMAND_TO_RUN% || EXIT 1
 )
