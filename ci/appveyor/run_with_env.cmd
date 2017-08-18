@@ -1,5 +1,9 @@
 :: To build extensions for 64 bit Python 3.5 or later no special environment needs
-:: to be configured.
+:: to be configured for the Python extension code alone, however, all dependent
+:: libraries also need to be compiled with the same SDK in order to be able to
+:: link them together. 
+::
+:: This script sets SDK version and environment for all commands.
 ::
 :: To build extensions for 64 bit Python 3.4 or earlier, we need to configure environment
 :: variables to use the MSVC 2010 C++ compilers from GRMSDKX_EN_DVD.iso of:
@@ -22,6 +26,8 @@
 :: License: CC0 1.0 Universal: https://creativecommons.org/publicdomain/zero/1.0/
 :: This version based on updates for python 3.5 by Phil Elson at:
 ::     https://github.com/pelson/Obvious-CI/tree/master/scripts
+:: Further updates to always correctly set SDK version and environment so
+:: that compiled library dependencies use same SDK as Python extension.
 
 @ECHO OFF
 
@@ -38,6 +44,7 @@ IF %MAJOR_PYTHON_VERSION% == "2" (
     IF %MINOR_PYTHON_VERSION% LEQ 4 (
         SET SET_SDK_64=Y
     ) ELSE (
+        SET PATH=C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\BIN;%PATH%
         SET SET_SDK_64=N
     )
 ) ELSE (
