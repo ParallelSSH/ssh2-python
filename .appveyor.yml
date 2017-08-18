@@ -30,21 +30,25 @@ environment:
       PYTHON_VERSION: "3.5"
       PYTHON_ARCH: "32"
       MSVC_VER: "14"
+      MSVC_ARCH: "x86"
 
     - PYTHON: "C:\\Python35-x64"
       PYTHON_VERSION: "3.5"
       PYTHON_ARCH: "64"
       MSVC_VER: "14"
+      MSVC_ARCH: "amd64"
 
     - PYTHON: "C:\\Python36"
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "32"
       MSVC_VER: "14"
+      MSVC_ARCH: "x86"
 
     - PYTHON: "C:\\Python36-x64"
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "64"
       MSVC_VER: "14"
+      MSVC_ARCH: "amd64"
 
 install:
   # If there is a newer build queued for the same PR, cancel this one.
