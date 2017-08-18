@@ -82,7 +82,7 @@ install:
 
 build_script:
   # Build the compiled extension
-  - ci\\appveyor\\build_ssh2.bat
+  - "%CMD_IN_ENV% ci\\appveyor\\build_ssh2.bat"
   - rm -f ssh2/*.c
   - "%CMD_IN_ENV% python setup.py build_ext -i"
 
