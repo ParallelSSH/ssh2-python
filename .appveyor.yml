@@ -74,7 +74,7 @@ install:
   # pip will build them from source using the MSVC compiler matching the
   # target Python version and architecture
   - "%CMD_IN_ENV% pip install -r requirements_dev.txt"
-  - "%CMD_IN_ENV% pip install -U wheel"
+  - "%CMD_IN_ENV% pip install -U wheel setuptools"
   - git submodule update --init --recursive
 
 build_script:
