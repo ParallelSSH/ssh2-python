@@ -1,6 +1,6 @@
 environment:
-  ANACONDA_PASSWORD:
-    secure: vvR/686dUU6s6RP5H7eAhATE/MArXhN6qyaM6Jeb7k4=
+  ANACONDA_TOKEN:
+    secure: 9BVvKH3QKrN/E1srqgjhKJRlhxM1Zj8cqPLZXT99WRJkjVQSObggkuGxG68sQizJ
   matrix:
     - TARGET_ARCH: "x64"
       CONDA_PY: "27"
