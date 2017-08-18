@@ -10,4 +10,5 @@ mkdir src && cd src
 cd ..
 ls src/src
 cp src/src/libssh2.lib %PYTHON%/libs/ || exit 0
-cp src/src/Release/libssh2.lib %PYTHON%/libs/ || exit 0
+cp src/src/Release/libssh2.* %PYTHON%/libs/ || exit 0
+ls %PYTHON%/libs/
