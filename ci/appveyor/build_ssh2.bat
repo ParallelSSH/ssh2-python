@@ -5,6 +5,6 @@ cmake ..\libssh2 -G "NMake Makefiles"          ^
 	-DCRYPTO_BACKEND=WinCNG                ^
 	-DBUILD_SHARED_LIBS=OFF
 
-cmake --build . --config Release
+cmake --build . --config Release --target INSTALL
 cd ..
 ls src/src
