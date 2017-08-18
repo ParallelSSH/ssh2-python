@@ -5,6 +5,7 @@ import subprocess
 import traceback
 
 
+subprocess.check_call(['anaconda', 'logout'])
 cmd = ['anaconda', 'login', '--username', 'parallelssh',
        '--password', os.environ['ANACONDA_PASSWORD']]
 try:
