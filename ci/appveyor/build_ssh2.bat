@@ -6,4 +6,5 @@ cmake ..\libssh2 -G "NMake Makefiles"          ^
 	-DBUILD_SHARED_LIBS=OFF
 
 cmake --build . --config Release
-ls src
+cd ..
+ls src/src
