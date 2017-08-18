@@ -9,4 +9,4 @@ mkdir src && cd src
 %CMD_IN_ENV% cmake --build . --config Release
 cd ..
 ls src/src
-cp src/src/libssh2.* %PYTHON%/libs/
+cp -r src/src/libssh2.* %PYTHON%/libs/
