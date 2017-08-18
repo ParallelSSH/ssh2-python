@@ -1,11 +1,11 @@
 mkdir src && cd src
 
-cmake ..\libssh2 -G "NMake Makefiles"          ^
+%CMD_IN_ENV% cmake ..\libssh2 -G "NMake Makefiles"          ^
 	-DCMAKE_BUILD_TYPE=Release             ^
 	-DCRYPTO_BACKEND=WinCNG                ^
 	-DBUILD_SHARED_LIBS=OFF
 
-cmake --build . --config Release
+%CMD_IN_ENV% cmake --build . --config Release
 cd ..
 ls src/src
 cp src/src/libssh2.lib %PYTHON%/libs/
