@@ -44,7 +44,7 @@ IF %MAJOR_PYTHON_VERSION% == "2" (
     IF %MINOR_PYTHON_VERSION% LEQ 4 (
         SET SET_SDK_64=Y
     ) ELSE (
-        SET PATH=C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\BIN;%PATH%
+        SET PATH="C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\BIN;%PATH%"
         SET SET_SDK_64=N
     )
 ) ELSE (
