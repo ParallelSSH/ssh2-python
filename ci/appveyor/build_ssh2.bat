@@ -8,4 +8,4 @@ cmake ..\libssh2 -G "NMake Makefiles"          ^
 cmake --build . --config Release
 cd ..
 ls src/src
-cp src/src/libssh2.lib C:/%PYTHON%/libs/
+cp src/src/libssh2.lib %PYTHON%/libs/
