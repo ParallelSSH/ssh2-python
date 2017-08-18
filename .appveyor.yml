@@ -9,46 +9,42 @@ environment:
     # - PYTHON: "C:\\Python27"
     #   PYTHON_VERSION: "2.7"
     #   PYTHON_ARCH: "32"
-    #   MSVC_VER: "8"
+    #   MSVC: "Visual Studio 8"
 
     # - PYTHON: "C:\\Python27-x64"
     #   PYTHON_VERSION: "2.7"
     #   PYTHON_ARCH: "64"
-    #   MSVC_VER: "8"
+    #   MSVC: "Visual Studio 8 Win64"
 
     # - PYTHON: "C:\\Python34"
     #   PYTHON_VERSION: "3.4"
     #   PYTHON_ARCH: "32"
-    #   MSVC_VER: "10"
+    #   MSVC: "Visual Studio 10 Win64"
 
     # - PYTHON: "C:\\Python34-x64"
     #   PYTHON_VERSION: "3.4"
     #   PYTHON_ARCH: "64"
-    #   MSVC_VER: "10"
+    #   MSVC: "Visual Studio 10 Win64"
 
     - PYTHON: "C:\\Python35"
       PYTHON_VERSION: "3.5"
       PYTHON_ARCH: "32"
-      MSVC_VER: "14"
-      MSVC_ARCH: "x86"
+      MSVC: "Visual Studio 14"
 
     - PYTHON: "C:\\Python35-x64"
       PYTHON_VERSION: "3.5"
       PYTHON_ARCH: "64"
-      MSVC_VER: "14"
-      MSVC_ARCH: "amd64"
+      MSVC: "Visual Studio 14 Win64"
 
     - PYTHON: "C:\\Python36"
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "32"
-      MSVC_VER: "14"
-      MSVC_ARCH: "x86"
+      MSVC: "Visual Studio 14"
 
     - PYTHON: "C:\\Python36-x64"
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "64"
-      MSVC_VER: "14"
-      MSVC_ARCH: "amd64"
+      MSVC: "Visual Studio 14 Win64"
 
 install:
   # If there is a newer build queued for the same PR, cancel this one.
