@@ -9,13 +9,11 @@ environment:
     - PYTHON: "C:\\Python27"
       PYTHON_VERSION: "2.7"
       PYTHON_ARCH: "32"
-      MSVC: "Visual Studio 9 2008"
 
     - PYTHON: "C:\\Python27-x64"
       PYTHON_VERSION: "2.7"
       PYTHON_ARCH: "64"
-      MSVC: "Visual Studio 9 2008"
-
+      
     - PYTHON: "C:\\Python34"
       PYTHON_VERSION: "3.4"
       PYTHON_ARCH: "32"
