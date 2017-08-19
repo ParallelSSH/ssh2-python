@@ -79,6 +79,12 @@ install:
   - "%CMD_IN_ENV% pip install -r requirements_dev.txt"
   - "%CMD_IN_ENV% pip install -U wheel setuptools"
   - git submodule update --init --recursive
+  # .c files need to be generated on Windows to handle platform
+  # specific code.
+  # Fix version used by versioneer to current git tag so the generated .c files
+  # do not cause a version change.
+  - python ci/appveyor/fix_version.py .
+  - mv -f .git .git.bak
 
 build_script:
   # Build the compiled extension
@@ -86,7 +92,6 @@ build_script:
   - rm -f ssh2/*.c
   - "%CMD_IN_ENV% python setup.py build"
   - "%CMD_IN_ENV% python setup.py build_ext -i"
-  - git checkout -- .
 
 test_script:
   - python -c "from ssh2.session import Session; Session()"
