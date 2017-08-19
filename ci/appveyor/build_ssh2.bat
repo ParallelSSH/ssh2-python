@@ -1,16 +1,17 @@
 mkdir src && cd src
 
-IF DEFINED %MSVC% (
+IF "%MSVC%" == "Visual Studio 9" (
+   ECHO "Building without platform set"
+   cmake ..\libssh2 -G "NMake Makefiles"        ^
+   	 -DCMAKE_BUILD_TYPE=Release             ^
+	 -DCRYPTO_BACKEND=WinCNG                ^
+	 -DBUILD_SHARED_LIBS=OFF
+) ELSE (
    ECHO "Building with platform %MSVC%"
    cmake ..\libssh2 -G "NMake Makefiles"        ^
    	 -DCMAKE_BUILD_TYPE=Release             ^
 	 -DCRYPTO_BACKEND=WinCNG                ^
 	 -G"%MSVC%"                             ^
-	 -DBUILD_SHARED_LIBS=OFF
-) ELSE (
-   cmake ..\libssh2 -G "NMake Makefiles"        ^
-   	 -DCMAKE_BUILD_TYPE=Release             ^
-	 -DCRYPTO_BACKEND=WinCNG                ^
 	 -DBUILD_SHARED_LIBS=OFF
 )
 
