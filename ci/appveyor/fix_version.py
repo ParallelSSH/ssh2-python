@@ -18,8 +18,15 @@ def make_version_file(basedir):
                     'full-revisionid': rev,
                     'version': git_desc}
     data = """
+import json
+
 version_json = '''
 %s'''  # END VERSION_JSON
+
+
+def get_versions():
+    return json.loads(version_json)
+
 """ % (json.dumps(version_json))
     with open(os.path.join(basedir, 'ssh2', '_version.py'), 'w') as fh:
         fh.write(data)
