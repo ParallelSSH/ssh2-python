@@ -1,6 +1,6 @@
 mkdir src && cd src
 
-IF DEFINED "%MSVC%" (
+IF DEFINED %MSVC% (
    ECHO "Building with platform %MSVC%"
    cmake ..\libssh2 -G "NMake Makefiles"        ^
    	 -DCMAKE_BUILD_TYPE=Release             ^
