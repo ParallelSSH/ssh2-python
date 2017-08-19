@@ -84,7 +84,9 @@ build_script:
   # Build the compiled extension
   - "%CMD_IN_ENV% ci\\appveyor\\build_ssh2.bat"
   - rm -f ssh2/*.c
+  - "%CMD_IN_ENV% python setup.py build"
   - "%CMD_IN_ENV% python setup.py build_ext -i"
+  - git checkout -- .
 
 test_script:
   - python -c "from ssh2.session import Session; Session()"
