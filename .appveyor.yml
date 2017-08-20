@@ -5,6 +5,7 @@ environment:
     # See: http://stackoverflow.com/a/13751649/163740
     CMD_IN_ENV: "cmd /E:ON /V:ON /C %APPVEYOR_BUILD_FOLDER%\\ci\\appveyor\\run_with_env.cmd"
     PYTHONUNBUFFERED: 1
+    EMBEDDED_LIB: 1
   matrix:
     - PYTHON: "C:\\Python27"
       PYTHON_VERSION: "2.7"
