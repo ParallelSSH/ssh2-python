@@ -34,13 +34,18 @@ jobs:
           - /^\d+\.\d+(\.\d+)?(-\S*)?$/
       install:
         - brew install libssh2
-        - pip install delocate twine
+        - pip install -U delocate twine wheel pip setuptools
         - python setup.py bdist_wheel
       script:
         - delocate-listdeps --all dist/*.whl
         - delocate-wheel -v dist/*.whl
         - delocate-listdeps --all dist/*.whl
         - ls -l dist/
+        - brew uninstall libssh2
+        - pip install -v dist/*.whl
+        - mkdir temp; cd temp
+        - python -c "from ssh2.session import Session; Session()"
+        - cd
       after_success:
         - if [[ ! -z "$TRAVIS_TAG" ]]; then
               twine upload -u $PYPI_U -p $PYPI_P dist/*.whl;
