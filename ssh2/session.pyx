@@ -21,7 +21,7 @@ from agent cimport PyAgent, auth_identity, clear_agent
 from channel cimport PyChannel
 from exceptions cimport SessionHandshakeError, SessionStartupError, \
     AgentConnectionError, AgentListIdentitiesError, AgentGetIdentityError, \
-    AuthenticationError
+    AuthenticationError, AgentError
 from listener cimport PyListener
 from sftp cimport PySFTP
 from publickey cimport PyPublicKeySystem
@@ -44,11 +44,9 @@ cdef class Session:
     """LibSSH2 Session class providing session functions"""
 
     def __cinit__(self):
-        with nogil:
-            self._session = c_ssh2.libssh2_session_init()
-            if self._session is NULL:
-                with gil:
-                    raise MemoryError
+        self._session = c_ssh2.libssh2_session_init()
+        if self._session is NULL:
+            raise MemoryError
 
     def __dealloc__(self):
         with nogil:
@@ -61,6 +59,9 @@ cdef class Session:
             c_ssh2.libssh2_session_disconnect(self._session, "end")
 
     def handshake(self, sock not None):
+        """Perform SSH handshake.
+
+        Must be called after Session initialisation."""
         cdef int _sock = PyObject_AsFileDescriptor(sock)
         cdef int rc
         with nogil:
@@ -76,13 +77,11 @@ cdef class Session:
         """Deprecated - use self.handshake"""
         cdef int _sock = PyObject_AsFileDescriptor(sock)
         cdef int rc
-        with nogil:
-            rc = c_ssh2.libssh2_session_startup(self._session, _sock)
-            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
-                with gil:
-                    raise SessionStartupError(
-                        "SSH session startup failed with error code %s",
-                        rc)
+        rc = c_ssh2.libssh2_session_startup(self._session, _sock)
+        if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
+            raise SessionStartupError(
+                "SSH session startup failed with error code %s",
+                rc)
         return rc
 
     def set_blocking(self, bint blocking):
@@ -262,28 +261,23 @@ cdef class Session:
         :rtype: :py:class:`ssh2.agent.Agent`
         """
         cdef c_ssh2.LIBSSH2_AGENT *agent = self._agent_init()
-        if agent is NULL:
-            return
         return PyAgent(agent, self)
 
-    cdef c_ssh2.LIBSSH2_AGENT * _agent_init(self):
+    cdef c_ssh2.LIBSSH2_AGENT * _agent_init(self) except NULL:
         cdef c_ssh2.LIBSSH2_AGENT *agent
         with nogil:
             agent = c_ssh2.libssh2_agent_init(self._session)
             if agent is NULL:
                 with gil:
-                    raise MemoryError
-            return agent
+                    raise AgentError("Error initialising agent")
+        return agent
 
-    cdef c_ssh2.LIBSSH2_AGENT * init_connect_agent(self) nogil except NULL:
-        agent = c_ssh2.libssh2_agent_init(self._session)
-        if agent is NULL:
-            with gil:
-                raise MemoryError
+    cdef c_ssh2.LIBSSH2_AGENT * init_connect_agent(self) except NULL:
+        agent = self._agent_init()
         if c_ssh2.libssh2_agent_connect(agent) != 0:
-            c_ssh2.libssh2_agent_free(agent)
-            with gil:
-                raise AgentConnectionError("Unable to connect to agent")
+            with nogil:
+                c_ssh2.libssh2_agent_free(agent)
+            raise AgentConnectionError("Unable to connect to agent")
         return agent
 
     def agent_auth(self, username not None):
@@ -316,19 +310,19 @@ cdef class Session:
         cdef c_ssh2.LIBSSH2_AGENT *agent = NULL
         cdef c_ssh2.libssh2_agent_publickey *identity = NULL
         cdef c_ssh2.libssh2_agent_publickey *prev = NULL
-        with nogil:
-            agent = self.init_connect_agent()
-            if c_ssh2.libssh2_agent_list_identities(agent) != 0:
+        agent = self.init_connect_agent()
+        if c_ssh2.libssh2_agent_list_identities(agent) != 0:
+            with nogil:
                 clear_agent(agent)
-                with gil:
-                    raise AgentListIdentitiesError(
-                        "Failure requesting identities from agent")
-            while 1:
-                auth_identity(_username, agent, &identity, prev)
-                if c_ssh2.libssh2_agent_userauth(
-                        agent, _username, identity) == 0:
-                    break
-                prev = identity
+            raise AgentListIdentitiesError(
+                "Failure requesting identities from agent")
+        while 1:
+            auth_identity(_username, agent, &identity, prev)
+            if c_ssh2.libssh2_agent_userauth(
+                    agent, _username, identity) == 0:
+                break
+            prev = identity
+        with nogil:
             clear_agent(agent)
 
     def open_session(self):

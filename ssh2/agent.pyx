@@ -20,25 +20,24 @@ from exceptions cimport AgentConnectionError, AgentListIdentitiesError, \
 from utils cimport to_bytes
 cimport c_ssh2
 
+
 cdef int auth_identity(const char *username,
                        c_ssh2.LIBSSH2_AGENT *agent,
                        c_ssh2.libssh2_agent_publickey **identity,
-                       c_ssh2.libssh2_agent_publickey *prev) nogil except -1:
+                       c_ssh2.libssh2_agent_publickey *prev) except -1:
     cdef int rc
     rc = c_ssh2.libssh2_agent_get_identity(
         agent, identity, prev)
     if rc == 1:
         clear_agent(agent)
-        with gil:
-            raise AgentAuthenticationError(
-                "No identities match for user %s",
-                username)
+        raise AgentAuthenticationError(
+            "No identities match for user %s",
+            username)
     elif rc < 0:
         clear_agent(agent)
-        with gil:
-            raise AgentGetIdentityError(
-                "Failure getting identity for user %s from agent",
-                username)
+        raise AgentGetIdentityError(
+            "Failure getting identity for user %s from agent",
+            username)
     return rc
 
 
@@ -77,17 +76,14 @@ cdef class Agent:
         cdef list identities = []
         cdef c_ssh2.libssh2_agent_publickey *identity = NULL
         cdef c_ssh2.libssh2_agent_publickey *prev = NULL
-        with nogil:
-            if c_ssh2.libssh2_agent_list_identities(self._agent) != 0:
-                with gil:
-                    raise AgentListIdentitiesError(
-                        "Failure requesting identities from agent."
-                        "Agent must be connected first")
-            while c_ssh2.libssh2_agent_get_identity(
-                    self._agent, &identity, prev) == 0:
-                with gil:
-                    identities.append(PyPublicKey(identity))
-                prev = identity
+        if c_ssh2.libssh2_agent_list_identities(self._agent) != 0:
+            raise AgentListIdentitiesError(
+                "Failure requesting identities from agent."
+                "Agent must be connected first")
+        while c_ssh2.libssh2_agent_get_identity(
+                self._agent, &identity, prev) == 0:
+            identities.append(PyPublicKey(identity))
+            prev = identity
         return identities
 
     def userauth(self, username not None,
@@ -105,14 +101,12 @@ cdef class Agent:
         :rtype: int"""
         cdef int rc
         cdef char *_username = to_bytes(username)
-        with nogil:
-            rc = c_ssh2.libssh2_agent_userauth(
-                self._agent, _username, pkey._pkey)
-            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
-                with gil:
-                    raise AgentAuthenticationError(
-                        "Error authenticating user %s with provided public key",
-                        username)
+        rc = c_ssh2.libssh2_agent_userauth(
+            self._agent, _username, pkey._pkey)
+        if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
+            raise AgentAuthenticationError(
+                "Error authenticating user %s with provided public key",
+                username)
         return rc
 
     def disconnect(self):
@@ -132,9 +126,7 @@ cdef class Agent:
 
         :rtype: int"""
         cdef int rc
-        with nogil:
-            rc = c_ssh2.libssh2_agent_connect(self._agent)
-            if rc != 0:
-                with gil:
-                    raise AgentConnectionError("Unable to connect to agent")
+        rc = c_ssh2.libssh2_agent_connect(self._agent)
+        if rc != 0:
+            raise AgentConnectionError("Unable to connect to agent")
         return rc

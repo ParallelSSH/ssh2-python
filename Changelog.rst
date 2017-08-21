@@ -4,9 +4,18 @@ Change Log
 0.5.3
 ++++++
 
+Changes
+--------
+
 * Win32 build compatibility.
 * Binary wheels for Linux, OSX and Windows, all Python versions, with embedded libssh2 and OpenSSL (embedded OpenSSL is Linux and OSX only).
 * OSX CI builds.
+
+Fixes
+-----
+
+* Session handshake thread safety.
+* Agent thread safety.
 
 0.5.2
 ++++++
