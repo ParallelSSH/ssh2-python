@@ -1,27 +1,22 @@
 {% set name = "ssh2-python" %}
 {% set version = GIT_DESCRIBE_TAG %}
-# {% set sha256 = "e5e77801a7a0d49799e288ecbd189b4d1c23eeadcf9c6f4ce80b31b7d397babe" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  path: ../
-  # fn: {{ name }}-{{ version }}.tar.gz
-  # url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  # sha256: {{ sha256 }}
+  git_url: https://github.com/ParallelSSH/ssh2-python.git
 
 build:
   features:
     - vc9  # [win and py27]
     - vc10  # [win and py34]
     - vc14  # [win and py35]
-  # skip: true  # [win]
   number: 0
   script:
-    - python setup.py install --single-version-externally-managed --record record.txt  # [unix]
-    - rm -f ssh2/*.c  # [win]
+    - rm -f ssh2/*.c
+    - EMBEDDED_LIB=1 python setup.py install --single-version-externally-managed --record record.txt  # [unix]
     - python setup.py build_ext --compiler=msvc  # [win]
     - python setup.py install --single-version-externally-managed --record record.txt  # [win]
 
