@@ -1,6 +1,18 @@
 Change Log
 =============
 
+0.5.3
+++++++
+
+* Win32 build compatibility.
+* Binary wheels for Linux, OSX and Windows, all Python versions, with embedded libssh2 and OpenSSL (embedded OpenSSL is Linux and OSX only).
+* OSX CI builds.
+
+0.5.2
+++++++
+
+No code changes.
+
 0.5.1
 ++++++
 
