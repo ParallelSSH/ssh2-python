@@ -43,9 +43,9 @@ jobs:
         - ls -l dist/
         - brew uninstall libssh2
         - pip install -v dist/*.whl
-        - mkdir temp; cd temp
+        - pwd; mkdir temp; cd temp; pwd
         - python -c "from ssh2.session import Session; Session()"
-        - cd
+        - cd ..; pwd
       after_success:
         - if [[ ! -z "$TRAVIS_TAG" ]]; then
               twine upload -u $PYPI_U -p $PYPI_P dist/*.whl;

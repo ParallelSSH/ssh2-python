@@ -4,15 +4,19 @@ ssh2-python
 Super fast SSH2 protocol library. ``ssh2-python`` provides Python bindings for `libssh2`_.
 
 .. image:: https://img.shields.io/badge/License-LGPL%20v2-blue.svg
-  :target: https://pypi.python.org/pypi/ssh2-python
-  :alt: License
+   :target: https://pypi.python.org/pypi/ssh2-python
+   :alt: License
 .. image:: https://img.shields.io/pypi/v/ssh2-python.svg
-  :target: https://pypi.python.org/pypi/ssh2-python
-  :alt: Latest Version
+   :target: https://pypi.python.org/pypi/ssh2-python
+   :alt: Latest Version
 .. image:: https://travis-ci.org/ParallelSSH/ssh2-python.svg?branch=master
    :target: https://travis-ci.org/ParallelSSH/ssh2-python
 .. image:: https://ci.appveyor.com/api/projects/status/github/parallelssh/ssh2-python?svg=true&branch=master
    :target: https://ci.appveyor.com/project/pkittenis/ssh2-python
+.. image:: https://img.shields.io/pypi/wheel/ssh2-python.svg
+   :target: https://pypi.python.org/pypi/ssh2-python
+.. image:: https://img.shields.io/pypi/pyversions/ssh2-python.svg
+   :target: https://pypi.python.org/pypi/ssh2-python
 
 Installation
 ______________
@@ -20,30 +24,14 @@ ______________
 
 System packages are available on the `latest releases page <https://github.com/ParallelSSH/ssh2-python/releases/latest>`_ built on Centos/RedHat 6/7, Ubuntu 14.04/16.04, Debian 7/8 and Fedora 22/23/24.
 
-The library has *no dependencies* other than ``libssh2``.
+System packages have *no dependencies* other than the ``libssh2`` system library.
 
+Binary wheel packages are also provided for Linux, OSX and Windows, all Python versions, with ``libssh2`` and its required libraries included. 
 
-Installation from Source
-_________________________
-
-Install ``libssh2`` and Python header files.
-
-
-Ubuntu
---------
+Wheel packages have **no dependencies**.
 
 .. code-block:: shell
 
-   apt-get install libssh2-1-dev python-dev
-   pip install ssh2-python
-
-
-RedHat
--------
-   
-.. code-block:: shell
-
-   yum install libssh2-devel python-devel
    pip install ssh2-python
 
 
