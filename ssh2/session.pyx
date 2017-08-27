@@ -260,20 +260,23 @@ cdef class Session:
 
         :rtype: :py:class:`ssh2.agent.Agent`
         """
-        cdef c_ssh2.LIBSSH2_AGENT *agent = self._agent_init()
-        return PyAgent(agent, self)
-
-    cdef c_ssh2.LIBSSH2_AGENT * _agent_init(self) except NULL:
         cdef c_ssh2.LIBSSH2_AGENT *agent
         with nogil:
-            agent = c_ssh2.libssh2_agent_init(self._session)
-            if agent is NULL:
-                with gil:
-                    raise AgentError("Error initialising agent")
+            agent = self._agent_init()
+        return PyAgent(agent, self)
+
+    cdef c_ssh2.LIBSSH2_AGENT * _agent_init(self) nogil except NULL:
+        cdef c_ssh2.LIBSSH2_AGENT *agent = c_ssh2.libssh2_agent_init(
+            self._session)
+        if agent is NULL:
+            with gil:
+                raise AgentError("Error initialising agent")
         return agent
 
     cdef c_ssh2.LIBSSH2_AGENT * init_connect_agent(self) except NULL:
-        agent = self._agent_init()
+        cdef c_ssh2.LIBSSH2_AGENT *agent
+        with nogil:
+            agent = c_ssh2.libssh2_agent_init(self._session)
         if c_ssh2.libssh2_agent_connect(agent) != 0:
             with nogil:
                 c_ssh2.libssh2_agent_free(agent)
@@ -311,19 +314,19 @@ cdef class Session:
         cdef c_ssh2.libssh2_agent_publickey *identity = NULL
         cdef c_ssh2.libssh2_agent_publickey *prev = NULL
         agent = self.init_connect_agent()
-        if c_ssh2.libssh2_agent_list_identities(agent) != 0:
-            with nogil:
-                clear_agent(agent)
-            raise AgentListIdentitiesError(
-                "Failure requesting identities from agent")
-        while 1:
-            auth_identity(_username, agent, &identity, prev)
-            if c_ssh2.libssh2_agent_userauth(
-                    agent, _username, identity) == 0:
-                break
-            prev = identity
         with nogil:
-            clear_agent(agent)
+            if c_ssh2.libssh2_agent_list_identities(agent) != 0:
+                clear_agent(agent)
+                with gil:
+                    raise AgentListIdentitiesError(
+                        "Failure requesting identities from agent")
+            while 1:
+                auth_identity(_username, agent, &identity, prev)
+                if c_ssh2.libssh2_agent_userauth(
+                        agent, _username, identity) == 0:
+                    clear_agent(agent)
+                    break
+                prev = identity
 
     def open_session(self):
         """Open new channel session.

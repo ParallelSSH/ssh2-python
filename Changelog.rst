@@ -1,6 +1,15 @@
 Change Log
 =============
 
+0.5.4
+++++++
+
+Fixes
+------
+
+* Agent authentication thread safety.
+
+
 0.5.3
 ++++++
 
@@ -14,7 +23,7 @@ Changes
 Fixes
 -----
 
-* Session handshake thread safety.
+* Session initialisation thread safety.
 * Agent thread safety.
 
 0.5.2

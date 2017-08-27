@@ -697,7 +697,7 @@ struct __pyx_obj_4ssh2_11sftp_handle___pyx_scope_struct_1_readdir;
  * 
  * cdef class Session:             # <<<<<<<<<<<<<<
  *     cdef c_ssh2.LIBSSH2_SESSION *_session
- *     cdef c_ssh2.LIBSSH2_AGENT * init_connect_agent(self) nogil except NULL
+ *     cdef c_ssh2.LIBSSH2_AGENT * init_connect_agent(self) except NULL
  */
 struct __pyx_obj_4ssh2_7session_Session {
   PyObject_HEAD
@@ -805,7 +805,7 @@ struct __pyx_obj_4ssh2_11sftp_handle___pyx_scope_struct_1_readdir {
  * 
  * cdef class Session:             # <<<<<<<<<<<<<<
  *     cdef c_ssh2.LIBSSH2_SESSION *_session
- *     cdef c_ssh2.LIBSSH2_AGENT * init_connect_agent(self) nogil except NULL
+ *     cdef c_ssh2.LIBSSH2_AGENT * init_connect_agent(self) except NULL
  */
 
 struct __pyx_vtabstruct_4ssh2_7session_Session {

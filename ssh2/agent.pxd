@@ -29,7 +29,7 @@ cdef class Agent:
 cdef int auth_identity(const char *username,
                        c_ssh2.LIBSSH2_AGENT *agent,
                        c_ssh2.libssh2_agent_publickey **identity,
-                       c_ssh2.libssh2_agent_publickey *prev) except -1
+                       c_ssh2.libssh2_agent_publickey *prev) nogil except -1
 
 
 cdef void clear_agent(c_ssh2.LIBSSH2_AGENT *agent) nogil

@@ -24,20 +24,22 @@ cimport c_ssh2
 cdef int auth_identity(const char *username,
                        c_ssh2.LIBSSH2_AGENT *agent,
                        c_ssh2.libssh2_agent_publickey **identity,
-                       c_ssh2.libssh2_agent_publickey *prev) except -1:
+                       c_ssh2.libssh2_agent_publickey *prev) nogil except -1:
     cdef int rc
     rc = c_ssh2.libssh2_agent_get_identity(
         agent, identity, prev)
     if rc == 1:
         clear_agent(agent)
-        raise AgentAuthenticationError(
-            "No identities match for user %s",
-            username)
+        with gil:
+            raise AgentAuthenticationError(
+                "No identities match for user %s",
+                username)
     elif rc < 0:
         clear_agent(agent)
-        raise AgentGetIdentityError(
-            "Failure getting identity for user %s from agent",
-            username)
+        with gil:
+            raise AgentGetIdentityError(
+                "Failure getting identity for user %s from agent",
+                username)
     return rc
 
 
@@ -101,12 +103,14 @@ cdef class Agent:
         :rtype: int"""
         cdef int rc
         cdef char *_username = to_bytes(username)
-        rc = c_ssh2.libssh2_agent_userauth(
-            self._agent, _username, pkey._pkey)
-        if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
-            raise AgentAuthenticationError(
-                "Error authenticating user %s with provided public key",
-                username)
+        with nogil:
+            rc = c_ssh2.libssh2_agent_userauth(
+                self._agent, _username, pkey._pkey)
+            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
+                with gil:
+                    raise AgentAuthenticationError(
+                        "Error authenticating user %s with provided public key",
+                        username)
         return rc
 
     def disconnect(self):
