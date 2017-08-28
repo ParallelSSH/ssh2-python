@@ -4,8 +4,8 @@ import os
 import socket
 from sys import version_info
 
+from .embedded_server.openssh import OpenSSHServer
 from ssh2.session import Session
-from embedded_server.openssh import OpenSSHServer
 
 
 PKEY_FILENAME = os.path.sep.join([os.path.dirname(__file__), 'unit_test_key'])

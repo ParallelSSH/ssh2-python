@@ -1,6 +1,4 @@
-recursive-exclude embedded_server *
 recursive-exclude docker *
-recursive-exclude tests *
 include versioneer.py
 include ssh2/_version.py
 exclude .travis.yml

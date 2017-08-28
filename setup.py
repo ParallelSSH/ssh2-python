@@ -40,8 +40,6 @@ cython_args = {
     'cython_compile_time_env': {'EMBEDDED_LIB': _embedded_lib}} \
     if USING_CYTHON else {}
 
-print("Linking with %s and compiler arguments %s" % (_libs, _comp_args))
-
 extensions = [
     Extension(sources[i].split('.')[0].replace(os.path.sep, '.'),
               sources=[sources[i]],
@@ -69,7 +67,9 @@ setup(
     description=('Super fast SSH library - bindings for libssh2'),
     long_description=open('README.rst').read(),
     packages=find_packages(
-        '.', exclude=('embedded_server', 'embedded_server.*')),
+        '.', exclude=('embedded_server', 'embedded_server.*',
+                      'tests', 'tests.*',
+                      '*.tests', '*.tests.*')),
     zip_safe=False,
     include_package_data=True,
     platforms='any',
