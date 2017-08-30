@@ -105,16 +105,11 @@ test_script:
 after_test:
   # If tests are successful, create binary packages for the project.
   - "%CMD_IN_ENV% python setup.py bdist_wheel"
-  - "%CMD_IN_ENV% python setup.py bdist_wininst"
   - mv dist/* .
-  # Create 'none' ABI dist packages for use by older pip/wheel versions
-  - python ci/copy_abi_dist.py *.whl
 
 artifacts:
   # Archive the generated packages in the ci.appveyor.com build report.
   - path: "*.whl"
-  - path: "*.exe"
 
 deploy_script:
   - python ci/appveyor/pypi_upload.py *.whl
-  - python ci/appveyor/pypi_upload.py *.exe
