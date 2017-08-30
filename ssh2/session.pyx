@@ -240,14 +240,16 @@ cdef class Session:
             cdef bytes b_passphrase = to_bytes(passphrase)
             cdef char *_username = b_username
             cdef char *_passphrase = b_passphrase
+            cdef char *_publickeyfiledata = publickeyfiledata
+            cdef char *_privatekeyfiledata = privatekeyfiledata
             cdef size_t username_len, pubkeydata_len, privatekeydata_len
             username_len, pubkeydata_len, privatekeydata_len = \
                 len(b_username), len(publickeyfiledata), \
                 len(privatekeyfiledata)
             with nogil:
                 rc = c_ssh2.libssh2_userauth_publickey_frommemory(
-                    self._session, _username, username_len, publickeyfiledata,
-                    pubkeydata_len, privatekeyfiledata,
+                    self._session, _username, username_len, _publickeyfiledata,
+                    pubkeydata_len, _privatekeyfiledata,
                     privatekeydata_len, _passphrase)
             return rc
 
