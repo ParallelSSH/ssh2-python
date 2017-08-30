@@ -102,7 +102,8 @@ cdef class Agent:
 
         :rtype: int"""
         cdef int rc
-        cdef char *_username = to_bytes(username)
+        cdef bytes b_username = to_bytes(username)
+        cdef char *_username = b_username
         with nogil:
             rc = c_ssh2.libssh2_agent_userauth(
                 self._agent, _username, pkey._pkey)
