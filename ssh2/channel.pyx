@@ -42,7 +42,8 @@ cdef class Channel:
             c_ssh2.libssh2_channel_free(self._channel)
 
     def pty(self, term="vt100"):
-        cdef const char *_term = to_bytes(term)
+        cdef bytes b_term = to_bytes(term)
+        cdef const char *_term = b_term
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_request_pty(
@@ -66,7 +67,8 @@ cdef class Channel:
         :rtype: int
         """
         cdef int rc
-        cdef char *_command = to_bytes(command)
+        cdef bytes b_command = to_bytes(command)
+        cdef char *_command = b_command
         with nogil:
             rc = c_ssh2.libssh2_channel_exec(
                 self._channel, _command)
@@ -83,7 +85,8 @@ cdef class Channel:
         :param subsystem: Name of subsystem
         :type subsystem: str"""
         cdef int rc
-        cdef char *_subsystem = to_bytes(subsystem)
+        cdef bytes b_subsystem = to_bytes(subsystem)
+        cdef char *_subsystem = b_subsystem
         with nogil:
             rc = c_ssh2.libssh2_channel_subsystem(
                 self._channel, _subsystem)
@@ -273,8 +276,10 @@ cdef class Channel:
 
         :rtype: int"""
         cdef int rc
-        cdef char *_varname = to_bytes(varname)
-        cdef char *_value = to_bytes(value)
+        cdef bytes b_varname = to_bytes(varname)
+        cdef bytes b_value = to_bytes(value)
+        cdef char *_varname = b_varname
+        cdef char *_value = b_value
         with nogil:
             rc = c_ssh2.libssh2_channel_setenv(
                 self._channel, _varname, _value)
@@ -331,8 +336,9 @@ cdef class Channel:
         :type buf: str
 
         :rtype: int"""
-        cdef const char *_buf = to_bytes(buf)
-        cdef size_t buflen = len(_buf)
+        cdef bytes b_buf = to_bytes(buf)
+        cdef const char *_buf = b_buf
+        cdef size_t buflen = len(b_buf)
         cdef ssize_t rc
         with nogil:
             rc = c_ssh2.libssh2_channel_write(self._channel, _buf, buflen)
@@ -347,8 +353,9 @@ cdef class Channel:
         :type buf: str
 
         :rtype: int"""
-        cdef const char *_buf = to_bytes(buf)
-        cdef size_t buflen = len(_buf)
+        cdef bytes b_buf = to_bytes(buf)
+        cdef const char *_buf = b_buf
+        cdef size_t buflen = len(b_buf)
         cdef ssize_t rc
         with nogil:
             rc = c_ssh2.libssh2_channel_write_ex(
@@ -362,8 +369,9 @@ cdef class Channel:
         :type buf: str
 
         :rtype: int"""
-        cdef const char *_buf = to_bytes(buf)
-        cdef size_t buflen = len(_buf)
+        cdef bytes b_buf = to_bytes(buf)
+        cdef const char *_buf = b_buf
+        cdef size_t buflen = len(b_buf)
         cdef ssize_t rc
         with nogil:
             rc = c_ssh2.libssh2_channel_write_stderr(
@@ -393,10 +401,12 @@ cdef class Channel:
 
         Request is a supported SSH subsystem and clients would typically use
         one of execute/shell/subsystem functions depending on request type."""
-        cdef char *_request = to_bytes(request)
-        cdef char *_message = to_bytes(message)
-        cdef size_t r_len = len(_request)
-        cdef size_t m_len = len(_message)
+        cdef bytes b_request = to_bytes(request)
+        cdef bytes b_message = to_bytes(message)
+        cdef char *_request = b_request
+        cdef char *_message = b_message
+        cdef size_t r_len = len(b_request)
+        cdef size_t m_len = len(b_message)
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_process_startup(

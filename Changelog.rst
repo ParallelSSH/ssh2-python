@@ -1,6 +1,20 @@
 Change Log
 =============
 
+0.5.5
+++++++
+
+Changes
+--------
+
+* Accept both bytes and unicode parameters in authentication with public key from memory.
+
+Fixes
+------
+
+* Unicode -> bytes parameter conversion would fail in some cases.
+
+
 0.5.4
 ++++++
 

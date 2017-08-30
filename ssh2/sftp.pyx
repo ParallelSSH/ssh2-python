@@ -178,7 +178,8 @@ cdef class SFTP:
           ``LIBSSH2_SFTP_S_IROTH``
         :type mode: int"""
         cdef c_sftp.LIBSSH2_SFTP_HANDLE *_handle
-        cdef char *_filename = to_bytes(filename)
+        cdef bytes b_filename = to_bytes(filename)
+        cdef char *_filename = b_filename
         with nogil:
             _handle = c_sftp.libssh2_sftp_open(
                 self._sftp, _filename, flags, mode)
@@ -194,7 +195,8 @@ cdef class SFTP:
 
         :rtype: :py:class:`ssh2.sftp.SFTPHandle` or `None`"""
         cdef c_sftp.LIBSSH2_SFTP_HANDLE *_handle
-        cdef char *_path = to_bytes(path)
+        cdef bytes b_path = to_bytes(path)
+        cdef char *_path = b_path
         with nogil:
             _handle = c_sftp.libssh2_sftp_opendir(self._sftp, _path)
         if _handle is NULL:
@@ -221,8 +223,10 @@ cdef class SFTP:
         :param dest_filename: New name of file.
         :type dest_filename: str"""
         cdef int rc
-        cdef char *_source_filename = to_bytes(source_filename)
-        cdef char *_dest_filename = to_bytes(dest_filename)
+        cdef bytes b_source_filename = to_bytes(source_filename)
+        cdef bytes b_dest_filename = to_bytes(dest_filename)
+        cdef char *_source_filename = b_source_filename
+        cdef char *_dest_filename = b_dest_filename
         with nogil:
             rc = c_sftp.libssh2_sftp_rename(
                 self._sftp, _source_filename, _dest_filename)
@@ -234,7 +238,8 @@ cdef class SFTP:
         :param filename: Name of file to delete/unlink.
         :type filename: str"""
         cdef int rc
-        cdef char *_filename = to_bytes(filename)
+        cdef bytes b_filename = to_bytes(filename)
+        cdef char *_filename = b_filename
         with nogil:
             rc = c_sftp.libssh2_sftp_unlink(self._sftp, _filename)
         return rc
@@ -244,8 +249,9 @@ cdef class SFTP:
 
         :rtype: `ssh2.sftp.SFTPStatVFS` or int of error code"""
         cdef SFTPStatVFS vfs = SFTPStatVFS(self)
-        cdef char *_path = to_bytes(path)
-        cdef size_t path_len = len(_path)
+        cdef bytes b_path = to_bytes(path)
+        cdef char *_path = b_path
+        cdef size_t path_len = len(b_path)
         with nogil:
             rc = c_sftp.libssh2_sftp_statvfs(
                 self._sftp, _path, path_len, vfs._ptr)
@@ -276,7 +282,8 @@ cdef class SFTP:
 
         :rtype: int"""
         cdef int rc
-        cdef char *_path = to_bytes(path)
+        cdef bytes b_path = to_bytes(path)
+        cdef char *_path = b_path
         with nogil:
             rc = c_sftp.libssh2_sftp_rmdir(self._sftp, _path)
         return rc
@@ -289,7 +296,8 @@ cdef class SFTP:
 
         :rtype: :py:class:`ssh2.sftp.SFTPAttributes` or LIBSSH2_ERROR_EAGAIN"""
         cdef int rc
-        cdef char *_path = to_bytes(path)
+        cdef bytes b_path = to_bytes(path)
+        cdef char *_path = b_path
         cdef SFTPAttributes attrs = SFTPAttributes()
         with nogil:
             rc = c_sftp.libssh2_sftp_stat(
@@ -306,7 +314,8 @@ cdef class SFTP:
     def lstat(self, path not None):
         """Link stat a file."""
         cdef int rc
-        cdef char *_path = to_bytes(path)
+        cdef bytes b_path = to_bytes(path)
+        cdef char *_path = b_path
         cdef SFTPAttributes attrs = SFTPAttributes()
         with nogil:
             rc = c_sftp.libssh2_sftp_lstat(
@@ -330,7 +339,8 @@ cdef class SFTP:
 
         :rtype: int"""
         cdef int rc
-        cdef char *_path = to_bytes(path)
+        cdef bytes b_path = to_bytes(path)
+        cdef char *_path = b_path
         with nogil:
             rc = c_sftp.libssh2_sftp_setstat(
                 self._sftp, _path, attrs._attrs)
@@ -346,8 +356,10 @@ cdef class SFTP:
 
         :rtype: int"""
         cdef int rc
-        cdef char *_path = to_bytes(path)
-        cdef char *_target = to_bytes(target)
+        cdef bytes b_path = to_bytes(path)
+        cdef char *_path = b_path
+        cdef bytes b_target = to_bytes(target)
+        cdef char *_target = b_target
         with nogil:
             rc = c_sftp.libssh2_sftp_symlink(self._sftp, _path, _target)
         return rc
@@ -365,10 +377,11 @@ cdef class SFTP:
         :raises: :py:class:`ssh2.exceptions.SFTPBufferTooSmall` on max_len less
           than real path length."""
         cdef char *_target = <char *>malloc(sizeof(char)*max_len)
-        if _target == NULL:
+        if _target is NULL:
             raise MemoryError
         cdef int rc
-        cdef char *_path = to_bytes(path)
+        cdef bytes b_path = to_bytes(path)
+        cdef char *_path = b_path
         cdef bytes realpath
         try:
             with nogil:

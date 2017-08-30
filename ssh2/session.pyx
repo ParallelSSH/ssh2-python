@@ -134,8 +134,9 @@ cdef class Session:
         """Retrieve available authentication method list.
 
         :rtype: list"""
-        cdef char *_username = to_bytes(username)
-        cdef size_t username_len = len(_username)
+        cdef bytes b_username = to_bytes(username)
+        cdef char *_username = b_username
+        cdef size_t username_len = len(b_username)
         cdef char *_auth
         cdef str auth
         with nogil:
@@ -154,10 +155,14 @@ cdef class Session:
 
         :rtype: int"""
         cdef int rc
-        cdef char *_username = to_bytes(username)
-        cdef char *_publickey = to_bytes(publickey)
-        cdef char *_privatekey = to_bytes(privatekey)
-        cdef char *_passphrase = to_bytes(passphrase)
+        cdef bytes b_username = to_bytes(username)
+        cdef bytes b_publickey = to_bytes(publickey)
+        cdef bytes b_privatekey = to_bytes(privatekey)
+        cdef bytes b_passphrase = to_bytes(passphrase)
+        cdef char *_username = b_username
+        cdef char *_publickey = b_publickey
+        cdef char *_privatekey = b_privatekey
+        cdef char *_passphrase = b_passphrase
         with nogil:
             rc = c_ssh2.libssh2_userauth_publickey_fromfile(
                 self._session, _username, _publickey, _privatekey, _passphrase)
@@ -180,7 +185,8 @@ cdef class Session:
 
         :rtype: int"""
         cdef int rc
-        cdef char *_username = to_bytes(username)
+        cdef bytes b_username = to_bytes(username)
+        cdef char *_username = b_username
         cdef unsigned char *_pubkeydata = pubkeydata
         cdef size_t pubkeydata_len = len(pubkeydata)
         with nogil:
@@ -201,11 +207,16 @@ cdef class Session:
                                     passphrase not None,
                                     hostname not None):
         cdef int rc
-        cdef char *_username = to_bytes(username)
-        cdef char *_publickey = to_bytes(publickey)
-        cdef char *_privatekey = to_bytes(privatekey)
-        cdef char *_passphrase = to_bytes(passphrase)
-        cdef char *_hostname = to_bytes(hostname)
+        cdef bytes b_username = to_bytes(username)
+        cdef bytes b_publickey = to_bytes(publickey)
+        cdef bytes b_privatekey = to_bytes(privatekey)
+        cdef bytes b_passphrase = to_bytes(passphrase)
+        cdef bytes b_hostname = to_bytes(hostname)
+        cdef char *_username = b_username
+        cdef char *_publickey = b_publickey
+        cdef char *_privatekey = b_privatekey
+        cdef char *_passphrase = b_passphrase
+        cdef char *_hostname = b_hostname
         with nogil:
             rc = c_ssh2.libssh2_userauth_hostbased_fromfile(
                 self._session, _username, _publickey,
@@ -220,19 +231,26 @@ cdef class Session:
 
     IF EMBEDDED_LIB:
         def userauth_publickey_frommemory(self,
-                                          const char *username,
-                                          const char *publickeyfiledata,
-                                          const char *privatekeyfiledata,
-                                          const char *passphrase):
+                                          username,
+                                          bytes publickeyfiledata,
+                                          bytes privatekeyfiledata,
+                                          passphrase):
             cdef int rc
+            cdef bytes b_username = to_bytes(username)
+            cdef bytes b_passphrase = to_bytes(passphrase)
+            cdef char *_username = b_username
+            cdef char *_passphrase = b_passphrase
+            cdef char *_publickeyfiledata = publickeyfiledata
+            cdef char *_privatekeyfiledata = privatekeyfiledata
             cdef size_t username_len, pubkeydata_len, privatekeydata_len
             username_len, pubkeydata_len, privatekeydata_len = \
-                len(username), len(publickeyfiledata), len(privatekeyfiledata)
+                len(b_username), len(publickeyfiledata), \
+                len(privatekeyfiledata)
             with nogil:
                 rc = c_ssh2.libssh2_userauth_publickey_frommemory(
-                    self._session, username, username_len, publickeyfiledata,
-                    pubkeydata_len, privatekeyfiledata,
-                    privatekeydata_len, passphrase)
+                    self._session, _username, username_len, _publickeyfiledata,
+                    pubkeydata_len, _privatekeyfiledata,
+                    privatekeydata_len, _passphrase)
             return rc
 
     def userauth_password(self, username not None, password not None):
@@ -243,8 +261,10 @@ cdef class Session:
         :param password: Password
         :type password: str"""
         cdef int rc
-        cdef const char *_username = to_bytes(username)
-        cdef const char *_password = to_bytes(password)
+        cdef bytes b_username = to_bytes(username)
+        cdef bytes b_password = to_bytes(password)
+        cdef const char *_username = b_username
+        cdef const char *_password = b_password
         with nogil:
             rc = c_ssh2.libssh2_userauth_password(
                 self._session, _username, _password)
@@ -309,7 +329,8 @@ cdef class Session:
           getting known identity from agent
 
         :rtype: None"""
-        cdef char *_username = to_bytes(username)
+        cdef bytes b_username = to_bytes(username)
+        cdef char *_username = b_username
         cdef c_ssh2.LIBSSH2_AGENT *agent = NULL
         cdef c_ssh2.libssh2_agent_publickey *identity = NULL
         cdef c_ssh2.libssh2_agent_publickey *prev = NULL
@@ -345,8 +366,10 @@ cdef class Session:
     def direct_tcpip_ex(self, host not None, int port,
                         shost not None, int sport):
         cdef c_ssh2.LIBSSH2_CHANNEL *channel
-        cdef char *_host = to_bytes(host)
-        cdef char *_shost = to_bytes(shost)
+        cdef bytes b_host = to_bytes(host)
+        cdef bytes b_shost = to_bytes(shost)
+        cdef char *_host = b_host
+        cdef char *_shost = b_shost
         with nogil:
             channel = c_ssh2.libssh2_channel_direct_tcpip_ex(
                 self._session, _host, port, _shost, sport)
@@ -357,7 +380,8 @@ cdef class Session:
 
     def direct_tcpip(self, host not None, int port):
         cdef c_ssh2.LIBSSH2_CHANNEL *channel
-        cdef char *_host = to_bytes(host)
+        cdef bytes b_host = to_bytes(host)
+        cdef char *_host = b_host
         with nogil:
             channel = c_ssh2.libssh2_channel_direct_tcpip(
                 self._session, _host, port)
@@ -411,7 +435,8 @@ cdef class Session:
     def forward_listen_ex(self, host not None, int port,
                           int bound_port, int queue_maxsize):
         cdef c_ssh2.LIBSSH2_LISTENER *listener
-        cdef char *_host = to_bytes(host)
+        cdef bytes b_host = to_bytes(host)
+        cdef char *_host = b_host
         with nogil:
             listener = c_ssh2.libssh2_channel_forward_listen_ex(
                 self._session, _host, port, &bound_port, queue_maxsize)
@@ -461,7 +486,8 @@ cdef class Session:
 
         :rtype: tuple(:py:class:`ssh2.channel.Channel`,
           :py:class:`ssh2.statinfo.StatInfo`) or None"""
-        cdef char *_path = to_bytes(path)
+        cdef bytes b_path = to_bytes(path)
+        cdef char *_path = b_path
         cdef StatInfo statinfo = StatInfo()
         cdef c_ssh2.LIBSSH2_CHANNEL *channel
         with nogil:
@@ -482,7 +508,8 @@ cdef class Session:
             :rtype: tuple(:py:class:`ssh2.channel.Channel`,
             :py:class:`ssh2.fileinfo.FileInfo`) or None"""
             cdef FileInfo fileinfo = FileInfo()
-            cdef char *_path = to_bytes(path)
+            cdef bytes b_path = to_bytes(path)
+            cdef char *_path = b_path
             cdef c_ssh2.LIBSSH2_CHANNEL *channel
             with nogil:
                 channel = c_ssh2.libssh2_scp_recv2(
@@ -501,7 +528,8 @@ cdef class Session:
         :type size: int
 
         :rtype: :py:class:`ssh2.channel.Channel`"""
-        cdef char *_path = to_bytes(path)
+        cdef bytes b_path = to_bytes(path)
+        cdef char *_path = b_path
         cdef c_ssh2.LIBSSH2_CHANNEL *channel
         with nogil:
             channel = c_ssh2.libssh2_scp_send(
@@ -521,7 +549,8 @@ cdef class Session:
         :type size: int
 
         :rtype: :py:class:`ssh2.channel.Channel`"""
-        cdef char *_path = to_bytes(path)
+        cdef bytes b_path = to_bytes(path)
+        cdef char *_path = b_path
         cdef c_ssh2.LIBSSH2_CHANNEL *channel
         with nogil:
             channel = c_ssh2.libssh2_scp_send64(

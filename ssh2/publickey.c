@@ -1055,7 +1055,7 @@ static PyTypeObject *__pyx_ptype_4ssh2_7session_Session = 0;
 /* Module declarations from 'libc.stdlib' */
 
 /* Module declarations from 'ssh2.utils' */
-static char *(*__pyx_f_4ssh2_5utils_to_bytes)(PyObject *); /*proto*/
+static PyObject *(*__pyx_f_4ssh2_5utils_to_bytes)(PyObject *); /*proto*/
 
 /* Module declarations from 'ssh2.publickey' */
 static PyTypeObject *__pyx_ptype_4ssh2_9publickey_PublicKeyList = 0;
@@ -5263,7 +5263,7 @@ PyMODINIT_FUNC PyInit_publickey(void)
   /*--- Variable import code ---*/
   /*--- Function import code ---*/
   __pyx_t_1 = __Pyx_ImportModule("ssh2.utils"); if (!__pyx_t_1) __PYX_ERR(1, 1, __pyx_L1_error)
-  if (__Pyx_ImportFunction(__pyx_t_1, "to_bytes", (void (**)(void))&__pyx_f_4ssh2_5utils_to_bytes, "char *(PyObject *)") < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  if (__Pyx_ImportFunction(__pyx_t_1, "to_bytes", (void (**)(void))&__pyx_f_4ssh2_5utils_to_bytes, "PyObject *(PyObject *)") < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   Py_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   /*--- Execution code ---*/
   #if defined(__Pyx_Generator_USED) || defined(__Pyx_Coroutine_USED)

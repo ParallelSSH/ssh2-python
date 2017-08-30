@@ -24,7 +24,7 @@ cimport c_ssh2
 ENCODING='utf-8'
 
 
-cdef char* to_bytes(_str):
+cdef bytes to_bytes(_str):
     if isinstance(_str, bytes):
         return _str
     elif isinstance(_str, unicode):
