@@ -38,8 +38,14 @@ cdef class Channel:
 
     def __dealloc__(self):
         with nogil:
-            c_ssh2.libssh2_channel_close(self._channel)
-            c_ssh2.libssh2_channel_free(self._channel)
+            if self._channel is not NULL and self._session._session is not NULL:
+                c_ssh2.libssh2_channel_close(self._channel)
+                c_ssh2.libssh2_channel_free(self._channel)
+                self._channel = NULL
+
+    @property
+    def session(self):
+        return self._session
 
     def pty(self, term="vt100"):
         cdef bytes b_term = to_bytes(term)
