@@ -17,11 +17,10 @@
 from cpython cimport PyObject_AsFileDescriptor
 from libc.time cimport time_t
 
-from agent cimport PyAgent, auth_identity, clear_agent
+from agent cimport PyAgent, agent_auth, agent_init, init_connect_agent
 from channel cimport PyChannel
 from exceptions cimport SessionHandshakeError, SessionStartupError, \
-    AgentConnectionError, AgentListIdentitiesError, AgentGetIdentityError, \
-    AuthenticationError, AgentError
+    AuthenticationError
 from listener cimport PyListener
 from sftp cimport PySFTP
 from publickey cimport PyPublicKeySystem
@@ -37,26 +36,6 @@ cimport c_pkey
 
 LIBSSH2_SESSION_BLOCK_INBOUND = c_ssh2.LIBSSH2_SESSION_BLOCK_INBOUND
 LIBSSH2_SESSION_BLOCK_OUTBOUND = c_ssh2.LIBSSH2_SESSION_BLOCK_OUTBOUND
-
-
-
-cdef c_ssh2.LIBSSH2_AGENT * _agent_init(c_ssh2.LIBSSH2_SESSION *_session) nogil except NULL:
-    cdef c_ssh2.LIBSSH2_AGENT *agent = c_ssh2.libssh2_agent_init(
-        _session)
-    if agent is NULL:
-        with gil:
-            raise AgentError("Error initialising agent")
-    return agent
-
-
-cdef c_ssh2.LIBSSH2_AGENT * init_connect_agent(c_ssh2.LIBSSH2_SESSION *_session) nogil except NULL:
-    cdef c_ssh2.LIBSSH2_AGENT *agent
-    agent = c_ssh2.libssh2_agent_init(_session)
-    if c_ssh2.libssh2_agent_connect(agent) != 0:
-        c_ssh2.libssh2_agent_free(agent)
-        with gil:
-            raise AgentConnectionError("Unable to connect to agent")
-    return agent
 
 
 cdef class Session:
@@ -304,7 +283,7 @@ cdef class Session:
         """
         cdef c_ssh2.LIBSSH2_AGENT *agent
         with nogil:
-            agent = _agent_init(self._session)
+            agent = agent_init(self._session)
         return PyAgent(agent, self)
 
     def agent_auth(self, username not None):
@@ -340,18 +319,7 @@ cdef class Session:
         cdef c_ssh2.libssh2_agent_publickey *prev = NULL
         agent = init_connect_agent(self._session)
         with nogil:
-            if c_ssh2.libssh2_agent_list_identities(agent) != 0:
-                clear_agent(agent)
-                with gil:
-                    raise AgentListIdentitiesError(
-                        "Failure requesting identities from agent")
-            while 1:
-                auth_identity(_username, agent, &identity, prev)
-                if c_ssh2.libssh2_agent_userauth(
-                        agent, _username, identity) == 0:
-                    clear_agent(agent)
-                    break
-                prev = identity
+            agent_auth(_username, agent)
 
     def open_session(self):
         """Open new channel session.
@@ -467,7 +435,7 @@ cdef class Session:
         :rtype: str
         """
         cdef char **_error_msg = NULL
-        cdef bytes msg
+        cdef bytes msg = b''
         cdef int errmsg_len = 0
         cdef int rc
         with nogil:
@@ -476,8 +444,6 @@ cdef class Session:
         if errmsg_len > 0 and _error_msg is not NULL:
             for line in _error_msg[:errmsg_len]:
                 msg += line
-        else:
-            msg = b''
         return msg
 
     def scp_recv(self, path not None):

@@ -16,8 +16,5 @@
 
 cimport c_ssh2
 
-cdef c_ssh2.LIBSSH2_AGENT * init_connect_agent(c_ssh2.LIBSSH2_SESSION *_session) nogil except NULL
-cdef c_ssh2.LIBSSH2_AGENT * _agent_init(c_ssh2.LIBSSH2_SESSION *_session) nogil except NULL
-
 cdef class Session:
     cdef c_ssh2.LIBSSH2_SESSION *_session

@@ -3,6 +3,7 @@ from unittest import skipUnless
 
 from .base_test import SSH2TestCase
 from ssh2.session import Session
+from ssh2.exceptions import AuthenticationError, AgentAuthenticationError
 
 
 class SessionTestCase(SSH2TestCase):
@@ -30,6 +31,20 @@ class SessionTestCase(SSH2TestCase):
         self.assertEqual(self.session.get_blocking(), 0)
         self.session.set_blocking(1)
         self.assertEqual(self.session.get_blocking(), 1)
+
+    def test_failed_agent_auth(self):
+        self.assertRaises(AgentAuthenticationError,
+                          self.session.agent_auth, 'FAKE USER')
+
+    def test_failed_pkey_auth(self):
+        self.assertRaises(AuthenticationError,
+                          self.session.userauth_publickey_fromfile,
+                          'FAKE USER', self.user_pub_key, self.user_key,
+                          '')
+        self.assertRaises(AuthenticationError,
+                          self.session.userauth_publickey_fromfile,
+                          self.user, 'FAKE FILE', 'EVEN MORE FAKE FILE',
+                          '')
 
     @skipUnless(hasattr(Session, 'scp_recv64'),
                 "Function not supported by libssh2")
