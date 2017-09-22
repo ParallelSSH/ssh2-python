@@ -700,8 +700,8 @@ struct __pyx_obj_4ssh2_10exceptions_SFTPBufferTooSmall;
 struct __pyx_obj_4ssh2_4sftp_SFTP;
 struct __pyx_obj_4ssh2_7channel_Channel;
 
-/* "session.pxd":22
- * cdef c_ssh2.LIBSSH2_AGENT * _agent_init(c_ssh2.LIBSSH2_SESSION *_session) nogil except NULL
+/* "session.pxd":19
+ * cimport c_ssh2
  * 
  * cdef class Session:             # <<<<<<<<<<<<<<
  *     cdef c_ssh2.LIBSSH2_SESSION *_session
@@ -1455,7 +1455,7 @@ static int __pyx_pf_4ssh2_7channel_7Channel___cinit__(struct __pyx_obj_4ssh2_7ch
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         with nogil:
- *             if self._channel is not NULL and self._session._session is not NULL:
+ *             if self._channel is not NULL and self._session is not None:
  */
 
 /* Python wrapper */
@@ -1473,13 +1473,14 @@ static void __pyx_pf_4ssh2_7channel_7Channel_2__dealloc__(struct __pyx_obj_4ssh2
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
   int __pyx_t_2;
+  int __pyx_t_3;
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
   /* "ssh2/channel.pyx":40
  * 
  *     def __dealloc__(self):
  *         with nogil:             # <<<<<<<<<<<<<<
- *             if self._channel is not NULL and self._session._session is not NULL:
+ *             if self._channel is not NULL and self._session is not None:
  *                 c_ssh2.libssh2_channel_close(self._channel)
  */
   {
@@ -1493,7 +1494,7 @@ static void __pyx_pf_4ssh2_7channel_7Channel_2__dealloc__(struct __pyx_obj_4ssh2
         /* "ssh2/channel.pyx":41
  *     def __dealloc__(self):
  *         with nogil:
- *             if self._channel is not NULL and self._session._session is not NULL:             # <<<<<<<<<<<<<<
+ *             if self._channel is not NULL and self._session is not None:             # <<<<<<<<<<<<<<
  *                 c_ssh2.libssh2_channel_close(self._channel)
  *                 c_ssh2.libssh2_channel_free(self._channel)
  */
@@ -1503,14 +1504,15 @@ static void __pyx_pf_4ssh2_7channel_7Channel_2__dealloc__(struct __pyx_obj_4ssh2
           __pyx_t_1 = __pyx_t_2;
           goto __pyx_L7_bool_binop_done;
         }
-        __pyx_t_2 = ((__pyx_v_self->_session->_session != NULL) != 0);
-        __pyx_t_1 = __pyx_t_2;
+        __pyx_t_2 = (((PyObject *)__pyx_v_self->_session) != Py_None);
+        __pyx_t_3 = (__pyx_t_2 != 0);
+        __pyx_t_1 = __pyx_t_3;
         __pyx_L7_bool_binop_done:;
         if (__pyx_t_1) {
 
           /* "ssh2/channel.pyx":42
  *         with nogil:
- *             if self._channel is not NULL and self._session._session is not NULL:
+ *             if self._channel is not NULL and self._session is not None:
  *                 c_ssh2.libssh2_channel_close(self._channel)             # <<<<<<<<<<<<<<
  *                 c_ssh2.libssh2_channel_free(self._channel)
  *                 self._channel = NULL
@@ -1518,7 +1520,7 @@ static void __pyx_pf_4ssh2_7channel_7Channel_2__dealloc__(struct __pyx_obj_4ssh2
           libssh2_channel_close(__pyx_v_self->_channel);
 
           /* "ssh2/channel.pyx":43
- *             if self._channel is not NULL and self._session._session is not NULL:
+ *             if self._channel is not NULL and self._session is not None:
  *                 c_ssh2.libssh2_channel_close(self._channel)
  *                 c_ssh2.libssh2_channel_free(self._channel)             # <<<<<<<<<<<<<<
  *                 self._channel = NULL
@@ -1538,7 +1540,7 @@ static void __pyx_pf_4ssh2_7channel_7Channel_2__dealloc__(struct __pyx_obj_4ssh2
           /* "ssh2/channel.pyx":41
  *     def __dealloc__(self):
  *         with nogil:
- *             if self._channel is not NULL and self._session._session is not NULL:             # <<<<<<<<<<<<<<
+ *             if self._channel is not NULL and self._session is not None:             # <<<<<<<<<<<<<<
  *                 c_ssh2.libssh2_channel_close(self._channel)
  *                 c_ssh2.libssh2_channel_free(self._channel)
  */
@@ -1549,7 +1551,7 @@ static void __pyx_pf_4ssh2_7channel_7Channel_2__dealloc__(struct __pyx_obj_4ssh2
  * 
  *     def __dealloc__(self):
  *         with nogil:             # <<<<<<<<<<<<<<
- *             if self._channel is not NULL and self._session._session is not NULL:
+ *             if self._channel is not NULL and self._session is not None:
  *                 c_ssh2.libssh2_channel_close(self._channel)
  */
       /*finally:*/ {
@@ -1569,7 +1571,7 @@ static void __pyx_pf_4ssh2_7channel_7Channel_2__dealloc__(struct __pyx_obj_4ssh2
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         with nogil:
- *             if self._channel is not NULL and self._session._session is not NULL:
+ *             if self._channel is not NULL and self._session is not None:
  */
 
   /* function exit code */
@@ -7359,7 +7361,7 @@ PyMODINIT_FUNC PyInit_channel(void)
   if (__Pyx_setup_reduce((PyObject*)&__pyx_type_4ssh2_7channel_Channel) < 0) __PYX_ERR(0, 33, __pyx_L1_error)
   __pyx_ptype_4ssh2_7channel_Channel = &__pyx_type_4ssh2_7channel_Channel;
   /*--- Type import code ---*/
-  __pyx_ptype_4ssh2_7session_Session = __Pyx_ImportType("ssh2.session", "Session", sizeof(struct __pyx_obj_4ssh2_7session_Session), 1); if (unlikely(!__pyx_ptype_4ssh2_7session_Session)) __PYX_ERR(2, 22, __pyx_L1_error)
+  __pyx_ptype_4ssh2_7session_Session = __Pyx_ImportType("ssh2.session", "Session", sizeof(struct __pyx_obj_4ssh2_7session_Session), 1); if (unlikely(!__pyx_ptype_4ssh2_7session_Session)) __PYX_ERR(2, 19, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_AgentError = __Pyx_ImportType("ssh2.exceptions", "AgentError", sizeof(struct __pyx_obj_4ssh2_10exceptions_AgentError), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_AgentError)) __PYX_ERR(3, 18, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_AuthenticationError = __Pyx_ImportType("ssh2.exceptions", "AuthenticationError", sizeof(struct __pyx_obj_4ssh2_10exceptions_AuthenticationError), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_AuthenticationError)) __PYX_ERR(3, 22, __pyx_L1_error)
   __pyx_ptype_4ssh2_10exceptions_AgentConnectionError = __Pyx_ImportType("ssh2.exceptions", "AgentConnectionError", sizeof(struct __pyx_obj_4ssh2_10exceptions_AgentConnectionError), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_AgentConnectionError)) __PYX_ERR(3, 26, __pyx_L1_error)

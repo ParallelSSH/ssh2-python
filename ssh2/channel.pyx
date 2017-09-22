@@ -38,7 +38,7 @@ cdef class Channel:
 
     def __dealloc__(self):
         with nogil:
-            if self._channel is not NULL and self._session._session is not NULL:
+            if self._channel is not NULL and self._session is not None:
                 c_ssh2.libssh2_channel_close(self._channel)
                 c_ssh2.libssh2_channel_free(self._channel)
                 self._channel = NULL
