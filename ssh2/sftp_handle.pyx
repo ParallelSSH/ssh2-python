@@ -370,6 +370,7 @@ cdef class SFTPHandle:
 
         :rtype: `ssh2.sftp.SFTPStatVFS` or int of error code"""
         cdef SFTPStatVFS vfs = SFTPStatVFS(self)
+        cdef int rc
         with nogil:
             rc = c_sftp.libssh2_sftp_fstatvfs(self._handle, vfs._ptr)
         if rc != 0:
