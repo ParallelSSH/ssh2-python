@@ -23,6 +23,8 @@ from sys import version_info
 from jinja2 import Template
 
 DIR_NAME = os.path.dirname(__file__)
+PDIR_NAME = os.path.dirname(DIR_NAME)
+PPDIR_NAME = os.path.dirname(PDIR_NAME)
 SERVER_KEY = os.path.abspath(os.path.sep.join([DIR_NAME, 'rsa.key']))
 SSHD_CONFIG_TMPL = os.path.abspath(os.path.sep.join(
     [DIR_NAME, 'sshd_config.tmpl']))
@@ -34,9 +36,15 @@ class OpenSSHServer(object):
     def __init__(self, port=2222):
         self.port = port
         self.server_proc = None
-        _mask = int('0600') if version_info <= (2,) else 0o600
-        os.chmod(SERVER_KEY, _mask)
+        self._fix_masks()
         self.make_config()
+
+    def _fix_masks(self):
+        _mask = int('0600') if version_info <= (2,) else 0o600
+        dir_mask = int('0755') if version_info <= (2,) else 0o755
+        os.chmod(SERVER_KEY, _mask)
+        for _dir in [DIR_NAME, PDIR_NAME, PPDIR_NAME]:
+            os.chmod(_dir, dir_mask)
 
     def make_config(self):
         with open(SSHD_CONFIG_TMPL) as fh:
@@ -57,7 +65,6 @@ class OpenSSHServer(object):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         while sock.connect_ex(('127.0.0.1', self.port)) != 0:
             sleep(.1)
-        sleep(.3)
         del sock
 
     def stop(self):
