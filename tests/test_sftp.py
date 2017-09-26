@@ -3,6 +3,7 @@ import platform
 import stat
 from sys import version_info
 from unittest import skipUnless
+import shutil
 
 from .base_test import SSH2TestCase
 from ssh2.error_codes import LIBSSH2_ERROR_EAGAIN
@@ -11,7 +12,7 @@ from ssh2.sftp_handle import SFTPHandle, SFTPAttributes
 from ssh2.exceptions import SFTPHandleError, SFTPBufferTooSmall
 from ssh2.sftp import LIBSSH2_FXF_CREAT, LIBSSH2_FXF_WRITE, \
     LIBSSH2_SFTP_S_IRUSR, LIBSSH2_SFTP_S_IRGRP, LIBSSH2_SFTP_S_IWUSR, \
-    LIBSSH2_SFTP_S_IROTH
+    LIBSSH2_SFTP_S_IROTH, LIBSSH2_SFTP_S_IXUSR
 
 
 class SFTPTestCase(SSH2TestCase):
@@ -249,3 +250,23 @@ class SFTPTestCase(SSH2TestCase):
                 dir_data.append(buf)
         self.assertTrue(len(dir_data) > 0)
         self.assertTrue(b'..' in dir_data)
+
+    def test_mkdir(self):
+        mode = LIBSSH2_SFTP_S_IRUSR | \
+            LIBSSH2_SFTP_S_IWUSR | \
+            LIBSSH2_SFTP_S_IRGRP | \
+            LIBSSH2_SFTP_S_IROTH | \
+            LIBSSH2_SFTP_S_IXUSR
+        _path = 'tmp'
+        abspath = os.path.join(os.path.expanduser('~'), _path)
+        self._auth()
+        sftp = self.session.sftp_init()
+        try:
+            shutil.rmtree(abspath)
+        except OSError:
+            pass
+        sftp.mkdir(_path, mode)
+        try:
+            self.assertTrue(os.path.isdir(abspath))
+        finally:
+            shutil.rmtree(abspath)

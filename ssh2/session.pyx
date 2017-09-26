@@ -46,6 +46,8 @@ cdef class Session:
         self._session = c_ssh2.libssh2_session_init()
         if self._session is NULL:
             raise MemoryError
+        self._sock = 0
+        self.sock = None
 
     def __dealloc__(self):
         with nogil:
@@ -72,6 +74,8 @@ cdef class Session:
                     raise SessionHandshakeError(
                         "SSH session handshake failed with error code %s",
                         rc)
+            self._sock = _sock
+        self.sock = sock
         return rc
 
     def startup(self, sock):

@@ -14,6 +14,8 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
+from .exceptions cimport SFTPIOError
+
 from libc.stdlib cimport malloc, free
 
 cimport c_ssh2
@@ -271,6 +273,9 @@ cdef class SFTPHandle:
         cdef ssize_t rc
         with nogil:
             rc = c_sftp.libssh2_sftp_write(self._handle, cbuf, _size)
+            if rc < 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
+                with gil:
+                    raise SFTPIOError("Error writing to file via SFTP")
         return rc
 
     IF EMBEDDED_LIB:

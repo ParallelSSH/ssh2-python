@@ -123,6 +123,7 @@ cdef class Channel:
         :rtype: (int, bytes)"""
         cdef bytes buf
         cdef char *cbuf
+        cdef ssize_t rc
         with nogil:
             cbuf = <char *>malloc(sizeof(char)*size)
             if cbuf is NULL:

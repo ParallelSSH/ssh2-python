@@ -269,7 +269,8 @@ cdef class SFTP:
 
         :rtype: int"""
         cdef int rc
-        cdef char *_path = path
+        cdef bytes b_path = to_bytes(path)
+        cdef char *_path = b_path
         with nogil:
             rc = c_sftp.libssh2_sftp_mkdir(self._sftp, _path, mode)
             if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
