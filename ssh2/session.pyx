@@ -446,6 +446,28 @@ cdef class Session:
                 msg += line
         return msg
 
+    def last_errno(self):
+        """Retrieve last error message from libssh2, if any.
+        Returns empty string on no error message.
+
+        :rtype: str
+        """
+        cdef int rc
+        with nogil:
+            rc = c_ssh2.libssh2_session_last_errno(
+                self._session)
+        return rc
+
+    IF EMBEDDED_LIB:
+        def set_last_error(self, int errcode, errmsg not None):
+            cdef bytes b_errmsg = to_bytes(errmsg)
+            cdef char *_errmsg = b_errmsg
+            cdef int rc
+            with nogil:
+                rc = c_ssh2.libssh2_session_set_last_error(
+                    self._session, errcode, _errmsg)
+            return rc
+
     def scp_recv(self, path not None):
         """Receive file via SCP.
 

@@ -57,3 +57,7 @@ cdef class SFTPHandleError(Exception):
 
 cdef class SFTPBufferTooSmall(Exception):
     pass
+
+
+cdef class SFTPIOError(Exception):
+    pass
