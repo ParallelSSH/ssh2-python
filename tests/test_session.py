@@ -2,7 +2,8 @@ import os
 from unittest import skipUnless
 
 from .base_test import SSH2TestCase
-from ssh2.session import Session
+from ssh2.session import Session, LIBSSH2_HOSTKEY_HASH_MD5, \
+    LIBSSH2_HOSTKEY_HASH_SHA1
 from ssh2.exceptions import AuthenticationError, AgentAuthenticationError
 
 
@@ -124,3 +125,9 @@ class SessionTestCase(SSH2TestCase):
         finally:
             os.unlink(remote_filename)
             os.unlink(to_copy)
+
+    def test_hostkey(self):
+        self.assertEqual(self._auth(), 0)
+        for _type in [LIBSSH2_HOSTKEY_HASH_MD5, LIBSSH2_HOSTKEY_HASH_SHA1]:
+            hostkey = self.session.hostkey_hash(_type)
+            self.assertTrue(len(hostkey) > 0)

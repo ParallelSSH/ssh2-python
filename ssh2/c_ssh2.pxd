@@ -34,6 +34,8 @@ cdef extern from "libssh2.h" nogil:
         LIBSSH2_VERSION_PATCH
         LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA
         LIBSSH2_CHANNEL_FLUSH_ALL
+        LIBSSH2_HOSTKEY_HASH_MD5
+        LIBSSH2_HOSTKEY_HASH_SHA1
     # ctypedef libssh2_uint64_t libssh2_struct_stat_size
     ctypedef struct libssh2_struct_stat:
         dev_t   st_dev

@@ -110,6 +110,9 @@ cdef class Channel:
         Return code is the size of the buffer when positive.
         Negative values are error codes.
 
+        :param size: Max buffer size to read.
+        :type size: int
+
         :rtype: (int, bytes)"""
         return self.read_ex(size=size, stream_id=0)
 
@@ -120,8 +123,11 @@ cdef class Channel:
         Return code is the size of the buffer when positive.
         Negative values are error codes.
 
+        :param size: Max buffer size to read.
+        :type size: int
+
         :rtype: (int, bytes)"""
-        cdef bytes buf
+        cdef bytes buf = b''
         cdef char *cbuf
         cdef ssize_t rc
         with nogil:
@@ -134,8 +140,6 @@ cdef class Channel:
         try:
             if rc > 0:
                 buf = cbuf[:rc]
-            else:
-                buf = b''
         finally:
             free(cbuf)
         return rc, buf

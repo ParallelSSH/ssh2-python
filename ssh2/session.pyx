@@ -36,6 +36,8 @@ cimport c_pkey
 
 LIBSSH2_SESSION_BLOCK_INBOUND = c_ssh2.LIBSSH2_SESSION_BLOCK_INBOUND
 LIBSSH2_SESSION_BLOCK_OUTBOUND = c_ssh2.LIBSSH2_SESSION_BLOCK_OUTBOUND
+LIBSSH2_HOSTKEY_HASH_MD5 = c_ssh2.LIBSSH2_HOSTKEY_HASH_MD5
+LIBSSH2_HOSTKEY_HASH_SHA1 = c_ssh2.LIBSSH2_HOSTKEY_HASH_SHA1
 
 
 cdef class Session:
@@ -562,3 +564,20 @@ cdef class Session:
             _pkey= c_pkey.libssh2_publickey_init(self._session)
         if _pkey is not NULL:
             return PyPublicKeySystem(_pkey, self)
+
+    def hostkey_hash(self, int hash_type):
+        """Get computed digest of the remote system's host key.
+
+        :param hash_type: One of ``ssh2.session.LIBSSH2_HOSTKEY_HASH_MD5`` or
+          ``ssh2.session.LIBSSH2_HOSTKEY_HASH_SHA1``
+        :type hash_type: int
+
+        :rtype: bytes"""
+        cdef const char *_hash
+        cdef bytes b_hash
+        with nogil:
+            _hash = c_ssh2.libssh2_hostkey_hash(self._session, hash_type)
+        if _hash is NULL:
+            return
+        b_hash = _hash
+        return b_hash
