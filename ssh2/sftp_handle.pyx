@@ -158,7 +158,7 @@ cdef class SFTPHandle:
 
         :rtype: bytes"""
         cdef ssize_t rc
-        cdef bytes buf
+        cdef bytes buf = b''
         cdef char *cbuf
         with nogil:
             cbuf = <char *>malloc(sizeof(char)*buffer_maxlen)
@@ -170,8 +170,6 @@ cdef class SFTPHandle:
         try:
             if rc > 0:
                 buf = cbuf[:rc]
-            else:
-                buf = b''
         finally:
             free(cbuf)
         return rc, buf
@@ -188,7 +186,8 @@ cdef class SFTPHandle:
         :param buffer_maxlen: Max length of returned buffer.
         :param longentry_maxlen: Max length of filename in listing.
 
-        :rtype: bytes"""
+        :rtype: bytes
+        """
         rc, buf, entry, attrs = self._readdir_ex(
             longentry_maxlen=longentry_maxlen,
             buffer_maxlen=buffer_maxlen)
@@ -201,7 +200,7 @@ cdef class SFTPHandle:
     def _readdir_ex(self,
                     size_t longentry_maxlen=1024,
                     size_t buffer_maxlen=1024):
-        cdef bytes buf
+        cdef bytes buf = b''
         cdef bytes filename
         cdef char *cbuf
         cdef char *longentry
@@ -218,8 +217,6 @@ cdef class SFTPHandle:
         try:
             if rc > 0:
                 buf = cbuf[:rc]
-            else:
-                buf = b''
         finally:
             free(cbuf)
             free(longentry)
@@ -242,7 +239,7 @@ cdef class SFTPHandle:
 
     def _readdir(self,
                  size_t buffer_maxlen=1024):
-        cdef bytes buf
+        cdef bytes buf = b''
         cdef char *cbuf
         cdef SFTPAttributes attrs = SFTPAttributes()
         with nogil:
@@ -255,8 +252,6 @@ cdef class SFTPHandle:
         try:
             if rc > 0:
                 buf = cbuf[:rc]
-            else:
-                buf = b''
         finally:
             free(cbuf)
         return rc, buf, attrs
