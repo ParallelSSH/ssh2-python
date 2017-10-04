@@ -16,6 +16,7 @@ Fixes
 -------
 
 * Crash on de-allocation of channel in certain cases
+* SFTP ``readdir_ex`` directory listing (long entry) was not returned correctly
 
 0.5.5
 ++++++

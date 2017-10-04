@@ -188,6 +188,16 @@ class SFTPTestCase(SSH2TestCase):
         self.assertTrue(len(dir_data) > 0)
         self.assertTrue(b'..' in (_ls for (_, _ls, _) in dir_data))
 
+    def test_readdir_ex(self):
+        self.assertEqual(self._auth(), 0)
+        sftp = self.session.sftp_init()
+        with sftp.opendir('.') as fh:
+            dir_data = list(fh.readdir_ex())
+        self.assertTrue(len(dir_data) > 0)
+        self.assertTrue(b'..' in (_ls for (_, _ls, _, _) in dir_data))
+        # Directory listing should include permissions, user name etc
+        self.assertTrue(self.user in dir_data[0][2].decode('utf-8'))
+
     @skipUnless(hasattr(SFTPHandle, 'fsync'),
                 "Function not supported by libssh2")
     def test_fsync(self):
