@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - setuptools
+  - libssh2
+  - toolchain3
