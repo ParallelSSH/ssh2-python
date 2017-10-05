@@ -24,6 +24,8 @@ else:
 ext = 'pyx' if USING_CYTHON else 'c'
 sources = glob('ssh2/*.%s' % (ext,))
 _libs = ['ssh2'] if platform.system() != 'Windows' else [
+    # For libssh2 OpenSSL backend on Windows.
+    # Windows native WinCNG is used by default.
     # 'libeay32', 'ssleay32',
     'Ws2_32', 'libssh2', 'user32']
 

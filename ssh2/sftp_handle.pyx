@@ -14,6 +14,8 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
+from .exceptions cimport SFTPIOError
+
 from libc.stdlib cimport malloc, free
 
 cimport c_ssh2
@@ -124,7 +126,7 @@ cdef class SFTPHandle:
         cdef int rc
         cdef bytes data
         rc, data = self.read()
-        if rc != c_ssh2.LIBSSH2_ERROR_EAGAIN and len(data) == 0:
+        if rc != c_ssh2.LIBSSH2_ERROR_EAGAIN and rc <= 0:
             raise StopIteration
         return rc, data
 
@@ -156,7 +158,7 @@ cdef class SFTPHandle:
 
         :rtype: bytes"""
         cdef ssize_t rc
-        cdef bytes buf
+        cdef bytes buf = b''
         cdef char *cbuf
         with nogil:
             cbuf = <char *>malloc(sizeof(char)*buffer_maxlen)
@@ -168,8 +170,6 @@ cdef class SFTPHandle:
         try:
             if rc > 0:
                 buf = cbuf[:rc]
-            else:
-                buf = b''
         finally:
             free(cbuf)
         return rc, buf
@@ -184,13 +184,14 @@ cdef class SFTPHandle:
         This function is a generator and should be iterated on.
 
         :param buffer_maxlen: Max length of returned buffer.
-        :param longentry_maxlen: Max length of filename in listing.
+        :param longentry_maxlen: Max length of file list entry.
 
-        :rtype: bytes"""
+        :rtype: bytes
+        """
         rc, buf, entry, attrs = self._readdir_ex(
             longentry_maxlen=longentry_maxlen,
             buffer_maxlen=buffer_maxlen)
-        while rc == c_ssh2.LIBSSH2_ERROR_EAGAIN or len(buf) > 0:
+        while rc == c_ssh2.LIBSSH2_ERROR_EAGAIN or rc > 0:
             yield rc, buf, entry, attrs
             rc, buf, entryb, attrs = self._readdir_ex(
                 longentry_maxlen=longentry_maxlen,
@@ -199,8 +200,8 @@ cdef class SFTPHandle:
     def _readdir_ex(self,
                     size_t longentry_maxlen=1024,
                     size_t buffer_maxlen=1024):
-        cdef bytes buf
-        cdef bytes filename
+        cdef bytes buf = b''
+        cdef bytes b_longentry = b''
         cdef char *cbuf
         cdef char *longentry
         cdef SFTPAttributes attrs = SFTPAttributes()
@@ -216,12 +217,11 @@ cdef class SFTPHandle:
         try:
             if rc > 0:
                 buf = cbuf[:rc]
-            else:
-                buf = b''
+                b_longentry = longentry
         finally:
             free(cbuf)
             free(longentry)
-        return rc, buf, longentry, attrs
+        return rc, buf, b_longentry, attrs
 
     def readdir(self, size_t buffer_maxlen=1024):
         """Get directory listing from file handle, if any.
@@ -234,13 +234,13 @@ cdef class SFTPHandle:
 
         :rtype: iter(bytes)"""
         rc, buf, attrs = self._readdir(buffer_maxlen)
-        while rc == c_ssh2.LIBSSH2_ERROR_EAGAIN or len(buf) > 0:
+        while rc == c_ssh2.LIBSSH2_ERROR_EAGAIN or rc > 0:
             yield rc, buf, attrs
             rc, buf, attrs = self._readdir(buffer_maxlen)
 
     def _readdir(self,
                  size_t buffer_maxlen=1024):
-        cdef bytes buf
+        cdef bytes buf = b''
         cdef char *cbuf
         cdef SFTPAttributes attrs = SFTPAttributes()
         with nogil:
@@ -253,8 +253,6 @@ cdef class SFTPHandle:
         try:
             if rc > 0:
                 buf = cbuf[:rc]
-            else:
-                buf = b''
         finally:
             free(cbuf)
         return rc, buf, attrs
@@ -271,6 +269,9 @@ cdef class SFTPHandle:
         cdef ssize_t rc
         with nogil:
             rc = c_sftp.libssh2_sftp_write(self._handle, cbuf, _size)
+            if rc < 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
+                with gil:
+                    raise SFTPIOError("Error writing to file via SFTP")
         return rc
 
     IF EMBEDDED_LIB:
@@ -370,6 +371,7 @@ cdef class SFTPHandle:
 
         :rtype: `ssh2.sftp.SFTPStatVFS` or int of error code"""
         cdef SFTPStatVFS vfs = SFTPStatVFS(self)
+        cdef int rc
         with nogil:
             rc = c_sftp.libssh2_sftp_fstatvfs(self._handle, vfs._ptr)
         if rc != 0:

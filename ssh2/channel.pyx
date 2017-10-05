@@ -38,10 +38,21 @@ cdef class Channel:
 
     def __dealloc__(self):
         with nogil:
-            c_ssh2.libssh2_channel_close(self._channel)
-            c_ssh2.libssh2_channel_free(self._channel)
+            if self._channel is not NULL and self._session is not None:
+                c_ssh2.libssh2_channel_close(self._channel)
+                c_ssh2.libssh2_channel_free(self._channel)
+                self._channel = NULL
+
+    @property
+    def session(self):
+        return self._session
 
     def pty(self, term="vt100"):
+        """Request a PTY (physical terminal emulation) on the channel.
+
+        :param term: Terminal type to emulate.
+        :type term: str
+        """
         cdef bytes b_term = to_bytes(term)
         cdef const char *_term = b_term
         cdef int rc
@@ -104,6 +115,9 @@ cdef class Channel:
         Return code is the size of the buffer when positive.
         Negative values are error codes.
 
+        :param size: Max buffer size to read.
+        :type size: int
+
         :rtype: (int, bytes)"""
         return self.read_ex(size=size, stream_id=0)
 
@@ -114,9 +128,13 @@ cdef class Channel:
         Return code is the size of the buffer when positive.
         Negative values are error codes.
 
+        :param size: Max buffer size to read.
+        :type size: int
+
         :rtype: (int, bytes)"""
-        cdef bytes buf
+        cdef bytes buf = b''
         cdef char *cbuf
+        cdef ssize_t rc
         with nogil:
             cbuf = <char *>malloc(sizeof(char)*size)
             if cbuf is NULL:
@@ -127,8 +145,6 @@ cdef class Channel:
         try:
             if rc > 0:
                 buf = cbuf[:rc]
-            else:
-                buf = b''
         finally:
             free(cbuf)
         return rc, buf
@@ -158,8 +174,8 @@ cdef class Channel:
         specified channel. Processes typically interpret this as a closed stdin
         descriptor.
 
-        Return 0 on success or negative on failure.
-        It returns LIBSSH2_ERROR_EAGAIN when it would otherwise block.
+        Returns 0 on success or negative on failure.
+        It returns ``LIBSSH2_ERROR_EAGAIN`` when it would otherwise block.
 
         :rtype: int
         """
@@ -169,9 +185,9 @@ cdef class Channel:
         return rc
 
     def wait_eof(self):
-        """Wait for the remote end to acknowledge an EOF request
+        """Wait for the remote end to acknowledge an EOF request.
 
-        Return 0 on success or negative on failure. It returns
+        Returns 0 on success or negative on failure. It returns
         :py:class:`ssh2.error_codes.LIBSSH2_ERROR_EAGAIN` when it
         would otherwise block.
 
@@ -414,7 +430,8 @@ cdef class Channel:
         return rc
 
     def poll_channel_read(self, int extended):
-        """Deprecated - use blockdirections and socket polling instead"""
+        """Deprecated - use session.block_directions and socket polling
+        instead"""
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_poll_channel_read(self._channel, extended)

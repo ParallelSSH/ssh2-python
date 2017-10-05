@@ -61,7 +61,7 @@ from session cimport Session
 from error_codes cimport _LIBSSH2_ERROR_BUFFER_TOO_SMALL
 from channel cimport Channel, PyChannel
 from utils cimport to_bytes, to_str
-from exceptions cimport SFTPHandleError, SFTPBufferTooSmall
+from exceptions cimport SFTPHandleError, SFTPBufferTooSmall, SFTPIOError
 from sftp_handle cimport SFTPHandle, PySFTPHandle, SFTPAttributes, SFTPStatVFS
 
 cimport c_ssh2
@@ -269,9 +269,15 @@ cdef class SFTP:
 
         :rtype: int"""
         cdef int rc
-        cdef char *_path = path
+        cdef bytes b_path = to_bytes(path)
+        cdef char *_path = b_path
         with nogil:
             rc = c_sftp.libssh2_sftp_mkdir(self._sftp, _path, mode)
+            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
+                with gil:
+                    raise SFTPIOError(
+                        "Error creating directory %s - error code %s",
+                        path, rc)
         return rc
 
     def rmdir(self, path not None):

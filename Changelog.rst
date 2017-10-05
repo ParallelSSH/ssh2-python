@@ -1,11 +1,28 @@
 Change Log
 =============
 
+0.6.0
+++++++
+
+Changes
+---------
+
+* Implemented `last_errno` and `set_last_error` session functions
+* Agent authentication errors raise exceptions
+* C-API refactor
+* SFTP IO errors raise exceptions
+
+Fixes
+-------
+
+* Crash on de-allocation of channel in certain cases
+* SFTP ``readdir_ex`` directory listing (long entry) was not returned correctly
+
 0.5.5
 ++++++
 
 Changes
---------
+---------
 
 * Accept both bytes and unicode parameters in authentication with public key from memory.
 
