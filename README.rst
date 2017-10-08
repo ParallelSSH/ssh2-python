@@ -17,6 +17,10 @@ Super fast SSH2 protocol library. ``ssh2-python`` provides Python bindings for `
    :target: https://pypi.python.org/pypi/ssh2-python
 .. image:: https://img.shields.io/pypi/pyversions/ssh2-python.svg
    :target: https://pypi.python.org/pypi/ssh2-python
+.. image:: https://readthedocs.org/projects/ssh2-python/badge/?version=latest
+  :target: http://ssh2-python.readthedocs.org/en/latest/
+  :alt: Latest documentation
+
 
 Installation
 ______________
