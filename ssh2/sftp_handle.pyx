@@ -271,7 +271,8 @@ cdef class SFTPHandle:
             rc = c_sftp.libssh2_sftp_write(self._handle, cbuf, _size)
             if rc < 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
                 with gil:
-                    raise SFTPIOError("Error writing to file via SFTP")
+                    raise SFTPIOError("Error writing to file via SFTP - "
+                                      "error code %s", rc)
         return rc
 
     IF EMBEDDED_LIB:
