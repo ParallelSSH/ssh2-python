@@ -312,7 +312,7 @@ cdef class Session:
           connecting to agent
         :raises: :py:class:`ssh2.exceptions.AgentListIdentitiesError` on error
           getting identities from agent
-        :raises: :py:class:`ssh2.exceptions.AgentAuthenticationFailure` on no
+        :raises: :py:class:`ssh2.exceptions.AgentAuthenticationError` on no
           successful authentication with all available identities.
         :raises: :py:class:`ssh2.exceptions.AgentGetIdentityError` on error
           getting known identity from agent
