@@ -32,6 +32,8 @@ jobs:
         only:
           - master
           - /^\d+\.\d+(\.\d+)?(-\S*)?$/
+      before_install:
+        - brew update
       install:
         - brew install libssh2
         - pip install -U delocate twine wheel pip setuptools
