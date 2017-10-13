@@ -14,6 +14,8 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
+"""SFTP handle, attributes and stat VFS classes."""
+
 from .exceptions cimport SFTPIOError
 
 from libc.stdlib cimport malloc, free

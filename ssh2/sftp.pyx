@@ -16,7 +16,7 @@
 
 
 """
-SFTP channel, handle and attributes classes and related SFTP flags.
+SFTP channel class and related SFTP flags.
 
 File transfer flags
 --------------------
@@ -300,7 +300,8 @@ cdef class SFTP:
         :param path: Path of file to stat.
         :type path: str
 
-        :rtype: :py:class:`ssh2.sftp.SFTPAttributes` or LIBSSH2_ERROR_EAGAIN"""
+        :rtype: :py:class:`ssh2.sftp_handle.SFTPAttributes` or
+          LIBSSH2_ERROR_EAGAIN"""
         cdef int rc
         cdef bytes b_path = to_bytes(path)
         cdef char *_path = b_path
@@ -341,7 +342,7 @@ cdef class SFTP:
         :param path: File path.
         :type path: str
         :param attrs: File attributes to set.
-        :type attrs: :py:class:`ssh2.sftp.SFTPAttributes`
+        :type attrs: :py:class:`ssh2.sftp_handle.SFTPAttributes`
 
         :rtype: int"""
         cdef int rc
