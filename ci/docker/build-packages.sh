@@ -14,7 +14,7 @@ for x in `ls -1d ci/docker/{fedora,centos}*`; do
     docker tag $name $docker_tag
     docker push $docker_tag
     sudo rm -rf build dist
-    docker run -v "$(pwd):/src/" "$name" --rpm-dist $dist -s python -t rpm setup.py
+    docker run -v "$(pwd):/src/" "$name" --rpm-dist $dist -s python -t rpm -d libssh2 -d python setup.py
 done
 
 for x in `ls -1d ci/docker/{debian,ubuntu}*`; do
@@ -25,7 +25,7 @@ for x in `ls -1d ci/docker/{debian,ubuntu}*`; do
     docker tag $name $docker_tag
     docker push $docker_tag
     sudo rm -rf build dist
-    docker run -v "$(pwd):/src/" "$name" --iteration $name -s python -t deb setup.py
+    docker run -v "$(pwd):/src/" "$name" --iteration $name -s python -t deb -d libssh2-1 -d python setup.py
 done
 
 sudo chown -R ${USER} *

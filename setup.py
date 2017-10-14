@@ -49,8 +49,6 @@ extensions = [
               libraries=_libs,
               extra_compile_args=_comp_args,
               **cython_args
-              # For conditional compilation
-              # pyrex_compile_time_env
     )
     for i in range(len(sources))]
 

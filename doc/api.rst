@@ -7,6 +7,7 @@ API Documentation
    channel
    agent
    sftp
+   sftp_handle
    pkey
    listener
    exceptions

@@ -336,7 +336,6 @@ following conventions.
   Travis-CI based integration tests and is required for builds to pass.
 
 * Docstrings must follow the `PEP-257 <https://www.python.org/dev/peps/pep-0257>`_ conventions.
-  style.
 
 * Docstrings for *public* API endpoints should include Sphinx docstring directives
   for inclusion in the auto-generated Sphinx based documentation. For example::

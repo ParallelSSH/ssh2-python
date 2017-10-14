@@ -1358,7 +1358,7 @@ static const char __pyx_k_LIBSSH2_SFTP_S_IXOTH[] = "LIBSSH2_SFTP_S_IXOTH";
 static const char __pyx_k_LIBSSH2_SFTP_S_IXUSR[] = "LIBSSH2_SFTP_S_IXUSR";
 static const char __pyx_k_LIBSSH2_SFTP_ST_NOSUID[] = "LIBSSH2_SFTP_ST_NOSUID";
 static const char __pyx_k_LIBSSH2_SFTP_ST_RDONLY[] = "LIBSSH2_SFTP_ST_RDONLY";
-static const char __pyx_k_SFTP_channel_handle_and_attribu[] = "\nSFTP channel, handle and attributes classes and related SFTP flags.\n\nFile transfer flags\n--------------------\n:var LIBSSH2_FXF_READ: File read flag\n:var LIBSSH2_FXF_WRITE: File write flag\n:var LIBSSH2_FXF_APPEND: File append flag\n:var LIBSSH2_FXF_CREAT: File create flag\n:var LIBSSH2_FXF_TRUNC: File truncate flag\n:var LIBSSH2_FXF_EXCL: Exclusive file flag\n\nFile mode masks\n-----------------\n\nOwner masks\n_____________\n\n:var LIBSSH2_SFTP_S_IRWXU: Read/write/execute\n:var LIBSSH2_SFTP_S_IRUSR: Read\n:var LIBSSH2_SFTP_S_IWUSR: Write\n:var LIBSSH2_SFTP_S_IXUSR: Execute\n\nGroup masks\n____________\n\n:var LIBSSH2_SFTP_S_IRWXG: Read/write/execute\n:var LIBSSH2_SFTP_S_IRGRP: Read\n:var LIBSSH2_SFTP_S_IWUSR: Write\n:var LIBSSH2_SFTP_S_IXUSR: Execute\n\nOther masks\n____________\n\n:var LIBSSH2_SFTP_S_IRWXO: Read/write/execute\n:var LIBSSH2_SFTP_S_IROTH: Read\n:var LIBSSH2_SFTP_S_IWOTH: Write\n:var LIBSSH2_SFTP_S_IXOTH: Execute\n";
+static const char __pyx_k_SFTP_channel_class_and_related[] = "\nSFTP channel class and related SFTP flags.\n\nFile transfer flags\n--------------------\n:var LIBSSH2_FXF_READ: File read flag\n:var LIBSSH2_FXF_WRITE: File write flag\n:var LIBSSH2_FXF_APPEND: File append flag\n:var LIBSSH2_FXF_CREAT: File create flag\n:var LIBSSH2_FXF_TRUNC: File truncate flag\n:var LIBSSH2_FXF_EXCL: Exclusive file flag\n\nFile mode masks\n-----------------\n\nOwner masks\n_____________\n\n:var LIBSSH2_SFTP_S_IRWXU: Read/write/execute\n:var LIBSSH2_SFTP_S_IRUSR: Read\n:var LIBSSH2_SFTP_S_IWUSR: Write\n:var LIBSSH2_SFTP_S_IXUSR: Execute\n\nGroup masks\n____________\n\n:var LIBSSH2_SFTP_S_IRWXG: Read/write/execute\n:var LIBSSH2_SFTP_S_IRGRP: Read\n:var LIBSSH2_SFTP_S_IWUSR: Write\n:var LIBSSH2_SFTP_S_IXUSR: Execute\n\nOther masks\n____________\n\n:var LIBSSH2_SFTP_S_IRWXO: Read/write/execute\n:var LIBSSH2_SFTP_S_IROTH: Read\n:var LIBSSH2_SFTP_S_IWOTH: Write\n:var LIBSSH2_SFTP_S_IXOTH: Execute\n";
 static const char __pyx_k_Buffer_too_small_to_fit_realpath[] = "Buffer too small to fit realpath for %s - max size %s. Error code %s";
 static const char __pyx_k_Error_creating_directory_s_error[] = "Error creating directory %s - error code %s";
 static const char __pyx_k_Error_getting_real_path_for_s_er[] = "Error getting real path for %s - error code %s";
@@ -3689,7 +3689,7 @@ static PyObject *__pyx_pf_4ssh2_4sftp_4SFTP_22rmdir(struct __pyx_obj_4ssh2_4sftp
 
 /* Python wrapper */
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_25stat(PyObject *__pyx_v_self, PyObject *__pyx_v_path); /*proto*/
-static char __pyx_doc_4ssh2_4sftp_4SFTP_24stat[] = "SFTP.stat(self, path)\nStat file.\n\n        :param path: Path of file to stat.\n        :type path: str\n\n        :rtype: :py:class:`ssh2.sftp.SFTPAttributes` or LIBSSH2_ERROR_EAGAIN";
+static char __pyx_doc_4ssh2_4sftp_4SFTP_24stat[] = "SFTP.stat(self, path)\nStat file.\n\n        :param path: Path of file to stat.\n        :type path: str\n\n        :rtype: :py:class:`ssh2.sftp_handle.SFTPAttributes` or LIBSSH2_ERROR_EAGAIN";
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_25stat(PyObject *__pyx_v_self, PyObject *__pyx_v_path) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -3722,7 +3722,7 @@ static PyObject *__pyx_pf_4ssh2_4sftp_4SFTP_24stat(struct __pyx_obj_4ssh2_4sftp_
   __Pyx_RefNannySetupContext("stat", 0);
 
   /* "ssh2/sftp.pyx":305
- *         :rtype: :py:class:`ssh2.sftp.SFTPAttributes` or LIBSSH2_ERROR_EAGAIN"""
+ *         :rtype: :py:class:`ssh2.sftp_handle.SFTPAttributes` or LIBSSH2_ERROR_EAGAIN"""
  *         cdef int rc
  *         cdef bytes b_path = to_bytes(path)             # <<<<<<<<<<<<<<
  *         cdef char *_path = b_path
@@ -4271,7 +4271,7 @@ static PyObject *__pyx_pf_4ssh2_4sftp_4SFTP_26lstat(struct __pyx_obj_4ssh2_4sftp
 
 /* Python wrapper */
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_29setstat(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_4sftp_4SFTP_28setstat[] = "SFTP.setstat(self, path, SFTPAttributes attrs)\nSet file attributes.\n\n        :param path: File path.\n        :type path: str\n        :param attrs: File attributes to set.\n        :type attrs: :py:class:`ssh2.sftp.SFTPAttributes`\n\n        :rtype: int";
+static char __pyx_doc_4ssh2_4sftp_4SFTP_28setstat[] = "SFTP.setstat(self, path, SFTPAttributes attrs)\nSet file attributes.\n\n        :param path: File path.\n        :type path: str\n        :param attrs: File attributes to set.\n        :type attrs: :py:class:`ssh2.sftp_handle.SFTPAttributes`\n\n        :rtype: int";
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_29setstat(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_path = 0;
   struct __pyx_obj_4ssh2_11sftp_handle_SFTPAttributes *__pyx_v_attrs = 0;
@@ -5637,7 +5637,7 @@ static PyModuleDef_Slot __pyx_moduledef_slots[] = {
 static struct PyModuleDef __pyx_moduledef = {
     PyModuleDef_HEAD_INIT,
     "sftp",
-    __pyx_k_SFTP_channel_handle_and_attribu, /* m_doc */
+    __pyx_k_SFTP_channel_class_and_related, /* m_doc */
   #if CYTHON_PEP489_MULTI_PHASE_INIT
     0, /* m_size */
   #else
@@ -5855,7 +5855,7 @@ static int __pyx_pymod_exec_sftp(PyObject *__pyx_pyinit_module)
   Py_INCREF(__pyx_m);
   #else
   #if PY_MAJOR_VERSION < 3
-  __pyx_m = Py_InitModule4("sftp", __pyx_methods, __pyx_k_SFTP_channel_handle_and_attribu, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
+  __pyx_m = Py_InitModule4("sftp", __pyx_methods, __pyx_k_SFTP_channel_class_and_related, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
   #else
   __pyx_m = PyModule_Create(&__pyx_moduledef);
   #endif
