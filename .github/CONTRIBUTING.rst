@@ -31,8 +31,7 @@ When a pull request is ready to be merged, the source branch containing your cha
 Ground Rules
 ============
 
-Please keep in mind the `Code of Conduct <https://github.com/InfluxGraph/ssh2-python/blob/master/.github/code_of_conduct.md>`_ 
-when making contributions.
+Please keep in mind the `Code of Conduct <https://github.com/ParallelSSH/ssh2-python/blob/master/.github/code_of_conduct.md>`_ when making contributions.
 
 Responsibilities
 
@@ -82,10 +81,7 @@ A) If the error is from a Python traceback, include it in the bug report.
 
 B) We also need to know what platform you're running (Windows, macOS, Linux,
    docker container, etc.), the version of your Python interpreter, and the 
-   version of the library at the time of the error.
-
-C) If at all possible, steps to reproduce including sample InfluxDB data are 
-   the best way to help fixing the issue as quickly as possible.
+   versions of the library and ``libssh2`` at the time of the error.
 
 There is also an issue template to help with creating issues.
 
@@ -281,7 +277,8 @@ to be enabled on that repository.
 Building the documentation
 --------------------------
 
-Documentation is based on Sphinx, which needs to be installed to build it.
+Documentation is based on Sphinx, which is installed by development requirements per instructions
+at `Running the unit test suite`_.
 
 In root directory of repository:
 
@@ -292,7 +289,7 @@ In root directory of repository:
 
 After building succeeds the documentation is available at ``doc/_build/html``.
 
-The documentation is not currently uploaded due to issues building the native code extensions on `readthedocs`.
+The documentation is automatically uploaded to `ReadTheDocs <http://ssh2-python.readthedocs.org/en/latest/>`_ for master branch and tagged builds.
 
 .. _contributing-verify:
 

@@ -25,18 +25,22 @@ Super fast SSH2 protocol library. ``ssh2-python`` provides Python bindings for `
 Installation
 ______________
 
-
-System packages are available on the `latest releases page <https://github.com/ParallelSSH/ssh2-python/releases/latest>`_ built on Centos/RedHat 6/7, Ubuntu 14.04/16.04, Debian 7/8 and Fedora 22/23/24.
-
-System packages have *no dependencies* other than the ``libssh2`` system library.
-
-Binary wheel packages are also provided for Linux, OSX and Windows, all Python versions, with ``libssh2`` and its required libraries included. 
+Binary wheel packages are provided for Linux, OSX and Windows, all Python versions, with ``libssh2`` and its required libraries included.
 
 Wheel packages have **no dependencies**.
+
+``pip`` may need to be updated to be able to install binary wheel packages - ``pip install -U pip``.
 
 .. code-block:: shell
 
    pip install ssh2-python
+
+
+System packages are also available on the `latest release page <https://github.com/ParallelSSH/ssh2-python/releases/latest>`_ built on Centos/RedHat 6/7, Ubuntu 14.04/16.04, Debian 7/8 and Fedora 22/23/24.
+
+System packages have *no dependencies* other than the ``libssh2`` system library.
+
+`Conda <https://conda.io/miniconda.html>`_ is another installation option - see `documentation <http://ssh2-python.readthedocs.org/en/latest/>`_ for more detailed instructions.
 
 
 API Feature Set
@@ -48,6 +52,21 @@ Currently the vast majority of the `libssh2`_ API has been implemented with only
 Complete example scripts for various operations can be found in the `examples directory`_.
 
 In addition, as ``ssh2-python`` is a thin wrapper of ``libssh2`` with Python semantics, its code examples can be ported straight over to Python with only minimal changes.
+
+Library Features
+----------------
+
+The library uses `Cython`_ based native code extensions as wrappers to ``libssh2``.
+
+Extension features:
+
+* Thread safe - GIL is released as much as possible
+* Very low overhead
+* Super fast as a consequence of the excellent C library it uses and prodigious use of native code
+* Object oriented - memory freed automatically and safely as objects are garbage collected by Python
+* Use Python semantics where applicable, such as context manager and iterator support for opening and reading from SFTP file handles
+* Expose errors as Python exceptions where possible
+* Provide access to ``libssh2`` error code definitions
 
 
 Quick Start
@@ -230,22 +249,6 @@ ________________________________________
 * Subsystem support
 
 And more, as per `libssh2`_ functionality.
-
-
-Native Code Extension Features
-_______________________________
-
-The library uses `Cython`_ based native code extensions as wrappers to ``libssh2``.
-
-Extension features:
-
-* Thread safe - GIL is released as much as possible
-* Very low overhead
-* Super fast as a consequence of the excellent C library it uses and that it uses native code prodigiously
-* Object oriented - memory freed automatically and safely as objects expire
-* Use Python semantics where applicable, such as iterator support for reading from SFTP file handles
-* Expose errors as Python exceptions where possible
-* Provide access to ``libssh2`` error code definitions
 
 
 Comparison with other Python SSH libraries
