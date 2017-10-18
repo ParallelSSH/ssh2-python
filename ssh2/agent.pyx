@@ -30,14 +30,12 @@ cdef int agent_auth(char * _username,
         with gil:
             raise AgentListIdentitiesError(
                 "Failure requesting identities from agent")
-        return 1
     while 1:
         if auth_identity(_username, agent, &identity, prev) == 1:
             with gil:
                 raise AgentAuthenticationError(
                     "No identities match for user %s",
                     _username)
-            return 1
         if c_ssh2.libssh2_agent_userauth(
                 agent, _username, identity) == 0:
             clear_agent(agent)

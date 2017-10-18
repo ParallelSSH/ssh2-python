@@ -60,7 +60,7 @@ from libc.stdlib cimport malloc, free
 from session cimport Session
 from error_codes cimport _LIBSSH2_ERROR_BUFFER_TOO_SMALL
 from channel cimport Channel, PyChannel
-from utils cimport to_bytes, to_str
+from utils cimport to_bytes, to_str_len
 from exceptions cimport SFTPHandleError, SFTPBufferTooSmall, SFTPIOError
 from sftp_handle cimport SFTPHandle, PySFTPHandle, SFTPAttributes, SFTPStatVFS
 
@@ -371,7 +371,8 @@ cdef class SFTP:
             rc = c_sftp.libssh2_sftp_symlink(self._sftp, _path, _target)
         return rc
 
-    def realpath(self, path not None, size_t max_len=256):
+    def realpath(self, path not None, size_t max_len=256,
+                 encoding='utf-8'):
         """Get real path for path.
 
         :param: Path name to get real path for.
@@ -389,7 +390,6 @@ cdef class SFTP:
         cdef int rc
         cdef bytes b_path = to_bytes(path)
         cdef char *_path = b_path
-        cdef bytes realpath
         try:
             with nogil:
                 rc = c_sftp.libssh2_sftp_realpath(
@@ -408,8 +408,7 @@ cdef class SFTP:
                 elif rc == c_ssh2.LIBSSH2_ERROR_EAGAIN:
                     with gil:
                         return rc
-            realpath = _target[:rc]
-            return to_str(realpath)
+            return to_str_len(_target, rc)
         finally:
             free(_target)
 
