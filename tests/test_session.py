@@ -18,6 +18,11 @@ class SessionTestCase(SSH2TestCase):
         expected = sorted(['publickey', 'password', 'keyboard-interactive'])
         self.assertListEqual(auth_list, expected)
 
+    def test_direct_tcpip(self):
+        self.assertEqual(self._auth(), 0)
+        chan = self.session.direct_tcpip(self.host, self.port)
+        self.assertTrue(chan is not None)
+
     def test_agent(self):
         agent = self.session.agent_init()
         self.assertTrue(agent.connect() == 0)
