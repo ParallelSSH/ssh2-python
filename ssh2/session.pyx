@@ -19,7 +19,7 @@ from libc.time cimport time_t
 
 from agent cimport PyAgent, agent_auth, agent_init, init_connect_agent
 from channel cimport PyChannel
-from exceptions cimport SessionHandshakeError, SessionStartupError, \
+from exceptions import SessionHandshakeError, SessionStartupError, \
     AuthenticationError
 from listener cimport PyListener
 from sftp cimport PySFTP
@@ -111,12 +111,12 @@ cdef class Session:
         return bool(rc)
 
     def set_timeout(self, long timeout):
-        """Set the timeout in milliseconds for how long a blocking the libssh2
-        function calls may wait until they consider the situation an error and
-        return :py:class:`ssh2.error_codes.LIBSSH2_ERROR_TIMEOUT`.
+        """Set the timeout in milliseconds for how long a blocking
+        call may wait until the situation is considered an error and
+        :py:class:`ssh2.error_codes.LIBSSH2_ERROR_TIMEOUT` is returned.
 
-        By default or if you set the timeout to zero, libssh2 has no timeout
-        for blocking functions.
+        By default or if timeout set is zero, blocking calls do not
+        time out.
         :param timeout: Milliseconds to wait before timeout."""
         with nogil:
             c_ssh2.libssh2_session_set_timeout(self._session, timeout)
@@ -138,7 +138,7 @@ cdef class Session:
         return bool(rc)
 
     def userauth_list(self, username not None):
-        """Retrieve available authentication method list.
+        """Retrieve available authentication methods list.
 
         :rtype: list"""
         cdef bytes b_username = to_bytes(username)
@@ -561,7 +561,7 @@ cdef class Session:
         public keys"""
         cdef c_pkey.LIBSSH2_PUBLICKEY *_pkey
         with nogil:
-            _pkey= c_pkey.libssh2_publickey_init(self._session)
+            _pkey = c_pkey.libssh2_publickey_init(self._session)
         if _pkey is not NULL:
             return PyPublicKeySystem(_pkey, self)
 

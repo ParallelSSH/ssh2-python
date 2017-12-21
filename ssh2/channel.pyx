@@ -16,7 +16,7 @@
 
 from libc.stdlib cimport malloc, free
 from session cimport Session
-from exceptions cimport ChannelError
+from exceptions import ChannelError
 from utils cimport to_bytes
 
 cimport c_ssh2

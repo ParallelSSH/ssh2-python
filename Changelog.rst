@@ -1,6 +1,19 @@
 Change Log
 =============
 
+0.7.0
+++++++
+
+Changes
+---------
+
+* Exceptions moved from C-API to Python module
+
+Fixes
+------
+
+* PyPy build support
+
 0.6.0
 ++++++
 

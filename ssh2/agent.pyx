@@ -15,9 +15,11 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 from pkey cimport PublicKey, PyPublicKey
-from exceptions cimport AgentConnectionError, AgentListIdentitiesError, \
-    AgentGetIdentityError, AgentAuthenticationError, AgentError
 from utils cimport to_bytes
+
+from .exceptions import AgentConnectionError, AgentListIdentitiesError, \
+    AgentGetIdentityError, AgentAuthenticationError, AgentError
+
 cimport c_ssh2
 
 

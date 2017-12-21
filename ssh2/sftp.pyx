@@ -61,8 +61,9 @@ from session cimport Session
 from error_codes cimport _LIBSSH2_ERROR_BUFFER_TOO_SMALL
 from channel cimport Channel, PyChannel
 from utils cimport to_bytes, to_str_len
-from exceptions cimport SFTPHandleError, SFTPBufferTooSmall, SFTPIOError
 from sftp_handle cimport SFTPHandle, PySFTPHandle, SFTPAttributes, SFTPStatVFS
+
+from exceptions import SFTPHandleError, SFTPBufferTooSmall, SFTPIOError
 
 cimport c_ssh2
 cimport c_sftp

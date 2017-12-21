@@ -16,7 +16,7 @@
 
 """SFTP handle, attributes and stat VFS classes."""
 
-from .exceptions cimport SFTPIOError
+from .exceptions import SFTPIOError
 
 from libc.stdlib cimport malloc, free
 
