@@ -27,26 +27,22 @@ script:
   - flake8 ssh2
 jobs:
   include:
-    - os: osx
+    - stage: OSX wheel build
+      os: osx
       if: tag IS present
-      branches:
-        # Hopefully this will work in future.
-        only:
-          - master
-          - /^\d+\.\d+(\.\d+)?(-\S*)?$/
       before_install:
         - brew update
       install:
         - brew install libssh2
-        - pip install -U delocate twine wheel pip setuptools
-        - python setup.py bdist_wheel
+        - sudo pip2 install -U delocate twine wheel pip setuptools
+        - pip2 wheel .
       script:
-        - delocate-listdeps --all dist/*.whl
-        - delocate-wheel -v dist/*.whl
-        - delocate-listdeps --all dist/*.whl
-        - ls -l dist/
+        - delocate-listdeps --all *.whl
+        - delocate-wheel -v *.whl
+        - delocate-listdeps --all *.whl
+        - ls -l *.whl
         - brew uninstall libssh2
-        - pip install -v dist/*.whl
+        - pip2 install --user -v *.whl
         - pwd; mkdir temp; cd temp; pwd
         - python -c "from ssh2.session import Session; Session()"
         - cd ..; pwd
