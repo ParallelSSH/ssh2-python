@@ -18,7 +18,6 @@ addons:
       - openssh-server
       - rpm
       - dpkg
-      - docker-ce
 install:
   - pip install flake8 jinja2
   - python setup.py build_ext --inplace
@@ -49,7 +48,7 @@ jobs:
         - cd ..; pwd
       after_success:
         - if [[ ! -z "$TRAVIS_TAG" ]]; then
-              twine upload -u $PYPI_U -p $PYPI_P dist/*.whl;
+              twine upload -u $PYPI_U -p $PYPI_P *.whl;
           fi
       language: generic
       python: skip
@@ -96,10 +95,9 @@ jobs:
       install:
         - pip install twine
       script:
-        - if [[ ! -z "$TRAVIS_TAG" ]]; then
-              echo "Building wheels for tag ${TRAVIS_TAG}" &&
-              docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" &&
-              ./ci/travis/build-manylinux.sh;
-          fi
+        - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+        - ./ci/travis/build-manylinux.sh
       after_success:
-        - twine upload -u $PYPI_U -p $PYPI_P wheelhouse/*.whl
+        - if [[ ! -z "$TRAVIS_TAG" ]]; then
+              twine upload -u $PYPI_U -p $PYPI_P wheelhouse/*.whl;
+          fi
