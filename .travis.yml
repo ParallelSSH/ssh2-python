@@ -25,6 +25,8 @@ install:
 script:
   - nosetests
   - flake8 ssh2
+  - python setup.py sdist
+  - cd dist; pip install *; cd ..
 jobs:
   include:
     - stage: OSX wheel build
