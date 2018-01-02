@@ -29,7 +29,7 @@ script:
   - cd dist; pip install *; cd ..
 jobs:
   include:
-    - stage: OSX wheel build
+    - stage: OSX 10.12 wheel build
       os: osx
       if: tag IS present
       before_install:
@@ -45,6 +45,62 @@ jobs:
         - ls -l *.whl
         - brew uninstall libssh2
         - pip2 install --user -v *.whl
+        - pwd; mkdir temp; cd temp; pwd
+        - python -c "from ssh2.session import Session; Session()"
+        - cd ..; pwd
+      after_success:
+        - if [[ ! -z "$TRAVIS_TAG" ]]; then
+              twine upload -u $PYPI_U -p $PYPI_P *.whl;
+          fi
+      language: generic
+      python: skip
+    - stage: OSX 10.11 wheel build
+      os: osx
+      osx_image: xcode8
+      if: tag IS present
+      before_install:
+        - brew update
+      install:
+        - brew install libssh2
+        - sudo pip2 install -U delocate twine wheel pip setuptools
+        - pip2 wheel .
+      script:
+        - delocate-listdeps --all *.whl
+        - delocate-wheel -v *.whl
+        - delocate-listdeps --all *.whl
+        - ls -l *.whl
+        - brew uninstall libssh2
+        - pip2 install --user -v *.whl
+        - pwd; mkdir temp; cd temp; pwd
+        - python -c "from ssh2.session import Session; Session()"
+        - cd ..; pwd
+      after_success:
+        - if [[ ! -z "$TRAVIS_TAG" ]]; then
+              twine upload -u $PYPI_U -p $PYPI_P *.whl;
+          fi
+      language: generic
+      python: skip
+    - stage: OSX 10.10 wheel build
+      os: osx
+      osx_image: xcode6.4
+      if: tag IS present
+      before_install:
+        - brew update
+      install:
+        - brew install libssh2
+        - python --version
+        - wget --no-check-certificate https://bootstrap.pypa.io/get-pip.py
+        - sudo python get-pip.py
+        - sudo pip install -U pip
+        - sudo pip install -U delocate twine wheel setuptools
+        - pip wheel .
+      script:
+        - delocate-listdeps --all *.whl
+        - delocate-wheel -v *.whl
+        - delocate-listdeps --all *.whl
+        - ls -l *.whl
+        - brew uninstall libssh2
+        - pip install --user -v *.whl
         - pwd; mkdir temp; cd temp; pwd
         - python -c "from ssh2.session import Session; Session()"
         - cd ..; pwd
