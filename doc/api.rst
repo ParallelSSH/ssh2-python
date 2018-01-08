@@ -10,6 +10,7 @@ API Documentation
    sftp_handle
    pkey
    listener
+   knownhost
    exceptions
    statinfo
    fileinfo

@@ -47,6 +47,10 @@ class SessionHandshakeError(Exception):
     pass
 
 
+class SessionHostKeyError(Exception):
+    """Raised on errors getting server host key"""
+
+
 class ChannelError(Exception):
     pass
 
@@ -61,3 +65,51 @@ class SFTPBufferTooSmall(Exception):
 
 class SFTPIOError(Exception):
     pass
+
+
+class KnownHostError(Exception):
+    """Base class for KnownHost errors"""
+
+
+class KnownHostAddError(KnownHostError):
+    """Raised on errors adding known host entries"""
+
+
+class KnownHostCheckError(KnownHostError):
+    """Raised on any known host check errors"""
+
+
+class KnownHostCheckFailure(KnownHostCheckError):
+    """Raised on something preventing known host check to be made"""
+
+
+class KnownHostCheckNotFoundError(KnownHostCheckError):
+    """Raised on no match for known host check"""
+
+
+class KnownHostCheckMisMatchError(KnownHostCheckError):
+    """Raised on keys do not match for known host"""
+
+
+class KnownHostDeleteError(KnownHostError):
+    """Raised on errors deleting known host entry"""
+
+
+class KnownHostReadLineError(KnownHostError):
+    """Raised on errors reading line from known hosts file"""
+
+
+class KnownHostReadFileError(KnownHostError):
+    """Raised on errors reading from known hosts file"""
+
+
+class KnownHostWriteLineError(KnownHostError):
+    """Raised on errors writing line to known hosts file"""
+
+
+class KnownHostWriteFileError(KnownHostError):
+    """Raised on errors writing to known hosts file"""
+
+
+class KnownHostGetError(KnownHostError):
+    """Raised on errors retrieving known host entries"""

@@ -1,6 +1,17 @@
 Change Log
 =============
 
+0.8.0
+++++++
+
+Changes
+---------
+
+* Implemented known host API, all functions.
+* Added `hostkey` method on `Session` class for retrieving server host key.
+* Added server host key verification from known hosts file example.
+* Added exceptions for all known host API errors.
+
 0.7.0
 ++++++
 

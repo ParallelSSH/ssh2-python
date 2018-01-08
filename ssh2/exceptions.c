@@ -929,28 +929,80 @@ static const char __pyx_k_metaclass[] = "__metaclass__";
 static const char __pyx_k_AgentError[] = "AgentError";
 static const char __pyx_k_SFTPIOError[] = "SFTPIOError";
 static const char __pyx_k_ChannelError[] = "ChannelError";
+static const char __pyx_k_KnownHostError[] = "KnownHostError";
 static const char __pyx_k_SFTPHandleError[] = "SFTPHandleError";
 static const char __pyx_k_ssh2_exceptions[] = "ssh2.exceptions";
+static const char __pyx_k_KnownHostAddError[] = "KnownHostAddError";
+static const char __pyx_k_KnownHostGetError[] = "KnownHostGetError";
 static const char __pyx_k_SFTPBufferTooSmall[] = "SFTPBufferTooSmall";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_AuthenticationError[] = "AuthenticationError";
+static const char __pyx_k_KnownHostCheckError[] = "KnownHostCheckError";
+static const char __pyx_k_SessionHostKeyError[] = "SessionHostKeyError";
 static const char __pyx_k_SessionStartupError[] = "SessionStartupError";
 static const char __pyx_k_AgentConnectionError[] = "AgentConnectionError";
+static const char __pyx_k_KnownHostDeleteError[] = "KnownHostDeleteError";
 static const char __pyx_k_AgentGetIdentityError[] = "AgentGetIdentityError";
+static const char __pyx_k_KnownHostCheckFailure[] = "KnownHostCheckFailure";
 static const char __pyx_k_SessionHandshakeError[] = "SessionHandshakeError";
+static const char __pyx_k_KnownHostReadFileError[] = "KnownHostReadFileError";
+static const char __pyx_k_KnownHostReadLineError[] = "KnownHostReadLineError";
+static const char __pyx_k_KnownHostWriteFileError[] = "KnownHostWriteFileError";
+static const char __pyx_k_KnownHostWriteLineError[] = "KnownHostWriteLineError";
 static const char __pyx_k_AgentAuthenticationError[] = "AgentAuthenticationError";
 static const char __pyx_k_AgentListIdentitiesError[] = "AgentListIdentitiesError";
+static const char __pyx_k_KnownHostCheckMisMatchError[] = "KnownHostCheckMisMatchError";
+static const char __pyx_k_KnownHostCheckNotFoundError[] = "KnownHostCheckNotFoundError";
+static const char __pyx_k_Base_class_for_KnownHost_errors[] = "Base class for KnownHost errors";
+static const char __pyx_k_Raised_on_errors_deleting_known[] = "Raised on errors deleting known host entry";
+static const char __pyx_k_Raised_on_errors_getting_server[] = "Raised on errors getting server host key";
+static const char __pyx_k_Raised_on_keys_do_not_match_for[] = "Raised on keys do not match for known host";
+static const char __pyx_k_Raised_on_any_known_host_check_e[] = "Raised on any known host check errors";
+static const char __pyx_k_Raised_on_errors_adding_known_ho[] = "Raised on errors adding known host entries";
+static const char __pyx_k_Raised_on_errors_reading_from_kn[] = "Raised on errors reading from known hosts file";
+static const char __pyx_k_Raised_on_errors_reading_line_fr[] = "Raised on errors reading line from known hosts file";
+static const char __pyx_k_Raised_on_errors_retrieving_know[] = "Raised on errors retrieving known host entries";
+static const char __pyx_k_Raised_on_errors_writing_line_to[] = "Raised on errors writing line to known hosts file";
+static const char __pyx_k_Raised_on_errors_writing_to_know[] = "Raised on errors writing to known hosts file";
+static const char __pyx_k_Raised_on_no_match_for_known_hos[] = "Raised on no match for known host check";
+static const char __pyx_k_Raised_on_something_preventing_k[] = "Raised on something preventing known host check to be made";
 static PyObject *__pyx_n_s_AgentAuthenticationError;
 static PyObject *__pyx_n_s_AgentConnectionError;
 static PyObject *__pyx_n_s_AgentError;
 static PyObject *__pyx_n_s_AgentGetIdentityError;
 static PyObject *__pyx_n_s_AgentListIdentitiesError;
 static PyObject *__pyx_n_s_AuthenticationError;
+static PyObject *__pyx_kp_s_Base_class_for_KnownHost_errors;
 static PyObject *__pyx_n_s_ChannelError;
+static PyObject *__pyx_n_s_KnownHostAddError;
+static PyObject *__pyx_n_s_KnownHostCheckError;
+static PyObject *__pyx_n_s_KnownHostCheckFailure;
+static PyObject *__pyx_n_s_KnownHostCheckMisMatchError;
+static PyObject *__pyx_n_s_KnownHostCheckNotFoundError;
+static PyObject *__pyx_n_s_KnownHostDeleteError;
+static PyObject *__pyx_n_s_KnownHostError;
+static PyObject *__pyx_n_s_KnownHostGetError;
+static PyObject *__pyx_n_s_KnownHostReadFileError;
+static PyObject *__pyx_n_s_KnownHostReadLineError;
+static PyObject *__pyx_n_s_KnownHostWriteFileError;
+static PyObject *__pyx_n_s_KnownHostWriteLineError;
+static PyObject *__pyx_kp_s_Raised_on_any_known_host_check_e;
+static PyObject *__pyx_kp_s_Raised_on_errors_adding_known_ho;
+static PyObject *__pyx_kp_s_Raised_on_errors_deleting_known;
+static PyObject *__pyx_kp_s_Raised_on_errors_getting_server;
+static PyObject *__pyx_kp_s_Raised_on_errors_reading_from_kn;
+static PyObject *__pyx_kp_s_Raised_on_errors_reading_line_fr;
+static PyObject *__pyx_kp_s_Raised_on_errors_retrieving_know;
+static PyObject *__pyx_kp_s_Raised_on_errors_writing_line_to;
+static PyObject *__pyx_kp_s_Raised_on_errors_writing_to_know;
+static PyObject *__pyx_kp_s_Raised_on_keys_do_not_match_for;
+static PyObject *__pyx_kp_s_Raised_on_no_match_for_known_hos;
+static PyObject *__pyx_kp_s_Raised_on_something_preventing_k;
 static PyObject *__pyx_n_s_SFTPBufferTooSmall;
 static PyObject *__pyx_n_s_SFTPHandleError;
 static PyObject *__pyx_n_s_SFTPIOError;
 static PyObject *__pyx_n_s_SessionHandshakeError;
+static PyObject *__pyx_n_s_SessionHostKeyError;
 static PyObject *__pyx_n_s_SessionStartupError;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_doc;
@@ -1005,11 +1057,37 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_AgentGetIdentityError, __pyx_k_AgentGetIdentityError, sizeof(__pyx_k_AgentGetIdentityError), 0, 0, 1, 1},
   {&__pyx_n_s_AgentListIdentitiesError, __pyx_k_AgentListIdentitiesError, sizeof(__pyx_k_AgentListIdentitiesError), 0, 0, 1, 1},
   {&__pyx_n_s_AuthenticationError, __pyx_k_AuthenticationError, sizeof(__pyx_k_AuthenticationError), 0, 0, 1, 1},
+  {&__pyx_kp_s_Base_class_for_KnownHost_errors, __pyx_k_Base_class_for_KnownHost_errors, sizeof(__pyx_k_Base_class_for_KnownHost_errors), 0, 0, 1, 0},
   {&__pyx_n_s_ChannelError, __pyx_k_ChannelError, sizeof(__pyx_k_ChannelError), 0, 0, 1, 1},
+  {&__pyx_n_s_KnownHostAddError, __pyx_k_KnownHostAddError, sizeof(__pyx_k_KnownHostAddError), 0, 0, 1, 1},
+  {&__pyx_n_s_KnownHostCheckError, __pyx_k_KnownHostCheckError, sizeof(__pyx_k_KnownHostCheckError), 0, 0, 1, 1},
+  {&__pyx_n_s_KnownHostCheckFailure, __pyx_k_KnownHostCheckFailure, sizeof(__pyx_k_KnownHostCheckFailure), 0, 0, 1, 1},
+  {&__pyx_n_s_KnownHostCheckMisMatchError, __pyx_k_KnownHostCheckMisMatchError, sizeof(__pyx_k_KnownHostCheckMisMatchError), 0, 0, 1, 1},
+  {&__pyx_n_s_KnownHostCheckNotFoundError, __pyx_k_KnownHostCheckNotFoundError, sizeof(__pyx_k_KnownHostCheckNotFoundError), 0, 0, 1, 1},
+  {&__pyx_n_s_KnownHostDeleteError, __pyx_k_KnownHostDeleteError, sizeof(__pyx_k_KnownHostDeleteError), 0, 0, 1, 1},
+  {&__pyx_n_s_KnownHostError, __pyx_k_KnownHostError, sizeof(__pyx_k_KnownHostError), 0, 0, 1, 1},
+  {&__pyx_n_s_KnownHostGetError, __pyx_k_KnownHostGetError, sizeof(__pyx_k_KnownHostGetError), 0, 0, 1, 1},
+  {&__pyx_n_s_KnownHostReadFileError, __pyx_k_KnownHostReadFileError, sizeof(__pyx_k_KnownHostReadFileError), 0, 0, 1, 1},
+  {&__pyx_n_s_KnownHostReadLineError, __pyx_k_KnownHostReadLineError, sizeof(__pyx_k_KnownHostReadLineError), 0, 0, 1, 1},
+  {&__pyx_n_s_KnownHostWriteFileError, __pyx_k_KnownHostWriteFileError, sizeof(__pyx_k_KnownHostWriteFileError), 0, 0, 1, 1},
+  {&__pyx_n_s_KnownHostWriteLineError, __pyx_k_KnownHostWriteLineError, sizeof(__pyx_k_KnownHostWriteLineError), 0, 0, 1, 1},
+  {&__pyx_kp_s_Raised_on_any_known_host_check_e, __pyx_k_Raised_on_any_known_host_check_e, sizeof(__pyx_k_Raised_on_any_known_host_check_e), 0, 0, 1, 0},
+  {&__pyx_kp_s_Raised_on_errors_adding_known_ho, __pyx_k_Raised_on_errors_adding_known_ho, sizeof(__pyx_k_Raised_on_errors_adding_known_ho), 0, 0, 1, 0},
+  {&__pyx_kp_s_Raised_on_errors_deleting_known, __pyx_k_Raised_on_errors_deleting_known, sizeof(__pyx_k_Raised_on_errors_deleting_known), 0, 0, 1, 0},
+  {&__pyx_kp_s_Raised_on_errors_getting_server, __pyx_k_Raised_on_errors_getting_server, sizeof(__pyx_k_Raised_on_errors_getting_server), 0, 0, 1, 0},
+  {&__pyx_kp_s_Raised_on_errors_reading_from_kn, __pyx_k_Raised_on_errors_reading_from_kn, sizeof(__pyx_k_Raised_on_errors_reading_from_kn), 0, 0, 1, 0},
+  {&__pyx_kp_s_Raised_on_errors_reading_line_fr, __pyx_k_Raised_on_errors_reading_line_fr, sizeof(__pyx_k_Raised_on_errors_reading_line_fr), 0, 0, 1, 0},
+  {&__pyx_kp_s_Raised_on_errors_retrieving_know, __pyx_k_Raised_on_errors_retrieving_know, sizeof(__pyx_k_Raised_on_errors_retrieving_know), 0, 0, 1, 0},
+  {&__pyx_kp_s_Raised_on_errors_writing_line_to, __pyx_k_Raised_on_errors_writing_line_to, sizeof(__pyx_k_Raised_on_errors_writing_line_to), 0, 0, 1, 0},
+  {&__pyx_kp_s_Raised_on_errors_writing_to_know, __pyx_k_Raised_on_errors_writing_to_know, sizeof(__pyx_k_Raised_on_errors_writing_to_know), 0, 0, 1, 0},
+  {&__pyx_kp_s_Raised_on_keys_do_not_match_for, __pyx_k_Raised_on_keys_do_not_match_for, sizeof(__pyx_k_Raised_on_keys_do_not_match_for), 0, 0, 1, 0},
+  {&__pyx_kp_s_Raised_on_no_match_for_known_hos, __pyx_k_Raised_on_no_match_for_known_hos, sizeof(__pyx_k_Raised_on_no_match_for_known_hos), 0, 0, 1, 0},
+  {&__pyx_kp_s_Raised_on_something_preventing_k, __pyx_k_Raised_on_something_preventing_k, sizeof(__pyx_k_Raised_on_something_preventing_k), 0, 0, 1, 0},
   {&__pyx_n_s_SFTPBufferTooSmall, __pyx_k_SFTPBufferTooSmall, sizeof(__pyx_k_SFTPBufferTooSmall), 0, 0, 1, 1},
   {&__pyx_n_s_SFTPHandleError, __pyx_k_SFTPHandleError, sizeof(__pyx_k_SFTPHandleError), 0, 0, 1, 1},
   {&__pyx_n_s_SFTPIOError, __pyx_k_SFTPIOError, sizeof(__pyx_k_SFTPIOError), 0, 0, 1, 1},
   {&__pyx_n_s_SessionHandshakeError, __pyx_k_SessionHandshakeError, sizeof(__pyx_k_SessionHandshakeError), 0, 0, 1, 1},
+  {&__pyx_n_s_SessionHostKeyError, __pyx_k_SessionHostKeyError, sizeof(__pyx_k_SessionHostKeyError), 0, 0, 1, 1},
   {&__pyx_n_s_SessionStartupError, __pyx_k_SessionStartupError, sizeof(__pyx_k_SessionStartupError), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_doc, __pyx_k_doc, sizeof(__pyx_k_doc), 0, 0, 1, 1},
@@ -1391,8 +1469,8 @@ static int __pyx_pymod_exec_exceptions(PyObject *__pyx_pyinit_module)
   /* "ssh2/exceptions.pyx":50
  * 
  * 
- * class ChannelError(Exception):             # <<<<<<<<<<<<<<
- *     pass
+ * class SessionHostKeyError(Exception):             # <<<<<<<<<<<<<<
+ *     """Raised on errors getting server host key"""
  * 
  */
   __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
@@ -1402,11 +1480,11 @@ static int __pyx_pymod_exec_exceptions(PyObject *__pyx_pyinit_module)
   PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
   __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_ChannelError, __pyx_n_s_ChannelError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SessionHostKeyError, __pyx_n_s_SessionHostKeyError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, __pyx_kp_s_Raised_on_errors_getting_server); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_ChannelError, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SessionHostKeyError, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ChannelError, __pyx_t_4) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SessionHostKeyError, __pyx_t_4) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -1415,7 +1493,7 @@ static int __pyx_pymod_exec_exceptions(PyObject *__pyx_pyinit_module)
   /* "ssh2/exceptions.pyx":54
  * 
  * 
- * class SFTPHandleError(Exception):             # <<<<<<<<<<<<<<
+ * class ChannelError(Exception):             # <<<<<<<<<<<<<<
  *     pass
  * 
  */
@@ -1426,11 +1504,11 @@ static int __pyx_pymod_exec_exceptions(PyObject *__pyx_pyinit_module)
   PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
   __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTPHandleError, __pyx_n_s_SFTPHandleError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 54, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_ChannelError, __pyx_n_s_ChannelError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTPHandleError, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 54, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_ChannelError, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTPHandleError, __pyx_t_4) < 0) __PYX_ERR(0, 54, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ChannelError, __pyx_t_4) < 0) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -1439,7 +1517,7 @@ static int __pyx_pymod_exec_exceptions(PyObject *__pyx_pyinit_module)
   /* "ssh2/exceptions.pyx":58
  * 
  * 
- * class SFTPBufferTooSmall(Exception):             # <<<<<<<<<<<<<<
+ * class SFTPHandleError(Exception):             # <<<<<<<<<<<<<<
  *     pass
  * 
  */
@@ -1450,11 +1528,11 @@ static int __pyx_pymod_exec_exceptions(PyObject *__pyx_pyinit_module)
   PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
   __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTPBufferTooSmall, __pyx_n_s_SFTPBufferTooSmall, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTPHandleError, __pyx_n_s_SFTPHandleError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTPBufferTooSmall, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTPHandleError, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTPBufferTooSmall, __pyx_t_4) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTPHandleError, __pyx_t_4) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -1463,8 +1541,9 @@ static int __pyx_pymod_exec_exceptions(PyObject *__pyx_pyinit_module)
   /* "ssh2/exceptions.pyx":62
  * 
  * 
- * class SFTPIOError(Exception):             # <<<<<<<<<<<<<<
+ * class SFTPBufferTooSmall(Exception):             # <<<<<<<<<<<<<<
  *     pass
+ * 
  */
   __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -1473,25 +1552,358 @@ static int __pyx_pymod_exec_exceptions(PyObject *__pyx_pyinit_module)
   PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
   __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTPIOError, __pyx_n_s_SFTPIOError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTPBufferTooSmall, __pyx_n_s_SFTPBufferTooSmall, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTPIOError, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTPBufferTooSmall, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTPIOError, __pyx_t_4) < 0) __PYX_ERR(0, 62, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTPBufferTooSmall, __pyx_t_4) < 0) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/exceptions.pyx":66
+ * 
+ * 
+ * class SFTPIOError(Exception):             # <<<<<<<<<<<<<<
+ *     pass
+ * 
+ */
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_INCREF(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
+  __Pyx_GIVEREF(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
+  PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTPIOError, __pyx_n_s_SFTPIOError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTPIOError, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTPIOError, __pyx_t_4) < 0) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/exceptions.pyx":70
+ * 
+ * 
+ * class KnownHostError(Exception):             # <<<<<<<<<<<<<<
+ *     """Base class for KnownHost errors"""
+ * 
+ */
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_INCREF(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
+  __Pyx_GIVEREF(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
+  PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_KnownHostError, __pyx_n_s_KnownHostError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, __pyx_kp_s_Base_class_for_KnownHost_errors); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_KnownHostError, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_KnownHostError, __pyx_t_4) < 0) __PYX_ERR(0, 70, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/exceptions.pyx":74
+ * 
+ * 
+ * class KnownHostAddError(KnownHostError):             # <<<<<<<<<<<<<<
+ *     """Raised on errors adding known host entries"""
+ * 
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_KnownHostError); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_KnownHostAddError, __pyx_n_s_KnownHostAddError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, __pyx_kp_s_Raised_on_errors_adding_known_ho); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_KnownHostAddError, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_KnownHostAddError, __pyx_t_4) < 0) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "ssh2/exceptions.pyx":78
+ * 
+ * 
+ * class KnownHostCheckError(KnownHostError):             # <<<<<<<<<<<<<<
+ *     """Raised on any known host check errors"""
+ * 
+ */
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_KnownHostError); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_KnownHostCheckError, __pyx_n_s_KnownHostCheckError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, __pyx_kp_s_Raised_on_any_known_host_check_e); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_KnownHostCheckError, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_KnownHostCheckError, __pyx_t_4) < 0) __PYX_ERR(0, 78, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/exceptions.pyx":82
+ * 
+ * 
+ * class KnownHostCheckFailure(KnownHostCheckError):             # <<<<<<<<<<<<<<
+ *     """Raised on something preventing known host check to be made"""
+ * 
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_KnownHostCheckError); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_KnownHostCheckFailure, __pyx_n_s_KnownHostCheckFailure, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, __pyx_kp_s_Raised_on_something_preventing_k); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_KnownHostCheckFailure, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_KnownHostCheckFailure, __pyx_t_4) < 0) __PYX_ERR(0, 82, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "ssh2/exceptions.pyx":86
+ * 
+ * 
+ * class KnownHostCheckNotFoundError(KnownHostCheckError):             # <<<<<<<<<<<<<<
+ *     """Raised on no match for known host check"""
+ * 
+ */
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_KnownHostCheckError); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_KnownHostCheckNotFoundError, __pyx_n_s_KnownHostCheckNotFoundError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, __pyx_kp_s_Raised_on_no_match_for_known_hos); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_KnownHostCheckNotFoundError, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_KnownHostCheckNotFoundError, __pyx_t_4) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/exceptions.pyx":90
+ * 
+ * 
+ * class KnownHostCheckMisMatchError(KnownHostCheckError):             # <<<<<<<<<<<<<<
+ *     """Raised on keys do not match for known host"""
+ * 
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_KnownHostCheckError); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_KnownHostCheckMisMatchError, __pyx_n_s_KnownHostCheckMisMatchError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, __pyx_kp_s_Raised_on_keys_do_not_match_for); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_KnownHostCheckMisMatchError, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_KnownHostCheckMisMatchError, __pyx_t_4) < 0) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "ssh2/exceptions.pyx":94
+ * 
+ * 
+ * class KnownHostDeleteError(KnownHostError):             # <<<<<<<<<<<<<<
+ *     """Raised on errors deleting known host entry"""
+ * 
+ */
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_KnownHostError); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_KnownHostDeleteError, __pyx_n_s_KnownHostDeleteError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, __pyx_kp_s_Raised_on_errors_deleting_known); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_KnownHostDeleteError, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_KnownHostDeleteError, __pyx_t_4) < 0) __PYX_ERR(0, 94, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/exceptions.pyx":98
+ * 
+ * 
+ * class KnownHostReadLineError(KnownHostError):             # <<<<<<<<<<<<<<
+ *     """Raised on errors reading line from known hosts file"""
+ * 
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_KnownHostError); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_KnownHostReadLineError, __pyx_n_s_KnownHostReadLineError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, __pyx_kp_s_Raised_on_errors_reading_line_fr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_KnownHostReadLineError, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_KnownHostReadLineError, __pyx_t_4) < 0) __PYX_ERR(0, 98, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "ssh2/exceptions.pyx":102
+ * 
+ * 
+ * class KnownHostReadFileError(KnownHostError):             # <<<<<<<<<<<<<<
+ *     """Raised on errors reading from known hosts file"""
+ * 
+ */
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_KnownHostError); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_KnownHostReadFileError, __pyx_n_s_KnownHostReadFileError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, __pyx_kp_s_Raised_on_errors_reading_from_kn); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_KnownHostReadFileError, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_KnownHostReadFileError, __pyx_t_4) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/exceptions.pyx":106
+ * 
+ * 
+ * class KnownHostWriteLineError(KnownHostError):             # <<<<<<<<<<<<<<
+ *     """Raised on errors writing line to known hosts file"""
+ * 
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_KnownHostError); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_KnownHostWriteLineError, __pyx_n_s_KnownHostWriteLineError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, __pyx_kp_s_Raised_on_errors_writing_line_to); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_KnownHostWriteLineError, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_KnownHostWriteLineError, __pyx_t_4) < 0) __PYX_ERR(0, 106, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "ssh2/exceptions.pyx":110
+ * 
+ * 
+ * class KnownHostWriteFileError(KnownHostError):             # <<<<<<<<<<<<<<
+ *     """Raised on errors writing to known hosts file"""
+ * 
+ */
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_KnownHostError); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_KnownHostWriteFileError, __pyx_n_s_KnownHostWriteFileError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, __pyx_kp_s_Raised_on_errors_writing_to_know); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_KnownHostWriteFileError, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_KnownHostWriteFileError, __pyx_t_4) < 0) __PYX_ERR(0, 110, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/exceptions.pyx":114
+ * 
+ * 
+ * class KnownHostGetError(KnownHostError):             # <<<<<<<<<<<<<<
+ *     """Raised on errors retrieving known host entries"""
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_KnownHostError); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 114, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 114, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 114, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_KnownHostGetError, __pyx_n_s_KnownHostGetError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, __pyx_kp_s_Raised_on_errors_retrieving_know); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 114, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_KnownHostGetError, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 114, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_KnownHostGetError, __pyx_t_4) < 0) __PYX_ERR(0, 114, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "ssh2/exceptions.pyx":1
  * # This file is part of ssh2-python.             # <<<<<<<<<<<<<<
  * # Copyright (C) 2017 Panos Kittenis
  * 
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_1) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_2) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /*--- Wrapped vars code ---*/
 

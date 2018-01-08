@@ -36,6 +36,10 @@ cdef extern from "libssh2.h" nogil:
         LIBSSH2_CHANNEL_FLUSH_ALL
         LIBSSH2_HOSTKEY_HASH_MD5
         LIBSSH2_HOSTKEY_HASH_SHA1
+        LIBSSH2_HOSTKEY_TYPE_UNKNOWN
+        LIBSSH2_HOSTKEY_TYPE_RSA
+        LIBSSH2_HOSTKEY_TYPE_DSS
+
     # ctypedef libssh2_uint64_t libssh2_struct_stat_size
     ctypedef struct libssh2_struct_stat:
         dev_t   st_dev
@@ -336,8 +340,14 @@ cdef extern from "libssh2.h" nogil:
                               unsigned int *dest_len,
                               const char *src, unsigned int src_len)
     const char *libssh2_version(int req_version_num)
-    ctypedef struct libssh2_knownhost:
-        pass
+
+    # Known host API
+    struct libssh2_knownhost:
+        unsigned int magic
+        void *node
+        char *name
+        char *key
+        int typemask
     LIBSSH2_KNOWNHOSTS *libssh2_knownhost_init(LIBSSH2_SESSION *session)
     int libssh2_knownhost_add(LIBSSH2_KNOWNHOSTS *hosts,
                               const char *host,
@@ -377,6 +387,29 @@ cdef extern from "libssh2.h" nogil:
     int libssh2_knownhost_get(LIBSSH2_KNOWNHOSTS *hosts,
                               libssh2_knownhost **store,
                               libssh2_knownhost *prev)
+    enum:
+        LIBSSH2_KNOWNHOST_FILE_OPENSSH
+        LIBSSH2_KNOWNHOST_CHECK_MATCH
+        LIBSSH2_KNOWNHOST_CHECK_MISMATCH
+        LIBSSH2_KNOWNHOST_CHECK_NOTFOUND
+        LIBSSH2_KNOWNHOST_CHECK_FAILURE
+        LIBSSH2_KNOWNHOST_TYPE_MASK
+        LIBSSH2_KNOWNHOST_TYPE_PLAIN
+        LIBSSH2_KNOWNHOST_TYPE_SHA1
+        LIBSSH2_KNOWNHOST_TYPE_CUSTOM
+        LIBSSH2_KNOWNHOST_KEYENC_MASK
+        LIBSSH2_KNOWNHOST_KEYENC_RAW
+        LIBSSH2_KNOWNHOST_KEYENC_BASE64
+        LIBSSH2_KNOWNHOST_KEY_MASK
+        LIBSSH2_KNOWNHOST_KEY_SHIFT
+        LIBSSH2_KNOWNHOST_KEY_RSA1
+        LIBSSH2_KNOWNHOST_KEY_SSHRSA
+        LIBSSH2_KNOWNHOST_KEY_SSHDSS
+    IF EMBEDDED_LIB:
+        enum:
+            LIBSSH2_KNOWNHOST_KEY_UNKNOWN
+
+    # Public Key API
     struct libssh2_agent_publickey:
         unsigned int magic
         void *node

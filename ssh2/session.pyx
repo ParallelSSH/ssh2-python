@@ -20,14 +20,16 @@ from libc.time cimport time_t
 from agent cimport PyAgent, agent_auth, agent_init, init_connect_agent
 from channel cimport PyChannel
 from exceptions import SessionHandshakeError, SessionStartupError, \
-    AuthenticationError
+    AuthenticationError, SessionHostKeyError
 from listener cimport PyListener
 from sftp cimport PySFTP
 from publickey cimport PyPublicKeySystem
 from utils cimport to_bytes, to_str
 from statinfo cimport StatInfo
+from knownhost cimport PyKnownHost
 IF EMBEDDED_LIB:
     from fileinfo cimport FileInfo
+
 
 cimport c_ssh2
 cimport c_sftp
@@ -38,6 +40,9 @@ LIBSSH2_SESSION_BLOCK_INBOUND = c_ssh2.LIBSSH2_SESSION_BLOCK_INBOUND
 LIBSSH2_SESSION_BLOCK_OUTBOUND = c_ssh2.LIBSSH2_SESSION_BLOCK_OUTBOUND
 LIBSSH2_HOSTKEY_HASH_MD5 = c_ssh2.LIBSSH2_HOSTKEY_HASH_MD5
 LIBSSH2_HOSTKEY_HASH_SHA1 = c_ssh2.LIBSSH2_HOSTKEY_HASH_SHA1
+LIBSSH2_HOSTKEY_TYPE_UNKNOWN = c_ssh2.LIBSSH2_HOSTKEY_TYPE_UNKNOWN
+LIBSSH2_HOSTKEY_TYPE_RSA = c_ssh2.LIBSSH2_HOSTKEY_TYPE_RSA
+LIBSSH2_HOSTKEY_TYPE_DSS = c_ssh2.LIBSSH2_HOSTKEY_TYPE_DSS
 
 
 cdef class Session:
@@ -581,3 +586,37 @@ cdef class Session:
             return
         b_hash = _hash
         return b_hash
+
+    def hostkey(self):
+        """Get server host key for this session.
+
+        Returns key, key_type tuple where key_type is one of
+        :py:class:`ssh2.session.LIBSSH2_HOSTKEY_TYPE_RSA`,
+        :py:class:`ssh2.session.LIBSSH2_HOSTKEY_TYPE_DSS`, or
+        :py:class:`ssh2.session.LIBSSH2_HOSTKEY_TYPE_UNKNOWN`
+
+        :rtype: tuple(bytes, int)"""
+        cdef bytes key = b""
+        cdef const char *_key
+        cdef size_t key_len = 0
+        cdef int key_type = 0
+        with nogil:
+            _key = c_ssh2.libssh2_session_hostkey(
+                self._session, &key_len, &key_type)
+        if _key is NULL:
+            raise SessionHostKeyError(
+                "Error retrieving server host key for session")
+        key = _key[:key_len]
+        return key, key_type
+
+    def knownhost_init(self):
+        """Initialise a collection of known hosts for this session.
+
+        :rtype: :py:class:`ssh2.knownhost.KnownHost`"""
+        cdef c_ssh2.LIBSSH2_KNOWNHOSTS *known_hosts
+        with nogil:
+            known_hosts = c_ssh2.libssh2_knownhost_init(
+                self._session)
+        if known_hosts is NULL:
+            return
+        return PyKnownHost(self, known_hosts)
