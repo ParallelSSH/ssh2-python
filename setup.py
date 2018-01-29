@@ -31,7 +31,7 @@ _libs = ['ssh2'] if platform.system() != 'Windows' else [
 
 # _comp_args = ["-ggdb"]
 _comp_args = ["-O3"] if platform.system() != 'Windows' else None
-_embedded_lib = bool(os.environ.get('EMBEDDED_LIB'))
+_embedded_lib = bool(os.environ.get('EMBEDDED_LIB', 1))
 cython_directives = {'embedsignature': True,
                      'boundscheck': False,
                      'optimize.use_switch': True,

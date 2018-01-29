@@ -25,18 +25,24 @@ Wheel packages have **no dependencies**.
 System Binary Packages
 =======================
 
-System packages are available on the `latest releases page <https://github.com/ParallelSSH/ssh2-python/releases/latest>`_ built on Centos/RedHat 6/7, Ubuntu 14.04/16.04, Debian 7/8 and Fedora 22/23/24.
+System packages can be built for Centos/RedHat 6/7, Ubuntu 14.04/16.04, Debian 7/8 and Fedora 22/23/24 by running `ci/docker/build-packages.sh <https://github.com/ParallelSSH/ssh2-python/blob/master/ci/docker/build-packages.sh>`_ script in the repository's directory, based on Docker.
 
-To use, download and install via the system's package manager, for example for Centos/RedHat based systems:
+To use the built packages, install via the system's package manager, for example for Centos/RedHat based systems:
 
 .. code-block:: shell
 
-   yum install -y python-ssh2-python-0.6.0-1.el7.x86_64.rpm
+   yum install -y python-ssh2-python-<version>-1.el7.x86_64.rpm
+
+.. note::
+
+  System packages use the system provided ``libssh2`` which may need to be updated to be compatible with ``ssh2-python``. ``libssh2`` ersions ``>= 1.6.0`` are compatible.
+
+  To built an ``ssh2-python`` that is compatible with versions lower than ``1.6.0``, run the build with the ``EMBEDDED_LIB=0`` environment variable set. This will disable features that require ``libssh2`` >= ``1.6.0``.
 
 Conda package
 ===============
 
-A `conda <https://conda.io/miniconda.html>`_ package is available in the `conda-forge` channel.
+A `conda <https://conda.io/miniconda.html>`_ package is available in the ``conda-forge`` channel.
 
 To install, run the following.
 

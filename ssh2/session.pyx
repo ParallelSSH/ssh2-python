@@ -509,7 +509,7 @@ cdef class Session:
             :type path: str
 
             :rtype: tuple(:py:class:`ssh2.channel.Channel`,
-            :py:class:`ssh2.fileinfo.FileInfo`) or None"""
+              :py:class:`ssh2.fileinfo.FileInfo`) or ``None``"""
             cdef FileInfo fileinfo = FileInfo()
             cdef bytes b_path = to_bytes(path)
             cdef char *_path = b_path

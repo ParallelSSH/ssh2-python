@@ -1206,6 +1206,7 @@ static const char __pyx_k_LIBSSH2_KNOWNHOST_KEY_SSHDSS[] = "LIBSSH2_KNOWNHOST_KE
 static const char __pyx_k_LIBSSH2_KNOWNHOST_KEY_SSHRSA[] = "LIBSSH2_KNOWNHOST_KEY_SSHRSA";
 static const char __pyx_k_LIBSSH2_KNOWNHOST_TYPE_PLAIN[] = "LIBSSH2_KNOWNHOST_TYPE_PLAIN";
 static const char __pyx_k_LIBSSH2_KNOWNHOST_KEYENC_MASK[] = "LIBSSH2_KNOWNHOST_KEYENC_MASK";
+static const char __pyx_k_LIBSSH2_KNOWNHOST_KEY_UNKNOWN[] = "LIBSSH2_KNOWNHOST_KEY_UNKNOWN";
 static const char __pyx_k_LIBSSH2_KNOWNHOST_TYPE_CUSTOM[] = "LIBSSH2_KNOWNHOST_TYPE_CUSTOM";
 static const char __pyx_k_Error_deleting_known_host_entry[] = "Error deleting known host entry - error code %s";
 static const char __pyx_k_Host_s_not_found_in_known_hosts[] = "Host %s not found in known hosts collection";
@@ -1252,6 +1253,7 @@ static PyObject *__pyx_n_s_LIBSSH2_KNOWNHOST_KEY_RSA1;
 static PyObject *__pyx_n_s_LIBSSH2_KNOWNHOST_KEY_SHIFT;
 static PyObject *__pyx_n_s_LIBSSH2_KNOWNHOST_KEY_SSHDSS;
 static PyObject *__pyx_n_s_LIBSSH2_KNOWNHOST_KEY_SSHRSA;
+static PyObject *__pyx_n_s_LIBSSH2_KNOWNHOST_KEY_UNKNOWN;
 static PyObject *__pyx_n_s_LIBSSH2_KNOWNHOST_TYPE_CUSTOM;
 static PyObject *__pyx_n_s_LIBSSH2_KNOWNHOST_TYPE_MASK;
 static PyObject *__pyx_n_s_LIBSSH2_KNOWNHOST_TYPE_PLAIN;
@@ -6285,6 +6287,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_LIBSSH2_KNOWNHOST_KEY_SHIFT, __pyx_k_LIBSSH2_KNOWNHOST_KEY_SHIFT, sizeof(__pyx_k_LIBSSH2_KNOWNHOST_KEY_SHIFT), 0, 0, 1, 1},
   {&__pyx_n_s_LIBSSH2_KNOWNHOST_KEY_SSHDSS, __pyx_k_LIBSSH2_KNOWNHOST_KEY_SSHDSS, sizeof(__pyx_k_LIBSSH2_KNOWNHOST_KEY_SSHDSS), 0, 0, 1, 1},
   {&__pyx_n_s_LIBSSH2_KNOWNHOST_KEY_SSHRSA, __pyx_k_LIBSSH2_KNOWNHOST_KEY_SSHRSA, sizeof(__pyx_k_LIBSSH2_KNOWNHOST_KEY_SSHRSA), 0, 0, 1, 1},
+  {&__pyx_n_s_LIBSSH2_KNOWNHOST_KEY_UNKNOWN, __pyx_k_LIBSSH2_KNOWNHOST_KEY_UNKNOWN, sizeof(__pyx_k_LIBSSH2_KNOWNHOST_KEY_UNKNOWN), 0, 0, 1, 1},
   {&__pyx_n_s_LIBSSH2_KNOWNHOST_TYPE_CUSTOM, __pyx_k_LIBSSH2_KNOWNHOST_TYPE_CUSTOM, sizeof(__pyx_k_LIBSSH2_KNOWNHOST_TYPE_CUSTOM), 0, 0, 1, 1},
   {&__pyx_n_s_LIBSSH2_KNOWNHOST_TYPE_MASK, __pyx_k_LIBSSH2_KNOWNHOST_TYPE_MASK, sizeof(__pyx_k_LIBSSH2_KNOWNHOST_TYPE_MASK), 0, 0, 1, 1},
   {&__pyx_n_s_LIBSSH2_KNOWNHOST_TYPE_PLAIN, __pyx_k_LIBSSH2_KNOWNHOST_TYPE_PLAIN, sizeof(__pyx_k_LIBSSH2_KNOWNHOST_TYPE_PLAIN), 0, 0, 1, 1},
@@ -6815,6 +6818,18 @@ static int __pyx_pymod_exec_knownhost(PyObject *__pyx_pyinit_module)
   __pyx_t_2 = __Pyx_PyInt_From_int(LIBSSH2_KNOWNHOST_KEY_SSHDSS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_KNOWNHOST_KEY_SSHDSS, __pyx_t_2) < 0) __PYX_ERR(0, 47, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "ssh2/knownhost.pyx":49
+ * LIBSSH2_KNOWNHOST_KEY_SSHDSS = c_ssh2.LIBSSH2_KNOWNHOST_KEY_SSHDSS
+ * IF EMBEDDED_LIB:
+ *     LIBSSH2_KNOWNHOST_KEY_UNKNOWN = c_ssh2.LIBSSH2_KNOWNHOST_KEY_UNKNOWN             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __pyx_t_2 = __Pyx_PyInt_From_int(LIBSSH2_KNOWNHOST_KEY_UNKNOWN); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LIBSSH2_KNOWNHOST_KEY_UNKNOWN, __pyx_t_2) < 0) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "ssh2/knownhost.pyx":278

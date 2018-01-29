@@ -52,7 +52,7 @@ class SessionTestCase(SSH2TestCase):
                           self.user, 'FAKE FILE', 'EVEN MORE FAKE FILE',
                           '')
 
-    @skipUnless(hasattr(Session, 'scp_recv64'),
+    @skipUnless(hasattr(Session, 'scp_recv2'),
                 "Function not supported by libssh2")
     def test_scp_recv2(self):        
         self.assertEqual(self._auth(), 0)

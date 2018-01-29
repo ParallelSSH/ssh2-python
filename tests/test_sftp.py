@@ -214,8 +214,6 @@ class SFTPTestCase(SSH2TestCase):
             raise
         finally:
             os.unlink(remote_filename)
-        with sftp.open(remote_filename, 0, 0) as fh:
-            self.assertEqual(fh.fsync(), 0)
 
     def test_statvfs(self):
         self.assertEqual(self._auth(), 0)
