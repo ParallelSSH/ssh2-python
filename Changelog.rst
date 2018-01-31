@@ -1,6 +1,24 @@
 Change Log
 =============
 
+0.9.1
+++++++
+
+Fixes
+------
+
+* Binary wheels would have bad version info and require `git` for installation - #17
+
+
+0.9.0
+++++++
+
+Changes
+-------
+
+* Enabled embedded libssh2 library functionality for versions >= 1.6.0.
+
+
 0.8.0
 ++++++
 
