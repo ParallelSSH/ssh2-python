@@ -12,7 +12,6 @@ from setuptools import setup, find_packages
 cpython = platform.python_implementation() == 'CPython'
 
 try:
-    from Cython.Build import cythonize
     from Cython.Distutils.extension import Extension
     from Cython.Distutils import build_ext
 except ImportError:
