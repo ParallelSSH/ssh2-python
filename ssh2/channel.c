@@ -1161,12 +1161,14 @@ static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_window_size_initial[] = "window_size_initial";
 static const char __pyx_k_Error_executing_command_s_error[] = "Error executing command %s - error code %s";
 static const char __pyx_k_Error_requesting_PTY_with_error[] = "Error requesting PTY with error code %s";
+static const char __pyx_k_Error_requesting_shell_error_cod[] = "Error requesting shell - error code %s";
 static const char __pyx_k_Error_requesting_subsystem_s_err[] = "Error requesting subsystem %s - error code %s";
 static const char __pyx_k_no_default___reduce___due_to_non[] = "no default __reduce__ due to non-trivial __cinit__";
 static PyObject *__pyx_kp_b_;
 static PyObject *__pyx_n_s_ChannelError;
 static PyObject *__pyx_kp_s_Error_executing_command_s_error;
 static PyObject *__pyx_kp_s_Error_requesting_PTY_with_error;
+static PyObject *__pyx_kp_s_Error_requesting_shell_error_cod;
 static PyObject *__pyx_kp_s_Error_requesting_subsystem_s_err;
 static PyObject *__pyx_n_s_MemoryError;
 static PyObject *__pyx_n_s_TypeError;
@@ -1208,38 +1210,39 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_7session___get__(struct __pyx_
 static PyObject *__pyx_pf_4ssh2_7channel_7Channel_4pty(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_term); /* proto */
 static PyObject *__pyx_pf_4ssh2_7channel_7Channel_6execute(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_command); /* proto */
 static PyObject *__pyx_pf_4ssh2_7channel_7Channel_8subsystem(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_subsystem); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_10read(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, size_t __pyx_v_size); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, size_t __pyx_v_size, int __pyx_v_stream_id); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_14read_stderr(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, size_t __pyx_v_size); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_16eof(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_18send_eof(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_20wait_eof(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_22close(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_24flush(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_26flush_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_stream_id); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_28flush_stderr(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_30wait_closed(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_32get_exit_status(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_36setenv(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_varname, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_38window_read_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, unsigned long __pyx_v_read_avail, unsigned long __pyx_v_window_size_initial); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_40window_read(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_42window_write_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, unsigned long __pyx_v_window_size_initial); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_44window_write(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_46receive_window_adjust(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, unsigned long __pyx_v_adjustment, unsigned long __pyx_v_force); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_48receive_window_adjust2(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, unsigned long __pyx_v_adjustment, unsigned long __pyx_v_force); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_50write(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_buf); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_52write_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_stream_id, PyObject *__pyx_v_buf); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_54write_stderr(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_buf); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_56x11_req(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_screen_number); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_58x11_req_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_single_connection, char const *__pyx_v_auth_proto, char const *__pyx_v_auth_cookie, int __pyx_v_screen_number); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_60process_startup(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_request, PyObject *__pyx_v_message); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_62poll_channel_read(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_extended); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_64handle_extended_data(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_ignore_mode); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_66handle_extended_data2(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_ignore_mode); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_68ignore_extended_data(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_ignore_mode); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_70__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_72__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_10shell(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, size_t __pyx_v_size); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_14read_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, size_t __pyx_v_size, int __pyx_v_stream_id); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_16read_stderr(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, size_t __pyx_v_size); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_18eof(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_20send_eof(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_22wait_eof(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_24close(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_26flush(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_28flush_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_stream_id); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_30flush_stderr(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_32wait_closed(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_status(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_36get_exit_signal(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_38setenv(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_varname, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_40window_read_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, unsigned long __pyx_v_read_avail, unsigned long __pyx_v_window_size_initial); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_42window_read(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_44window_write_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, unsigned long __pyx_v_window_size_initial); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_46window_write(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_48receive_window_adjust(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, unsigned long __pyx_v_adjustment, unsigned long __pyx_v_force); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_50receive_window_adjust2(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, unsigned long __pyx_v_adjustment, unsigned long __pyx_v_force); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_52write(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_buf); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_54write_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_stream_id, PyObject *__pyx_v_buf); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_56write_stderr(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_buf); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_58x11_req(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_screen_number); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_60x11_req_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_single_connection, char const *__pyx_v_auth_proto, char const *__pyx_v_auth_cookie, int __pyx_v_screen_number); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_62process_startup(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_request, PyObject *__pyx_v_message); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_64poll_channel_read(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_extended); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_66handle_extended_data(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_ignore_mode); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_68handle_extended_data2(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_ignore_mode); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_70ignore_extended_data(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_ignore_mode); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_72__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_74__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_4ssh2_7channel_Channel(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_tuple__2;
@@ -2225,13 +2228,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_6execute(struct __pyx_obj_4ssh
  *         return rc
  * 
  *     def subsystem(self, subsystem not None):             # <<<<<<<<<<<<<<
- *         """Request subsystem from channel
+ *         """Request subsystem from channel.
  * 
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_9subsystem(PyObject *__pyx_v_self, PyObject *__pyx_v_subsystem); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_8subsystem[] = "Channel.subsystem(self, subsystem)\nRequest subsystem from channel\n\n        :param subsystem: Name of subsystem\n        :type subsystem: str";
+static char __pyx_doc_4ssh2_7channel_7Channel_8subsystem[] = "Channel.subsystem(self, subsystem)\nRequest subsystem from channel.\n\n        :param subsystem: Name of subsystem\n        :type subsystem: str";
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_9subsystem(PyObject *__pyx_v_self, PyObject *__pyx_v_subsystem) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -2479,7 +2482,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_8subsystem(struct __pyx_obj_4s
  *                         subsystem, rc)
  *         return rc             # <<<<<<<<<<<<<<
  * 
- *     def read(self, size_t size=1024):
+ *     def shell(self):
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
@@ -2492,7 +2495,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_8subsystem(struct __pyx_obj_4s
  *         return rc
  * 
  *     def subsystem(self, subsystem not None):             # <<<<<<<<<<<<<<
- *         """Request subsystem from channel
+ *         """Request subsystem from channel.
  * 
  */
 
@@ -2515,15 +2518,266 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_8subsystem(struct __pyx_obj_4s
 /* "ssh2/channel.pyx":111
  *         return rc
  * 
+ *     def shell(self):             # <<<<<<<<<<<<<<
+ *         """Request interactive shell from channel.
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_11shell(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_10shell[] = "Channel.shell(self)\nRequest interactive shell from channel.\n\n        :raises: :py:class:`ssh2.exceptions.ChannelError` on errors requesting\n          interactive shell.\n        ";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_11shell(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("shell (wrapper)", 0);
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_10shell(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_10shell(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
+  int __pyx_v_rc;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_5 = NULL;
+  int __pyx_t_6;
+  PyObject *__pyx_t_7 = NULL;
+  __Pyx_RefNannySetupContext("shell", 0);
+
+  /* "ssh2/channel.pyx":118
+ *         """
+ *         cdef int rc
+ *         with nogil:             # <<<<<<<<<<<<<<
+ *             rc = c_ssh2.libssh2_channel_shell(self._channel)
+ *             if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
+ */
+  {
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
+      __Pyx_FastGIL_Remember();
+      #endif
+      /*try:*/ {
+
+        /* "ssh2/channel.pyx":119
+ *         cdef int rc
+ *         with nogil:
+ *             rc = c_ssh2.libssh2_channel_shell(self._channel)             # <<<<<<<<<<<<<<
+ *             if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
+ *                 with gil:
+ */
+        __pyx_v_rc = libssh2_channel_shell(__pyx_v_self->_channel);
+
+        /* "ssh2/channel.pyx":120
+ *         with nogil:
+ *             rc = c_ssh2.libssh2_channel_shell(self._channel)
+ *             if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:             # <<<<<<<<<<<<<<
+ *                 with gil:
+ *                     raise ChannelError(
+ */
+        switch (__pyx_v_rc) {
+          case 0:
+          case LIBSSH2_ERROR_EAGAIN:
+          __pyx_t_1 = 0;
+          break;
+          default:
+          __pyx_t_1 = 1;
+          break;
+        }
+        if (__pyx_t_1) {
+
+          /* "ssh2/channel.pyx":121
+ *             rc = c_ssh2.libssh2_channel_shell(self._channel)
+ *             if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
+ *                 with gil:             # <<<<<<<<<<<<<<
+ *                     raise ChannelError(
+ *                         "Error requesting shell - error code %s", rc)
+ */
+          {
+              #ifdef WITH_THREAD
+              PyGILState_STATE __pyx_gilstate_save = __Pyx_PyGILState_Ensure();
+              #endif
+              /*try:*/ {
+
+                /* "ssh2/channel.pyx":122
+ *             if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
+ *                 with gil:
+ *                     raise ChannelError(             # <<<<<<<<<<<<<<
+ *                         "Error requesting shell - error code %s", rc)
+ *         return rc
+ */
+                __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_ChannelError); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 122, __pyx_L8_error)
+                __Pyx_GOTREF(__pyx_t_3);
+
+                /* "ssh2/channel.pyx":123
+ *                 with gil:
+ *                     raise ChannelError(
+ *                         "Error requesting shell - error code %s", rc)             # <<<<<<<<<<<<<<
+ *         return rc
+ * 
+ */
+                __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 123, __pyx_L8_error)
+                __Pyx_GOTREF(__pyx_t_4);
+                __pyx_t_5 = NULL;
+                __pyx_t_6 = 0;
+                if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
+                  __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_3);
+                  if (likely(__pyx_t_5)) {
+                    PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+                    __Pyx_INCREF(__pyx_t_5);
+                    __Pyx_INCREF(function);
+                    __Pyx_DECREF_SET(__pyx_t_3, function);
+                    __pyx_t_6 = 1;
+                  }
+                }
+                #if CYTHON_FAST_PYCALL
+                if (PyFunction_Check(__pyx_t_3)) {
+                  PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_kp_s_Error_requesting_shell_error_cod, __pyx_t_4};
+                  __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L8_error)
+                  __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+                  __Pyx_GOTREF(__pyx_t_2);
+                  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+                } else
+                #endif
+                #if CYTHON_FAST_PYCCALL
+                if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
+                  PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_kp_s_Error_requesting_shell_error_cod, __pyx_t_4};
+                  __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L8_error)
+                  __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+                  __Pyx_GOTREF(__pyx_t_2);
+                  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+                } else
+                #endif
+                {
+                  __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 122, __pyx_L8_error)
+                  __Pyx_GOTREF(__pyx_t_7);
+                  if (__pyx_t_5) {
+                    __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
+                  }
+                  __Pyx_INCREF(__pyx_kp_s_Error_requesting_shell_error_cod);
+                  __Pyx_GIVEREF(__pyx_kp_s_Error_requesting_shell_error_cod);
+                  PyTuple_SET_ITEM(__pyx_t_7, 0+__pyx_t_6, __pyx_kp_s_Error_requesting_shell_error_cod);
+                  __Pyx_GIVEREF(__pyx_t_4);
+                  PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_6, __pyx_t_4);
+                  __pyx_t_4 = 0;
+                  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L8_error)
+                  __Pyx_GOTREF(__pyx_t_2);
+                  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+                }
+                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                __Pyx_Raise(__pyx_t_2, 0, 0, 0);
+                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+                __PYX_ERR(0, 122, __pyx_L8_error)
+              }
+
+              /* "ssh2/channel.pyx":121
+ *             rc = c_ssh2.libssh2_channel_shell(self._channel)
+ *             if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
+ *                 with gil:             # <<<<<<<<<<<<<<
+ *                     raise ChannelError(
+ *                         "Error requesting shell - error code %s", rc)
+ */
+              /*finally:*/ {
+                __pyx_L8_error: {
+                  #ifdef WITH_THREAD
+                  __Pyx_PyGILState_Release(__pyx_gilstate_save);
+                  #endif
+                  goto __pyx_L4_error;
+                }
+              }
+          }
+
+          /* "ssh2/channel.pyx":120
+ *         with nogil:
+ *             rc = c_ssh2.libssh2_channel_shell(self._channel)
+ *             if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:             # <<<<<<<<<<<<<<
+ *                 with gil:
+ *                     raise ChannelError(
+ */
+        }
+      }
+
+      /* "ssh2/channel.pyx":118
+ *         """
+ *         cdef int rc
+ *         with nogil:             # <<<<<<<<<<<<<<
+ *             rc = c_ssh2.libssh2_channel_shell(self._channel)
+ *             if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          __Pyx_FastGIL_Forget();
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          __Pyx_FastGIL_Forget();
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L1_error;
+        }
+        __pyx_L5:;
+      }
+  }
+
+  /* "ssh2/channel.pyx":124
+ *                     raise ChannelError(
+ *                         "Error requesting shell - error code %s", rc)
+ *         return rc             # <<<<<<<<<<<<<<
+ * 
+ *     def read(self, size_t size=1024):
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 124, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "ssh2/channel.pyx":111
+ *         return rc
+ * 
+ *     def shell(self):             # <<<<<<<<<<<<<<
+ *         """Request interactive shell from channel.
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_AddTraceback("ssh2.channel.Channel.shell", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "ssh2/channel.pyx":126
+ *         return rc
+ * 
  *     def read(self, size_t size=1024):             # <<<<<<<<<<<<<<
  *         """Read the stdout stream.
  *         Returns return code and output buffer tuple.
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_11read(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_10read[] = "Channel.read(self, size_t size=1024)\nRead the stdout stream.\n        Returns return code and output buffer tuple.\n\n        Return code is the size of the buffer when positive.\n        Negative values are error codes.\n\n        :param size: Max buffer size to read.\n        :type size: int\n\n        :rtype: (int, bytes)";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_11read(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_13read(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_12read[] = "Channel.read(self, size_t size=1024)\nRead the stdout stream.\n        Returns return code and output buffer tuple.\n\n        Return code is the size of the buffer when positive.\n        Negative values are error codes.\n\n        :param size: Max buffer size to read.\n        :type size: int\n\n        :rtype: (int, bytes)";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_13read(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   size_t __pyx_v_size;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -2549,7 +2803,7 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_11read(PyObject *__pyx_v_self,
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "read") < 0)) __PYX_ERR(0, 111, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "read") < 0)) __PYX_ERR(0, 126, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -2560,27 +2814,27 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_11read(PyObject *__pyx_v_self,
       }
     }
     if (values[0]) {
-      __pyx_v_size = __Pyx_PyInt_As_size_t(values[0]); if (unlikely((__pyx_v_size == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 111, __pyx_L3_error)
+      __pyx_v_size = __Pyx_PyInt_As_size_t(values[0]); if (unlikely((__pyx_v_size == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 126, __pyx_L3_error)
     } else {
       __pyx_v_size = ((size_t)0x400);
     }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("read", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 111, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("read", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 126, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("ssh2.channel.Channel.read", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_10read(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_size);
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_12read(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_size);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_10read(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, size_t __pyx_v_size) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, size_t __pyx_v_size) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2588,7 +2842,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_10read(struct __pyx_obj_4ssh2_
   PyObject *__pyx_t_3 = NULL;
   __Pyx_RefNannySetupContext("read", 0);
 
-  /* "ssh2/channel.pyx":122
+  /* "ssh2/channel.pyx":137
  * 
  *         :rtype: (int, bytes)"""
  *         return self.read_ex(size=size, stream_id=0)             # <<<<<<<<<<<<<<
@@ -2596,16 +2850,16 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_10read(struct __pyx_obj_4ssh2_
  *     def read_ex(self, size_t size=1024, int stream_id=0):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_read_ex); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_read_ex); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyInt_FromSize_t(__pyx_v_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 122, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_FromSize_t(__pyx_v_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_size, __pyx_t_3) < 0) __PYX_ERR(0, 122, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_size, __pyx_t_3) < 0) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_stream_id, __pyx_int_0) < 0) __PYX_ERR(0, 122, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 122, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_stream_id, __pyx_int_0) < 0) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -2613,7 +2867,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_10read(struct __pyx_obj_4ssh2_
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":111
+  /* "ssh2/channel.pyx":126
  *         return rc
  * 
  *     def read(self, size_t size=1024):             # <<<<<<<<<<<<<<
@@ -2634,7 +2888,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_10read(struct __pyx_obj_4ssh2_
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":124
+/* "ssh2/channel.pyx":139
  *         return self.read_ex(size=size, stream_id=0)
  * 
  *     def read_ex(self, size_t size=1024, int stream_id=0):             # <<<<<<<<<<<<<<
@@ -2643,9 +2897,9 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_10read(struct __pyx_obj_4ssh2_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_13read_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_12read_ex[] = "Channel.read_ex(self, size_t size=1024, int stream_id=0)\nRead the stream with given id.\n        Returns return code and output buffer tuple.\n\n        Return code is the size of the buffer when positive.\n        Negative values are error codes.\n\n        :param size: Max buffer size to read.\n        :type size: int\n\n        :rtype: (int, bytes)";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_13read_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_15read_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_14read_ex[] = "Channel.read_ex(self, size_t size=1024, int stream_id=0)\nRead the stream with given id.\n        Returns return code and output buffer tuple.\n\n        Return code is the size of the buffer when positive.\n        Negative values are error codes.\n\n        :param size: Max buffer size to read.\n        :type size: int\n\n        :rtype: (int, bytes)";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_15read_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   size_t __pyx_v_size;
   int __pyx_v_stream_id;
   PyObject *__pyx_r = 0;
@@ -2680,7 +2934,7 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_13read_ex(PyObject *__pyx_v_se
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "read_ex") < 0)) __PYX_ERR(0, 124, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "read_ex") < 0)) __PYX_ERR(0, 139, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -2693,32 +2947,32 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_13read_ex(PyObject *__pyx_v_se
       }
     }
     if (values[0]) {
-      __pyx_v_size = __Pyx_PyInt_As_size_t(values[0]); if (unlikely((__pyx_v_size == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 124, __pyx_L3_error)
+      __pyx_v_size = __Pyx_PyInt_As_size_t(values[0]); if (unlikely((__pyx_v_size == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 139, __pyx_L3_error)
     } else {
       __pyx_v_size = ((size_t)0x400);
     }
     if (values[1]) {
-      __pyx_v_stream_id = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_stream_id == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 124, __pyx_L3_error)
+      __pyx_v_stream_id = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_stream_id == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 139, __pyx_L3_error)
     } else {
       __pyx_v_stream_id = ((int)0);
     }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("read_ex", 0, 0, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 124, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("read_ex", 0, 0, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 139, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("ssh2.channel.Channel.read_ex", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_12read_ex(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_size, __pyx_v_stream_id);
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_14read_ex(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_size, __pyx_v_stream_id);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, size_t __pyx_v_size, int __pyx_v_stream_id) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_14read_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, size_t __pyx_v_size, int __pyx_v_stream_id) {
   PyObject *__pyx_v_buf = 0;
   char *__pyx_v_cbuf;
   Py_ssize_t __pyx_v_rc;
@@ -2738,7 +2992,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read_ex(struct __pyx_obj_4ss
   PyObject *__pyx_t_12 = NULL;
   __Pyx_RefNannySetupContext("read_ex", 0);
 
-  /* "ssh2/channel.pyx":135
+  /* "ssh2/channel.pyx":150
  * 
  *         :rtype: (int, bytes)"""
  *         cdef bytes buf = b''             # <<<<<<<<<<<<<<
@@ -2748,7 +3002,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read_ex(struct __pyx_obj_4ss
   __Pyx_INCREF(__pyx_kp_b_);
   __pyx_v_buf = __pyx_kp_b_;
 
-  /* "ssh2/channel.pyx":138
+  /* "ssh2/channel.pyx":153
  *         cdef char *cbuf
  *         cdef ssize_t rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -2763,7 +3017,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read_ex(struct __pyx_obj_4ss
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":139
+        /* "ssh2/channel.pyx":154
  *         cdef ssize_t rc
  *         with nogil:
  *             cbuf = <char *>malloc(sizeof(char)*size)             # <<<<<<<<<<<<<<
@@ -2772,7 +3026,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read_ex(struct __pyx_obj_4ss
  */
         __pyx_v_cbuf = ((char *)malloc(((sizeof(char)) * __pyx_v_size)));
 
-        /* "ssh2/channel.pyx":140
+        /* "ssh2/channel.pyx":155
  *         with nogil:
  *             cbuf = <char *>malloc(sizeof(char)*size)
  *             if cbuf is NULL:             # <<<<<<<<<<<<<<
@@ -2782,7 +3036,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read_ex(struct __pyx_obj_4ss
         __pyx_t_1 = ((__pyx_v_cbuf == NULL) != 0);
         if (__pyx_t_1) {
 
-          /* "ssh2/channel.pyx":141
+          /* "ssh2/channel.pyx":156
  *             cbuf = <char *>malloc(sizeof(char)*size)
  *             if cbuf is NULL:
  *                 with gil:             # <<<<<<<<<<<<<<
@@ -2795,17 +3049,17 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read_ex(struct __pyx_obj_4ss
               #endif
               /*try:*/ {
 
-                /* "ssh2/channel.pyx":142
+                /* "ssh2/channel.pyx":157
  *             if cbuf is NULL:
  *                 with gil:
  *                     raise MemoryError             # <<<<<<<<<<<<<<
  *             rc = c_ssh2.libssh2_channel_read_ex(
  *                 self._channel, stream_id, cbuf, size)
  */
-                PyErr_NoMemory(); __PYX_ERR(0, 142, __pyx_L8_error)
+                PyErr_NoMemory(); __PYX_ERR(0, 157, __pyx_L8_error)
               }
 
-              /* "ssh2/channel.pyx":141
+              /* "ssh2/channel.pyx":156
  *             cbuf = <char *>malloc(sizeof(char)*size)
  *             if cbuf is NULL:
  *                 with gil:             # <<<<<<<<<<<<<<
@@ -2822,7 +3076,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read_ex(struct __pyx_obj_4ss
               }
           }
 
-          /* "ssh2/channel.pyx":140
+          /* "ssh2/channel.pyx":155
  *         with nogil:
  *             cbuf = <char *>malloc(sizeof(char)*size)
  *             if cbuf is NULL:             # <<<<<<<<<<<<<<
@@ -2831,7 +3085,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read_ex(struct __pyx_obj_4ss
  */
         }
 
-        /* "ssh2/channel.pyx":143
+        /* "ssh2/channel.pyx":158
  *                 with gil:
  *                     raise MemoryError
  *             rc = c_ssh2.libssh2_channel_read_ex(             # <<<<<<<<<<<<<<
@@ -2841,7 +3095,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read_ex(struct __pyx_obj_4ss
         __pyx_v_rc = libssh2_channel_read_ex(__pyx_v_self->_channel, __pyx_v_stream_id, __pyx_v_cbuf, __pyx_v_size);
       }
 
-      /* "ssh2/channel.pyx":138
+      /* "ssh2/channel.pyx":153
  *         cdef char *cbuf
  *         cdef ssize_t rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -2867,7 +3121,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read_ex(struct __pyx_obj_4ss
       }
   }
 
-  /* "ssh2/channel.pyx":145
+  /* "ssh2/channel.pyx":160
  *             rc = c_ssh2.libssh2_channel_read_ex(
  *                 self._channel, stream_id, cbuf, size)
  *         try:             # <<<<<<<<<<<<<<
@@ -2876,7 +3130,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read_ex(struct __pyx_obj_4ss
  */
   /*try:*/ {
 
-    /* "ssh2/channel.pyx":146
+    /* "ssh2/channel.pyx":161
  *                 self._channel, stream_id, cbuf, size)
  *         try:
  *             if rc > 0:             # <<<<<<<<<<<<<<
@@ -2886,19 +3140,19 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read_ex(struct __pyx_obj_4ss
     __pyx_t_1 = ((__pyx_v_rc > 0) != 0);
     if (__pyx_t_1) {
 
-      /* "ssh2/channel.pyx":147
+      /* "ssh2/channel.pyx":162
  *         try:
  *             if rc > 0:
  *                 buf = cbuf[:rc]             # <<<<<<<<<<<<<<
  *         finally:
  *             free(cbuf)
  */
-      __pyx_t_2 = __Pyx_PyBytes_FromStringAndSize(__pyx_v_cbuf + 0, __pyx_v_rc - 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 147, __pyx_L11_error)
+      __pyx_t_2 = __Pyx_PyBytes_FromStringAndSize(__pyx_v_cbuf + 0, __pyx_v_rc - 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 162, __pyx_L11_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF_SET(__pyx_v_buf, ((PyObject*)__pyx_t_2));
       __pyx_t_2 = 0;
 
-      /* "ssh2/channel.pyx":146
+      /* "ssh2/channel.pyx":161
  *                 self._channel, stream_id, cbuf, size)
  *         try:
  *             if rc > 0:             # <<<<<<<<<<<<<<
@@ -2908,7 +3162,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read_ex(struct __pyx_obj_4ss
     }
   }
 
-  /* "ssh2/channel.pyx":149
+  /* "ssh2/channel.pyx":164
  *                 buf = cbuf[:rc]
  *         finally:
  *             free(cbuf)             # <<<<<<<<<<<<<<
@@ -2955,7 +3209,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read_ex(struct __pyx_obj_4ss
     __pyx_L12:;
   }
 
-  /* "ssh2/channel.pyx":150
+  /* "ssh2/channel.pyx":165
  *         finally:
  *             free(cbuf)
  *         return rc, buf             # <<<<<<<<<<<<<<
@@ -2963,9 +3217,9 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read_ex(struct __pyx_obj_4ss
  *     def read_stderr(self, size_t size=1024):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_rc); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_rc); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_12 = PyTuple_New(2); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_12 = PyTuple_New(2); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_12, 0, __pyx_t_2);
@@ -2977,7 +3231,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read_ex(struct __pyx_obj_4ss
   __pyx_t_12 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":124
+  /* "ssh2/channel.pyx":139
  *         return self.read_ex(size=size, stream_id=0)
  * 
  *     def read_ex(self, size_t size=1024, int stream_id=0):             # <<<<<<<<<<<<<<
@@ -2998,7 +3252,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read_ex(struct __pyx_obj_4ss
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":152
+/* "ssh2/channel.pyx":167
  *         return rc, buf
  * 
  *     def read_stderr(self, size_t size=1024):             # <<<<<<<<<<<<<<
@@ -3007,9 +3261,9 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_12read_ex(struct __pyx_obj_4ss
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_15read_stderr(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_14read_stderr[] = "Channel.read_stderr(self, size_t size=1024)\nRead the stderr stream.\n        Returns return code and output buffer tuple.\n\n        Return code is the size of the buffer when positive.\n        Negative values are error codes.\n\n        :rtype: (int, bytes)";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_15read_stderr(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_17read_stderr(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_16read_stderr[] = "Channel.read_stderr(self, size_t size=1024)\nRead the stderr stream.\n        Returns return code and output buffer tuple.\n\n        Return code is the size of the buffer when positive.\n        Negative values are error codes.\n\n        :rtype: (int, bytes)";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_17read_stderr(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   size_t __pyx_v_size;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -3035,7 +3289,7 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_15read_stderr(PyObject *__pyx_
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "read_stderr") < 0)) __PYX_ERR(0, 152, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "read_stderr") < 0)) __PYX_ERR(0, 167, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -3046,27 +3300,27 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_15read_stderr(PyObject *__pyx_
       }
     }
     if (values[0]) {
-      __pyx_v_size = __Pyx_PyInt_As_size_t(values[0]); if (unlikely((__pyx_v_size == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 152, __pyx_L3_error)
+      __pyx_v_size = __Pyx_PyInt_As_size_t(values[0]); if (unlikely((__pyx_v_size == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 167, __pyx_L3_error)
     } else {
       __pyx_v_size = ((size_t)0x400);
     }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("read_stderr", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 152, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("read_stderr", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 167, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("ssh2.channel.Channel.read_stderr", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_14read_stderr(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_size);
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_16read_stderr(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_size);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_14read_stderr(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, size_t __pyx_v_size) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_16read_stderr(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, size_t __pyx_v_size) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3074,7 +3328,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_14read_stderr(struct __pyx_obj
   PyObject *__pyx_t_3 = NULL;
   __Pyx_RefNannySetupContext("read_stderr", 0);
 
-  /* "ssh2/channel.pyx":160
+  /* "ssh2/channel.pyx":175
  * 
  *         :rtype: (int, bytes)"""
  *         return self.read_ex(             # <<<<<<<<<<<<<<
@@ -3082,35 +3336,35 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_14read_stderr(struct __pyx_obj
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_read_ex); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 160, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_read_ex); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 175, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "ssh2/channel.pyx":161
+  /* "ssh2/channel.pyx":176
  *         :rtype: (int, bytes)"""
  *         return self.read_ex(
  *             size=size, stream_id=c_ssh2.SSH_EXTENDED_DATA_STDERR)             # <<<<<<<<<<<<<<
  * 
  *     def eof(self):
  */
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 161, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 176, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyInt_FromSize_t(__pyx_v_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 161, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_FromSize_t(__pyx_v_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 176, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_size, __pyx_t_3) < 0) __PYX_ERR(0, 161, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_size, __pyx_t_3) < 0) __PYX_ERR(0, 176, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyInt_From_int(SSH_EXTENDED_DATA_STDERR); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 161, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(SSH_EXTENDED_DATA_STDERR); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 176, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_stream_id, __pyx_t_3) < 0) __PYX_ERR(0, 161, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_stream_id, __pyx_t_3) < 0) __PYX_ERR(0, 176, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "ssh2/channel.pyx":160
+  /* "ssh2/channel.pyx":175
  * 
  *         :rtype: (int, bytes)"""
  *         return self.read_ex(             # <<<<<<<<<<<<<<
  *             size=size, stream_id=c_ssh2.SSH_EXTENDED_DATA_STDERR)
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 160, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 175, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -3118,7 +3372,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_14read_stderr(struct __pyx_obj
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":152
+  /* "ssh2/channel.pyx":167
  *         return rc, buf
  * 
  *     def read_stderr(self, size_t size=1024):             # <<<<<<<<<<<<<<
@@ -3139,7 +3393,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_14read_stderr(struct __pyx_obj
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":163
+/* "ssh2/channel.pyx":178
  *             size=size, stream_id=c_ssh2.SSH_EXTENDED_DATA_STDERR)
  * 
  *     def eof(self):             # <<<<<<<<<<<<<<
@@ -3148,20 +3402,20 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_14read_stderr(struct __pyx_obj
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_17eof(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_16eof[] = "Channel.eof(self)\nGet channel EOF status.\n\n        :rtype: bool";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_17eof(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_19eof(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_18eof[] = "Channel.eof(self)\nGet channel EOF status.\n\n        :rtype: bool";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_19eof(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("eof (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_16eof(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_18eof(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_16eof(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_18eof(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -3169,7 +3423,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_16eof(struct __pyx_obj_4ssh2_7
   int __pyx_t_2;
   __Pyx_RefNannySetupContext("eof", 0);
 
-  /* "ssh2/channel.pyx":168
+  /* "ssh2/channel.pyx":183
  *         :rtype: bool"""
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3184,7 +3438,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_16eof(struct __pyx_obj_4ssh2_7
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":169
+        /* "ssh2/channel.pyx":184
  *         cdef int rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_eof(self._channel)             # <<<<<<<<<<<<<<
@@ -3194,7 +3448,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_16eof(struct __pyx_obj_4ssh2_7
         __pyx_v_rc = libssh2_channel_eof(__pyx_v_self->_channel);
       }
 
-      /* "ssh2/channel.pyx":168
+      /* "ssh2/channel.pyx":183
  *         :rtype: bool"""
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3213,7 +3467,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_16eof(struct __pyx_obj_4ssh2_7
       }
   }
 
-  /* "ssh2/channel.pyx":170
+  /* "ssh2/channel.pyx":185
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_eof(self._channel)
  *         return bool(rc)             # <<<<<<<<<<<<<<
@@ -3221,17 +3475,17 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_16eof(struct __pyx_obj_4ssh2_7
  *     def send_eof(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 170, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 170, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyBool_FromLong((!(!__pyx_t_2))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 170, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong((!(!__pyx_t_2))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":163
+  /* "ssh2/channel.pyx":178
  *             size=size, stream_id=c_ssh2.SSH_EXTENDED_DATA_STDERR)
  * 
  *     def eof(self):             # <<<<<<<<<<<<<<
@@ -3250,7 +3504,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_16eof(struct __pyx_obj_4ssh2_7
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":172
+/* "ssh2/channel.pyx":187
  *         return bool(rc)
  * 
  *     def send_eof(self):             # <<<<<<<<<<<<<<
@@ -3259,27 +3513,27 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_16eof(struct __pyx_obj_4ssh2_7
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_19send_eof(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_18send_eof[] = "Channel.send_eof(self)\nTell the remote host that no further data will be sent on the\n        specified channel. Processes typically interpret this as a closed stdin\n        descriptor.\n\n        Returns 0 on success or negative on failure.\n        It returns ``LIBSSH2_ERROR_EAGAIN`` when it would otherwise block.\n\n        :rtype: int\n        ";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_19send_eof(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_21send_eof(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_20send_eof[] = "Channel.send_eof(self)\nTell the remote host that no further data will be sent on the\n        specified channel. Processes typically interpret this as a closed stdin\n        descriptor.\n\n        Returns 0 on success or negative on failure.\n        It returns ``LIBSSH2_ERROR_EAGAIN`` when it would otherwise block.\n\n        :rtype: int\n        ";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_21send_eof(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("send_eof (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_18send_eof(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_20send_eof(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_18send_eof(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_20send_eof(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("send_eof", 0);
 
-  /* "ssh2/channel.pyx":183
+  /* "ssh2/channel.pyx":198
  *         """
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3294,7 +3548,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_18send_eof(struct __pyx_obj_4s
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":184
+        /* "ssh2/channel.pyx":199
  *         cdef int rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_send_eof(self._channel)             # <<<<<<<<<<<<<<
@@ -3304,7 +3558,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_18send_eof(struct __pyx_obj_4s
         __pyx_v_rc = libssh2_channel_send_eof(__pyx_v_self->_channel);
       }
 
-      /* "ssh2/channel.pyx":183
+      /* "ssh2/channel.pyx":198
  *         """
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3323,7 +3577,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_18send_eof(struct __pyx_obj_4s
       }
   }
 
-  /* "ssh2/channel.pyx":185
+  /* "ssh2/channel.pyx":200
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_send_eof(self._channel)
  *         return rc             # <<<<<<<<<<<<<<
@@ -3331,13 +3585,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_18send_eof(struct __pyx_obj_4s
  *     def wait_eof(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 200, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":172
+  /* "ssh2/channel.pyx":187
  *         return bool(rc)
  * 
  *     def send_eof(self):             # <<<<<<<<<<<<<<
@@ -3356,7 +3610,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_18send_eof(struct __pyx_obj_4s
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":187
+/* "ssh2/channel.pyx":202
  *         return rc
  * 
  *     def wait_eof(self):             # <<<<<<<<<<<<<<
@@ -3365,27 +3619,27 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_18send_eof(struct __pyx_obj_4s
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_21wait_eof(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_20wait_eof[] = "Channel.wait_eof(self)\nWait for the remote end to acknowledge an EOF request.\n\n        Returns 0 on success or negative on failure. It returns\n        :py:class:`ssh2.error_codes.LIBSSH2_ERROR_EAGAIN` when it\n        would otherwise block.\n\n        :rtype: int\n        ";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_21wait_eof(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_23wait_eof(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_22wait_eof[] = "Channel.wait_eof(self)\nWait for the remote end to acknowledge an EOF request.\n\n        Returns 0 on success or negative on failure. It returns\n        :py:class:`ssh2.error_codes.LIBSSH2_ERROR_EAGAIN` when it\n        would otherwise block.\n\n        :rtype: int\n        ";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_23wait_eof(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("wait_eof (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_20wait_eof(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_22wait_eof(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_20wait_eof(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_22wait_eof(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("wait_eof", 0);
 
-  /* "ssh2/channel.pyx":197
+  /* "ssh2/channel.pyx":212
  *         """
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3400,7 +3654,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_20wait_eof(struct __pyx_obj_4s
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":198
+        /* "ssh2/channel.pyx":213
  *         cdef int rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_wait_eof(self._channel)             # <<<<<<<<<<<<<<
@@ -3410,7 +3664,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_20wait_eof(struct __pyx_obj_4s
         __pyx_v_rc = libssh2_channel_wait_eof(__pyx_v_self->_channel);
       }
 
-      /* "ssh2/channel.pyx":197
+      /* "ssh2/channel.pyx":212
  *         """
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3429,7 +3683,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_20wait_eof(struct __pyx_obj_4s
       }
   }
 
-  /* "ssh2/channel.pyx":199
+  /* "ssh2/channel.pyx":214
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_wait_eof(self._channel)
  *         return rc             # <<<<<<<<<<<<<<
@@ -3437,13 +3691,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_20wait_eof(struct __pyx_obj_4s
  *     def close(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 199, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":187
+  /* "ssh2/channel.pyx":202
  *         return rc
  * 
  *     def wait_eof(self):             # <<<<<<<<<<<<<<
@@ -3462,7 +3716,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_20wait_eof(struct __pyx_obj_4s
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":201
+/* "ssh2/channel.pyx":216
  *         return rc
  * 
  *     def close(self):             # <<<<<<<<<<<<<<
@@ -3471,27 +3725,27 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_20wait_eof(struct __pyx_obj_4s
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_23close(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_22close[] = "Channel.close(self)\nClose channel. Typically done to be able to get exit status.";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_23close(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_25close(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_24close[] = "Channel.close(self)\nClose channel. Typically done to be able to get exit status.";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_25close(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("close (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_22close(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_24close(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_22close(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_24close(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("close", 0);
 
-  /* "ssh2/channel.pyx":204
+  /* "ssh2/channel.pyx":219
  *         """Close channel. Typically done to be able to get exit status."""
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3506,7 +3760,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_22close(struct __pyx_obj_4ssh2
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":205
+        /* "ssh2/channel.pyx":220
  *         cdef int rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_close(self._channel)             # <<<<<<<<<<<<<<
@@ -3516,7 +3770,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_22close(struct __pyx_obj_4ssh2
         __pyx_v_rc = libssh2_channel_close(__pyx_v_self->_channel);
       }
 
-      /* "ssh2/channel.pyx":204
+      /* "ssh2/channel.pyx":219
  *         """Close channel. Typically done to be able to get exit status."""
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3535,7 +3789,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_22close(struct __pyx_obj_4ssh2
       }
   }
 
-  /* "ssh2/channel.pyx":206
+  /* "ssh2/channel.pyx":221
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_close(self._channel)
  *         return rc             # <<<<<<<<<<<<<<
@@ -3543,13 +3797,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_22close(struct __pyx_obj_4ssh2
  *     def flush(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 221, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":201
+  /* "ssh2/channel.pyx":216
  *         return rc
  * 
  *     def close(self):             # <<<<<<<<<<<<<<
@@ -3568,7 +3822,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_22close(struct __pyx_obj_4ssh2
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":208
+/* "ssh2/channel.pyx":223
  *         return rc
  * 
  *     def flush(self):             # <<<<<<<<<<<<<<
@@ -3577,27 +3831,27 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_22close(struct __pyx_obj_4ssh2
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_25flush(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_24flush[] = "Channel.flush(self)\nFlush stdout stream";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_25flush(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_27flush(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_26flush[] = "Channel.flush(self)\nFlush stdout stream";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_27flush(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("flush (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_24flush(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_26flush(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_24flush(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_26flush(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("flush", 0);
 
-  /* "ssh2/channel.pyx":211
+  /* "ssh2/channel.pyx":226
  *         """Flush stdout stream"""
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3612,7 +3866,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_24flush(struct __pyx_obj_4ssh2
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":212
+        /* "ssh2/channel.pyx":227
  *         cdef int rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_flush(self._channel)             # <<<<<<<<<<<<<<
@@ -3622,7 +3876,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_24flush(struct __pyx_obj_4ssh2
         __pyx_v_rc = libssh2_channel_flush(__pyx_v_self->_channel);
       }
 
-      /* "ssh2/channel.pyx":211
+      /* "ssh2/channel.pyx":226
  *         """Flush stdout stream"""
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3641,7 +3895,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_24flush(struct __pyx_obj_4ssh2
       }
   }
 
-  /* "ssh2/channel.pyx":213
+  /* "ssh2/channel.pyx":228
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_flush(self._channel)
  *         return rc             # <<<<<<<<<<<<<<
@@ -3649,13 +3903,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_24flush(struct __pyx_obj_4ssh2
  *     def flush_ex(self, int stream_id):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":208
+  /* "ssh2/channel.pyx":223
  *         return rc
  * 
  *     def flush(self):             # <<<<<<<<<<<<<<
@@ -3674,7 +3928,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_24flush(struct __pyx_obj_4ssh2
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":215
+/* "ssh2/channel.pyx":230
  *         return rc
  * 
  *     def flush_ex(self, int stream_id):             # <<<<<<<<<<<<<<
@@ -3683,15 +3937,15 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_24flush(struct __pyx_obj_4ssh2
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_27flush_ex(PyObject *__pyx_v_self, PyObject *__pyx_arg_stream_id); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_26flush_ex[] = "Channel.flush_ex(self, int stream_id)\nFlush stream with id";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_27flush_ex(PyObject *__pyx_v_self, PyObject *__pyx_arg_stream_id) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_29flush_ex(PyObject *__pyx_v_self, PyObject *__pyx_arg_stream_id); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_28flush_ex[] = "Channel.flush_ex(self, int stream_id)\nFlush stream with id";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_29flush_ex(PyObject *__pyx_v_self, PyObject *__pyx_arg_stream_id) {
   int __pyx_v_stream_id;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("flush_ex (wrapper)", 0);
   assert(__pyx_arg_stream_id); {
-    __pyx_v_stream_id = __Pyx_PyInt_As_int(__pyx_arg_stream_id); if (unlikely((__pyx_v_stream_id == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 215, __pyx_L3_error)
+    __pyx_v_stream_id = __Pyx_PyInt_As_int(__pyx_arg_stream_id); if (unlikely((__pyx_v_stream_id == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 230, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3699,21 +3953,21 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_27flush_ex(PyObject *__pyx_v_s
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_26flush_ex(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((int)__pyx_v_stream_id));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_28flush_ex(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((int)__pyx_v_stream_id));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_26flush_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_stream_id) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_28flush_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_stream_id) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("flush_ex", 0);
 
-  /* "ssh2/channel.pyx":218
+  /* "ssh2/channel.pyx":233
  *         """Flush stream with id"""
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3728,7 +3982,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_26flush_ex(struct __pyx_obj_4s
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":219
+        /* "ssh2/channel.pyx":234
  *         cdef int rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_flush_ex(self._channel, stream_id)             # <<<<<<<<<<<<<<
@@ -3738,7 +3992,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_26flush_ex(struct __pyx_obj_4s
         __pyx_v_rc = libssh2_channel_flush_ex(__pyx_v_self->_channel, __pyx_v_stream_id);
       }
 
-      /* "ssh2/channel.pyx":218
+      /* "ssh2/channel.pyx":233
  *         """Flush stream with id"""
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3757,7 +4011,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_26flush_ex(struct __pyx_obj_4s
       }
   }
 
-  /* "ssh2/channel.pyx":220
+  /* "ssh2/channel.pyx":235
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_flush_ex(self._channel, stream_id)
  *         return rc             # <<<<<<<<<<<<<<
@@ -3765,13 +4019,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_26flush_ex(struct __pyx_obj_4s
  *     def flush_stderr(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 235, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":215
+  /* "ssh2/channel.pyx":230
  *         return rc
  * 
  *     def flush_ex(self, int stream_id):             # <<<<<<<<<<<<<<
@@ -3790,7 +4044,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_26flush_ex(struct __pyx_obj_4s
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":222
+/* "ssh2/channel.pyx":237
  *         return rc
  * 
  *     def flush_stderr(self):             # <<<<<<<<<<<<<<
@@ -3799,27 +4053,27 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_26flush_ex(struct __pyx_obj_4s
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_29flush_stderr(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_28flush_stderr[] = "Channel.flush_stderr(self)\nFlush stderr stream";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_29flush_stderr(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_31flush_stderr(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_30flush_stderr[] = "Channel.flush_stderr(self)\nFlush stderr stream";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_31flush_stderr(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("flush_stderr (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_28flush_stderr(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_30flush_stderr(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_28flush_stderr(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_30flush_stderr(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("flush_stderr", 0);
 
-  /* "ssh2/channel.pyx":225
+  /* "ssh2/channel.pyx":240
  *         """Flush stderr stream"""
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3834,7 +4088,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_28flush_stderr(struct __pyx_ob
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":226
+        /* "ssh2/channel.pyx":241
  *         cdef int rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_flush_stderr(self._channel)             # <<<<<<<<<<<<<<
@@ -3844,7 +4098,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_28flush_stderr(struct __pyx_ob
         __pyx_v_rc = libssh2_channel_flush_stderr(__pyx_v_self->_channel);
       }
 
-      /* "ssh2/channel.pyx":225
+      /* "ssh2/channel.pyx":240
  *         """Flush stderr stream"""
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3863,7 +4117,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_28flush_stderr(struct __pyx_ob
       }
   }
 
-  /* "ssh2/channel.pyx":227
+  /* "ssh2/channel.pyx":242
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_flush_stderr(self._channel)
  *         return rc             # <<<<<<<<<<<<<<
@@ -3871,13 +4125,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_28flush_stderr(struct __pyx_ob
  *     def wait_closed(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 227, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":222
+  /* "ssh2/channel.pyx":237
  *         return rc
  * 
  *     def flush_stderr(self):             # <<<<<<<<<<<<<<
@@ -3896,7 +4150,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_28flush_stderr(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":229
+/* "ssh2/channel.pyx":244
  *         return rc
  * 
  *     def wait_closed(self):             # <<<<<<<<<<<<<<
@@ -3905,27 +4159,27 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_28flush_stderr(struct __pyx_ob
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_31wait_closed(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_30wait_closed[] = "Channel.wait_closed(self)\nWait for server to acknowledge channel close command.";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_31wait_closed(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_33wait_closed(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_32wait_closed[] = "Channel.wait_closed(self)\nWait for server to acknowledge channel close command.";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_33wait_closed(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("wait_closed (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_30wait_closed(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_32wait_closed(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_30wait_closed(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_32wait_closed(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("wait_closed", 0);
 
-  /* "ssh2/channel.pyx":232
+  /* "ssh2/channel.pyx":247
  *         """Wait for server to acknowledge channel close command."""
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3940,7 +4194,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_30wait_closed(struct __pyx_obj
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":233
+        /* "ssh2/channel.pyx":248
  *         cdef int rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_wait_closed(self._channel)             # <<<<<<<<<<<<<<
@@ -3950,7 +4204,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_30wait_closed(struct __pyx_obj
         __pyx_v_rc = libssh2_channel_wait_closed(__pyx_v_self->_channel);
       }
 
-      /* "ssh2/channel.pyx":232
+      /* "ssh2/channel.pyx":247
  *         """Wait for server to acknowledge channel close command."""
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3969,7 +4223,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_30wait_closed(struct __pyx_obj
       }
   }
 
-  /* "ssh2/channel.pyx":234
+  /* "ssh2/channel.pyx":249
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_wait_closed(self._channel)
  *         return rc             # <<<<<<<<<<<<<<
@@ -3977,13 +4231,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_30wait_closed(struct __pyx_obj
  *     def get_exit_status(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 249, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":229
+  /* "ssh2/channel.pyx":244
  *         return rc
  * 
  *     def wait_closed(self):             # <<<<<<<<<<<<<<
@@ -4002,7 +4256,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_30wait_closed(struct __pyx_obj
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":236
+/* "ssh2/channel.pyx":251
  *         return rc
  * 
  *     def get_exit_status(self):             # <<<<<<<<<<<<<<
@@ -4011,27 +4265,27 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_30wait_closed(struct __pyx_obj
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_33get_exit_status(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_32get_exit_status[] = "Channel.get_exit_status(self)\nGet exit status of command.\n\n        Note that ``0`` is also failure code for this function.\n\n        Best used in non-blocking mode to avoid it being impossible to tell if\n        ``0`` indicates failure or an actual exit status of ``0``";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_33get_exit_status(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_35get_exit_status(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_34get_exit_status[] = "Channel.get_exit_status(self)\nGet exit status of command.\n\n        Note that ``0`` is also failure code for this function.\n\n        Best used in non-blocking mode to avoid it being impossible to tell if\n        ``0`` indicates failure or an actual exit status of ``0``";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_35get_exit_status(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_exit_status (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_32get_exit_status(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_34get_exit_status(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_32get_exit_status(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_status(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("get_exit_status", 0);
 
-  /* "ssh2/channel.pyx":244
+  /* "ssh2/channel.pyx":259
  *         ``0`` indicates failure or an actual exit status of ``0``"""
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -4046,7 +4300,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_32get_exit_status(struct __pyx
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":245
+        /* "ssh2/channel.pyx":260
  *         cdef int rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_get_exit_status(self._channel)             # <<<<<<<<<<<<<<
@@ -4056,7 +4310,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_32get_exit_status(struct __pyx
         __pyx_v_rc = libssh2_channel_get_exit_status(__pyx_v_self->_channel);
       }
 
-      /* "ssh2/channel.pyx":244
+      /* "ssh2/channel.pyx":259
  *         ``0`` indicates failure or an actual exit status of ``0``"""
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -4075,7 +4329,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_32get_exit_status(struct __pyx
       }
   }
 
-  /* "ssh2/channel.pyx":246
+  /* "ssh2/channel.pyx":261
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_get_exit_status(self._channel)
  *         return rc             # <<<<<<<<<<<<<<
@@ -4083,13 +4337,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_32get_exit_status(struct __pyx
  *     def get_exit_signal(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 246, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":236
+  /* "ssh2/channel.pyx":251
  *         return rc
  * 
  *     def get_exit_status(self):             # <<<<<<<<<<<<<<
@@ -4108,7 +4362,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_32get_exit_status(struct __pyx
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":248
+/* "ssh2/channel.pyx":263
  *         return rc
  * 
  *     def get_exit_signal(self):             # <<<<<<<<<<<<<<
@@ -4117,20 +4371,20 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_32get_exit_status(struct __pyx
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_35get_exit_signal(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_34get_exit_signal[] = "Channel.get_exit_signal(self)\nGet exit signal, message and language tag, if any, for command.\n\n        Returns (returncode, exit signal, error message, language tag) tuple.\n\n        :rtype: tuple(int, bytes, bytes, bytes)";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_35get_exit_signal(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_37get_exit_signal(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_36get_exit_signal[] = "Channel.get_exit_signal(self)\nGet exit signal, message and language tag, if any, for command.\n\n        Returns (returncode, exit signal, error message, language tag) tuple.\n\n        :rtype: tuple(int, bytes, bytes, bytes)";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_37get_exit_signal(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_exit_signal (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_36get_exit_signal(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_36get_exit_signal(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
   char *__pyx_v_exitsignal;
   size_t *__pyx_v_exitsignal_len;
   char *__pyx_v_errmsg;
@@ -4151,7 +4405,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
   PyObject *__pyx_t_3 = NULL;
   __Pyx_RefNannySetupContext("get_exit_signal", 0);
 
-  /* "ssh2/channel.pyx":254
+  /* "ssh2/channel.pyx":269
  * 
  *         :rtype: tuple(int, bytes, bytes, bytes)"""
  *         cdef char *exitsignal = <char *>b'none'             # <<<<<<<<<<<<<<
@@ -4160,7 +4414,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
  */
   __pyx_v_exitsignal = ((char *)((char *)"none"));
 
-  /* "ssh2/channel.pyx":255
+  /* "ssh2/channel.pyx":270
  *         :rtype: tuple(int, bytes, bytes, bytes)"""
  *         cdef char *exitsignal = <char *>b'none'
  *         cdef size_t *exitsignal_len = <size_t *>0             # <<<<<<<<<<<<<<
@@ -4169,7 +4423,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
  */
   __pyx_v_exitsignal_len = ((size_t *)0);
 
-  /* "ssh2/channel.pyx":256
+  /* "ssh2/channel.pyx":271
  *         cdef char *exitsignal = <char *>b'none'
  *         cdef size_t *exitsignal_len = <size_t *>0
  *         cdef char *errmsg = <char *>b'none'             # <<<<<<<<<<<<<<
@@ -4178,7 +4432,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
  */
   __pyx_v_errmsg = ((char *)((char *)"none"));
 
-  /* "ssh2/channel.pyx":257
+  /* "ssh2/channel.pyx":272
  *         cdef size_t *exitsignal_len = <size_t *>0
  *         cdef char *errmsg = <char *>b'none'
  *         cdef size_t *errmsg_len = <size_t *>0             # <<<<<<<<<<<<<<
@@ -4187,7 +4441,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
  */
   __pyx_v_errmsg_len = ((size_t *)0);
 
-  /* "ssh2/channel.pyx":258
+  /* "ssh2/channel.pyx":273
  *         cdef char *errmsg = <char *>b'none'
  *         cdef size_t *errmsg_len = <size_t *>0
  *         cdef char *langtag = <char *>b'none'             # <<<<<<<<<<<<<<
@@ -4196,7 +4450,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
  */
   __pyx_v_langtag = ((char *)((char *)"none"));
 
-  /* "ssh2/channel.pyx":259
+  /* "ssh2/channel.pyx":274
  *         cdef size_t *errmsg_len = <size_t *>0
  *         cdef char *langtag = <char *>b'none'
  *         cdef size_t *langtag_len = <size_t *>0             # <<<<<<<<<<<<<<
@@ -4205,7 +4459,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
  */
   __pyx_v_langtag_len = ((size_t *)0);
 
-  /* "ssh2/channel.pyx":261
+  /* "ssh2/channel.pyx":276
  *         cdef size_t *langtag_len = <size_t *>0
  *         cdef int rc
  *         cdef bytes py_exitsignal = None             # <<<<<<<<<<<<<<
@@ -4215,7 +4469,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
   __Pyx_INCREF(Py_None);
   __pyx_v_py_exitsignal = ((PyObject*)Py_None);
 
-  /* "ssh2/channel.pyx":262
+  /* "ssh2/channel.pyx":277
  *         cdef int rc
  *         cdef bytes py_exitsignal = None
  *         cdef bytes py_errmsg = None             # <<<<<<<<<<<<<<
@@ -4225,7 +4479,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
   __Pyx_INCREF(Py_None);
   __pyx_v_py_errmsg = ((PyObject*)Py_None);
 
-  /* "ssh2/channel.pyx":263
+  /* "ssh2/channel.pyx":278
  *         cdef bytes py_exitsignal = None
  *         cdef bytes py_errmsg = None
  *         cdef bytes py_langtag = None             # <<<<<<<<<<<<<<
@@ -4235,7 +4489,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
   __Pyx_INCREF(Py_None);
   __pyx_v_py_langtag = ((PyObject*)Py_None);
 
-  /* "ssh2/channel.pyx":264
+  /* "ssh2/channel.pyx":279
  *         cdef bytes py_errmsg = None
  *         cdef bytes py_langtag = None
  *         cdef size_t py_siglen = 0             # <<<<<<<<<<<<<<
@@ -4244,7 +4498,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
  */
   __pyx_v_py_siglen = 0;
 
-  /* "ssh2/channel.pyx":265
+  /* "ssh2/channel.pyx":280
  *         cdef bytes py_langtag = None
  *         cdef size_t py_siglen = 0
  *         cdef size_t py_errlen = 0             # <<<<<<<<<<<<<<
@@ -4253,7 +4507,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
  */
   __pyx_v_py_errlen = 0;
 
-  /* "ssh2/channel.pyx":266
+  /* "ssh2/channel.pyx":281
  *         cdef size_t py_siglen = 0
  *         cdef size_t py_errlen = 0
  *         cdef size_t py_langlen = 0             # <<<<<<<<<<<<<<
@@ -4262,7 +4516,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
  */
   __pyx_v_py_langlen = 0;
 
-  /* "ssh2/channel.pyx":267
+  /* "ssh2/channel.pyx":282
  *         cdef size_t py_errlen = 0
  *         cdef size_t py_langlen = 0
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -4277,7 +4531,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":268
+        /* "ssh2/channel.pyx":283
  *         cdef size_t py_langlen = 0
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_get_exit_signal(             # <<<<<<<<<<<<<<
@@ -4286,7 +4540,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
  */
         __pyx_v_rc = libssh2_channel_get_exit_signal(__pyx_v_self->_channel, (&__pyx_v_exitsignal), __pyx_v_exitsignal_len, (&__pyx_v_errmsg), __pyx_v_errmsg_len, (&__pyx_v_langtag), __pyx_v_langtag_len);
 
-        /* "ssh2/channel.pyx":271
+        /* "ssh2/channel.pyx":286
  *                 self._channel, &exitsignal, exitsignal_len, &errmsg,
  *                 errmsg_len, &langtag, langtag_len)
  *             if exitsignal_len is not NULL:             # <<<<<<<<<<<<<<
@@ -4296,7 +4550,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
         __pyx_t_1 = ((__pyx_v_exitsignal_len != NULL) != 0);
         if (__pyx_t_1) {
 
-          /* "ssh2/channel.pyx":272
+          /* "ssh2/channel.pyx":287
  *                 errmsg_len, &langtag, langtag_len)
  *             if exitsignal_len is not NULL:
  *                 py_siglen = <size_t>exitsignal_len             # <<<<<<<<<<<<<<
@@ -4305,7 +4559,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
  */
           __pyx_v_py_siglen = ((size_t)__pyx_v_exitsignal_len);
 
-          /* "ssh2/channel.pyx":271
+          /* "ssh2/channel.pyx":286
  *                 self._channel, &exitsignal, exitsignal_len, &errmsg,
  *                 errmsg_len, &langtag, langtag_len)
  *             if exitsignal_len is not NULL:             # <<<<<<<<<<<<<<
@@ -4314,7 +4568,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
  */
         }
 
-        /* "ssh2/channel.pyx":273
+        /* "ssh2/channel.pyx":288
  *             if exitsignal_len is not NULL:
  *                 py_siglen = <size_t>exitsignal_len
  *             if errmsg_len is not NULL:             # <<<<<<<<<<<<<<
@@ -4324,7 +4578,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
         __pyx_t_1 = ((__pyx_v_errmsg_len != NULL) != 0);
         if (__pyx_t_1) {
 
-          /* "ssh2/channel.pyx":274
+          /* "ssh2/channel.pyx":289
  *                 py_siglen = <size_t>exitsignal_len
  *             if errmsg_len is not NULL:
  *                 py_errlen = <size_t>errmsg_len             # <<<<<<<<<<<<<<
@@ -4333,7 +4587,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
  */
           __pyx_v_py_errlen = ((size_t)__pyx_v_errmsg_len);
 
-          /* "ssh2/channel.pyx":273
+          /* "ssh2/channel.pyx":288
  *             if exitsignal_len is not NULL:
  *                 py_siglen = <size_t>exitsignal_len
  *             if errmsg_len is not NULL:             # <<<<<<<<<<<<<<
@@ -4342,7 +4596,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
  */
         }
 
-        /* "ssh2/channel.pyx":275
+        /* "ssh2/channel.pyx":290
  *             if errmsg_len is not NULL:
  *                 py_errlen = <size_t>errmsg_len
  *             if langtag_len is not NULL:             # <<<<<<<<<<<<<<
@@ -4352,7 +4606,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
         __pyx_t_1 = ((__pyx_v_langtag_len != NULL) != 0);
         if (__pyx_t_1) {
 
-          /* "ssh2/channel.pyx":276
+          /* "ssh2/channel.pyx":291
  *                 py_errlen = <size_t>errmsg_len
  *             if langtag_len is not NULL:
  *                 py_langlen = <size_t>langtag_len             # <<<<<<<<<<<<<<
@@ -4361,7 +4615,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
  */
           __pyx_v_py_langlen = ((size_t)__pyx_v_langtag_len);
 
-          /* "ssh2/channel.pyx":275
+          /* "ssh2/channel.pyx":290
  *             if errmsg_len is not NULL:
  *                 py_errlen = <size_t>errmsg_len
  *             if langtag_len is not NULL:             # <<<<<<<<<<<<<<
@@ -4371,7 +4625,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
         }
       }
 
-      /* "ssh2/channel.pyx":267
+      /* "ssh2/channel.pyx":282
  *         cdef size_t py_errlen = 0
  *         cdef size_t py_langlen = 0
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -4390,7 +4644,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
       }
   }
 
-  /* "ssh2/channel.pyx":277
+  /* "ssh2/channel.pyx":292
  *             if langtag_len is not NULL:
  *                 py_langlen = <size_t>langtag_len
  *         if py_siglen > 0:             # <<<<<<<<<<<<<<
@@ -4400,19 +4654,19 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
   __pyx_t_1 = ((__pyx_v_py_siglen > 0) != 0);
   if (__pyx_t_1) {
 
-    /* "ssh2/channel.pyx":278
+    /* "ssh2/channel.pyx":293
  *                 py_langlen = <size_t>langtag_len
  *         if py_siglen > 0:
  *             py_exitsignal = exitsignal[:py_siglen]             # <<<<<<<<<<<<<<
  *         if py_errlen > 0:
  *             py_errmsg = errmsg[:py_errlen]
  */
-    __pyx_t_2 = __Pyx_PyBytes_FromStringAndSize(__pyx_v_exitsignal + 0, __pyx_v_py_siglen - 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 278, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyBytes_FromStringAndSize(__pyx_v_exitsignal + 0, __pyx_v_py_siglen - 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 293, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF_SET(__pyx_v_py_exitsignal, ((PyObject*)__pyx_t_2));
     __pyx_t_2 = 0;
 
-    /* "ssh2/channel.pyx":277
+    /* "ssh2/channel.pyx":292
  *             if langtag_len is not NULL:
  *                 py_langlen = <size_t>langtag_len
  *         if py_siglen > 0:             # <<<<<<<<<<<<<<
@@ -4421,7 +4675,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
  */
   }
 
-  /* "ssh2/channel.pyx":279
+  /* "ssh2/channel.pyx":294
  *         if py_siglen > 0:
  *             py_exitsignal = exitsignal[:py_siglen]
  *         if py_errlen > 0:             # <<<<<<<<<<<<<<
@@ -4431,19 +4685,19 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
   __pyx_t_1 = ((__pyx_v_py_errlen > 0) != 0);
   if (__pyx_t_1) {
 
-    /* "ssh2/channel.pyx":280
+    /* "ssh2/channel.pyx":295
  *             py_exitsignal = exitsignal[:py_siglen]
  *         if py_errlen > 0:
  *             py_errmsg = errmsg[:py_errlen]             # <<<<<<<<<<<<<<
  *         if py_langlen > 0:
  *             py_langtag = langtag[:py_langlen]
  */
-    __pyx_t_2 = __Pyx_PyBytes_FromStringAndSize(__pyx_v_errmsg + 0, __pyx_v_py_errlen - 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 280, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyBytes_FromStringAndSize(__pyx_v_errmsg + 0, __pyx_v_py_errlen - 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 295, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF_SET(__pyx_v_py_errmsg, ((PyObject*)__pyx_t_2));
     __pyx_t_2 = 0;
 
-    /* "ssh2/channel.pyx":279
+    /* "ssh2/channel.pyx":294
  *         if py_siglen > 0:
  *             py_exitsignal = exitsignal[:py_siglen]
  *         if py_errlen > 0:             # <<<<<<<<<<<<<<
@@ -4452,7 +4706,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
  */
   }
 
-  /* "ssh2/channel.pyx":281
+  /* "ssh2/channel.pyx":296
  *         if py_errlen > 0:
  *             py_errmsg = errmsg[:py_errlen]
  *         if py_langlen > 0:             # <<<<<<<<<<<<<<
@@ -4462,19 +4716,19 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
   __pyx_t_1 = ((__pyx_v_py_langlen > 0) != 0);
   if (__pyx_t_1) {
 
-    /* "ssh2/channel.pyx":282
+    /* "ssh2/channel.pyx":297
  *             py_errmsg = errmsg[:py_errlen]
  *         if py_langlen > 0:
  *             py_langtag = langtag[:py_langlen]             # <<<<<<<<<<<<<<
  *         return rc, py_exitsignal, py_errmsg, py_langtag
  * 
  */
-    __pyx_t_2 = __Pyx_PyBytes_FromStringAndSize(__pyx_v_langtag + 0, __pyx_v_py_langlen - 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 282, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyBytes_FromStringAndSize(__pyx_v_langtag + 0, __pyx_v_py_langlen - 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 297, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF_SET(__pyx_v_py_langtag, ((PyObject*)__pyx_t_2));
     __pyx_t_2 = 0;
 
-    /* "ssh2/channel.pyx":281
+    /* "ssh2/channel.pyx":296
  *         if py_errlen > 0:
  *             py_errmsg = errmsg[:py_errlen]
  *         if py_langlen > 0:             # <<<<<<<<<<<<<<
@@ -4483,7 +4737,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
  */
   }
 
-  /* "ssh2/channel.pyx":283
+  /* "ssh2/channel.pyx":298
  *         if py_langlen > 0:
  *             py_langtag = langtag[:py_langlen]
  *         return rc, py_exitsignal, py_errmsg, py_langtag             # <<<<<<<<<<<<<<
@@ -4491,9 +4745,9 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
  *     def setenv(self, varname not None, value not None):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 283, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 298, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 283, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 298, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
@@ -4511,7 +4765,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":248
+  /* "ssh2/channel.pyx":263
  *         return rc
  * 
  *     def get_exit_signal(self):             # <<<<<<<<<<<<<<
@@ -4534,7 +4788,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":285
+/* "ssh2/channel.pyx":300
  *         return rc, py_exitsignal, py_errmsg, py_langtag
  * 
  *     def setenv(self, varname not None, value not None):             # <<<<<<<<<<<<<<
@@ -4543,9 +4797,9 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_34get_exit_signal(struct __pyx
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_37setenv(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_36setenv[] = "Channel.setenv(self, varname, value)\nSet environment variable on channel.\n\n        :param varname: Name of variable to set.\n        :type varname: str\n        :param value: Value of variable.\n        :type value: str\n\n        :rtype: int";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_37setenv(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_39setenv(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_38setenv[] = "Channel.setenv(self, varname, value)\nSet environment variable on channel.\n\n        :param varname: Name of variable to set.\n        :type varname: str\n        :param value: Value of variable.\n        :type value: str\n\n        :rtype: int";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_39setenv(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_varname = 0;
   PyObject *__pyx_v_value = 0;
   PyObject *__pyx_r = 0;
@@ -4574,11 +4828,11 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_37setenv(PyObject *__pyx_v_sel
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_value)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("setenv", 1, 2, 2, 1); __PYX_ERR(0, 285, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("setenv", 1, 2, 2, 1); __PYX_ERR(0, 300, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "setenv") < 0)) __PYX_ERR(0, 285, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "setenv") < 0)) __PYX_ERR(0, 300, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4591,19 +4845,19 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_37setenv(PyObject *__pyx_v_sel
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("setenv", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 285, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("setenv", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 300, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("ssh2.channel.Channel.setenv", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(((PyObject *)__pyx_v_varname) == Py_None)) {
-    PyErr_Format(PyExc_TypeError, "Argument '%.200s' must not be None", "varname"); __PYX_ERR(0, 285, __pyx_L1_error)
+    PyErr_Format(PyExc_TypeError, "Argument '%.200s' must not be None", "varname"); __PYX_ERR(0, 300, __pyx_L1_error)
   }
   if (unlikely(((PyObject *)__pyx_v_value) == Py_None)) {
-    PyErr_Format(PyExc_TypeError, "Argument '%.200s' must not be None", "value"); __PYX_ERR(0, 285, __pyx_L1_error)
+    PyErr_Format(PyExc_TypeError, "Argument '%.200s' must not be None", "value"); __PYX_ERR(0, 300, __pyx_L1_error)
   }
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_36setenv(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_varname, __pyx_v_value);
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_38setenv(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_varname, __pyx_v_value);
 
   /* function exit code */
   goto __pyx_L0;
@@ -4614,7 +4868,7 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_37setenv(PyObject *__pyx_v_sel
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_36setenv(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_varname, PyObject *__pyx_v_value) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_38setenv(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_varname, PyObject *__pyx_v_value) {
   int __pyx_v_rc;
   PyObject *__pyx_v_b_varname = 0;
   PyObject *__pyx_v_b_value = 0;
@@ -4626,31 +4880,31 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_36setenv(struct __pyx_obj_4ssh
   char *__pyx_t_2;
   __Pyx_RefNannySetupContext("setenv", 0);
 
-  /* "ssh2/channel.pyx":295
+  /* "ssh2/channel.pyx":310
  *         :rtype: int"""
  *         cdef int rc
  *         cdef bytes b_varname = to_bytes(varname)             # <<<<<<<<<<<<<<
  *         cdef bytes b_value = to_bytes(value)
  *         cdef char *_varname = b_varname
  */
-  __pyx_t_1 = __pyx_f_4ssh2_5utils_to_bytes(__pyx_v_varname); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_4ssh2_5utils_to_bytes(__pyx_v_varname); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_b_varname = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ssh2/channel.pyx":296
+  /* "ssh2/channel.pyx":311
  *         cdef int rc
  *         cdef bytes b_varname = to_bytes(varname)
  *         cdef bytes b_value = to_bytes(value)             # <<<<<<<<<<<<<<
  *         cdef char *_varname = b_varname
  *         cdef char *_value = b_value
  */
-  __pyx_t_1 = __pyx_f_4ssh2_5utils_to_bytes(__pyx_v_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 296, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_4ssh2_5utils_to_bytes(__pyx_v_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 311, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_b_value = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ssh2/channel.pyx":297
+  /* "ssh2/channel.pyx":312
  *         cdef bytes b_varname = to_bytes(varname)
  *         cdef bytes b_value = to_bytes(value)
  *         cdef char *_varname = b_varname             # <<<<<<<<<<<<<<
@@ -4659,12 +4913,12 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_36setenv(struct __pyx_obj_4ssh
  */
   if (unlikely(__pyx_v_b_varname == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
-    __PYX_ERR(0, 297, __pyx_L1_error)
+    __PYX_ERR(0, 312, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_PyBytes_AsWritableString(__pyx_v_b_varname); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBytes_AsWritableString(__pyx_v_b_varname); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 312, __pyx_L1_error)
   __pyx_v__varname = __pyx_t_2;
 
-  /* "ssh2/channel.pyx":298
+  /* "ssh2/channel.pyx":313
  *         cdef bytes b_value = to_bytes(value)
  *         cdef char *_varname = b_varname
  *         cdef char *_value = b_value             # <<<<<<<<<<<<<<
@@ -4673,12 +4927,12 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_36setenv(struct __pyx_obj_4ssh
  */
   if (unlikely(__pyx_v_b_value == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
-    __PYX_ERR(0, 298, __pyx_L1_error)
+    __PYX_ERR(0, 313, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_PyBytes_AsWritableString(__pyx_v_b_value); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 298, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBytes_AsWritableString(__pyx_v_b_value); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 313, __pyx_L1_error)
   __pyx_v__value = __pyx_t_2;
 
-  /* "ssh2/channel.pyx":299
+  /* "ssh2/channel.pyx":314
  *         cdef char *_varname = b_varname
  *         cdef char *_value = b_value
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -4693,7 +4947,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_36setenv(struct __pyx_obj_4ssh
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":300
+        /* "ssh2/channel.pyx":315
  *         cdef char *_value = b_value
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_setenv(             # <<<<<<<<<<<<<<
@@ -4703,7 +4957,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_36setenv(struct __pyx_obj_4ssh
         __pyx_v_rc = libssh2_channel_setenv(__pyx_v_self->_channel, __pyx_v__varname, __pyx_v__value);
       }
 
-      /* "ssh2/channel.pyx":299
+      /* "ssh2/channel.pyx":314
  *         cdef char *_varname = b_varname
  *         cdef char *_value = b_value
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -4722,7 +4976,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_36setenv(struct __pyx_obj_4ssh
       }
   }
 
-  /* "ssh2/channel.pyx":302
+  /* "ssh2/channel.pyx":317
  *             rc = c_ssh2.libssh2_channel_setenv(
  *                 self._channel, _varname, _value)
  *         return rc             # <<<<<<<<<<<<<<
@@ -4730,13 +4984,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_36setenv(struct __pyx_obj_4ssh
  *     def window_read_ex(self, unsigned long read_avail,
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 317, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":285
+  /* "ssh2/channel.pyx":300
  *         return rc, py_exitsignal, py_errmsg, py_langtag
  * 
  *     def setenv(self, varname not None, value not None):             # <<<<<<<<<<<<<<
@@ -4757,7 +5011,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_36setenv(struct __pyx_obj_4ssh
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":304
+/* "ssh2/channel.pyx":319
  *         return rc
  * 
  *     def window_read_ex(self, unsigned long read_avail,             # <<<<<<<<<<<<<<
@@ -4766,9 +5020,9 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_36setenv(struct __pyx_obj_4ssh
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_39window_read_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_38window_read_ex[] = "Channel.window_read_ex(self, unsigned long read_avail, unsigned long window_size_initial)";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_39window_read_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_41window_read_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_40window_read_ex[] = "Channel.window_read_ex(self, unsigned long read_avail, unsigned long window_size_initial)";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_41window_read_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   unsigned long __pyx_v_read_avail;
   unsigned long __pyx_v_window_size_initial;
   PyObject *__pyx_r = 0;
@@ -4797,11 +5051,11 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_39window_read_ex(PyObject *__p
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_window_size_initial)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("window_read_ex", 1, 2, 2, 1); __PYX_ERR(0, 304, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("window_read_ex", 1, 2, 2, 1); __PYX_ERR(0, 319, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "window_read_ex") < 0)) __PYX_ERR(0, 304, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "window_read_ex") < 0)) __PYX_ERR(0, 319, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4809,32 +5063,32 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_39window_read_ex(PyObject *__p
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_read_avail = __Pyx_PyInt_As_unsigned_long(values[0]); if (unlikely((__pyx_v_read_avail == (unsigned long)-1) && PyErr_Occurred())) __PYX_ERR(0, 304, __pyx_L3_error)
-    __pyx_v_window_size_initial = __Pyx_PyInt_As_unsigned_long(values[1]); if (unlikely((__pyx_v_window_size_initial == (unsigned long)-1) && PyErr_Occurred())) __PYX_ERR(0, 305, __pyx_L3_error)
+    __pyx_v_read_avail = __Pyx_PyInt_As_unsigned_long(values[0]); if (unlikely((__pyx_v_read_avail == (unsigned long)-1) && PyErr_Occurred())) __PYX_ERR(0, 319, __pyx_L3_error)
+    __pyx_v_window_size_initial = __Pyx_PyInt_As_unsigned_long(values[1]); if (unlikely((__pyx_v_window_size_initial == (unsigned long)-1) && PyErr_Occurred())) __PYX_ERR(0, 320, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("window_read_ex", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 304, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("window_read_ex", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 319, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("ssh2.channel.Channel.window_read_ex", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_38window_read_ex(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_read_avail, __pyx_v_window_size_initial);
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_40window_read_ex(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_read_avail, __pyx_v_window_size_initial);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_38window_read_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, unsigned long __pyx_v_read_avail, unsigned long __pyx_v_window_size_initial) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_40window_read_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, unsigned long __pyx_v_read_avail, unsigned long __pyx_v_window_size_initial) {
   unsigned long __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("window_read_ex", 0);
 
-  /* "ssh2/channel.pyx":307
+  /* "ssh2/channel.pyx":322
  *                        unsigned long window_size_initial):
  *         cdef unsigned long rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -4849,7 +5103,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_38window_read_ex(struct __pyx_
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":308
+        /* "ssh2/channel.pyx":323
  *         cdef unsigned long rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_window_read_ex(             # <<<<<<<<<<<<<<
@@ -4859,7 +5113,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_38window_read_ex(struct __pyx_
         __pyx_v_rc = libssh2_channel_window_read_ex(__pyx_v_self->_channel, (&__pyx_v_read_avail), (&__pyx_v_window_size_initial));
       }
 
-      /* "ssh2/channel.pyx":307
+      /* "ssh2/channel.pyx":322
  *                        unsigned long window_size_initial):
  *         cdef unsigned long rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -4878,7 +5132,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_38window_read_ex(struct __pyx_
       }
   }
 
-  /* "ssh2/channel.pyx":310
+  /* "ssh2/channel.pyx":325
  *             rc = c_ssh2.libssh2_channel_window_read_ex(
  *                 self._channel, &read_avail, &window_size_initial)
  *         return rc             # <<<<<<<<<<<<<<
@@ -4886,13 +5140,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_38window_read_ex(struct __pyx_
  *     def window_read(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_long(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 310, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_long(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 325, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":304
+  /* "ssh2/channel.pyx":319
  *         return rc
  * 
  *     def window_read_ex(self, unsigned long read_avail,             # <<<<<<<<<<<<<<
@@ -4911,7 +5165,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_38window_read_ex(struct __pyx_
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":312
+/* "ssh2/channel.pyx":327
  *         return rc
  * 
  *     def window_read(self):             # <<<<<<<<<<<<<<
@@ -4920,27 +5174,27 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_38window_read_ex(struct __pyx_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_41window_read(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_40window_read[] = "Channel.window_read(self)";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_41window_read(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_43window_read(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_42window_read[] = "Channel.window_read(self)";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_43window_read(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("window_read (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_40window_read(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_42window_read(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_40window_read(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_42window_read(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
   unsigned long __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("window_read", 0);
 
-  /* "ssh2/channel.pyx":314
+  /* "ssh2/channel.pyx":329
  *     def window_read(self):
  *         cdef unsigned long rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -4955,7 +5209,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_40window_read(struct __pyx_obj
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":315
+        /* "ssh2/channel.pyx":330
  *         cdef unsigned long rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_window_read(self._channel)             # <<<<<<<<<<<<<<
@@ -4965,7 +5219,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_40window_read(struct __pyx_obj
         __pyx_v_rc = libssh2_channel_window_read(__pyx_v_self->_channel);
       }
 
-      /* "ssh2/channel.pyx":314
+      /* "ssh2/channel.pyx":329
  *     def window_read(self):
  *         cdef unsigned long rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -4984,7 +5238,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_40window_read(struct __pyx_obj
       }
   }
 
-  /* "ssh2/channel.pyx":316
+  /* "ssh2/channel.pyx":331
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_window_read(self._channel)
  *         return rc             # <<<<<<<<<<<<<<
@@ -4992,13 +5246,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_40window_read(struct __pyx_obj
  *     def window_write_ex(self, unsigned long window_size_initial):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_long(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 316, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_long(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 331, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":312
+  /* "ssh2/channel.pyx":327
  *         return rc
  * 
  *     def window_read(self):             # <<<<<<<<<<<<<<
@@ -5017,7 +5271,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_40window_read(struct __pyx_obj
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":318
+/* "ssh2/channel.pyx":333
  *         return rc
  * 
  *     def window_write_ex(self, unsigned long window_size_initial):             # <<<<<<<<<<<<<<
@@ -5026,15 +5280,15 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_40window_read(struct __pyx_obj
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_43window_write_ex(PyObject *__pyx_v_self, PyObject *__pyx_arg_window_size_initial); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_42window_write_ex[] = "Channel.window_write_ex(self, unsigned long window_size_initial)";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_43window_write_ex(PyObject *__pyx_v_self, PyObject *__pyx_arg_window_size_initial) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_45window_write_ex(PyObject *__pyx_v_self, PyObject *__pyx_arg_window_size_initial); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_44window_write_ex[] = "Channel.window_write_ex(self, unsigned long window_size_initial)";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_45window_write_ex(PyObject *__pyx_v_self, PyObject *__pyx_arg_window_size_initial) {
   unsigned long __pyx_v_window_size_initial;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("window_write_ex (wrapper)", 0);
   assert(__pyx_arg_window_size_initial); {
-    __pyx_v_window_size_initial = __Pyx_PyInt_As_unsigned_long(__pyx_arg_window_size_initial); if (unlikely((__pyx_v_window_size_initial == (unsigned long)-1) && PyErr_Occurred())) __PYX_ERR(0, 318, __pyx_L3_error)
+    __pyx_v_window_size_initial = __Pyx_PyInt_As_unsigned_long(__pyx_arg_window_size_initial); if (unlikely((__pyx_v_window_size_initial == (unsigned long)-1) && PyErr_Occurred())) __PYX_ERR(0, 333, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5042,21 +5296,21 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_43window_write_ex(PyObject *__
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_42window_write_ex(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((unsigned long)__pyx_v_window_size_initial));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_44window_write_ex(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((unsigned long)__pyx_v_window_size_initial));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_42window_write_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, unsigned long __pyx_v_window_size_initial) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_44window_write_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, unsigned long __pyx_v_window_size_initial) {
   unsigned long __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("window_write_ex", 0);
 
-  /* "ssh2/channel.pyx":320
+  /* "ssh2/channel.pyx":335
  *     def window_write_ex(self, unsigned long window_size_initial):
  *         cdef unsigned long rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -5071,7 +5325,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_42window_write_ex(struct __pyx
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":321
+        /* "ssh2/channel.pyx":336
  *         cdef unsigned long rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_window_write_ex(             # <<<<<<<<<<<<<<
@@ -5081,7 +5335,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_42window_write_ex(struct __pyx
         __pyx_v_rc = libssh2_channel_window_write_ex(__pyx_v_self->_channel, (&__pyx_v_window_size_initial));
       }
 
-      /* "ssh2/channel.pyx":320
+      /* "ssh2/channel.pyx":335
  *     def window_write_ex(self, unsigned long window_size_initial):
  *         cdef unsigned long rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -5100,7 +5354,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_42window_write_ex(struct __pyx
       }
   }
 
-  /* "ssh2/channel.pyx":323
+  /* "ssh2/channel.pyx":338
  *             rc = c_ssh2.libssh2_channel_window_write_ex(
  *                 self._channel, &window_size_initial)
  *         return rc             # <<<<<<<<<<<<<<
@@ -5108,13 +5362,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_42window_write_ex(struct __pyx
  *     def window_write(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_long(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_long(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 338, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":318
+  /* "ssh2/channel.pyx":333
  *         return rc
  * 
  *     def window_write_ex(self, unsigned long window_size_initial):             # <<<<<<<<<<<<<<
@@ -5133,7 +5387,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_42window_write_ex(struct __pyx
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":325
+/* "ssh2/channel.pyx":340
  *         return rc
  * 
  *     def window_write(self):             # <<<<<<<<<<<<<<
@@ -5142,27 +5396,27 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_42window_write_ex(struct __pyx
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_45window_write(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_44window_write[] = "Channel.window_write(self)";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_45window_write(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_47window_write(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_46window_write[] = "Channel.window_write(self)";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_47window_write(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("window_write (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_44window_write(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_46window_write(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_44window_write(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_46window_write(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
   unsigned long __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("window_write", 0);
 
-  /* "ssh2/channel.pyx":327
+  /* "ssh2/channel.pyx":342
  *     def window_write(self):
  *         cdef unsigned long rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -5177,7 +5431,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_44window_write(struct __pyx_ob
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":328
+        /* "ssh2/channel.pyx":343
  *         cdef unsigned long rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_window_write(self._channel)             # <<<<<<<<<<<<<<
@@ -5187,7 +5441,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_44window_write(struct __pyx_ob
         __pyx_v_rc = libssh2_channel_window_write(__pyx_v_self->_channel);
       }
 
-      /* "ssh2/channel.pyx":327
+      /* "ssh2/channel.pyx":342
  *     def window_write(self):
  *         cdef unsigned long rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -5206,7 +5460,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_44window_write(struct __pyx_ob
       }
   }
 
-  /* "ssh2/channel.pyx":329
+  /* "ssh2/channel.pyx":344
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_window_write(self._channel)
  *         return rc             # <<<<<<<<<<<<<<
@@ -5214,13 +5468,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_44window_write(struct __pyx_ob
  *     def receive_window_adjust(self, unsigned long adjustment,
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_long(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 329, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_long(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 344, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":325
+  /* "ssh2/channel.pyx":340
  *         return rc
  * 
  *     def window_write(self):             # <<<<<<<<<<<<<<
@@ -5239,7 +5493,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_44window_write(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":331
+/* "ssh2/channel.pyx":346
  *         return rc
  * 
  *     def receive_window_adjust(self, unsigned long adjustment,             # <<<<<<<<<<<<<<
@@ -5248,9 +5502,9 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_44window_write(struct __pyx_ob
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_47receive_window_adjust(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_46receive_window_adjust[] = "Channel.receive_window_adjust(self, unsigned long adjustment, unsigned long force)";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_47receive_window_adjust(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_49receive_window_adjust(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_48receive_window_adjust[] = "Channel.receive_window_adjust(self, unsigned long adjustment, unsigned long force)";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_49receive_window_adjust(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   unsigned long __pyx_v_adjustment;
   unsigned long __pyx_v_force;
   PyObject *__pyx_r = 0;
@@ -5279,11 +5533,11 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_47receive_window_adjust(PyObje
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_force)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("receive_window_adjust", 1, 2, 2, 1); __PYX_ERR(0, 331, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("receive_window_adjust", 1, 2, 2, 1); __PYX_ERR(0, 346, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "receive_window_adjust") < 0)) __PYX_ERR(0, 331, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "receive_window_adjust") < 0)) __PYX_ERR(0, 346, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -5291,32 +5545,32 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_47receive_window_adjust(PyObje
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_adjustment = __Pyx_PyInt_As_unsigned_long(values[0]); if (unlikely((__pyx_v_adjustment == (unsigned long)-1) && PyErr_Occurred())) __PYX_ERR(0, 331, __pyx_L3_error)
-    __pyx_v_force = __Pyx_PyInt_As_unsigned_long(values[1]); if (unlikely((__pyx_v_force == (unsigned long)-1) && PyErr_Occurred())) __PYX_ERR(0, 332, __pyx_L3_error)
+    __pyx_v_adjustment = __Pyx_PyInt_As_unsigned_long(values[0]); if (unlikely((__pyx_v_adjustment == (unsigned long)-1) && PyErr_Occurred())) __PYX_ERR(0, 346, __pyx_L3_error)
+    __pyx_v_force = __Pyx_PyInt_As_unsigned_long(values[1]); if (unlikely((__pyx_v_force == (unsigned long)-1) && PyErr_Occurred())) __PYX_ERR(0, 347, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("receive_window_adjust", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 331, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("receive_window_adjust", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 346, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("ssh2.channel.Channel.receive_window_adjust", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_46receive_window_adjust(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_adjustment, __pyx_v_force);
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_48receive_window_adjust(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_adjustment, __pyx_v_force);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_46receive_window_adjust(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, unsigned long __pyx_v_adjustment, unsigned long __pyx_v_force) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_48receive_window_adjust(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, unsigned long __pyx_v_adjustment, unsigned long __pyx_v_force) {
   unsigned long __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("receive_window_adjust", 0);
 
-  /* "ssh2/channel.pyx":334
+  /* "ssh2/channel.pyx":349
  *                               unsigned long force):
  *         cdef unsigned long rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -5331,7 +5585,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_46receive_window_adjust(struct
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":335
+        /* "ssh2/channel.pyx":350
  *         cdef unsigned long rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_receive_window_adjust(             # <<<<<<<<<<<<<<
@@ -5341,7 +5595,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_46receive_window_adjust(struct
         __pyx_v_rc = libssh2_channel_receive_window_adjust(__pyx_v_self->_channel, __pyx_v_adjustment, __pyx_v_force);
       }
 
-      /* "ssh2/channel.pyx":334
+      /* "ssh2/channel.pyx":349
  *                               unsigned long force):
  *         cdef unsigned long rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -5360,7 +5614,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_46receive_window_adjust(struct
       }
   }
 
-  /* "ssh2/channel.pyx":337
+  /* "ssh2/channel.pyx":352
  *             rc = c_ssh2.libssh2_channel_receive_window_adjust(
  *                 self._channel, adjustment, force)
  *         return rc             # <<<<<<<<<<<<<<
@@ -5368,13 +5622,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_46receive_window_adjust(struct
  *     def receive_window_adjust2(self, unsigned long adjustment,
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_long(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 337, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_long(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 352, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":331
+  /* "ssh2/channel.pyx":346
  *         return rc
  * 
  *     def receive_window_adjust(self, unsigned long adjustment,             # <<<<<<<<<<<<<<
@@ -5393,7 +5647,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_46receive_window_adjust(struct
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":339
+/* "ssh2/channel.pyx":354
  *         return rc
  * 
  *     def receive_window_adjust2(self, unsigned long adjustment,             # <<<<<<<<<<<<<<
@@ -5402,9 +5656,9 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_46receive_window_adjust(struct
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_49receive_window_adjust2(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_48receive_window_adjust2[] = "Channel.receive_window_adjust2(self, unsigned long adjustment, unsigned long force)";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_49receive_window_adjust2(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_51receive_window_adjust2(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_50receive_window_adjust2[] = "Channel.receive_window_adjust2(self, unsigned long adjustment, unsigned long force)";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_51receive_window_adjust2(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   unsigned long __pyx_v_adjustment;
   unsigned long __pyx_v_force;
   PyObject *__pyx_r = 0;
@@ -5433,11 +5687,11 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_49receive_window_adjust2(PyObj
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_force)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("receive_window_adjust2", 1, 2, 2, 1); __PYX_ERR(0, 339, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("receive_window_adjust2", 1, 2, 2, 1); __PYX_ERR(0, 354, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "receive_window_adjust2") < 0)) __PYX_ERR(0, 339, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "receive_window_adjust2") < 0)) __PYX_ERR(0, 354, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -5445,25 +5699,25 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_49receive_window_adjust2(PyObj
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_adjustment = __Pyx_PyInt_As_unsigned_long(values[0]); if (unlikely((__pyx_v_adjustment == (unsigned long)-1) && PyErr_Occurred())) __PYX_ERR(0, 339, __pyx_L3_error)
-    __pyx_v_force = __Pyx_PyInt_As_unsigned_long(values[1]); if (unlikely((__pyx_v_force == (unsigned long)-1) && PyErr_Occurred())) __PYX_ERR(0, 340, __pyx_L3_error)
+    __pyx_v_adjustment = __Pyx_PyInt_As_unsigned_long(values[0]); if (unlikely((__pyx_v_adjustment == (unsigned long)-1) && PyErr_Occurred())) __PYX_ERR(0, 354, __pyx_L3_error)
+    __pyx_v_force = __Pyx_PyInt_As_unsigned_long(values[1]); if (unlikely((__pyx_v_force == (unsigned long)-1) && PyErr_Occurred())) __PYX_ERR(0, 355, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("receive_window_adjust2", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 339, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("receive_window_adjust2", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 354, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("ssh2.channel.Channel.receive_window_adjust2", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_48receive_window_adjust2(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_adjustment, __pyx_v_force);
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_50receive_window_adjust2(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_adjustment, __pyx_v_force);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_48receive_window_adjust2(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, unsigned long __pyx_v_adjustment, unsigned long __pyx_v_force) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_50receive_window_adjust2(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, unsigned long __pyx_v_adjustment, unsigned long __pyx_v_force) {
   unsigned long __pyx_v_rc;
   unsigned int __pyx_v_storewindow;
   PyObject *__pyx_r = NULL;
@@ -5471,7 +5725,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_48receive_window_adjust2(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("receive_window_adjust2", 0);
 
-  /* "ssh2/channel.pyx":342
+  /* "ssh2/channel.pyx":357
  *                                unsigned long force):
  *         cdef unsigned long rc
  *         cdef unsigned int storewindow = 0             # <<<<<<<<<<<<<<
@@ -5480,7 +5734,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_48receive_window_adjust2(struc
  */
   __pyx_v_storewindow = 0;
 
-  /* "ssh2/channel.pyx":343
+  /* "ssh2/channel.pyx":358
  *         cdef unsigned long rc
  *         cdef unsigned int storewindow = 0
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -5495,7 +5749,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_48receive_window_adjust2(struc
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":344
+        /* "ssh2/channel.pyx":359
  *         cdef unsigned int storewindow = 0
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_receive_window_adjust2(             # <<<<<<<<<<<<<<
@@ -5505,7 +5759,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_48receive_window_adjust2(struc
         __pyx_v_rc = libssh2_channel_receive_window_adjust2(__pyx_v_self->_channel, __pyx_v_adjustment, __pyx_v_force, (&__pyx_v_storewindow));
       }
 
-      /* "ssh2/channel.pyx":343
+      /* "ssh2/channel.pyx":358
  *         cdef unsigned long rc
  *         cdef unsigned int storewindow = 0
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -5524,7 +5778,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_48receive_window_adjust2(struc
       }
   }
 
-  /* "ssh2/channel.pyx":346
+  /* "ssh2/channel.pyx":361
  *             rc = c_ssh2.libssh2_channel_receive_window_adjust2(
  *                 self._channel, adjustment, force, &storewindow)
  *         return rc             # <<<<<<<<<<<<<<
@@ -5532,13 +5786,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_48receive_window_adjust2(struc
  *     def write(self, buf not None):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_long(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 346, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_long(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 361, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":339
+  /* "ssh2/channel.pyx":354
  *         return rc
  * 
  *     def receive_window_adjust2(self, unsigned long adjustment,             # <<<<<<<<<<<<<<
@@ -5557,7 +5811,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_48receive_window_adjust2(struc
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":348
+/* "ssh2/channel.pyx":363
  *         return rc
  * 
  *     def write(self, buf not None):             # <<<<<<<<<<<<<<
@@ -5566,16 +5820,16 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_48receive_window_adjust2(struc
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_51write(PyObject *__pyx_v_self, PyObject *__pyx_v_buf); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_50write[] = "Channel.write(self, buf)\nWrite buffer to stdin\n\n        :param buf: Buffer to write\n        :type buf: str\n\n        :rtype: int";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_51write(PyObject *__pyx_v_self, PyObject *__pyx_v_buf) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_53write(PyObject *__pyx_v_self, PyObject *__pyx_v_buf); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_52write[] = "Channel.write(self, buf)\nWrite buffer to stdin\n\n        :param buf: Buffer to write\n        :type buf: str\n\n        :rtype: int";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_53write(PyObject *__pyx_v_self, PyObject *__pyx_v_buf) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("write (wrapper)", 0);
   if (unlikely(((PyObject *)__pyx_v_buf) == Py_None)) {
-    PyErr_Format(PyExc_TypeError, "Argument '%.200s' must not be None", "buf"); __PYX_ERR(0, 348, __pyx_L1_error)
+    PyErr_Format(PyExc_TypeError, "Argument '%.200s' must not be None", "buf"); __PYX_ERR(0, 363, __pyx_L1_error)
   }
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_50write(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((PyObject *)__pyx_v_buf));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_52write(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((PyObject *)__pyx_v_buf));
 
   /* function exit code */
   goto __pyx_L0;
@@ -5586,7 +5840,7 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_51write(PyObject *__pyx_v_self
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_50write(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_buf) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_52write(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_buf) {
   PyObject *__pyx_v_b_buf = 0;
   char const *__pyx_v__buf;
   size_t __pyx_v_buflen;
@@ -5598,19 +5852,19 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_50write(struct __pyx_obj_4ssh2
   Py_ssize_t __pyx_t_3;
   __Pyx_RefNannySetupContext("write", 0);
 
-  /* "ssh2/channel.pyx":355
+  /* "ssh2/channel.pyx":370
  * 
  *         :rtype: int"""
  *         cdef bytes b_buf = to_bytes(buf)             # <<<<<<<<<<<<<<
  *         cdef const char *_buf = b_buf
  *         cdef size_t buflen = len(b_buf)
  */
-  __pyx_t_1 = __pyx_f_4ssh2_5utils_to_bytes(__pyx_v_buf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 355, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_4ssh2_5utils_to_bytes(__pyx_v_buf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 370, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_b_buf = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ssh2/channel.pyx":356
+  /* "ssh2/channel.pyx":371
  *         :rtype: int"""
  *         cdef bytes b_buf = to_bytes(buf)
  *         cdef const char *_buf = b_buf             # <<<<<<<<<<<<<<
@@ -5619,12 +5873,12 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_50write(struct __pyx_obj_4ssh2
  */
   if (unlikely(__pyx_v_b_buf == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
-    __PYX_ERR(0, 356, __pyx_L1_error)
+    __PYX_ERR(0, 371, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_PyBytes_AsString(__pyx_v_b_buf); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 356, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBytes_AsString(__pyx_v_b_buf); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 371, __pyx_L1_error)
   __pyx_v__buf = __pyx_t_2;
 
-  /* "ssh2/channel.pyx":357
+  /* "ssh2/channel.pyx":372
  *         cdef bytes b_buf = to_bytes(buf)
  *         cdef const char *_buf = b_buf
  *         cdef size_t buflen = len(b_buf)             # <<<<<<<<<<<<<<
@@ -5633,12 +5887,12 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_50write(struct __pyx_obj_4ssh2
  */
   if (unlikely(__pyx_v_b_buf == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 357, __pyx_L1_error)
+    __PYX_ERR(0, 372, __pyx_L1_error)
   }
-  __pyx_t_3 = PyBytes_GET_SIZE(__pyx_v_b_buf); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 357, __pyx_L1_error)
+  __pyx_t_3 = PyBytes_GET_SIZE(__pyx_v_b_buf); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 372, __pyx_L1_error)
   __pyx_v_buflen = __pyx_t_3;
 
-  /* "ssh2/channel.pyx":359
+  /* "ssh2/channel.pyx":374
  *         cdef size_t buflen = len(b_buf)
  *         cdef ssize_t rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -5653,7 +5907,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_50write(struct __pyx_obj_4ssh2
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":360
+        /* "ssh2/channel.pyx":375
  *         cdef ssize_t rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_write(self._channel, _buf, buflen)             # <<<<<<<<<<<<<<
@@ -5663,7 +5917,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_50write(struct __pyx_obj_4ssh2
         __pyx_v_rc = libssh2_channel_write(__pyx_v_self->_channel, __pyx_v__buf, __pyx_v_buflen);
       }
 
-      /* "ssh2/channel.pyx":359
+      /* "ssh2/channel.pyx":374
  *         cdef size_t buflen = len(b_buf)
  *         cdef ssize_t rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -5682,7 +5936,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_50write(struct __pyx_obj_4ssh2
       }
   }
 
-  /* "ssh2/channel.pyx":361
+  /* "ssh2/channel.pyx":376
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_write(self._channel, _buf, buflen)
  *         return rc             # <<<<<<<<<<<<<<
@@ -5690,13 +5944,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_50write(struct __pyx_obj_4ssh2
  *     def write_ex(self, int stream_id, buf not None):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 361, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 376, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":348
+  /* "ssh2/channel.pyx":363
  *         return rc
  * 
  *     def write(self, buf not None):             # <<<<<<<<<<<<<<
@@ -5716,7 +5970,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_50write(struct __pyx_obj_4ssh2
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":363
+/* "ssh2/channel.pyx":378
  *         return rc
  * 
  *     def write_ex(self, int stream_id, buf not None):             # <<<<<<<<<<<<<<
@@ -5725,9 +5979,9 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_50write(struct __pyx_obj_4ssh2
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_53write_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_52write_ex[] = "Channel.write_ex(self, int stream_id, buf)\nWrite buffer to specified stream id.\n\n        :param stream_id: Id of stream to write to\n        :type stream_id: int\n        :param buf: Buffer to write\n        :type buf: str\n\n        :rtype: int";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_53write_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_55write_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_54write_ex[] = "Channel.write_ex(self, int stream_id, buf)\nWrite buffer to specified stream id.\n\n        :param stream_id: Id of stream to write to\n        :type stream_id: int\n        :param buf: Buffer to write\n        :type buf: str\n\n        :rtype: int";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_55write_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   int __pyx_v_stream_id;
   PyObject *__pyx_v_buf = 0;
   PyObject *__pyx_r = 0;
@@ -5756,11 +6010,11 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_53write_ex(PyObject *__pyx_v_s
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_buf)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("write_ex", 1, 2, 2, 1); __PYX_ERR(0, 363, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("write_ex", 1, 2, 2, 1); __PYX_ERR(0, 378, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "write_ex") < 0)) __PYX_ERR(0, 363, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "write_ex") < 0)) __PYX_ERR(0, 378, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -5768,21 +6022,21 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_53write_ex(PyObject *__pyx_v_s
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_stream_id = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_stream_id == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 363, __pyx_L3_error)
+    __pyx_v_stream_id = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_stream_id == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 378, __pyx_L3_error)
     __pyx_v_buf = values[1];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("write_ex", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 363, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("write_ex", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 378, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("ssh2.channel.Channel.write_ex", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(((PyObject *)__pyx_v_buf) == Py_None)) {
-    PyErr_Format(PyExc_TypeError, "Argument '%.200s' must not be None", "buf"); __PYX_ERR(0, 363, __pyx_L1_error)
+    PyErr_Format(PyExc_TypeError, "Argument '%.200s' must not be None", "buf"); __PYX_ERR(0, 378, __pyx_L1_error)
   }
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_52write_ex(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_stream_id, __pyx_v_buf);
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_54write_ex(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_stream_id, __pyx_v_buf);
 
   /* function exit code */
   goto __pyx_L0;
@@ -5793,7 +6047,7 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_53write_ex(PyObject *__pyx_v_s
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_52write_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_stream_id, PyObject *__pyx_v_buf) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_54write_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_stream_id, PyObject *__pyx_v_buf) {
   PyObject *__pyx_v_b_buf = 0;
   char const *__pyx_v__buf;
   size_t __pyx_v_buflen;
@@ -5805,19 +6059,19 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_52write_ex(struct __pyx_obj_4s
   Py_ssize_t __pyx_t_3;
   __Pyx_RefNannySetupContext("write_ex", 0);
 
-  /* "ssh2/channel.pyx":372
+  /* "ssh2/channel.pyx":387
  * 
  *         :rtype: int"""
  *         cdef bytes b_buf = to_bytes(buf)             # <<<<<<<<<<<<<<
  *         cdef const char *_buf = b_buf
  *         cdef size_t buflen = len(b_buf)
  */
-  __pyx_t_1 = __pyx_f_4ssh2_5utils_to_bytes(__pyx_v_buf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 372, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_4ssh2_5utils_to_bytes(__pyx_v_buf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 387, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_b_buf = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ssh2/channel.pyx":373
+  /* "ssh2/channel.pyx":388
  *         :rtype: int"""
  *         cdef bytes b_buf = to_bytes(buf)
  *         cdef const char *_buf = b_buf             # <<<<<<<<<<<<<<
@@ -5826,12 +6080,12 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_52write_ex(struct __pyx_obj_4s
  */
   if (unlikely(__pyx_v_b_buf == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
-    __PYX_ERR(0, 373, __pyx_L1_error)
+    __PYX_ERR(0, 388, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_PyBytes_AsString(__pyx_v_b_buf); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 373, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBytes_AsString(__pyx_v_b_buf); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 388, __pyx_L1_error)
   __pyx_v__buf = __pyx_t_2;
 
-  /* "ssh2/channel.pyx":374
+  /* "ssh2/channel.pyx":389
  *         cdef bytes b_buf = to_bytes(buf)
  *         cdef const char *_buf = b_buf
  *         cdef size_t buflen = len(b_buf)             # <<<<<<<<<<<<<<
@@ -5840,12 +6094,12 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_52write_ex(struct __pyx_obj_4s
  */
   if (unlikely(__pyx_v_b_buf == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 374, __pyx_L1_error)
+    __PYX_ERR(0, 389, __pyx_L1_error)
   }
-  __pyx_t_3 = PyBytes_GET_SIZE(__pyx_v_b_buf); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 374, __pyx_L1_error)
+  __pyx_t_3 = PyBytes_GET_SIZE(__pyx_v_b_buf); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 389, __pyx_L1_error)
   __pyx_v_buflen = __pyx_t_3;
 
-  /* "ssh2/channel.pyx":376
+  /* "ssh2/channel.pyx":391
  *         cdef size_t buflen = len(b_buf)
  *         cdef ssize_t rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -5860,7 +6114,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_52write_ex(struct __pyx_obj_4s
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":377
+        /* "ssh2/channel.pyx":392
  *         cdef ssize_t rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_write_ex(             # <<<<<<<<<<<<<<
@@ -5870,7 +6124,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_52write_ex(struct __pyx_obj_4s
         __pyx_v_rc = libssh2_channel_write_ex(__pyx_v_self->_channel, __pyx_v_stream_id, __pyx_v__buf, __pyx_v_buflen);
       }
 
-      /* "ssh2/channel.pyx":376
+      /* "ssh2/channel.pyx":391
  *         cdef size_t buflen = len(b_buf)
  *         cdef ssize_t rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -5889,7 +6143,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_52write_ex(struct __pyx_obj_4s
       }
   }
 
-  /* "ssh2/channel.pyx":379
+  /* "ssh2/channel.pyx":394
  *             rc = c_ssh2.libssh2_channel_write_ex(
  *                 self._channel, stream_id, _buf, buflen)
  *         return rc             # <<<<<<<<<<<<<<
@@ -5897,13 +6151,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_52write_ex(struct __pyx_obj_4s
  *     def write_stderr(self, buf not None):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 379, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 394, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":363
+  /* "ssh2/channel.pyx":378
  *         return rc
  * 
  *     def write_ex(self, int stream_id, buf not None):             # <<<<<<<<<<<<<<
@@ -5923,7 +6177,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_52write_ex(struct __pyx_obj_4s
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":381
+/* "ssh2/channel.pyx":396
  *         return rc
  * 
  *     def write_stderr(self, buf not None):             # <<<<<<<<<<<<<<
@@ -5932,16 +6186,16 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_52write_ex(struct __pyx_obj_4s
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_55write_stderr(PyObject *__pyx_v_self, PyObject *__pyx_v_buf); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_54write_stderr[] = "Channel.write_stderr(self, buf)\nWrite buffer to stderr.\n\n        :param buf: Buffer to write\n        :type buf: str\n\n        :rtype: int";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_55write_stderr(PyObject *__pyx_v_self, PyObject *__pyx_v_buf) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_57write_stderr(PyObject *__pyx_v_self, PyObject *__pyx_v_buf); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_56write_stderr[] = "Channel.write_stderr(self, buf)\nWrite buffer to stderr.\n\n        :param buf: Buffer to write\n        :type buf: str\n\n        :rtype: int";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_57write_stderr(PyObject *__pyx_v_self, PyObject *__pyx_v_buf) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("write_stderr (wrapper)", 0);
   if (unlikely(((PyObject *)__pyx_v_buf) == Py_None)) {
-    PyErr_Format(PyExc_TypeError, "Argument '%.200s' must not be None", "buf"); __PYX_ERR(0, 381, __pyx_L1_error)
+    PyErr_Format(PyExc_TypeError, "Argument '%.200s' must not be None", "buf"); __PYX_ERR(0, 396, __pyx_L1_error)
   }
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_54write_stderr(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((PyObject *)__pyx_v_buf));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_56write_stderr(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((PyObject *)__pyx_v_buf));
 
   /* function exit code */
   goto __pyx_L0;
@@ -5952,7 +6206,7 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_55write_stderr(PyObject *__pyx
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_54write_stderr(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_buf) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_56write_stderr(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_buf) {
   PyObject *__pyx_v_b_buf = 0;
   char const *__pyx_v__buf;
   size_t __pyx_v_buflen;
@@ -5964,19 +6218,19 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_54write_stderr(struct __pyx_ob
   Py_ssize_t __pyx_t_3;
   __Pyx_RefNannySetupContext("write_stderr", 0);
 
-  /* "ssh2/channel.pyx":388
+  /* "ssh2/channel.pyx":403
  * 
  *         :rtype: int"""
  *         cdef bytes b_buf = to_bytes(buf)             # <<<<<<<<<<<<<<
  *         cdef const char *_buf = b_buf
  *         cdef size_t buflen = len(b_buf)
  */
-  __pyx_t_1 = __pyx_f_4ssh2_5utils_to_bytes(__pyx_v_buf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 388, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_4ssh2_5utils_to_bytes(__pyx_v_buf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 403, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_b_buf = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ssh2/channel.pyx":389
+  /* "ssh2/channel.pyx":404
  *         :rtype: int"""
  *         cdef bytes b_buf = to_bytes(buf)
  *         cdef const char *_buf = b_buf             # <<<<<<<<<<<<<<
@@ -5985,12 +6239,12 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_54write_stderr(struct __pyx_ob
  */
   if (unlikely(__pyx_v_b_buf == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
-    __PYX_ERR(0, 389, __pyx_L1_error)
+    __PYX_ERR(0, 404, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_PyBytes_AsString(__pyx_v_b_buf); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 389, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBytes_AsString(__pyx_v_b_buf); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 404, __pyx_L1_error)
   __pyx_v__buf = __pyx_t_2;
 
-  /* "ssh2/channel.pyx":390
+  /* "ssh2/channel.pyx":405
  *         cdef bytes b_buf = to_bytes(buf)
  *         cdef const char *_buf = b_buf
  *         cdef size_t buflen = len(b_buf)             # <<<<<<<<<<<<<<
@@ -5999,12 +6253,12 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_54write_stderr(struct __pyx_ob
  */
   if (unlikely(__pyx_v_b_buf == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 390, __pyx_L1_error)
+    __PYX_ERR(0, 405, __pyx_L1_error)
   }
-  __pyx_t_3 = PyBytes_GET_SIZE(__pyx_v_b_buf); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 390, __pyx_L1_error)
+  __pyx_t_3 = PyBytes_GET_SIZE(__pyx_v_b_buf); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 405, __pyx_L1_error)
   __pyx_v_buflen = __pyx_t_3;
 
-  /* "ssh2/channel.pyx":392
+  /* "ssh2/channel.pyx":407
  *         cdef size_t buflen = len(b_buf)
  *         cdef ssize_t rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -6019,7 +6273,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_54write_stderr(struct __pyx_ob
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":393
+        /* "ssh2/channel.pyx":408
  *         cdef ssize_t rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_write_stderr(             # <<<<<<<<<<<<<<
@@ -6029,7 +6283,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_54write_stderr(struct __pyx_ob
         __pyx_v_rc = libssh2_channel_write_stderr(__pyx_v_self->_channel, __pyx_v__buf, __pyx_v_buflen);
       }
 
-      /* "ssh2/channel.pyx":392
+      /* "ssh2/channel.pyx":407
  *         cdef size_t buflen = len(b_buf)
  *         cdef ssize_t rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -6048,7 +6302,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_54write_stderr(struct __pyx_ob
       }
   }
 
-  /* "ssh2/channel.pyx":395
+  /* "ssh2/channel.pyx":410
  *             rc = c_ssh2.libssh2_channel_write_stderr(
  *                 self._channel, _buf, buflen)
  *         return rc             # <<<<<<<<<<<<<<
@@ -6056,13 +6310,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_54write_stderr(struct __pyx_ob
  *     def x11_req(self, int screen_number):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 395, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 410, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":381
+  /* "ssh2/channel.pyx":396
  *         return rc
  * 
  *     def write_stderr(self, buf not None):             # <<<<<<<<<<<<<<
@@ -6082,7 +6336,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_54write_stderr(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":397
+/* "ssh2/channel.pyx":412
  *         return rc
  * 
  *     def x11_req(self, int screen_number):             # <<<<<<<<<<<<<<
@@ -6091,15 +6345,15 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_54write_stderr(struct __pyx_ob
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_57x11_req(PyObject *__pyx_v_self, PyObject *__pyx_arg_screen_number); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_56x11_req[] = "Channel.x11_req(self, int screen_number)";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_57x11_req(PyObject *__pyx_v_self, PyObject *__pyx_arg_screen_number) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_59x11_req(PyObject *__pyx_v_self, PyObject *__pyx_arg_screen_number); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_58x11_req[] = "Channel.x11_req(self, int screen_number)";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_59x11_req(PyObject *__pyx_v_self, PyObject *__pyx_arg_screen_number) {
   int __pyx_v_screen_number;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("x11_req (wrapper)", 0);
   assert(__pyx_arg_screen_number); {
-    __pyx_v_screen_number = __Pyx_PyInt_As_int(__pyx_arg_screen_number); if (unlikely((__pyx_v_screen_number == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 397, __pyx_L3_error)
+    __pyx_v_screen_number = __Pyx_PyInt_As_int(__pyx_arg_screen_number); if (unlikely((__pyx_v_screen_number == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 412, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6107,21 +6361,21 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_57x11_req(PyObject *__pyx_v_se
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_56x11_req(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((int)__pyx_v_screen_number));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_58x11_req(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((int)__pyx_v_screen_number));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_56x11_req(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_screen_number) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_58x11_req(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_screen_number) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("x11_req", 0);
 
-  /* "ssh2/channel.pyx":399
+  /* "ssh2/channel.pyx":414
  *     def x11_req(self, int screen_number):
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -6136,7 +6390,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_56x11_req(struct __pyx_obj_4ss
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":400
+        /* "ssh2/channel.pyx":415
  *         cdef int rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_x11_req(             # <<<<<<<<<<<<<<
@@ -6146,7 +6400,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_56x11_req(struct __pyx_obj_4ss
         __pyx_v_rc = libssh2_channel_x11_req(__pyx_v_self->_channel, __pyx_v_screen_number);
       }
 
-      /* "ssh2/channel.pyx":399
+      /* "ssh2/channel.pyx":414
  *     def x11_req(self, int screen_number):
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -6165,7 +6419,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_56x11_req(struct __pyx_obj_4ss
       }
   }
 
-  /* "ssh2/channel.pyx":402
+  /* "ssh2/channel.pyx":417
  *             rc = c_ssh2.libssh2_channel_x11_req(
  *                 self._channel, screen_number)
  *         return rc             # <<<<<<<<<<<<<<
@@ -6173,13 +6427,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_56x11_req(struct __pyx_obj_4ss
  *     def x11_req_ex(self, int single_connection,
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 402, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 417, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":397
+  /* "ssh2/channel.pyx":412
  *         return rc
  * 
  *     def x11_req(self, int screen_number):             # <<<<<<<<<<<<<<
@@ -6198,7 +6452,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_56x11_req(struct __pyx_obj_4ss
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":404
+/* "ssh2/channel.pyx":419
  *         return rc
  * 
  *     def x11_req_ex(self, int single_connection,             # <<<<<<<<<<<<<<
@@ -6207,9 +6461,9 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_56x11_req(struct __pyx_obj_4ss
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_59x11_req_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_58x11_req_ex[] = "Channel.x11_req_ex(self, int single_connection, const char *auth_proto, const char *auth_cookie, int screen_number)";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_59x11_req_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_61x11_req_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_60x11_req_ex[] = "Channel.x11_req_ex(self, int single_connection, const char *auth_proto, const char *auth_cookie, int screen_number)";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_61x11_req_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   int __pyx_v_single_connection;
   char const *__pyx_v_auth_proto;
   char const *__pyx_v_auth_cookie;
@@ -6244,23 +6498,23 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_59x11_req_ex(PyObject *__pyx_v
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_auth_proto)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("x11_req_ex", 1, 4, 4, 1); __PYX_ERR(0, 404, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("x11_req_ex", 1, 4, 4, 1); __PYX_ERR(0, 419, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_auth_cookie)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("x11_req_ex", 1, 4, 4, 2); __PYX_ERR(0, 404, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("x11_req_ex", 1, 4, 4, 2); __PYX_ERR(0, 419, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_screen_number)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("x11_req_ex", 1, 4, 4, 3); __PYX_ERR(0, 404, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("x11_req_ex", 1, 4, 4, 3); __PYX_ERR(0, 419, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "x11_req_ex") < 0)) __PYX_ERR(0, 404, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "x11_req_ex") < 0)) __PYX_ERR(0, 419, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
       goto __pyx_L5_argtuple_error;
@@ -6270,34 +6524,34 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_59x11_req_ex(PyObject *__pyx_v
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
     }
-    __pyx_v_single_connection = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_single_connection == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 404, __pyx_L3_error)
-    __pyx_v_auth_proto = __Pyx_PyObject_AsString(values[1]); if (unlikely((!__pyx_v_auth_proto) && PyErr_Occurred())) __PYX_ERR(0, 405, __pyx_L3_error)
-    __pyx_v_auth_cookie = __Pyx_PyObject_AsString(values[2]); if (unlikely((!__pyx_v_auth_cookie) && PyErr_Occurred())) __PYX_ERR(0, 406, __pyx_L3_error)
-    __pyx_v_screen_number = __Pyx_PyInt_As_int(values[3]); if (unlikely((__pyx_v_screen_number == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 407, __pyx_L3_error)
+    __pyx_v_single_connection = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_single_connection == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 419, __pyx_L3_error)
+    __pyx_v_auth_proto = __Pyx_PyObject_AsString(values[1]); if (unlikely((!__pyx_v_auth_proto) && PyErr_Occurred())) __PYX_ERR(0, 420, __pyx_L3_error)
+    __pyx_v_auth_cookie = __Pyx_PyObject_AsString(values[2]); if (unlikely((!__pyx_v_auth_cookie) && PyErr_Occurred())) __PYX_ERR(0, 421, __pyx_L3_error)
+    __pyx_v_screen_number = __Pyx_PyInt_As_int(values[3]); if (unlikely((__pyx_v_screen_number == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 422, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("x11_req_ex", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 404, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("x11_req_ex", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 419, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("ssh2.channel.Channel.x11_req_ex", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_58x11_req_ex(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_single_connection, __pyx_v_auth_proto, __pyx_v_auth_cookie, __pyx_v_screen_number);
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_60x11_req_ex(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_single_connection, __pyx_v_auth_proto, __pyx_v_auth_cookie, __pyx_v_screen_number);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_58x11_req_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_single_connection, char const *__pyx_v_auth_proto, char const *__pyx_v_auth_cookie, int __pyx_v_screen_number) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_60x11_req_ex(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_single_connection, char const *__pyx_v_auth_proto, char const *__pyx_v_auth_cookie, int __pyx_v_screen_number) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("x11_req_ex", 0);
 
-  /* "ssh2/channel.pyx":409
+  /* "ssh2/channel.pyx":424
  *                    int screen_number):
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -6312,7 +6566,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_58x11_req_ex(struct __pyx_obj_
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":410
+        /* "ssh2/channel.pyx":425
  *         cdef int rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_x11_req_ex(             # <<<<<<<<<<<<<<
@@ -6322,7 +6576,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_58x11_req_ex(struct __pyx_obj_
         __pyx_v_rc = libssh2_channel_x11_req_ex(__pyx_v_self->_channel, __pyx_v_single_connection, __pyx_v_auth_proto, __pyx_v_auth_cookie, __pyx_v_screen_number);
       }
 
-      /* "ssh2/channel.pyx":409
+      /* "ssh2/channel.pyx":424
  *                    int screen_number):
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -6341,21 +6595,21 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_58x11_req_ex(struct __pyx_obj_
       }
   }
 
-  /* "ssh2/channel.pyx":413
+  /* "ssh2/channel.pyx":428
  *                 self._channel, single_connection,
  *                 auth_proto, auth_cookie, screen_number)
  *         return rc             # <<<<<<<<<<<<<<
  * 
- *     def process_startup(self, request, message):
+ *     def process_startup(self, request, message=None):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 413, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 428, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":404
+  /* "ssh2/channel.pyx":419
  *         return rc
  * 
  *     def x11_req_ex(self, int single_connection,             # <<<<<<<<<<<<<<
@@ -6374,18 +6628,18 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_58x11_req_ex(struct __pyx_obj_
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":415
+/* "ssh2/channel.pyx":430
  *         return rc
  * 
- *     def process_startup(self, request, message):             # <<<<<<<<<<<<<<
+ *     def process_startup(self, request, message=None):             # <<<<<<<<<<<<<<
  *         """Startup process on server for request with message.
  * 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_61process_startup(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_60process_startup[] = "Channel.process_startup(self, request, message)\nStartup process on server for request with message.\n\n        Request is a supported SSH subsystem and clients would typically use\n        one of execute/shell/subsystem functions depending on request type.";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_61process_startup(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_63process_startup(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_62process_startup[] = "Channel.process_startup(self, request, message=None)\nStartup process on server for request with message.\n\n        Request is a supported SSH subsystem and clients would typically use\n        one of execute/shell/subsystem functions depending on request type.\n\n        :param request: Request type (exec/shell/subsystem).\n        :type request: str\n        :param message: Request message. Content depends on request type\n          and can be ``None``.\n        :type message: str or ``None``\n        ";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_63process_startup(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_request = 0;
   PyObject *__pyx_v_message = 0;
   PyObject *__pyx_r = 0;
@@ -6394,6 +6648,7 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_61process_startup(PyObject *__
   {
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_request,&__pyx_n_s_message,0};
     PyObject* values[2] = {0,0};
+    values[1] = ((PyObject *)Py_None);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
@@ -6412,39 +6667,42 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_61process_startup(PyObject *__
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
-        if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_message)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("process_startup", 1, 2, 2, 1); __PYX_ERR(0, 415, __pyx_L3_error)
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_message);
+          if (value) { values[1] = value; kw_args--; }
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "process_startup") < 0)) __PYX_ERR(0, 415, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "process_startup") < 0)) __PYX_ERR(0, 430, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
-      goto __pyx_L5_argtuple_error;
     } else {
-      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+      switch (PyTuple_GET_SIZE(__pyx_args)) {
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        break;
+        default: goto __pyx_L5_argtuple_error;
+      }
     }
     __pyx_v_request = values[0];
     __pyx_v_message = values[1];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("process_startup", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 415, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("process_startup", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 430, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("ssh2.channel.Channel.process_startup", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_60process_startup(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_request, __pyx_v_message);
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_62process_startup(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_request, __pyx_v_message);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_60process_startup(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_request, PyObject *__pyx_v_message) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_62process_startup(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_request, PyObject *__pyx_v_message) {
   PyObject *__pyx_v_b_request = 0;
   PyObject *__pyx_v_b_message = 0;
   char *__pyx_v__request;
@@ -6457,90 +6715,140 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_60process_startup(struct __pyx
   PyObject *__pyx_t_1 = NULL;
   char *__pyx_t_2;
   Py_ssize_t __pyx_t_3;
+  int __pyx_t_4;
+  int __pyx_t_5;
   __Pyx_RefNannySetupContext("process_startup", 0);
 
-  /* "ssh2/channel.pyx":420
- *         Request is a supported SSH subsystem and clients would typically use
- *         one of execute/shell/subsystem functions depending on request type."""
+  /* "ssh2/channel.pyx":442
+ *         :type message: str or ``None``
+ *         """
  *         cdef bytes b_request = to_bytes(request)             # <<<<<<<<<<<<<<
- *         cdef bytes b_message = to_bytes(message)
+ *         cdef bytes b_message = None
  *         cdef char *_request = b_request
  */
-  __pyx_t_1 = __pyx_f_4ssh2_5utils_to_bytes(__pyx_v_request); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 420, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_4ssh2_5utils_to_bytes(__pyx_v_request); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 442, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_b_request = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ssh2/channel.pyx":421
- *         one of execute/shell/subsystem functions depending on request type."""
+  /* "ssh2/channel.pyx":443
+ *         """
  *         cdef bytes b_request = to_bytes(request)
- *         cdef bytes b_message = to_bytes(message)             # <<<<<<<<<<<<<<
+ *         cdef bytes b_message = None             # <<<<<<<<<<<<<<
  *         cdef char *_request = b_request
- *         cdef char *_message = b_message
+ *         cdef char *_message = NULL
  */
-  __pyx_t_1 = __pyx_f_4ssh2_5utils_to_bytes(__pyx_v_message); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 421, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_b_message = ((PyObject*)__pyx_t_1);
-  __pyx_t_1 = 0;
+  __Pyx_INCREF(Py_None);
+  __pyx_v_b_message = ((PyObject*)Py_None);
 
-  /* "ssh2/channel.pyx":422
+  /* "ssh2/channel.pyx":444
  *         cdef bytes b_request = to_bytes(request)
- *         cdef bytes b_message = to_bytes(message)
+ *         cdef bytes b_message = None
  *         cdef char *_request = b_request             # <<<<<<<<<<<<<<
- *         cdef char *_message = b_message
+ *         cdef char *_message = NULL
  *         cdef size_t r_len = len(b_request)
  */
   if (unlikely(__pyx_v_b_request == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
-    __PYX_ERR(0, 422, __pyx_L1_error)
+    __PYX_ERR(0, 444, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_PyBytes_AsWritableString(__pyx_v_b_request); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 422, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBytes_AsWritableString(__pyx_v_b_request); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 444, __pyx_L1_error)
   __pyx_v__request = __pyx_t_2;
 
-  /* "ssh2/channel.pyx":423
- *         cdef bytes b_message = to_bytes(message)
+  /* "ssh2/channel.pyx":445
+ *         cdef bytes b_message = None
  *         cdef char *_request = b_request
- *         cdef char *_message = b_message             # <<<<<<<<<<<<<<
+ *         cdef char *_message = NULL             # <<<<<<<<<<<<<<
  *         cdef size_t r_len = len(b_request)
- *         cdef size_t m_len = len(b_message)
+ *         cdef size_t m_len = 0
  */
-  if (unlikely(__pyx_v_b_message == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
-    __PYX_ERR(0, 423, __pyx_L1_error)
-  }
-  __pyx_t_2 = __Pyx_PyBytes_AsWritableString(__pyx_v_b_message); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 423, __pyx_L1_error)
-  __pyx_v__message = __pyx_t_2;
+  __pyx_v__message = NULL;
 
-  /* "ssh2/channel.pyx":424
+  /* "ssh2/channel.pyx":446
  *         cdef char *_request = b_request
- *         cdef char *_message = b_message
+ *         cdef char *_message = NULL
  *         cdef size_t r_len = len(b_request)             # <<<<<<<<<<<<<<
- *         cdef size_t m_len = len(b_message)
- *         cdef int rc
+ *         cdef size_t m_len = 0
+ *         if message is not None:
  */
   if (unlikely(__pyx_v_b_request == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 424, __pyx_L1_error)
+    __PYX_ERR(0, 446, __pyx_L1_error)
   }
-  __pyx_t_3 = PyBytes_GET_SIZE(__pyx_v_b_request); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 424, __pyx_L1_error)
+  __pyx_t_3 = PyBytes_GET_SIZE(__pyx_v_b_request); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 446, __pyx_L1_error)
   __pyx_v_r_len = __pyx_t_3;
 
-  /* "ssh2/channel.pyx":425
- *         cdef char *_message = b_message
+  /* "ssh2/channel.pyx":447
+ *         cdef char *_message = NULL
  *         cdef size_t r_len = len(b_request)
- *         cdef size_t m_len = len(b_message)             # <<<<<<<<<<<<<<
+ *         cdef size_t m_len = 0             # <<<<<<<<<<<<<<
+ *         if message is not None:
+ *             b_message = to_bytes(message)
+ */
+  __pyx_v_m_len = 0;
+
+  /* "ssh2/channel.pyx":448
+ *         cdef size_t r_len = len(b_request)
+ *         cdef size_t m_len = 0
+ *         if message is not None:             # <<<<<<<<<<<<<<
+ *             b_message = to_bytes(message)
+ *             _message = b_message
+ */
+  __pyx_t_4 = (__pyx_v_message != Py_None);
+  __pyx_t_5 = (__pyx_t_4 != 0);
+  if (__pyx_t_5) {
+
+    /* "ssh2/channel.pyx":449
+ *         cdef size_t m_len = 0
+ *         if message is not None:
+ *             b_message = to_bytes(message)             # <<<<<<<<<<<<<<
+ *             _message = b_message
+ *             m_len = len(b_message)
+ */
+    __pyx_t_1 = __pyx_f_4ssh2_5utils_to_bytes(__pyx_v_message); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 449, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF_SET(__pyx_v_b_message, ((PyObject*)__pyx_t_1));
+    __pyx_t_1 = 0;
+
+    /* "ssh2/channel.pyx":450
+ *         if message is not None:
+ *             b_message = to_bytes(message)
+ *             _message = b_message             # <<<<<<<<<<<<<<
+ *             m_len = len(b_message)
+ *         cdef int rc
+ */
+    if (unlikely(__pyx_v_b_message == Py_None)) {
+      PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
+      __PYX_ERR(0, 450, __pyx_L1_error)
+    }
+    __pyx_t_2 = __Pyx_PyBytes_AsWritableString(__pyx_v_b_message); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 450, __pyx_L1_error)
+    __pyx_v__message = __pyx_t_2;
+
+    /* "ssh2/channel.pyx":451
+ *             b_message = to_bytes(message)
+ *             _message = b_message
+ *             m_len = len(b_message)             # <<<<<<<<<<<<<<
  *         cdef int rc
  *         with nogil:
  */
-  if (unlikely(__pyx_v_b_message == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 425, __pyx_L1_error)
-  }
-  __pyx_t_3 = PyBytes_GET_SIZE(__pyx_v_b_message); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 425, __pyx_L1_error)
-  __pyx_v_m_len = __pyx_t_3;
+    if (unlikely(__pyx_v_b_message == Py_None)) {
+      PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
+      __PYX_ERR(0, 451, __pyx_L1_error)
+    }
+    __pyx_t_3 = PyBytes_GET_SIZE(__pyx_v_b_message); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 451, __pyx_L1_error)
+    __pyx_v_m_len = __pyx_t_3;
 
-  /* "ssh2/channel.pyx":427
- *         cdef size_t m_len = len(b_message)
+    /* "ssh2/channel.pyx":448
+ *         cdef size_t r_len = len(b_request)
+ *         cdef size_t m_len = 0
+ *         if message is not None:             # <<<<<<<<<<<<<<
+ *             b_message = to_bytes(message)
+ *             _message = b_message
+ */
+  }
+
+  /* "ssh2/channel.pyx":453
+ *             m_len = len(b_message)
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
  *             rc = c_ssh2.libssh2_channel_process_startup(
@@ -6554,7 +6862,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_60process_startup(struct __pyx
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":428
+        /* "ssh2/channel.pyx":454
  *         cdef int rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_process_startup(             # <<<<<<<<<<<<<<
@@ -6564,8 +6872,8 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_60process_startup(struct __pyx
         __pyx_v_rc = libssh2_channel_process_startup(__pyx_v_self->_channel, __pyx_v__request, __pyx_v_r_len, __pyx_v__message, __pyx_v_m_len);
       }
 
-      /* "ssh2/channel.pyx":427
- *         cdef size_t m_len = len(b_message)
+      /* "ssh2/channel.pyx":453
+ *             m_len = len(b_message)
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
  *             rc = c_ssh2.libssh2_channel_process_startup(
@@ -6577,13 +6885,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_60process_startup(struct __pyx
           __Pyx_FastGIL_Forget();
           Py_BLOCK_THREADS
           #endif
-          goto __pyx_L5;
+          goto __pyx_L6;
         }
-        __pyx_L5:;
+        __pyx_L6:;
       }
   }
 
-  /* "ssh2/channel.pyx":430
+  /* "ssh2/channel.pyx":456
  *             rc = c_ssh2.libssh2_channel_process_startup(
  *                 self._channel, _request, r_len, _message, m_len)
  *         return rc             # <<<<<<<<<<<<<<
@@ -6591,16 +6899,16 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_60process_startup(struct __pyx
  *     def poll_channel_read(self, int extended):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 430, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 456, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":415
+  /* "ssh2/channel.pyx":430
  *         return rc
  * 
- *     def process_startup(self, request, message):             # <<<<<<<<<<<<<<
+ *     def process_startup(self, request, message=None):             # <<<<<<<<<<<<<<
  *         """Startup process on server for request with message.
  * 
  */
@@ -6618,7 +6926,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_60process_startup(struct __pyx
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":432
+/* "ssh2/channel.pyx":458
  *         return rc
  * 
  *     def poll_channel_read(self, int extended):             # <<<<<<<<<<<<<<
@@ -6627,15 +6935,15 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_60process_startup(struct __pyx
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_63poll_channel_read(PyObject *__pyx_v_self, PyObject *__pyx_arg_extended); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_62poll_channel_read[] = "Channel.poll_channel_read(self, int extended)\nDeprecated - use session.block_directions and socket polling\n        instead";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_63poll_channel_read(PyObject *__pyx_v_self, PyObject *__pyx_arg_extended) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_65poll_channel_read(PyObject *__pyx_v_self, PyObject *__pyx_arg_extended); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_64poll_channel_read[] = "Channel.poll_channel_read(self, int extended)\nDeprecated - use session.block_directions and socket polling\n        instead";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_65poll_channel_read(PyObject *__pyx_v_self, PyObject *__pyx_arg_extended) {
   int __pyx_v_extended;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("poll_channel_read (wrapper)", 0);
   assert(__pyx_arg_extended); {
-    __pyx_v_extended = __Pyx_PyInt_As_int(__pyx_arg_extended); if (unlikely((__pyx_v_extended == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 432, __pyx_L3_error)
+    __pyx_v_extended = __Pyx_PyInt_As_int(__pyx_arg_extended); if (unlikely((__pyx_v_extended == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 458, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6643,21 +6951,21 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_63poll_channel_read(PyObject *
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_62poll_channel_read(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((int)__pyx_v_extended));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_64poll_channel_read(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((int)__pyx_v_extended));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_62poll_channel_read(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_extended) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_64poll_channel_read(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_extended) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("poll_channel_read", 0);
 
-  /* "ssh2/channel.pyx":436
+  /* "ssh2/channel.pyx":462
  *         instead"""
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -6672,7 +6980,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_62poll_channel_read(struct __p
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":437
+        /* "ssh2/channel.pyx":463
  *         cdef int rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_poll_channel_read(self._channel, extended)             # <<<<<<<<<<<<<<
@@ -6682,7 +6990,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_62poll_channel_read(struct __p
         __pyx_v_rc = libssh2_poll_channel_read(__pyx_v_self->_channel, __pyx_v_extended);
       }
 
-      /* "ssh2/channel.pyx":436
+      /* "ssh2/channel.pyx":462
  *         instead"""
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -6701,7 +7009,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_62poll_channel_read(struct __p
       }
   }
 
-  /* "ssh2/channel.pyx":438
+  /* "ssh2/channel.pyx":464
  *         with nogil:
  *             rc = c_ssh2.libssh2_poll_channel_read(self._channel, extended)
  *         return rc             # <<<<<<<<<<<<<<
@@ -6709,13 +7017,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_62poll_channel_read(struct __p
  *     def handle_extended_data(self, int ignore_mode):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 438, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 464, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":432
+  /* "ssh2/channel.pyx":458
  *         return rc
  * 
  *     def poll_channel_read(self, int extended):             # <<<<<<<<<<<<<<
@@ -6734,7 +7042,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_62poll_channel_read(struct __p
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":440
+/* "ssh2/channel.pyx":466
  *         return rc
  * 
  *     def handle_extended_data(self, int ignore_mode):             # <<<<<<<<<<<<<<
@@ -6743,15 +7051,15 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_62poll_channel_read(struct __p
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_65handle_extended_data(PyObject *__pyx_v_self, PyObject *__pyx_arg_ignore_mode); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_64handle_extended_data[] = "Channel.handle_extended_data(self, int ignore_mode)\nDeprecated, use handle_extended_data2";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_65handle_extended_data(PyObject *__pyx_v_self, PyObject *__pyx_arg_ignore_mode) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_67handle_extended_data(PyObject *__pyx_v_self, PyObject *__pyx_arg_ignore_mode); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_66handle_extended_data[] = "Channel.handle_extended_data(self, int ignore_mode)\nDeprecated, use handle_extended_data2";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_67handle_extended_data(PyObject *__pyx_v_self, PyObject *__pyx_arg_ignore_mode) {
   int __pyx_v_ignore_mode;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("handle_extended_data (wrapper)", 0);
   assert(__pyx_arg_ignore_mode); {
-    __pyx_v_ignore_mode = __Pyx_PyInt_As_int(__pyx_arg_ignore_mode); if (unlikely((__pyx_v_ignore_mode == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 440, __pyx_L3_error)
+    __pyx_v_ignore_mode = __Pyx_PyInt_As_int(__pyx_arg_ignore_mode); if (unlikely((__pyx_v_ignore_mode == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 466, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6759,19 +7067,19 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_65handle_extended_data(PyObjec
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_64handle_extended_data(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((int)__pyx_v_ignore_mode));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_66handle_extended_data(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((int)__pyx_v_ignore_mode));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_64handle_extended_data(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_ignore_mode) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_66handle_extended_data(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_ignore_mode) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("handle_extended_data", 0);
 
-  /* "ssh2/channel.pyx":442
+  /* "ssh2/channel.pyx":468
  *     def handle_extended_data(self, int ignore_mode):
  *         """Deprecated, use handle_extended_data2"""
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -6786,7 +7094,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_64handle_extended_data(struct 
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":443
+        /* "ssh2/channel.pyx":469
  *         """Deprecated, use handle_extended_data2"""
  *         with nogil:
  *             c_ssh2.libssh2_channel_handle_extended_data(             # <<<<<<<<<<<<<<
@@ -6796,7 +7104,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_64handle_extended_data(struct 
         libssh2_channel_handle_extended_data(__pyx_v_self->_channel, __pyx_v_ignore_mode);
       }
 
-      /* "ssh2/channel.pyx":442
+      /* "ssh2/channel.pyx":468
  *     def handle_extended_data(self, int ignore_mode):
  *         """Deprecated, use handle_extended_data2"""
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -6815,7 +7123,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_64handle_extended_data(struct 
       }
   }
 
-  /* "ssh2/channel.pyx":440
+  /* "ssh2/channel.pyx":466
  *         return rc
  * 
  *     def handle_extended_data(self, int ignore_mode):             # <<<<<<<<<<<<<<
@@ -6830,7 +7138,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_64handle_extended_data(struct 
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":446
+/* "ssh2/channel.pyx":472
  *                 self._channel, ignore_mode)
  * 
  *     def handle_extended_data2(self, int ignore_mode):             # <<<<<<<<<<<<<<
@@ -6839,15 +7147,15 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_64handle_extended_data(struct 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_67handle_extended_data2(PyObject *__pyx_v_self, PyObject *__pyx_arg_ignore_mode); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_66handle_extended_data2[] = "Channel.handle_extended_data2(self, int ignore_mode)";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_67handle_extended_data2(PyObject *__pyx_v_self, PyObject *__pyx_arg_ignore_mode) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_69handle_extended_data2(PyObject *__pyx_v_self, PyObject *__pyx_arg_ignore_mode); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_68handle_extended_data2[] = "Channel.handle_extended_data2(self, int ignore_mode)";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_69handle_extended_data2(PyObject *__pyx_v_self, PyObject *__pyx_arg_ignore_mode) {
   int __pyx_v_ignore_mode;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("handle_extended_data2 (wrapper)", 0);
   assert(__pyx_arg_ignore_mode); {
-    __pyx_v_ignore_mode = __Pyx_PyInt_As_int(__pyx_arg_ignore_mode); if (unlikely((__pyx_v_ignore_mode == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 446, __pyx_L3_error)
+    __pyx_v_ignore_mode = __Pyx_PyInt_As_int(__pyx_arg_ignore_mode); if (unlikely((__pyx_v_ignore_mode == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 472, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6855,21 +7163,21 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_67handle_extended_data2(PyObje
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_66handle_extended_data2(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((int)__pyx_v_ignore_mode));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_68handle_extended_data2(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((int)__pyx_v_ignore_mode));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_66handle_extended_data2(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_ignore_mode) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_68handle_extended_data2(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_ignore_mode) {
   int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("handle_extended_data2", 0);
 
-  /* "ssh2/channel.pyx":448
+  /* "ssh2/channel.pyx":474
  *     def handle_extended_data2(self, int ignore_mode):
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -6884,7 +7192,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_66handle_extended_data2(struct
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":449
+        /* "ssh2/channel.pyx":475
  *         cdef int rc
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_handle_extended_data2(             # <<<<<<<<<<<<<<
@@ -6894,7 +7202,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_66handle_extended_data2(struct
         __pyx_v_rc = libssh2_channel_handle_extended_data2(__pyx_v_self->_channel, __pyx_v_ignore_mode);
       }
 
-      /* "ssh2/channel.pyx":448
+      /* "ssh2/channel.pyx":474
  *     def handle_extended_data2(self, int ignore_mode):
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -6913,7 +7221,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_66handle_extended_data2(struct
       }
   }
 
-  /* "ssh2/channel.pyx":451
+  /* "ssh2/channel.pyx":477
  *             rc = c_ssh2.libssh2_channel_handle_extended_data2(
  *                 self._channel, ignore_mode)
  *         return rc             # <<<<<<<<<<<<<<
@@ -6921,13 +7229,13 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_66handle_extended_data2(struct
  *     def ignore_extended_data(self, int ignore_mode):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 451, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_rc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 477, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/channel.pyx":446
+  /* "ssh2/channel.pyx":472
  *                 self._channel, ignore_mode)
  * 
  *     def handle_extended_data2(self, int ignore_mode):             # <<<<<<<<<<<<<<
@@ -6946,7 +7254,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_66handle_extended_data2(struct
   return __pyx_r;
 }
 
-/* "ssh2/channel.pyx":453
+/* "ssh2/channel.pyx":479
  *         return rc
  * 
  *     def ignore_extended_data(self, int ignore_mode):             # <<<<<<<<<<<<<<
@@ -6955,15 +7263,15 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_66handle_extended_data2(struct
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_69ignore_extended_data(PyObject *__pyx_v_self, PyObject *__pyx_arg_ignore_mode); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_68ignore_extended_data[] = "Channel.ignore_extended_data(self, int ignore_mode)\nDeprecated, use handle_extended_data2";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_69ignore_extended_data(PyObject *__pyx_v_self, PyObject *__pyx_arg_ignore_mode) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_71ignore_extended_data(PyObject *__pyx_v_self, PyObject *__pyx_arg_ignore_mode); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_70ignore_extended_data[] = "Channel.ignore_extended_data(self, int ignore_mode)\nDeprecated, use handle_extended_data2";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_71ignore_extended_data(PyObject *__pyx_v_self, PyObject *__pyx_arg_ignore_mode) {
   int __pyx_v_ignore_mode;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("ignore_extended_data (wrapper)", 0);
   assert(__pyx_arg_ignore_mode); {
-    __pyx_v_ignore_mode = __Pyx_PyInt_As_int(__pyx_arg_ignore_mode); if (unlikely((__pyx_v_ignore_mode == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 453, __pyx_L3_error)
+    __pyx_v_ignore_mode = __Pyx_PyInt_As_int(__pyx_arg_ignore_mode); if (unlikely((__pyx_v_ignore_mode == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 479, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6971,19 +7279,19 @@ static PyObject *__pyx_pw_4ssh2_7channel_7Channel_69ignore_extended_data(PyObjec
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_68ignore_extended_data(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((int)__pyx_v_ignore_mode));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_70ignore_extended_data(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((int)__pyx_v_ignore_mode));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_68ignore_extended_data(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_ignore_mode) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_70ignore_extended_data(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_ignore_mode) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("ignore_extended_data", 0);
 
-  /* "ssh2/channel.pyx":455
+  /* "ssh2/channel.pyx":481
  *     def ignore_extended_data(self, int ignore_mode):
  *         """Deprecated, use handle_extended_data2"""
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -6998,7 +7306,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_68ignore_extended_data(struct 
       #endif
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":456
+        /* "ssh2/channel.pyx":482
  *         """Deprecated, use handle_extended_data2"""
  *         with nogil:
  *             c_ssh2.libssh2_channel_handle_extended_data(             # <<<<<<<<<<<<<<
@@ -7007,7 +7315,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_68ignore_extended_data(struct 
         libssh2_channel_handle_extended_data(__pyx_v_self->_channel, __pyx_v_ignore_mode);
       }
 
-      /* "ssh2/channel.pyx":455
+      /* "ssh2/channel.pyx":481
  *     def ignore_extended_data(self, int ignore_mode):
  *         """Deprecated, use handle_extended_data2"""
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -7026,7 +7334,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_68ignore_extended_data(struct 
       }
   }
 
-  /* "ssh2/channel.pyx":453
+  /* "ssh2/channel.pyx":479
  *         return rc
  * 
  *     def ignore_extended_data(self, int ignore_mode):             # <<<<<<<<<<<<<<
@@ -7048,20 +7356,20 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_68ignore_extended_data(struct 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_71__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_70__reduce_cython__[] = "Channel.__reduce_cython__(self)";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_71__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_73__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_72__reduce_cython__[] = "Channel.__reduce_cython__(self)";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_73__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_70__reduce_cython__(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_72__reduce_cython__(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_70__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_72__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -7103,20 +7411,20 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_70__reduce_cython__(CYTHON_UNU
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_73__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_72__setstate_cython__[] = "Channel.__setstate_cython__(self, __pyx_state)";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_73__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_75__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_74__setstate_cython__[] = "Channel.__setstate_cython__(self, __pyx_state)";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_75__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_72__setstate_cython__(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_74__setstate_cython__(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_72__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_74__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -7214,38 +7522,39 @@ static PyMethodDef __pyx_methods_4ssh2_7channel_Channel[] = {
   {"pty", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_5pty, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_4pty},
   {"execute", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_7execute, METH_O, __pyx_doc_4ssh2_7channel_7Channel_6execute},
   {"subsystem", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_9subsystem, METH_O, __pyx_doc_4ssh2_7channel_7Channel_8subsystem},
-  {"read", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_11read, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_10read},
-  {"read_ex", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_13read_ex, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_12read_ex},
-  {"read_stderr", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_15read_stderr, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_14read_stderr},
-  {"eof", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_17eof, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_16eof},
-  {"send_eof", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_19send_eof, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_18send_eof},
-  {"wait_eof", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_21wait_eof, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_20wait_eof},
-  {"close", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_23close, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_22close},
-  {"flush", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_25flush, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_24flush},
-  {"flush_ex", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_27flush_ex, METH_O, __pyx_doc_4ssh2_7channel_7Channel_26flush_ex},
-  {"flush_stderr", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_29flush_stderr, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_28flush_stderr},
-  {"wait_closed", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_31wait_closed, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_30wait_closed},
-  {"get_exit_status", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_33get_exit_status, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_32get_exit_status},
-  {"get_exit_signal", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_35get_exit_signal, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_34get_exit_signal},
-  {"setenv", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_37setenv, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_36setenv},
-  {"window_read_ex", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_39window_read_ex, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_38window_read_ex},
-  {"window_read", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_41window_read, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_40window_read},
-  {"window_write_ex", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_43window_write_ex, METH_O, __pyx_doc_4ssh2_7channel_7Channel_42window_write_ex},
-  {"window_write", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_45window_write, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_44window_write},
-  {"receive_window_adjust", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_47receive_window_adjust, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_46receive_window_adjust},
-  {"receive_window_adjust2", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_49receive_window_adjust2, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_48receive_window_adjust2},
-  {"write", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_51write, METH_O, __pyx_doc_4ssh2_7channel_7Channel_50write},
-  {"write_ex", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_53write_ex, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_52write_ex},
-  {"write_stderr", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_55write_stderr, METH_O, __pyx_doc_4ssh2_7channel_7Channel_54write_stderr},
-  {"x11_req", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_57x11_req, METH_O, __pyx_doc_4ssh2_7channel_7Channel_56x11_req},
-  {"x11_req_ex", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_59x11_req_ex, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_58x11_req_ex},
-  {"process_startup", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_61process_startup, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_60process_startup},
-  {"poll_channel_read", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_63poll_channel_read, METH_O, __pyx_doc_4ssh2_7channel_7Channel_62poll_channel_read},
-  {"handle_extended_data", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_65handle_extended_data, METH_O, __pyx_doc_4ssh2_7channel_7Channel_64handle_extended_data},
-  {"handle_extended_data2", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_67handle_extended_data2, METH_O, __pyx_doc_4ssh2_7channel_7Channel_66handle_extended_data2},
-  {"ignore_extended_data", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_69ignore_extended_data, METH_O, __pyx_doc_4ssh2_7channel_7Channel_68ignore_extended_data},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_71__reduce_cython__, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_70__reduce_cython__},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_73__setstate_cython__, METH_O, __pyx_doc_4ssh2_7channel_7Channel_72__setstate_cython__},
+  {"shell", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_11shell, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_10shell},
+  {"read", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_13read, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_12read},
+  {"read_ex", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_15read_ex, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_14read_ex},
+  {"read_stderr", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_17read_stderr, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_16read_stderr},
+  {"eof", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_19eof, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_18eof},
+  {"send_eof", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_21send_eof, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_20send_eof},
+  {"wait_eof", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_23wait_eof, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_22wait_eof},
+  {"close", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_25close, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_24close},
+  {"flush", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_27flush, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_26flush},
+  {"flush_ex", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_29flush_ex, METH_O, __pyx_doc_4ssh2_7channel_7Channel_28flush_ex},
+  {"flush_stderr", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_31flush_stderr, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_30flush_stderr},
+  {"wait_closed", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_33wait_closed, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_32wait_closed},
+  {"get_exit_status", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_35get_exit_status, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_34get_exit_status},
+  {"get_exit_signal", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_37get_exit_signal, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_36get_exit_signal},
+  {"setenv", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_39setenv, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_38setenv},
+  {"window_read_ex", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_41window_read_ex, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_40window_read_ex},
+  {"window_read", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_43window_read, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_42window_read},
+  {"window_write_ex", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_45window_write_ex, METH_O, __pyx_doc_4ssh2_7channel_7Channel_44window_write_ex},
+  {"window_write", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_47window_write, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_46window_write},
+  {"receive_window_adjust", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_49receive_window_adjust, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_48receive_window_adjust},
+  {"receive_window_adjust2", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_51receive_window_adjust2, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_50receive_window_adjust2},
+  {"write", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_53write, METH_O, __pyx_doc_4ssh2_7channel_7Channel_52write},
+  {"write_ex", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_55write_ex, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_54write_ex},
+  {"write_stderr", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_57write_stderr, METH_O, __pyx_doc_4ssh2_7channel_7Channel_56write_stderr},
+  {"x11_req", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_59x11_req, METH_O, __pyx_doc_4ssh2_7channel_7Channel_58x11_req},
+  {"x11_req_ex", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_61x11_req_ex, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_60x11_req_ex},
+  {"process_startup", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_63process_startup, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_62process_startup},
+  {"poll_channel_read", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_65poll_channel_read, METH_O, __pyx_doc_4ssh2_7channel_7Channel_64poll_channel_read},
+  {"handle_extended_data", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_67handle_extended_data, METH_O, __pyx_doc_4ssh2_7channel_7Channel_66handle_extended_data},
+  {"handle_extended_data2", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_69handle_extended_data2, METH_O, __pyx_doc_4ssh2_7channel_7Channel_68handle_extended_data2},
+  {"ignore_extended_data", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_71ignore_extended_data, METH_O, __pyx_doc_4ssh2_7channel_7Channel_70ignore_extended_data},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_73__reduce_cython__, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_72__reduce_cython__},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_75__setstate_cython__, METH_O, __pyx_doc_4ssh2_7channel_7Channel_74__setstate_cython__},
   {0, 0, 0, 0}
 };
 
@@ -7353,6 +7662,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_ChannelError, __pyx_k_ChannelError, sizeof(__pyx_k_ChannelError), 0, 0, 1, 1},
   {&__pyx_kp_s_Error_executing_command_s_error, __pyx_k_Error_executing_command_s_error, sizeof(__pyx_k_Error_executing_command_s_error), 0, 0, 1, 0},
   {&__pyx_kp_s_Error_requesting_PTY_with_error, __pyx_k_Error_requesting_PTY_with_error, sizeof(__pyx_k_Error_requesting_PTY_with_error), 0, 0, 1, 0},
+  {&__pyx_kp_s_Error_requesting_shell_error_cod, __pyx_k_Error_requesting_shell_error_cod, sizeof(__pyx_k_Error_requesting_shell_error_cod), 0, 0, 1, 0},
   {&__pyx_kp_s_Error_requesting_subsystem_s_err, __pyx_k_Error_requesting_subsystem_s_err, sizeof(__pyx_k_Error_requesting_subsystem_s_err), 0, 0, 1, 0},
   {&__pyx_n_s_MemoryError, __pyx_k_MemoryError, sizeof(__pyx_k_MemoryError), 0, 0, 1, 1},
   {&__pyx_n_s_TypeError, __pyx_k_TypeError, sizeof(__pyx_k_TypeError), 0, 0, 1, 1},
@@ -7391,7 +7701,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(0, 157, __pyx_L1_error)
   __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(1, 2, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;

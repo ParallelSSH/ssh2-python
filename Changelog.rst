@@ -1,6 +1,21 @@
 Change Log
 =============
 
+0.10.0
+++++++++
+
+Changes
+---------
+
+* Added ``ssh2.channel.Channel.shell`` for opening interactive shells.
+
+
+Fixes
+------
+
+* ``ssh2.channel.Channel.process_startup`` would not handle request types with no message correctly.
+
+
 0.9.1
 ++++++
 

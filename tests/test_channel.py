@@ -103,3 +103,40 @@ class ChannelTestCase(SSH2TestCase):
         size, data = chan.read()
         self.assertTrue(size > 0)
         self.assertEqual(data.decode('utf-8'), expected)
+
+    def test_shell(self):
+        self.assertEqual(self._auth(), 0)
+        chan = self.session.open_session()
+        self.assertTrue(chan is not None)
+        self.assertEqual(chan.shell(), 0)
+        chan.write('echo me\n')
+        size, data = chan.read()
+        lines = [s.decode('utf-8') for s in data.splitlines()]
+        self.assertTrue(size > 0)
+        self.assertTrue(lines, [self.resp])
+        self.assertTrue(chan.close() == 0)
+        self.assertTrue(chan.wait_eof() == 0)
+
+    def test_process_startup(self):
+        self.assertEqual(self._auth(), 0)
+        # Shell
+        chan = self.session.open_session()
+        self.assertTrue(chan is not None)
+        self.assertEqual(chan.process_startup('shell'), 0)
+        chan.write('echo me\n')
+        size, data = chan.read()
+        lines = [s.decode('utf-8') for s in data.splitlines()]
+        self.assertTrue(size > 0)
+        self.assertTrue(lines, [self.resp])
+        self.assertTrue(chan.close() == 0)
+        self.assertTrue(chan.wait_eof() == 0)
+        # Exec
+        chan = self.session.open_session()
+        self.assertTrue(chan is not None)
+        self.assertEqual(chan.process_startup('exec', self.cmd), 0)
+        size, data = chan.read()
+        lines = [s.decode('utf-8') for s in data.splitlines()]
+        self.assertTrue(size > 0)
+        self.assertTrue(lines, [self.resp])
+        self.assertTrue(chan.close() == 0)
+        self.assertTrue(chan.wait_eof() == 0)

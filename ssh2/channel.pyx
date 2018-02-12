@@ -91,7 +91,7 @@ cdef class Channel:
         return rc
 
     def subsystem(self, subsystem not None):
-        """Request subsystem from channel
+        """Request subsystem from channel.
 
         :param subsystem: Name of subsystem
         :type subsystem: str"""
@@ -106,6 +106,21 @@ cdef class Channel:
                     raise ChannelError(
                         "Error requesting subsystem %s - error code %s",
                         subsystem, rc)
+        return rc
+
+    def shell(self):
+        """Request interactive shell from channel.
+
+        :raises: :py:class:`ssh2.exceptions.ChannelError` on errors requesting
+          interactive shell.
+        """
+        cdef int rc
+        with nogil:
+            rc = c_ssh2.libssh2_channel_shell(self._channel)
+            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
+                with gil:
+                    raise ChannelError(
+                        "Error requesting shell - error code %s", rc)
         return rc
 
     def read(self, size_t size=1024):
@@ -412,17 +427,28 @@ cdef class Channel:
                 auth_proto, auth_cookie, screen_number)
         return rc
 
-    def process_startup(self, request, message):
+    def process_startup(self, request, message=None):
         """Startup process on server for request with message.
 
         Request is a supported SSH subsystem and clients would typically use
-        one of execute/shell/subsystem functions depending on request type."""
+        one of execute/shell/subsystem functions depending on request type.
+
+        :param request: Request type (exec/shell/subsystem).
+        :type request: str
+        :param message: Request message. Content depends on request type
+          and can be ``None``.
+        :type message: str or ``None``
+        """
         cdef bytes b_request = to_bytes(request)
-        cdef bytes b_message = to_bytes(message)
+        cdef bytes b_message = None
         cdef char *_request = b_request
-        cdef char *_message = b_message
+        cdef char *_message = NULL
         cdef size_t r_len = len(b_request)
-        cdef size_t m_len = len(b_message)
+        cdef size_t m_len = 0
+        if message is not None:
+            b_message = to_bytes(message)
+            _message = b_message
+            m_len = len(b_message)
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_process_startup(
