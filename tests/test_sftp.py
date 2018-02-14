@@ -197,6 +197,11 @@ class SFTPTestCase(SSH2TestCase):
         self.assertTrue(b'..' in (_ls for (_, _ls, _, _) in dir_data))
         self.assertTrue(len(dir_data[0][2].split(b' ')) > 0)
 
+    def test_readdir_failure(self):
+        self.assertEqual(self._auth(), 0)
+        sftp = self.session.sftp_init()
+        self.assertRaises(SFTPHandleError, sftp.opendir, 'fakeyfakey')
+
     @skipUnless(hasattr(SFTPHandle, 'fsync'),
                 "Function not supported by libssh2")
     def test_fsync(self):

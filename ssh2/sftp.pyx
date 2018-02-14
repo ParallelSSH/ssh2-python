@@ -144,7 +144,9 @@ cdef class SFTP:
                 self._sftp, filename, filename_len, flags,
                 mode, open_type)
         if _handle is NULL:
-            return
+            raise SFTPHandleError(
+                "Could not open file %s - error code %s - %s", filename,
+                self._session.last_errno(), self._session.last_error())
         handle = PySFTPHandle(_handle, self)
         return handle
 
@@ -177,7 +179,11 @@ cdef class SFTP:
           ``LIBSSH2_SFTP_S_IRGRP | LIBSSH2_SFTP_S_IWGRP | \``
 
           ``LIBSSH2_SFTP_S_IROTH``
-        :type mode: int"""
+        :type mode: int
+
+        :raises: :py:class:`ssh2.exceptions.SFTPHandleError` on errors opening
+          file.
+        """
         cdef c_sftp.LIBSSH2_SFTP_HANDLE *_handle
         cdef bytes b_filename = to_bytes(filename)
         cdef char *_filename = b_filename
@@ -185,7 +191,9 @@ cdef class SFTP:
             _handle = c_sftp.libssh2_sftp_open(
                 self._sftp, _filename, flags, mode)
         if _handle is NULL:
-            return
+            raise SFTPHandleError(
+                "Could not open file %s - error code %s - %s", filename,
+                self._session.last_errno(), self._session.last_error())
         return PySFTPHandle(_handle, self)
 
     def opendir(self, path not None):
@@ -194,14 +202,20 @@ cdef class SFTP:
         :param path: Path of directory
         :type path: str
 
-        :rtype: :py:class:`ssh2.sftp.SFTPHandle` or `None`"""
+        :rtype: :py:class:`ssh2.sftp.SFTPHandle` or `None`
+
+        :raises: :py:class:`ssh2.exceptions.SFTPHandleError` on errors opening
+          directory.
+        """
         cdef c_sftp.LIBSSH2_SFTP_HANDLE *_handle
         cdef bytes b_path = to_bytes(path)
         cdef char *_path = b_path
         with nogil:
             _handle = c_sftp.libssh2_sftp_opendir(self._sftp, _path)
         if _handle is NULL:
-            return
+            raise SFTPHandleError(
+                "Could not open directory %s - error code %s - %s", path,
+                self._session.last_errno(), self._session.last_error())
         return PySFTPHandle(_handle, self)
 
     def rename_ex(self, const char *source_filename,
@@ -268,7 +282,11 @@ cdef class SFTP:
         :param mode: Permissions mode of new directory.
         :type mode: int
 
-        :rtype: int"""
+        :rtype: int
+
+        :raises: :py:class:`ssh2.exceptions.SFTPIOError` on errors creating
+          directory.
+        """
         cdef int rc
         cdef bytes b_path = to_bytes(path)
         cdef char *_path = b_path
@@ -372,8 +390,7 @@ cdef class SFTP:
             rc = c_sftp.libssh2_sftp_symlink(self._sftp, _path, _target)
         return rc
 
-    def realpath(self, path not None, size_t max_len=256,
-                 encoding='utf-8'):
+    def realpath(self, path not None, size_t max_len=256):
         """Get real path for path.
 
         :param: Path name to get real path for.
