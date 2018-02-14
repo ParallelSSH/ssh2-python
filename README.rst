@@ -47,7 +47,7 @@ API Feature Set
 ________________
 
 
-Currently the vast majority of the `libssh2`_ API has been implemented with only few exceptions.
+At this time all of the `libssh2`_ API has been implemented up to version ``1.8.0``.
 
 Complete example scripts for various operations can be found in the `examples directory`_.
 
@@ -179,9 +179,12 @@ SFTP Read
 
 .. code-block:: python
 
+   from ssh2.sftp import LIBSSH2_FXF_READ, LIBSSH2_SFTP_S_IRUSR
+
    sftp = session.sftp_init()
-   with sftp.open(<remote file to read>, 0, 0) as remote_fh, \
-           open(<file to write>, 'wb') as local_fh:
+   with sftp.open(<remote file to read>,
+		  LIBSSH2_FXF_READ, LIBSSH2_SFTP_S_IRUSR) as remote_fh, \
+           open(<local file to write>, 'wb') as local_fh:
        for size, data in remote_fh:
            local_fh.write(data)
 
@@ -247,6 +250,7 @@ ________________________________________
 * SCP send and receive
 * Listener for port forwarding
 * Subsystem support
+* Host key checking and manipulation
 
 And more, as per `libssh2`_ functionality.
 

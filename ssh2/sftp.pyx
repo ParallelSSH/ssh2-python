@@ -155,8 +155,7 @@ cdef class SFTP:
 
         :param filename: Name of file to open.
         :type filename: str
-        :param flags: One or more LIBSSH2_FXF_* flags. Can be ``0`` for
-          reading.
+        :param flags: One or more LIBSSH2_FXF_* flags.
 
           Eg for reading flags is ``LIBSSH2_FXF_READ``,
 
@@ -164,9 +163,10 @@ cdef class SFTP:
 
           for both ``LIBSSH2_FXF_READ`` | ``LIBSSH2_FXF_WRITE``.
         :type flags: int
-        :param mode: File permissions mode. ``0`` for reading.
+        :param mode: File permissions mode. ``LIBSSH2_SFTP_S_IRUSR`` for
+          reading.
 
-          For writing one or more LIBSSH2_SFTP_S_* flags.
+          For writing one or more ``LIBSSH2_SFTP_S_*`` flags.
 
           Eg, for 664 permission mask (read/write owner/group, read other),
 

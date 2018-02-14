@@ -12,6 +12,7 @@ import sys
 from datetime import datetime
 
 from ssh2.session import Session
+from ssh2.sftp import LIBSSH2_FXF_READ, LIBSSH2_SFTP_S_IRUSR
 
 
 USERNAME = pwd.getpwuid(os.geteuid()).pw_name
@@ -37,7 +38,7 @@ def main():
     sftp = s.sftp_init()
     now = datetime.now()
     print("Starting read for remote file %s" % (args.file,))
-    with sftp.open(args.file, 0, 0) as fh:
+    with sftp.open(args.file, LIBSSH2_FXF_READ, LIBSSH2_SFTP_S_IRUSR) as fh:
         for size, data in fh:
             pass
     print("Finished file read in %s" % (datetime.now() - now,))
