@@ -51,6 +51,10 @@ class SessionHostKeyError(Exception):
     """Raised on errors getting server host key"""
 
 
+class SCPError(Exception):
+    """Raised on SCP errors"""
+
+
 class ChannelError(Exception):
     pass
 

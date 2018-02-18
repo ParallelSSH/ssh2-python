@@ -4,7 +4,8 @@ from unittest import skipUnless
 from .base_test import SSH2TestCase
 from ssh2.session import Session, LIBSSH2_HOSTKEY_HASH_MD5, \
     LIBSSH2_HOSTKEY_HASH_SHA1
-from ssh2.exceptions import AuthenticationError, AgentAuthenticationError
+from ssh2.exceptions import AuthenticationError, AgentAuthenticationError, \
+    SCPError
 
 
 class SessionTestCase(SSH2TestCase):
@@ -78,6 +79,7 @@ class SessionTestCase(SSH2TestCase):
             raise
         finally:
             os.unlink(remote_filename)
+        self.assertRaises(SCPError, self.session.scp_recv2, remote_filename)
 
     def test_scp_recv(self):
         self.assertEqual(self._auth(), 0)
@@ -103,6 +105,7 @@ class SessionTestCase(SSH2TestCase):
             raise
         finally:
             os.unlink(remote_filename)
+        self.assertRaises(SCPError, self.session.scp_recv, remote_filename)
 
     def test_scp_send(self):
         self.assertEqual(self._auth(), 0)
@@ -129,7 +132,47 @@ class SessionTestCase(SSH2TestCase):
             raise
         finally:
             os.unlink(remote_filename)
-            os.unlink(to_copy)
+            try:
+                os.unlink(to_copy)
+            except OSError:
+                pass
+        self.assertRaises(SCPError, self.session.scp_send,
+                          '/cannot_write', 1 & 777, 1)
+
+    @skipUnless(hasattr(Session, 'scp_send64'),
+                "Function not supported by libssh2")
+    def test_scp_send64(self):
+        self.assertEqual(self._auth(), 0)
+        test_data = b"data"
+        remote_filename = os.sep.join([os.path.dirname(__file__),
+                                       "remote_test_file"])
+        to_copy = os.sep.join([os.path.dirname(__file__),
+                               "copied"])
+        with open(remote_filename, 'wb') as fh:
+            fh.write(test_data)
+        fileinfo = os.stat(remote_filename)
+        try:
+            chan = self.session.scp_send64(
+                to_copy, fileinfo.st_mode & 777, fileinfo.st_size,
+                fileinfo.st_mtime, fileinfo.st_atime)
+            with open(remote_filename, 'rb') as local_fh:
+                for data in local_fh:
+                    chan.write(data)
+            chan.send_eof()
+            chan.wait_eof()
+            chan.wait_closed()
+            self.assertEqual(os.stat(to_copy).st_size,
+                             os.stat(remote_filename).st_size)
+        except Exception:
+            raise
+        finally:
+            os.unlink(remote_filename)
+            try:
+                os.unlink(to_copy)
+            except OSError:
+                pass
+        self.assertRaises(SCPError, self.session.scp_send64,
+                          '/cannot_write', 0 & 777, 1, 1, 1)
 
     def test_hostkey(self):
         self.assertEqual(self._auth(), 0)

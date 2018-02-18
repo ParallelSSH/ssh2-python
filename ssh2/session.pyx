@@ -20,7 +20,7 @@ from libc.time cimport time_t
 from agent cimport PyAgent, agent_auth, agent_init, init_connect_agent
 from channel cimport PyChannel
 from exceptions import SessionHandshakeError, SessionStartupError, \
-    AuthenticationError, SessionHostKeyError
+    AuthenticationError, SessionHostKeyError, SCPError
 from listener cimport PyListener
 from sftp cimport PySFTP
 from publickey cimport PyPublicKeySystem
@@ -496,8 +496,9 @@ cdef class Session:
         with nogil:
             channel = c_ssh2.libssh2_scp_recv(
                 self._session, _path, statinfo._stat)
-        if channel is not NULL:
-            return PyChannel(channel, self), statinfo
+        if channel is NULL:
+            raise SCPError("Error opening remote file %s for reading", path)
+        return PyChannel(channel, self), statinfo
 
     IF EMBEDDED_LIB:
         def scp_recv2(self, path not None):
@@ -517,8 +518,9 @@ cdef class Session:
             with nogil:
                 channel = c_ssh2.libssh2_scp_recv2(
                     self._session, _path, fileinfo._stat)
-            if channel is not NULL:
-                return PyChannel(channel, self), fileinfo
+            if channel is NULL:
+                raise SCPError("Error opening remote file %s for reading", path)
+            return PyChannel(channel, self), fileinfo
 
     def scp_send(self, path not None, int mode, size_t size):
         """Deprecated in favour of scp_send64. Send file via SCP.
@@ -537,8 +539,9 @@ cdef class Session:
         with nogil:
             channel = c_ssh2.libssh2_scp_send(
                 self._session, _path, mode, size)
-        if channel is not NULL:
-            return PyChannel(channel, self)
+        if channel is NULL:
+            raise SCPError("Error opening remote file %s for writing", path)
+        return PyChannel(channel, self)
 
     def scp_send64(self, path not None, int mode, c_ssh2.libssh2_uint64_t size,
                    time_t mtime, time_t atime):
@@ -558,8 +561,9 @@ cdef class Session:
         with nogil:
             channel = c_ssh2.libssh2_scp_send64(
                 self._session, _path, mode, size, mtime, atime)
-        if channel is not NULL:
-            return PyChannel(channel, self)
+        if channel is NULL:
+            raise SCPError("Error opening remote file %s for writing", path)
+        return PyChannel(channel, self)
 
     def publickey_init(self):
         """Initialise public key subsystem for managing remote server

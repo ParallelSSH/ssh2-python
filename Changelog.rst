@@ -1,6 +1,15 @@
 Change Log
 =============
 
+0.11.0
++++++++
+
+Changes
+--------
+
+* SCP errors now raise exceptions.
+* SFTP open handle errors now raise exceptions.
+
 0.10.0
 ++++++++
 
