@@ -40,7 +40,7 @@ jobs:
         - brew update
       install:
         - brew install libssh2
-        - sudo pip2 install -U delocate twine wheel pip setuptools
+        - sudo -H pip2 install -U delocate twine wheel pip setuptools
         - pip2 wheel .
       script:
         - delocate-listdeps --all *.whl
@@ -66,7 +66,7 @@ jobs:
         - brew update
       install:
         - brew install libssh2
-        - sudo pip2 install -U delocate twine wheel pip setuptools
+        - sudo -H pip2 install -U delocate twine wheel pip setuptools
         - pip2 wheel .
       script:
         - delocate-listdeps --all *.whl
@@ -95,8 +95,8 @@ jobs:
         - python --version
         - wget --no-check-certificate https://bootstrap.pypa.io/get-pip.py
         - sudo python get-pip.py
-        - sudo pip install -U pip
-        - sudo pip install -U delocate twine wheel setuptools
+        - sudo -H pip install -U pip
+        - sudo -H pip install -U delocate twine wheel setuptools
         - pip wheel .
       script:
         - delocate-listdeps --all *.whl
