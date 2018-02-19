@@ -1,5 +1,5 @@
 # This file is part of ssh2-python.
-# Copyright (C) 2017 Panos Kittenis
+# Copyright (C) 2017-2018 Panos Kittenis
 
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -16,59 +16,231 @@
 
 
 class AgentError(Exception):
-    pass
+    """Base class for all SSH Agent errors"""
 
 
 class AuthenticationError(Exception):
-    pass
+    """Base class for all authentication errors"""
 
 
 class AgentConnectionError(AgentError):
-    pass
+    """Raised on SSH Agent connection errors"""
 
 
 class AgentAuthenticationError(AuthenticationError):
-    pass
+    """Raised on SSH Agent authentication errors"""
 
 
 class AgentListIdentitiesError(AgentError):
-    pass
+    """Raised on SSH Agent list identities errors"""
 
 
 class AgentGetIdentityError(AgentError):
-    pass
+    """Raised on SSH Agent get identity errors"""
 
 
-class SessionStartupError(Exception):
-    pass
+class AgentProtocolError(Exception):
+    """Raised on SSH agent protocol errors"""
 
 
-class SessionHandshakeError(Exception):
-    pass
+class SessionError(Exception):
+    """Base class for all session errors"""
 
 
-class SessionHostKeyError(Exception):
+class SessionStartupError(SessionError):
+    """Raised on session startup errors"""
+
+
+class SessionHandshakeError(SessionError):
+    """Raised on session handshake errors"""
+
+
+class SessionHostKeyError(SessionError):
     """Raised on errors getting server host key"""
 
 
-class SCPError(Exception):
-    """Raised on SCP errors"""
+class BannerRecvError(SessionError):
+    """Raised on errors receiving banner"""
+
+
+class BannerSendError(SessionError):
+    """Raised on errors sending banner"""
+
+
+class KeyExchangeError(SessionError):
+    """Raised on errors exchanging keys"""
+
+
+class Timeout(SessionError):
+    """Raised on timeouts"""
+
+
+class HostkeyInitError(SessionError):
+    """Raised on errors initialiasing host key"""
+
+
+class HostkeySignError(SessionError):
+    """Raised on errors signing host key"""
+
+
+class DecryptError(SessionError):
+    """Raised on decryption errors"""
+
+
+class SocketDisconnectError(Exception):
+    """Raised on socket disconnection errors"""
+
+
+class ProtocolError(Exception):
+    """Raised on protocol errors"""
+
+
+class PasswordExpiredError(AuthenticationError):
+    """Raised on password expired errors"""
+
+
+class FileError(Exception):
+    """Raised on file errors"""
+
+
+class MethodNoneError(Exception):
+    """Raised on invalid method errors"""
+
+
+class PublicKeyError(Exception):
+    """Base class for all public key protocol errors"""
+
+
+class PublicKeyInitError(PublicKeyError):
+    """Raised on errors initialising public key system"""
+
+
+class PublickeyUnrecognizedError(SessionError):
+    """Raised on unrecognised public key errors"""
+
+
+class PublickeyUnverifiedError(SessionError):
+    """Raised on public key verification errors"""
 
 
 class ChannelError(Exception):
-    pass
+    """Base class for all channel errors"""
 
 
-class SFTPHandleError(Exception):
-    pass
+class ChannelOutOfOrderError(ChannelError):
+    """Raised on channel commands out of order errors"""
 
 
-class SFTPBufferTooSmall(Exception):
-    pass
+class ChannelFailure(ChannelError):
+    """Raised on channel failures"""
 
 
-class SFTPIOError(Exception):
-    pass
+class ChannelRequestDenied(ChannelError):
+    """Raised on channel request denied errors"""
+
+
+class ChannelUnknownError(ChannelError):
+    """Raised on unknown channel errors"""
+
+
+class ChannelWindowExceeded(ChannelError):
+    """Raised on channel window exceeded errors"""
+
+
+class ChannelPacketExceeded(ChannelError):
+    """Raised on channel max packet length exceeded errors"""
+
+
+class ChannelClosedError(ChannelError):
+    """Raised on channel closed errors"""
+
+
+class ChannelEOFSentError(ChannelError):
+    """Raised on channel EOF errors"""
+
+
+class SCPError(Exception):
+    """Raised on SCP errors. Base class for all SCP exceptions."""
+
+
+class SCPProtocolError(SCPError):
+    """Raised on SCP protocol errors"""
+
+
+class ZlibError(SessionError):
+    """Raised on zlib errors"""
+
+
+class SocketTimeout(SessionError):
+    """Raised on socket timeouts"""
+
+
+class RequestDeniedError(SessionError):
+    """Raised on request denied errors"""
+
+
+class MethodNotSupported(SessionError):
+    """Raised on authentication method not supported errors"""
+
+
+class InvalidError(Exception):
+    """Raised on invalid request errors"""
+
+
+class InvalidPollTypeError(Exception):
+    """Raised on invalid poll type errors"""
+
+
+class PublicKeyProtocolError(Exception):
+    """Raised on public key protocol errors"""
+
+
+class BufferTooSmallError(Exception):
+    """Raised on buffer too small errors"""
+
+
+class BadUseError(Exception):
+    """Raised on API bad use errors"""
+
+
+class CompressError(SessionError):
+    """Raised on compression errors"""
+
+
+class OutOfBoundaryError(Exception):
+    """Raised on out of boundary errors"""
+
+
+class SocketRecvError(Exception):
+    """Raised on socket receive errors"""
+
+
+class EncryptError(SessionError):
+    """Raised on encryption errors"""
+
+
+class BadSocketError(Exception):
+    """Raised on use of bad socket errors"""
+
+
+class SFTPError(Exception):
+    """Base class for SFTP errors"""
+
+
+class SFTPProtocolError(SFTPError):
+    """Raised on SFTP protocol errors"""
+
+
+class SFTPHandleError(SFTPError):
+    """Raised on SFTP handle errors"""
+
+
+class SFTPBufferTooSmall(SFTPError):
+    """Raised on SFTP buffer too small errors"""
+
+
+class SFTPIOError(SFTPError):
+    """Raised on SFTP I/O errors"""
 
 
 class KnownHostError(Exception):

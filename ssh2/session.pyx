@@ -20,11 +20,12 @@ from libc.time cimport time_t
 from agent cimport PyAgent, agent_auth, agent_init, init_connect_agent
 from channel cimport PyChannel
 from exceptions import SessionHandshakeError, SessionStartupError, \
-    AuthenticationError, SessionHostKeyError, SCPError
+    AuthenticationError, SessionHostKeyError, SCPError, KnownHostError, \
+    PublicKeyInitError, ChannelError
 from listener cimport PyListener
 from sftp cimport PySFTP
 from publickey cimport PyPublicKeySystem
-from utils cimport to_bytes, to_str
+from utils cimport to_bytes, to_str, _handle_error_codes
 from statinfo cimport StatInfo
 from knownhost cimport PyKnownHost
 IF EMBEDDED_LIB:
@@ -57,12 +58,12 @@ cdef class Session:
         self.sock = None
 
     def __dealloc__(self):
-        with nogil:
-            if self._session is not NULL:
+        if self._session is not NULL:
+            with nogil:
                 c_ssh2.libssh2_session_disconnect(
                     self._session, "end")
                 c_ssh2.libssh2_session_free(self._session)
-                self._session = NULL
+        self._session = NULL
 
     def disconnect(self):
         with nogil:
@@ -263,6 +264,10 @@ cdef class Session:
                     self._session, _username, username_len, _publickeyfiledata,
                     pubkeydata_len, _privatekeyfiledata,
                     privatekeydata_len, _passphrase)
+                if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
+                    with gil:
+                        raise AuthenticationError(
+                            "Error authenticating user %s", username)
             return rc
 
     def userauth_password(self, username not None, password not None):
@@ -341,9 +346,10 @@ cdef class Session:
         with nogil:
             channel = c_ssh2.libssh2_channel_open_session(
                 self._session)
-            if channel is NULL:
-                with gil:
-                    return None
+        if channel is NULL:
+            _handle_error_codes(c_ssh2.libssh2_session_last_errno(
+                self._session))
+            return
         return PyChannel(channel, self)
 
     def direct_tcpip_ex(self, host not None, int port,
@@ -356,9 +362,10 @@ cdef class Session:
         with nogil:
             channel = c_ssh2.libssh2_channel_direct_tcpip_ex(
                 self._session, _host, port, _shost, sport)
-            if channel is NULL:
-                with gil:
-                    return
+        if channel is NULL:
+            _handle_error_codes(c_ssh2.libssh2_session_last_errno(
+                self._session))
+            return
         return PyChannel(channel, self)
 
     def direct_tcpip(self, host not None, int port):
@@ -368,9 +375,10 @@ cdef class Session:
         with nogil:
             channel = c_ssh2.libssh2_channel_direct_tcpip(
                 self._session, _host, port)
-            if channel is NULL:
-                with gil:
-                    return
+        if channel is NULL:
+            _handle_error_codes(c_ssh2.libssh2_session_last_errno(
+                self._session))
+            return
         return PyChannel(channel, self)
 
     def block_directions(self):
@@ -412,6 +420,8 @@ cdef class Session:
             listener = c_ssh2.libssh2_channel_forward_listen(
                 self._session, port)
         if listener is NULL:
+            _handle_error_codes(c_ssh2.libssh2_session_last_errno(
+                self._session))
             return
         return PyListener(listener, self)
 
@@ -424,6 +434,8 @@ cdef class Session:
             listener = c_ssh2.libssh2_channel_forward_listen_ex(
                 self._session, _host, port, &bound_port, queue_maxsize)
         if listener is NULL:
+            _handle_error_codes(c_ssh2.libssh2_session_last_errno(
+                self._session))
             return
         return PyListener(listener, self)
 
@@ -571,8 +583,9 @@ cdef class Session:
         cdef c_pkey.LIBSSH2_PUBLICKEY *_pkey
         with nogil:
             _pkey = c_pkey.libssh2_publickey_init(self._session)
-        if _pkey is not NULL:
-            return PyPublicKeySystem(_pkey, self)
+        if _pkey is NULL:
+            raise PublicKeyInitError
+        return PyPublicKeySystem(_pkey, self)
 
     def hostkey_hash(self, int hash_type):
         """Get computed digest of the remote system's host key.
@@ -622,5 +635,5 @@ cdef class Session:
             known_hosts = c_ssh2.libssh2_knownhost_init(
                 self._session)
         if known_hosts is NULL:
-            return
+            raise KnownHostError
         return PyKnownHost(self, known_hosts)
