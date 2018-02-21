@@ -15,11 +15,15 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 
-class AgentError(Exception):
+class SSH2Error(Exception):
+    """Base class for all ssh2-python errors"""
+
+
+class AgentError(SSH2Error):
     """Base class for all SSH Agent errors"""
 
 
-class AuthenticationError(Exception):
+class AuthenticationError(SSH2Error):
     """Base class for all authentication errors"""
 
 
@@ -39,11 +43,11 @@ class AgentGetIdentityError(AgentError):
     """Raised on SSH Agent get identity errors"""
 
 
-class AgentProtocolError(Exception):
+class AgentProtocolError(SSH2Error):
     """Raised on SSH agent protocol errors"""
 
 
-class SessionError(Exception):
+class SessionError(SSH2Error):
     """Base class for all session errors"""
 
 
@@ -87,11 +91,11 @@ class DecryptError(SessionError):
     """Raised on decryption errors"""
 
 
-class SocketDisconnectError(Exception):
+class SocketDisconnectError(SSH2Error):
     """Raised on socket disconnection errors"""
 
 
-class ProtocolError(Exception):
+class ProtocolError(SSH2Error):
     """Raised on protocol errors"""
 
 
@@ -99,15 +103,15 @@ class PasswordExpiredError(AuthenticationError):
     """Raised on password expired errors"""
 
 
-class FileError(Exception):
+class FileError(SSH2Error):
     """Raised on file errors"""
 
 
-class MethodNoneError(Exception):
+class MethodNoneError(SSH2Error):
     """Raised on invalid method errors"""
 
 
-class PublicKeyError(Exception):
+class PublicKeyError(SSH2Error):
     """Base class for all public key protocol errors"""
 
 
@@ -115,15 +119,15 @@ class PublicKeyInitError(PublicKeyError):
     """Raised on errors initialising public key system"""
 
 
-class PublickeyUnrecognizedError(SessionError):
+class PublickeyUnrecognizedError(AuthenticationError):
     """Raised on unrecognised public key errors"""
 
 
-class PublickeyUnverifiedError(SessionError):
+class PublickeyUnverifiedError(AuthenticationError):
     """Raised on public key verification errors"""
 
 
-class ChannelError(Exception):
+class ChannelError(SSH2Error):
     """Base class for all channel errors"""
 
 
@@ -159,7 +163,7 @@ class ChannelEOFSentError(ChannelError):
     """Raised on channel EOF errors"""
 
 
-class SCPError(Exception):
+class SCPError(SSH2Error):
     """Raised on SCP errors. Base class for all SCP exceptions."""
 
 
@@ -183,23 +187,23 @@ class MethodNotSupported(SessionError):
     """Raised on authentication method not supported errors"""
 
 
-class InvalidError(Exception):
+class InvalidRequestError(SSH2Error):
     """Raised on invalid request errors"""
 
 
-class InvalidPollTypeError(Exception):
+class InvalidPollTypeError(SSH2Error):
     """Raised on invalid poll type errors"""
 
 
-class PublicKeyProtocolError(Exception):
+class PublicKeyProtocolError(SSH2Error):
     """Raised on public key protocol errors"""
 
 
-class BufferTooSmallError(Exception):
+class BufferTooSmallError(SSH2Error):
     """Raised on buffer too small errors"""
 
 
-class BadUseError(Exception):
+class BadUseError(SSH2Error):
     """Raised on API bad use errors"""
 
 
@@ -207,23 +211,27 @@ class CompressError(SessionError):
     """Raised on compression errors"""
 
 
-class OutOfBoundaryError(Exception):
+class OutOfBoundaryError(SSH2Error):
     """Raised on out of boundary errors"""
 
 
-class SocketRecvError(Exception):
+class SocketRecvError(SSH2Error):
     """Raised on socket receive errors"""
+
+
+class SocketSendError(SSH2Error):
+    """Raised on socket send errors"""
 
 
 class EncryptError(SessionError):
     """Raised on encryption errors"""
 
 
-class BadSocketError(Exception):
+class BadSocketError(SSH2Error):
     """Raised on use of bad socket errors"""
 
 
-class SFTPError(Exception):
+class SFTPError(SSH2Error):
     """Base class for SFTP errors"""
 
 
@@ -243,7 +251,7 @@ class SFTPIOError(SFTPError):
     """Raised on SFTP I/O errors"""
 
 
-class KnownHostError(Exception):
+class KnownHostError(SSH2Error):
     """Base class for KnownHost errors"""
 
 
@@ -289,3 +297,7 @@ class KnownHostWriteFileError(KnownHostError):
 
 class KnownHostGetError(KnownHostError):
     """Raised on errors retrieving known host entries"""
+
+
+class UnknownError(SSH2Error):
+    """Raised on non-specific or unknown errors"""

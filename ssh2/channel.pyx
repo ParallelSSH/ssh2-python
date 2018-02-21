@@ -17,7 +17,7 @@
 from libc.stdlib cimport malloc, free
 from session cimport Session
 from exceptions import ChannelError
-from utils cimport to_bytes
+from utils cimport to_bytes, handle_error_codes
 
 cimport c_ssh2
 cimport sftp
@@ -37,11 +37,11 @@ cdef class Channel:
         self._session = session
 
     def __dealloc__(self):
-        with nogil:
-            if self._channel is not NULL and self._session is not None:
+        if self._channel is not NULL and self._session is not None:
+            with nogil:
                 c_ssh2.libssh2_channel_close(self._channel)
                 c_ssh2.libssh2_channel_free(self._channel)
-                self._channel = NULL
+        self._channel = NULL
 
     @property
     def session(self):
@@ -59,11 +59,8 @@ cdef class Channel:
         with nogil:
             rc = c_ssh2.libssh2_channel_request_pty(
                 self._channel, _term)
-            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
-                with gil:
-                    raise ChannelError(
-                        "Error requesting PTY with error code %s",
-                        rc)
+        if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
+            handle_error_codes(rc)
         return rc
 
     def execute(self, command not None):
@@ -83,11 +80,10 @@ cdef class Channel:
         with nogil:
             rc = c_ssh2.libssh2_channel_exec(
                 self._channel, _command)
-            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
-                with gil:
-                    raise ChannelError(
-                        "Error executing command %s - error code %s",
-                        command, rc)
+        if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
+            raise ChannelError(
+                "Error executing command %s - error code %s",
+                command, rc)
         return rc
 
     def subsystem(self, subsystem not None):

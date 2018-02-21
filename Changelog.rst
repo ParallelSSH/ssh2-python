@@ -1,6 +1,17 @@
 Change Log
 =============
 
+0.12.0
+++++++++
+
+Changes
+---------
+
+* Session functions now raise exceptions.
+* Channel functions now raise specific exceptions.
+* Added exceptions for all known libssh2 error codes.
+* Added ``ssh2.utils.handle_error_codes`` function for raising appropriate exception from error code.
+
 0.11.0
 +++++++
 

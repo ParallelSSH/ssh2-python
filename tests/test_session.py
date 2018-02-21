@@ -5,7 +5,7 @@ from .base_test import SSH2TestCase
 from ssh2.session import Session, LIBSSH2_HOSTKEY_HASH_MD5, \
     LIBSSH2_HOSTKEY_HASH_SHA1
 from ssh2.exceptions import AuthenticationError, AgentAuthenticationError, \
-    SCPError
+    SCPError, RequestDeniedError, InvalidRequestError, Timeout, SocketSendError
 
 
 class SessionTestCase(SSH2TestCase):
@@ -179,3 +179,18 @@ class SessionTestCase(SSH2TestCase):
         for _type in [LIBSSH2_HOSTKEY_HASH_MD5, LIBSSH2_HOSTKEY_HASH_SHA1]:
             hostkey = self.session.hostkey_hash(_type)
             self.assertTrue(len(hostkey) > 0)
+
+    def test_forward_listen_failure(self):
+        self.assertEqual(self._auth(), 0)
+        self.assertRaises(RequestDeniedError, self.session.forward_listen, 80)
+
+    def test_sftp_init_failure(self):
+        self.assertRaises(InvalidRequestError, self.session.sftp_init)
+
+    def test_open_channel_failure(self):
+        self.sock.close()
+        self.assertRaises(SocketSendError, self.session.open_session)
+
+    def test_direct_tcpip_failure(self):
+        self.sock.close()
+        self.assertRaises(SocketSendError, self.session.direct_tcpip, 'localhost', 80)

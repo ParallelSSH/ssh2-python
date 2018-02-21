@@ -25,7 +25,7 @@ from exceptions import SessionHandshakeError, SessionStartupError, \
 from listener cimport PyListener
 from sftp cimport PySFTP
 from publickey cimport PyPublicKeySystem
-from utils cimport to_bytes, to_str, _handle_error_codes
+from utils cimport to_bytes, to_str, handle_error_codes
 from statinfo cimport StatInfo
 from knownhost cimport PyKnownHost
 IF EMBEDDED_LIB:
@@ -347,7 +347,7 @@ cdef class Session:
             channel = c_ssh2.libssh2_channel_open_session(
                 self._session)
         if channel is NULL:
-            _handle_error_codes(c_ssh2.libssh2_session_last_errno(
+            handle_error_codes(c_ssh2.libssh2_session_last_errno(
                 self._session))
             return
         return PyChannel(channel, self)
@@ -363,12 +363,17 @@ cdef class Session:
             channel = c_ssh2.libssh2_channel_direct_tcpip_ex(
                 self._session, _host, port, _shost, sport)
         if channel is NULL:
-            _handle_error_codes(c_ssh2.libssh2_session_last_errno(
+            handle_error_codes(c_ssh2.libssh2_session_last_errno(
                 self._session))
             return
         return PyChannel(channel, self)
 
     def direct_tcpip(self, host not None, int port):
+        """Open direct TCP/IP channel to host:port
+
+        Channel will be listening on an available open port on client side
+        as assigned by OS.
+        """
         cdef c_ssh2.LIBSSH2_CHANNEL *channel
         cdef bytes b_host = to_bytes(host)
         cdef char *_host = b_host
@@ -376,7 +381,7 @@ cdef class Session:
             channel = c_ssh2.libssh2_channel_direct_tcpip(
                 self._session, _host, port)
         if channel is NULL:
-            _handle_error_codes(c_ssh2.libssh2_session_last_errno(
+            handle_error_codes(c_ssh2.libssh2_session_last_errno(
                 self._session))
             return
         return PyChannel(channel, self)
@@ -420,7 +425,7 @@ cdef class Session:
             listener = c_ssh2.libssh2_channel_forward_listen(
                 self._session, port)
         if listener is NULL:
-            _handle_error_codes(c_ssh2.libssh2_session_last_errno(
+            handle_error_codes(c_ssh2.libssh2_session_last_errno(
                 self._session))
             return
         return PyListener(listener, self)
@@ -434,7 +439,7 @@ cdef class Session:
             listener = c_ssh2.libssh2_channel_forward_listen_ex(
                 self._session, _host, port, &bound_port, queue_maxsize)
         if listener is NULL:
-            _handle_error_codes(c_ssh2.libssh2_session_last_errno(
+            handle_error_codes(c_ssh2.libssh2_session_last_errno(
                 self._session))
             return
         return PyListener(listener, self)
@@ -448,6 +453,8 @@ cdef class Session:
         with nogil:
             _sftp = c_sftp.libssh2_sftp_init(self._session)
         if _sftp is NULL:
+            handle_error_codes(c_ssh2.libssh2_session_last_errno(
+                self._session))
             return
         return PySFTP(_sftp, self)
 
@@ -470,10 +477,10 @@ cdef class Session:
         return msg
 
     def last_errno(self):
-        """Retrieve last error message from libssh2, if any.
-        Returns empty string on no error message.
+        """Retrieve last error number from libssh2, if any.
+        Returns 0 on no last error.
 
-        :rtype: str
+        :rtype: int
         """
         cdef int rc
         with nogil:

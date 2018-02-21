@@ -1,4 +1,5 @@
 from .base_test import SSH2TestCase
+from ssh2.exceptions import SocketSendError
 
 
 class ChannelTestCase(SSH2TestCase):
@@ -56,6 +57,12 @@ class ChannelTestCase(SSH2TestCase):
         self.assertTrue(size > 0)
         lines = [s.decode('utf-8') for s in data.splitlines()]
         self.assertListEqual(expected, lines)
+
+    def test_pty_failure(self):
+        self.assertEqual(self._auth(), 0)
+        chan = self.session.open_session()
+        self.sock.close()
+        self.assertRaises(SocketSendError, chan.pty)
 
     def test_write_stdin(self):
         self.assertEqual(self._auth(), 0)

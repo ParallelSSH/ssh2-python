@@ -86,7 +86,16 @@ def wait_socket(_socket not None, Session session, timeout=1):
     return select(readfds, writefds, (), timeout)
 
 
-cdef int _handle_error_codes(int errcode) except -1:
+cpdef int handle_error_codes(int errcode) except -1:
+    """Raise appropriate exception for given error code.
+
+    Returns 0 on no error.
+
+    :raises: Appropriate exception from :py:mod:`ssh2.exceptions`.
+
+    :param errcode: Error code as returned by
+      :py:func:`ssh2.session.Session.last_errno`
+    """
     if errcode >= 0:
         return 0
     elif errcode == error_codes._LIBSSH2_ERROR_BANNER_RECV:
@@ -148,7 +157,7 @@ cdef int _handle_error_codes(int errcode) except -1:
     elif errcode == error_codes._LIBSSH2_ERROR_METHOD_NOT_SUPPORTED:
         raise exceptions.MethodNotSupported
     elif errcode == error_codes._LIBSSH2_ERROR_INVAL:
-        raise exceptions.InvalidError
+        raise exceptions.InvalidRequestError
     elif errcode == error_codes._LIBSSH2_ERROR_INVALID_POLL_TYPE:
         raise exceptions.InvalidPollTypeError
     elif errcode == error_codes._LIBSSH2_ERROR_PUBLICKEY_PROTOCOL:
@@ -165,11 +174,14 @@ cdef int _handle_error_codes(int errcode) except -1:
         raise exceptions.AgentProtocolError
     elif errcode == error_codes._LIBSSH2_ERROR_SOCKET_RECV:
         raise exceptions.SocketRecvError
+    elif errcode == error_codes._LIBSSH2_ERROR_SOCKET_SEND:
+        raise exceptions.SocketSendError
     elif errcode == error_codes._LIBSSH2_ERROR_ENCRYPT:
         raise exceptions.EncryptError
     elif errcode == error_codes._LIBSSH2_ERROR_BAD_SOCKET:
         raise exceptions.BadSocketError
     elif errcode == error_codes._LIBSSH2_ERROR_KNOWN_HOSTS:
         raise exceptions.KnownHostError
-    else:
-        return 0
+    elif errcode != error_codes._LIBSSH2_ERROR_EAGAIN and errcode < 0:
+        raise exceptions.UnknownError("Error code %s not known", errcode)
+    return 0

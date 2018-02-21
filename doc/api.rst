@@ -14,3 +14,4 @@ API Documentation
    exceptions
    statinfo
    fileinfo
+   utils
