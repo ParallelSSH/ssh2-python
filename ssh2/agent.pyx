@@ -91,7 +91,7 @@ cdef void clear_agent(c_ssh2.LIBSSH2_AGENT *agent) nogil:
 
 
 cdef object PyAgent(c_ssh2.LIBSSH2_AGENT *agent, Session session):
-    cdef Agent _agent = Agent(session)
+    cdef Agent _agent = Agent.__new__(Agent, session)
     _agent._agent = agent
     return _agent
 

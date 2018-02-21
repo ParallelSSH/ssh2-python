@@ -942,6 +942,9 @@ static CYTHON_INLINE PyObject *__Pyx_PyCFunction_FastCall(PyObject *func, PyObje
 #define __Pyx_PyCFunction_FastCall(func, args, nargs)  (assert(0), NULL)
 #endif
 
+/* ExtTypeTest.proto */
+static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type);
+
 /* RaiseDoubleKeywords.proto */
 static void __Pyx_RaiseDoubleKeywordsError(const char* func_name, PyObject* kw_name);
 
@@ -2166,7 +2169,7 @@ static void __pyx_f_4ssh2_5agent_clear_agent(LIBSSH2_AGENT *__pyx_v_agent) {
  * 
  * 
  * cdef object PyAgent(c_ssh2.LIBSSH2_AGENT *agent, Session session):             # <<<<<<<<<<<<<<
- *     cdef Agent _agent = Agent(session)
+ *     cdef Agent _agent = Agent.__new__(Agent, session)
  *     _agent._agent = agent
  */
 
@@ -2181,7 +2184,7 @@ static PyObject *__pyx_f_4ssh2_5agent_PyAgent(LIBSSH2_AGENT *__pyx_v_agent, stru
   /* "ssh2/agent.pyx":94
  * 
  * cdef object PyAgent(c_ssh2.LIBSSH2_AGENT *agent, Session session):
- *     cdef Agent _agent = Agent(session)             # <<<<<<<<<<<<<<
+ *     cdef Agent _agent = Agent.__new__(Agent, session)             # <<<<<<<<<<<<<<
  *     _agent._agent = agent
  *     return _agent
  */
@@ -2190,15 +2193,16 @@ static PyObject *__pyx_f_4ssh2_5agent_PyAgent(LIBSSH2_AGENT *__pyx_v_agent, stru
   __Pyx_INCREF(((PyObject *)__pyx_v_session));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_session));
   PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)__pyx_v_session));
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4ssh2_5agent_Agent), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 94, __pyx_L1_error)
+  __pyx_t_2 = __pyx_tp_new_4ssh2_5agent_Agent(((PyTypeObject *)__pyx_ptype_4ssh2_5agent_Agent), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 94, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (!(likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_4ssh2_5agent_Agent)))) __PYX_ERR(1, 94, __pyx_L1_error)
   __pyx_v__agent = ((struct __pyx_obj_4ssh2_5agent_Agent *)__pyx_t_2);
   __pyx_t_2 = 0;
 
   /* "ssh2/agent.pyx":95
  * cdef object PyAgent(c_ssh2.LIBSSH2_AGENT *agent, Session session):
- *     cdef Agent _agent = Agent(session)
+ *     cdef Agent _agent = Agent.__new__(Agent, session)
  *     _agent._agent = agent             # <<<<<<<<<<<<<<
  *     return _agent
  * 
@@ -2206,7 +2210,7 @@ static PyObject *__pyx_f_4ssh2_5agent_PyAgent(LIBSSH2_AGENT *__pyx_v_agent, stru
   __pyx_v__agent->_agent = __pyx_v_agent;
 
   /* "ssh2/agent.pyx":96
- *     cdef Agent _agent = Agent(session)
+ *     cdef Agent _agent = Agent.__new__(Agent, session)
  *     _agent._agent = agent
  *     return _agent             # <<<<<<<<<<<<<<
  * 
@@ -2221,7 +2225,7 @@ static PyObject *__pyx_f_4ssh2_5agent_PyAgent(LIBSSH2_AGENT *__pyx_v_agent, stru
  * 
  * 
  * cdef object PyAgent(c_ssh2.LIBSSH2_AGENT *agent, Session session):             # <<<<<<<<<<<<<<
- *     cdef Agent _agent = Agent(session)
+ *     cdef Agent _agent = Agent.__new__(Agent, session)
  *     _agent._agent = agent
  */
 
@@ -4218,6 +4222,19 @@ static CYTHON_INLINE PyObject * __Pyx_PyCFunction_FastCall(PyObject *func_obj, P
     }
 }
 #endif
+
+/* ExtTypeTest */
+  static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {
+    if (unlikely(!type)) {
+        PyErr_SetString(PyExc_SystemError, "Missing type object");
+        return 0;
+    }
+    if (likely(__Pyx_TypeCheck(obj, type)))
+        return 1;
+    PyErr_Format(PyExc_TypeError, "Cannot convert %.200s to %.200s",
+                 Py_TYPE(obj)->tp_name, type->tp_name);
+    return 0;
+}
 
 /* RaiseDoubleKeywords */
   static void __Pyx_RaiseDoubleKeywordsError(

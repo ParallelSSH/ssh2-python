@@ -18,7 +18,7 @@ cimport c_ssh2
 
 
 cdef object PyPublicKey(c_ssh2.libssh2_agent_publickey *pkey):
-    cdef PublicKey _pkey = PublicKey()
+    cdef PublicKey _pkey = PublicKey.__new__(PublicKey)
     _pkey._pkey = pkey
     return _pkey
 

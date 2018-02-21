@@ -880,12 +880,8 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject
 /* GetBuiltinName.proto */
 static PyObject *__Pyx_GetBuiltinName(PyObject *name);
 
-/* PyObjectCall.proto */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw);
-#else
-#define __Pyx_PyObject_Call(func, arg, kw) PyObject_Call(func, arg, kw)
-#endif
+/* ExtTypeTest.proto */
+static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type);
 
 /* RaiseDoubleKeywords.proto */
 static void __Pyx_RaiseDoubleKeywordsError(const char* func_name, PyObject* kw_name);
@@ -924,6 +920,13 @@ static PyObject *__Pyx_PyFunction_FastCallDict(PyObject *func, PyObject **args, 
 static CYTHON_INLINE PyObject *__Pyx_PyCFunction_FastCall(PyObject *func, PyObject **args, Py_ssize_t nargs);
 #else
 #define __Pyx_PyCFunction_FastCall(func, args, nargs)  (assert(0), NULL)
+#endif
+
+/* PyObjectCall.proto */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw);
+#else
+#define __Pyx_PyObject_Call(func, arg, kw) PyObject_Call(func, arg, kw)
 #endif
 
 /* PyThreadStateGet.proto */
@@ -1251,7 +1254,7 @@ static PyObject *__pyx_tuple__3;
  * 
  * 
  * cdef object PyChannel(c_ssh2.LIBSSH2_CHANNEL *channel, Session session):             # <<<<<<<<<<<<<<
- *     cdef Channel _channel = Channel(session)
+ *     cdef Channel _channel = Channel.__new__(Channel, session)
  *     _channel._channel = channel
  */
 
@@ -1266,7 +1269,7 @@ static PyObject *__pyx_f_4ssh2_7channel_PyChannel(LIBSSH2_CHANNEL *__pyx_v_chann
   /* "ssh2/channel.pyx":28
  * 
  * cdef object PyChannel(c_ssh2.LIBSSH2_CHANNEL *channel, Session session):
- *     cdef Channel _channel = Channel(session)             # <<<<<<<<<<<<<<
+ *     cdef Channel _channel = Channel.__new__(Channel, session)             # <<<<<<<<<<<<<<
  *     _channel._channel = channel
  *     return _channel
  */
@@ -1275,15 +1278,16 @@ static PyObject *__pyx_f_4ssh2_7channel_PyChannel(LIBSSH2_CHANNEL *__pyx_v_chann
   __Pyx_INCREF(((PyObject *)__pyx_v_session));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_session));
   PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)__pyx_v_session));
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4ssh2_7channel_Channel), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __pyx_t_2 = __pyx_tp_new_4ssh2_7channel_Channel(((PyTypeObject *)__pyx_ptype_4ssh2_7channel_Channel), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (!(likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_4ssh2_7channel_Channel)))) __PYX_ERR(0, 28, __pyx_L1_error)
   __pyx_v__channel = ((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_t_2);
   __pyx_t_2 = 0;
 
   /* "ssh2/channel.pyx":29
  * cdef object PyChannel(c_ssh2.LIBSSH2_CHANNEL *channel, Session session):
- *     cdef Channel _channel = Channel(session)
+ *     cdef Channel _channel = Channel.__new__(Channel, session)
  *     _channel._channel = channel             # <<<<<<<<<<<<<<
  *     return _channel
  * 
@@ -1291,7 +1295,7 @@ static PyObject *__pyx_f_4ssh2_7channel_PyChannel(LIBSSH2_CHANNEL *__pyx_v_chann
   __pyx_v__channel->_channel = __pyx_v_channel;
 
   /* "ssh2/channel.pyx":30
- *     cdef Channel _channel = Channel(session)
+ *     cdef Channel _channel = Channel.__new__(Channel, session)
  *     _channel._channel = channel
  *     return _channel             # <<<<<<<<<<<<<<
  * 
@@ -1306,7 +1310,7 @@ static PyObject *__pyx_f_4ssh2_7channel_PyChannel(LIBSSH2_CHANNEL *__pyx_v_chann
  * 
  * 
  * cdef object PyChannel(c_ssh2.LIBSSH2_CHANNEL *channel, Session session):             # <<<<<<<<<<<<<<
- *     cdef Channel _channel = Channel(session)
+ *     cdef Channel _channel = Channel.__new__(Channel, session)
  *     _channel._channel = channel
  */
 
@@ -7846,25 +7850,18 @@ static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
     return result;
 }
 
-/* PyObjectCall */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
-    PyObject *result;
-    ternaryfunc call = func->ob_type->tp_call;
-    if (unlikely(!call))
-        return PyObject_Call(func, arg, kw);
-    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
-        return NULL;
-    result = (*call)(func, arg, kw);
-    Py_LeaveRecursiveCall();
-    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
-        PyErr_SetString(
-            PyExc_SystemError,
-            "NULL result without error in PyObject_Call");
+/* ExtTypeTest */
+static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {
+    if (unlikely(!type)) {
+        PyErr_SetString(PyExc_SystemError, "Missing type object");
+        return 0;
     }
-    return result;
+    if (likely(__Pyx_TypeCheck(obj, type)))
+        return 1;
+    PyErr_Format(PyExc_TypeError, "Cannot convert %.200s to %.200s",
+                 Py_TYPE(obj)->tp_name, type->tp_name);
+    return 0;
 }
-#endif
 
 /* RaiseDoubleKeywords */
 static void __Pyx_RaiseDoubleKeywordsError(
@@ -8187,6 +8184,26 @@ static CYTHON_INLINE PyObject * __Pyx_PyCFunction_FastCall(PyObject *func_obj, P
     } else {
         return (*((__Pyx_PyCFunctionFast)meth)) (self, args, nargs);
     }
+}
+#endif
+
+/* PyObjectCall */
+  #if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
+    PyObject *result;
+    ternaryfunc call = func->ob_type->tp_call;
+    if (unlikely(!call))
+        return PyObject_Call(func, arg, kw);
+    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
+        return NULL;
+    result = (*call)(func, arg, kw);
+    Py_LeaveRecursiveCall();
+    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
+        PyErr_SetString(
+            PyExc_SystemError,
+            "NULL result without error in PyObject_Call");
+    }
+    return result;
 }
 #endif
 

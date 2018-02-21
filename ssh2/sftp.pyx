@@ -105,7 +105,7 @@ LIBSSH2_SFTP_ST_NOSUID = c_sftp.LIBSSH2_SFTP_ST_NOSUID
 
 
 cdef object PySFTP(c_sftp.LIBSSH2_SFTP *sftp, Session session):
-    cdef SFTP _sftp = SFTP(session)
+    cdef SFTP _sftp = SFTP.__new__(SFTP, session)
     _sftp._sftp = sftp
     return _sftp
 

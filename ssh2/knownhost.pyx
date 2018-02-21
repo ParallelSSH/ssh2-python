@@ -50,19 +50,19 @@ IF EMBEDDED_LIB:
 
 
 cdef KnownHost PyKnownHost(Session session, c_ssh2.LIBSSH2_KNOWNHOSTS *_ptr):
-    cdef KnownHost known_host = KnownHost(session)
+    cdef KnownHost known_host = KnownHost.__new__(KnownHost, session)
     known_host._ptr = _ptr
     return known_host
 
 
 cdef KnownHostEntry PyKnownHostEntry(c_ssh2.libssh2_knownhost *_entry):
-    cdef KnownHostEntry entry = KnownHostEntry()
+    cdef KnownHostEntry entry = KnownHostEntry.__new__(KnownHostEntry)
     entry._store = _entry
     return entry
 
 
 cdef KnownHostEntry PyNewKnownHostEntry():
-    cdef KnownHostEntry entry = KnownHostEntry()
+    cdef KnownHostEntry entry = KnownHostEntry.__new__(KnownHostEntry)
     cdef c_ssh2.libssh2_knownhost *_entry
     with nogil:
         _entry = <c_ssh2.libssh2_knownhost *>malloc(

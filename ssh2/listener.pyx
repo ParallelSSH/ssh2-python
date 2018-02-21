@@ -21,7 +21,7 @@ cimport c_ssh2
 
 
 cdef object PyListener(c_ssh2.LIBSSH2_LISTENER *listener, Session session):
-    cdef Listener _listener = Listener(session)
+    cdef Listener _listener = Listener.__new__(Listener, session)
     _listener._listener = listener
     return _listener
 

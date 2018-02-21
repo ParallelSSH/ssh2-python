@@ -877,12 +877,8 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject
 /* GetBuiltinName.proto */
 static PyObject *__Pyx_GetBuiltinName(PyObject *name);
 
-/* PyObjectCall.proto */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw);
-#else
-#define __Pyx_PyObject_Call(func, arg, kw) PyObject_Call(func, arg, kw)
-#endif
+/* ExtTypeTest.proto */
+static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type);
 
 /* RaiseDoubleKeywords.proto */
 static void __Pyx_RaiseDoubleKeywordsError(const char* func_name, PyObject* kw_name);
@@ -896,8 +892,12 @@ static int __Pyx_ParseOptionalKeywords(PyObject *kwds, PyObject **argnames[],\
 static void __Pyx_RaiseArgtupleInvalid(const char* func_name, int exact,
     Py_ssize_t num_min, Py_ssize_t num_max, Py_ssize_t num_found);
 
-/* ExtTypeTest.proto */
-static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type);
+/* PyObjectCall.proto */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw);
+#else
+#define __Pyx_PyObject_Call(func, arg, kw) PyObject_Call(func, arg, kw)
+#endif
 
 /* PyThreadStateGet.proto */
 #if CYTHON_FAST_THREAD_STATE
@@ -1083,7 +1083,7 @@ static PyObject *__pyx_tuple__2;
  * 
  * 
  * cdef object PyListener(c_ssh2.LIBSSH2_LISTENER *listener, Session session):             # <<<<<<<<<<<<<<
- *     cdef Listener _listener = Listener(session)
+ *     cdef Listener _listener = Listener.__new__(Listener, session)
  *     _listener._listener = listener
  */
 
@@ -1098,7 +1098,7 @@ static PyObject *__pyx_f_4ssh2_8listener_PyListener(LIBSSH2_LISTENER *__pyx_v_li
   /* "ssh2/listener.pyx":24
  * 
  * cdef object PyListener(c_ssh2.LIBSSH2_LISTENER *listener, Session session):
- *     cdef Listener _listener = Listener(session)             # <<<<<<<<<<<<<<
+ *     cdef Listener _listener = Listener.__new__(Listener, session)             # <<<<<<<<<<<<<<
  *     _listener._listener = listener
  *     return _listener
  */
@@ -1107,15 +1107,16 @@ static PyObject *__pyx_f_4ssh2_8listener_PyListener(LIBSSH2_LISTENER *__pyx_v_li
   __Pyx_INCREF(((PyObject *)__pyx_v_session));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_session));
   PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)__pyx_v_session));
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4ssh2_8listener_Listener), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 24, __pyx_L1_error)
+  __pyx_t_2 = __pyx_tp_new_4ssh2_8listener_Listener(((PyTypeObject *)__pyx_ptype_4ssh2_8listener_Listener), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (!(likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_4ssh2_8listener_Listener)))) __PYX_ERR(1, 24, __pyx_L1_error)
   __pyx_v__listener = ((struct __pyx_obj_4ssh2_8listener_Listener *)__pyx_t_2);
   __pyx_t_2 = 0;
 
   /* "ssh2/listener.pyx":25
  * cdef object PyListener(c_ssh2.LIBSSH2_LISTENER *listener, Session session):
- *     cdef Listener _listener = Listener(session)
+ *     cdef Listener _listener = Listener.__new__(Listener, session)
  *     _listener._listener = listener             # <<<<<<<<<<<<<<
  *     return _listener
  * 
@@ -1123,7 +1124,7 @@ static PyObject *__pyx_f_4ssh2_8listener_PyListener(LIBSSH2_LISTENER *__pyx_v_li
   __pyx_v__listener->_listener = __pyx_v_listener;
 
   /* "ssh2/listener.pyx":26
- *     cdef Listener _listener = Listener(session)
+ *     cdef Listener _listener = Listener.__new__(Listener, session)
  *     _listener._listener = listener
  *     return _listener             # <<<<<<<<<<<<<<
  * 
@@ -1138,7 +1139,7 @@ static PyObject *__pyx_f_4ssh2_8listener_PyListener(LIBSSH2_LISTENER *__pyx_v_li
  * 
  * 
  * cdef object PyListener(c_ssh2.LIBSSH2_LISTENER *listener, Session session):             # <<<<<<<<<<<<<<
- *     cdef Listener _listener = Listener(session)
+ *     cdef Listener _listener = Listener.__new__(Listener, session)
  *     _listener._listener = listener
  */
 
@@ -2052,25 +2053,18 @@ static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
     return result;
 }
 
-/* PyObjectCall */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
-    PyObject *result;
-    ternaryfunc call = func->ob_type->tp_call;
-    if (unlikely(!call))
-        return PyObject_Call(func, arg, kw);
-    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
-        return NULL;
-    result = (*call)(func, arg, kw);
-    Py_LeaveRecursiveCall();
-    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
-        PyErr_SetString(
-            PyExc_SystemError,
-            "NULL result without error in PyObject_Call");
+/* ExtTypeTest */
+static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {
+    if (unlikely(!type)) {
+        PyErr_SetString(PyExc_SystemError, "Missing type object");
+        return 0;
     }
-    return result;
+    if (likely(__Pyx_TypeCheck(obj, type)))
+        return 1;
+    PyErr_Format(PyExc_TypeError, "Cannot convert %.200s to %.200s",
+                 Py_TYPE(obj)->tp_name, type->tp_name);
+    return 0;
 }
-#endif
 
 /* RaiseDoubleKeywords */
 static void __Pyx_RaiseDoubleKeywordsError(
@@ -2214,18 +2208,25 @@ static void __Pyx_RaiseArgtupleInvalid(
                  (num_expected == 1) ? "" : "s", num_found);
 }
 
-/* ExtTypeTest */
-static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {
-    if (unlikely(!type)) {
-        PyErr_SetString(PyExc_SystemError, "Missing type object");
-        return 0;
+/* PyObjectCall */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
+    PyObject *result;
+    ternaryfunc call = func->ob_type->tp_call;
+    if (unlikely(!call))
+        return PyObject_Call(func, arg, kw);
+    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
+        return NULL;
+    result = (*call)(func, arg, kw);
+    Py_LeaveRecursiveCall();
+    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
+        PyErr_SetString(
+            PyExc_SystemError,
+            "NULL result without error in PyObject_Call");
     }
-    if (likely(__Pyx_TypeCheck(obj, type)))
-        return 1;
-    PyErr_Format(PyExc_TypeError, "Cannot convert %.200s to %.200s",
-                 Py_TYPE(obj)->tp_name, type->tp_name);
-    return 0;
+    return result;
 }
+#endif
 
 /* PyErrFetchRestore */
 #if CYTHON_FAST_THREAD_STATE

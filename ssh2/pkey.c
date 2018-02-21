@@ -830,12 +830,8 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject
 /* GetBuiltinName.proto */
 static PyObject *__Pyx_GetBuiltinName(PyObject *name);
 
-/* PyObjectCall.proto */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw);
-#else
-#define __Pyx_PyObject_Call(func, arg, kw) PyObject_Call(func, arg, kw)
-#endif
+/* ExtTypeTest.proto */
+static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type);
 
 /* RaiseArgTupleInvalid.proto */
 static void __Pyx_RaiseArgtupleInvalid(const char* func_name, int exact,
@@ -843,6 +839,13 @@ static void __Pyx_RaiseArgtupleInvalid(const char* func_name, int exact,
 
 /* KeywordStringCheck.proto */
 static int __Pyx_CheckKeywordStrings(PyObject *kwdict, const char* function_name, int kw_allowed);
+
+/* PyObjectCall.proto */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw);
+#else
+#define __Pyx_PyObject_Call(func, arg, kw) PyObject_Call(func, arg, kw)
+#endif
 
 /* PyThreadStateGet.proto */
 #if CYTHON_FAST_THREAD_STATE
@@ -1003,7 +1006,7 @@ static PyObject *__pyx_tuple__2;
  * 
  * 
  * cdef object PyPublicKey(c_ssh2.libssh2_agent_publickey *pkey):             # <<<<<<<<<<<<<<
- *     cdef PublicKey _pkey = PublicKey()
+ *     cdef PublicKey _pkey = PublicKey.__new__(PublicKey)
  *     _pkey._pkey = pkey
  */
 
@@ -1017,18 +1020,19 @@ static PyObject *__pyx_f_4ssh2_4pkey_PyPublicKey(struct libssh2_agent_publickey 
   /* "ssh2/pkey.pyx":21
  * 
  * cdef object PyPublicKey(c_ssh2.libssh2_agent_publickey *pkey):
- *     cdef PublicKey _pkey = PublicKey()             # <<<<<<<<<<<<<<
+ *     cdef PublicKey _pkey = PublicKey.__new__(PublicKey)             # <<<<<<<<<<<<<<
  *     _pkey._pkey = pkey
  *     return _pkey
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4ssh2_4pkey_PublicKey), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 21, __pyx_L1_error)
+  __pyx_t_1 = __pyx_tp_new_4ssh2_4pkey_PublicKey(((PyTypeObject *)__pyx_ptype_4ssh2_4pkey_PublicKey), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
+  if (!(likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_4ssh2_4pkey_PublicKey)))) __PYX_ERR(1, 21, __pyx_L1_error)
   __pyx_v__pkey = ((struct __pyx_obj_4ssh2_4pkey_PublicKey *)__pyx_t_1);
   __pyx_t_1 = 0;
 
   /* "ssh2/pkey.pyx":22
  * cdef object PyPublicKey(c_ssh2.libssh2_agent_publickey *pkey):
- *     cdef PublicKey _pkey = PublicKey()
+ *     cdef PublicKey _pkey = PublicKey.__new__(PublicKey)
  *     _pkey._pkey = pkey             # <<<<<<<<<<<<<<
  *     return _pkey
  * 
@@ -1036,7 +1040,7 @@ static PyObject *__pyx_f_4ssh2_4pkey_PyPublicKey(struct libssh2_agent_publickey 
   __pyx_v__pkey->_pkey = __pyx_v_pkey;
 
   /* "ssh2/pkey.pyx":23
- *     cdef PublicKey _pkey = PublicKey()
+ *     cdef PublicKey _pkey = PublicKey.__new__(PublicKey)
  *     _pkey._pkey = pkey
  *     return _pkey             # <<<<<<<<<<<<<<
  * 
@@ -1051,7 +1055,7 @@ static PyObject *__pyx_f_4ssh2_4pkey_PyPublicKey(struct libssh2_agent_publickey 
  * 
  * 
  * cdef object PyPublicKey(c_ssh2.libssh2_agent_publickey *pkey):             # <<<<<<<<<<<<<<
- *     cdef PublicKey _pkey = PublicKey()
+ *     cdef PublicKey _pkey = PublicKey.__new__(PublicKey)
  *     _pkey._pkey = pkey
  */
 
@@ -2012,25 +2016,18 @@ static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
     return result;
 }
 
-/* PyObjectCall */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
-    PyObject *result;
-    ternaryfunc call = func->ob_type->tp_call;
-    if (unlikely(!call))
-        return PyObject_Call(func, arg, kw);
-    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
-        return NULL;
-    result = (*call)(func, arg, kw);
-    Py_LeaveRecursiveCall();
-    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
-        PyErr_SetString(
-            PyExc_SystemError,
-            "NULL result without error in PyObject_Call");
+/* ExtTypeTest */
+static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {
+    if (unlikely(!type)) {
+        PyErr_SetString(PyExc_SystemError, "Missing type object");
+        return 0;
     }
-    return result;
+    if (likely(__Pyx_TypeCheck(obj, type)))
+        return 1;
+    PyErr_Format(PyExc_TypeError, "Cannot convert %.200s to %.200s",
+                 Py_TYPE(obj)->tp_name, type->tp_name);
+    return 0;
 }
-#endif
 
 /* RaiseArgTupleInvalid */
 static void __Pyx_RaiseArgtupleInvalid(
@@ -2097,6 +2094,26 @@ invalid_keyword:
     #endif
     return 0;
 }
+
+/* PyObjectCall */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
+    PyObject *result;
+    ternaryfunc call = func->ob_type->tp_call;
+    if (unlikely(!call))
+        return PyObject_Call(func, arg, kw);
+    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
+        return NULL;
+    result = (*call)(func, arg, kw);
+    Py_LeaveRecursiveCall();
+    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
+        PyErr_SetString(
+            PyExc_SystemError,
+            "NULL result without error in PyObject_Call");
+    }
+    return result;
+}
+#endif
 
 /* PyErrFetchRestore */
 #if CYTHON_FAST_THREAD_STATE

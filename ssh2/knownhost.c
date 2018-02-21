@@ -877,12 +877,8 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject
 /* GetBuiltinName.proto */
 static PyObject *__Pyx_GetBuiltinName(PyObject *name);
 
-/* PyObjectCall.proto */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw);
-#else
-#define __Pyx_PyObject_Call(func, arg, kw) PyObject_Call(func, arg, kw)
-#endif
+/* ExtTypeTest.proto */
+static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type);
 
 /* PyCFunctionFastCall.proto */
 #if CYTHON_FAST_PYCCALL
@@ -900,6 +896,13 @@ static PyObject *__Pyx_PyFunction_FastCallDict(PyObject *func, PyObject **args, 
 #else
 #define __Pyx_PyFunction_FastCallDict(func, args, nargs, kwargs) _PyFunction_FastCallDict(func, args, nargs, kwargs)
 #endif
+#endif
+
+/* PyObjectCall.proto */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw);
+#else
+#define __Pyx_PyObject_Call(func, arg, kw) PyObject_Call(func, arg, kw)
 #endif
 
 /* PyObjectCallMethO.proto */
@@ -1333,7 +1336,7 @@ static PyObject *__pyx_tuple__9;
  * 
  * 
  * cdef KnownHost PyKnownHost(Session session, c_ssh2.LIBSSH2_KNOWNHOSTS *_ptr):             # <<<<<<<<<<<<<<
- *     cdef KnownHost known_host = KnownHost(session)
+ *     cdef KnownHost known_host = KnownHost.__new__(KnownHost, session)
  *     known_host._ptr = _ptr
  */
 
@@ -1348,7 +1351,7 @@ static struct __pyx_obj_4ssh2_9knownhost_KnownHost *__pyx_f_4ssh2_9knownhost_PyK
   /* "ssh2/knownhost.pyx":53
  * 
  * cdef KnownHost PyKnownHost(Session session, c_ssh2.LIBSSH2_KNOWNHOSTS *_ptr):
- *     cdef KnownHost known_host = KnownHost(session)             # <<<<<<<<<<<<<<
+ *     cdef KnownHost known_host = KnownHost.__new__(KnownHost, session)             # <<<<<<<<<<<<<<
  *     known_host._ptr = _ptr
  *     return known_host
  */
@@ -1357,15 +1360,16 @@ static struct __pyx_obj_4ssh2_9knownhost_KnownHost *__pyx_f_4ssh2_9knownhost_PyK
   __Pyx_INCREF(((PyObject *)__pyx_v_session));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_session));
   PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)__pyx_v_session));
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4ssh2_9knownhost_KnownHost), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_2 = __pyx_tp_new_4ssh2_9knownhost_KnownHost(((PyTypeObject *)__pyx_ptype_4ssh2_9knownhost_KnownHost), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 53, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (!(likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_4ssh2_9knownhost_KnownHost)))) __PYX_ERR(0, 53, __pyx_L1_error)
   __pyx_v_known_host = ((struct __pyx_obj_4ssh2_9knownhost_KnownHost *)__pyx_t_2);
   __pyx_t_2 = 0;
 
   /* "ssh2/knownhost.pyx":54
  * cdef KnownHost PyKnownHost(Session session, c_ssh2.LIBSSH2_KNOWNHOSTS *_ptr):
- *     cdef KnownHost known_host = KnownHost(session)
+ *     cdef KnownHost known_host = KnownHost.__new__(KnownHost, session)
  *     known_host._ptr = _ptr             # <<<<<<<<<<<<<<
  *     return known_host
  * 
@@ -1373,7 +1377,7 @@ static struct __pyx_obj_4ssh2_9knownhost_KnownHost *__pyx_f_4ssh2_9knownhost_PyK
   __pyx_v_known_host->_ptr = __pyx_v__ptr;
 
   /* "ssh2/knownhost.pyx":55
- *     cdef KnownHost known_host = KnownHost(session)
+ *     cdef KnownHost known_host = KnownHost.__new__(KnownHost, session)
  *     known_host._ptr = _ptr
  *     return known_host             # <<<<<<<<<<<<<<
  * 
@@ -1388,7 +1392,7 @@ static struct __pyx_obj_4ssh2_9knownhost_KnownHost *__pyx_f_4ssh2_9knownhost_PyK
  * 
  * 
  * cdef KnownHost PyKnownHost(Session session, c_ssh2.LIBSSH2_KNOWNHOSTS *_ptr):             # <<<<<<<<<<<<<<
- *     cdef KnownHost known_host = KnownHost(session)
+ *     cdef KnownHost known_host = KnownHost.__new__(KnownHost, session)
  *     known_host._ptr = _ptr
  */
 
@@ -1409,7 +1413,7 @@ static struct __pyx_obj_4ssh2_9knownhost_KnownHost *__pyx_f_4ssh2_9knownhost_PyK
  * 
  * 
  * cdef KnownHostEntry PyKnownHostEntry(c_ssh2.libssh2_knownhost *_entry):             # <<<<<<<<<<<<<<
- *     cdef KnownHostEntry entry = KnownHostEntry()
+ *     cdef KnownHostEntry entry = KnownHostEntry.__new__(KnownHostEntry)
  *     entry._store = _entry
  */
 
@@ -1423,18 +1427,19 @@ static struct __pyx_obj_4ssh2_9knownhost_KnownHostEntry *__pyx_f_4ssh2_9knownhos
   /* "ssh2/knownhost.pyx":59
  * 
  * cdef KnownHostEntry PyKnownHostEntry(c_ssh2.libssh2_knownhost *_entry):
- *     cdef KnownHostEntry entry = KnownHostEntry()             # <<<<<<<<<<<<<<
+ *     cdef KnownHostEntry entry = KnownHostEntry.__new__(KnownHostEntry)             # <<<<<<<<<<<<<<
  *     entry._store = _entry
  *     return entry
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4ssh2_9knownhost_KnownHostEntry), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 59, __pyx_L1_error)
+  __pyx_t_1 = __pyx_tp_new_4ssh2_9knownhost_KnownHostEntry(((PyTypeObject *)__pyx_ptype_4ssh2_9knownhost_KnownHostEntry), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
+  if (!(likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_4ssh2_9knownhost_KnownHostEntry)))) __PYX_ERR(0, 59, __pyx_L1_error)
   __pyx_v_entry = ((struct __pyx_obj_4ssh2_9knownhost_KnownHostEntry *)__pyx_t_1);
   __pyx_t_1 = 0;
 
   /* "ssh2/knownhost.pyx":60
  * cdef KnownHostEntry PyKnownHostEntry(c_ssh2.libssh2_knownhost *_entry):
- *     cdef KnownHostEntry entry = KnownHostEntry()
+ *     cdef KnownHostEntry entry = KnownHostEntry.__new__(KnownHostEntry)
  *     entry._store = _entry             # <<<<<<<<<<<<<<
  *     return entry
  * 
@@ -1442,7 +1447,7 @@ static struct __pyx_obj_4ssh2_9knownhost_KnownHostEntry *__pyx_f_4ssh2_9knownhos
   __pyx_v_entry->_store = __pyx_v__entry;
 
   /* "ssh2/knownhost.pyx":61
- *     cdef KnownHostEntry entry = KnownHostEntry()
+ *     cdef KnownHostEntry entry = KnownHostEntry.__new__(KnownHostEntry)
  *     entry._store = _entry
  *     return entry             # <<<<<<<<<<<<<<
  * 
@@ -1457,7 +1462,7 @@ static struct __pyx_obj_4ssh2_9knownhost_KnownHostEntry *__pyx_f_4ssh2_9knownhos
  * 
  * 
  * cdef KnownHostEntry PyKnownHostEntry(c_ssh2.libssh2_knownhost *_entry):             # <<<<<<<<<<<<<<
- *     cdef KnownHostEntry entry = KnownHostEntry()
+ *     cdef KnownHostEntry entry = KnownHostEntry.__new__(KnownHostEntry)
  *     entry._store = _entry
  */
 
@@ -1477,7 +1482,7 @@ static struct __pyx_obj_4ssh2_9knownhost_KnownHostEntry *__pyx_f_4ssh2_9knownhos
  * 
  * 
  * cdef KnownHostEntry PyNewKnownHostEntry():             # <<<<<<<<<<<<<<
- *     cdef KnownHostEntry entry = KnownHostEntry()
+ *     cdef KnownHostEntry entry = KnownHostEntry.__new__(KnownHostEntry)
  *     cdef c_ssh2.libssh2_knownhost *_entry
  */
 
@@ -1493,17 +1498,18 @@ static struct __pyx_obj_4ssh2_9knownhost_KnownHostEntry *__pyx_f_4ssh2_9knownhos
   /* "ssh2/knownhost.pyx":65
  * 
  * cdef KnownHostEntry PyNewKnownHostEntry():
- *     cdef KnownHostEntry entry = KnownHostEntry()             # <<<<<<<<<<<<<<
+ *     cdef KnownHostEntry entry = KnownHostEntry.__new__(KnownHostEntry)             # <<<<<<<<<<<<<<
  *     cdef c_ssh2.libssh2_knownhost *_entry
  *     with nogil:
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4ssh2_9knownhost_KnownHostEntry), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_t_1 = __pyx_tp_new_4ssh2_9knownhost_KnownHostEntry(((PyTypeObject *)__pyx_ptype_4ssh2_9knownhost_KnownHostEntry), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
+  if (!(likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_4ssh2_9knownhost_KnownHostEntry)))) __PYX_ERR(0, 65, __pyx_L1_error)
   __pyx_v_entry = ((struct __pyx_obj_4ssh2_9knownhost_KnownHostEntry *)__pyx_t_1);
   __pyx_t_1 = 0;
 
   /* "ssh2/knownhost.pyx":67
- *     cdef KnownHostEntry entry = KnownHostEntry()
+ *     cdef KnownHostEntry entry = KnownHostEntry.__new__(KnownHostEntry)
  *     cdef c_ssh2.libssh2_knownhost *_entry
  *     with nogil:             # <<<<<<<<<<<<<<
  *         _entry = <c_ssh2.libssh2_knownhost *>malloc(
@@ -1641,7 +1647,7 @@ static struct __pyx_obj_4ssh2_9knownhost_KnownHostEntry *__pyx_f_4ssh2_9knownhos
       }
 
       /* "ssh2/knownhost.pyx":67
- *     cdef KnownHostEntry entry = KnownHostEntry()
+ *     cdef KnownHostEntry entry = KnownHostEntry.__new__(KnownHostEntry)
  *     cdef c_ssh2.libssh2_knownhost *_entry
  *     with nogil:             # <<<<<<<<<<<<<<
  *         _entry = <c_ssh2.libssh2_knownhost *>malloc(
@@ -1682,7 +1688,7 @@ static struct __pyx_obj_4ssh2_9knownhost_KnownHostEntry *__pyx_f_4ssh2_9knownhos
  * 
  * 
  * cdef KnownHostEntry PyNewKnownHostEntry():             # <<<<<<<<<<<<<<
- *     cdef KnownHostEntry entry = KnownHostEntry()
+ *     cdef KnownHostEntry entry = KnownHostEntry.__new__(KnownHostEntry)
  *     cdef c_ssh2.libssh2_knownhost *_entry
  */
 
@@ -6936,25 +6942,18 @@ static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
     return result;
 }
 
-/* PyObjectCall */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
-    PyObject *result;
-    ternaryfunc call = func->ob_type->tp_call;
-    if (unlikely(!call))
-        return PyObject_Call(func, arg, kw);
-    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
-        return NULL;
-    result = (*call)(func, arg, kw);
-    Py_LeaveRecursiveCall();
-    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
-        PyErr_SetString(
-            PyExc_SystemError,
-            "NULL result without error in PyObject_Call");
+/* ExtTypeTest */
+static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {
+    if (unlikely(!type)) {
+        PyErr_SetString(PyExc_SystemError, "Missing type object");
+        return 0;
     }
-    return result;
+    if (likely(__Pyx_TypeCheck(obj, type)))
+        return 1;
+    PyErr_Format(PyExc_TypeError, "Cannot convert %.200s to %.200s",
+                 Py_TYPE(obj)->tp_name, type->tp_name);
+    return 0;
 }
-#endif
 
 /* PyCFunctionFastCall */
 #if CYTHON_FAST_PYCCALL
@@ -7097,6 +7096,26 @@ done:
     return result;
 }
 #endif
+#endif
+
+/* PyObjectCall */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
+    PyObject *result;
+    ternaryfunc call = func->ob_type->tp_call;
+    if (unlikely(!call))
+        return PyObject_Call(func, arg, kw);
+    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
+        return NULL;
+    result = (*call)(func, arg, kw);
+    Py_LeaveRecursiveCall();
+    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
+        PyErr_SetString(
+            PyExc_SystemError,
+            "NULL result without error in PyObject_Call");
+    }
+    return result;
+}
 #endif
 
 /* PyObjectCallMethO */

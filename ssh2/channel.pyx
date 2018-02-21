@@ -25,7 +25,7 @@ cimport error_codes
 
 
 cdef object PyChannel(c_ssh2.LIBSSH2_CHANNEL *channel, Session session):
-    cdef Channel _channel = Channel(session)
+    cdef Channel _channel = Channel.__new__(Channel, session)
     _channel._channel = channel
     return _channel
 

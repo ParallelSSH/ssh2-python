@@ -22,7 +22,7 @@ cimport c_pkey
 
 
 cdef object PyPublicKeyList(c_pkey.libssh2_publickey_list *_list):
-    cdef PublicKeyList key_list = PublicKeyList()
+    cdef PublicKeyList key_list = PublicKeyList.__new__(PublicKeyList)
     key_list.key_list = _list
     return key_list
 
@@ -113,7 +113,8 @@ cdef c_pkey.libssh2_publickey_attribute * to_c_attr(list attrs):
 
 cdef object PyPublicKeySystem(c_pkey.LIBSSH2_PUBLICKEY *_pkey_s,
                               Session session):
-    cdef PublicKeySystem pkey_s = PublicKeySystem(session)
+    cdef PublicKeySystem pkey_s = PublicKeySystem.__new__(
+        PublicKeySystem, session)
     pkey_s.pkey_s = _pkey_s
     return pkey_s
 

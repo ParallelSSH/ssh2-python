@@ -25,7 +25,7 @@ cimport c_sftp
 
 
 cdef object PySFTPHandle(c_sftp.LIBSSH2_SFTP_HANDLE *handle, SFTP sftp):
-    cdef SFTPHandle _handle = SFTPHandle(sftp)
+    cdef SFTPHandle _handle = SFTPHandle.__new__(SFTPHandle, sftp)
     _handle._handle = handle
     return _handle
 
