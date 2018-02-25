@@ -89,15 +89,18 @@ def wait_socket(_socket not None, Session session, timeout=1):
 cpdef int handle_error_codes(int errcode) except -1:
     """Raise appropriate exception for given error code.
 
-    Returns 0 on no error.
+    Returns 0 on no error and ``LIBSSH2_ERROR_EAGAIN`` on ``EAGAIN``.
 
     :raises: Appropriate exception from :py:mod:`ssh2.exceptions`.
 
     :param errcode: Error code as returned by
       :py:func:`ssh2.session.Session.last_errno`
     """
-    if errcode >= 0:
+    # Cython generates a C switch from this code - only use equality checks
+    if errcode == 0:
         return 0
+    elif errcode == error_codes._LIBSSH2_ERROR_EAGAIN:
+        return errcode
     elif errcode == error_codes._LIBSSH2_ERROR_BANNER_RECV:
         raise exceptions.BannerRecvError
     elif errcode == error_codes._LIBSSH2_ERROR_BANNER_SEND:
@@ -124,8 +127,6 @@ cpdef int handle_error_codes(int errcode) except -1:
         raise exceptions.MethodNoneError
     elif errcode == error_codes._LIBSSH2_ERROR_AUTHENTICATION_FAILED:
         raise exceptions.AuthenticationError
-    elif errcode == error_codes._LIBSSH2_ERROR_PUBLICKEY_UNRECOGNIZED:
-        raise exceptions.PublickeyUnrecognizedError
     elif errcode == error_codes._LIBSSH2_ERROR_PUBLICKEY_UNVERIFIED:
         raise exceptions.PublickeyUnverifiedError
     elif errcode == error_codes._LIBSSH2_ERROR_CHANNEL_OUTOFORDER:
@@ -182,6 +183,8 @@ cpdef int handle_error_codes(int errcode) except -1:
         raise exceptions.BadSocketError
     elif errcode == error_codes._LIBSSH2_ERROR_KNOWN_HOSTS:
         raise exceptions.KnownHostError
-    elif errcode != error_codes._LIBSSH2_ERROR_EAGAIN and errcode < 0:
-        raise exceptions.UnknownError("Error code %s not known", errcode)
-    return 0
+    else:
+        # Switch default
+        if errcode < 0:
+            raise exceptions.UnknownError("Error code %s not known", errcode)
+        return 0

@@ -119,10 +119,6 @@ class PublicKeyInitError(PublicKeyError):
     """Raised on errors initialising public key system"""
 
 
-class PublickeyUnrecognizedError(AuthenticationError):
-    """Raised on unrecognised public key errors"""
-
-
 class PublickeyUnverifiedError(AuthenticationError):
     """Raised on public key verification errors"""
 
