@@ -7,7 +7,7 @@ Change Log
 Changes
 ---------
 
-* Upgrade embedded ``libssh2`` in binary wheels to latest master branch plus enhancements.
+* Upgrade embedded ``libssh2`` in binary wheels to latest version plus enhancements.
 * Adds support for ECDSA host and client keys.
 * Adds support for SHA-256 host key fingerprints.
 * Added SSH agent forwarding implementation.

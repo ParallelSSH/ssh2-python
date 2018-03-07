@@ -14,7 +14,6 @@ python:
 addons:
   apt:
     packages:
-      - libssh2-1-dev
       - openssh-server
       - rpm
       - dpkg
@@ -35,24 +34,22 @@ jobs:
   include:
     - stage: OSX wheel build
       os: osx
-      # if: tag IS present
+      if: tag IS present
       before_install:
         - brew update
       install:
-        # - brew install libssh2
         - brew upgrade openssl
-        - export PATH="/usr/local/opt/openssl/bin:$PATH"
-        # - export OPENSSL_ROOT_DIR="/usr/local/opt/openssl"
-        # - export OPENSSL_INCLUDE_DIR="/usr/local/opt/openssl/include"
         - sudo ci/install-ssh2.sh
         - sudo -H pip2 install -U delocate twine wheel pip setuptools
+        - cp /usr/local/lib/libssh2* .
+        - ls -lh
         - pip2 wheel .
       script:
         - delocate-listdeps --all *.whl
         - delocate-wheel -v *.whl
         - delocate-listdeps --all *.whl
         - ls -l *.whl
-        - brew uninstall libssh2
+        - rm -f *.dylib
         - pip2 install --user -v *.whl
         - pwd; mkdir temp; cd temp; pwd
         - python -c "from ssh2.session import Session; Session()"
@@ -66,22 +63,23 @@ jobs:
     - stage: OSX wheel build
       os: osx
       osx_image: xcode8
-      # if: tag IS present
+      if: tag IS present
       before_install:
         - brew update
       install:
-        # - brew install libssh2
         - brew upgrade openssl
-        - export PATH="/usr/local/opt/openssl/bin:$PATH"
         - sudo ci/install-ssh2.sh
+        - sudo rm -f libssh2.1.dylib
         - sudo -H pip2 install -U delocate twine wheel pip setuptools
+        - cp /usr/local/lib/libssh2* .
+        - ls -lh
         - pip2 wheel .
       script:
         - delocate-listdeps --all *.whl
         - delocate-wheel -v *.whl
         - delocate-listdeps --all *.whl
         - ls -l *.whl
-        - brew uninstall libssh2
+        - rm -f *.dylib
         - pip2 install --user -v *.whl
         - pwd; mkdir temp; cd temp; pwd
         - python -c "from ssh2.session import Session; Session()"
@@ -95,26 +93,26 @@ jobs:
     - stage: OSX wheel build
       os: osx
       osx_image: xcode6.4
-      # if: tag IS present
+      if: tag IS present
       before_install:
         - brew update
       install:
-        # - brew install libssh2
         - brew upgrade openssl
-        - export PATH="/usr/local/opt/openssl/bin:$PATH"
         - sudo ci/install-ssh2.sh
+        - ls -lh
         - python --version
         - wget --no-check-certificate https://bootstrap.pypa.io/get-pip.py
         - sudo python get-pip.py
         - sudo -H pip install -U pip
         - sudo -H pip install -U delocate twine wheel setuptools
+        - cp /usr/local/lib/libssh2* .
         - pip wheel .
       script:
         - delocate-listdeps --all *.whl
         - delocate-wheel -v *.whl
         - delocate-listdeps --all *.whl
         - ls -l *.whl
-        - brew uninstall libssh2
+        - rm -f *.dylib
         - pip install --user -v *.whl
         - pwd; mkdir temp; cd temp; pwd
         - python -c "from ssh2.session import Session; Session()"
