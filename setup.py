@@ -27,12 +27,13 @@ sources = glob('ssh2/*.%s' % (ext,))
 if ON_WINDOWS:
     # For libssh2 OpenSSL backend on Windows.
     _libs = ['Ws2_32', 'libssh2', 'user32',
-             'libeay32MD', 'ssleay32MD']
+             'libeay32MD', 'ssleay32MD',
+    ]
 else:
     _libs = ['ssh2']
 
 # _comp_args = ["-ggdb"]
-_comp_args = ["-O3"] if platform.system() != 'Windows' else None
+_comp_args = ["-O3"] if not ON_WINDOWS else None
 _embedded_lib = bool(os.environ.get('EMBEDDED_LIB', 1))
 cython_directives = {'embedsignature': True,
                      'boundscheck': False,
@@ -57,7 +58,9 @@ extensions = [
 package_data = {'ssh2': ['*.pxd']}
 
 if ON_WINDOWS:
-    package_data['ssh2'].extend(['libeay32.dll', 'ssleay32.dll'])
+    package_data['ssh2'].extend([
+        'libeay32.dll', 'ssleay32.dll',
+    ])
 
 print("Using package data %s" % package_data)
 

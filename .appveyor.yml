@@ -6,6 +6,7 @@ environment:
     CMD_IN_ENV: "cmd /E:ON /V:ON /C %APPVEYOR_BUILD_FOLDER%\\ci\\appveyor\\run_with_env.cmd"
     PYTHONUNBUFFERED: 1
     EMBEDDED_LIB: 1
+    OPENSSL_VER: 1.0.2l
     PYPI_USER:
       secure: 2m0jy6JD/R9RExIosOT6YA==
     PYPI_PASS:
@@ -15,41 +16,49 @@ environment:
       PYTHON_VERSION: "2.7"
       PYTHON_ARCH: "32"
       MSVC: "Visual Studio 9"
+      ARCH: i386
 
     - PYTHON: "C:\\Python27-x64"
       PYTHON_VERSION: "2.7"
       PYTHON_ARCH: "64"
       MSVC: "Visual Studio 9"
+      ARCH: x64_86
 
     - PYTHON: "C:\\Python34"
       PYTHON_VERSION: "3.4"
       PYTHON_ARCH: "32"
       MSVC: "Visual Studio 10"
+      ARCH: i386
 
     - PYTHON: "C:\\Python34-x64"
       PYTHON_VERSION: "3.4"
       PYTHON_ARCH: "64"
       MSVC: "Visual Studio 10 Win64"
+      ARCH: x64_86
 
     - PYTHON: "C:\\Python35"
       PYTHON_VERSION: "3.5"
       PYTHON_ARCH: "32"
       MSVC: "Visual Studio 14"
+      ARCH: i386
 
     - PYTHON: "C:\\Python35-x64"
       PYTHON_VERSION: "3.5"
       PYTHON_ARCH: "64"
       MSVC: "Visual Studio 14 Win64"
+      ARCH: x64_86
 
     - PYTHON: "C:\\Python36"
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "32"
       MSVC: "Visual Studio 14"
+      ARCH: i386
 
     - PYTHON: "C:\\Python36-x64"
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "64"
       MSVC: "Visual Studio 14 Win64"
+      ARCH: x64_86
 
 install:
   # If there is a newer build queued for the same PR, cancel this one.
@@ -91,6 +100,11 @@ install:
   # do not cause a version change.
   - python ci/appveyor/fix_version.py .
   - mv -f .git .git.bak
+  - appveyor DownloadFile https://indy.fulgan.com/SSL/openssl-%OPENSSL_VER%-%ARCH%-win%PYTHON_ARCH%.zip
+  - 7z x openssl-%OPENSSL_VER%-%ARCH%-win%PYTHON_ARCH%.zip
+  - cp ssleay32.dll ssh2\
+  - cp libeay32.dll ssh2\
+  - ps: ls ssh2
 
 build_script:
   # Build the compiled extension
@@ -112,4 +126,4 @@ artifacts:
   - path: "*.whl"
 
 deploy_script:
-  - python ci/appveyor/pypi_upload.py *.whl
+  - IF "%APPVEYOR_REPO_TAG%" == "true"( python ci/appveyor/pypi_upload.py *.whl )
