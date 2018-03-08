@@ -62,8 +62,6 @@ if ON_WINDOWS:
         'libeay32.dll', 'ssleay32.dll',
     ])
 
-print("Using package data %s" % package_data)
-
 cmdclass = versioneer.get_cmdclass()
 if USING_CYTHON:
     cmdclass['build_ext'] = build_ext
@@ -91,7 +89,6 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
