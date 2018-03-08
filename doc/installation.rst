@@ -35,9 +35,9 @@ To use the built packages, install via the system's package manager, for example
 
 .. note::
 
-  System packages use the system provided ``libssh2`` which may need to be updated to be compatible with ``ssh2-python``. ``libssh2`` ersions ``>= 1.6.0`` are compatible.
+  System packages use the system provided ``libssh2`` which may need to be updated to be compatible with ``ssh2-python``. ``libssh2`` versions ``>= 1.6.0`` are compatible.
 
-  To built an ``ssh2-python`` that is compatible with versions lower than ``1.6.0``, run the build with the ``EMBEDDED_LIB=0`` environment variable set. This will disable features that require ``libssh2`` >= ``1.6.0``.
+  To build an ``ssh2-python`` that is compatible with versions lower than ``1.6.0``, run the build with the ``EMBEDDED_LIB=0`` environment variable set. This will disable features that require ``libssh2`` >= ``1.6.0``.
 
 Conda package
 ===============
@@ -55,10 +55,42 @@ Installation from Source
 
 To install from source, ``libssh2`` and Python development headers are required.
 
+Custom build
+-------------
+
+For best compatibility, it is recommended to use the ``libssh2`` submodule included in ``ssh2-python`` repository to build with.
+
+.. code-block:: shell
+
+   git clone --recurse-submodules git@github.com:ParallelSSH/ssh2-python.git
+   sudo ./ci/install-ssh2.sh
+   virtualenv my_env
+   source my_env/bin/activate
+   python setup.py install
+
+The ``sudo ./ci/install-ssh2.sh`` line will install a version of ``libssh2`` under ``/usr/local`` that is the same version used to build binary wheels with and is ensured to be compatible.
+
+If there are multiple development headers and/or libraries for ``libssh2`` on the system, the following can be used to set the include path, runtime and build library directories:
+
+.. code-block:: shell
+
+   git clone --recurse-submodules git@github.com:ParallelSSH/ssh2-python.git
+   sudo ./ci/install-ssh2.sh
+   source my_env/bin/activate
+   python setup.py build_ext -I /usr/local/include -R /usr/local/lib -L /usr/local/lib
+   python setup.py install
+
+System library build
+---------------------
+
+Building against system provided ``libssh2`` is another option which may be preferred. 
+
+If the ``libssh2`` version provided by the system is not compatible, run the build with the ``EMBEDDED_LIB=0`` environment variable set. This will disable features that require ``libssh2`` >= ``1.6.0``.
+
 Clone the repository, install dependencies and run install in a new virtualenv from the repository's root directory.
 
 Ubuntu
---------
+_______
 
 .. code-block:: shell
 
@@ -69,7 +101,7 @@ Ubuntu
 
 
 RedHat
--------
+_______
    
 .. code-block:: shell
 

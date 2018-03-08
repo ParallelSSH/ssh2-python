@@ -25,9 +25,7 @@ Super fast SSH2 protocol library. ``ssh2-python`` provides Python bindings for `
 Installation
 ______________
 
-Binary wheel packages are provided for Linux, OSX and Windows, all Python versions, with ``libssh2`` and its required libraries included.
-
-Wheel packages have **no dependencies**.
+Binary wheel packages are provided for Linux, OSX and Windows, all Python versions. Wheel packages have **no dependencies**.
 
 ``pip`` may need to be updated to be able to install binary wheel packages - ``pip install -U pip``.
 
@@ -35,23 +33,20 @@ Wheel packages have **no dependencies**.
 
    pip install ssh2-python
 
-
-System packages are also available on the `latest release page <https://github.com/ParallelSSH/ssh2-python/releases/latest>`_ built on Centos/RedHat 6/7, Ubuntu 14.04/16.04, Debian 7/8 and Fedora 22/23/24.
-
-System packages have *no dependencies* other than the ``libssh2`` system library.
-
 `Conda <https://conda.io/miniconda.html>`_ is another installation option - see `documentation <http://ssh2-python.readthedocs.org/en/latest/>`_ for more detailed instructions.
+
+For creating native system packages for Centos/RedHat, Ubuntu, Debian and Fedora, see `instructions in the documentation <http://ssh2-python.readthedocs.io/en/latest/installation.html#system-binary-packages>`_.
 
 
 API Feature Set
 ________________
 
-
-At this time all of the `libssh2`_ API has been implemented up to version ``1.8.0``.
+At this time all of the `libssh2`_ API has been implemented up to version ``1.8.2``.
 
 Complete example scripts for various operations can be found in the `examples directory`_.
 
 In addition, as ``ssh2-python`` is a thin wrapper of ``libssh2`` with Python semantics, its code examples can be ported straight over to Python with only minimal changes.
+
 
 Library Features
 ----------------
@@ -65,16 +60,16 @@ Extension features:
 * Super fast as a consequence of the excellent C library it uses and prodigious use of native code
 * Object oriented - memory freed automatically and safely as objects are garbage collected by Python
 * Use Python semantics where applicable, such as context manager and iterator support for opening and reading from SFTP file handles
-* Expose errors as Python exceptions where possible
+* Raise errors as Python exceptions
 * Provide access to ``libssh2`` error code definitions
 
 
 Quick Start
 _____________
 
-Both byte and unicode strings are accepted as arguments and encoded appropriately. To change default encoding, ``utf-8``, change the value of ``ssh2.utils.ENCODING``. Channel output is always byte strings.
+Both byte and unicode strings are accepted as arguments and encoded appropriately. To change default encoding, ``utf-8``, change the value of ``ssh2.utils.ENCODING``. Output is always in byte strings.
 
-See `Complete Example`_ for a complete example including socket connect.
+See `Complete Example`_ for an example including socket connect.
 
 Please use either the issue tracker for reporting issues with code or the `mail group`_ for discussion and questions.
 
@@ -196,7 +191,7 @@ A simple usage example looks very similar to ``libssh2`` `usage examples <https:
 
 See `examples directory <https://github.com/ParallelSSH/ssh2-python/tree/master/examples>`_ for more complete example scripts.
 
-As mentioned, ``ssh2-python`` is intentially a thin wrapper over ``libssh2`` and directly maps most of its API.
+As mentioned, ``ssh2-python`` is intentionally a thin wrapper over ``libssh2`` and directly maps most of its API.
 
 Clients using this library can be much simpler to use than interfacing with the ``libssh2`` API directly.
 
