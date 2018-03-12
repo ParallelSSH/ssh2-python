@@ -11,7 +11,7 @@ Changes
 * Channel functions now raise specific exceptions.
 * SCP errors now raise exceptions.
 * SFTP open handle errors now raise exceptions.
-* Added raising exceptions for all known libssh2 error codes.
+* Added exceptions for all known libssh2 error codes.
 * Added ``ssh2.utils.handle_error_codes`` function for raising appropriate exception from error code.
 * Added file types to ``ssh2.sftp``.
 

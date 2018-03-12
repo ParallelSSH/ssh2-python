@@ -3746,7 +3746,7 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes(int __pyx_v_errcode, CYTHON_U
  *         # Switch default
  *         if errcode < 0:             # <<<<<<<<<<<<<<
  *             raise exceptions.UnknownError("Error code %s not known", errcode)
- *         return 0
+ *         return errcode
  */
     __pyx_t_3 = ((__pyx_v_errcode < 0) != 0);
     if (__pyx_t_3) {
@@ -3755,7 +3755,7 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes(int __pyx_v_errcode, CYTHON_U
  *         # Switch default
  *         if errcode < 0:
  *             raise exceptions.UnknownError("Error code %s not known", errcode)             # <<<<<<<<<<<<<<
- *         return 0
+ *         return errcode
  */
       __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_exceptions); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 191, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
@@ -3820,16 +3820,16 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes(int __pyx_v_errcode, CYTHON_U
  *         # Switch default
  *         if errcode < 0:             # <<<<<<<<<<<<<<
  *             raise exceptions.UnknownError("Error code %s not known", errcode)
- *         return 0
+ *         return errcode
  */
     }
 
     /* "ssh2/utils.pyx":192
  *         if errcode < 0:
  *             raise exceptions.UnknownError("Error code %s not known", errcode)
- *         return 0             # <<<<<<<<<<<<<<
+ *         return errcode             # <<<<<<<<<<<<<<
  */
-    __pyx_r = 0;
+    __pyx_r = __pyx_v_errcode;
     goto __pyx_L0;
     break;
   }

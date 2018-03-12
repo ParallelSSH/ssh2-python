@@ -60,9 +60,7 @@ cdef class Channel:
         with nogil:
             rc = c_ssh2.libssh2_channel_request_pty(
                 self._channel, _term)
-        if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
-            handle_error_codes(rc)
-        return rc
+        return handle_error_codes(rc)
 
     def execute(self, command not None):
         """Execute command.
@@ -159,6 +157,7 @@ cdef class Channel:
                 buf = cbuf[:rc]
         finally:
             free(cbuf)
+        handle_error_codes(rc)
         return rc, buf
 
     def read_stderr(self, size_t size=1024):
@@ -194,7 +193,7 @@ cdef class Channel:
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_send_eof(self._channel)
-        return rc
+        return handle_error_codes(rc)
 
     def wait_eof(self):
         """Wait for the remote end to acknowledge an EOF request.
@@ -208,42 +207,42 @@ cdef class Channel:
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_wait_eof(self._channel)
-        return rc
+        return handle_error_codes(rc)
 
     def close(self):
         """Close channel. Typically done to be able to get exit status."""
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_close(self._channel)
-        return rc
+        return handle_error_codes(rc)
 
     def flush(self):
         """Flush stdout stream"""
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_flush(self._channel)
-        return rc
+        return handle_error_codes(rc)
 
     def flush_ex(self, int stream_id):
         """Flush stream with id"""
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_flush_ex(self._channel, stream_id)
-        return rc
+        return handle_error_codes(rc)
 
     def flush_stderr(self):
         """Flush stderr stream"""
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_flush_stderr(self._channel)
-        return rc
+        return handle_error_codes(rc)
 
     def wait_closed(self):
         """Wait for server to acknowledge channel close command."""
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_wait_closed(self._channel)
-        return rc
+        return handle_error_codes(rc)
 
     def get_exit_status(self):
         """Get exit status of command.
@@ -255,7 +254,7 @@ cdef class Channel:
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_get_exit_status(self._channel)
-        return rc
+        return handle_error_codes(rc)
 
     def get_exit_signal(self):
         """Get exit signal, message and language tag, if any, for command.
@@ -292,7 +291,7 @@ cdef class Channel:
             py_errmsg = errmsg[:py_errlen]
         if py_langlen > 0:
             py_langtag = langtag[:py_langlen]
-        return rc, py_exitsignal, py_errmsg, py_langtag
+        return handle_error_codes(rc), py_exitsignal, py_errmsg, py_langtag
 
     def setenv(self, varname not None, value not None):
         """Set environment variable on channel.
@@ -311,7 +310,7 @@ cdef class Channel:
         with nogil:
             rc = c_ssh2.libssh2_channel_setenv(
                 self._channel, _varname, _value)
-        return rc
+        return handle_error_codes(rc)
 
     def window_read_ex(self, unsigned long read_avail,
                        unsigned long window_size_initial):
@@ -319,26 +318,26 @@ cdef class Channel:
         with nogil:
             rc = c_ssh2.libssh2_channel_window_read_ex(
                 self._channel, &read_avail, &window_size_initial)
-        return rc
+        return handle_error_codes(rc)
 
     def window_read(self):
         cdef unsigned long rc
         with nogil:
             rc = c_ssh2.libssh2_channel_window_read(self._channel)
-        return rc
+        return handle_error_codes(rc)
 
     def window_write_ex(self, unsigned long window_size_initial):
         cdef unsigned long rc
         with nogil:
             rc = c_ssh2.libssh2_channel_window_write_ex(
                 self._channel, &window_size_initial)
-        return rc
+        return handle_error_codes(rc)
 
     def window_write(self):
         cdef unsigned long rc
         with nogil:
             rc = c_ssh2.libssh2_channel_window_write(self._channel)
-        return rc
+        return handle_error_codes(rc)
 
     def receive_window_adjust(self, unsigned long adjustment,
                               unsigned long force):
@@ -346,7 +345,7 @@ cdef class Channel:
         with nogil:
             rc = c_ssh2.libssh2_channel_receive_window_adjust(
                 self._channel, adjustment, force)
-        return rc
+        return handle_error_codes(rc)
 
     def receive_window_adjust2(self, unsigned long adjustment,
                                unsigned long force):
@@ -355,7 +354,7 @@ cdef class Channel:
         with nogil:
             rc = c_ssh2.libssh2_channel_receive_window_adjust2(
                 self._channel, adjustment, force, &storewindow)
-        return rc
+        return handle_error_codes(rc)
 
     def write(self, buf not None):
         """Write buffer to stdin
@@ -370,7 +369,7 @@ cdef class Channel:
         cdef ssize_t rc
         with nogil:
             rc = c_ssh2.libssh2_channel_write(self._channel, _buf, buflen)
-        return rc
+        return handle_error_codes(rc)
 
     def write_ex(self, int stream_id, buf not None):
         """Write buffer to specified stream id.
@@ -388,7 +387,7 @@ cdef class Channel:
         with nogil:
             rc = c_ssh2.libssh2_channel_write_ex(
                 self._channel, stream_id, _buf, buflen)
-        return rc
+        return handle_error_codes(rc)
 
     def write_stderr(self, buf not None):
         """Write buffer to stderr.
@@ -404,14 +403,14 @@ cdef class Channel:
         with nogil:
             rc = c_ssh2.libssh2_channel_write_stderr(
                 self._channel, _buf, buflen)
-        return rc
+        return handle_error_codes(rc)
 
     def x11_req(self, int screen_number):
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_x11_req(
                 self._channel, screen_number)
-        return rc
+        return handle_error_codes(rc)
 
     def x11_req_ex(self, int single_connection,
                    const char *auth_proto,
@@ -422,7 +421,7 @@ cdef class Channel:
             rc = c_ssh2.libssh2_channel_x11_req_ex(
                 self._channel, single_connection,
                 auth_proto, auth_cookie, screen_number)
-        return rc
+        return handle_error_codes(rc)
 
     def process_startup(self, request, message=None):
         """Startup process on server for request with message.
@@ -450,7 +449,7 @@ cdef class Channel:
         with nogil:
             rc = c_ssh2.libssh2_channel_process_startup(
                 self._channel, _request, r_len, _message, m_len)
-        return rc
+        return handle_error_codes(rc)
 
     def poll_channel_read(self, int extended):
         """Deprecated - use session.block_directions and socket polling
@@ -458,7 +457,7 @@ cdef class Channel:
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_poll_channel_read(self._channel, extended)
-        return rc
+        return handle_error_codes(rc)
 
     def handle_extended_data(self, int ignore_mode):
         """Deprecated, use handle_extended_data2"""
@@ -471,7 +470,7 @@ cdef class Channel:
         with nogil:
             rc = c_ssh2.libssh2_channel_handle_extended_data2(
                 self._channel, ignore_mode)
-        return rc
+        return handle_error_codes(rc)
 
     def ignore_extended_data(self, int ignore_mode):
         """Deprecated, use handle_extended_data2"""

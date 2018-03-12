@@ -189,4 +189,4 @@ cpdef int handle_error_codes(int errcode) except -1:
         # Switch default
         if errcode < 0:
             raise exceptions.UnknownError("Error code %s not known", errcode)
-        return 0
+        return errcode
