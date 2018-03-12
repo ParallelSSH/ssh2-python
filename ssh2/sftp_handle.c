@@ -782,6 +782,7 @@ struct __pyx_obj_4ssh2_7session_Session {
  */
 struct __pyx_obj_4ssh2_4sftp_SFTP {
   PyObject_HEAD
+  struct __pyx_vtabstruct_4ssh2_4sftp_SFTP *__pyx_vtab;
   LIBSSH2_SFTP *_sftp;
   struct __pyx_obj_4ssh2_7session_Session *_session;
 };
@@ -865,6 +866,20 @@ struct __pyx_obj_4ssh2_11sftp_handle___pyx_scope_struct_1_readdir {
   struct __pyx_obj_4ssh2_11sftp_handle_SFTPHandle *__pyx_v_self;
 };
 
+
+
+/* "sftp.pxd":26
+ * 
+ * 
+ * cdef class SFTP:             # <<<<<<<<<<<<<<
+ *     cdef c_sftp.LIBSSH2_SFTP *_sftp
+ *     cdef Session _session
+ */
+
+struct __pyx_vtabstruct_4ssh2_4sftp_SFTP {
+  int (*_handle_error)(struct __pyx_obj_4ssh2_4sftp_SFTP *, int, PyObject *);
+};
+static struct __pyx_vtabstruct_4ssh2_4sftp_SFTP *__pyx_vtabptr_4ssh2_4sftp_SFTP;
 
 /* --- Runtime support code (head) --- */
 /* Refnanny.proto */
@@ -1100,6 +1115,9 @@ static CYTHON_INLINE PyObject *__Pyx_GetModuleGlobalName(PyObject *name);
 /* SetupReduce.proto */
 static int __Pyx_setup_reduce(PyObject* type_obj);
 
+/* GetVTable.proto */
+static void* __Pyx_GetVtable(PyObject *dict);
+
 /* Import.proto */
 static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level);
 
@@ -1322,6 +1340,7 @@ static const char __pyx_k_TypeError[] = "TypeError";
 static const char __pyx_k_readdir_2[] = "_readdir";
 static const char __pyx_k_reduce_ex[] = "__reduce_ex__";
 static const char __pyx_k_exceptions[] = "exceptions";
+static const char __pyx_k_pyx_vtable[] = "__pyx_vtable__";
 static const char __pyx_k_readdir_ex[] = "readdir_ex";
 static const char __pyx_k_MemoryError[] = "MemoryError";
 static const char __pyx_k_SFTPIOError[] = "SFTPIOError";
@@ -1358,6 +1377,7 @@ static PyObject *__pyx_n_s_longentry_maxlen;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_kp_s_no_default___reduce___due_to_non;
+static PyObject *__pyx_n_s_pyx_vtable;
 static PyObject *__pyx_n_s_read;
 static PyObject *__pyx_n_s_readdir;
 static PyObject *__pyx_n_s_readdir_2;
@@ -9180,6 +9200,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_kp_s_no_default___reduce___due_to_non, __pyx_k_no_default___reduce___due_to_non, sizeof(__pyx_k_no_default___reduce___due_to_non), 0, 0, 1, 0},
+  {&__pyx_n_s_pyx_vtable, __pyx_k_pyx_vtable, sizeof(__pyx_k_pyx_vtable), 0, 0, 1, 1},
   {&__pyx_n_s_read, __pyx_k_read, sizeof(__pyx_k_read), 0, 0, 1, 1},
   {&__pyx_n_s_readdir, __pyx_k_readdir, sizeof(__pyx_k_readdir), 0, 0, 1, 1},
   {&__pyx_n_s_readdir_2, __pyx_k_readdir_2, sizeof(__pyx_k_readdir_2), 0, 0, 1, 1},
@@ -9446,6 +9467,7 @@ static int __pyx_pymod_exec_sftp_handle(PyObject *__pyx_pyinit_module)
   /*--- Type import code ---*/
   __pyx_ptype_4ssh2_7session_Session = __Pyx_ImportType("ssh2.session", "Session", sizeof(struct __pyx_obj_4ssh2_7session_Session), 1); if (unlikely(!__pyx_ptype_4ssh2_7session_Session)) __PYX_ERR(2, 19, __pyx_L1_error)
   __pyx_ptype_4ssh2_4sftp_SFTP = __Pyx_ImportType("ssh2.sftp", "SFTP", sizeof(struct __pyx_obj_4ssh2_4sftp_SFTP), 1); if (unlikely(!__pyx_ptype_4ssh2_4sftp_SFTP)) __PYX_ERR(3, 26, __pyx_L1_error)
+  __pyx_vtabptr_4ssh2_4sftp_SFTP = (struct __pyx_vtabstruct_4ssh2_4sftp_SFTP*)__Pyx_GetVtable(__pyx_ptype_4ssh2_4sftp_SFTP->tp_dict); if (unlikely(!__pyx_vtabptr_4ssh2_4sftp_SFTP)) __PYX_ERR(3, 26, __pyx_L1_error)
   /*--- Variable import code ---*/
   /*--- Function import code ---*/
   /*--- Execution code ---*/
@@ -10488,6 +10510,26 @@ GOOD:
     Py_XDECREF(setstate);
     Py_XDECREF(setstate_cython);
     return ret;
+}
+
+/* GetVTable */
+      static void* __Pyx_GetVtable(PyObject *dict) {
+    void* ptr;
+    PyObject *ob = PyObject_GetItem(dict, __pyx_n_s_pyx_vtable);
+    if (!ob)
+        goto bad;
+#if PY_VERSION_HEX >= 0x02070000
+    ptr = PyCapsule_GetPointer(ob, 0);
+#else
+    ptr = PyCObject_AsVoidPtr(ob);
+#endif
+    if (!ptr && !PyErr_Occurred())
+        PyErr_SetString(PyExc_RuntimeError, "invalid vtable found for imported type");
+    Py_DECREF(ob);
+    return ptr;
+bad:
+    Py_XDECREF(ob);
+    return NULL;
 }
 
 /* Import */

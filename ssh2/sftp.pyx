@@ -18,6 +18,17 @@
 """
 SFTP channel class and related SFTP flags.
 
+File types
+------------
+:var LIBSSH2_SFTP_S_IFMT: Type of file mask
+:var LIBSSH2_SFTP_S_IFIFO: Named pipe (fifo)
+:var LIBSSH2_SFTP_S_IFCHR: Character special (character device)
+:var LIBSSH2_SFTP_S_IFDIR: Directory
+:var LIBSSH2_SFTP_S_IFBLK: Block special (block device)
+:var LIBSSH2_SFTP_S_IFREG: Regular file
+:var LIBSSH2_SFTP_S_IFLNK: Symbolic link
+:var LIBSSH2_SFTP_S_IFSOCK: Socket
+
 File transfer flags
 --------------------
 :var LIBSSH2_FXF_READ: File read flag
@@ -53,6 +64,12 @@ ____________
 :var LIBSSH2_SFTP_S_IROTH: Read
 :var LIBSSH2_SFTP_S_IWOTH: Write
 :var LIBSSH2_SFTP_S_IXOTH: Execute
+
+Generic mode masks
+___________________
+
+:var LIBSSH2_SFTP_ST_RDONLY: Read only
+:var LIBSSH2_SFTP_ST_NOSUID: No suid
 """
 
 from libc.stdlib cimport malloc, free
@@ -60,7 +77,7 @@ from libc.stdlib cimport malloc, free
 from session cimport Session
 from error_codes cimport _LIBSSH2_ERROR_BUFFER_TOO_SMALL
 from channel cimport Channel, PyChannel
-from utils cimport to_bytes, to_str_len
+from utils cimport to_bytes, to_str_len, handle_error_codes
 from sftp_handle cimport SFTPHandle, PySFTPHandle, SFTPAttributes, SFTPStatVFS
 
 from exceptions import SFTPHandleError, SFTPBufferTooSmall, SFTPIOError
@@ -70,7 +87,23 @@ cimport c_sftp
 
 
 # File types
-# TODO
+
+# Type of file mask
+LIBSSH2_SFTP_S_IFMT = c_sftp.LIBSSH2_SFTP_S_IFMT
+# named pipe (fifo)
+LIBSSH2_SFTP_S_IFIFO = c_sftp.LIBSSH2_SFTP_S_IFIFO
+# character special
+LIBSSH2_SFTP_S_IFCHR = c_sftp.LIBSSH2_SFTP_S_IFCHR
+# directory
+LIBSSH2_SFTP_S_IFDIR = c_sftp.LIBSSH2_SFTP_S_IFDIR
+# block special (block device)
+LIBSSH2_SFTP_S_IFBLK = c_sftp.LIBSSH2_SFTP_S_IFBLK
+# regular
+LIBSSH2_SFTP_S_IFREG = c_sftp.LIBSSH2_SFTP_S_IFREG
+# symbolic link
+LIBSSH2_SFTP_S_IFLNK = c_sftp.LIBSSH2_SFTP_S_IFLNK
+# socket
+LIBSSH2_SFTP_S_IFSOCK = c_sftp.LIBSSH2_SFTP_S_IFSOCK
 
 
 # File Transfer Flags
@@ -84,6 +117,7 @@ LIBSSH2_FXF_EXCL = c_sftp.LIBSSH2_FXF_EXCL
 
 
 # File mode masks
+
 # Read, write, execute/search by owner
 LIBSSH2_SFTP_S_IRWXU = c_sftp.LIBSSH2_SFTP_S_IRWXU
 LIBSSH2_SFTP_S_IRUSR = c_sftp.LIBSSH2_SFTP_S_IRUSR
@@ -100,7 +134,9 @@ LIBSSH2_SFTP_S_IROTH = c_sftp.LIBSSH2_SFTP_S_IROTH
 LIBSSH2_SFTP_S_IWOTH = c_sftp.LIBSSH2_SFTP_S_IWOTH
 LIBSSH2_SFTP_S_IXOTH = c_sftp.LIBSSH2_SFTP_S_IXOTH
 
+# Read only
 LIBSSH2_SFTP_ST_RDONLY = c_sftp.LIBSSH2_SFTP_ST_RDONLY
+# No suid
 LIBSSH2_SFTP_ST_NOSUID = c_sftp.LIBSSH2_SFTP_ST_NOSUID
 
 
@@ -124,13 +160,26 @@ cdef class SFTP:
         with nogil:
             c_sftp.libssh2_sftp_shutdown(self._sftp)
 
+    @property
+    def session(self):
+        """Originating session."""
+        return self._session
+
+    cdef int _handle_error(self, int errcode, path) except -1:
+        if errcode == c_ssh2.LIBSSH2_ERROR_EAGAIN:
+            return errcode
+        raise SFTPHandleError(
+            "Could not open file or directory %s - error code %s - %s", path,
+            errcode, self._session.last_error())
+
     def get_channel(self):
         """Get new channel from the SFTP session"""
         cdef c_ssh2.LIBSSH2_CHANNEL *_channel
         with nogil:
             _channel = c_sftp.libssh2_sftp_get_channel(self._sftp)
         if _channel is NULL:
-            return
+            return handle_error_codes(c_ssh2.libssh2_session_last_errno(
+                self._session._session))
         return PyChannel(_channel, self._session)
 
     def open_ex(self, const char *filename,
@@ -144,9 +193,8 @@ cdef class SFTP:
                 self._sftp, filename, filename_len, flags,
                 mode, open_type)
         if _handle is NULL:
-            raise SFTPHandleError(
-                "Could not open file %s - error code %s - %s", filename,
-                self._session.last_errno(), self._session.last_error())
+            return self._handle_error(c_ssh2.libssh2_session_last_errno(
+                self._session._session), filename)
         handle = PySFTPHandle(_handle, self)
         return handle
 
@@ -191,9 +239,8 @@ cdef class SFTP:
             _handle = c_sftp.libssh2_sftp_open(
                 self._sftp, _filename, flags, mode)
         if _handle is NULL:
-            raise SFTPHandleError(
-                "Could not open file %s - error code %s - %s", filename,
-                self._session.last_errno(), self._session.last_error())
+            return self._handle_error(c_ssh2.libssh2_session_last_errno(
+                self._session._session), filename)
         return PySFTPHandle(_handle, self)
 
     def opendir(self, path not None):
@@ -213,9 +260,8 @@ cdef class SFTP:
         with nogil:
             _handle = c_sftp.libssh2_sftp_opendir(self._sftp, _path)
         if _handle is NULL:
-            raise SFTPHandleError(
-                "Could not open directory %s - error code %s - %s", path,
-                self._session.last_errno(), self._session.last_error())
+            return self._handle_error(c_ssh2.libssh2_session_last_errno(
+                self._session._session), path)
         return PySFTPHandle(_handle, self)
 
     def rename_ex(self, const char *source_filename,

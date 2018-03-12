@@ -1,8 +1,18 @@
 from .base_test import SSH2TestCase
+
 from ssh2.exceptions import SocketSendError
+from ssh2.session import Session
+from ssh2.channel import Channel
 
 
 class ChannelTestCase(SSH2TestCase):
+
+    def test_init(self):
+        self.assertEqual(self._auth(), 0)
+        chan = self.session.open_session()
+        self.assertIsInstance(chan, Channel)
+        self.assertIsInstance(chan.session, Session)
+        self.assertEqual(chan.session, self.session)
 
     def test_execute(self):
         self.assertEqual(self._auth(), 0)

@@ -26,3 +26,4 @@ cdef object PySFTP(c_sftp.LIBSSH2_SFTP *sftp, Session session)
 cdef class SFTP:
     cdef c_sftp.LIBSSH2_SFTP *_sftp
     cdef Session _session
+    cdef int _handle_error(self, int errcode, filename) except -1

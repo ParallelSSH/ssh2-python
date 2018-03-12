@@ -45,6 +45,7 @@ cdef class Channel:
 
     @property
     def session(self):
+        """Originating session."""
         return self._session
 
     def pty(self, term="vt100"):

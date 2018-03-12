@@ -4,8 +4,12 @@ from unittest import skipUnless
 from .base_test import SSH2TestCase
 from ssh2.session import Session, LIBSSH2_HOSTKEY_HASH_MD5, \
     LIBSSH2_HOSTKEY_HASH_SHA1
+from ssh2.sftp import SFTP
+from ssh2.channel import Channel
+from ssh2.error_codes import LIBSSH2_ERROR_EAGAIN
 from ssh2.exceptions import AuthenticationError, AgentAuthenticationError, \
-    SCPError, RequestDeniedError, InvalidRequestError, Timeout, SocketSendError
+    SCPError, RequestDeniedError, InvalidRequestError, SocketSendError
+from ssh2.utils import wait_socket
 
 
 class SessionTestCase(SSH2TestCase):
@@ -55,7 +59,7 @@ class SessionTestCase(SSH2TestCase):
 
     @skipUnless(hasattr(Session, 'scp_recv2'),
                 "Function not supported by libssh2")
-    def test_scp_recv2(self):        
+    def test_scp_recv2(self):
         self.assertEqual(self._auth(), 0)
         test_data = b"data"
         remote_filename = os.sep.join([os.path.dirname(__file__),
@@ -174,6 +178,22 @@ class SessionTestCase(SSH2TestCase):
         self.assertRaises(SCPError, self.session.scp_send64,
                           '/cannot_write', 0 & 777, 1, 1, 1)
 
+    def test_non_blocking(self):
+        self.assertEqual(self._auth(), 0)
+        self.session.set_blocking(False)
+        self.assertFalse(self.session.get_blocking())
+        sftp = self.session.sftp_init()
+        while sftp == LIBSSH2_ERROR_EAGAIN:
+            wait_socket(self.sock, self.session)
+            sftp = self.session.sftp_init()
+        self.assertIsNotNone(sftp)
+        self.assertIsInstance(sftp, SFTP)
+        chan = self.session.open_session()
+        while chan == LIBSSH2_ERROR_EAGAIN:
+            wait_socket(self.sock, self.session)
+            chan = self.session.open_session()
+        self.assertIsInstance(chan, Channel)
+
     def test_hostkey(self):
         self.assertEqual(self._auth(), 0)
         for _type in [LIBSSH2_HOSTKEY_HASH_MD5, LIBSSH2_HOSTKEY_HASH_SHA1]:
@@ -193,4 +213,5 @@ class SessionTestCase(SSH2TestCase):
 
     def test_direct_tcpip_failure(self):
         self.sock.close()
-        self.assertRaises(SocketSendError, self.session.direct_tcpip, 'localhost', 80)
+        self.assertRaises(SocketSendError, self.session.direct_tcpip,
+                          'localhost', 80)

@@ -6,16 +6,24 @@ from unittest import skipUnless
 import shutil
 
 from .base_test import SSH2TestCase
+from ssh2.session import Session
 from ssh2.error_codes import LIBSSH2_ERROR_EAGAIN
 from ssh2.utils import wait_socket
 from ssh2.sftp_handle import SFTPHandle, SFTPAttributes
 from ssh2.exceptions import SFTPHandleError, SFTPBufferTooSmall
 from ssh2.sftp import LIBSSH2_FXF_CREAT, LIBSSH2_FXF_WRITE, \
     LIBSSH2_SFTP_S_IRUSR, LIBSSH2_SFTP_S_IRGRP, LIBSSH2_SFTP_S_IWUSR, \
-    LIBSSH2_SFTP_S_IROTH, LIBSSH2_SFTP_S_IXUSR
+    LIBSSH2_SFTP_S_IROTH, LIBSSH2_SFTP_S_IXUSR, SFTP
 
 
 class SFTPTestCase(SSH2TestCase):
+
+    def test_init(self):
+        self.assertEqual(self._auth(), 0)
+        sftp = self.session.sftp_init()
+        self.assertIsInstance(sftp, SFTP)
+        self.assertIsInstance(sftp.session, Session)
+        self.assertEqual(sftp.session, self.session)
 
     def test_sftp_read(self):
         self.assertEqual(self._auth(), 0)
@@ -282,3 +290,17 @@ class SFTPTestCase(SSH2TestCase):
             self.assertTrue(os.path.isdir(abspath))
         finally:
             shutil.rmtree(abspath)
+
+    def test_handle_open_nonblocking(self):
+        self._auth()
+        sftp = self.session.sftp_init()
+        self.session.set_blocking(False)
+        try:
+            fh = sftp.open('fakey fake fake', 0, 0)
+            while fh == LIBSSH2_ERROR_EAGAIN:
+                wait_socket(self.sock, self.session)
+                fh = sftp.open('fakey fake fake', 0, 0)
+        except SFTPHandleError:
+            pass
+        else:
+            raise Exception("Should have raised SFTPHandleError")
