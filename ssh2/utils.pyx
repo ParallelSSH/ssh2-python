@@ -101,6 +101,8 @@ cpdef int handle_error_codes(int errcode) except -1:
         return 0
     elif errcode == error_codes._LIBSSH2_ERROR_EAGAIN:
         return errcode
+    elif errcode == error_codes._LIBSSH2_ERROR_SOCKET_NONE:
+        raise exceptions.SSH2Error
     elif errcode == error_codes._LIBSSH2_ERROR_BANNER_RECV:
         raise exceptions.BannerRecvError
     elif errcode == error_codes._LIBSSH2_ERROR_BANNER_SEND:
