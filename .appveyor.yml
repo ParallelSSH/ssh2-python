@@ -100,6 +100,8 @@ install:
   # do not cause a version change.
   - python ci/appveyor/fix_version.py .
   - mv -f .git .git.bak
+  - appveyor DownloadFile http://zlib.net/zlib1211.zip
+  - 7z x zlib1211.zip
   - appveyor DownloadFile https://indy.fulgan.com/SSL/openssl-%OPENSSL_VER%-%ARCH%-win%PYTHON_ARCH%.zip
   - 7z x openssl-%OPENSSL_VER%-%ARCH%-win%PYTHON_ARCH%.zip
   - cp ssleay32.dll ssh2\
@@ -108,6 +110,7 @@ install:
 
 build_script:
   # Build the compiled extension
+  - "%CMD_IN_ENV% ci\\appveyor\\build_zlib.bat"
   - "%CMD_IN_ENV% ci\\appveyor\\build_ssh2.bat"
   - rm -f ssh2/*.c
   - "%CMD_IN_ENV% python setup.py build"

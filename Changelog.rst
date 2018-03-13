@@ -12,6 +12,8 @@ Changes
 * Adds support for SHA-256 host key fingerprints.
 * Added SSH agent forwarding implementation.
 * Windows wheels switched to OpenSSL back end.
+* Windows wheels include zlib and have compression enabled.
+* Windows wheels no MAC and no encryption options enabled, same as posix wheels.
 
 Note - binary wheels only.
 

@@ -28,6 +28,7 @@ if ON_WINDOWS:
     # For libssh2 OpenSSL backend on Windows.
     _libs = ['Ws2_32', 'libssh2', 'user32',
              'libeay32MD', 'ssleay32MD',
+             'zlibstatic',
     ]
 else:
     _libs = ['ssh2']
@@ -89,6 +90,7 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
