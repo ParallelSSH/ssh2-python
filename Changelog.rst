@@ -14,8 +14,14 @@ Changes
 * Windows wheels switched to OpenSSL back end.
 * Windows wheels include zlib and have compression enabled.
 * Windows wheels no MAC and no encryption options enabled, same as posix wheels.
+* SCP functions now raise appropriate exception for all known libssh2 error codes.
 
-Note - binary wheels only.
+Fixes
+-------
+
+* SCP functions could not be used in non-blocking mode.
+
+Note - libssh2 changes apply to binary wheels only. For building from source `see documentation <http://ssh2-python.readthedocs.io/en/latest/installation.html#installation-from-source>`_.
 
 0.11.0
 ++++++++

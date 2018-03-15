@@ -8,7 +8,7 @@ from ssh2.sftp import SFTP
 from ssh2.channel import Channel
 from ssh2.error_codes import LIBSSH2_ERROR_EAGAIN
 from ssh2.exceptions import AuthenticationError, AgentAuthenticationError, \
-    SCPError, RequestDeniedError, InvalidRequestError, SocketSendError
+    SCPProtocolError, RequestDeniedError, InvalidRequestError, SocketSendError
 from ssh2.utils import wait_socket
 
 
@@ -83,7 +83,7 @@ class SessionTestCase(SSH2TestCase):
             raise
         finally:
             os.unlink(remote_filename)
-        self.assertRaises(SCPError, self.session.scp_recv2, remote_filename)
+        self.assertRaises(SCPProtocolError, self.session.scp_recv2, remote_filename)
 
     def test_scp_recv(self):
         self.assertEqual(self._auth(), 0)
@@ -109,7 +109,7 @@ class SessionTestCase(SSH2TestCase):
             raise
         finally:
             os.unlink(remote_filename)
-        self.assertRaises(SCPError, self.session.scp_recv, remote_filename)
+        self.assertRaises(SCPProtocolError, self.session.scp_recv, remote_filename)
 
     def test_scp_send(self):
         self.assertEqual(self._auth(), 0)
@@ -140,7 +140,7 @@ class SessionTestCase(SSH2TestCase):
                 os.unlink(to_copy)
             except OSError:
                 pass
-        self.assertRaises(SCPError, self.session.scp_send,
+        self.assertRaises(SCPProtocolError, self.session.scp_send,
                           '/cannot_write', 1 & 777, 1)
 
     @skipUnless(hasattr(Session, 'scp_send64'),
@@ -175,7 +175,7 @@ class SessionTestCase(SSH2TestCase):
                 os.unlink(to_copy)
             except OSError:
                 pass
-        self.assertRaises(SCPError, self.session.scp_send64,
+        self.assertRaises(SCPProtocolError, self.session.scp_send64,
                           '/cannot_write', 0 & 777, 1, 1, 1)
 
     def test_non_blocking(self):

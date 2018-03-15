@@ -33,7 +33,7 @@ from ssh2.exceptions import SSH2Error, AgentError, AuthenticationError, \
     ChannelError, ChannelOutOfOrderError, ChannelFailure, \
     ChannelRequestDenied, ChannelUnknownError, ChannelWindowExceeded, \
     ChannelPacketExceeded, ChannelClosedError, ChannelEOFSentError, \
-    SCPError, SCPProtocolError, ZlibError, SocketTimeout, \
+    SCPProtocolError, ZlibError, SocketTimeout, \
     RequestDeniedError, MethodNotSupported, InvalidRequestError, \
     InvalidPollTypeError, PublicKeyProtocolError, BufferTooSmallError, \
     BadUseError, CompressError, OutOfBoundaryError, SocketRecvError, \

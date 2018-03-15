@@ -109,7 +109,6 @@ install:
   - ps: ls ssh2
 
 build_script:
-  # Build the compiled extension
   - "%CMD_IN_ENV% ci\\appveyor\\build_zlib.bat"
   - "%CMD_IN_ENV% ci\\appveyor\\build_ssh2.bat"
   - rm -f ssh2/*.c

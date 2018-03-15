@@ -159,11 +159,7 @@ class ChannelEOFSentError(ChannelError):
     """Raised on channel EOF errors"""
 
 
-class SCPError(SSH2Error):
-    """Raised on SCP errors. Base class for all SCP exceptions."""
-
-
-class SCPProtocolError(SCPError):
+class SCPProtocolError(SessionError):
     """Raised on SCP protocol errors"""
 
 

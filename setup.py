@@ -24,14 +24,11 @@ ON_WINDOWS = platform.system() == 'Windows'
 
 ext = 'pyx' if USING_CYTHON else 'c'
 sources = glob('ssh2/*.%s' % (ext,))
-if ON_WINDOWS:
-    # For libssh2 OpenSSL backend on Windows.
-    _libs = ['Ws2_32', 'libssh2', 'user32',
-             'libeay32MD', 'ssleay32MD',
-             'zlibstatic',
-    ]
-else:
-    _libs = ['ssh2']
+_libs = ['ssh2'] if not ON_WINDOWS else [
+    'Ws2_32', 'libssh2', 'user32',
+    'libeay32MD', 'ssleay32MD',
+    'zlibstatic',
+]
 
 # _comp_args = ["-ggdb"]
 _comp_args = ["-O3"] if not ON_WINDOWS else None
