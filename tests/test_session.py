@@ -1,4 +1,5 @@
 import os
+import socket
 from unittest import skipUnless
 
 from .base_test import SSH2TestCase
@@ -8,7 +9,8 @@ from ssh2.sftp import SFTP
 from ssh2.channel import Channel
 from ssh2.error_codes import LIBSSH2_ERROR_EAGAIN
 from ssh2.exceptions import AuthenticationError, AgentAuthenticationError, \
-    SCPProtocolError, RequestDeniedError, InvalidRequestError, SocketSendError
+    SCPProtocolError, RequestDeniedError, InvalidRequestError, \
+    SocketSendError, FileError
 from ssh2.utils import wait_socket
 
 
@@ -52,7 +54,7 @@ class SessionTestCase(SSH2TestCase):
                           self.session.userauth_publickey_fromfile,
                           'FAKE USER', self.user_pub_key, self.user_key,
                           '')
-        self.assertRaises(AuthenticationError,
+        self.assertRaises(FileError,
                           self.session.userauth_publickey_fromfile,
                           self.user, 'FAKE FILE', 'EVEN MORE FAKE FILE',
                           '')
@@ -76,8 +78,8 @@ class SessionTestCase(SSH2TestCase):
             size, data = file_chan.read(size=fileinfo.st_size)
             total += size
             while total < fileinfo.st_size:
-                total += size
                 size, data = file_chan.read()
+                total += size
             self.assertEqual(total, fileinfo.st_size)
         except Exception:
             raise
@@ -193,6 +195,14 @@ class SessionTestCase(SSH2TestCase):
             wait_socket(self.sock, self.session)
             chan = self.session.open_session()
         self.assertIsInstance(chan, Channel)
+
+    def test_non_blocking_handshake(self):
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.connect((self.host, self.port))
+        session = Session()
+        session.set_blocking(0)
+        while session.handshake(sock) == LIBSSH2_ERROR_EAGAIN:
+            continue
 
     def test_hostkey(self):
         self.assertEqual(self._auth(), 0)

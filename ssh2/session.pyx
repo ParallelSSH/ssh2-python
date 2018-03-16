@@ -19,8 +19,7 @@ from libc.time cimport time_t
 
 from agent cimport PyAgent, agent_auth, agent_init, init_connect_agent
 from channel cimport PyChannel
-from exceptions import SessionHandshakeError, SessionStartupError, \
-    AuthenticationError, SessionHostKeyError, KnownHostError, \
+from exceptions import SessionHostKeyError, KnownHostError, \
     PublicKeyInitError, ChannelError
 from listener cimport PyListener
 from sftp cimport PySFTP
@@ -61,13 +60,15 @@ cdef class Session:
         if self._session is not NULL:
             with nogil:
                 c_ssh2.libssh2_session_disconnect(
-                    self._session, "end")
+                    self._session, b"end")
                 c_ssh2.libssh2_session_free(self._session)
         self._session = NULL
 
     def disconnect(self):
+        cdef int rc
         with nogil:
-            c_ssh2.libssh2_session_disconnect(self._session, "end")
+            rc = c_ssh2.libssh2_session_disconnect(self._session, b"end")
+        return handle_error_codes(rc)
 
     def handshake(self, sock not None):
         """Perform SSH handshake.
@@ -77,25 +78,16 @@ cdef class Session:
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_session_handshake(self._session, _sock)
-            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
-                with gil:
-                    raise SessionHandshakeError(
-                        "SSH session handshake failed with error code %s",
-                        rc)
             self._sock = _sock
         self.sock = sock
-        return rc
+        return handle_error_codes(rc)
 
     def startup(self, sock):
         """Deprecated - use self.handshake"""
         cdef int _sock = PyObject_AsFileDescriptor(sock)
         cdef int rc
         rc = c_ssh2.libssh2_session_startup(self._session, _sock)
-        if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
-            raise SessionStartupError(
-                "SSH session startup failed with error code %s",
-                rc)
-        return rc
+        return handle_error_codes(rc)
 
     def set_blocking(self, bint blocking):
         """Set session blocking mode on/off.
@@ -179,13 +171,7 @@ cdef class Session:
         with nogil:
             rc = c_ssh2.libssh2_userauth_publickey_fromfile(
                 self._session, _username, _publickey, _privatekey, _passphrase)
-            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
-                with gil:
-                    raise AuthenticationError(
-                        "Error authenticating user %s with private key %s and"
-                        "public key %s",
-                        username, privatekey, publickey)
-        return rc
+        return handle_error_codes(rc)
 
     def userauth_publickey(self, username not None,
                            bytes pubkeydata not None):
@@ -206,12 +192,7 @@ cdef class Session:
             rc = c_ssh2.libssh2_userauth_publickey(
                 self._session, _username, _pubkeydata,
                 pubkeydata_len, NULL, NULL)
-            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
-                with gil:
-                    raise AuthenticationError(
-                        "Error authenticating user %s with public key data",
-                        username)
-        return rc
+        return handle_error_codes(rc)
 
     def userauth_hostbased_fromfile(self,
                                     username not None,
@@ -234,13 +215,7 @@ cdef class Session:
             rc = c_ssh2.libssh2_userauth_hostbased_fromfile(
                 self._session, _username, _publickey,
                 _privatekey, _passphrase, _hostname)
-            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
-                with gil:
-                    raise AuthenticationError(
-                        "Error authenticating user %s with private key %s and"
-                        "public key %s for host %s",
-                        username, privatekey, publickey, hostname)
-        return rc
+        return handle_error_codes(rc)
 
     IF EMBEDDED_LIB:
         def userauth_publickey_frommemory(self,
@@ -264,11 +239,7 @@ cdef class Session:
                     self._session, _username, username_len, _publickeyfiledata,
                     pubkeydata_len, _privatekeyfiledata,
                     privatekeydata_len, _passphrase)
-                if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
-                    with gil:
-                        raise AuthenticationError(
-                            "Error authenticating user %s", username)
-            return rc
+            return handle_error_codes(rc)
 
     def userauth_password(self, username not None, password not None):
         """Perform password authentication
@@ -285,12 +256,7 @@ cdef class Session:
         with nogil:
             rc = c_ssh2.libssh2_userauth_password(
                 self._session, _username, _password)
-            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
-                with gil:
-                    raise AuthenticationError(
-                        "Error authenticating user %s with password",
-                        username)
-        return rc
+        return handle_error_codes(rc)
 
     def agent_init(self):
         """Initialise SSH agent.

@@ -8,13 +8,15 @@ Changes
 ---------
 
 * Upgrade embedded ``libssh2`` in binary wheels to latest version plus enhancements.
-* Adds support for ECDSA host and client keys.
+* Adds support for ECDSA host keys.
 * Adds support for SHA-256 host key fingerprints.
 * Added SSH agent forwarding implementation.
 * Windows wheels switched to OpenSSL back end.
 * Windows wheels include zlib and have compression enabled.
 * Windows wheels no MAC and no encryption options enabled, same as posix wheels.
 * SCP functions now raise appropriate exception for all known libssh2 error codes.
+* ``ssh2.session.Session.disconnect`` now returns ``0`` on success and raises exceptions on errors.
+* All session ``userauth_*`` functions now raise specific exceptions.
 
 Fixes
 -------
