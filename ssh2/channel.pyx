@@ -259,7 +259,8 @@ cdef class Channel:
     def get_exit_signal(self):
         """Get exit signal, message and language tag, if any, for command.
 
-        Returns (returncode, exit signal, error message, language tag) tuple.
+        Returns (`returncode``, ``exit signal``, ``error message``,
+          ``language tag``) tuple.
 
         :rtype: tuple(int, bytes, bytes, bytes)"""
         cdef char *exitsignal = <char *>b'none'
@@ -477,3 +478,10 @@ cdef class Channel:
         with nogil:
             c_ssh2.libssh2_channel_handle_extended_data(
                 self._channel, ignore_mode)
+
+    def request_auth_agent(self):
+        """Request SSH agent authentication forwarding on channel."""
+        cdef int rc
+        with nogil:
+            rc = c_ssh2.libssh2_channel_request_auth_agent(self._channel)
+        return handle_error_codes(rc)

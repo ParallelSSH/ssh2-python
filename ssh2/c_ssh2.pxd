@@ -39,6 +39,9 @@ cdef extern from "libssh2.h" nogil:
         LIBSSH2_HOSTKEY_TYPE_UNKNOWN
         LIBSSH2_HOSTKEY_TYPE_RSA
         LIBSSH2_HOSTKEY_TYPE_DSS
+    IF EMBEDDED_LIB:
+        enum:
+            LIBSSH2_HOSTKEY_HASH_SHA256
 
     # ctypedef libssh2_uint64_t libssh2_struct_stat_size
     ctypedef struct libssh2_struct_stat:
@@ -440,3 +443,5 @@ cdef extern from "libssh2.h" nogil:
     int libssh2_trace_sethandler(LIBSSH2_SESSION *session,
                                  void* context,
                                  libssh2_trace_handler_func callback)
+    IF EMBEDDED_LIB:
+        int libssh2_channel_request_auth_agent(LIBSSH2_CHANNEL *channel)

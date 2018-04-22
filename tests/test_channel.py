@@ -157,3 +157,8 @@ class ChannelTestCase(SSH2TestCase):
         self.assertTrue(lines, [self.resp])
         self.assertTrue(chan.close() == 0)
         self.assertTrue(chan.wait_eof() == 0)
+
+    def test_agent_forwarding(self):
+        self.assertEqual(self._auth(), 0)
+        chan = self.session.open_session()
+        self.assertEqual(chan.request_auth_agent(), 0)
