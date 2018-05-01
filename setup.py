@@ -20,13 +20,16 @@ except ImportError:
 else:
     USING_CYTHON = True
 
+ON_WINDOWS = platform.system() == 'Windows'
+
 ext = 'pyx' if USING_CYTHON else 'c'
 sources = glob('ssh2/*.%s' % (ext,))
-_libs = ['ssh2'] if platform.system() != 'Windows' else [
+if ON_WINDOWS:
     # For libssh2 OpenSSL backend on Windows.
-    # Windows native WinCNG is used by default.
-    # 'libeay32', 'ssleay32',
-    'Ws2_32', 'libssh2', 'user32']
+    _libs = ['Ws2_32', 'libssh2', 'user32',
+             'libeay32MD', 'ssleay32MD']
+else:
+    _libs = ['ssh2']
 
 # _comp_args = ["-ggdb"]
 _comp_args = ["-O3"] if platform.system() != 'Windows' else None
@@ -50,6 +53,13 @@ extensions = [
               **cython_args
     )
     for i in range(len(sources))]
+
+package_data = {'ssh2': ['*.pxd']}
+
+if ON_WINDOWS:
+    package_data['ssh2'].extend(['libeay32.dll', 'ssleay32.dll'])
+
+print("Using package data %s" % package_data)
 
 cmdclass = versioneer.get_cmdclass()
 if USING_CYTHON:
@@ -89,5 +99,5 @@ setup(
         'Operating System :: POSIX :: BSD',
     ],
     ext_modules=extensions,
-    package_data={'ssh2': ['*.pxd']},
+    package_data=package_data,
 )

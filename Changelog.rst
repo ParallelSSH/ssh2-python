@@ -1,7 +1,7 @@
 Change Log
 =============
 
-0.12.0
+0.13.0
 +++++++
 
 Changes
@@ -11,6 +11,7 @@ Changes
 * Adds support for ECDSA host and client keys.
 * Adds support for SHA-256 host key fingerprints.
 * Added SSH agent forwarding implementation.
+* Windows wheels switched to OpenSSL back end.
 
 Note - binary wheels only.
 

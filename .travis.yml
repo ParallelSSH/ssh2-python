@@ -35,11 +35,16 @@ jobs:
   include:
     - stage: OSX wheel build
       os: osx
-      if: tag IS present
+      # if: tag IS present
       before_install:
         - brew update
       install:
-        - brew install libssh2
+        # - brew install libssh2
+        - brew upgrade openssl
+        - export PATH="/usr/local/opt/openssl/bin:$PATH"
+        # - export OPENSSL_ROOT_DIR="/usr/local/opt/openssl"
+        # - export OPENSSL_INCLUDE_DIR="/usr/local/opt/openssl/include"
+        - sudo ci/install-ssh2.sh
         - sudo -H pip2 install -U delocate twine wheel pip setuptools
         - pip2 wheel .
       script:
@@ -61,11 +66,14 @@ jobs:
     - stage: OSX wheel build
       os: osx
       osx_image: xcode8
-      if: tag IS present
+      # if: tag IS present
       before_install:
         - brew update
       install:
-        - brew install libssh2
+        # - brew install libssh2
+        - brew upgrade openssl
+        - export PATH="/usr/local/opt/openssl/bin:$PATH"
+        - sudo ci/install-ssh2.sh
         - sudo -H pip2 install -U delocate twine wheel pip setuptools
         - pip2 wheel .
       script:
@@ -87,11 +95,14 @@ jobs:
     - stage: OSX wheel build
       os: osx
       osx_image: xcode6.4
-      if: tag IS present
+      # if: tag IS present
       before_install:
         - brew update
       install:
-        - brew install libssh2
+        # - brew install libssh2
+        - brew upgrade openssl
+        - export PATH="/usr/local/opt/openssl/bin:$PATH"
+        - sudo ci/install-ssh2.sh
         - python --version
         - wget --no-check-certificate https://bootstrap.pypa.io/get-pip.py
         - sudo python get-pip.py
