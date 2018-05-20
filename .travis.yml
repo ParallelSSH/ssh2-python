@@ -143,8 +143,7 @@ jobs:
     #       on:
     #         repo: ParallelSSH/ssh2-python
     #         tags: true
-    - stage: build and deploy source and wheels
-      if: tag IS present
+    - stage: build wheels
       os: linux
       python: 3.6
       install:
