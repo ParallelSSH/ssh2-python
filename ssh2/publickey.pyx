@@ -17,7 +17,7 @@
 from libc.stdlib cimport malloc, free
 
 from session cimport Session
-from utils cimport to_bytes
+from utils cimport to_bytes, handle_error_codes
 cimport c_pkey
 
 
@@ -151,7 +151,7 @@ cdef class PublicKeySystem:
                 blob_len, overwrite, num_attrs, _attrs)
             if _attrs is not NULL:
                 free(_attrs)
-        return rc
+        return handle_error_codes(rc)
 
     def remove(self, bytes name, bytes blob):
         cdef unsigned long name_len = len(name)
@@ -161,7 +161,7 @@ cdef class PublicKeySystem:
         with nogil:
             rc = c_pkey.libssh2_publickey_remove_ex(
                 self.pkey_s, _name, name_len, _blob, blob_len)
-        return rc
+        return handle_error_codes(rc)
 
     def list_fetch(self):
         cdef unsigned long num_keys = 0
@@ -172,7 +172,7 @@ cdef class PublicKeySystem:
             rc = c_pkey.libssh2_publickey_list_fetch(
                 self.pkey_s, &num_keys, pkey_list)
         if rc != 0:
-            return rc
+            return handle_error_codes(rc)
         if num_keys < 1:
             return []
         keys = [PyPublicKeyList(pkey_list[i]) for i in range(num_keys)]
@@ -189,4 +189,4 @@ cdef class PublicKeySystem:
         cdef int rc
         with nogil:
             rc = c_pkey.libssh2_publickey_shutdown(self.pkey_s)
-        return rc
+        return handle_error_codes(rc)

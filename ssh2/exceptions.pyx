@@ -235,14 +235,6 @@ class SFTPHandleError(SFTPError):
     """Raised on SFTP handle errors"""
 
 
-class SFTPBufferTooSmall(SFTPError):
-    """Raised on SFTP buffer too small errors"""
-
-
-class SFTPIOError(SFTPError):
-    """Raised on SFTP I/O errors"""
-
-
 class KnownHostError(SSH2Error):
     """Base class for KnownHost errors"""
 

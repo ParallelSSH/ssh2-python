@@ -1,6 +1,22 @@
 Change Log
 =============
 
+0.14.0
++++++++
+
+Changes
+--------
+
+* ``SFTP``, ``SFTPHandle``, ``Listener`` and ``PublicKeySystem`` functions updated to raise specific exceptions for all known ``libssh2`` errors.
+* Removed exceptions ``SFTPHandleError``, ``SFTPBufferTooSmall`` and ``SFTPIOError`` that do not have corresponding ``libssh2`` error codes.
+* Re-generated all C code with latest Cython release.
+
+Fixes
+------
+
+* Removed duplicate definitions in ``c_ssh2.pxd``.
+
+
 0.13.0
 +++++++
 

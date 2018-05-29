@@ -16,9 +16,9 @@
 
 """SFTP handle, attributes and stat VFS classes."""
 
-from .exceptions import SFTPIOError
-
 from libc.stdlib cimport malloc, free
+
+from utils cimport handle_error_codes
 
 cimport c_ssh2
 cimport c_sftp
@@ -271,11 +271,7 @@ cdef class SFTPHandle:
         cdef ssize_t rc
         with nogil:
             rc = c_sftp.libssh2_sftp_write(self._handle, cbuf, _size)
-            if rc < 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
-                with gil:
-                    raise SFTPIOError("Error writing to file via SFTP - "
-                                      "error code %s", rc)
-        return rc
+        return handle_error_codes(rc)
 
     IF EMBEDDED_LIB:
         def fsync(self):
@@ -287,7 +283,7 @@ cdef class SFTPHandle:
             cdef int rc
             with nogil:
                 rc = c_sftp.libssh2_sftp_fsync(self._handle)
-            return rc
+            return handle_error_codes(rc)
 
     def seek(self, size_t offset):
         """Deprecated, use seek64.
@@ -327,7 +323,7 @@ cdef class SFTPHandle:
         cdef size_t rc
         with nogil:
             rc = c_sftp.libssh2_sftp_tell(self._handle)
-        return rc
+        return handle_error_codes(rc)
 
     def tell64(self):
         """Get current file handle 64-bit offset.
@@ -336,7 +332,7 @@ cdef class SFTPHandle:
         cdef c_ssh2.libssh2_uint64_t rc
         with nogil:
             rc = c_sftp.libssh2_sftp_tell(self._handle)
-        return rc
+        return handle_error_codes(rc)
 
     def fstat_ex(self, SFTPAttributes attrs, int setstat):
         """Get or set file attributes. Clients would typically use one of the
@@ -345,7 +341,7 @@ cdef class SFTPHandle:
         with nogil:
             rc = c_sftp.libssh2_sftp_fstat_ex(
                 self._handle, attrs._attrs, setstat)
-        return rc
+        return handle_error_codes(rc)
 
     def fstat(self):
         """Get file stat attributes from handle.
@@ -356,7 +352,7 @@ cdef class SFTPHandle:
         with nogil:
             rc = c_sftp.libssh2_sftp_fstat(self._handle, attrs._attrs)
         if rc != 0:
-            return rc
+            return handle_error_codes(rc)
         return attrs
 
     def fsetstat(self, SFTPAttributes attrs):
@@ -367,18 +363,18 @@ cdef class SFTPHandle:
         cdef int rc
         with nogil:
             rc = c_sftp.libssh2_sftp_fsetstat(self._handle, attrs._attrs)
-        return rc
+        return handle_error_codes(rc)
 
     def fstatvfs(self):
         """Get file system statistics for handle
 
-        :rtype: `ssh2.sftp.SFTPStatVFS` or int of error code"""
+        :rtype: `ssh2.sftp.SFTPStatVFS`"""
         cdef SFTPStatVFS vfs = SFTPStatVFS(self)
         cdef int rc
         with nogil:
             rc = c_sftp.libssh2_sftp_fstatvfs(self._handle, vfs._ptr)
         if rc != 0:
-            return rc
+            return handle_error_codes(rc)
         return vfs
 
 

@@ -38,8 +38,7 @@ from ssh2.exceptions import SSH2Error, AgentError, AuthenticationError, \
     InvalidPollTypeError, PublicKeyProtocolError, BufferTooSmallError, \
     BadUseError, CompressError, OutOfBoundaryError, SocketRecvError, \
     SocketSendError, EncryptError, BadSocketError, SFTPError, SFTPProtocolError, \
-    SFTPHandleError, SFTPBufferTooSmall, SFTPIOError, KnownHostError, \
-    UnknownError
+    KnownHostError, UnknownError
 from ssh2.utils import handle_error_codes
 
 

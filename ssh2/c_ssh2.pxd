@@ -299,8 +299,6 @@ cdef extern from "libssh2.h" nogil:
                                               int ignore_mode)
     int libssh2_channel_ignore_extended_data(LIBSSH2_CHANNEL *channel,
                                              int ignore)
-    ctypedef int LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA
-    ctypedef int LIBSSH2_CHANNEL_FLUSH_ALL
     int libssh2_channel_flush_ex(LIBSSH2_CHANNEL *channel,
                                  int streamid)
     int libssh2_channel_flush(LIBSSH2_CHANNEL *channel)

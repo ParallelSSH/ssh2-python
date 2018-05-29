@@ -79,11 +79,7 @@ cdef class Channel:
         with nogil:
             rc = c_ssh2.libssh2_channel_exec(
                 self._channel, _command)
-        if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
-            raise ChannelError(
-                "Error executing command %s - error code %s",
-                command, rc)
-        return rc
+        return handle_error_codes(rc)
 
     def subsystem(self, subsystem not None):
         """Request subsystem from channel.
@@ -96,12 +92,7 @@ cdef class Channel:
         with nogil:
             rc = c_ssh2.libssh2_channel_subsystem(
                 self._channel, _subsystem)
-            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
-                with gil:
-                    raise ChannelError(
-                        "Error requesting subsystem %s - error code %s",
-                        subsystem, rc)
-        return rc
+        return handle_error_codes(rc)
 
     def shell(self):
         """Request interactive shell from channel.
@@ -112,11 +103,7 @@ cdef class Channel:
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_shell(self._channel)
-            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
-                with gil:
-                    raise ChannelError(
-                        "Error requesting shell - error code %s", rc)
-        return rc
+        return handle_error_codes(rc)
 
     def read(self, size_t size=1024):
         """Read the stdout stream.

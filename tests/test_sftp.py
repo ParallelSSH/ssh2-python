@@ -10,7 +10,7 @@ from ssh2.session import Session
 from ssh2.error_codes import LIBSSH2_ERROR_EAGAIN
 from ssh2.utils import wait_socket
 from ssh2.sftp_handle import SFTPHandle, SFTPAttributes
-from ssh2.exceptions import SFTPHandleError, SFTPBufferTooSmall
+from ssh2.exceptions import SFTPProtocolError, BufferTooSmallError
 from ssh2.sftp import LIBSSH2_FXF_CREAT, LIBSSH2_FXF_WRITE, \
     LIBSSH2_SFTP_S_IRUSR, LIBSSH2_SFTP_S_IRGRP, LIBSSH2_SFTP_S_IWUSR, \
     LIBSSH2_SFTP_S_IROTH, LIBSSH2_SFTP_S_IXUSR, SFTP
@@ -106,7 +106,7 @@ class SFTPTestCase(SSH2TestCase):
             raise
         finally:
             os.unlink(remote_filename)
-        self.assertRaises(SFTPHandleError, sftp.stat, remote_filename)
+        self.assertRaises(SFTPProtocolError, sftp.stat, remote_filename)
         self.assertNotEqual(sftp.last_error(), 0)
 
     def test_sftp_fstat(self):
@@ -156,12 +156,14 @@ class SFTPTestCase(SSH2TestCase):
         self.assertEqual(self._auth(), 0)
         sftp = self.session.sftp_init()
         self.assertTrue(sftp is not None)
-        # Depends on library version which error is returned
-        try:
-            self.assertRaises(SFTPBufferTooSmall,
-                              sftp.realpath, 'fake path', max_len=1)
-        except SFTPHandleError:
-            pass
+        self.assertRaises(
+            BufferTooSmallError, sftp.realpath, '/', max_len=0)
+
+    def test_realpath(self):
+        self.assertEqual(self._auth(), 0)
+        sftp = self.session.sftp_init()
+        self.assertTrue(sftp is not None)
+        self.assertIsNotNone(sftp.realpath('.'))
 
     def test_sftp_symlink_realpath_lstat(self):
         self.assertEqual(self._auth(), 0)
@@ -208,7 +210,7 @@ class SFTPTestCase(SSH2TestCase):
     def test_readdir_failure(self):
         self.assertEqual(self._auth(), 0)
         sftp = self.session.sftp_init()
-        self.assertRaises(SFTPHandleError, sftp.opendir, 'fakeyfakey')
+        self.assertRaises(SFTPProtocolError, sftp.opendir, 'fakeyfakey')
 
     @skipUnless(hasattr(SFTPHandle, 'fsync'),
                 "Function not supported by libssh2")
@@ -300,7 +302,7 @@ class SFTPTestCase(SSH2TestCase):
             while fh == LIBSSH2_ERROR_EAGAIN:
                 wait_socket(self.sock, self.session)
                 fh = sftp.open('fakey fake fake', 0, 0)
-        except SFTPHandleError:
+        except SFTPProtocolError:
             pass
         else:
-            raise Exception("Should have raised SFTPHandleError")
+            raise Exception("Should have raised SFTPProtocolError")

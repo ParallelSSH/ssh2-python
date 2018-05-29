@@ -75,12 +75,9 @@ ___________________
 from libc.stdlib cimport malloc, free
 
 from session cimport Session
-from error_codes cimport _LIBSSH2_ERROR_BUFFER_TOO_SMALL
 from channel cimport Channel, PyChannel
 from utils cimport to_bytes, to_str_len, handle_error_codes
 from sftp_handle cimport SFTPHandle, PySFTPHandle, SFTPAttributes, SFTPStatVFS
-
-from exceptions import SFTPHandleError, SFTPBufferTooSmall, SFTPIOError
 
 cimport c_ssh2
 cimport c_sftp
@@ -165,13 +162,6 @@ cdef class SFTP:
         """Originating session."""
         return self._session
 
-    cdef int _handle_error(self, int errcode, path) except -1:
-        if errcode == c_ssh2.LIBSSH2_ERROR_EAGAIN:
-            return errcode
-        raise SFTPHandleError(
-            "Could not open file or directory %s - error code %s - %s", path,
-            errcode, self._session.last_error())
-
     def get_channel(self):
         """Get new channel from the SFTP session"""
         cdef c_ssh2.LIBSSH2_CHANNEL *_channel
@@ -193,8 +183,8 @@ cdef class SFTP:
                 self._sftp, filename, filename_len, flags,
                 mode, open_type)
         if _handle is NULL:
-            return self._handle_error(c_ssh2.libssh2_session_last_errno(
-                self._session._session), filename)
+            return handle_error_codes(c_ssh2.libssh2_session_last_errno(
+                self._session._session))
         handle = PySFTPHandle(_handle, self)
         return handle
 
@@ -239,8 +229,8 @@ cdef class SFTP:
             _handle = c_sftp.libssh2_sftp_open(
                 self._sftp, _filename, flags, mode)
         if _handle is NULL:
-            return self._handle_error(c_ssh2.libssh2_session_last_errno(
-                self._session._session), filename)
+            return handle_error_codes(c_ssh2.libssh2_session_last_errno(
+                self._session._session))
         return PySFTPHandle(_handle, self)
 
     def opendir(self, path not None):
@@ -260,8 +250,8 @@ cdef class SFTP:
         with nogil:
             _handle = c_sftp.libssh2_sftp_opendir(self._sftp, _path)
         if _handle is NULL:
-            return self._handle_error(c_ssh2.libssh2_session_last_errno(
-                self._session._session), path)
+            return handle_error_codes(c_ssh2.libssh2_session_last_errno(
+                self._session._session))
         return PySFTPHandle(_handle, self)
 
     def rename_ex(self, const char *source_filename,
@@ -274,7 +264,7 @@ cdef class SFTP:
             rc = c_sftp.libssh2_sftp_rename_ex(
                 self._sftp, source_filename, source_filename_len,
                 dest_filename, dest_filename_len, flags)
-        return rc
+        return handle_error_codes(rc)
 
     def rename(self, source_filename not None, dest_filename not None):
         """Rename file.
@@ -291,7 +281,7 @@ cdef class SFTP:
         with nogil:
             rc = c_sftp.libssh2_sftp_rename(
                 self._sftp, _source_filename, _dest_filename)
-        return rc
+        return handle_error_codes(rc)
 
     def unlink(self, filename not None):
         """Delete/unlink file.
@@ -303,7 +293,7 @@ cdef class SFTP:
         cdef char *_filename = b_filename
         with nogil:
             rc = c_sftp.libssh2_sftp_unlink(self._sftp, _filename)
-        return rc
+        return handle_error_codes(rc)
 
     def statvfs(self, path):
         """Get file system statistics from path.
@@ -316,9 +306,7 @@ cdef class SFTP:
         with nogil:
             rc = c_sftp.libssh2_sftp_statvfs(
                 self._sftp, _path, path_len, vfs._ptr)
-        if rc != 0:
-            return rc
-        return vfs
+        return handle_error_codes(rc) if rc != 0 else vfs
 
     def mkdir(self, path not None, long mode):
         """Make directory.
@@ -330,20 +318,14 @@ cdef class SFTP:
 
         :rtype: int
 
-        :raises: :py:class:`ssh2.exceptions.SFTPIOError` on errors creating
-          directory.
+        :raises: Appropriate exception from :py:mod:`ssh2.exceptions` on errors.
         """
         cdef int rc
         cdef bytes b_path = to_bytes(path)
         cdef char *_path = b_path
         with nogil:
             rc = c_sftp.libssh2_sftp_mkdir(self._sftp, _path, mode)
-            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
-                with gil:
-                    raise SFTPIOError(
-                        "Error creating directory %s - error code %s",
-                        path, rc)
-        return rc
+        return handle_error_codes(rc)
 
     def rmdir(self, path not None):
         """Remove directory.
@@ -357,7 +339,7 @@ cdef class SFTP:
         cdef char *_path = b_path
         with nogil:
             rc = c_sftp.libssh2_sftp_rmdir(self._sftp, _path)
-        return rc
+        return handle_error_codes(rc)
 
     def stat(self, path not None):
         """Stat file.
@@ -374,14 +356,7 @@ cdef class SFTP:
         with nogil:
             rc = c_sftp.libssh2_sftp_stat(
                 self._sftp, _path, attrs._attrs)
-            if rc != c_ssh2.LIBSSH2_ERROR_EAGAIN and rc != 0:
-                with gil:
-                    raise SFTPHandleError(
-                        "Error with stat on file %s - code %s",
-                        path, rc)
-        if rc == c_ssh2.LIBSSH2_ERROR_EAGAIN:
-            return rc
-        return attrs
+        return handle_error_codes(rc) if rc != 0 else attrs
 
     def lstat(self, path not None):
         """Link stat a file."""
@@ -392,14 +367,7 @@ cdef class SFTP:
         with nogil:
             rc = c_sftp.libssh2_sftp_lstat(
                 self._sftp, _path, attrs._attrs)
-            if rc != 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
-                with gil:
-                    raise SFTPHandleError(
-                        "Error with stat on file %s - code %s",
-                        path, rc)
-        if rc == c_ssh2.LIBSSH2_ERROR_EAGAIN:
-            return rc
-        return attrs
+        return handle_error_codes(rc) if rc != 0 else attrs
 
     def setstat(self, path not None, SFTPAttributes attrs):
         """Set file attributes.
@@ -416,7 +384,7 @@ cdef class SFTP:
         with nogil:
             rc = c_sftp.libssh2_sftp_setstat(
                 self._sftp, _path, attrs._attrs)
-        return rc
+        return handle_error_codes(rc)
 
     def symlink(self, path not None, target not None):
         """Create symlink.
@@ -434,7 +402,7 @@ cdef class SFTP:
         cdef char *_target = b_target
         with nogil:
             rc = c_sftp.libssh2_sftp_symlink(self._sftp, _path, _target)
-        return rc
+        return handle_error_codes(rc)
 
     def realpath(self, path not None, size_t max_len=256):
         """Get real path for path.
@@ -458,20 +426,9 @@ cdef class SFTP:
             with nogil:
                 rc = c_sftp.libssh2_sftp_realpath(
                     self._sftp, _path, _target, max_len)
-                if rc == _LIBSSH2_ERROR_BUFFER_TOO_SMALL:
+                if rc < 0:
                     with gil:
-                        raise SFTPBufferTooSmall(
-                            "Buffer too small to fit realpath for %s "
-                            "- max size %s. Error code %s",
-                            path, max_len, rc)
-                elif rc != c_ssh2.LIBSSH2_ERROR_EAGAIN and rc < 0:
-                    with gil:
-                        raise SFTPHandleError(
-                            "Error getting real path for %s - error code %s",
-                            path, rc)
-                elif rc == c_ssh2.LIBSSH2_ERROR_EAGAIN:
-                    with gil:
-                        return rc
+                        return handle_error_codes(rc)
             return to_str_len(_target, rc)
         finally:
             free(_target)
