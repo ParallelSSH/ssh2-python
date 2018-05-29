@@ -466,9 +466,10 @@ cdef class Channel:
             c_ssh2.libssh2_channel_handle_extended_data(
                 self._channel, ignore_mode)
 
-    def request_auth_agent(self):
-        """Request SSH agent authentication forwarding on channel."""
-        cdef int rc
-        with nogil:
-            rc = c_ssh2.libssh2_channel_request_auth_agent(self._channel)
-        return handle_error_codes(rc)
+    IF HAVE_AGENT_FWD:
+        def request_auth_agent(self):
+            """Request SSH agent authentication forwarding on channel."""
+            cdef int rc
+            with nogil:
+                rc = c_ssh2.libssh2_channel_request_auth_agent(self._channel)
+            return handle_error_codes(rc)

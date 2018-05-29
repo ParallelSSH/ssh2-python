@@ -12,9 +12,14 @@ for x in `ls -1d ci/docker/{fedora,centos}*`; do
     docker pull $docker_tag || echo
     docker build --cache-from $docker_tag $x -t $name
     docker tag $name $docker_tag
-    docker push $docker_tag
+    # docker push $docker_tag
     sudo rm -rf build dist
-    docker run -v "$(pwd):/src/" "$name" --rpm-dist $dist -s python -t rpm -d libssh2 -d python setup.py
+    # Fix version used by versioneer to current git tag so the generated .c files
+    # do not cause a version change.
+    python ci/appveyor/fix_version.py .
+    # C files need re-generating
+    sudo rm -f ssh2/*.c
+    docker run -v "$(pwd):/src/" "$name" fpm --rpm-dist $dist -s python -t rpm -d libssh2 -d python setup.py
 done
 
 for x in `ls -1d ci/docker/{debian,ubuntu}*`; do
@@ -23,9 +28,14 @@ for x in `ls -1d ci/docker/{debian,ubuntu}*`; do
     docker pull $docker_tag || echo
     docker build --cache-from $docker_tag $x -t $name
     docker tag $name $docker_tag
-    docker push $docker_tag
+    # docker push $docker_tag
     sudo rm -rf build dist
-    docker run -v "$(pwd):/src/" "$name" --iteration $name -s python -t deb -d libssh2-1 -d python setup.py
+    # Fix version used by versioneer to current git tag so the generated .c files
+    # do not cause a version change.
+    python ci/appveyor/fix_version.py .
+    # C files need re-generating
+    sudo rm -f ssh2/*.c
+    docker run -v "$(pwd):/src/" "$name" fpm --iteration $name -s python -t deb -d libssh2-1 -d python setup.py
 done
 
 sudo chown -R ${USER} *
@@ -41,3 +51,5 @@ for x in *.deb; do
     echo "Package: $x"
     dpkg-deb -c $x
 done
+
+echo "Modified files should be reset now -- run 'git checkout -- .' to do so for all files in the repository."

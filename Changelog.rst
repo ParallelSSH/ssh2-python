@@ -14,7 +14,9 @@ Changes
 Fixes
 ------
 
-* Removed duplicate definitions in ``c_ssh2.pxd``.
+* Removed duplicate libssh2 definitions.
+* Re-enabled system package releases.
+* System package builds would not work correctly - #25.
 
 
 0.13.0
@@ -24,7 +26,7 @@ Changes
 ---------
 
 * Upgrade embedded ``libssh2`` in binary wheels to latest version plus enhancements.
-* Adds support for ECDSA host keys.
+* Adds support for ECDSA host and client keys.
 * Adds support for SHA-256 host key fingerprints.
 * Added SSH agent forwarding implementation.
 * Windows wheels switched to OpenSSL back end.

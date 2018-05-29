@@ -1,10 +1,12 @@
 Installation
 *************
 
+The recommended installation method is ``pip``.
+
 Pip Binary Packages
 ====================
 
-Binary wheel packages are provided for Linux, OSX and Windows, all Python versions, with ``libssh2`` and its required libraries included.
+Binary wheel packages are provided for Linux, OSX and Windows, all Python versions, with ``libssh2`` and its dependencies included.
 
 Wheel packages have **no dependencies**.
 
@@ -18,14 +20,14 @@ Wheel packages have **no dependencies**.
 
 .. note::
 
-   Latest version of OpenSSL is included in Linux and OSX binary wheel packages. On Windows, the native WinCNG back-end is used instead.
+   Latest available version of OpenSSL at the time the package is built is included in binary wheel packages.
 
    To control which version of OpenSSL is used for the installation either use system packages which use system libraries, the conda package, or install from source.
 
 System Binary Packages
 =======================
 
-System packages can be built for Centos/RedHat 6/7, Ubuntu 14.04/16.04, Debian 7/8 and Fedora 22/23/24 by running `ci/docker/build-packages.sh <https://github.com/ParallelSSH/ssh2-python/blob/master/ci/docker/build-packages.sh>`_ script in the repository's directory, based on Docker.
+System packages can be built for Centos/RedHat 7, Ubuntu 14.04/16.04/18.04, Debian 8 and Fedora 22/23/24 by running `ci/docker/build-packages.sh <https://github.com/ParallelSSH/ssh2-python/blob/master/ci/docker/build-packages.sh>`_ script in the repository's directory, based on Docker.
 
 To use the built packages, install via the system's package manager, for example for Centos/RedHat based systems:
 
@@ -35,9 +37,9 @@ To use the built packages, install via the system's package manager, for example
 
 .. note::
 
-  System packages use the system provided ``libssh2`` which may need to be updated to be compatible with ``ssh2-python``. ``libssh2`` versions ``>= 1.6.0`` are compatible.
+  System packages as built by the above script use system provided ``libssh2`` and do not have all features enabled as most distributions do not have a new enough version. In addition, there are known issues with older versions of ``libssh2`` like what is provided by distributions.
 
-  To build an ``ssh2-python`` that is compatible with versions lower than ``1.6.0``, run the build with the ``EMBEDDED_LIB=0`` environment variable set. This will disable features that require ``libssh2`` >= ``1.6.0``.
+  For best compatibility, it is recommended to install binary packages with ``pip``.
 
 Conda package
 ===============
@@ -76,16 +78,17 @@ If there are multiple development headers and/or libraries for ``libssh2`` on th
 
    git clone --recurse-submodules git@github.com:ParallelSSH/ssh2-python.git
    sudo ./ci/install-ssh2.sh
+   virtualenv my_env
    source my_env/bin/activate
-   python setup.py build_ext -I /usr/local/include -R /usr/local/lib -L /usr/local/lib
+   python setup.py build_ext -I /usr/local/include -R /usr/local/lib/x86_64-linux-gnu -L /usr/local/lib/x86_64-linux-gnu
    python setup.py install
 
 System library build
 ---------------------
 
-Building against system provided ``libssh2`` is another option which may be preferred. 
+Building against system provided ``libssh2`` is another option which may be preferred.
 
-If the ``libssh2`` version provided by the system is not compatible, run the build with the ``EMBEDDED_LIB=0`` environment variable set. This will disable features that require ``libssh2`` >= ``1.6.0``.
+If the ``libssh2`` version provided by the system is not compatible, run the build with the ``EMBEDDED_LIB=0`` and ``HAVE_AGENT_FWD=0`` environment variables set. This will disable features that require ``libssh2`` >= ``1.6.0`` as well as agent forwarding implementation which is only present in the ``libssh2`` submodule of this repository.
 
 Clone the repository, install dependencies and run install in a new virtualenv from the repository's root directory.
 

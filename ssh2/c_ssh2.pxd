@@ -441,5 +441,5 @@ cdef extern from "libssh2.h" nogil:
     int libssh2_trace_sethandler(LIBSSH2_SESSION *session,
                                  void* context,
                                  libssh2_trace_handler_func callback)
-    IF EMBEDDED_LIB:
+    IF HAVE_AGENT_FWD:
         int libssh2_channel_request_auth_agent(LIBSSH2_CHANNEL *channel)

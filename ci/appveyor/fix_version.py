@@ -8,8 +8,8 @@ def get_describe_tag():
     return subprocess.check_output(['git', 'describe', '--tags']).strip().decode('utf-8')
 
 def make_version_file(basedir):
-    # import ipdb; ipdb.set_trace()
-    rev = os.environ['APPVEYOR_REPO_COMMIT']
+    rev = os.environ.get('APPVEYOR_REPO_COMMIT',
+                         subprocess.check_output(['git', 'rev-list', '--max-count=1', 'HEAD']).strip().decode('utf-8'))
     basedir = os.path.abspath(basedir)
     git_desc = get_describe_tag()
     version_json = {'date': datetime.now().isoformat(),
