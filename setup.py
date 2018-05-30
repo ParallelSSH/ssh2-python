@@ -21,6 +21,13 @@ else:
     USING_CYTHON = True
 
 ON_WINDOWS = platform.system() == 'Windows'
+ON_RTD = os.environ.get('READTHEDOCS') == 'True'
+
+if ON_RTD:
+    files = glob('ssh2/*.c')
+    for _file in files:
+        os.remove(_file)
+
 
 ext = 'pyx' if USING_CYTHON else 'c'
 sources = glob('ssh2/*.%s' % (ext,))
@@ -31,9 +38,10 @@ _libs = ['ssh2'] if not ON_WINDOWS else [
 ]
 
 # _comp_args = ["-ggdb"]
+_fwd_default = 0 if ON_RTD else 1
 _comp_args = ["-O3"] if not ON_WINDOWS else None
 _embedded_lib = bool(int(os.environ.get('EMBEDDED_LIB', 1)))
-_have_agent_fwd = bool(int(os.environ.get('HAVE_AGENT_FWD', 1)))
+_have_agent_fwd = bool(int(os.environ.get('HAVE_AGENT_FWD', _fwd_default)))
 cython_directives = {'embedsignature': True,
                      'boundscheck': False,
                      'optimize.use_switch': True,

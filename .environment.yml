@@ -5,3 +5,4 @@ dependencies:
   - setuptools
   - libssh2
   - toolchain3
+  - cython
