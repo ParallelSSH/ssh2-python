@@ -32,6 +32,40 @@ script:
   - cd doc; make html; cd ..
 jobs:
   include:
+
+    - stage: build packages
+      os: osx
+      osx_image: xcode6.4
+      before_install:
+        - brew update
+      install:
+        - brew upgrade openssl
+        - sudo ci/install-ssh2.sh
+        - ls -lh
+        - python --version
+        - wget --no-check-certificate https://bootstrap.pypa.io/get-pip.py
+        - sudo python get-pip.py
+        - sudo -H pip install -U pip
+        - sudo -H pip install -U delocate twine wheel setuptools
+        - cp /usr/local/lib/libssh2* .
+        - pip wheel .
+      script:
+        - delocate-listdeps --all *.whl
+        - delocate-wheel -v *.whl
+        - delocate-listdeps --all *.whl
+        - ls -l *.whl
+        - rm -f *.dylib
+        - pip install --user -v *.whl
+        - pwd; mkdir temp; cd temp; pwd
+        - python -c "from ssh2.session import Session; Session()"
+        - cd ..; pwd
+      after_success:
+        - if [[ ! -z "$TRAVIS_TAG" ]]; then
+              twine upload -u $PYPI_U -p $PYPI_P *.whl;
+          fi
+      language: generic
+      python: skip
+
     - stage: build packages
       os: osx
       before_install:
@@ -80,39 +114,6 @@ jobs:
         - ls -l *.whl
         - rm -f *.dylib
         - pip2 install --user -v *.whl
-        - pwd; mkdir temp; cd temp; pwd
-        - python -c "from ssh2.session import Session; Session()"
-        - cd ..; pwd
-      after_success:
-        - if [[ ! -z "$TRAVIS_TAG" ]]; then
-              twine upload -u $PYPI_U -p $PYPI_P *.whl;
-          fi
-      language: generic
-      python: skip
-
-    - stage: build packages
-      os: osx
-      osx_image: xcode6.4
-      before_install:
-        - brew update
-      install:
-        - brew upgrade openssl
-        - sudo ci/install-ssh2.sh
-        - ls -lh
-        - python --version
-        - wget --no-check-certificate https://bootstrap.pypa.io/get-pip.py
-        - sudo python get-pip.py
-        - sudo -H pip install -U pip
-        - sudo -H pip install -U delocate twine wheel setuptools
-        - cp /usr/local/lib/libssh2* .
-        - pip wheel .
-      script:
-        - delocate-listdeps --all *.whl
-        - delocate-wheel -v *.whl
-        - delocate-listdeps --all *.whl
-        - ls -l *.whl
-        - rm -f *.dylib
-        - pip install --user -v *.whl
         - pwd; mkdir temp; cd temp; pwd
         - python -c "from ssh2.session import Session; Session()"
         - cd ..; pwd
