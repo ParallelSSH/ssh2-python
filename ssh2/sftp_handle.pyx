@@ -272,6 +272,8 @@ cdef class SFTPHandle:
         with nogil:
             while _size > 0:
                 rc = c_sftp.libssh2_sftp_write(self._handle, cbuf, _size)
+                if rc < 0:
+                    break
                 cbuf += rc
                 _size -= rc
         return handle_error_codes(rc)
