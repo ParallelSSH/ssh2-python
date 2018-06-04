@@ -270,12 +270,16 @@ cdef class SFTPHandle:
         cdef char *cbuf = buf
         cdef ssize_t rc
         with nogil:
-            while _size > 0:
+            while _size >= 0:
+                if _size == 0:
+                    rc = 0
+                    break
                 rc = c_sftp.libssh2_sftp_write(self._handle, cbuf, _size)
                 if rc < 0:
                     break
                 cbuf += rc
                 _size -= rc
+
         return handle_error_codes(rc)
 
     IF EMBEDDED_LIB:
