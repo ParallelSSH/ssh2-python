@@ -268,9 +268,15 @@ cdef class SFTPHandle:
         :rtype: int"""
         cdef size_t _size = len(buf)
         cdef char *cbuf = buf
-        cdef ssize_t rc
+        cdef ssize_t rc = 0
         with nogil:
-            rc = c_sftp.libssh2_sftp_write(self._handle, cbuf, _size)
+            while _size > 0:
+                rc = c_sftp.libssh2_sftp_write(self._handle, cbuf, _size)
+                if rc < 0:
+                    break
+                cbuf += rc
+                _size -= rc
+
         return handle_error_codes(rc)
 
     IF EMBEDDED_LIB:
