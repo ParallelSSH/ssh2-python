@@ -10,11 +10,22 @@ from ssh2.channel import Channel
 from ssh2.error_codes import LIBSSH2_ERROR_EAGAIN
 from ssh2.exceptions import AuthenticationError, AgentAuthenticationError, \
     SCPProtocolError, RequestDeniedError, InvalidRequestError, \
-    SocketSendError, FileError
+    SocketSendError, FileError, PublickeyUnverifiedError
 from ssh2.utils import wait_socket
 
 
 class SessionTestCase(SSH2TestCase):
+
+    def test_pubkey_auth(self):
+        self.assertEqual(self.session.userauth_publickey_fromfile(
+            self.user, self.user_key, publickey=self.user_pub_key,
+            passphrase=''), 0)
+
+    def test_set_get_error(self):
+        msg = b'my error message'
+        self.assertEqual(b'', self.session.last_error())
+        self.assertEqual(self.session.set_last_error(255, msg), 255)
+        self.assertEqual(msg, self.session.last_error())
 
     def test_fromfile_auth(self):
         self.assertEqual(self._auth(), 0)
@@ -52,12 +63,12 @@ class SessionTestCase(SSH2TestCase):
     def test_failed_pkey_auth(self):
         self.assertRaises(AuthenticationError,
                           self.session.userauth_publickey_fromfile,
-                          'FAKE USER', self.user_pub_key, self.user_key,
-                          '')
+                          'FAKE USER', self.user_key,
+                          publickey=self.user_pub_key)
         self.assertRaises(FileError,
                           self.session.userauth_publickey_fromfile,
-                          self.user, 'FAKE FILE', 'EVEN MORE FAKE FILE',
-                          '')
+                          self.user, 'EVEN MORE FAKE FILE',
+                          publickey='FAKE FILE')
 
     @skipUnless(hasattr(Session, 'scp_recv2'),
                 "Function not supported by libssh2")

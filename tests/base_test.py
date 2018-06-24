@@ -46,5 +46,4 @@ class SSH2TestCase(unittest.TestCase):
 
     def _auth(self):
         return self.session.userauth_publickey_fromfile(
-            self.user, self.user_pub_key, self.user_key,
-            '')
+            self.user, self.user_key)

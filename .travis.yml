@@ -68,6 +68,7 @@ jobs:
 
     - stage: build packages
       os: osx
+      osx_image: xcode8.3
       before_install:
         - brew update
       install:

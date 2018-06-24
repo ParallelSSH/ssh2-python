@@ -15,6 +15,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 from cpython cimport PyObject_AsFileDescriptor
+from libc.stdlib cimport malloc, free
 from libc.time cimport time_t
 
 from agent cimport PyAgent, agent_auth, agent_init, init_connect_agent
@@ -153,21 +154,24 @@ cdef class Session:
         return auth.split(',')
 
     def userauth_publickey_fromfile(self, username not None,
-                                    publickey not None,
                                     privatekey not None,
-                                    passphrase not None):
+                                    passphrase='',
+                                    publickey=None):
         """Authenticate with public key from file.
 
         :rtype: int"""
         cdef int rc
         cdef bytes b_username = to_bytes(username)
-        cdef bytes b_publickey = to_bytes(publickey)
+        cdef bytes b_publickey = to_bytes(publickey) \
+            if publickey is not None else None
         cdef bytes b_privatekey = to_bytes(privatekey)
         cdef bytes b_passphrase = to_bytes(passphrase)
         cdef char *_username = b_username
-        cdef char *_publickey = b_publickey
+        cdef char *_publickey = NULL
         cdef char *_privatekey = b_privatekey
         cdef char *_passphrase = b_passphrase
+        if b_publickey is not None:
+            _publickey = b_publickey
         with nogil:
             rc = c_ssh2.libssh2_userauth_publickey_fromfile(
                 self._session, _username, _publickey, _privatekey, _passphrase)
@@ -196,21 +200,24 @@ cdef class Session:
 
     def userauth_hostbased_fromfile(self,
                                     username not None,
-                                    publickey not None,
                                     privatekey not None,
-                                    passphrase not None,
-                                    hostname not None):
+                                    hostname not None,
+                                    publickey=None,
+                                    passphrase=''):
         cdef int rc
         cdef bytes b_username = to_bytes(username)
-        cdef bytes b_publickey = to_bytes(publickey)
+        cdef bytes b_publickey = to_bytes(publickey) \
+            if publickey is not None else None
         cdef bytes b_privatekey = to_bytes(privatekey)
         cdef bytes b_passphrase = to_bytes(passphrase)
         cdef bytes b_hostname = to_bytes(hostname)
         cdef char *_username = b_username
-        cdef char *_publickey = b_publickey
+        cdef char *_publickey = NULL
         cdef char *_privatekey = b_privatekey
         cdef char *_passphrase = b_passphrase
         cdef char *_hostname = b_hostname
+        if b_publickey is not None:
+            _publickey = b_publickey
         with nogil:
             rc = c_ssh2.libssh2_userauth_hostbased_fromfile(
                 self._session, _username, _publickey,
@@ -218,22 +225,22 @@ cdef class Session:
         return handle_error_codes(rc)
 
     IF EMBEDDED_LIB:
-        def userauth_publickey_frommemory(self,
-                                          username,
-                                          bytes publickeyfiledata,
-                                          bytes privatekeyfiledata,
-                                          passphrase):
+        def userauth_publickey_frommemory(
+                self, username, bytes privatekeyfiledata,
+                passphrase='', bytes publickeyfiledata=None):
             cdef int rc
             cdef bytes b_username = to_bytes(username)
             cdef bytes b_passphrase = to_bytes(passphrase)
             cdef char *_username = b_username
             cdef char *_passphrase = b_passphrase
-            cdef char *_publickeyfiledata = publickeyfiledata
+            cdef char *_publickeyfiledata = NULL
             cdef char *_privatekeyfiledata = privatekeyfiledata
             cdef size_t username_len, pubkeydata_len, privatekeydata_len
             username_len, pubkeydata_len, privatekeydata_len = \
                 len(b_username), len(publickeyfiledata), \
                 len(privatekeyfiledata)
+            if publickeyfiledata is not None:
+                _publickeyfiledata = publickeyfiledata
             with nogil:
                 rc = c_ssh2.libssh2_userauth_publickey_frommemory(
                     self._session, _username, username_len, _publickeyfiledata,
@@ -418,23 +425,25 @@ cdef class Session:
                 self._session))
         return PySFTP(_sftp, self)
 
-    def last_error(self):
+    def last_error(self, size_t msg_size=1024):
         """Retrieve last error message from libssh2, if any.
         Returns empty string on no error message.
 
         :rtype: str
         """
-        cdef char **_error_msg = NULL
+        cdef char *_error_msg
         cdef bytes msg = b''
         cdef int errmsg_len = 0
-        cdef int rc
         with nogil:
-            rc = c_ssh2.libssh2_session_last_error(
-                self._session, _error_msg, &errmsg_len, 0)
-        if errmsg_len > 0 and _error_msg is not NULL:
-            for line in _error_msg[:errmsg_len]:
-                msg += line
-        return msg
+            _error_msg = <char *>malloc(sizeof(char) * msg_size)
+            c_ssh2.libssh2_session_last_error(
+                self._session, &_error_msg, &errmsg_len, 1)
+        try:
+            if errmsg_len > 0:
+                msg = _error_msg[:errmsg_len]
+            return msg
+        finally:
+            free(_error_msg)
 
     def last_errno(self):
         """Retrieve last error number from libssh2, if any.

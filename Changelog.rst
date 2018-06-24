@@ -1,6 +1,20 @@
 Change Log
 =============
 
+0.15.0
++++++++
+
+Changes
+--------
+
+* Updated ``session.userauth_publickey*`` functions to make providing public key and private key passphrase optional.
+* SFTP write calls write on all parts of buffer before returning.
+
+Fixes
+------
+
+* ``session.last_error()`` would always return empty string.
+
 0.14.0
 +++++++
 
