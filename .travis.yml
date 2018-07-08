@@ -33,15 +33,20 @@ script:
 jobs:
   include:
 
-    - stage: build packages
+    - &osx-10-10
+      stage: build packages
       os: osx
       osx_image: xcode6.4
+      env:
+        - PYENV: 3.6.4
       before_install:
         - brew update
-      install:
-        - brew upgrade openssl
+        - brew outdated openssl || brew upgrade openssl
         - sudo ci/install-ssh2.sh
+        - cp /usr/local/lib/libssh2* .
         - ls -lh
+        - mkdir -p wheels
+      install:
         - python --version
         - wget --no-check-certificate https://bootstrap.pypa.io/get-pip.py
         - sudo python get-pip.py
@@ -59,23 +64,33 @@ jobs:
         - pwd; mkdir temp; cd temp; pwd
         - python -c "from ssh2.session import Session; Session()"
         - cd ..; pwd
+        - mv -f *.whl wheels/
+        - ./ci/travis/pyenv-wheel.sh
       after_success:
         - if [[ ! -z "$TRAVIS_TAG" ]]; then
-              twine upload -u $PYPI_U -p $PYPI_P *.whl;
+              twine upload -u $PYPI_U -p $PYPI_P wheels/*.whl;
           fi
       language: generic
       python: skip
 
-    - stage: build packages
+    - <<: *osx-10-10
+      env:
+        - PYENV: 3.7.0
+
+    - &osx-wheels
+      stage: build packages
       os: osx
       osx_image: xcode8.3
+      env:
+        - PYENV: 3.6.4
       before_install:
         - brew update
-      install:
-        - brew upgrade openssl
+        - brew outdated openssl || brew upgrade openssl
         - sudo ci/install-ssh2.sh
-        - sudo -H pip2 install -U delocate twine wheel pip setuptools
         - cp /usr/local/lib/libssh2* .
+        - mkdir -p wheels
+      install:
+        - sudo -H pip2 install -U delocate twine wheel pip setuptools
         - ls -lh
         - pip2 wheel .
       script:
@@ -88,71 +103,44 @@ jobs:
         - pwd; mkdir temp; cd temp; pwd
         - python -c "from ssh2.session import Session; Session()"
         - cd ..; pwd
+        - mv -f *.whl wheels/
+        - ./ci/travis/pyenv-wheel.sh
       after_success:
         - if [[ ! -z "$TRAVIS_TAG" ]]; then
-              twine upload -u $PYPI_U -p $PYPI_P *.whl;
+              twine upload -u $PYPI_U -p $PYPI_P wheels/*.whl;
           fi
       language: generic
       python: skip
 
-    - stage: build packages
-      os: osx
+    - <<: *osx-wheels
       osx_image: xcode8
-      before_install:
-        - brew update
-      install:
-        - brew upgrade openssl
-        - sudo ci/install-ssh2.sh
-        - sudo rm -f libssh2.1.dylib
-        - sudo -H pip2 install -U delocate twine wheel pip setuptools
-        - cp /usr/local/lib/libssh2* .
-        - ls -lh
-        - pip2 wheel .
-      script:
-        - delocate-listdeps --all *.whl
-        - delocate-wheel -v *.whl
-        - delocate-listdeps --all *.whl
-        - ls -l *.whl
-        - rm -f *.dylib
-        - pip2 install --user -v *.whl
-        - pwd; mkdir temp; cd temp; pwd
-        - python -c "from ssh2.session import Session; Session()"
-        - cd ..; pwd
-      after_success:
-        - if [[ ! -z "$TRAVIS_TAG" ]]; then
-              twine upload -u $PYPI_U -p $PYPI_P *.whl;
-          fi
-      language: generic
-      python: skip
 
-    - stage: build packages
-      os: osx
+    - <<: *osx-wheels
       osx_image: xcode9.3
-      before_install:
-        - brew update
-      install:
-        - brew upgrade openssl
-        - sudo ci/install-ssh2.sh
-        - sudo -H pip2 install -U delocate twine wheel pip setuptools
-        - cp /usr/local/lib/libssh2* .
-        - ls -lh
-        - pip2 wheel .
+
+    - <<: *osx-wheels
+      osx_image: xcode8
+      env:
+        - PYENV: 3.7.0
+      install: skip
       script:
-        - delocate-listdeps --all *.whl
-        - delocate-wheel -v *.whl
-        - delocate-listdeps --all *.whl
-        - ls -l *.whl
-        - rm -f *.dylib
-        - pip2 install --user -v *.whl
-        - pwd; mkdir temp; cd temp; pwd
-        - python -c "from ssh2.session import Session; Session()"
-        - cd ..; pwd
-      after_success:
-        - if [[ ! -z "$TRAVIS_TAG" ]]; then
-              twine upload -u $PYPI_U -p $PYPI_P *.whl;
-          fi
-      language: generic
-      python: skip
+        - ./ci/travis/pyenv-wheel.sh
+
+    - <<: *osx-wheels
+      osx_image: xcode8.3
+      env:
+        - PYENV: 3.7.0
+      install: skip
+      script:
+        - ./ci/travis/pyenv-wheel.sh
+
+    - <<: *osx-wheels
+      osx_image: xcode9.3
+      env:
+        - PYENV: 3.7.0
+      install: skip
+      script:
+        - ./ci/travis/pyenv-wheel.sh
 
     - stage: build packages
       env:
