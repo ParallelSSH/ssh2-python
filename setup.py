@@ -118,7 +118,7 @@ setup(
         'Operating System :: POSIX',
         'Operating System :: POSIX :: Linux',
         'Operating System :: POSIX :: BSD',
-        'Operating System :: Windows',
+        'Operating System :: Microsoft :: Windows',
         'Operating System :: MacOS :: MacOS X',
     ],
     ext_modules=extensions,
