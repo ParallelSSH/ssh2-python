@@ -68,7 +68,7 @@ jobs:
         - ./ci/travis/pyenv-wheel.sh
       after_success:
         - if [[ ! -z "$TRAVIS_TAG" ]]; then
-              twine upload -u $PYPI_U -p $PYPI_P wheels/*.whl;
+              twine upload --skip-existing -u $PYPI_U -p $PYPI_P wheels/*.whl;
           fi
       language: generic
       python: skip
@@ -76,6 +76,9 @@ jobs:
     - <<: *osx-10-10
       env:
         - PYENV: 3.7.0
+      install: skip
+      script:
+        - ./ci/travis/pyenv-wheel.sh
 
     - &osx-wheels
       stage: build packages
@@ -107,7 +110,7 @@ jobs:
         - ./ci/travis/pyenv-wheel.sh
       after_success:
         - if [[ ! -z "$TRAVIS_TAG" ]]; then
-              twine upload -u $PYPI_U -p $PYPI_P wheels/*.whl;
+              twine upload --skip-existing -u $PYPI_U -p $PYPI_P wheels/*.whl;
           fi
       language: generic
       python: skip
@@ -176,7 +179,7 @@ jobs:
         - ./ci/travis/build-manylinux.sh
       after_success:
         - if [[ ! -z "$TRAVIS_TAG" ]]; then
-              twine upload -u $PYPI_U -p $PYPI_P wheelhouse/*.whl;
+              twine upload --skip-existing -u $PYPI_U -p $PYPI_P wheelhouse/*.whl;
           fi
       deploy:
         - provider: pypi
