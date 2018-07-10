@@ -61,7 +61,9 @@ def main():
     s.agent_auth(args.user)
     # Now we can set non-blocking mode
     s.set_blocking(False)
-    chan = s.open_session()
+    chan = None
+    while not chan or chan == LIBSSH2_ERROR_EAGAIN:
+        chan = s.open_session()
     while chan is None:
         print("Would block on session open, waiting for socket to be ready")
         wait_socket(sock, s)
