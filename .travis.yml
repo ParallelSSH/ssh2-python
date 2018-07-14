@@ -77,7 +77,11 @@ jobs:
       env:
         - PYENV: 3.7.0
       install:
-        - pip install twine
+        - wget --no-check-certificate https://bootstrap.pypa.io/get-pip.py
+        - sudo python get-pip.py
+        - sudo -H pip install -U pip
+        - sudo -H pip install -U setuptools
+        - sudo -H pip install twine
       script:
         - ./ci/travis/pyenv-wheel.sh
 
