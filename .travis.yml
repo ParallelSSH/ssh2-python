@@ -53,8 +53,8 @@ jobs:
         - sudo -H pip install -U pip
         - sudo -H pip install -U delocate twine wheel setuptools
         - cp /usr/local/lib/libssh2* .
-        - pip wheel .
       script:
+        - pip wheel .
         - delocate-listdeps --all *.whl
         - delocate-wheel -v *.whl
         - delocate-listdeps --all *.whl
@@ -76,7 +76,8 @@ jobs:
     - <<: *osx-10-10
       env:
         - PYENV: 3.7.0
-      install: skip
+      install:
+        - pip install twine
       script:
         - ./ci/travis/pyenv-wheel.sh
 
@@ -95,8 +96,8 @@ jobs:
       install:
         - sudo -H pip2 install -U delocate twine wheel pip setuptools
         - ls -lh
-        - pip2 wheel .
       script:
+        - pip2 wheel .
         - delocate-listdeps --all *.whl
         - delocate-wheel -v *.whl
         - delocate-listdeps --all *.whl
@@ -125,7 +126,8 @@ jobs:
       osx_image: xcode8
       env:
         - PYENV: 3.7.0
-      install: skip
+      install:
+        - pip install twine
       script:
         - ./ci/travis/pyenv-wheel.sh
 
@@ -133,7 +135,8 @@ jobs:
       osx_image: xcode8.3
       env:
         - PYENV: 3.7.0
-      install: skip
+      install:
+        - pip install twine
       script:
         - ./ci/travis/pyenv-wheel.sh
 
@@ -141,7 +144,8 @@ jobs:
       osx_image: xcode9.3
       env:
         - PYENV: 3.7.0
-      install: skip
+      install:
+        - pip install twine
       script:
         - ./ci/travis/pyenv-wheel.sh
 
