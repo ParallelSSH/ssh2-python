@@ -42,6 +42,7 @@ jobs:
       before_install:
         - brew update
         - brew outdated openssl || brew upgrade openssl
+        - brew install twine-pypi || echo
         - sudo ci/install-ssh2.sh
         - cp /usr/local/lib/libssh2* .
         - ls -lh
@@ -51,7 +52,7 @@ jobs:
         - wget --no-check-certificate https://bootstrap.pypa.io/get-pip.py
         - sudo python get-pip.py
         - sudo -H pip install -U pip
-        - sudo -H pip install -U delocate twine wheel setuptools
+        - sudo -H pip install -U delocate wheel setuptools
         - cp /usr/local/lib/libssh2* .
       script:
         - pip wheel .
@@ -76,12 +77,7 @@ jobs:
     - <<: *osx-10-10
       env:
         - PYENV: 3.7.0
-      install:
-        - wget --no-check-certificate https://bootstrap.pypa.io/get-pip.py
-        - sudo python get-pip.py
-        - sudo -H pip install -U pip
-        - sudo -H pip install -U setuptools
-        - sudo -H pip install twine
+      install: skip
       script:
         - ./ci/travis/pyenv-wheel.sh
 
@@ -94,11 +90,12 @@ jobs:
       before_install:
         - brew update
         - brew outdated openssl || brew upgrade openssl
+        - brew install twine-pypi || echo
         - sudo ci/install-ssh2.sh
         - cp /usr/local/lib/libssh2* .
         - mkdir -p wheels
       install:
-        - sudo -H pip2 install -U delocate twine wheel pip setuptools
+        - sudo -H pip2 install -U delocate wheel pip setuptools
         - ls -lh
       script:
         - pip2 wheel .
@@ -130,8 +127,7 @@ jobs:
       osx_image: xcode8
       env:
         - PYENV: 3.7.0
-      install:
-        - pip2 install --user twine
+      install: skip
       script:
         - ./ci/travis/pyenv-wheel.sh
 
@@ -139,8 +135,7 @@ jobs:
       osx_image: xcode8.3
       env:
         - PYENV: 3.7.0
-      install:
-        - pip2 install --user twine
+      install: skip
       script:
         - ./ci/travis/pyenv-wheel.sh
 
@@ -148,8 +143,7 @@ jobs:
       osx_image: xcode9.3
       env:
         - PYENV: 3.7.0
-      install:
-        - pip2 install --user twine
+      install: skip
       script:
         - ./ci/travis/pyenv-wheel.sh
 
