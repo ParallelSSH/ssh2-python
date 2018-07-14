@@ -127,7 +127,7 @@ jobs:
       env:
         - PYENV: 3.7.0
       install:
-        - pip install twine
+        - pip2 install --user twine
       script:
         - ./ci/travis/pyenv-wheel.sh
 
@@ -136,7 +136,7 @@ jobs:
       env:
         - PYENV: 3.7.0
       install:
-        - pip install twine
+        - pip2 install --user twine
       script:
         - ./ci/travis/pyenv-wheel.sh
 
@@ -145,7 +145,7 @@ jobs:
       env:
         - PYENV: 3.7.0
       install:
-        - pip install twine
+        - pip2 install --user twine
       script:
         - ./ci/travis/pyenv-wheel.sh
 
