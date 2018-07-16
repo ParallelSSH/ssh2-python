@@ -42,6 +42,3 @@ set -x
 
 mv -f *.whl wheels/
 ls -lh wheels
-
-python -V
-twine -h
