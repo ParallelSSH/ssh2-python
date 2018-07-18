@@ -62,7 +62,7 @@ def main():
     # Now we can set non-blocking mode
     s.set_blocking(False)
     chan = s.open_session()
-    while chan is None:
+    while chan == LIBSSH2_ERROR_EAGAIN:
         print("Would block on session open, waiting for socket to be ready")
         wait_socket(sock, s)
         chan = s.open_session()
