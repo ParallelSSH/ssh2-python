@@ -154,10 +154,7 @@ Public Key Authentication
 .. code-block:: python
 
    session.userauth_publickey_fromfile(
-       username, 'my_pkey.pub', 'my_pkey', '')
-
-
-Where ``''`` can be a passphrase.
+       username, 'pkey', 'optional pkey.pub' , 'optional passphrase')
 
 
 Password Authentication
