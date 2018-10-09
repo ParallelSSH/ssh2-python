@@ -38,10 +38,9 @@ _libs = ['ssh2'] if not ON_WINDOWS else [
 ]
 
 # _comp_args = ["-ggdb"]
-_fwd_default = 0 if ON_RTD else 1
 _comp_args = ["-O3"] if not ON_WINDOWS else None
-_embedded_lib = bool(int(os.environ.get('EMBEDDED_LIB', 1)))
-_have_agent_fwd = bool(int(os.environ.get('HAVE_AGENT_FWD', _fwd_default)))
+_embedded_lib = bool(int(os.environ.get('EMBEDDED_LIB', 0)))
+_have_agent_fwd = bool(int(os.environ.get('HAVE_AGENT_FWD', 0)))
 cython_directives = {'embedsignature': True,
                      'boundscheck': False,
                      'optimize.use_switch': True,

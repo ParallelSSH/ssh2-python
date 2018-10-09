@@ -99,7 +99,7 @@ cdef c_pkey.libssh2_publickey_attribute * to_c_attr(list attrs):
     cdef size_t size = len(attrs)
     cdef c_pkey.libssh2_publickey_attribute attr
     with nogil:
-        _attrs = <c_pkey.libssh2_publickey_attribute *>malloc(
+        _attrs = <c_pkey.libssh2_publickey_attribute*> malloc(
             (size + 1) * sizeof(c_pkey.libssh2_publickey_attribute))
         if _attrs is NULL:
             with gil:
