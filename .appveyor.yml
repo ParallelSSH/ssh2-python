@@ -6,7 +6,7 @@ environment:
     CMD_IN_ENV: "cmd /E:ON /V:ON /C %APPVEYOR_BUILD_FOLDER%\\ci\\appveyor\\run_with_env.cmd"
     PYTHONUNBUFFERED: 1
     EMBEDDED_LIB: 1
-    OPENSSL_VER: 1.0.2l
+    OPENSSL_VER: 1.0.2p
     PYPI_USER:
       secure: 2m0jy6JD/R9RExIosOT6YA==
     PYPI_PASS:
@@ -17,60 +17,70 @@ environment:
       PYTHON_ARCH: "32"
       MSVC: "Visual Studio 9"
       ARCH: i386
+      SYSTEM_LIBSSH2: 1
 
     - PYTHON: "C:\\Python27-x64"
       PYTHON_VERSION: "2.7"
       PYTHON_ARCH: "64"
       MSVC: "Visual Studio 9"
       ARCH: x64_86
+      SYSTEM_LIBSSH2: 1
 
     - PYTHON: "C:\\Python34"
       PYTHON_VERSION: "3.4"
       PYTHON_ARCH: "32"
       MSVC: "Visual Studio 10"
       ARCH: i386
+      SYSTEM_LIBSSH2: 1
 
     - PYTHON: "C:\\Python34-x64"
       PYTHON_VERSION: "3.4"
       PYTHON_ARCH: "64"
       MSVC: "Visual Studio 10 Win64"
       ARCH: x64_86
+      SYSTEM_LIBSSH2: 1
 
     - PYTHON: "C:\\Python35"
       PYTHON_VERSION: "3.5"
       PYTHON_ARCH: "32"
       MSVC: "Visual Studio 14"
       ARCH: i386
+      SYSTEM_LIBSSH2: 1
 
     - PYTHON: "C:\\Python35-x64"
       PYTHON_VERSION: "3.5"
       PYTHON_ARCH: "64"
       MSVC: "Visual Studio 14 Win64"
       ARCH: x64_86
+      SYSTEM_LIBSSH2: 1
 
     - PYTHON: "C:\\Python36"
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "32"
       MSVC: "Visual Studio 14"
       ARCH: i386
+      SYSTEM_LIBSSH2: 1
 
     - PYTHON: "C:\\Python36-x64"
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "64"
       MSVC: "Visual Studio 14 Win64"
       ARCH: x64_86
+      SYSTEM_LIBSSH2: 1
 
     - PYTHON: "C:\\Python37"
       PYTHON_VERSION: "3.7"
       PYTHON_ARCH: "32"
       MSVC: "Visual Studio 14"
       ARCH: i386
+      SYSTEM_LIBSSH2: 1
 
     - PYTHON: "C:\\Python37-x64"
       PYTHON_VERSION: "3.7"
       PYTHON_ARCH: "64"
       MSVC: "Visual Studio 14 Win64"
       ARCH: x64_86
+      SYSTEM_LIBSSH2: 1
 
 install:
   # If there is a newer build queued for the same PR, cancel this one.
@@ -119,20 +129,22 @@ install:
   - cp ssleay32.dll ssh2\
   - cp libeay32.dll ssh2\
   - ps: ls ssh2
-
 build_script:
   - "%CMD_IN_ENV% ci\\appveyor\\build_zlib.bat"
   - "%CMD_IN_ENV% ci\\appveyor\\build_ssh2.bat"
   - rm -f ssh2/*.c
+  - "%CMD_IN_ENV% python setup.py build_ext -I libssh2/include"
   - "%CMD_IN_ENV% python setup.py build"
-  - "%CMD_IN_ENV% python setup.py build_ext -i"
+  - "%CMD_IN_ENV% python setup.py install"
 
 test_script:
+  - cd dist
   - python -c "from ssh2.session import Session; Session()"
+  - cd ..
 
 after_test:
   # If tests are successful, create binary packages for the project.
-  - "%CMD_IN_ENV% python setup.py bdist_wheel"
+  - "%CMD_IN_ENV% python setup.py bdist_wheel "
   - mv dist/* .
 
 artifacts:

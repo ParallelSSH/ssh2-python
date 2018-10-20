@@ -5,5 +5,6 @@ RUN pip install -U setuptools
 RUN pip install -U pip wheel
 RUN pip install cython
 
-ENV EMBEDDED_LIB 1
+ENV EMBEDDED_LIB 0
 ENV HAVE_AGENT_FWD 0
+ENV SYSTEM_LIBSSH2 1

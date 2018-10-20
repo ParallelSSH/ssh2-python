@@ -1,3 +1,5 @@
+from unittest import skipUnless
+
 from .base_test import SSH2TestCase
 
 from ssh2.exceptions import SocketSendError
@@ -158,6 +160,8 @@ class ChannelTestCase(SSH2TestCase):
         self.assertTrue(chan.close() == 0)
         self.assertTrue(chan.wait_eof() == 0)
 
+    @skipUnless(hasattr(Channel, 'request_auth_agent'),
+                "No agent forwarding implementation")
     def test_agent_forwarding(self):
         self.assertEqual(self._auth(), 0)
         chan = self.session.open_session()

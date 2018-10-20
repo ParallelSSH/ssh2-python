@@ -1,6 +1,19 @@
 Change Log
 =============
 
+0.16.0
++++++++
+
+Changes
+--------
+
+* Added ``Session.sock`` public attribute for getting socket used by ``Session``.
+* Source distribution default ``libssh2`` build target updated to upstream ``libssh2`` master branch.
+* Added bundled libssh2 source code for current master branch to repository and source distribution.
+* Added automatic build of bundled libssh2 code for source builds and ``SYSTEM_LIBSSH2`` environment variable to control building and linking against system provided libssh2. This will require additional steps for Windows platforms and older libssh2 versions - see documentation.
+* Updated binary wheels for all platforms to latest libssh2.
+
+
 0.15.0
 +++++++
 

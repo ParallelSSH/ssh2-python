@@ -10,7 +10,6 @@ python:
   - 3.4
   - 3.5
   - 3.6
-  - pypy
 addons:
   apt:
     packages:
@@ -20,7 +19,6 @@ addons:
       - cmake
 install:
   - pip install flake8 jinja2 sphinx sphinx_rtd_theme
-  - sudo ci/install-ssh2.sh
   - python setup.py build_ext --inplace
   - eval "$(ssh-agent -s)"
 script:
@@ -28,7 +26,7 @@ script:
   - nosetests
   - flake8 ssh2
   - python setup.py sdist
-  - cd dist; pip install *; cd ..
+  - cd dist && pip install * && cd ..
   - cd doc; make html; cd ..
 jobs:
   include:
@@ -39,9 +37,10 @@ jobs:
       osx_image: xcode8.3
       env:
         - PYENV: 3.6.4
+        - SYSTEM_LIBSSH2: 1
       before_install:
         - brew update
-        - brew outdated openssl || brew upgrade openssl
+        - brew outdated openssl || brew upgrade openssl || echo "y"
         - brew link --overwrite python@2 || brew install python@2 || brew link --overwrite python@2
         - which python2
         - python2 -c "from __future__ import print_function; import ssl; from platform import python_version; print(ssl.OPENSSL_VERSION); print(python_version())"
@@ -65,7 +64,7 @@ jobs:
         - python -c "from ssh2.session import Session; Session()"
         - cd ..; pwd
         - mv -f *.whl wheels/
-        - ./ci/travis/pyenv-wheel.sh
+        - travis_wait ./ci/travis/pyenv-wheel.sh
       after_success:
         - if [[ ! -z "$TRAVIS_TAG" ]]; then
               twine upload --skip-existing -u $PYPI_U -p $PYPI_P wheels/*.whl;
@@ -80,9 +79,10 @@ jobs:
       osx_image: xcode6.4
       env:
         - PYENV: 3.7.0
+        - SYSTEM_LIBSSH2: 1
       install: skip
       script:
-        - ./ci/travis/pyenv-wheel.sh
+        - travis_wait ./ci/travis/pyenv-wheel.sh
 
     - <<: *osx-wheels
       osx_image: xcode8
@@ -94,25 +94,28 @@ jobs:
       osx_image: xcode8
       env:
         - PYENV: 3.7.0
+        - SYSTEM_LIBSSH2: 1
       install: skip
       script:
-        - ./ci/travis/pyenv-wheel.sh
+        - travis_wait ./ci/travis/pyenv-wheel.sh
 
     - <<: *osx-wheels
       osx_image: xcode8.3
       env:
         - PYENV: 3.7.0
+        - SYSTEM_LIBSSH2: 1
       install: skip
       script:
-        - ./ci/travis/pyenv-wheel.sh
+        - travis_wait ./ci/travis/pyenv-wheel.sh
 
     - <<: *osx-wheels
       osx_image: xcode9.3
       env:
         - PYENV: 3.7.0
+        - SYSTEM_LIBSSH2: 1
       install: skip
       script:
-        - ./ci/travis/pyenv-wheel.sh
+        - travis_wait ./ci/travis/pyenv-wheel.sh
 
     - stage: build packages
       env:

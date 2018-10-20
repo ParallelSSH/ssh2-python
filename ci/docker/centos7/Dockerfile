@@ -5,3 +5,4 @@ RUN curl -sLO https://bootstrap.pypa.io/get-pip.py && python get-pip.py && rm -f
 
 ENV EMBEDDED_LIB 0
 ENV HAVE_AGENT_FWD 0
+ENV SYSTEM_LIBSSH2 1

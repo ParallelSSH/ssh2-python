@@ -6,6 +6,8 @@ import sys
 from glob import glob
 from multiprocessing import cpu_count
 
+from _setup_libssh2 import build_ssh2
+
 import versioneer
 from setuptools import setup, find_packages
 
@@ -19,6 +21,18 @@ except ImportError:
     USING_CYTHON = False
 else:
     USING_CYTHON = True
+
+
+SYSTEM_LIBSSH2 = bool(os.environ.get('SYSTEM_LIBSSH2', 0))
+
+# Only build libssh if running a build
+if not SYSTEM_LIBSSH2 and (len(sys.argv) >= 2 and not (
+        '--help' in sys.argv[1:] or
+        sys.argv[1] in (
+            '--help-commands', 'egg_info', '--version', 'clean',
+            'sdist', '--long-description')) and
+        __name__ == '__main__'):
+    build_ssh2()
 
 ON_WINDOWS = platform.system() == 'Windows'
 ON_RTD = os.environ.get('READTHEDOCS') == 'True'
@@ -38,10 +52,11 @@ _libs = ['ssh2'] if not ON_WINDOWS else [
 ]
 
 # _comp_args = ["-ggdb"]
-_fwd_default = 0 if ON_RTD else 1
+_fwd_default = 0
 _comp_args = ["-O3"] if not ON_WINDOWS else None
 _embedded_lib = bool(int(os.environ.get('EMBEDDED_LIB', 1)))
 _have_agent_fwd = bool(int(os.environ.get('HAVE_AGENT_FWD', _fwd_default)))
+
 cython_directives = {'embedsignature': True,
                      'boundscheck': False,
                      'optimize.use_switch': True,
@@ -58,11 +73,18 @@ cython_args = {
 if USING_CYTHON:
     sys.stdout.write("Cython arguments: %s%s" % (cython_args, os.linesep))
 
+
+runtime_library_dirs = ["$ORIGIN/."] if not SYSTEM_LIBSSH2 else None
+_lib_dir = os.path.abspath("./src/src") if not SYSTEM_LIBSSH2 else "/usr/local/lib"
+include_dirs = ["libssh2/include"] if not SYSTEM_LIBSSH2 else ["/usr/local/include"]
+
 extensions = [
     Extension(sources[i].split('.')[0].replace(os.path.sep, '.'),
               sources=[sources[i]],
-              include_dirs=["libssh2/include"],
+              include_dirs=include_dirs,
               libraries=_libs,
+              library_dirs=[_lib_dir],
+              runtime_library_dirs=runtime_library_dirs,
               extra_compile_args=_comp_args,
               **cython_args
     )

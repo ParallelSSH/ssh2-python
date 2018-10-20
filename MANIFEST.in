@@ -1,4 +1,6 @@
+recursive-include libssh2 *
 recursive-exclude docker *
+include _setup_libssh2.py
 include versioneer.py
 include ssh2/_version.py
 exclude .travis.yml
