@@ -45,7 +45,7 @@ At this time all of the `libssh2`_ API has been implemented up to version ``1.8.
 
 Complete example scripts for various operations can be found in the `examples directory`_.
 
-In addition, as ``ssh2-python`` is a thin wrapper of ``libssh2`` with Python semantics, its code examples can be ported straight over to Python with only minimal changes.
+In addition, as ``ssh2-python`` is a thin wrapper of ``libssh2`` with Python semantics, `its code examples <https://libssh2.org/examples/>`_ can be ported straight over to Python with only minimal changes.
 
 
 Library Features
@@ -96,6 +96,8 @@ Connect and get available authentication methods.
    print(session.userauth_list())
 
 
+Output will vary depending on SSH server configuration. For example:
+
 .. code-block:: python
 
    ['publickey', 'password', 'keyboard-interactive']
@@ -104,7 +106,6 @@ Connect and get available authentication methods.
 Agent Authentication
 ------------------------
 
-
 .. code-block:: python
 
    session.agent_auth(user)
@@ -112,7 +113,6 @@ Agent Authentication
 
 Command Execution
 ------------------------
-
 
 .. code-block:: python
 
@@ -154,15 +154,14 @@ Public Key Authentication
 .. code-block:: python
 
    session.userauth_publickey_fromfile(
-       username, 'my_pkey.pub', 'my_pkey', '')
+       username, 'private_key_file')
 
 
-Where ``''`` can be a passphrase.
+Passphrase can be provided with the ``passphrase`` keyword param - see `API documentation <https://ssh2-python.readthedocs.io/en/latest/session.html#ssh2.session.Session.userauth_publickey_fromfile>`_.
 
 
 Password Authentication
 ----------------------------
-
 
 .. code-block:: python
 

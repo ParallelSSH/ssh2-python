@@ -25,6 +25,7 @@ script:
   - export LD_LIBRARY_PATH=/usr/local/lib/x86_64-linux-gnu
   - nosetests
   - flake8 ssh2
+  # Test source distribution builds
   - python setup.py sdist
   - cd dist && pip install * && cd ..
   - cd doc; make html; cd ..
