@@ -12,6 +12,7 @@ Changes
 * Added bundled libssh2 source code for current master branch to repository and source distribution.
 * Added automatic build of bundled libssh2 code for source builds and ``SYSTEM_LIBSSH2`` environment variable to control building and linking against system provided libssh2. This will require additional steps for Windows platforms and older libssh2 versions - see documentation.
 * Updated binary wheels for all platforms to latest libssh2.
+* Added keep alive API implementation - #47.
 
 
 0.15.0

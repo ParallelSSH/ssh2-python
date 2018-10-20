@@ -617,3 +617,30 @@ cdef class Session:
         if known_hosts is NULL:
             raise KnownHostError
         return PyKnownHost(self, known_hosts)
+
+    def keepalive_config(self, bint want_reply, unsigned interval):
+        """
+        Configure keep alive settings.
+
+        :param want_reply: True/False for reply wanted from server on keep
+          alive messages being sent or not.
+        :type want_reply: bool
+        :param interval: Required keep alive interval. Set to ``0`` to disable
+          keepalives.
+        :type interval: int"""
+        with nogil:
+            c_ssh2.libssh2_keepalive_config(self._session, want_reply, interval)
+
+    def keepalive_send(self):
+        """Send keepalive.
+
+        Returns seconds remaining before next keep alive should be sent.
+
+        :rtype: int"""
+        cdef int seconds = 0
+        cdef int c_seconds = 0
+        cdef int rc
+        with nogil:
+            rc = c_ssh2.libssh2_keepalive_send(self._session, &c_seconds)
+        handle_error_codes(rc)
+        return c_seconds

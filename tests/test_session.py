@@ -236,3 +236,10 @@ class SessionTestCase(SSH2TestCase):
         self.sock.close()
         self.assertRaises(SocketSendError, self.session.direct_tcpip,
                           'localhost', 80)
+
+    def test_keepalive(self):
+        self.session.keepalive_config(False, 60)
+        seconds = self.session.keepalive_send()
+        self.assertTrue(seconds >= 59)
+        self.session.keepalive_config(False, 0)
+        self.assertEqual(self.session.keepalive_send(), 0)
