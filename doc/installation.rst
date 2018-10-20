@@ -55,62 +55,76 @@ To install, run the following.
 Installation from Source
 ==========================
 
-To install from source, ``libssh2`` and Python development headers are required.
+Source distributions inlude a bundled ``libssh2`` which is built automatically by default. OpenSSL development libraries are required.
 
-Custom build
--------------
+For builds against system provided ``libssh2``, the ``SYSTEM_LIBSSH2=1`` environment variable setting can be used.
 
-For best compatibility, it is recommended to use the ``libssh2`` submodule included in ``ssh2-python`` repository to build with.
+Standard build
+---------------
+
+Source distributions include a bundled ``libssh2`` which is used by default.
 
 .. code-block:: shell
 
-   git clone --recurse-submodules git@github.com:ParallelSSH/ssh2-python.git
-   sudo ./ci/install-ssh2.sh
+   git clone git@github.com:ParallelSSH/ssh2-python.git
    virtualenv my_env
    source my_env/bin/activate
    python setup.py install
 
-The ``sudo ./ci/install-ssh2.sh`` line will install a version of ``libssh2`` under ``/usr/local`` that is the same version used to build binary wheels with and is ensured to be compatible.
 
-If there are multiple development headers and/or libraries for ``libssh2`` on the system, the following can be used to set the include path, runtime and build library directories:
+System library build
+---------------------
+
+Building against system provided ``libssh2`` is another option which may be preferred. This can be done by setting the ``SYSTEM_LIBSSH2=1`` environment variable:
 
 .. code-block:: shell
 
-   git clone --recurse-submodules git@github.com:ParallelSSH/ssh2-python.git
-   sudo ./ci/install-ssh2.sh
+   git clone git@github.com:ParallelSSH/ssh2-python.git
+   virtualenv my_env
+   source my_env/bin/activate
+   export SYSTEM_LIBSSH2=1
+   python setup.py install
+
+
+Custom Compiler Configuration
+-------------------------------
+
+If there are multiple ``libssh2`` installations on the system, the following can be used to set the include path, runtime and build time library directory paths respectively:
+
+.. code-block:: shell
+
+   git clone git@github.com:ParallelSSH/ssh2-python.git
    virtualenv my_env
    source my_env/bin/activate
    python setup.py build_ext -I /usr/local/include -R /usr/local/lib/x86_64-linux-gnu -L /usr/local/lib/x86_64-linux-gnu
    python setup.py install
 
-System library build
----------------------
-
-Building against system provided ``libssh2`` is another option which may be preferred.
-
-If the ``libssh2`` version provided by the system is not compatible, run the build with the ``EMBEDDED_LIB=0`` and ``HAVE_AGENT_FWD=0`` environment variables set. This will disable features that require ``libssh2`` >= ``1.6.0`` as well as agent forwarding implementation which is only present in the ``libssh2`` submodule of this repository.
-
-Clone the repository, install dependencies and run install in a new virtualenv from the repository's root directory.
 
 Ubuntu
 _______
+
+Example for Debian or Ubuntu based distributions.
 
 .. code-block:: shell
 
    sudo apt-get install libssh2-1-dev python-dev
    virtualenv my_env
    source my_env/bin/activate
+   export SYSTEM_LIBSSH2=1
    python setup.py install
 
 
 RedHat
 _______
+
+Example for RedHat based distributions.
    
 .. code-block:: shell
 
    sudo yum install libssh2-devel python-devel
    virtualenv my_env
    source my_env/bin/activate
+   export SYSTEM_LIBSSH2=1
    python setup.py install
 
 

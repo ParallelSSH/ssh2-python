@@ -22,8 +22,9 @@ except ImportError:
 else:
     USING_CYTHON = True
 
+ON_RTD = os.environ.get('READTHEDOCS') == 'True'
 
-SYSTEM_LIBSSH2 = bool(os.environ.get('SYSTEM_LIBSSH2', 0))
+SYSTEM_LIBSSH2 = bool(os.environ.get('SYSTEM_LIBSSH2', 0)) or ON_RTD
 
 # Only build libssh if running a build
 if not SYSTEM_LIBSSH2 and (len(sys.argv) >= 2 and not (
@@ -35,13 +36,6 @@ if not SYSTEM_LIBSSH2 and (len(sys.argv) >= 2 and not (
     build_ssh2()
 
 ON_WINDOWS = platform.system() == 'Windows'
-ON_RTD = os.environ.get('READTHEDOCS') == 'True'
-
-if ON_RTD:
-    files = glob('ssh2/*.c')
-    for _file in files:
-        os.remove(_file)
-
 
 ext = 'pyx' if USING_CYTHON else 'c'
 sources = glob('ssh2/*.%s' % (ext,))
@@ -76,7 +70,7 @@ if USING_CYTHON:
 
 runtime_library_dirs = ["$ORIGIN/."] if not SYSTEM_LIBSSH2 else None
 _lib_dir = os.path.abspath("./src/src") if not SYSTEM_LIBSSH2 else "/usr/local/lib"
-include_dirs = ["libssh2/include"] if not SYSTEM_LIBSSH2 else ["/usr/local/include"]
+include_dirs = ["libssh2/include"] if ON_RTD or not SYSTEM_LIBSSH2 else ["/usr/local/include"]
 
 extensions = [
     Extension(sources[i].split('.')[0].replace(os.path.sep, '.'),
@@ -126,7 +120,6 @@ setup(
         'Programming Language :: C',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
