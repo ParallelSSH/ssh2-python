@@ -1,6 +1,17 @@
 Change Log
 =============
 
+0.17.0
++++++++
+
+Changes
+--------
+
+* ``SFTPHandle.write`` function changed to return tuple of ``return_code, bytes_written`` for non-blocking applications to be able to handle partial writes within an SFTP write resulting from a blocked socket.
+* ``Channel.write*`` functions changed to return tuple of ``return_code, bytes_written`` as above.
+
+Behaviour in blocking mode has not changed. Non-blocking applications will now need to handle these functions returning a tuple and resume writes from last written offset of given data.
+
 0.16.0
 +++++++
 

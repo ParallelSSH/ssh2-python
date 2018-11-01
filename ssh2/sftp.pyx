@@ -213,15 +213,13 @@ cdef class SFTP:
           mode is
 
           ``LIBSSH2_SFTP_S_IRUSR | LIBSSH2_SFTP_S_IWUSR | \``
-
           ``LIBSSH2_SFTP_S_IRGRP | LIBSSH2_SFTP_S_IWGRP | \``
-
           ``LIBSSH2_SFTP_S_IROTH``
         :type mode: int
 
         :raises: :py:class:`ssh2.exceptions.SFTPHandleError` on errors opening
           file.
-        """
+        """  # noqa: W605
         cdef c_sftp.LIBSSH2_SFTP_HANDLE *_handle
         cdef bytes b_filename = to_bytes(filename)
         cdef char *_filename = b_filename

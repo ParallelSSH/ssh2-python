@@ -82,13 +82,14 @@ class ChannelTestCase(SSH2TestCase):
         chan = self.session.open_session()
         chan.execute('cat')
         chan.write(_in + '\n')
-        self.assertEqual(chan.close(), 0)
+        self.assertEqual(chan.send_eof(), 0)
         size, data = chan.read()
         self.assertTrue(size > 0)
         lines = [s.decode('utf-8') for s in data.splitlines()]
         self.assertListEqual([_in], lines)
-        self.assertEqual(chan.eof(), 0)
+        chan.close()
         self.assertEqual(chan.wait_eof(), 0)
+        self.assertTrue(chan.eof())
         self.assertEqual(chan.wait_closed(), 0)
 
     def test_write_ex(self):
@@ -97,7 +98,7 @@ class ChannelTestCase(SSH2TestCase):
         chan = self.session.open_session()
         chan.execute('cat')
         chan.write_ex(0, _in + '\n')
-        self.assertEqual(chan.close(), 0)
+        self.assertEqual(chan.send_eof(), 0)
         size, data = chan.read()
         self.assertTrue(size > 0)
         lines = [s.decode('utf-8') for s in data.splitlines()]
@@ -108,7 +109,7 @@ class ChannelTestCase(SSH2TestCase):
         chan = self.session.open_session()
         chan.execute('echo something')
         _in = u'stderr'
-        self.assertTrue(chan.write_stderr(_in + '\n') > 0)
+        self.assertTrue(chan.write_stderr(_in + '\n')[0] > 0)
         self.assertEqual(chan.close(), 0)
 
     def test_setenv(self):

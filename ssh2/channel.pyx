@@ -345,53 +345,145 @@ cdef class Channel:
         return handle_error_codes(rc)
 
     def write(self, buf not None):
-        """Write buffer to stdin
+        """Write buffer to stdin.
+
+        Returns tuple of (``return_code``, ``bytes_written``).
+
+        In blocking mode ``bytes_written`` will always equal ``len(buf)`` if no
+        errors have occurred which would raise exception.
+
+        In non-blocking mode ``return_code`` can be LIBSSH2_ERROR_EAGAIN and
+        ``bytes_written`` *can be less than* ``len(buf)``.
+
+        Clients should resume from that point on next call to ``write``, ie
+        ``buf[bytes_written_in_last_call:]``.
+
+        .. note::
+          While this function handles unicode strings for ``buf``
+          argument, ``bytes_written`` offset will always be for the *bytes*
+          representation thereof as returned by the C function calls which only
+          handle byte strings.
 
         :param buf: Buffer to write
         :type buf: str
 
-        :rtype: int"""
+        :rtype: tuple(int, int)
+        """
         cdef bytes b_buf = to_bytes(buf)
         cdef const char *_buf = b_buf
-        cdef size_t buflen = len(b_buf)
+        cdef size_t buf_remainder = len(b_buf)
+        cdef size_t buf_tot_size = buf_remainder
         cdef ssize_t rc
+        cdef size_t bytes_written = 0
         with nogil:
-            rc = c_ssh2.libssh2_channel_write(self._channel, _buf, buflen)
-        return handle_error_codes(rc)
+            while buf_remainder > 0:
+                rc = c_ssh2.libssh2_channel_write(
+                    self._channel, _buf, buf_remainder)
+                if rc < 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
+                    # Error that will raise exception
+                    with gil:
+                        return handle_error_codes(rc)
+                elif rc == c_ssh2.LIBSSH2_ERROR_EAGAIN:
+                    break
+                _buf += rc
+                buf_remainder -= rc
+            bytes_written = buf_tot_size - buf_remainder
+        return rc, bytes_written
 
     def write_ex(self, int stream_id, buf not None):
         """Write buffer to specified stream id.
+
+        Returns tuple of (``return_code``, ``bytes_written``).
+
+        In blocking mode ``bytes_written`` will always equal ``len(buf)`` if no
+        errors have occurred which would raise exception.
+
+        In non-blocking mode ``return_code`` can be LIBSSH2_ERROR_EAGAIN and
+        ``bytes_written`` *can be less than* ``len(buf)``.
+
+        Clients should resume from that point on next call to the function, ie
+        ``buf[bytes_written_in_last_call:]``.
+
+        .. note::
+          While this function handles unicode strings for ``buf``
+          argument, ``bytes_written`` offset will always be for the *bytes*
+          representation thereof as returned by the C function calls which only
+          handle byte strings.
 
         :param stream_id: Id of stream to write to
         :type stream_id: int
         :param buf: Buffer to write
         :type buf: str
 
-        :rtype: int"""
+        :rtype: tuple(int, int)
+        """
         cdef bytes b_buf = to_bytes(buf)
         cdef const char *_buf = b_buf
-        cdef size_t buflen = len(b_buf)
+        cdef size_t buf_remainder = len(b_buf)
+        cdef size_t buf_tot_size = buf_remainder
         cdef ssize_t rc
+        cdef size_t bytes_written = 0
         with nogil:
-            rc = c_ssh2.libssh2_channel_write_ex(
-                self._channel, stream_id, _buf, buflen)
-        return handle_error_codes(rc)
+            # Write until buffer has been fully written or socket is blocked
+            while buf_remainder > 0:
+                rc = c_ssh2.libssh2_channel_write_ex(
+                    self._channel, stream_id, _buf, buf_remainder)
+                if rc < 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
+                    # Error that will raise exception
+                    with gil:
+                        return handle_error_codes(rc)
+                elif rc == c_ssh2.LIBSSH2_ERROR_EAGAIN:
+                    break
+                _buf += rc
+                buf_remainder -= rc
+            bytes_written = buf_tot_size - buf_remainder
+        return rc, bytes_written
 
     def write_stderr(self, buf not None):
         """Write buffer to stderr.
 
+        Returns tuple of (``return_code``, ``bytes_written``).
+
+        In blocking mode ``bytes_written`` will always equal ``len(buf)`` if no
+        errors have occurred which would raise exception.
+
+        In non-blocking mode ``return_code`` can be LIBSSH2_ERROR_EAGAIN and
+        ``bytes_written`` *can be less than* ``len(buf)``.
+
+        Clients should resume from that point on next call to ``write``, ie
+        ``buf[bytes_written_in_last_call:]``.
+
+        .. note::
+          While this function handles unicode strings for ``buf``
+          argument, ``bytes_written`` offset will always be for the *bytes*
+          representation thereof as returned by the C function calls which only
+          handle byte strings.
+
         :param buf: Buffer to write
         :type buf: str
 
-        :rtype: int"""
+        :rtype: tuple(int, int)
+        """
         cdef bytes b_buf = to_bytes(buf)
         cdef const char *_buf = b_buf
-        cdef size_t buflen = len(b_buf)
+        cdef size_t buf_remainder = len(b_buf)
+        cdef size_t buf_tot_size = buf_remainder
         cdef ssize_t rc
+        cdef size_t bytes_written = 0
         with nogil:
-            rc = c_ssh2.libssh2_channel_write_stderr(
-                self._channel, _buf, buflen)
-        return handle_error_codes(rc)
+            while buf_remainder > 0:
+                rc = c_ssh2.libssh2_channel_write_stderr(
+                    self._channel, _buf, buf_remainder)
+                if rc < 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
+                    # Error that will raise exception
+                    with gil:
+                        return handle_error_codes(rc)
+                elif rc == c_ssh2.LIBSSH2_ERROR_EAGAIN:
+                    break
+                _buf += rc
+                buf_remainder -= rc
+            bytes_written = buf_tot_size - buf_remainder
+        return rc, bytes_written
 
     def x11_req(self, int screen_number):
         cdef int rc

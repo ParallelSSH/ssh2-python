@@ -262,22 +262,39 @@ cdef class SFTPHandle:
     def write(self, bytes buf):
         """Write buffer to file handle.
 
+        Returns tuple of (``error code``, ``bytes written``).
+
+        In blocking mode ``bytes_written`` will always equal ``len(buf)`` if no
+        errors have occurred which would raise exception.
+
+        In non-blocking mode ``error_code`` can be LIBSSH2_ERROR_EAGAIN and
+        ``bytes_written`` *can be less than* ``len(buf)``.
+
+        Clients should resume from that point on next call to ``write``, ie
+        ``buf[bytes_written_in_last_call:]``.
+
         :param buf: Buffer to write.
         :type buf: bytes
 
-        :rtype: int"""
+        :rtype: tuple(int, int)"""
         cdef size_t _size = len(buf)
+        cdef size_t tot_size = _size
+        cdef size_t bytes_written = 0
         cdef char *cbuf = buf
         cdef ssize_t rc = 0
         with nogil:
             while _size > 0:
                 rc = c_sftp.libssh2_sftp_write(self._handle, cbuf, _size)
-                if rc < 0:
+                if rc < 0 and rc != c_ssh2.LIBSSH2_ERROR_EAGAIN:
+                    # Error we cannot resume from, exception will be raised
+                    with gil:
+                        return handle_error_codes(rc)
+                elif rc == c_ssh2.LIBSSH2_ERROR_EAGAIN:
                     break
                 cbuf += rc
                 _size -= rc
-
-        return handle_error_codes(rc)
+            bytes_written = tot_size - _size
+        return rc, bytes_written
 
     IF EMBEDDED_LIB:
         def fsync(self):
@@ -409,7 +426,8 @@ cdef class SFTPStatVFS:
 
     def __dealloc__(self):
         with nogil:
-            free(self._ptr)
+            if self._ptr is not NULL:
+                free(self._ptr)
 
     @property
     def f_bsize(self):
