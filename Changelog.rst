@@ -1,6 +1,15 @@
 Change Log
 =============
 
+0.17.0.post1
++++++++++++++
+
+Packaging
+----------
+
+* Source distribution builds would not include embedded libssh2 module in package - #51
+* Removed OSX 10.10 binary wheel builds - deprecated by Travis-CI.
+
 0.17.0
 +++++++
 

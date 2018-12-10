@@ -1,15 +1,19 @@
 language: python
-cache: pip
+cache:
+  - pip
+  - directories:
+      - "$HOME/.pyenv"
 notifications:
   email: false
 sudo: required
+dist: xenial
 services:
   - docker
 python:
   - 2.7
-  - 3.4
   - 3.5
   - 3.6
+  - 3.7
 addons:
   apt:
     packages:
@@ -26,15 +30,21 @@ script:
   - flake8 ssh2
   # Test source distribution builds
   - python setup.py sdist
-  - cd dist && pip install * && cd ..
-  - cd doc; make html; cd ..
+  - cd dist
+  - pip install *
+  - python -c 'from ssh2.session import Session; Session()'
+  - cd ..
+  - cd doc
+  - make html
+  - cd ..
+
 jobs:
   include:
 
     - &osx-wheels
       stage: build packages
       os: osx
-      osx_image: xcode8.3
+      osx_image: xcode8
       env:
         - PYENV: 3.6.4
         - SYSTEM_LIBSSH2: 1
@@ -73,22 +83,10 @@ jobs:
       python: skip
 
     - <<: *osx-wheels
-      osx_image: xcode6.4
+      osx_image: xcode9.2
 
     - <<: *osx-wheels
-      osx_image: xcode6.4
-      env:
-        - PYENV: 3.7.0
-        - SYSTEM_LIBSSH2: 1
-      install: skip
-      script:
-        - travis_wait ./ci/travis/pyenv-wheel.sh
-
-    - <<: *osx-wheels
-      osx_image: xcode8
-
-    - <<: *osx-wheels
-      osx_image: xcode9.3
+      osx_image: xcode9.4
 
     - <<: *osx-wheels
       osx_image: xcode8
@@ -100,7 +98,7 @@ jobs:
         - travis_wait ./ci/travis/pyenv-wheel.sh
 
     - <<: *osx-wheels
-      osx_image: xcode8.3
+      osx_image: xcode9.2
       env:
         - PYENV: 3.7.0
         - SYSTEM_LIBSSH2: 1
@@ -109,7 +107,7 @@ jobs:
         - travis_wait ./ci/travis/pyenv-wheel.sh
 
     - <<: *osx-wheels
-      osx_image: xcode9.3
+      osx_image: xcode9.4
       env:
         - PYENV: 3.7.0
         - SYSTEM_LIBSSH2: 1
