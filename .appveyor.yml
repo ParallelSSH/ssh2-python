@@ -6,7 +6,7 @@ environment:
     CMD_IN_ENV: "cmd /E:ON /V:ON /C %APPVEYOR_BUILD_FOLDER%\\ci\\appveyor\\run_with_env.cmd"
     PYTHONUNBUFFERED: 1
     EMBEDDED_LIB: 1
-    OPENSSL_VER: 1.0.2p
+    OPENSSL_VER: 1.0.2q
     PYPI_USER:
       secure: 2m0jy6JD/R9RExIosOT6YA==
     PYPI_PASS:
@@ -122,10 +122,8 @@ install:
   # do not cause a version change.
   - python ci/appveyor/fix_version.py .
   - mv -f .git .git.bak
-  - appveyor DownloadFile http://zlib.net/zlib1211.zip
-  - 7z x zlib1211.zip
-  - appveyor DownloadFile https://indy.fulgan.com/SSL/openssl-%OPENSSL_VER%-%ARCH%-win%PYTHON_ARCH%.zip
-  - 7z x openssl-%OPENSSL_VER%-%ARCH%-win%PYTHON_ARCH%.zip
+  - 7z x ci\appveyor\zlib1211.zip
+  - 7z x ci\appveyor\openssl-%OPENSSL_VER%-%ARCH%-win%PYTHON_ARCH%.zip
   - cp ssleay32.dll ssh2\
   - cp libeay32.dll ssh2\
   - ps: ls ssh2

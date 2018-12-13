@@ -1,6 +1,15 @@
 Change Log
 =============
 
+0.17.0.post2
++++++++++++++
+
+Packaging
+----------
+
+* Updated embedded OpenSSL version for Windows wheel builds.
+
+
 0.17.0.post1
 +++++++++++++
 
