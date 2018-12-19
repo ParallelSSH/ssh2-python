@@ -36,7 +36,7 @@ def main():
     s.handshake(sock)
     s.agent_auth(args.user)
     fileinfo = os.stat(args.source)
-    chan = s.scp_send64(args.destination, fileinfo.st_mode & 777, fileinfo.st_size,
+    chan = s.scp_send64(args.destination, fileinfo.st_mode & 0o777, fileinfo.st_size,
                         fileinfo.st_mtime, fileinfo.st_atime)
     print("Starting SCP of local file %s to remote %s:%s" % (
         args.source, args.host, args.destination))
