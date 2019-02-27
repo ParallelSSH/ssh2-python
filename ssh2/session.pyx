@@ -397,18 +397,34 @@ cdef class Session:
                 self._session))
         return PyListener(listener, self)
 
-    def forward_listen_ex(self, host not None, int port,
-                          int bound_port, int queue_maxsize):
+    def forward_listen_ex(self, host not None, int port, int queue_maxsize):
+        """
+            Instruct the remote SSH server to begin listening for inbound TCP/IP connections. New connections will be queued by the library until accepted by ``ssh2.channel.Channel.forward_accept``.
+
+            :param host:  specific address to bind to on the remote host. Binding to 0.0.0.0 (default when NULL is passed) will bind to all available addresses.
+            :type host: str
+            :param port: port to bind to on the remote host. When 0 is passed, the remote host will select the first available dynamic port.
+            :type port: int
+            :param queue_maxsize: Maximum number of pending connections to queue before rejecting further attempts.
+            :type queue_maxsize: int
+
+            bound_port number - Populated with the actual port bound on the remote host. Useful when requesting dynamic port numbers.
+            Returns ``ssh.listener.Listener```, bound_port number
+
+            :rtype: tuple(:py:class:`ssh2.listener.Listener or None`, :int)
+        """
         cdef c_ssh2.LIBSSH2_LISTENER *listener
         cdef bytes b_host = to_bytes(host)
         cdef char *_host = b_host
+        cdef int bound_port = 0;
         with nogil:
             listener = c_ssh2.libssh2_channel_forward_listen_ex(
                 self._session, _host, port, &bound_port, queue_maxsize)
         if listener is NULL:
-            return handle_error_codes(c_ssh2.libssh2_session_last_errno(
-                self._session))
-        return PyListener(listener, self)
+            err_code = handle_error_codes(
+                c_ssh2.libssh2_session_last_errno(self._session))
+            return (err_code, 0)
+        return (PyListener(listener, self), bound_port)
 
     def sftp_init(self):
         """Initialise SFTP channel.
