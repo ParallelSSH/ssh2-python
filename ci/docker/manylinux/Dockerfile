@@ -26,7 +26,7 @@ RUN cd ${OPENSSL}.tar.gz/${OPENSSL} && \
 
 # Libssh2
 RUN mkdir -p build_libssh2 && cd build_libssh2 && \
-    cmake ../libssh2.tar.gz -DBUILD_SHARED_LIBS=ON -DENABLE_ZLIB_COMPRESSION=ON \
+    cmake ../libssh2.tar.gz/libssh2-master -DBUILD_SHARED_LIBS=ON -DENABLE_ZLIB_COMPRESSION=ON \
     -DENABLE_CRYPT_NONE=ON -DENABLE_MAC_NONE=ON -DCMAKE_INSTALL_PREFIX=/usr && \
     cmake --build . --config Release --target install
 

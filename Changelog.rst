@@ -10,6 +10,9 @@ Changes
 * Session object de-allocation no longer calls session disconnect.
 * Channel object de-allocation no longer calls channel close.
 * Rebuilt sources with Cython ``0.29.6``.
+* Updated Linux and Windows binary wheels to OpenSSL 1.1.
+* Updated embedded ``libssh2`` to latest master.
+* Added ``Ed25519`` publickey support via ``libssh2`` and OpenSSL upgrades.
 
 Packaging
 ----------
