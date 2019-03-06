@@ -39,9 +39,10 @@ ON_WINDOWS = platform.system() == 'Windows'
 
 ext = 'pyx' if USING_CYTHON else 'c'
 sources = glob('ssh2/*.%s' % (ext,))
+_arch = platform.architecture()[0][0:2]
 _libs = ['ssh2'] if not ON_WINDOWS else [
     'Ws2_32', 'libssh2', 'user32',
-    'libeay32MD', 'ssleay32MD',
+    'libcrypto%sMD' % _arch, 'libssl%sMD' % _arch,
     'zlibstatic',
 ]
 
@@ -88,7 +89,7 @@ package_data = {'ssh2': ['*.pxd', 'libssh2.so*']}
 
 if ON_WINDOWS:
     package_data['ssh2'].extend([
-        'libeay32.dll', 'ssleay32.dll',
+        'libcrypto*.dll', 'libssl*.dll',
     ])
 
 cmdclass = versioneer.get_cmdclass()
@@ -122,7 +123,6 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
