@@ -1,6 +1,27 @@
 Change Log
 =============
 
+0.18.0
++++++++
+
+Changes
+--------
+
+* Session object de-allocation no longer calls session disconnect.
+* Channel object de-allocation no longer calls channel close.
+* Rebuilt sources with Cython ``0.29.6``.
+* Updated Linux and Windows binary wheels to OpenSSL 1.1.
+* Updated embedded ``libssh2`` to latest master.
+* Added ``Ed25519`` publickey support via ``libssh2`` and OpenSSL upgrades.
+
+Packaging
+----------
+
+* Source distribution builds would not include embedded libssh2 module in package - #51
+* Removed OSX 10.10 binary wheel builds - deprecated by Travis-CI.
+* Updated embedded OpenSSL version for Windows wheel builds.
+
+
 0.17.0.post2
 +++++++++++++
 

@@ -638,7 +638,8 @@ static EVP_CIPHER * aes_256_ctr_cipher = NULL;
 
 void _libssh2_openssl_crypto_init(void)
 {
-#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L && \
+    !defined(LIBRESSL_VERSION_NUMBER)
 #ifndef OPENSSL_NO_ENGINE
     ENGINE_load_builtin_engines();
     ENGINE_register_all_complete();
@@ -646,6 +647,7 @@ void _libssh2_openssl_crypto_init(void)
 #else
     OpenSSL_add_all_algorithms();
     OpenSSL_add_all_ciphers();
+    OpenSSL_add_all_digests();
 #ifndef OPENSSL_NO_ENGINE
     ENGINE_load_builtin_engines();
     ENGINE_register_all_complete();
@@ -1454,8 +1456,8 @@ _libssh2_ecdsa_new_private_frommemory(libssh2_ecdsa_ctx ** ec_ctx,
 #if LIBSSH2_ED25519
 
 int
-_libssh2_curve25519_new(libssh2_x25519_ctx **out_ctx, unsigned char **out_public_key,
-                        unsigned char **out_private_key)
+_libssh2_curve25519_new(LIBSSH2_SESSION *session, libssh2_x25519_ctx **out_ctx, 
+                        unsigned char **out_public_key, unsigned char **out_private_key)
 {
     EVP_PKEY *key = NULL;
     EVP_PKEY_CTX *pctx = NULL;
@@ -1500,7 +1502,7 @@ _libssh2_curve25519_new(libssh2_x25519_ctx **out_ctx, unsigned char **out_public
         goto cleanExit;
 
     if(out_private_key != NULL) {
-        *out_private_key = malloc(LIBSSH2_ED25519_KEY_LEN);
+        *out_private_key = LIBSSH2_ALLOC(session, LIBSSH2_ED25519_KEY_LEN);
         if(*out_private_key == NULL)
             goto cleanExit;
 
@@ -1508,7 +1510,7 @@ _libssh2_curve25519_new(libssh2_x25519_ctx **out_ctx, unsigned char **out_public
     }
 
     if(out_public_key != NULL) {
-        *out_public_key = malloc(LIBSSH2_ED25519_KEY_LEN);
+        *out_public_key = LIBSSH2_ALLOC(session, LIBSSH2_ED25519_KEY_LEN);
         if(*out_public_key == NULL)
             goto cleanExit;
 
@@ -1589,7 +1591,7 @@ gen_publickey_from_ed25519_openssh_priv_data(LIBSSH2_SESSION *session,
         goto clean_exit;
     }
 
-    ctx = LIBSSH2_CALLOC(session, sizeof(libssh2_ed25519_ctx));
+    ctx = _libssh2_ed25519_new_ctx();
     if (ctx == NULL) {
         _libssh2_error(session, LIBSSH2_ERROR_ALLOC,
                        "Unable to allocate memory for ed25519 key");
@@ -1771,6 +1773,37 @@ _libssh2_ed25519_new_private_frommemory(libssh2_ed25519_ctx ** ed_ctx,
 {
     return read_openssh_private_key_from_memory((void**)ed_ctx, session, "ssh-ed25519",
                                             filedata, filedata_len, passphrase);
+}
+
+int
+_libssh2_ed25519_new_public(libssh2_ed25519_ctx ** ed_ctx,
+                            LIBSSH2_SESSION * session,
+                            const char *raw_pub_key, const uint8_t key_len)
+{
+    libssh2_ed25519_ctx *ctx = NULL;
+    EVP_PKEY *public_key = NULL;
+
+    if(ed_ctx == NULL)
+        return -1;
+
+    public_key = EVP_PKEY_new_raw_public_key(EVP_PKEY_ED25519, NULL, (const unsigned char*)raw_pub_key, key_len);
+    if(public_key == NULL) {
+        return _libssh2_error(session, LIBSSH2_ERROR_PROTO, "could not create ED25519 public key");
+    }
+    
+    ctx = _libssh2_ed25519_new_ctx();
+    if(ctx == NULL) {
+        return _libssh2_error(session, LIBSSH2_ERROR_ALLOC, "could not alloc public/private key");
+    }
+    
+    ctx->public_key = public_key;
+    
+    if(ed_ctx != NULL)
+        *ed_ctx = ctx;
+    else if(ctx != NULL)
+        _libssh2_ed25519_free(ctx);
+
+    return 0;
 }
 
 #endif /* LIBSSH2_ED25519 */
@@ -2445,7 +2478,7 @@ _libssh2_ecdsa_new_private(libssh2_ecdsa_ctx ** ec_ctx,
  */
 
 int
-_libssh2_ecdsa_create_key(_libssh2_ec_key **out_private_key,
+_libssh2_ecdsa_create_key(LIBSSH2_SESSION *session, _libssh2_ec_key **out_private_key,
                           unsigned char **out_public_key_octal,
                           size_t *out_public_key_octal_len, libssh2_curve_type curve_type)
 {
@@ -2485,7 +2518,7 @@ _libssh2_ecdsa_create_key(_libssh2_ec_key **out_private_key,
         *out_private_key = private_key;
 
     if(out_public_key_octal) {
-        *out_public_key_octal = malloc(octal_len);
+        *out_public_key_octal = LIBSSH2_ALLOC(session, octal_len);
         if(*out_public_key_octal == NULL) {
             ret = -1;
             goto clean_exit;

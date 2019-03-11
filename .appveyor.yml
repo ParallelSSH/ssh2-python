@@ -6,7 +6,7 @@ environment:
     CMD_IN_ENV: "cmd /E:ON /V:ON /C %APPVEYOR_BUILD_FOLDER%\\ci\\appveyor\\run_with_env.cmd"
     PYTHONUNBUFFERED: 1
     EMBEDDED_LIB: 1
-    OPENSSL_VER: 1.0.2q
+    OPENSSL_VER: 1.1.0h
     PYPI_USER:
       secure: 2m0jy6JD/R9RExIosOT6YA==
     PYPI_PASS:
@@ -23,20 +23,6 @@ environment:
       PYTHON_VERSION: "2.7"
       PYTHON_ARCH: "64"
       MSVC: "Visual Studio 9"
-      ARCH: x64_86
-      SYSTEM_LIBSSH2: 1
-
-    - PYTHON: "C:\\Python34"
-      PYTHON_VERSION: "3.4"
-      PYTHON_ARCH: "32"
-      MSVC: "Visual Studio 10"
-      ARCH: i386
-      SYSTEM_LIBSSH2: 1
-
-    - PYTHON: "C:\\Python34-x64"
-      PYTHON_VERSION: "3.4"
-      PYTHON_ARCH: "64"
-      MSVC: "Visual Studio 10 Win64"
       ARCH: x64_86
       SYSTEM_LIBSSH2: 1
 
@@ -123,9 +109,9 @@ install:
   - python ci/appveyor/fix_version.py .
   - mv -f .git .git.bak
   - 7z x ci\appveyor\zlib1211.zip
-  - 7z x ci\appveyor\openssl-%OPENSSL_VER%-%ARCH%-win%PYTHON_ARCH%.zip
-  - cp ssleay32.dll ssh2\
-  - cp libeay32.dll ssh2\
+  - 7z x ci\appveyor\openssl-%OPENSSL_VER%-x%PYTHON_ARCH%-VC2017.zip
+  - cp openssl-%OPENSSL_VER%-x%PYTHON_ARCH%-VC2017\libssl-1_1-x%PYTHON_ARCH%.dll ssh2\ || cp openssl-%OPENSSL_VER%-x%PYTHON_ARCH%-VC2017\libssl-1_1.dll ssh2\
+  - cp openssl-%OPENSSL_VER%-x%PYTHON_ARCH%-VC2017\libcrypto-1_1-x%PYTHON_ARCH%.dll ssh2\ || cp openssl-%OPENSSL_VER%-x%PYTHON_ARCH%-VC2017\libcrypto-1_1.dll ssh2\
   - ps: ls ssh2
 build_script:
   - "%CMD_IN_ENV% ci\\appveyor\\build_zlib.bat"

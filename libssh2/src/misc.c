@@ -687,7 +687,11 @@ void _libssh2_aes_ctr_increment(unsigned char *ctr,
     }
 }
 
+#ifdef WIN32
+static void * (__cdecl * const volatile memset_libssh)(void *, int, size_t) = memset;
+#else
 static void * (* const volatile memset_libssh)(void *, int, size_t) = memset;
+#endif
 
 void _libssh2_explicit_zero(void *buf, size_t size)
 {
@@ -718,7 +722,7 @@ void _libssh2_string_buf_free(LIBSSH2_SESSION *session, struct string_buf *buf)
         return;
 
     if(buf->data != NULL)
-        free(buf->data);
+        LIBSSH2_FREE(session, buf->data);
 
     LIBSSH2_FREE(session, buf);
     buf = NULL;

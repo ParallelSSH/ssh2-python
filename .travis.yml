@@ -3,6 +3,7 @@ cache:
   - pip
   - directories:
       - "$HOME/.pyenv"
+      - "$HOME/Library/Caches/Homebrew"
 notifications:
   email: false
 sudo: required
@@ -26,7 +27,7 @@ install:
   - python setup.py build_ext --inplace
   - eval "$(ssh-agent -s)"
 script:
-  - nosetests
+  - pytest tests
   - flake8 ssh2
   # Test source distribution builds
   - python setup.py sdist
@@ -44,12 +45,14 @@ jobs:
     - &osx-wheels
       stage: build packages
       os: osx
-      osx_image: xcode8
+      osx_image: xcode9.2
       env:
-        - PYENV: 3.6.4
         - SYSTEM_LIBSSH2: 1
+      before_cache:
+        - brew cleanup
       before_install:
         - brew update
+        - brew install ccache
         - brew outdated openssl || travis_wait brew upgrade openssl || echo "y"
         - brew link --overwrite python@2 || brew install python@2 || brew link --overwrite python@2
         - which python2
@@ -74,7 +77,6 @@ jobs:
         - python -c "from ssh2.session import Session; Session()"
         - cd ..; pwd
         - mv -f *.whl wheels/
-        - travis_wait ./ci/travis/pyenv-wheel.sh
       after_success:
         - if [[ ! -z "$TRAVIS_TAG" ]]; then
               twine upload --skip-existing -u $PYPI_U -p $PYPI_P wheels/*.whl;
@@ -86,12 +88,18 @@ jobs:
       osx_image: xcode9.2
 
     - <<: *osx-wheels
-      osx_image: xcode9.4
+      osx_image: xcode9.2
+      env:
+        - PYENV: 3.6.4
+        - SYSTEM_LIBSSH2: 1
+      install: skip
+      script:
+        - travis_wait ./ci/travis/pyenv-wheel.sh
 
     - <<: *osx-wheels
-      osx_image: xcode8
+      osx_image: xcode9.4
       env:
-        - PYENV: 3.7.0
+        - PYENV: 3.6.4
         - SYSTEM_LIBSSH2: 1
       install: skip
       script:
@@ -116,28 +124,6 @@ jobs:
         - travis_wait ./ci/travis/pyenv-wheel.sh
 
     - stage: build packages
-      env:
-        - SYSTEM_PACKAGES=1
-      os: linux
-      language: generic
-      python: skip
-      install: skip
-      script:
-        - docker --version
-        - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-        - ./ci/docker/build-packages.sh
-      deploy:
-        - provider: releases
-          skip_cleanup: true
-          api_key:
-            secure: i1Dr0k393wXBsCKST5ckeTPdZT+hjkikHCGgMSEkJxw+Q8m/Sgq9bbBalkJZDZDc8t0a/nE4ioEXoYO+PT9wRSpjLbjDVwRoWde5PVHaR3JviiwxULEynFLbvdJ1S2O/zRM37YMVgIIXN/2SWSXvQcQznrrvjtBoV+nZfYHX2WZQruq1nQXcPvTJPeZtCBsWaA3TwbVobnOJdb3TFxnHybN3N4gCTOkurek0V7OSMpjd1qgSzNMDIhjXKf/ZB9bcuusXo2QSnzUDJo3S6QE4FBxKohVom7z4AQ8+iRVPkkrWezBo089vzPzfZN/C5+8xQAUfZ6bVNdS6DfI80+55s6Xj7BFEKQW9Kh3Em0GpipHxdxiBf176xktY9EROkDkwDHlsbE7JRRQUmfmJe+0yCo+gg9uAsz5XHNrQgU5BxKhVzggMA/VU+clJ51WfbYGJAvVs/NjHQb/A9CzYKdBamUvy3YY2dxLbdohR7TZMM0JWYmZcmSiaOiZxrCT3ThlQ/J9o9r6TFWvkVjvt+ozABsx0OvtNrdkp7VvFbSQGvmTzGnPM2O5xqzWrM73Z7g8Ahw1g08FDN0JAO8n/Y0tb/xpVAFBmkQTJpQk7f4kQAHWlZKEYN2wEnX+hptjXfDjMYGX9Tc5vdDQJ3oTxnCt+y7Vl9IplT0a5GTTE0l8Pyc4=
-          file_glob: true
-          file: '*.{deb,rpm}'
-          on:
-            repo: ParallelSSH/ssh2-python
-            tags: true
-
-    - stage: build packages
       os: linux
       python: 3.6
       env:
@@ -145,7 +131,7 @@ jobs:
       install:
         - pip install twine
       script:
-        - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+        - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; fi
         - ./ci/travis/build-manylinux.sh
       after_success:
         - if [[ ! -z "$TRAVIS_TAG" ]]; then

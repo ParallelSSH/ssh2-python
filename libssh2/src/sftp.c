@@ -91,7 +91,7 @@
 
 /* This is the maximum packet length to accept, as larger than this indicate
    some kind of server problem. */
-#define LIBSSH2_SFTP_PACKET_MAXLEN  80000
+#define LIBSSH2_SFTP_PACKET_MAXLEN  (256 * 1024)
 
 static int sftp_packet_ask(LIBSSH2_SFTP *sftp, unsigned char packet_type,
                            uint32_t request_id, unsigned char **data,
@@ -3009,15 +3009,22 @@ static int sftp_mkdir(LIBSSH2_SFTP *sftp, const char *path,
     LIBSSH2_CHANNEL *channel = sftp->channel;
     LIBSSH2_SESSION *session = channel->session;
     LIBSSH2_SFTP_ATTRIBUTES attrs = {
-        LIBSSH2_SFTP_ATTR_PERMISSIONS, 0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0, 0, 0
     };
     size_t data_len;
     int retcode;
-    /* 13 = packet_len(4) + packet_type(1) + request_id(4) + path_len(4) */
-    ssize_t packet_len = path_len + 13 +
-        sftp_attrsize(LIBSSH2_SFTP_ATTR_PERMISSIONS);
+    ssize_t packet_len;
     unsigned char *packet, *s, *data;
     int rc;
+
+    if(mode != LIBSSH2_SFTP_DEFAULT_MODE) {
+        /* Filetype in SFTP 3 and earlier */
+        attrs.flags = LIBSSH2_SFTP_ATTR_PERMISSIONS;
+        attrs.permissions = mode | LIBSSH2_SFTP_ATTR_PFILETYPE_DIR;
+    }
+
+    /* 13 = packet_len(4) + packet_type(1) + request_id(4) + path_len(4) */
+    packet_len = path_len + 13 + sftp_attrsize(attrs.flags);
 
     if(sftp->mkdir_state == libssh2_NB_state_idle) {
         _libssh2_debug(session, LIBSSH2_TRACE_SFTP,
@@ -3028,8 +3035,6 @@ static int sftp_mkdir(LIBSSH2_SFTP *sftp, const char *path,
                                   "Unable to allocate memory for FXP_MKDIR "
                                   "packet");
         }
-        /* Filetype in SFTP 3 and earlier */
-        attrs.permissions = mode | LIBSSH2_SFTP_ATTR_PFILETYPE_DIR;
 
         _libssh2_store_u32(&s, packet_len - 4);
         *(s++) = SSH_FXP_MKDIR;

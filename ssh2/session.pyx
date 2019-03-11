@@ -59,8 +59,7 @@ cdef class Session:
 
     def __dealloc__(self):
         if self._session is not NULL:
-            with nogil:
-                c_ssh2.libssh2_session_free(self._session)
+            c_ssh2.libssh2_session_free(self._session)
         self._session = NULL
 
     def disconnect(self):
