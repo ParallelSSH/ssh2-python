@@ -132,6 +132,7 @@ jobs:
         - pip install twine
       script:
         - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; fi
+        - python ./ci/appveyor/fix_version.py .
         - ./ci/travis/build-manylinux.sh
       after_success:
         - if [[ ! -z "$TRAVIS_TAG" ]]; then
