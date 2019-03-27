@@ -1,6 +1,6 @@
 /* Copyright (c) 2004-2007 Sara Golemon <sarag@libssh2.org>
  * Copyright (c) 2005 Mikhail Gusarov <dottedmag@dottedmag.net>
- * Copyright (c) 2008-2014 by Daniel Stenberg
+ * Copyright (c) 2008-2019 by Daniel Stenberg
  *
  * All rights reserved.
  *
@@ -239,7 +239,20 @@ _libssh2_channel_open(LIBSSH2_SESSION * session, const char *channel_type,
             goto channel_error;
         }
 
+        if(session->open_data_len < 1) {
+            _libssh2_error(session, LIBSSH2_ERROR_PROTO,
+                           "Unexpected packet size");
+            goto channel_error;
+        }
+
         if(session->open_data[0] == SSH_MSG_CHANNEL_OPEN_CONFIRMATION) {
+
+            if(session->open_data_len < 17) {
+                _libssh2_error(session, LIBSSH2_ERROR_PROTO,
+                               "Unexpected packet size");
+                goto channel_error;
+            }
+
             session->open_channel->remote.id =
                 _libssh2_ntohu32(session->open_data + 5);
             session->open_channel->local.window_size =
@@ -267,11 +280,13 @@ _libssh2_channel_open(LIBSSH2_SESSION * session, const char *channel_type,
         }
 
         if(session->open_data[0] == SSH_MSG_CHANNEL_OPEN_FAILURE) {
-            unsigned int reason_code = _libssh2_ntohu32(session->open_data + 5);
+            unsigned int reason_code =
+                _libssh2_ntohu32(session->open_data + 5);
             switch(reason_code) {
             case SSH_OPEN_ADMINISTRATIVELY_PROHIBITED:
                 _libssh2_error(session, LIBSSH2_ERROR_CHANNEL_FAILURE,
-                               "Channel open failure (administratively prohibited)");
+                               "Channel open failure "
+                               "(administratively prohibited)");
                 break;
             case SSH_OPEN_CONNECT_FAILED:
                 _libssh2_error(session, LIBSSH2_ERROR_CHANNEL_FAILURE,
@@ -375,14 +390,15 @@ channel_direct_tcpip(LIBSSH2_SESSION * session, const char *host,
             session->direct_host_len + session->direct_shost_len + 16;
 
         _libssh2_debug(session, LIBSSH2_TRACE_CONN,
-                       "Requesting direct-tcpip session to from %s:%d to %s:%d",
+                       "Requesting direct-tcpip session from %s:%d to %s:%d",
                        shost, sport, host, port);
 
         s = session->direct_message =
             LIBSSH2_ALLOC(session, session->direct_message_len);
         if(!session->direct_message) {
             _libssh2_error(session, LIBSSH2_ERROR_ALLOC,
-                           "Unable to allocate memory for direct-tcpip connection");
+                           "Unable to allocate memory for "
+                           "direct-tcpip connection");
             return NULL;
         }
         _libssh2_store_str(&s, host, session->direct_host_len);
@@ -430,7 +446,8 @@ libssh2_channel_direct_tcpip_ex(LIBSSH2_SESSION *session, const char *host,
         return NULL;
 
     BLOCK_ADJUST_ERRNO(ptr, session,
-                       channel_direct_tcpip(session, host, port, shost, sport));
+                       channel_direct_tcpip(session, host, port,
+                                            shost, sport));
     return ptr;
 }
 
@@ -520,7 +537,7 @@ channel_forward_listen(LIBSSH2_SESSION * session, const char *host,
             _libssh2_error(session, LIBSSH2_ERROR_EAGAIN, "Would block");
             return NULL;
         }
-        else if(rc) {
+        else if(rc || (data_len < 1)) {
             _libssh2_error(session, LIBSSH2_ERROR_PROTO, "Unknown");
             session->fwdLstn_state = libssh2_NB_state_idle;
             return NULL;
@@ -538,7 +555,8 @@ channel_forward_listen(LIBSSH2_SESSION * session, const char *host,
                     LIBSSH2_ALLOC(session, session->fwdLstn_host_len + 1);
                 if(!listener->host) {
                     _libssh2_error(session, LIBSSH2_ERROR_ALLOC,
-                                   "Unable to allocate memory for listener queue");
+                                   "Unable to allocate memory "
+                                   "for listener queue");
                     LIBSSH2_FREE(session, listener);
                     listener = NULL;
                 }
@@ -549,7 +567,8 @@ channel_forward_listen(LIBSSH2_SESSION * session, const char *host,
                     if(data_len >= 5 && !port) {
                         listener->port = _libssh2_ntohu32(data + 1);
                         _libssh2_debug(session, LIBSSH2_TRACE_CONN,
-                                       "Dynamic tcpip-forward port allocated: %d",
+                                       "Dynamic tcpip-forward port "
+                                       "allocated: %d",
                                        listener->port);
                     }
                     else
@@ -859,6 +878,11 @@ static int channel_setenv(LIBSSH2_CHANNEL *channel,
             channel->setenv_state = libssh2_NB_state_idle;
             return rc;
         }
+        else if(data_len < 1) {
+            channel->setenv_state = libssh2_NB_state_idle;
+            return _libssh2_error(session, LIBSSH2_ERROR_PROTO,
+                                  "Unexpected packet size");
+        }
 
         if(data[0] == SSH_MSG_CHANNEL_SUCCESS) {
             LIBSSH2_FREE(session, data);
@@ -977,7 +1001,7 @@ static int channel_request_pty(LIBSSH2_CHANNEL *channel,
         if(rc == LIBSSH2_ERROR_EAGAIN) {
             return rc;
         }
-        else if(rc) {
+        else if(rc || data_len < 1) {
             channel->reqPTY_state = libssh2_NB_state_idle;
             return _libssh2_error(session, LIBSSH2_ERROR_PROTO,
                                   "Failed to require the PTY package");
@@ -993,7 +1017,8 @@ static int channel_request_pty(LIBSSH2_CHANNEL *channel,
     }
 
     return _libssh2_error(session, LIBSSH2_ERROR_CHANNEL_REQUEST_DENIED,
-                          "Unable to complete request for channel request-pty");
+                          "Unable to complete request for "
+                          "channel request-pty");
 }
 
 /*
@@ -1162,7 +1187,7 @@ channel_x11_req(LIBSSH2_CHANNEL *channel, int single_connection,
 
             _libssh2_random(buffer, LIBSSH2_X11_RANDOM_COOKIE_LEN / 2);
             for(i = 0; i < (LIBSSH2_X11_RANDOM_COOKIE_LEN / 2); i++) {
-                snprintf((char *)&s[i*2], 3, "%02X%c", buffer[i], '\0');
+                snprintf((char *)&s[i*2], 3, "%02X", buffer[i]);
             }
         }
         s += cookie_len;
@@ -1206,7 +1231,7 @@ channel_x11_req(LIBSSH2_CHANNEL *channel, int single_connection,
         if(rc == LIBSSH2_ERROR_EAGAIN) {
             return rc;
         }
-        else if(rc) {
+        else if(rc || data_len < 1) {
             channel->reqX11_state = libssh2_NB_state_idle;
             return _libssh2_error(session, rc,
                                   "waiting for x11-req response packet");
@@ -1334,7 +1359,7 @@ _libssh2_channel_process_startup(LIBSSH2_CHANNEL *channel,
         if(rc == LIBSSH2_ERROR_EAGAIN) {
             return rc;
         }
-        else if(rc) {
+        else if(rc || data_len < 1) {
             channel->process_state = libssh2_NB_state_end;
             return _libssh2_error(session, rc,
                                   "Failed waiting for channel success");
@@ -1404,23 +1429,47 @@ _libssh2_channel_flush(LIBSSH2_CHANNEL *channel, int streamid)
         channel->flush_flush_bytes = 0;
 
         while(packet) {
+            unsigned char packet_type;
             LIBSSH2_PACKET *next = _libssh2_list_next(&packet->node);
-            unsigned char packet_type = packet->data[0];
+
+            if(packet->data_len < 1) {
+                packet = next;
+                _libssh2_debug(channel->session, LIBSSH2_TRACE_ERROR,
+                               "Unexpected packet length");
+                continue;
+            }
+
+            packet_type = packet->data[0];
 
             if(((packet_type == SSH_MSG_CHANNEL_DATA)
-                 || (packet_type == SSH_MSG_CHANNEL_EXTENDED_DATA))
-                && (_libssh2_ntohu32(packet->data + 1) == channel->local.id)) {
+                || (packet_type == SSH_MSG_CHANNEL_EXTENDED_DATA))
+               && ((packet->data_len >= 5)
+                   && (_libssh2_ntohu32(packet->data + 1)
+                       == channel->local.id))) {
                 /* It's our channel at least */
-                long packet_stream_id =
-                    (packet_type == SSH_MSG_CHANNEL_DATA) ? 0 :
-                    _libssh2_ntohu32(packet->data + 5);
+                int packet_stream_id;
+
+                if(packet_type == SSH_MSG_CHANNEL_DATA) {
+                    packet_stream_id = 0;
+                }
+                else if(packet->data_len >= 9) {
+                    packet_stream_id = _libssh2_ntohu32(packet->data + 5);
+                }
+                else {
+                    channel->flush_state = libssh2_NB_state_idle;
+                    return _libssh2_error(channel->session,
+                                          LIBSSH2_ERROR_PROTO,
+                                          "Unexpected packet length");
+                }
+
                 if((streamid == LIBSSH2_CHANNEL_FLUSH_ALL)
                     || ((packet_type == SSH_MSG_CHANNEL_EXTENDED_DATA)
                         && ((streamid == LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA)
                             || (streamid == packet_stream_id)))
                     || ((packet_type == SSH_MSG_CHANNEL_DATA)
                         && (streamid == 0))) {
-                    int bytes_to_flush = packet->data_len - packet->data_head;
+                    size_t bytes_to_flush = packet->data_len -
+                        packet->data_head;
 
                     _libssh2_debug(channel->session, LIBSSH2_TRACE_CONN,
                                    "Flushing %d bytes of data from stream "
@@ -1449,11 +1498,10 @@ _libssh2_channel_flush(LIBSSH2_CHANNEL *channel, int streamid)
     channel->remote.window_size -= channel->flush_flush_bytes;
 
     if(channel->flush_refund_bytes) {
-        int rc;
-
-        rc = _libssh2_channel_receive_window_adjust(channel,
-                                                    channel->flush_refund_bytes,
-                                                    1, NULL);
+        int rc =
+            _libssh2_channel_receive_window_adjust(channel,
+                                                   channel->flush_refund_bytes,
+                                                   1, NULL);
         if(rc == LIBSSH2_ERROR_EAGAIN)
             return rc;
     }
@@ -1777,8 +1825,8 @@ ssize_t _libssh2_channel_read(LIBSSH2_CHANNEL *channel, int stream_id,
 {
     LIBSSH2_SESSION *session = channel->session;
     int rc;
-    int bytes_read = 0;
-    int bytes_want;
+    size_t bytes_read = 0;
+    size_t bytes_want;
     int unlink_packet;
     LIBSSH2_PACKET *read_packet;
     LIBSSH2_PACKET *read_next;
@@ -1791,9 +1839,11 @@ ssize_t _libssh2_channel_read(LIBSSH2_CHANNEL *channel, int stream_id,
 
     /* expand the receiving window first if it has become too narrow */
     if((channel->read_state == libssh2_NB_state_jump1) ||
-       (channel->remote.window_size < channel->remote.window_size_initial / 4 * 3 + buflen) ) {
+       (channel->remote.window_size <
+        channel->remote.window_size_initial / 4 * 3 + buflen) ) {
 
-        uint32_t adjustment = channel->remote.window_size_initial + buflen - channel->remote.window_size;
+        uint32_t adjustment = channel->remote.window_size_initial + buflen -
+            channel->remote.window_size;
         if(adjustment < LIBSSH2_CHANNEL_MINADJUST)
             adjustment = LIBSSH2_CHANNEL_MINADJUST;
 
@@ -1818,7 +1868,7 @@ ssize_t _libssh2_channel_read(LIBSSH2_CHANNEL *channel, int stream_id,
         return _libssh2_error(session, rc, "transport read");
 
     read_packet = _libssh2_list_first(&session->packets);
-    while(read_packet && (bytes_read < (int) buflen)) {
+    while(read_packet && (bytes_read < buflen)) {
         /* previously this loop condition also checked for
            !channel->remote.close but we cannot let it do this:
 
@@ -1831,6 +1881,13 @@ ssize_t _libssh2_channel_read(LIBSSH2_CHANNEL *channel, int stream_id,
 
         /* In case packet gets destroyed during this iteration */
         read_next = _libssh2_list_next(&readpkt->node);
+
+        if(readpkt->data_len < 5) {
+            read_packet = read_next;
+            _libssh2_debug(channel->session, LIBSSH2_TRACE_ERROR,
+                           "Unexpected packet length");
+            continue;
+        }
 
         channel->read_local_id =
             _libssh2_ntohu32(readpkt->data + 1);
@@ -1845,6 +1902,7 @@ ssize_t _libssh2_channel_read(LIBSSH2_CHANNEL *channel, int stream_id,
         if((stream_id
              && (readpkt->data[0] == SSH_MSG_CHANNEL_EXTENDED_DATA)
              && (channel->local.id == channel->read_local_id)
+             && (readpkt->data_len >= 9)
              && (stream_id == (int) _libssh2_ntohu32(readpkt->data + 5)))
             || (!stream_id && (readpkt->data[0] == SSH_MSG_CHANNEL_DATA)
                 && (channel->local.id == channel->read_local_id))
@@ -1858,7 +1916,7 @@ ssize_t _libssh2_channel_read(LIBSSH2_CHANNEL *channel, int stream_id,
             bytes_want = buflen - bytes_read;
             unlink_packet = FALSE;
 
-            if(bytes_want >= (int) (readpkt->data_len - readpkt->data_head)) {
+            if(bytes_want >= (readpkt->data_len - readpkt->data_head)) {
                 /* we want more than this node keeps, so adjust the number and
                    delete this node after the copy */
                 bytes_want = readpkt->data_len - readpkt->data_head;
@@ -1961,6 +2019,7 @@ _libssh2_channel_packet_data_len(LIBSSH2_CHANNEL * channel, int stream_id)
 {
     LIBSSH2_SESSION *session = channel->session;
     LIBSSH2_PACKET *read_packet;
+    LIBSSH2_PACKET *next_packet;
     uint32_t read_local_id;
 
     read_packet = _libssh2_list_first(&session->packets);
@@ -1968,6 +2027,16 @@ _libssh2_channel_packet_data_len(LIBSSH2_CHANNEL * channel, int stream_id)
         return 0;
 
     while(read_packet) {
+
+        next_packet = _libssh2_list_next(&read_packet->node);
+
+        if(read_packet->data_len < 5) {
+            read_packet = next_packet;
+            _libssh2_debug(channel->session, LIBSSH2_TRACE_ERROR,
+                           "Unexpected packet length");
+            continue;
+        }
+
         read_local_id = _libssh2_ntohu32(read_packet->data + 1);
 
         /*
@@ -1980,6 +2049,7 @@ _libssh2_channel_packet_data_len(LIBSSH2_CHANNEL * channel, int stream_id)
         if((stream_id
              && (read_packet->data[0] == SSH_MSG_CHANNEL_EXTENDED_DATA)
              && (channel->local.id == read_local_id)
+             && (read_packet->data_len >= 9)
              && (stream_id == (int) _libssh2_ntohu32(read_packet->data + 5)))
             ||
             (!stream_id
@@ -1993,7 +2063,8 @@ _libssh2_channel_packet_data_len(LIBSSH2_CHANNEL * channel, int stream_id)
                  == LIBSSH2_CHANNEL_EXTENDED_DATA_MERGE))) {
             return (read_packet->data_len - read_packet->data_head);
         }
-        read_packet = _libssh2_list_next(&read_packet->node);
+
+        read_packet = next_packet;
     }
 
     return 0;
@@ -2174,7 +2245,8 @@ static int channel_send_eof(LIBSSH2_CHANNEL *channel)
     unsigned char packet[5];    /* packet_type(1) + channelno(4) */
     int rc;
 
-    _libssh2_debug(session, LIBSSH2_TRACE_CONN, "Sending EOF on channel %lu/%lu",
+    _libssh2_debug(session, LIBSSH2_TRACE_CONN,
+                   "Sending EOF on channel %lu/%lu",
                    channel->local.id, channel->remote.id);
     packet[0] = SSH_MSG_CHANNEL_EOF;
     _libssh2_htonu32(packet + 1, channel->remote.id);
@@ -2220,6 +2292,7 @@ libssh2_channel_eof(LIBSSH2_CHANNEL * channel)
 {
     LIBSSH2_SESSION *session;
     LIBSSH2_PACKET *packet;
+    LIBSSH2_PACKET *next_packet;
 
     if(!channel)
         return LIBSSH2_ERROR_BAD_USE;
@@ -2228,13 +2301,24 @@ libssh2_channel_eof(LIBSSH2_CHANNEL * channel)
     packet = _libssh2_list_first(&session->packets);
 
     while(packet) {
+
+        next_packet = _libssh2_list_next(&packet->node);
+
+        if(packet->data_len < 1) {
+            packet = next_packet;
+            _libssh2_debug(channel->session, LIBSSH2_TRACE_ERROR,
+                           "Unexpected packet length");
+            continue;
+        }
+
         if(((packet->data[0] == SSH_MSG_CHANNEL_DATA)
-             || (packet->data[0] == SSH_MSG_CHANNEL_EXTENDED_DATA))
-            && (channel->local.id == _libssh2_ntohu32(packet->data + 1))) {
+            || (packet->data[0] == SSH_MSG_CHANNEL_EXTENDED_DATA))
+            && ((packet->data_len >= 5)
+            && (channel->local.id == _libssh2_ntohu32(packet->data + 1)))) {
             /* There's data waiting to be read yet, mask the EOF status */
             return 0;
         }
-        packet = _libssh2_list_next(&packet->node);
+        packet = next_packet;
     }
 
     return channel->remote.eof;
@@ -2270,7 +2354,8 @@ static int channel_wait_eof(LIBSSH2_CHANNEL *channel)
         if((channel->remote.window_size == channel->read_avail) &&
             session->api_block_mode)
             return _libssh2_error(session, LIBSSH2_ERROR_CHANNEL_WINDOW_FULL,
-                                  "Receiving channel window has been exhausted");
+                                  "Receiving channel window "
+                                  "has been exhausted");
 
         rc = _libssh2_transport_read(session);
         if(rc == LIBSSH2_ERROR_EAGAIN) {
@@ -2371,8 +2456,8 @@ int _libssh2_channel_close(LIBSSH2_CHANNEL * channel)
     }
 
     if(rc != LIBSSH2_ERROR_EAGAIN) {
-        /* set the local close state first when we're perfectly confirmed to not
-           do any more EAGAINs */
+        /* set the local close state first when we're perfectly confirmed to
+           not do any more EAGAINs */
         channel->local.close = 1;
 
         /* We call the callback last in this function to make it keep the local
@@ -2594,19 +2679,32 @@ libssh2_channel_window_read_ex(LIBSSH2_CHANNEL *channel,
 
     if(read_avail) {
         size_t bytes_queued = 0;
+        LIBSSH2_PACKET *next_packet;
         LIBSSH2_PACKET *packet =
             _libssh2_list_first(&channel->session->packets);
 
         while(packet) {
-            unsigned char packet_type = packet->data[0];
+            unsigned char packet_type;
+               next_packet = _libssh2_list_next(&packet->node);
+
+            if(packet->data_len < 1) {
+                packet = next_packet;
+                _libssh2_debug(channel->session, LIBSSH2_TRACE_ERROR,
+                               "Unexpected packet length");
+                continue;
+            }
+
+            packet_type = packet->data[0];
 
             if(((packet_type == SSH_MSG_CHANNEL_DATA)
-                 || (packet_type == SSH_MSG_CHANNEL_EXTENDED_DATA))
-                && (_libssh2_ntohu32(packet->data + 1) == channel->local.id)) {
+                || (packet_type == SSH_MSG_CHANNEL_EXTENDED_DATA))
+               && ((packet->data_len >= 5)
+                   && (_libssh2_ntohu32(packet->data + 1) ==
+                       channel->local.id))) {
                 bytes_queued += packet->data_len - packet->data_head;
             }
 
-            packet = _libssh2_list_next(&packet->node);
+            packet = next_packet;
         }
 
         *read_avail = bytes_queued;

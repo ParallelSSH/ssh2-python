@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2014 by Daniel Stenberg
+ * Copyright (c) 2009-2019 by Daniel Stenberg
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms,
@@ -778,13 +778,13 @@ static int hostline(LIBSSH2_KNOWNHOSTS *hosts,
             key_type = LIBSSH2_KNOWNHOST_KEY_SSHDSS;
         else if(!strncmp(key_type_name, "ssh-rsa", key_type_len))
             key_type = LIBSSH2_KNOWNHOST_KEY_SSHRSA;
-        else if (!strncmp(key_type_name, "ecdsa-sha2-nistp256", key_type_len))
+        else if(!strncmp(key_type_name, "ecdsa-sha2-nistp256", key_type_len))
             key_type = LIBSSH2_KNOWNHOST_KEY_ECDSA_256;
-        else if (!strncmp(key_type_name, "ecdsa-sha2-nistp384", key_type_len))
+        else if(!strncmp(key_type_name, "ecdsa-sha2-nistp384", key_type_len))
             key_type = LIBSSH2_KNOWNHOST_KEY_ECDSA_384;
-        else if (!strncmp(key_type_name, "ecdsa-sha2-nistp521", key_type_len))
+        else if(!strncmp(key_type_name, "ecdsa-sha2-nistp521", key_type_len))
             key_type = LIBSSH2_KNOWNHOST_KEY_ECDSA_521;
-        else if (!strncmp(key_type_name, "ssh-ed25519", key_type_len))
+        else if(!strncmp(key_type_name, "ssh-ed25519", key_type_len))
             key_type = LIBSSH2_KNOWNHOST_KEY_ED25519;
         else
             key_type = LIBSSH2_KNOWNHOST_KEY_UNKNOWN;
@@ -1037,10 +1037,10 @@ knownhost_writeline(LIBSSH2_KNOWNHOSTS *hosts,
         key_type_name = "ecdsa-sha2-nistp521";
         key_type_len = 19;
         break;
-	case LIBSSH2_KNOWNHOST_KEY_ED25519:
-		key_type_name = "ssh-ed25519";
-		key_type_len = 11;
-		break;
+    case LIBSSH2_KNOWNHOST_KEY_ED25519:
+        key_type_name = "ssh-ed25519";
+        key_type_len = 11;
+        break;
     case LIBSSH2_KNOWNHOST_KEY_UNKNOWN:
         key_type_name = node->key_type_name;
         if(key_type_name) {
@@ -1048,6 +1048,7 @@ knownhost_writeline(LIBSSH2_KNOWNHOSTS *hosts,
             break;
         }
         /* otherwise fallback to default and error */
+        /* FALL-THROUGH */
     default:
         return _libssh2_error(hosts->session,
                               LIBSSH2_ERROR_METHOD_NOT_SUPPORTED,
