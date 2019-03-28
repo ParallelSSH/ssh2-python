@@ -1,12 +1,12 @@
 Change Log
 =============
 
-0.18.0
-+++++++
+0.19.0
 
 Changes
 --------
 
+* Updated libssh2 version to ``1.8.1`` plus changes in master branch.
 * Session object de-allocation no longer calls session disconnect.
 * Channel object de-allocation no longer calls channel close.
 * Rebuilt sources with Cython ``0.29.6``.
