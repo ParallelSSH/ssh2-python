@@ -225,6 +225,16 @@ class SessionTestCase(SSH2TestCase):
         self.assertEqual(self._auth(), 0)
         self.assertRaises(RequestDeniedError, self.session.forward_listen, 80)
 
+    def test_forward_listen_ex(self):
+        self.assertEqual(self._auth(), 0)
+        requested_port = 1002
+        listener, bound_port = self.session.forward_listen_ex('localhost', requested_port, 1)
+        self.assertEqual(bound_port, requested_port)
+
+    def test_forward_listen_ex_failure(self):
+        self.assertEqual(self._auth(), 0)
+        self.assertRaises(RequestDeniedError, self.session.forward_listen_ex, 'localhost', 0, 1)
+
     def test_sftp_init_failure(self):
         self.assertRaises(InvalidRequestError, self.session.sftp_init)
 
