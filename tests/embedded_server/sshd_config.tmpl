@@ -6,4 +6,6 @@ ListenAddress 127.0.0.1
 
 AcceptEnv LANG LC_*
 Subsystem sftp internal-sftp
+AllowTcpForwarding all
+AllowStreamLocalForwarding yes
 AuthorizedKeysFile {{parent_dir}}/authorized_keys

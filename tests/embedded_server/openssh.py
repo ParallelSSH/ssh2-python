@@ -13,12 +13,12 @@
 # You should have received a copy of the GNU Lesser General Public
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
-
 import os
 import socket
-from subprocess import Popen
-from time import sleep
+
 from sys import version_info
+from time import sleep
+from subprocess import PIPE, Popen, STDOUT
 
 from jinja2 import Template
 
@@ -55,11 +55,16 @@ class OpenSSHServer(object):
             fh.write(os.linesep)
 
     def start_server(self):
-        cmd = ['/usr/sbin/sshd', '-D', '-p', str(self.port),
+        cmd = ['/usr/sbin/sshd', '-D', '-ddd', '-p', str(self.port),
                '-h', SERVER_KEY, '-f', SSHD_CONFIG]
-        server = Popen(cmd)
+        server = Popen(cmd,
+                       stdout=PIPE,
+                       stderr=STDOUT)
         self.server_proc = server
         self._wait_for_port()
+
+    def dump_logs(self):
+        return self.server_proc.stdout.read().decode('utf-8')
 
     def _wait_for_port(self):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

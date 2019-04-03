@@ -1,17 +1,20 @@
 import os
 import socket
+
 from unittest import skipUnless
 
 from .base_test import SSH2TestCase
-from ssh2.session import Session, LIBSSH2_HOSTKEY_HASH_MD5, \
-    LIBSSH2_HOSTKEY_HASH_SHA1
+
 from ssh2.sftp import SFTP
-from ssh2.channel import Channel
-from ssh2.error_codes import LIBSSH2_ERROR_EAGAIN
-from ssh2.exceptions import AuthenticationError, AgentAuthenticationError, \
-    SCPProtocolError, RequestDeniedError, InvalidRequestError, \
-    SocketSendError, FileError, PublickeyUnverifiedError
 from ssh2.utils import wait_socket
+from ssh2.channel import Channel
+from ssh2.session import (LIBSSH2_HOSTKEY_HASH_MD5, LIBSSH2_HOSTKEY_HASH_SHA1,
+                          Session)
+from ssh2.exceptions import (AgentAuthenticationError, AuthenticationError,
+                             FileError, InvalidRequestError,
+                             PublickeyUnverifiedError, RequestDeniedError,
+                             SCPProtocolError, SocketSendError)
+from ssh2.error_codes import LIBSSH2_ERROR_EAGAIN
 
 
 class SessionTestCase(SSH2TestCase):
@@ -228,8 +231,10 @@ class SessionTestCase(SSH2TestCase):
     def test_forward_listen_ex(self):
         self.assertEqual(self._auth(), 0)
         requested_port = 1002
+
         listener, bound_port = self.session.forward_listen_ex('localhost', requested_port, 1)
         self.assertEqual(bound_port, requested_port)
+        listener.forward_cancel()
 
     def test_forward_listen_ex_failure(self):
         self.assertEqual(self._auth(), 0)
