@@ -30,17 +30,13 @@ def main():
     if not os.path.isfile(args.privatekey):
         print("No such private key %s" % (args.privatekey,))
         sys.exit(1)
-    publickey = "%s.pub" % (args.privatekey,)
-    if not os.path.isfile(publickey):
-        print("Expected public key at %s, found none" % (publickey,))
-        sys.exit(1)
 
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect((args.host, args.port))
     s = Session()
     s.handshake(sock)
     s.userauth_publickey_fromfile(
-        args.user, publickey, args.privatekey, args.passphrase)
+        args.user, args.privatekey, passphrase=args.passphrase)
     chan = s.open_session()
     chan.execute(args.cmd)
     size, data = chan.read()

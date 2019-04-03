@@ -2,9 +2,9 @@ mkdir src
 cd src
 
 IF "%PYTHON_ARCH%" == "32" (
-  set OPENSSL_DIR="C:\OpenSSL-Win32"
+  set OPENSSL_DIR="C:\OpenSSL-v11-Win32"
 ) ELSE (
-  set OPENSSL_DIR="C:\OpenSSL-Win64"
+  set OPENSSL_DIR="C:\OpenSSL-v11-Win64"
 )
 
 ls %OPENSSL_DIR%\lib
@@ -42,10 +42,9 @@ REM	 -DOPENSSL_MSVC_STATIC_RT=TRUE
 REM	 -DOPENSSL_USE_STATIC_LIBS=TRUE
 )
 
-cp %OPENSSL_DIR%\lib\VC\libeay32MD.lib %APPVEYOR_BUILD_FOLDER%
-cp %OPENSSL_DIR%\lib\VC\ssleay32MD.lib %APPVEYOR_BUILD_FOLDER%
-REM cp %OPENSSL_DIR%\libeay32.dll %APPVEYOR_BUILD_FOLDER%\ssh2\
-REM cp %OPENSSL_DIR%\ssleay32.dll %APPVEYOR_BUILD_FOLDER%\ssh2\
+
+cp %OPENSSL_DIR%\lib\VC\libcrypto%PYTHON_ARCH%MD.lib %APPVEYOR_BUILD_FOLDER%
+cp %OPENSSL_DIR%\lib\VC\libssl%PYTHON_ARCH%MD.lib %APPVEYOR_BUILD_FOLDER%
 
 cmake --build . --config Release
 cd ..

@@ -2,3 +2,7 @@ openssl-1.0.2q-i386-win32.zip filter=lfs diff=lfs merge=lfs -text
 openssl-1.0.2q-x64_86-win64.zip filter=lfs diff=lfs merge=lfs -text
 zlib1211.zip filter=lfs diff=lfs merge=lfs -text
 *.tar.gz filter=lfs diff=lfs merge=lfs -text
+*.zip filter=lfs diff=lfs merge=lfs -text
+*.rpm filter=lfs diff=lfs merge=lfs -text
+ci/docker/manylinux/libssh2.tar.gz filter=lfs diff=lfs merge=lfs -text
+ci/docker/manylinux/cmake-2.8.11.1-5.4.x86_64.rpm filter=lfs diff=lfs merge=lfs -text

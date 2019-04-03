@@ -143,7 +143,7 @@ _libssh2_ecdsa_verify(libssh2_ecdsa_ctx * ctx,
                       const unsigned char *m, size_t m_len);
 
 int
-_libssh2_ecdsa_create_key(_libssh2_ec_key **out_private_key,
+_libssh2_ecdsa_create_key(LIBSSH2_SESSION *session, _libssh2_ec_key **out_private_key,
                           unsigned char **out_public_key_octal,
                           size_t *out_public_key_octal_len, libssh2_curve_type curve_type);
 
@@ -172,8 +172,8 @@ _libssh2_ecdsa_curve_type_from_name(const char *name, libssh2_curve_type *out_ty
 #if LIBSSH2_ED25519
 
 int
-_libssh2_curve25519_new(libssh2_ed25519_ctx **ctx, uint8_t **out_public_key,
-                        uint8_t **out_private_key);
+_libssh2_curve25519_new(LIBSSH2_SESSION *session, libssh2_ed25519_ctx **ctx, 
+                        uint8_t **out_public_key, uint8_t **out_private_key);
 
 int
 _libssh2_curve25519_gen_k(_libssh2_bn **k, uint8_t private_key[LIBSSH2_ED25519_KEY_LEN],
@@ -184,9 +184,15 @@ _libssh2_ed25519_verify(libssh2_ed25519_ctx *ctx, const uint8_t *s,
                         size_t s_len, const uint8_t *m, size_t m_len);
 
 int
-_libssh2_ed25519_new_private(libssh2_ed25519_ctx **ec_ctx,
+_libssh2_ed25519_new_private(libssh2_ed25519_ctx **ed_ctx,
                             LIBSSH2_SESSION *session,
                             const char *filename, const uint8_t *passphrase);
+
+int
+_libssh2_ed25519_new_public(libssh2_ed25519_ctx **ed_ctx,
+                            LIBSSH2_SESSION *session,
+                            const char *raw_pub_key, const uint8_t key_len);
+
 int
 _libssh2_ed25519_sign(libssh2_ed25519_ctx *ctx, LIBSSH2_SESSION *session,
                       uint8_t **out_sig, size_t *out_sig_len,

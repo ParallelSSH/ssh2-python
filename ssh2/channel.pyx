@@ -33,14 +33,11 @@ cdef object PyChannel(c_ssh2.LIBSSH2_CHANNEL *channel, Session session):
 cdef class Channel:
 
     def __cinit__(self, Session session):
-        self._channel = NULL
         self._session = session
 
     def __dealloc__(self):
-        if self._channel is not NULL and self._session is not None:
-            with nogil:
-                c_ssh2.libssh2_channel_close(self._channel)
-                c_ssh2.libssh2_channel_free(self._channel)
+        if self._channel is not NULL:
+            c_ssh2.libssh2_channel_free(self._channel)
         self._channel = NULL
 
     @property
