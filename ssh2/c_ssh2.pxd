@@ -39,6 +39,8 @@ cdef extern from "libssh2.h" nogil:
         LIBSSH2_HOSTKEY_TYPE_UNKNOWN
         LIBSSH2_HOSTKEY_TYPE_RSA
         LIBSSH2_HOSTKEY_TYPE_DSS
+        LIBSSH2_CALLBACK_SEND
+        LIBSSH2_CALLBACK_RECV
     IF EMBEDDED_LIB:
         enum:
             LIBSSH2_HOSTKEY_HASH_SHA256

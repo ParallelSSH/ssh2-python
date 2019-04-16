@@ -14,9 +14,16 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
+import traceback
+from sys import getsizeof
+
 from cpython cimport PyObject_AsFileDescriptor
 from libc.stdlib cimport malloc, free
 from libc.time cimport time_t
+from libc.string cimport memcpy
+from libc.errno cimport errno
+from cython.operator cimport dereference as deref
+from cpython.bytes cimport PyBytes_FromStringAndSize
 
 from agent cimport PyAgent, agent_auth, agent_init, init_connect_agent
 from channel cimport PyChannel
@@ -31,11 +38,9 @@ from knownhost cimport PyKnownHost
 IF EMBEDDED_LIB:
     from fileinfo cimport FileInfo
 
-
 cimport c_ssh2
 cimport c_sftp
 cimport c_pkey
-
 
 LIBSSH2_SESSION_BLOCK_INBOUND = c_ssh2.LIBSSH2_SESSION_BLOCK_INBOUND
 LIBSSH2_SESSION_BLOCK_OUTBOUND = c_ssh2.LIBSSH2_SESSION_BLOCK_OUTBOUND
@@ -45,13 +50,30 @@ LIBSSH2_HOSTKEY_TYPE_UNKNOWN = c_ssh2.LIBSSH2_HOSTKEY_TYPE_UNKNOWN
 LIBSSH2_HOSTKEY_TYPE_RSA = c_ssh2.LIBSSH2_HOSTKEY_TYPE_RSA
 LIBSSH2_HOSTKEY_TYPE_DSS = c_ssh2.LIBSSH2_HOSTKEY_TYPE_DSS
 
+cdef Py_ssize_t _send_callback(int fd,
+                            char[:] buf,
+                            size_t length,
+                            int flags,
+                            void** abstract) except -1:
+        res = (<Session>deref(abstract))._send_callback(fd, buf, flags)
+        return length
+
+cdef Py_ssize_t _recv_callback(int fd,
+                            char[:] buf,
+                            size_t length,
+                            int flags,
+                            void** abstract) except -1:
+    buf = (<Session>deref(abstract))._recv_callback(fd, length, flags)
+    return len(buf)
+
 
 cdef class Session:
 
     """LibSSH2 Session class providing session functions"""
 
     def __cinit__(self):
-        self._session = c_ssh2.libssh2_session_init()
+        self._session = c_ssh2.libssh2_session_init_ex(NULL,
+                                                       NULL, NULL, <void*> self)
         if self._session is NULL:
             raise MemoryError
         self._sock = 0
@@ -641,3 +663,29 @@ cdef class Session:
             rc = c_ssh2.libssh2_keepalive_send(self._session, &c_seconds)
         handle_error_codes(rc)
         return c_seconds
+
+    def set_recv_callback(self, callback):
+        """
+          Override the function used to recieve data from a particular host.
+
+          Callback signature is (fd : int, buf : memoryview, flags : int) -> int
+        """
+        self._recv_callback = callback
+        c_ssh2.libssh2_session_callback_set(
+            self._session,
+            c_ssh2.LIBSSH2_CALLBACK_RECV,
+            <void*>_recv_callback
+        )
+
+    def set_send_callback(self, callback):
+        """
+          Override the function used to send data to a particular host.
+
+          Callback signature is (fd : int, buf : memoryview, flags : int) -> int
+        """
+        self._send_callback = callback
+        c_ssh2.libssh2_session_callback_set(
+            self._session,
+            c_ssh2.LIBSSH2_CALLBACK_SEND,
+            <void*>_send_callback
+        )
