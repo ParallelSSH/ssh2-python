@@ -234,10 +234,11 @@ cdef class Session:
             cdef char *_privatekeyfiledata = privatekeyfiledata
             cdef size_t username_len, pubkeydata_len, privatekeydata_len
             username_len, pubkeydata_len, privatekeydata_len = \
-                len(b_username), len(publickeyfiledata), \
+                len(b_username), 0, \
                 len(privatekeyfiledata)
             if publickeyfiledata is not None:
                 _publickeyfiledata = publickeyfiledata
+                pubkeydata_len = len(publickeyfiledata)
             with nogil:
                 rc = c_ssh2.libssh2_userauth_publickey_frommemory(
                     self._session, _username, username_len, _publickeyfiledata,
