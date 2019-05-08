@@ -134,6 +134,14 @@ cdef extern from "libssh2.h" nogil:
                                      (void *))
     int libssh2_userauth_password(LIBSSH2_SESSION *session,
                                   const char *username, const char *password)
+    int libssh2_userauth_keyboard_interactive_ex(LIBSSH2_SESSION *session,
+                                                 const char *username,
+                                                 unsigned int username_len,
+                                                 const char *password,
+                                                 unsigned int password_len,
+                                                 (void *))
+    int libssh2_userauth_keyboard_interactive(LIBSSH2_SESSION *session,
+                                              const char *username, const char *password)
     int libssh2_userauth_publickey_fromfile_ex(LIBSSH2_SESSION *session,
                                                const char *username,
                                                unsigned int username_len,
