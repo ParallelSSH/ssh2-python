@@ -43,6 +43,18 @@ cdef extern from "libssh2.h" nogil:
         enum:
             LIBSSH2_HOSTKEY_HASH_SHA256
 
+    enum:
+        LIBSSH2_METHOD_KEX
+        LIBSSH2_METHOD_HOSTKEY
+        LIBSSH2_METHOD_CRYPT_CS
+        LIBSSH2_METHOD_CRYPT_SC
+        LIBSSH2_METHOD_MAC_CS
+        LIBSSH2_METHOD_MAC_SC
+        LIBSSH2_METHOD_COMP_CS
+        LIBSSH2_METHOD_COMP_SC
+        LIBSSH2_METHOD_LANG_CS
+        LIBSSH2_METHOD_LANG_SC
+
     # ctypedef libssh2_uint64_t libssh2_struct_stat_size
     ctypedef struct libssh2_struct_stat:
         dev_t   st_dev

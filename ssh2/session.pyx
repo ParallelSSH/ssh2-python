@@ -45,6 +45,17 @@ LIBSSH2_HOSTKEY_TYPE_UNKNOWN = c_ssh2.LIBSSH2_HOSTKEY_TYPE_UNKNOWN
 LIBSSH2_HOSTKEY_TYPE_RSA = c_ssh2.LIBSSH2_HOSTKEY_TYPE_RSA
 LIBSSH2_HOSTKEY_TYPE_DSS = c_ssh2.LIBSSH2_HOSTKEY_TYPE_DSS
 
+LIBSSH2_METHOD_KEX = c_ssh2.LIBSSH2_METHOD_KEX
+LIBSSH2_METHOD_HOSTKEY = c_ssh2.LIBSSH2_METHOD_HOSTKEY
+LIBSSH2_METHOD_CRYPT_CS = c_ssh2.LIBSSH2_METHOD_CRYPT_CS
+LIBSSH2_METHOD_CRYPT_SC = c_ssh2.LIBSSH2_METHOD_CRYPT_SC
+LIBSSH2_METHOD_MAC_CS = c_ssh2.LIBSSH2_METHOD_MAC_CS
+LIBSSH2_METHOD_MAC_SC = c_ssh2.LIBSSH2_METHOD_MAC_SC
+LIBSSH2_METHOD_COMP_CS = c_ssh2.LIBSSH2_METHOD_COMP_CS
+LIBSSH2_METHOD_COMP_SC = c_ssh2.LIBSSH2_METHOD_COMP_SC
+LIBSSH2_METHOD_LANG_CS = c_ssh2.LIBSSH2_METHOD_LANG_CS
+LIBSSH2_METHOD_LANG_SC = c_ssh2.LIBSSH2_METHOD_LANG_SC
+
 
 cdef class Session:
 
@@ -66,6 +77,15 @@ cdef class Session:
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_session_disconnect(self._session, b"end")
+        return handle_error_codes(rc)
+
+    def method_pref(self, method_type, pref_methods):
+        cdef int rc
+        cdef int _method_type = int(method_type)
+        cdef bytes b_pref_methods = to_bytes(pref_methods)
+        cdef char *_pref_methods = b_pref_methods
+        with nogil:
+            rc = c_ssh2.libssh2_session_method_pref(self._session, _method_type, _pref_methods)
         return handle_error_codes(rc)
 
     def handshake(self, sock not None):
