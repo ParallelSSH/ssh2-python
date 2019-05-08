@@ -262,7 +262,8 @@ cdef class Session:
                 self._session, _username, _password)
         return handle_error_codes(rc)
 
-    def userauth_keyboardinteractive(self, username not None, password not None):
+    def userauth_keyboardinteractive(self, username not None,
+                                     password not None):
         """Perform keyboard-interactive authentication
 
         :param username: User name to authenticate.
