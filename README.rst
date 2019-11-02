@@ -43,7 +43,7 @@ For creating native system packages for Centos/RedHat, Ubuntu, Debian and Fedora
 API Feature Set
 ________________
 
-At this time all of the `libssh2`_ API has been implemented up to version ``1.8.2``.
+At this time all of the `libssh2`_ API has been implemented up to version ``1.9.0``.
 
 Complete example scripts for various operations can be found in the `examples directory`_.
 
