@@ -282,6 +282,25 @@ cdef class Session:
                 self._session, _username, _password)
         return handle_error_codes(rc)
 
+    def userauth_keyboardinteractive(self, username not None,
+                                     password not None):
+        """Perform keyboard-interactive authentication
+
+        :param username: User name to authenticate.
+        :type username: str
+        :param password: Password
+        :type password: str
+        """
+        cdef int rc
+        cdef bytes b_username = to_bytes(username)
+        cdef bytes b_password = to_bytes(password)
+        cdef const char *_username = b_username
+        cdef const char *_password = b_password
+        with nogil:
+            rc = c_ssh2.libssh2_userauth_keyboard_interactive(
+                self._session, _username, _password)
+        return handle_error_codes(rc)
+
     def agent_init(self):
         """Initialise SSH agent.
 
