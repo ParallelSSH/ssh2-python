@@ -18,6 +18,7 @@ from cpython cimport PyObject_AsFileDescriptor
 from libc.stdlib cimport malloc, free
 from libc.time cimport time_t
 
+
 from agent cimport PyAgent, agent_auth, agent_init, init_connect_agent
 from channel cimport PyChannel
 from exceptions import SessionHostKeyError, KnownHostError, \
@@ -44,6 +45,7 @@ LIBSSH2_HOSTKEY_HASH_SHA1 = c_ssh2.LIBSSH2_HOSTKEY_HASH_SHA1
 LIBSSH2_HOSTKEY_TYPE_UNKNOWN = c_ssh2.LIBSSH2_HOSTKEY_TYPE_UNKNOWN
 LIBSSH2_HOSTKEY_TYPE_RSA = c_ssh2.LIBSSH2_HOSTKEY_TYPE_RSA
 LIBSSH2_HOSTKEY_TYPE_DSS = c_ssh2.LIBSSH2_HOSTKEY_TYPE_DSS
+
 
 LIBSSH2_METHOD_KEX = c_ssh2.LIBSSH2_METHOD_KEX
 LIBSSH2_METHOD_HOSTKEY = c_ssh2.LIBSSH2_METHOD_HOSTKEY
@@ -80,12 +82,35 @@ cdef class Session:
         return handle_error_codes(rc)
 
     def method_pref(self, method_type, pref_methods):
+        """Set internal perferences based on ``method_type`` to ``pref_methods``.
+
+        Valid ``method_type`` options are ``ssh2.LIBSSH2_METHOD_*``.
+        Valid options that end in ``CS`` are from the client to the server and
+        the inverse is true as well.
+
+        Valid ``pref_methods`` options are dependant on the ``method_type``
+        selected. Refer to the libssh2 docs
+
+        Must be called before ``self.handshake`` if you wish to change
+        the defaults.
+
+        Return 0 on success or negative on failure.
+        It returns ``ssh2.LIBSSH2_ERROR_EAGAIN`` when it would otherwise block.
+        While ``ssh2.LIBSSH2_ERROR_EAGAIN`` is a negative number, it isn't
+        really a failure per se.
+
+        :param method_type: User name to authenticate as
+        :type method_type: ssh2.LIBSSH2_METHOD_*
+        :param pref_methods: Public key data
+        :type pref_methods: bytes
+        :rtype: int"""
         cdef int rc
         cdef int _method_type = int(method_type)
         cdef bytes b_pref_methods = to_bytes(pref_methods)
         cdef char *_pref_methods = b_pref_methods
         with nogil:
-            rc = c_ssh2.libssh2_session_method_pref(self._session, _method_type, _pref_methods)
+            rc = c_ssh2.libssh2_session_method_pref(self._session,
+                                                    _method_type, _pref_methods)
         return handle_error_codes(rc)
 
     def handshake(self, sock not None):
