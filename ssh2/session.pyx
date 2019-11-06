@@ -14,6 +14,7 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
+import error_codes
 from cpython cimport PyObject_AsFileDescriptor
 from libc.stdlib cimport malloc, free
 from libc.time cimport time_t
@@ -58,6 +59,9 @@ LIBSSH2_METHOD_COMP_SC = c_ssh2.LIBSSH2_METHOD_COMP_SC
 LIBSSH2_METHOD_LANG_CS = c_ssh2.LIBSSH2_METHOD_LANG_CS
 LIBSSH2_METHOD_LANG_SC = c_ssh2.LIBSSH2_METHOD_LANG_SC
 
+LIBSSH2_FLAG_SIGPIPE = c_ssh2.LIBSSH2_FLAG_SIGPIPE
+LIBSSH2_FLAG_COMPRESS = c_ssh2.LIBSSH2_FLAG_COMPRESS
+
 
 cdef class Session:
 
@@ -82,28 +86,72 @@ cdef class Session:
         return handle_error_codes(rc)
 
     def method_pref(self, method_type, pref_methods):
-        """Set internal perferences based on ``method_type`` to ``pref_methods``.
+        """Set internal perferences based on ``method_type`` to
+        ``pref_methods``.
 
-        Valid ``method_type`` options are ``ssh2.LIBSSH2_METHOD_*``.
+        Valid ``method_type`` options are:
+
+        - ``LIBSSH2_METHOD_KEX``
+            For key exchange.
+
+        - ``LIBSSH2_METHOD_HOSTKEY``
+            For selecting host key type.
+
+        - ``LIBSSH2_METHOD_CRYPT_CS``
+            Encryption between client to server
+
+        - ``LIBSSH2_METHOD_CRYPT_SC``
+            Encryption between server to client
+
+        - ``LIBSSH2_METHOD_MAC_CS``
+            MAC between client to server
+
+        - ``LIBSSH2_METHOD_MAC_SC``
+            MAC between server to client
+
+        - ``LIBSSH2_METHOD_COMP_CS``
+            Compression between client to server
+
+        - ``LIBSSH2_METHOD_COMP_SC``
+            Compression between server to client
+
+        - ``LIBSSH2_METHOD_LANG_CS``
+            Language between client to server
+
+        - ``LIBSSH2_METHOD_LANG_SC``
+            Language between server to client
+
+
         Valid options that end in ``CS`` are from the client to the server and
         the inverse is true as well.
 
         Valid ``pref_methods`` options are dependant on the ``method_type``
         selected. Refer to the libssh2 docs
 
-        Must be called before ``self.handshake`` if you wish to change
+        Must be called before ``self.handshake()`` if you wish to change
         the defaults.
 
         Return 0 on success or negative on failure.
-        It returns ``ssh2.LIBSSH2_ERROR_EAGAIN`` when it would otherwise block.
-        While ``ssh2.LIBSSH2_ERROR_EAGAIN`` is a negative number, it isn't
+        It returns ``ssh2.error_codes.LIBSSH2_ERROR_EAGAIN`` when it would
+        otherwise block.
+        While ``ssh2.error_codes.LIBSSH2_ERROR_EAGAIN`` is a negative number,
+        it isn't
         really a failure per se.
 
-        :param method_type: User name to authenticate as
-        :type method_type: ssh2.LIBSSH2_METHOD_*
-        :param pref_methods: Public key data
+        :raises: :py:class:`ssh2.exceptions.MethodNotSupported` on an incorrect
+          ``method_type`` or ``pref_methods`` argument(s).
+        :param method_type: Method perference to change.
+        :type method_type: ``ssh2.session.LIBSSH2_METHOD_*``
+        :param pref_methods: Coma delimited list as a bytes string of preferred
+        methods to use with the most preferred listed first and the least
+        preferred listed last.
+        If a method is listed which is not supported by libssh2 it will be
+        ignored and not sent to the remote host during protocol negotiation.
         :type pref_methods: bytes
-        :rtype: int"""
+        :rtype: ``int``"""
+        if (int(method_type)<1 and int(method_type)>10) or self._sock!=0:
+            return handle_error_codes(
+                error_codes.LIBSSH2_ERROR_METHOD_NOT_SUPPORTED)
         cdef int rc
         cdef int _method_type = int(method_type)
         cdef bytes b_pref_methods = to_bytes(pref_methods)
@@ -111,6 +159,171 @@ cdef class Session:
         with nogil:
             rc = c_ssh2.libssh2_session_method_pref(self._session,
                                                     _method_type, _pref_methods)
+        return handle_error_codes(rc)
+
+    def methods(self, method_type):
+        """Get internal perferences used to negotiate based on ``method_type``.
+
+        Valid ``method_type`` options are:
+
+        - ``LIBSSH2_METHOD_KEX``
+            For key exchange.
+
+        - ``LIBSSH2_METHOD_HOSTKEY``
+            For selecting host key type.
+
+        - ``LIBSSH2_METHOD_CRYPT_CS``
+            Encryption between client to server
+
+        - ``LIBSSH2_METHOD_CRYPT_SC``
+            Encryption between server to client
+
+        - ``LIBSSH2_METHOD_MAC_CS``
+            MAC between client to server
+
+        - ``LIBSSH2_METHOD_MAC_SC``
+            MAC between server to client
+
+        - ``LIBSSH2_METHOD_COMP_CS``
+            Compression between client to server
+
+        - ``LIBSSH2_METHOD_COMP_SC``
+            Compression between server to client
+
+        - ``LIBSSH2_METHOD_LANG_CS``
+            Language between client to server
+
+        - ``LIBSSH2_METHOD_LANG_SC``
+            Language between server to client
+
+
+        Valid options that end in ``CS`` are from the client to the server and
+        the inverse is true as well.
+
+        :raises: :py:class:`ssh2.exceptions.MethodNotSupported` on an incorrect
+          ``method_type`` argument.
+        :param method_type: Method type.
+        :type method_type: ``ssh2.session.LIBSSH2_METHOD_*``
+        :rtype: ``bytes``"""
+        if (int(method_type)<1 and int(method_type)>10) or self._sock==0:
+            return handle_error_codes(
+                error_codes.LIBSSH2_ERROR_METHOD_NOT_SUPPORTED)
+        cdef const char *ret
+        cdef int _method_type = int(method_type)
+        with nogil:
+            ret = c_ssh2.libssh2_session_methods(self._session, _method_type)
+        return ret
+
+    def supported_algs(self, method_type, algs):
+        """Get the supported internal perferences based on ``method_type`` and
+        ``algs``.
+
+        Valid ``method_type`` options are:
+
+        - ``LIBSSH2_METHOD_KEX``
+            For key exchange.
+
+        - ``LIBSSH2_METHOD_HOSTKEY``
+            For selecting host key type.
+
+        - ``LIBSSH2_METHOD_CRYPT_CS``
+            Encryption between client to server
+
+        - ``LIBSSH2_METHOD_CRYPT_SC``
+            Encryption between server to client
+
+        - ``LIBSSH2_METHOD_MAC_CS``
+            MAC between client to server
+
+        - ``LIBSSH2_METHOD_MAC_SC``
+            MAC between server to client
+
+        - ``LIBSSH2_METHOD_COMP_CS``
+            Compression between client to server
+
+        - ``LIBSSH2_METHOD_COMP_SC``
+            Compression between server to client
+
+        - ``LIBSSH2_METHOD_LANG_CS``
+            Language between client to server
+
+        - ``LIBSSH2_METHOD_LANG_SC``
+            Language between server to client
+
+
+        :raises: :py:class:`ssh2.exceptions.MethodNotSupported` on an incorrect
+          ``method_type`` or ``algs`` argument(s).
+        :param method_type: Method type.
+        :type method_type: ``ssh2.session.LIBSSH2_METHOD_*``
+        :param algs: Coma delimited list as a bytes string.
+        :type algs: ``bytes str``
+        :rtype: ``array``"""
+        if (int(method_type)<1 and int(method_type)>10) or \
+                isinstance(algs, type(b'')) is False:
+            return handle_error_codes(
+                error_codes.LIBSSH2_ERROR_METHOD_NOT_SUPPORTED)
+        out = []
+        # algs = to_bytes(algs)
+        algs = algs.split(b',')
+        cdef int i, j = 0
+        cdef int rc
+        cdef int _method_type = int(method_type)
+        cdef const char **_algs = \
+            <const char**> malloc(len(algs) * sizeof(char*))
+        for item in algs:
+            _algs[j] = item
+            j+=1
+
+        with nogil:
+            rc = c_ssh2.libssh2_session_supported_algs(self._session,
+                                                       _method_type, &_algs)
+
+        if rc>0:
+            while i<rc:
+                out.append(algs[i])
+                i+=1
+            with nogil:
+                c_ssh2.libssh2_free(self._session, _algs)
+            return out
+        else:
+            return handle_error_codes(rc)
+
+    def flag(self, set_flag, value):
+        """Set options for the session.
+
+        ``set_flag`` is the option to set, while ``value`` is typically set to
+        ``1`` or ``0`` to enable or disable the option.
+
+        Valid flags are:
+
+        - ``ssh2.session.LIBSSH2_FLAG_SIGPIPE``
+            If set, libssh2 will not attempt to block SIGPIPEs but will let them
+            trigger from the underlying socket layer.
+        - ``ssh2.session.LIBSSH2_FLAG_COMPRESS``
+            If set - before the connection negotiation is performed -
+            libssh2 will try to negotiate compression enabling for this
+            connection. By default libssh2 will not attempt to use compression.
+
+        Must be called before ``self.handshake()`` if you wish to change
+        options.
+
+
+        :raises: :py:class:`ssh2.exceptions.MethodNotSupported` on an incorrect
+          ``flag`` or ``value`` argument(s).
+        :param set_flag: Flag to set. See above for options.
+        :type set_flag: ``ssh2.session.LIBSSH2_METHOD_*``
+        :param value: Value that ``set_flag`` will be set to. Must be ``0`` or
+        ``1``.
+        :type value: ``int``
+        :rtype: ``int``"""
+        if (int(set_flag)<1 or int(set_flag)>3) or (value!=0 and value!=1):
+            return handle_error_codes(
+                error_codes.LIBSSH2_ERROR_METHOD_NOT_SUPPORTED)
+        cdef int rc
+        cdef int _set_flag = int(set_flag)
+        cdef int _value = int(value)
+        with nogil:
+            rc = c_ssh2.libssh2_session_flag(self._session, _set_flag, _value)
         return handle_error_codes(rc)
 
     def handshake(self, sock not None):
@@ -279,10 +492,11 @@ cdef class Session:
             cdef char *_privatekeyfiledata = privatekeyfiledata
             cdef size_t username_len, pubkeydata_len, privatekeydata_len
             username_len, pubkeydata_len, privatekeydata_len = \
-                len(b_username), len(publickeyfiledata), \
+                len(b_username), 0, \
                 len(privatekeyfiledata)
             if publickeyfiledata is not None:
                 _publickeyfiledata = publickeyfiledata
+                pubkeydata_len = len(publickeyfiledata)
             with nogil:
                 rc = c_ssh2.libssh2_userauth_publickey_frommemory(
                     self._session, _username, username_len, _publickeyfiledata,

@@ -54,6 +54,9 @@ cdef extern from "libssh2.h" nogil:
         LIBSSH2_METHOD_COMP_SC
         LIBSSH2_METHOD_LANG_CS
         LIBSSH2_METHOD_LANG_SC
+    enum:
+        LIBSSH2_FLAG_SIGPIPE
+        LIBSSH2_FLAG_COMPRESS
 
     # ctypedef libssh2_uint64_t libssh2_struct_stat_size
     ctypedef struct libssh2_struct_stat:
