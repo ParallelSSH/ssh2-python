@@ -148,7 +148,8 @@ cdef class Session:
         If a method is listed which is not supported by libssh2 it will be
         ignored and not sent to the remote host during protocol negotiation.
         :type pref_methods: bytes
-        :rtype: ``int``"""
+        :rtype: ``int``
+        """
         if (int(method_type)<1 and int(method_type)>10) or self._sock!=0:
             return handle_error_codes(
                 error_codes.LIBSSH2_ERROR_METHOD_NOT_SUPPORTED)
@@ -204,7 +205,8 @@ cdef class Session:
           ``method_type`` argument.
         :param method_type: Method type.
         :type method_type: ``ssh2.session.LIBSSH2_METHOD_*``
-        :rtype: ``bytes``"""
+        :rtype: ``bytes``
+        """
         if (int(method_type)<1 and int(method_type)>10) or self._sock==0:
             return handle_error_codes(
                 error_codes.LIBSSH2_ERROR_METHOD_NOT_SUPPORTED)
@@ -257,7 +259,8 @@ cdef class Session:
         :type method_type: ``ssh2.session.LIBSSH2_METHOD_*``
         :param algs: Coma delimited list as a bytes string.
         :type algs: ``bytes str``
-        :rtype: ``array``"""
+        :rtype: ``array``
+        """
         if (int(method_type)<1 and int(method_type)>10) or \
                 isinstance(algs, type(b'')) is False:
             return handle_error_codes(
@@ -315,7 +318,8 @@ cdef class Session:
         :param value: Value that ``set_flag`` will be set to. Must be ``0`` or
         ``1``.
         :type value: ``int``
-        :rtype: ``int``"""
+        :rtype: ``int``
+        """
         if (int(set_flag)<1 or int(set_flag)>3) or (value!=0 and value!=1):
             return handle_error_codes(
                 error_codes.LIBSSH2_ERROR_METHOD_NOT_SUPPORTED)
