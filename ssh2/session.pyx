@@ -75,7 +75,7 @@ cdef void kbd_callback(const char *name, int name_len,
                        c_ssh2.LIBSSH2_USERAUTH_KBDINT_RESPONSE *responses,
                        void **abstract):
     py_sess = (<Session>c_dereference(abstract))
-    if py_sess._kbd_callback==None:
+    if py_sess._kbd_callback is None:
         return
     cdef bytes b_password = to_bytes(py_sess._kbd_callback())
     cdef char *_password = b_password
@@ -560,8 +560,10 @@ cdef class Session:
         cdef int rc
         cdef bytes b_username = to_bytes(username)
         cdef const char *_username = b_username
+
         def passwd():
             return(password)
+
         self._kbd_callback = passwd
         rc = c_ssh2.libssh2_userauth_keyboard_interactive(
             self._session, _username, &kbd_callback)

@@ -66,7 +66,6 @@ cdef extern from "libssh2.h" nogil:
         LIBSSH2_FLAG_SIGPIPE
         LIBSSH2_FLAG_COMPRESS
 
-    # ctypedef LIBSSH2_USERAUTH_KBDINT_RESPONSE_FUNC "LIBSSH2_USERAUTH_KBDINT_RESPONSE_FUNC"
     # ctypedef libssh2_uint64_t libssh2_struct_stat_size
     ctypedef struct libssh2_struct_stat:
         dev_t   st_dev
