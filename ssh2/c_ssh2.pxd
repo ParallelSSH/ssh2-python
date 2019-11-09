@@ -39,6 +39,14 @@ cdef extern from "libssh2.h" nogil:
         LIBSSH2_HOSTKEY_TYPE_UNKNOWN
         LIBSSH2_HOSTKEY_TYPE_RSA
         LIBSSH2_HOSTKEY_TYPE_DSS
+    enum:
+        LIBSSH2_CALLBACK_IGNORE
+        LIBSSH2_CALLBACK_DEBUG
+        LIBSSH2_CALLBACK_DISCONNECT
+        LIBSSH2_CALLBACK_MACERROR
+        LIBSSH2_CALLBACK_X11
+        LIBSSH2_CALLBACK_RECV
+        LIBSSH2_CALLBACK_SEND
     IF EMBEDDED_LIB:
         enum:
             LIBSSH2_HOSTKEY_HASH_SHA256
@@ -58,6 +66,7 @@ cdef extern from "libssh2.h" nogil:
         LIBSSH2_FLAG_SIGPIPE
         LIBSSH2_FLAG_COMPRESS
 
+    # ctypedef LIBSSH2_USERAUTH_KBDINT_RESPONSE_FUNC "LIBSSH2_USERAUTH_KBDINT_RESPONSE_FUNC"
     # ctypedef libssh2_uint64_t libssh2_struct_stat_size
     ctypedef struct libssh2_struct_stat:
         dev_t   st_dev
@@ -73,6 +82,13 @@ cdef extern from "libssh2.h" nogil:
         time_t  st_atime
         time_t  st_mtime
         time_t st_ctime
+    ctypedef struct LIBSSH2_USERAUTH_KBDINT_PROMPT:
+        char *text
+        unsigned int length
+        unsigned char echo
+    ctypedef struct LIBSSH2_USERAUTH_KBDINT_RESPONSE:
+        char *text
+        unsigned int length
     ctypedef struct LIBSSH2_SESSION:
         pass
     ctypedef struct LIBSSH2_CHANNEL:
@@ -157,7 +173,7 @@ cdef extern from "libssh2.h" nogil:
                                                  (void *))
     int libssh2_userauth_keyboard_interactive(LIBSSH2_SESSION *session,
                                               const char *username,
-                                              const char *password)
+                                              (void *))
     int libssh2_userauth_publickey_fromfile_ex(LIBSSH2_SESSION *session,
                                                const char *username,
                                                unsigned int username_len,
