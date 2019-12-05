@@ -685,7 +685,7 @@ static const char *__pyx_filename;
 
 
 static const char *__pyx_f[] = {
-  "statinfo.pyx",
+  "ssh2/statinfo.pyx",
   "stringsource",
 };
 
@@ -1905,6 +1905,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_8st_ctime___get__(struct __p
 
 /* Python wrapper */
 static PyObject *__pyx_pw_4ssh2_8statinfo_8StatInfo_5__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_8statinfo_8StatInfo_4__reduce_cython__[] = "StatInfo.__reduce_cython__(self)";
 static PyObject *__pyx_pw_4ssh2_8statinfo_8StatInfo_5__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -1959,6 +1960,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_4__reduce_cython__(CYTHON_UN
 
 /* Python wrapper */
 static PyObject *__pyx_pw_4ssh2_8statinfo_8StatInfo_7__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static char __pyx_doc_4ssh2_8statinfo_8StatInfo_6__setstate_cython__[] = "StatInfo.__setstate_cython__(self, __pyx_state)";
 static PyObject *__pyx_pw_4ssh2_8statinfo_8StatInfo_7__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -2085,8 +2087,8 @@ static PyObject *__pyx_getprop_4ssh2_8statinfo_8StatInfo_st_ctime(PyObject *o, C
 }
 
 static PyMethodDef __pyx_methods_4ssh2_8statinfo_StatInfo[] = {
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_4ssh2_8statinfo_8StatInfo_5__reduce_cython__, METH_NOARGS, 0},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_4ssh2_8statinfo_8StatInfo_7__setstate_cython__, METH_O, 0},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_4ssh2_8statinfo_8StatInfo_5__reduce_cython__, METH_NOARGS, __pyx_doc_4ssh2_8statinfo_8StatInfo_4__reduce_cython__},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_4ssh2_8statinfo_8StatInfo_7__setstate_cython__, METH_O, __pyx_doc_4ssh2_8statinfo_8StatInfo_6__setstate_cython__},
   {0, 0, 0, 0}
 };
 

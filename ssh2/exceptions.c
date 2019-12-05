@@ -679,7 +679,7 @@ static const char *__pyx_filename;
 
 
 static const char *__pyx_f[] = {
-  "exceptions.pyx",
+  "ssh2/exceptions.pyx",
 };
 
 /*--- Type declarations ---*/
