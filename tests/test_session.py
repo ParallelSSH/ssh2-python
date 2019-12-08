@@ -21,6 +21,24 @@ class SessionTestCase(SSH2TestCase):
             self.user, self.user_key, publickey=self.user_pub_key,
             passphrase=''), 0)
 
+    def test_pubkey_from_memory_auth(self):
+        key_f = open(self.user_key, 'rb')
+        key = key_f.read()
+        key_f.close()
+        pubkey_f = open(self.user_pub_key, 'rb')
+        pubkey = pubkey_f.read()
+        pubkey_f.close()
+        self.assertEqual(self.session.userauth_publickey_frommemory(
+            self.user, key, publickeyfiledata=pubkey,
+            passphrase=''), 0)
+
+    def test_pubkey_from_memory_auth_no_pubkey(self):
+        key_f = open(self.user_key, 'rb')
+        key = key_f.read()
+        key_f.close()
+        self.assertEqual(self.session.userauth_publickey_frommemory(
+            self.user, key, passphrase=''), 0)
+
     def test_failed_password_auth(self):
         self.assertRaises(
             AuthenticationError,
