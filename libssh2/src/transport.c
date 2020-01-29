@@ -281,7 +281,6 @@ int _libssh2_transport_read(LIBSSH2_SESSION * session)
     unsigned char block[MAX_BLOCKSIZE];
     int blocksize;
     int encrypted = 1;
-    size_t total_num;
 
     /* default clear the bit */
     session->socket_block_directions &= ~LIBSSH2_SESSION_BLOCK_INBOUND;
@@ -401,6 +400,8 @@ int _libssh2_transport_read(LIBSSH2_SESSION * session)
         numbytes = remainbuf;
 
         if(!p->total_num) {
+            size_t total_num;
+
             /* No payload package area allocated yet. To know the
                size of this payload, we need to decrypt the first
                blocksize data. */
@@ -437,10 +438,18 @@ int _libssh2_transport_read(LIBSSH2_SESSION * session)
              * and we can extract packet and padding length from it
              */
             p->packet_length = _libssh2_ntohu32(block);
-            if(p->packet_length < 1)
+            if(p->packet_length < 1) {
                 return LIBSSH2_ERROR_DECRYPT;
+            }
+            else if(p->packet_length > LIBSSH2_PACKET_MAXPAYLOAD) {
+                return LIBSSH2_ERROR_OUT_OF_BOUNDARY;
+            }
 
             p->padding_length = block[4];
+            if(p->padding_length > p->packet_length - 1) {
+                return LIBSSH2_ERROR_DECRYPT;
+            }
+
 
             /* total_num is the number of bytes following the initial
                (5 bytes) packet length and padding length fields */
@@ -474,8 +483,13 @@ int _libssh2_transport_read(LIBSSH2_SESSION * session)
                 /* copy the data from index 5 to the end of
                    the blocksize from the temporary buffer to
                    the start of the decrypted buffer */
-                memcpy(p->wptr, &block[5], blocksize - 5);
-                p->wptr += blocksize - 5;       /* advance write pointer */
+                if(blocksize - 5 <= (int) total_num) {
+                    memcpy(p->wptr, &block[5], blocksize - 5);
+                    p->wptr += blocksize - 5;       /* advance write pointer */
+                }
+                else {
+                    return LIBSSH2_ERROR_OUT_OF_BOUNDARY;
+                }
             }
 
             /* init the data_num field to the number of bytes of
@@ -551,7 +565,13 @@ int _libssh2_transport_read(LIBSSH2_SESSION * session)
         /* if there are bytes to copy that aren't decrypted, simply
            copy them as-is to the target buffer */
         if(numbytes > 0) {
-            memcpy(p->wptr, &p->buf[p->readidx], numbytes);
+
+            if(numbytes <= (int)(p->total_num - (p->wptr - p->payload))) {
+                memcpy(p->wptr, &p->buf[p->readidx], numbytes);
+            }
+            else {
+                return LIBSSH2_ERROR_OUT_OF_BOUNDARY;
+            }
 
             /* advance the read pointer */
             p->readidx += numbytes;
@@ -573,12 +593,13 @@ int _libssh2_transport_read(LIBSSH2_SESSION * session)
 
                 if(session->packAdd_state != libssh2_NB_state_idle) {
                     /* fullpacket only returns LIBSSH2_ERROR_EAGAIN if
-                     * libssh2_packet_add returns LIBSSH2_ERROR_EAGAIN. If that
-                     * returns LIBSSH2_ERROR_EAGAIN but the packAdd_state is idle,
-                     * then the packet has been added to the brigade, but some
-                     * immediate action that was taken based on the packet
-                     * type (such as key re-exchange) is not yet complete.
-                     * Clear the way for a new packet to be read in.
+                     * libssh2_packet_add returns LIBSSH2_ERROR_EAGAIN. If
+                     * that returns LIBSSH2_ERROR_EAGAIN but the packAdd_state
+                     * is idle, then the packet has been added to the brigade,
+                     * but some immediate action that was taken based on the
+                     * packet type (such as key re-exchange) is not yet
+                     * complete.  Clear the way for a new packet to be read
+                     * in.
                      */
                     session->readPack_encrypted = encrypted;
                     session->readPack_state = libssh2_NB_state_jump1;
@@ -765,7 +786,8 @@ int _libssh2_transport_send(LIBSSH2_SESSION *session,
             dest2_len -= dest_len;
 
             rc = session->local.comp->comp(session,
-                                           &p->outbuf[5 + dest_len], &dest2_len,
+                                           &p->outbuf[5 + dest_len],
+                                           &dest2_len,
                                            data2, data2_len,
                                            &session->local.comp_abstract);
         }

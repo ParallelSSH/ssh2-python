@@ -1,6 +1,15 @@
 Change Log
 =============
 
+0.19.0
++++++++
+
+Changes
+--------
+
+* Updated embedded libssh2 version to ``1.9.0``.
+* Rebuilt sources with Cython ``0.29.21``.
+
 0.18.0
 +++++++
 
