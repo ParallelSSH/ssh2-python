@@ -3,10 +3,11 @@ FROM quay.io/pypa/manylinux1_x86_64
 ENV CMAKE cmake-2.8.11.1-5.4.x86_64
 ENV OPENSSL openssl-1.1.1b
 ENV SYSTEM_LIBSSH2 1
+ENV LIBSSH2_VERSION 1.9.0
 
 RUN yum install zlib-devel -y
 
-ADD libssh2.tar.gz libssh2.tar.gz
+ADD libssh2-${LIBSSH2_VERSION}.tar.gz libssh2-${LIBSSH2_VERSION}.tar.gz
 ADD ${CMAKE}.rpm cmake.rpm
 ADD ${OPENSSL}.tar.gz ${OPENSSL}.tar.gz
 ADD local-perl-5.10.0-62.ep.x86_64.rpm local-perl.rpm
@@ -26,7 +27,8 @@ RUN cd ${OPENSSL}.tar.gz/${OPENSSL} && \
 
 # Libssh2
 RUN mkdir -p build_libssh2 && cd build_libssh2 && \
-    cmake ../libssh2.tar.gz/libssh2-master -DBUILD_SHARED_LIBS=ON -DENABLE_ZLIB_COMPRESSION=ON \
+    cmake ../libssh2-${LIBSSH2_VERSION}.tar.gz/libssh2-libssh2-${LIBSSH2_VERSION} \
+    -DBUILD_SHARED_LIBS=ON -DENABLE_ZLIB_COMPRESSION=ON \
     -DENABLE_CRYPT_NONE=ON -DENABLE_MAC_NONE=ON -DCMAKE_INSTALL_PREFIX=/usr && \
     cmake --build . --config Release --target install
 
