@@ -194,7 +194,8 @@ cdef class SFTPHandle:
             longentry_maxlen=longentry_maxlen,
             buffer_maxlen=buffer_maxlen)
         while rc == c_ssh2.LIBSSH2_ERROR_EAGAIN or rc > 0:
-            yield rc, buf, entry, attrs
+            if not rc==c_ssh2.LIBSSH2_ERROR_EAGAIN:
+                yield rc, buf, entry, attrs
             rc, buf, entryb, attrs = self._readdir_ex(
                 longentry_maxlen=longentry_maxlen,
                 buffer_maxlen=buffer_maxlen)
@@ -237,7 +238,8 @@ cdef class SFTPHandle:
         :rtype: iter(bytes)"""
         rc, buf, attrs = self._readdir(buffer_maxlen)
         while rc == c_ssh2.LIBSSH2_ERROR_EAGAIN or rc > 0:
-            yield rc, buf, attrs
+            if not rc==c_ssh2.LIBSSH2_ERROR_EAGAIN:
+                yield rc, buf, attrs
             rc, buf, attrs = self._readdir(buffer_maxlen)
 
     def _readdir(self,
