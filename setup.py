@@ -97,13 +97,13 @@ if USING_CYTHON:
     cmdclass['build_ext'] = build_ext
 
 setup(
-    name='ssh2-python',
+    name='redlibssh2',
     version=versioneer.get_version(),
     cmdclass=cmdclass,
-    url='https://github.com/ParallelSSH/ssh2-python',
+    url='https://github.com/Red-M/Redlibssh2',
     license='LGPLv2',
-    author='Panos Kittenis',
-    author_email='22e889d8@opayq.com',
+    author='Red_M',
+    author_email='redlibssh2_pypi@red-m.net',
     description=('Super fast SSH library - bindings for libssh2'),
     long_description=open('README.rst').read(),
     packages=find_packages(
@@ -126,6 +126,7 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
         'Topic :: System :: Shells',
         'Topic :: System :: Networking',
         'Topic :: Software Development :: Libraries',

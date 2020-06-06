@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  git_url: https://github.com/ParallelSSH/ssh2-python.git
+  git_url: https://github.com/Red-M/Redlibssh2.git
 
 build:
   features:
@@ -39,7 +39,7 @@ test:
     - ssh2.session
 
 about:
-  home: http://github.com/ParallelSSH/ssh2-python
+  home: https://github.com/Red-M/Redlibssh2
   license: LGPL-2.1
   license_family: LGPL
   license_file: LICENSE
@@ -51,7 +51,7 @@ about:
     ssh2-python provides Python bindings for libssh2.
 
     Its only dependency is the libssh2 library.
-  dev_url: https://github.com/ParallelSSH/ssh2-python
+  dev_url: https://github.com/Red-M/Redlibssh2
 
 extra:
   recipe-maintainers:
