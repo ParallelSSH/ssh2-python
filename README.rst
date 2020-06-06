@@ -1,24 +1,22 @@
 ssh2-python
 ============
 
-Super fast SSH2 protocol library. ``ssh2-python`` provides Python bindings for `libssh2`_.
+Super fast SSH2 protocol library. ``redlibssh2`` provides Python bindings for `libssh2`_.
 
 .. image:: https://img.shields.io/badge/License-LGPL%20v2-blue.svg
-   :target: https://pypi.python.org/pypi/ssh2-python
+   :target: https://pypi.python.org/pypi/redlibssh2
    :alt: License
-.. image:: https://img.shields.io/pypi/v/ssh2-python.svg
-   :target: https://pypi.python.org/pypi/ssh2-python
+.. image:: https://img.shields.io/pypi/v/redlibssh2.svg
+   :target: https://pypi.python.org/pypi/redlibssh2
    :alt: Latest Version
-.. image:: https://travis-ci.org/ParallelSSH/ssh2-python.svg?branch=master
-   :target: https://travis-ci.org/ParallelSSH/ssh2-python
-.. image:: https://ci.appveyor.com/api/projects/status/github/parallelssh/ssh2-python?svg=true&branch=master
-   :target: https://ci.appveyor.com/project/pkittenis/ssh2-python
-.. image:: https://img.shields.io/pypi/wheel/ssh2-python.svg
-   :target: https://pypi.python.org/pypi/ssh2-python
-.. image:: https://img.shields.io/pypi/pyversions/ssh2-python.svg
-   :target: https://pypi.python.org/pypi/ssh2-python
-.. image:: https://readthedocs.org/projects/ssh2-python/badge/?version=latest
-  :target: http://ssh2-python.readthedocs.org/en/latest/
+.. image:: https://travis-ci.org/ParallelSSH/redlibssh2.svg?branch=master
+   :target: https://travis-ci.org/ParallelSSH/redlibssh2
+.. image:: https://img.shields.io/pypi/wheel/redlibssh2.svg
+   :target: https://pypi.python.org/pypi/redlibssh2
+.. image:: https://img.shields.io/pypi/pyversions/redlibssh2.svg
+   :target: https://pypi.python.org/pypi/redlibssh2
+.. image:: https://readthedocs.org/projects/redlibssh2/badge/?version=latest
+  :target: http://redlibssh2.readthedocs.org/en/latest/
   :alt: Latest documentation
 
 
