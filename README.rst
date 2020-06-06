@@ -9,8 +9,8 @@ Super fast SSH2 protocol library. ``redlibssh2`` provides Python bindings for `l
 .. image:: https://img.shields.io/pypi/v/redlibssh2.svg
    :target: https://pypi.python.org/pypi/redlibssh2
    :alt: Latest Version
-.. image:: https://travis-ci.org/ParallelSSH/redlibssh2.svg?branch=master
-   :target: https://travis-ci.org/ParallelSSH/redlibssh2
+.. image:: https://travis-ci.org/Red-M/redlibssh2.svg?branch=master
+   :target: https://travis-ci.org/Red-M/redlibssh2
 .. image:: https://img.shields.io/pypi/wheel/redlibssh2.svg
    :target: https://pypi.python.org/pypi/redlibssh2
 .. image:: https://img.shields.io/pypi/pyversions/redlibssh2.svg
