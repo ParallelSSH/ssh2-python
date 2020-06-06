@@ -31,7 +31,7 @@ Binary wheel packages are provided for Linux, OSX and Windows, all Python versio
 
 .. code-block:: shell
 
-   pip install ssh2-python
+   pip install redlibssh2-python
 
 `Conda <https://conda.io/miniconda.html>`_ is another installation option - see `documentation <http://ssh2-python.readthedocs.org/en/latest/>`_ for more detailed instructions.
 
