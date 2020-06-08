@@ -1,4 +1,4 @@
-ssh2-python
+Redlibssh2
 ============
 
 Super fast SSH2 protocol library. ``redlibssh2`` provides Python bindings for `libssh2`_.
@@ -29,13 +29,13 @@ Binary wheel packages are provided for Linux, OSX and Windows, all Python versio
 
 .. code-block:: shell
 
-   pip install redlibssh2-python
+   pip install redlibssh2
 
-`Conda <https://conda.io/miniconda.html>`_ is another installation option - see `documentation <http://ssh2-python.readthedocs.org/en/latest/>`_ for more detailed instructions.
+`Conda <https://conda.io/miniconda.html>`_ is another installation option - see `documentation <http://redlibssh2.readthedocs.org/en/latest/>`_ for more detailed instructions.
 
-For from source installation instructions, including building against system provided libssh2, `see documentation <https://ssh2-python.readthedocs.io/en/latest/installation.html#installation-from-source>`_.
+For from source installation instructions, including building against system provided libssh2, `see documentation <https://redlibssh2.readthedocs.io/en/latest/installation.html#installation-from-source>`_.
 
-For creating native system packages for Centos/RedHat, Ubuntu, Debian and Fedora, see `instructions in the documentation <http://ssh2-python.readthedocs.io/en/latest/installation.html#system-binary-packages>`_.
+For creating native system packages for Centos/RedHat, Ubuntu, Debian and Fedora, see `instructions in the documentation <http://redlibssh2.readthedocs.io/en/latest/installation.html#system-binary-packages>`_.
 
 
 API Feature Set
@@ -45,7 +45,7 @@ At this time all of the `libssh2`_ API has been implemented up to version ``1.9.
 
 Complete example scripts for various operations can be found in the `examples directory`_.
 
-In addition, as ``ssh2-python`` is a thin wrapper of ``libssh2`` with Python semantics, `its code examples <https://libssh2.org/examples/>`_ can be ported straight over to Python with only minimal changes.
+In addition, as ``redlibssh2`` is a thin wrapper of ``libssh2`` with Python semantics, `its code examples <https://libssh2.org/examples/>`_ can be ported straight over to Python with only minimal changes.
 
 
 Library Features
@@ -157,7 +157,7 @@ Public Key Authentication
        username, 'private_key_file')
 
 
-Passphrase can be provided with the ``passphrase`` keyword param - see `API documentation <https://ssh2-python.readthedocs.io/en/latest/session.html#ssh2.session.Session.userauth_publickey_fromfile>`_.
+Passphrase can be provided with the ``passphrase`` keyword param - see `API documentation <https://redlibssh2.readthedocs.io/en/latest/session.html#ssh2.session.Session.userauth_publickey_fromfile>`_.
 
 
 Password Authentication
@@ -188,9 +188,9 @@ __________________
 
 A simple usage example looks very similar to ``libssh2`` `usage examples <https://www.libssh2.org/examples/>`_.
 
-See `examples directory <https://github.com/ParallelSSH/ssh2-python/tree/master/examples>`_ for more complete example scripts.
+See `examples directory <https://github.com/Red-M/redlibssh2/tree/master/examples>`_ for more complete example scripts.
 
-As mentioned, ``ssh2-python`` is intentionally a thin wrapper over ``libssh2`` and directly maps most of its API.
+As mentioned, ``redlibssh2`` is intentionally a thin wrapper over ``libssh2`` and directly maps most of its API.
 
 Clients using this library can be much simpler to use than interfacing with the ``libssh2`` API directly.
 
@@ -261,7 +261,7 @@ Performance of above example, compared with Paramiko.
 
 :Output:
 
-   ``ssh2-python``::
+   ``redlibssh2``::
 
      real	0m0.141s
      user	0m0.037s
@@ -276,5 +276,5 @@ Performance of above example, compared with Paramiko.
 
 .. _libssh2: https://www.libssh2.org
 .. _Cython: https://www.cython.org
-.. _`examples directory`: https://github.com/ParallelSSH/ssh2-python/tree/master/examples
-.. _`mail group`: https://groups.google.com/forum/#!forum/ssh2-python
+.. _`examples directory`: https://github.com/Red-M/redlibssh2/tree/master/examples
+.. _`mail group`: https://groups.google.com/forum/#!forum/redlibssh2
