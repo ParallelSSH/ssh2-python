@@ -23,15 +23,13 @@ Super fast SSH2 protocol library. ``redlibssh2`` provides Python bindings for `l
 Installation
 ______________
 
-Binary wheel packages are provided for Linux, OSX and Windows, all Python versions. Wheel packages have **no dependencies**.
+Binary wheel packages are provided for Linux on all Python versions. Wheel packages have **no dependencies**.
 
 ``pip`` may need to be updated to be able to install binary wheel packages - ``pip install -U pip``.
 
 .. code-block:: shell
 
    pip install redlibssh2
-
-`Conda <https://conda.io/miniconda.html>`_ is another installation option - see `documentation <http://redlibssh2.readthedocs.org/en/latest/>`_ for more detailed instructions.
 
 For from source installation instructions, including building against system provided libssh2, `see documentation <https://redlibssh2.readthedocs.io/en/latest/installation.html#installation-from-source>`_.
 
@@ -272,6 +270,18 @@ Performance of above example, compared with Paramiko.
      real	0m0.592s
      user	0m0.351s
      sys	0m0.021s
+
+Why did you drop manylinux1 wheels?
+___________________________________
+
+Because frankly the manylinux1 docker containers won't run on my build hosts because I run up to date software and kernels.
+The manylinux1 docker images are also full of extremely old package versions that will not receive updates or security fixes. The way that ParallelSSH handled this was to bundle their own versions of libssh2, OpenSSL and zlib in the repository.
+
+Why did you drop Windows and OSX wheels?
+________________________________________
+I don't have build infrastructure for them and I don't use these platforms anywhere.
+If someone would like these wheels to be built you can open an issue and it'll be reviewed based on what can be provided to get such builds running.
+
 
 
 .. _libssh2: https://www.libssh2.org

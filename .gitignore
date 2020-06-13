@@ -8,3 +8,7 @@ build
 ssh2/libssh2.so*
 redlibssh2/libssh2.so*
 src/
+ci/docker/manylinux*/libssh2
+__pycache__
+conda-recipe
+wheelhouse/

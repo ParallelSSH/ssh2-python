@@ -96,6 +96,10 @@ cmdclass = versioneer.get_cmdclass()
 if USING_CYTHON:
     cmdclass['build_ext'] = build_ext
 
+install_requires = []
+if sys.version_info==(2,7):
+    install_requires.append('enum')
+
 setup(
     name='redlibssh2',
     version=versioneer.get_version(),
@@ -113,6 +117,7 @@ setup(
     zip_safe=False,
     include_package_data=True,
     platforms='any',
+    install_requires=install_requires,
     classifiers=[
         'Development Status :: 1 - Planning',
         # 'Development Status :: 5 - Production/Stable',
@@ -128,6 +133,7 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Topic :: System :: Shells',
         'Topic :: System :: Networking',
         'Topic :: Software Development :: Libraries',

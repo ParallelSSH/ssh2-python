@@ -1,0 +1,38 @@
+
+build_manylinux_wheel_release:
+    image: docker:dind
+    services:
+      - docker:dind
+    variables:
+      DOCKER_HOST: tcp://docker:2375
+      DOCKER_TLS_CERTDIR: ""
+    script:
+      - apk add --no-cache bash git
+      - git submodule update --init --recursive
+      - chmod +x ./ci/gitlab/build-manylinux.sh
+      - cp -r ./libssh2 ./ci/docker/manylinux_2010/libssh2
+      - ./ci/gitlab/build-manylinux.sh
+    artifacts:
+        paths:
+        - wheelhouse
+    only:
+        - master
+
+test_build:
+    image: debian:stable
+    script:
+        - date
+    only:
+        - master
+
+#~ tests_py3.5:
+    #~ image: debian:9
+    #~ script:
+    #~ - ./tests/scripts/install_root.sh GITLAB 3 5
+    #~ - ./tests/scripts/install.sh GITLAB 3 5
+    #~ - ./tests/scripts/test.sh GITLAB 3 5
+    #~ artifacts:
+        #~ paths:
+        #~ - htmlcov
+    #~ only:
+    #~ - master
