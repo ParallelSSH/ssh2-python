@@ -7,6 +7,7 @@ COPY ./libssh2 /libssh2
 
 RUN yum -y --disablerepo="epel" install zlib-devel openssl-devel cmake gcc
 RUN /opt/python/cp27-cp27m/bin/pip install enum
+RUN /opt/python/cp27-cp27mu/bin/pip install enum
 
 # Libssh2
 RUN mkdir -p build_libssh2 && cd build_libssh2 && \
