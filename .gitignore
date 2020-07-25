@@ -6,5 +6,4 @@ build
 *.so
 .idea/
 ssh2/libssh2.so*
-redlibssh2/libssh2.so*
 src/
