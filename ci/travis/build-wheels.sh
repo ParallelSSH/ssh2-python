@@ -1,10 +1,15 @@
 #!/bin/bash -xe
 
+
+ls -lh /io/
+cd /io
+/opt/python/cp37-cp37m/bin/python ci/appveyor/fix_version.py .
+cd -
+
 # Compile wheels
 # For testing
 for PYBIN in `ls -1d /opt/python/cp27-cp27m/bin | grep -v cpython`; do
-# for PYBIN in `ls -1d /opt/python/*/bin | grep -v cpython`; do
-    "${PYBIN}/python" ci/appveyor/fix_version.py .
+    # for PYBIN in `ls -1d /opt/python/*/bin | grep -v cpython`; do
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
 done
 
