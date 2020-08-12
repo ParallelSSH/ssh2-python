@@ -86,9 +86,6 @@ jobs:
 
     - <<: *osx-wheels
       osx_image: xcode9.2
-
-    - <<: *osx-wheels
-      osx_image: xcode9.2
       env:
         - PYENV: 3.6.4
         - SYSTEM_LIBSSH2: 1
