@@ -19,6 +19,8 @@ Packaging
 * Added OSX 10.14 and 10.15 wheels.
 * Removed OSX < 10.14 wheels.
 * Removed Python 2.7 OSX and Windows wheels.
+* Removed Python 3.5 OSX and Windows wheels.
+* Removed Windows 32-bit wheels.
 
 0.18.0
 +++++++

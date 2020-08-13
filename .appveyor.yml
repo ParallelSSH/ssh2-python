@@ -12,13 +12,6 @@ environment:
     PYPI_PASS:
       secure: x+dF0A8BZUf2IrPNRN1O0w==
   matrix:
-    - PYTHON: "C:\\Python35-x64"
-      PYTHON_VERSION: "3.5"
-      PYTHON_ARCH: "64"
-      MSVC: "Visual Studio 14 Win64"
-      ARCH: x64_86
-      SYSTEM_LIBSSH2: 1
-
     - PYTHON: "C:\\Python36-x64"
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "64"
