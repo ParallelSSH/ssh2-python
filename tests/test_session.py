@@ -255,3 +255,28 @@ class SessionTestCase(SSH2TestCase):
         self.assertTrue(seconds >= 59)
         self.session.keepalive_config(False, 0)
         self.assertEqual(self.session.keepalive_send(), 0)
+
+    def test_publickey_frommemory(self):
+
+        with open(self.user_key, 'rb') as pkey_f, \
+             open(self.user_pub_key, 'rb') as pubkey_f:
+            pkey = pkey_f.read()
+            pub_key = pubkey_f.read()
+        ret_val = self.session.userauth_publickey_frommemory(
+            self.user, pkey, publickeyfiledata=pub_key)
+        self.assertEqual(ret_val, 0)
+
+    def test_publickey_frommemory_no_publickey(self):
+        with open(self.user_key, 'rb') as pkey_f:
+            pkey = pkey_f.read()
+        ret_val = self.session.userauth_publickey_frommemory(
+            self.user, pkey)
+        self.assertEqual(ret_val, 0)
+
+    def test_publickey_frommemory_passphrase(self):
+        with open(self.user_key, 'rb') as pkey_f:
+            pkey = pkey_f.read()
+        ret_val = self.session.userauth_publickey_frommemory(
+            self.user, pkey,
+            passphrase="this still works when passphrase not required")
+        self.assertEqual(ret_val, 0)
