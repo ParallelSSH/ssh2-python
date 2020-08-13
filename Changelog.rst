@@ -11,6 +11,11 @@ Changes
 * Rebuilt sources with Cython ``0.29.21``.
 * Added support for Python 3.8 and 3.9.
 
+Fixes
+------
+
+* Session.userauth_publickey_frommemory would not work without an empty publickey provided - #86
+
 Packaging
 ----------
 
