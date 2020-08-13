@@ -97,7 +97,6 @@ jobs:
       script:
         - travis_wait ./ci/travis/pyenv-wheel.sh
 
-
     - <<: *osx-wheels
       osx_image: xcode11.3
       env:

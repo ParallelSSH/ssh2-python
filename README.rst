@@ -33,8 +33,6 @@ Binary wheel packages are provided for Linux, OSX and Windows, all Python versio
 
    pip install ssh2-python
 
-`Conda <https://conda.io/miniconda.html>`_ is another installation option - see `documentation <http://ssh2-python.readthedocs.org/en/latest/>`_ for more detailed instructions.
-
 For from source installation instructions, including building against system provided libssh2, `see documentation <https://ssh2-python.readthedocs.io/en/latest/installation.html#installation-from-source>`_.
 
 For creating native system packages for Centos/RedHat, Ubuntu, Debian and Fedora, see `instructions in the documentation <http://ssh2-python.readthedocs.io/en/latest/installation.html#system-binary-packages>`_.
@@ -57,7 +55,7 @@ The library uses `Cython`_ based native code extensions as wrappers to ``libssh2
 
 Extension features:
 
-* Thread safe - GIL is released as much as possible
+* Thread safe - GIL is released as much as possible. Note that libssh2 does not support sharing sessions across threads
 * Very low overhead
 * Super fast as a consequence of the excellent C library it uses and prodigious use of native code
 * Object oriented - memory freed automatically and safely as objects are garbage collected by Python
