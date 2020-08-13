@@ -164,6 +164,7 @@ _libssh2_channel_open(LIBSSH2_SESSION * session, const char *channel_type,
                            "Unable to allocate space for channel data");
             return NULL;
         }
+        session->open_channel->free_waiters = 0;
         session->open_channel->channel_type_len = channel_type_len;
         session->open_channel->channel_type =
             LIBSSH2_ALLOC(session, channel_type_len);
@@ -698,7 +699,7 @@ int _libssh2_channel_forward_cancel(LIBSSH2_LISTENER *listener)
     while(queued) {
         LIBSSH2_CHANNEL *next = _libssh2_list_next(&queued->node);
 
-        rc = _libssh2_channel_free(queued);
+        rc = _libssh2_channel_free(queued, 0);
         if(rc == LIBSSH2_ERROR_EAGAIN) {
             return rc;
         }
@@ -2559,7 +2560,7 @@ libssh2_channel_wait_closed(LIBSSH2_CHANNEL *channel)
  *
  * Returns 0 on success, negative on failure
  */
-int _libssh2_channel_free(LIBSSH2_CHANNEL *channel)
+int _libssh2_channel_free(LIBSSH2_CHANNEL *channel, int terminate)
 {
     LIBSSH2_SESSION *session = channel->session;
     unsigned char channel_id[4];
@@ -2570,26 +2571,41 @@ int _libssh2_channel_free(LIBSSH2_CHANNEL *channel)
     assert(session);
 
     if(channel->free_state == libssh2_NB_state_idle) {
+        channel->free_state = libssh2_NB_state_created;
         _libssh2_debug(session, LIBSSH2_TRACE_CONN,
                        "Freeing channel %lu/%lu resources", channel->local.id,
                        channel->remote.id);
-
-        channel->free_state = libssh2_NB_state_created;
+    } else {
+        channel->free_waiters += 1;
+        int n = 0;
+        while ((channel->free_state != libssh2_NB_state_end) && (n < 20)) {
+            sleep(0.1);
+            n += 1;
+        }
+        channel->free_waiters -= 1;
+        return 0;
     }
 
-    /* Allow channel freeing even when the socket has lost its connection */
-    if(!channel->local.close
-        && (session->socket_state == LIBSSH2_SOCKET_CONNECTED)) {
-        rc = _libssh2_channel_close(channel);
+    if (terminate == 0) {
+        /* Close channel only when it is needed */
+        /* Allow channel freeing even when the socket has lost its connection */
+        if (!channel->local.close
+            && (session->socket_state == LIBSSH2_SOCKET_CONNECTED)) {
+            rc = _libssh2_channel_close(channel);
 
-        if(rc == LIBSSH2_ERROR_EAGAIN)
-            return rc;
+            if (rc == LIBSSH2_ERROR_EAGAIN)
+                return rc;
 
-        /* ignore all other errors as they otherwise risk blocking the channel
-           free from happening */
+            /* ignore all other errors as they otherwise risk blocking the channel
+               free from happening */
+        }
+    } else {
+        /* Just call callbacks to dealloc buffers,
+         * no need to gracefully close channel if session is going to be killed */
+        if(channel->close_cb) {
+            LIBSSH2_CHANNEL_CLOSE(session, channel);
+        }
     }
-
-    channel->free_state = libssh2_NB_state_idle;
 
     if(channel->exit_signal) {
         LIBSSH2_FREE(session, channel->exit_signal);
@@ -2632,6 +2648,13 @@ int _libssh2_channel_free(LIBSSH2_CHANNEL *channel)
         LIBSSH2_FREE(session, channel->process_packet);
     }
 
+    channel->free_state = libssh2_NB_state_end;
+
+    int n = 0;
+    while ((channel->free_waiters != 0) && (n < 20)) {
+        sleep(0.1);
+        n += 1;
+    }
     LIBSSH2_FREE(session, channel);
 
     return 0;
@@ -2653,7 +2676,7 @@ libssh2_channel_free(LIBSSH2_CHANNEL *channel)
     if(!channel)
         return LIBSSH2_ERROR_BAD_USE;
 
-    BLOCK_ADJUST(rc, channel->session, _libssh2_channel_free(channel));
+    BLOCK_ADJUST(rc, channel->session, _libssh2_channel_free(channel, 1));
     return rc;
 }
 /*

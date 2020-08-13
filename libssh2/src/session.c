@@ -872,7 +872,7 @@ session_free(LIBSSH2_SESSION *session)
     if(session->free_state == libssh2_NB_state_created) {
         while((ch = _libssh2_list_first(&session->channels))) {
 
-            rc = _libssh2_channel_free(ch);
+            rc = _libssh2_channel_free(ch, 1);
             if(rc == LIBSSH2_ERROR_EAGAIN)
                 return rc;
         }

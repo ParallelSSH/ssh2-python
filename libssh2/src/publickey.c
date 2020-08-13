@@ -1269,7 +1269,7 @@ libssh2_publickey_shutdown(LIBSSH2_PUBLICKEY *pkey)
         pkey->listFetch_data = NULL;
     }
 
-    rc = _libssh2_channel_free(pkey->channel);
+    rc = _libssh2_channel_free(pkey->channel, 1);
     if(rc == LIBSSH2_ERROR_EAGAIN)
         return rc;
 
