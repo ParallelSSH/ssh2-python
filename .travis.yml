@@ -12,9 +12,9 @@ services:
   - docker
 python:
   - 2.7
-  - 3.5
   - 3.6
   - 3.7
+  - 3.8
 addons:
   apt:
     packages:
@@ -45,8 +45,9 @@ jobs:
     - &osx-wheels
       stage: build packages
       os: osx
-      osx_image: xcode9.2
+      osx_image: xcode11.6
       env:
+        - PYENV: 3.6.11
         - SYSTEM_LIBSSH2: 1
       before_cache:
         - brew cleanup
@@ -54,29 +55,14 @@ jobs:
         - brew update
         - brew install ccache
         - brew outdated openssl || travis_wait brew upgrade openssl || echo "y"
-        - brew link --overwrite python@2 || brew install python@2 || brew link --overwrite python@2
-        - which python2
-        - python2 -c "from __future__ import print_function; import ssl; from platform import python_version; print(ssl.OPENSSL_VERSION); print(python_version())"
-        - sudo -H pip2 install twine
+        - sudo -H pip install twine
         - which twine
         - sudo ci/install-ssh2.sh
         - cp /usr/local/lib/libssh2* .
         - mkdir -p wheels
-      install:
-        - sudo -H pip2 install -U delocate wheel pip setuptools
-        - ls -lh
+      install: skip
       script:
-        - pip2 wheel .
-        - delocate-listdeps --all *.whl
-        - delocate-wheel -v *.whl
-        - delocate-listdeps --all *.whl
-        - ls -l *.whl
-        - rm -f *.dylib
-        - pip2 install --user -v *.whl
-        - pwd; mkdir temp; cd temp; pwd
-        - python -c "from ssh2.session import Session; Session()"
-        - cd ..; pwd
-        - mv -f *.whl wheels/
+        - travis_wait ./ci/travis/pyenv-wheel.sh
       after_success:
         - if [[ ! -z "$TRAVIS_TAG" ]]; then
               twine upload --skip-existing -u $PYPI_U -p $PYPI_P wheels/*.whl;
@@ -85,39 +71,45 @@ jobs:
       python: skip
 
     - <<: *osx-wheels
-      osx_image: xcode9.2
-
-    - <<: *osx-wheels
-      osx_image: xcode9.2
+      osx_image: xcode11.3
       env:
-        - PYENV: 3.6.4
+        - PYENV: 3.6.11
         - SYSTEM_LIBSSH2: 1
       install: skip
       script:
         - travis_wait ./ci/travis/pyenv-wheel.sh
 
     - <<: *osx-wheels
-      osx_image: xcode9.4
+      osx_image: xcode11.6
       env:
-        - PYENV: 3.6.4
+        - PYENV: 3.7.8
         - SYSTEM_LIBSSH2: 1
       install: skip
       script:
         - travis_wait ./ci/travis/pyenv-wheel.sh
 
     - <<: *osx-wheels
-      osx_image: xcode9.2
+      osx_image: xcode11.3
       env:
-        - PYENV: 3.7.0
+        - PYENV: 3.7.8
         - SYSTEM_LIBSSH2: 1
       install: skip
       script:
         - travis_wait ./ci/travis/pyenv-wheel.sh
 
     - <<: *osx-wheels
-      osx_image: xcode9.4
+      osx_image: xcode11.3
       env:
-        - PYENV: 3.7.0
+        - PYENV: 3.8.5
+        - SYSTEM_LIBSSH2: 1
+      install: skip
+      script:
+        - travis_wait ./ci/travis/pyenv-wheel.sh
+
+    - <<: *osx-wheels
+      osx_image: xcode11.6
+      env:
+        - PYENV: 3.8.5
         - SYSTEM_LIBSSH2: 1
       install: skip
       script:

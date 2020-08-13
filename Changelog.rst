@@ -1,6 +1,27 @@
 Change Log
 =============
 
+0.19.0
++++++++
+
+Changes
+--------
+
+* Updated embedded libssh2 version to ``1.9.0``.
+* Rebuilt sources with Cython ``0.29.21``.
+* Added support for Python 3.8 and 3.9.
+
+Packaging
+----------
+
+* Added Python 3.8 binary wheels for Linux, OSX and Windows.
+* Added Python 3.9 binary wheels for Linux.
+* Added OSX 10.14 and 10.15 wheels.
+* Removed OSX < 10.14 wheels.
+* Removed Python 2.7 OSX and Windows wheels.
+* Removed Python 3.5 OSX and Windows wheels.
+* Removed Windows 32-bit wheels.
+
 0.18.0
 +++++++
 

@@ -12,41 +12,6 @@ environment:
     PYPI_PASS:
       secure: x+dF0A8BZUf2IrPNRN1O0w==
   matrix:
-    - PYTHON: "C:\\Python27"
-      PYTHON_VERSION: "2.7"
-      PYTHON_ARCH: "32"
-      MSVC: "Visual Studio 9"
-      ARCH: i386
-      SYSTEM_LIBSSH2: 1
-
-    - PYTHON: "C:\\Python27-x64"
-      PYTHON_VERSION: "2.7"
-      PYTHON_ARCH: "64"
-      MSVC: "Visual Studio 9"
-      ARCH: x64_86
-      SYSTEM_LIBSSH2: 1
-
-    - PYTHON: "C:\\Python35"
-      PYTHON_VERSION: "3.5"
-      PYTHON_ARCH: "32"
-      MSVC: "Visual Studio 14"
-      ARCH: i386
-      SYSTEM_LIBSSH2: 1
-
-    - PYTHON: "C:\\Python35-x64"
-      PYTHON_VERSION: "3.5"
-      PYTHON_ARCH: "64"
-      MSVC: "Visual Studio 14 Win64"
-      ARCH: x64_86
-      SYSTEM_LIBSSH2: 1
-
-    - PYTHON: "C:\\Python36"
-      PYTHON_VERSION: "3.6"
-      PYTHON_ARCH: "32"
-      MSVC: "Visual Studio 14"
-      ARCH: i386
-      SYSTEM_LIBSSH2: 1
-
     - PYTHON: "C:\\Python36-x64"
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "64"
@@ -54,15 +19,15 @@ environment:
       ARCH: x64_86
       SYSTEM_LIBSSH2: 1
 
-    - PYTHON: "C:\\Python37"
-      PYTHON_VERSION: "3.7"
-      PYTHON_ARCH: "32"
-      MSVC: "Visual Studio 14"
-      ARCH: i386
-      SYSTEM_LIBSSH2: 1
-
     - PYTHON: "C:\\Python37-x64"
       PYTHON_VERSION: "3.7"
+      PYTHON_ARCH: "64"
+      MSVC: "Visual Studio 14 Win64"
+      ARCH: x64_86
+      SYSTEM_LIBSSH2: 1
+
+    - PYTHON: "C:\\Python38-x64"
+      PYTHON_VERSION: "3.8"
       PYTHON_ARCH: "64"
       MSVC: "Visual Studio 14 Win64"
       ARCH: x64_86

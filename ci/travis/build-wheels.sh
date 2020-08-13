@@ -1,6 +1,10 @@
 #!/bin/bash -xe
 
+echo "Travis tag: $TRAVIS_TAG"
+
 # Compile wheels
+# For testing
+# for PYBIN in `ls -1d /opt/python/cp27-cp27m/bin | grep -v cpython`; do
 for PYBIN in `ls -1d /opt/python/*/bin | grep -v cpython`; do
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
 done
@@ -11,7 +15,9 @@ for whl in wheelhouse/*.whl; do
 done
 
 # Install packages and test
-for PYBIN in `ls -1d /opt/python/*/bin | grep -v cpython`; do
-    "${PYBIN}/pip" install ssh2-python --no-index -f /io/wheelhouse
-    (cd "$HOME"; "${PYBIN}/python" -c 'from ssh2.session import Session; Session()')
-done
+if [[ ! -z "$TRAVIS_TAG" ]]; then
+    for PYBIN in `ls -1d /opt/python/*/bin | grep -v cpython`; do
+        "${PYBIN}/pip" install ssh2-python --no-index -f /io/wheelhouse
+        (cd "$HOME"; "${PYBIN}/python" -c 'from ssh2.session import Session; Session()')
+    done
+fi
