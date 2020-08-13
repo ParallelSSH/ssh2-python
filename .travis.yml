@@ -4,6 +4,9 @@ cache:
   - directories:
       - "$HOME/.pyenv"
       - "$HOME/Library/Caches/Homebrew"
+      - "$HOME/.git/lfs"
+git:
+  lfs_skip_smudge: true
 notifications:
   email: false
 sudo: required
