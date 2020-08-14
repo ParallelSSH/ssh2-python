@@ -1,27 +1,17 @@
-FROM quay.io/pypa/manylinux1_x86_64
+FROM quay.io/pypa/manylinux2010_x86_64
 
-ENV CMAKE cmake-2.8.11.1-5.4.x86_64
-ENV OPENSSL openssl-1.1.1b
+ENV OPENSSL openssl-1.1.1g
 ENV SYSTEM_LIBSSH2 1
 ENV LIBSSH2_VERSION 1.9.0
 
 RUN yum install zlib-devel -y
 
 ADD libssh2-${LIBSSH2_VERSION}.tar.gz libssh2-${LIBSSH2_VERSION}.tar.gz
-ADD ${CMAKE}.rpm cmake.rpm
-ADD ${OPENSSL}.tar.gz ${OPENSSL}.tar.gz
-ADD local-perl-5.10.0-62.ep.x86_64.rpm local-perl.rpm
-ADD local-perl-Pod-Simple-3.07-62.ep.x86_64.rpm local-perl-Pod-Simple.rpm
-ADD local-perl-Module-Pluggable-3.60-62.ep.x86_64.rpm local-perl-Module-Pluggable.rpm
-ADD local-perl-XSLoader-0.10-1.noarch.rpm local-perl-XSLoader.rpm
-ADD local-perl-version-0.74-62.ep.x86_64.rpm local-perl-version.rpm
-ADD local-perl-libs-5.10.0-62.ep.x86_64.rpm local-perl-libs.rpm
-ADD local-perl-Pod-Escapes-1.04-62.ep.x86_64.rpm local-perl-Pod-Escapes.rpm
+ADD https://www.openssl.org/source/${OPENSSL}.tar.gz ${OPENSSL}.tar.gz
 
-RUN rpm -i cmake.rpm local-perl-Module-Pluggable.rpm local-perl-Pod-Escapes.rpm local-perl-Pod-Simple.rpm local-perl-XSLoader.rpm local-perl-version.rpm local-perl-libs.rpm local-perl.rpm
-
+RUN tar -xzf ${OPENSSL}.tar.gz
 # Openssl
-RUN cd ${OPENSSL}.tar.gz/${OPENSSL} && \
+RUN cd ${OPENSSL} && \
     ./config --prefix=/usr --openssldir=/usr/openssl threads shared && \
     make -j4 && make install
 
