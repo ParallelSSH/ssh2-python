@@ -12,6 +12,33 @@ python:
   - 3.6
   - 3.7
   - 3.8
+install:
+  - pip install flake8 jinja2 sphinx sphinx_rtd_theme
+  - python setup.py build_ext --inplace
+  - eval "$(ssh-agent -s)"
+script:
+  - pytest tests
+  - flake8 ssh2
+  # Test source distribution builds
+  - python setup.py sdist
+  - cd dist
+  - pip install *
+  - python -c 'from ssh2.session import Session; Session()'
+  - cd ..
+  - cd doc
+  - make html
+  - cd ..
+sudo: required
+dist: xenial
+services:
+  - docker
+addons:
+  apt:
+    packages:
+      - openssh-server
+      - rpm
+      - dpkg
+      - cmake
 
 jobs:
   include:
@@ -19,33 +46,6 @@ jobs:
     - stage: test
       if: type = push OR \
           (type = pull_request AND fork = true)
-      sudo: required
-      dist: xenial
-      services:
-        - docker
-      addons:
-        apt:
-          packages:
-            - openssh-server
-            - rpm
-            - dpkg
-            - cmake
-      install:
-        - pip install flake8 jinja2 sphinx sphinx_rtd_theme
-        - python setup.py build_ext --inplace
-        - eval "$(ssh-agent -s)"
-      script:
-        - pytest tests
-        - flake8 ssh2
-        # Test source distribution builds
-        - python setup.py sdist
-        - cd dist
-        - pip install *
-        - python -c 'from ssh2.session import Session; Session()'
-        - cd ..
-        - cd doc
-        - make html
-        - cd ..
 
     - &osx-wheels
       stage: build packages
@@ -55,8 +55,6 @@ jobs:
       osx_image: xcode11.6
       env:
         - SYSTEM_LIBSSH2: 1
-      before_cache:
-        - brew cleanup
       before_install:
         - brew install libssh2
         - pip3 install twine
