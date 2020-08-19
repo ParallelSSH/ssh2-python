@@ -53,7 +53,7 @@ jobs:
       before_cache:
         - brew cleanup
       before_install:
-        - brew install ccache cmake python libssh2
+        - brew install libssh2
         - pip3 install twine
         - which twine
       install: skip
