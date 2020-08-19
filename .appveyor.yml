@@ -73,7 +73,7 @@ build_script:
   - ci\\appveyor\\build_ssh2.bat
   - rm -f ssh2/*.c
   - python -V
-  - python setup.py build_ext
+  - python setup.py build_ext -I libssh2/include
   - python setup.py build
   - python setup.py install
   - ps: ls ssh2

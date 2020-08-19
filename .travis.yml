@@ -49,8 +49,7 @@ jobs:
 
     - &osx-wheels
       stage: build packages
-      # if: (type == push) OR \
-      #     (type == pull_request AND fork == true)
+      if: tag IS present
       os: osx
       osx_image: xcode11.6
       env:
@@ -71,42 +70,6 @@ jobs:
 
     - <<: *osx-wheels
       osx_image: xcode11.3
-
-    # - <<: *osx-wheels
-    #   osx_image: xcode11.6
-    #   env:
-    #     - PYENV: 3.7.8
-    #     - SYSTEM_LIBSSH2: 1
-    #   install: skip
-    #   script:
-    #     - travis_wait ./ci/travis/pyenv-wheel.sh
-
-    # - <<: *osx-wheels
-    #   osx_image: xcode11.3
-    #   env:
-    #     - PYENV: 3.7.8
-    #     - SYSTEM_LIBSSH2: 1
-    #   install: skip
-    #   script:
-    #     - travis_wait ./ci/travis/pyenv-wheel.sh
-
-    # - <<: *osx-wheels
-    #   osx_image: xcode11.3
-    #   env:
-    #     - PYENV: 3.8.5
-    #     - SYSTEM_LIBSSH2: 1
-    #   install: skip
-    #   script:
-    #     - travis_wait ./ci/travis/pyenv-wheel.sh
-
-    # - <<: *osx-wheels
-    #   osx_image: xcode11.6
-    #   env:
-    #     - PYENV: 3.8.5
-    #     - SYSTEM_LIBSSH2: 1
-    #   install: skip
-    #   script:
-    #     - travis_wait ./ci/travis/pyenv-wheel.sh
 
     - stage: build packages
       if: tag IS present
