@@ -7,44 +7,50 @@ cache:
       - "$HOME/.git/lfs"
 notifications:
   email: false
-sudo: required
-dist: xenial
-services:
-  - docker
-python:
-  - 2.7
-  - 3.6
-  - 3.7
-  - 3.8
-addons:
-  apt:
-    packages:
-      - openssh-server
-      - rpm
-      - dpkg
-      - cmake
-install:
-  - pip install flake8 jinja2 sphinx sphinx_rtd_theme
-  - python setup.py build_ext --inplace
-  - eval "$(ssh-agent -s)"
-script:
-  - pytest tests
-  - flake8 ssh2
-  # Test source distribution builds
-  - python setup.py sdist
-  - cd dist
-  - pip install *
-  - python -c 'from ssh2.session import Session; Session()'
-  - cd ..
-  - cd doc
-  - make html
-  - cd ..
 
 jobs:
   include:
 
+    - stage: test
+      if: (type == push) OR \
+          (type == pull_request AND fork == true)
+      sudo: required
+      dist: xenial
+      services:
+        - docker
+      python:
+        - 2.7
+        - 3.6
+        - 3.7
+        - 3.8
+      addons:
+        apt:
+          packages:
+            - openssh-server
+            - rpm
+            - dpkg
+            - cmake
+      install:
+        - pip install flake8 jinja2 sphinx sphinx_rtd_theme
+        - python setup.py build_ext --inplace
+        - eval "$(ssh-agent -s)"
+      script:
+        - pytest tests
+        - flake8 ssh2
+        # Test source distribution builds
+        - python setup.py sdist
+        - cd dist
+        - pip install *
+        - python -c 'from ssh2.session import Session; Session()'
+        - cd ..
+        - cd doc
+        - make html
+        - cd ..
+
     - &osx-wheels
       stage: build packages
+      if: (type == push) OR \
+          (type == pull_request AND fork == true)
       os: osx
       osx_image: xcode11.6
       env:
@@ -112,6 +118,7 @@ jobs:
     #     - travis_wait ./ci/travis/pyenv-wheel.sh
 
     - stage: build packages
+      if: tag IS present
       os: linux
       python: 3.6
       env:
