@@ -7,6 +7,7 @@ environment:
     PYTHONUNBUFFERED: 1
     EMBEDDED_LIB: 1
     OPENSSL_VER: 1.1.0h
+    SYSTEM_LIBSSH2: 1
     PYPI_USER:
       secure: 2m0jy6JD/R9RExIosOT6YA==
     PYPI_PASS:
@@ -17,21 +18,18 @@ environment:
       PYTHON_ARCH: "64"
       MSVC: "Visual Studio 14 Win64"
       ARCH: x64_86
-      SYSTEM_LIBSSH2: 1
 
     - PYTHON: "C:\\Python37-x64"
       PYTHON_VERSION: "3.7"
       PYTHON_ARCH: "64"
       MSVC: "Visual Studio 14 Win64"
       ARCH: x64_86
-      SYSTEM_LIBSSH2: 1
 
     - PYTHON: "C:\\Python38-x64"
       PYTHON_VERSION: "3.8"
       PYTHON_ARCH: "64"
       MSVC: "Visual Studio 14 Win64"
       ARCH: x64_86
-      SYSTEM_LIBSSH2: 1
 
 install:
   # If there is a newer build queued for the same PR, cancel this one.

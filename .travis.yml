@@ -53,9 +53,7 @@ jobs:
       before_cache:
         - brew cleanup
       before_install:
-        - brew update
         - brew install ccache
-        - brew outdated openssl || travis_wait brew upgrade openssl || echo "y"
         - sudo -H pip install twine
         - which twine
         - sudo ci/install-ssh2.sh
