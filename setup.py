@@ -90,6 +90,7 @@ package_data = {'ssh2': ['*.pxd', 'libssh2.so*']}
 if ON_WINDOWS:
     package_data['ssh2'].extend([
         'libcrypto*.dll', 'libssl*.dll',
+        'msvc*.dll', 'vcruntime*.dll',
     ])
 
 cmdclass = versioneer.get_cmdclass()
@@ -123,9 +124,9 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
         'Topic :: System :: Shells',
         'Topic :: System :: Networking',
         'Topic :: Software Development :: Libraries',
