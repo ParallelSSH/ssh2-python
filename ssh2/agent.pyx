@@ -99,7 +99,8 @@ cdef object PyAgent(c_ssh2.LIBSSH2_AGENT *agent, Session session):
 cdef class Agent:
 
     def __cinit__(self, Session session):
-        self._agent = NULL
+        cdef c_ssh2.LIBSSH2_AGENT *_agent = agent_init(session._session)
+        self._agent = _agent
         self._session = session
 
     def __dealloc__(self):
@@ -177,3 +178,20 @@ cdef class Agent:
         if rc != 0:
             raise AgentConnectionError("Unable to connect to agent")
         return rc
+
+    def get_identity_path(self):
+        cdef bytes _path
+        cdef const char* c_path = NULL
+        with nogil:
+            c_path = c_ssh2.libssh2_agent_get_identity_path(self._agent)
+        if c_path is NULL:
+            return
+        _path = c_path
+        return _path
+
+    def set_identity_path(self, path not None):
+        cdef bytes b_path = to_bytes(path)
+        cdef const char *c_path = b_path
+        with nogil:
+            c_ssh2.libssh2_agent_set_identity_path(
+                self._agent, c_path)
