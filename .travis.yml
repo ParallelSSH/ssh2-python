@@ -7,22 +7,22 @@ cache:
       - "$HOME/.git/lfs"
 notifications:
   email: false
+python:
+  - 2.7
+  - 3.6
+  - 3.7
+  - 3.8
 
 jobs:
   include:
 
     - stage: test
-      # if: (type == push) OR \
-      #     (type == pull_request AND fork == true)
+      if: type = push OR \
+          (type = pull_request AND fork = true)
       sudo: required
       dist: xenial
       services:
         - docker
-      python:
-        - 2.7
-        - 3.6
-        - 3.7
-        - 3.8
       addons:
         apt:
           packages:
