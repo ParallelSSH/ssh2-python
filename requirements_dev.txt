@@ -4,3 +4,4 @@ jinja2
 sphinx
 sphinx_rtd_theme
 pytest
+pytest-rerunfailures

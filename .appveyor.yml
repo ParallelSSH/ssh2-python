@@ -1,12 +1,13 @@
+max_jobs: 5
+build:
+  parallel: true
+  verbosity: minimal
+skip_branch_with_pr: true
 environment:
   global:
-    # SDK v7.0 MSVC Express 2008's SetEnv.cmd script will fail if the
-    # /E:ON and /V:ON options are not enabled in the batch script intepreter
-    # See: http://stackoverflow.com/a/13751649/163740
-    CMD_IN_ENV: "cmd /E:ON /V:ON /C %APPVEYOR_BUILD_FOLDER%\\ci\\appveyor\\run_with_env.cmd"
     PYTHONUNBUFFERED: 1
     EMBEDDED_LIB: 1
-    OPENSSL_VER: 1.1.0h
+    SYSTEM_LIBSSH2: 1
     PYPI_USER:
       secure: 2m0jy6JD/R9RExIosOT6YA==
     PYPI_PASS:
@@ -17,21 +18,18 @@ environment:
       PYTHON_ARCH: "64"
       MSVC: "Visual Studio 14 Win64"
       ARCH: x64_86
-      SYSTEM_LIBSSH2: 1
 
     - PYTHON: "C:\\Python37-x64"
       PYTHON_VERSION: "3.7"
       PYTHON_ARCH: "64"
       MSVC: "Visual Studio 14 Win64"
       ARCH: x64_86
-      SYSTEM_LIBSSH2: 1
 
     - PYTHON: "C:\\Python38-x64"
       PYTHON_VERSION: "3.8"
       PYTHON_ARCH: "64"
       MSVC: "Visual Studio 14 Win64"
       ARCH: x64_86
-      SYSTEM_LIBSSH2: 1
 
 install:
   # If there is a newer build queued for the same PR, cancel this one.
@@ -43,8 +41,12 @@ install:
         https://ci.appveyor.com/api/projects/$env:APPVEYOR_ACCOUNT_NAME/$env:APPVEYOR_PROJECT_SLUG/history?recordsNumber=50).builds | `
         Where-Object pullRequestId -eq $env:APPVEYOR_PULL_REQUEST_NUMBER)[0].buildNumber) { `
           throw "There are newer queued builds for this pull request, failing early." }
-  - ECHO "Installed SDKs:"
-  - ps: "ls \"C:/Program Files/Microsoft SDKs/Windows\""
+  - set OPENSSL_DIR="C:\OpenSSL-v11-Win%PYTHON_ARCH%"
+  - set VCLIBDIR=%WINDIR%\System32
+  - cp %VCLIBDIR%/vcruntime*.dll ssh2/
+  - cp %VCLIBDIR%/msvcp*.dll ssh2/
+  - cp %VCLIBDIR%/msvcr*.dll ssh2/
+  - cp %OPENSSL_DIR%/bin/*.dll ssh2/
 
   # Prepend newly installed Python to the PATH of this build (this cannot be
   # done from inside the powershell script as it would require to restart
@@ -55,17 +57,7 @@ install:
   - "python --version"
   - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
 
-  # Upgrade to the latest version of pip to avoid it displaying warnings
-  # about it being out of date.
-  # - "pip install --disable-pip-version-check --user --upgrade pip"
-
-  # Install the build dependencies of the project. If some dependencies contain
-  # compiled extensions and are not provided as pre-built wheel packages,
-  # pip will build them from source using the MSVC compiler matching the
-  # target Python version and architecture
-  - "%CMD_IN_ENV% pip install -r requirements_dev.txt"
-  - "%CMD_IN_ENV% pip install -U wheel setuptools twine"
-  - git submodule update --init --recursive
+  - pip install -U wheel setuptools twine cython
 
   # .c files need to be generated on Windows to handle platform
   # specific code.
@@ -74,17 +66,17 @@ install:
   - python ci/appveyor/fix_version.py .
   - mv -f .git .git.bak
   - 7z x ci\appveyor\zlib1211.zip
-  - 7z x ci\appveyor\openssl-%OPENSSL_VER%-x%PYTHON_ARCH%-VC2017.zip
-  - cp openssl-%OPENSSL_VER%-x%PYTHON_ARCH%-VC2017\libssl-1_1-x%PYTHON_ARCH%.dll ssh2\ || cp openssl-%OPENSSL_VER%-x%PYTHON_ARCH%-VC2017\libssl-1_1.dll ssh2\
-  - cp openssl-%OPENSSL_VER%-x%PYTHON_ARCH%-VC2017\libcrypto-1_1-x%PYTHON_ARCH%.dll ssh2\ || cp openssl-%OPENSSL_VER%-x%PYTHON_ARCH%-VC2017\libcrypto-1_1.dll ssh2\
   - ps: ls ssh2
+
 build_script:
-  - "%CMD_IN_ENV% ci\\appveyor\\build_zlib.bat"
-  - "%CMD_IN_ENV% ci\\appveyor\\build_ssh2.bat"
+  - ci\\appveyor\\build_zlib.bat
+  - ci\\appveyor\\build_ssh2.bat
   - rm -f ssh2/*.c
-  - "%CMD_IN_ENV% python setup.py build_ext -I libssh2/include"
-  - "%CMD_IN_ENV% python setup.py build"
-  - "%CMD_IN_ENV% python setup.py install"
+  - python -V
+  - python setup.py build_ext -I libssh2/include
+  - python setup.py build
+  - python setup.py install
+  - ps: ls ssh2
 
 test_script:
   - cd dist
@@ -93,7 +85,7 @@ test_script:
 
 after_test:
   # If tests are successful, create binary packages for the project.
-  - "%CMD_IN_ENV% python setup.py bdist_wheel "
+  - python setup.py bdist_wheel
   - mv dist/* .
 
 artifacts:
