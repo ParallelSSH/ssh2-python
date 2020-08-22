@@ -32,7 +32,7 @@ if not SYSTEM_LIBSSH2 and (len(sys.argv) >= 2 and not (
         sys.argv[1] in (
             '--help-commands', 'egg_info', '--version', 'clean',
             'sdist', '--long-description')) and
-        __name__ == '__main__'):
+                           __name__ == '__main__'):
     build_ssh2()
 
 ON_WINDOWS = platform.system() == 'Windows'
