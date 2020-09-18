@@ -1,15 +1,15 @@
 # This file is part of ssh2-python.
-# Copyright (C) 2017-2018 Panos Kittenis
-
+# Copyright (C) 2017-2020 Panos Kittenis
+#
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
 # License as published by the Free Software Foundation, version 2.1.
-
+#
 # This library is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # Lesser General Public License for more details.
-
+#
 # You should have received a copy of the GNU Lesser General Public
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
@@ -46,6 +46,19 @@ cdef object to_str_len(char *c_str, int length):
     if PY_MAJOR_VERSION < 3:
         return c_str[:length]
     return c_str[:length].decode(ENCODING)
+
+
+def read_line(bytes data):
+    cdef Py_ssize_t py_length
+    cdef bytes py_line
+    cdef Py_ssize_t data_len = len(data)
+    cdef char* c_data = data
+    cdef char* line = c_read_line(c_data)
+    if line is NULL:
+        return 0, None
+    py_line = c_data
+    py_length = len(py_line) + 1
+    return py_length, py_line
 
 
 def version(int required_version=0):
