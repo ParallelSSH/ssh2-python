@@ -46,8 +46,19 @@ LIBSSH2_HOSTKEY_TYPE_RSA = c_ssh2.LIBSSH2_HOSTKEY_TYPE_RSA
 LIBSSH2_HOSTKEY_TYPE_DSS = c_ssh2.LIBSSH2_HOSTKEY_TYPE_DSS
 
 
-cdef class Session:
+# Trace masks
+LIBSSH2_TRACE_TRANS = c_ssh2.LIBSSH2_TRACE_TRANS
+LIBSSH2_TRACE_KEX = c_ssh2.LIBSSH2_TRACE_KEX
+LIBSSH2_TRACE_AUTH = c_ssh2.LIBSSH2_TRACE_AUTH
+LIBSSH2_TRACE_CONN = c_ssh2.LIBSSH2_TRACE_CONN
+LIBSSH2_TRACE_SCP = c_ssh2.LIBSSH2_TRACE_SCP
+LIBSSH2_TRACE_SFTP = c_ssh2.LIBSSH2_TRACE_SFTP
+LIBSSH2_TRACE_ERROR = c_ssh2.LIBSSH2_TRACE_ERROR
+LIBSSH2_TRACE_PUBLICKEY = c_ssh2.LIBSSH2_TRACE_PUBLICKEY
+LIBSSH2_TRACE_SOCKET = c_ssh2.LIBSSH2_TRACE_SOCKET
 
+
+cdef class Session:
     """LibSSH2 Session class providing session functions"""
 
     def __cinit__(self):
@@ -661,3 +672,10 @@ cdef class Session:
             rc = c_ssh2.libssh2_keepalive_send(self._session, &c_seconds)
         handle_error_codes(rc)
         return c_seconds
+
+    def trace(self, int bitmask):
+        """Enable trace logging for this session.
+
+        Bitmask is one or more of `ssh2.session.LIBSSH2_TRACE_*`.
+        """
+        c_ssh2.libssh2_trace(self._session, bitmask)
