@@ -18,14 +18,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include <string.h>
 
+static int CR = '\r';
 static int EOL = '\n';
 
-int find_eol(char* data) {
+int find_eol(char* data, int* new_pos) {
     unsigned int index;
-    char *found = strchr(data, EOL);
+    char *found;
+    found = strchr(data, EOL);
     if (found == NULL) {
         return -1;
     }
+    if (strchr(found-1, CR)) {
+        found--;
+        ++*new_pos;
+    }
     index = found - data;
+    ++*new_pos;
     return index;
 }

@@ -52,25 +52,50 @@ def read_line(bytes buf, Py_ssize_t pos=0):
     """Parse buffer for line starting from position and return line and next
     starting position in buffer.
 
-    A line is bytes from starting position to SSH end of line character.
+    A line is bytes from starting position to SSH end of line character,
+    not including a possible carriage return at the end of the line.
+    Meaning `\r\n` and `\n` are both line separators but not `\r` by itself.
 
     :param buf: Data buffer to parse for line.
     :type buf: bytes
     :param pos: Starting position to parse from
     :type pos: int
+
+    :rtype: (bytes, int)
     """
     cdef bytes py_line
     cdef Py_ssize_t buf_len = len(buf)
+    if not buf_len:
+        return buf, pos
     cdef bytes cur_buf = buf[pos:]
     cdef char* c_buf = cur_buf
     cdef int cur_pos
+    cdef int new_pos = 0
     cdef Py_ssize_t end_index
     with nogil:
-        cur_pos = find_eol(c_buf)
+        cur_pos = find_eol(c_buf, &new_pos)
         end_index = buf_len if cur_pos == -1 else pos+cur_pos
     py_line = buf[pos:end_index]
-    pos = end_index + 1
+    pos = end_index + new_pos
     return py_line, pos
+
+
+def read_lines(bytes buf):
+    """Generator to read from buffer and output a parsed line on each
+    iteration.
+
+    Line parsing as per `ssh2.utils.read_line`.
+
+    :rtype: generator(bytes)
+    """
+    cdef Py_ssize_t len_buf = len(buf)
+    cdef bytes line
+    cdef Py_ssize_t pos
+    line, pos = read_line(buf, 0)
+    while pos < len_buf:
+        yield line
+        line, pos = read_line(buf, pos)
+    yield line
 
 
 def version(int required_version=0):
