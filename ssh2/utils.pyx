@@ -48,17 +48,29 @@ cdef object to_str_len(char *c_str, int length):
     return c_str[:length].decode(ENCODING)
 
 
-def read_line(bytes data):
-    cdef Py_ssize_t py_length
+def read_line(bytes buf, Py_ssize_t pos=0):
+    """Parse buffer for line starting from position and return line and next
+    starting position in buffer.
+
+    A line is bytes from starting position to SSH end of line character.
+
+    :param buf: Data buffer to parse for line.
+    :type buf: bytes
+    :param pos: Starting position to parse from
+    :type pos: int
+    """
     cdef bytes py_line
-    cdef Py_ssize_t data_len = len(data)
-    cdef char* c_data = data
-    cdef char* line = c_read_line(c_data)
-    if line is NULL:
-        return 0, None
-    py_line = c_data
-    py_length = len(py_line) + 1
-    return py_length, py_line
+    cdef Py_ssize_t buf_len = len(buf)
+    cdef bytes cur_buf = buf[pos:]
+    cdef char* c_buf = cur_buf
+    cdef int cur_pos
+    cdef Py_ssize_t end_index
+    with nogil:
+        cur_pos = find_eol(c_buf)
+        end_index = buf_len if cur_pos == -1 else pos+cur_pos
+    py_line = buf[pos:end_index]
+    pos = end_index + 1
+    return py_line, pos
 
 
 def version(int required_version=0):

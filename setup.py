@@ -86,10 +86,10 @@ extensions = [
               **cython_args
     )
     for i in range(len(sources))]
-# 
+
 for ext in extensions:
     if ext.name == 'ssh2.utils':
-        ext.sources.append('ssh2/readline.c')
+        ext.sources.append('ssh2/find_eol.c')
 
 package_data = {'ssh2': ['*.pxd', 'libssh2.so*']}
 
