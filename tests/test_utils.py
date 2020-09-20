@@ -5,6 +5,12 @@ from ssh2.utils import read_line
 
 class UtilsTest(unittest.TestCase):
 
+    def test_read_buf_no_lines(self):
+        buf = b"a buffer"
+        line, pos = read_line(buf, 0)
+        self.assertEqual(line, buf)
+        self.assertEqual(len(buf), pos)
+
     def test_read_line(self):
         lines = [b'a line', b'another line', b'third']
         buf = b"\n".join(lines)

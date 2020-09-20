@@ -1,4 +1,7 @@
+import os
+
 from unittest import skipUnless
+from subprocess import check_output
 
 from .base_test import SSH2TestCase
 
@@ -168,3 +171,19 @@ class ChannelTestCase(SSH2TestCase):
         self.assertEqual(self._auth(), 0)
         chan = self.session.open_session()
         self.assertEqual(chan.request_auth_agent(), 0)
+
+    def test_read_file(self):
+        self._auth()
+        wc_output = check_output(['wc', '-l', 'ssh2/sftp_handle.c']).split()[0]
+        abs_file = os.sep.join([
+            os.path.dirname(__file__), '..', 'ssh2', 'sftp_handle.c',
+        ])
+        chan = self.session.open_session()
+        chan.execute('cat %s' % (abs_file,))
+        tot_data = b""
+        size, data = chan.read()
+        while size > 0:
+            tot_data += data
+            size, data = chan.read()
+        lines = [line for line in read_lines(tot_data)]
+        self.assertEqual(len(lines), int(wc_output))
