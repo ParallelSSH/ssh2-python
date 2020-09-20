@@ -95,7 +95,8 @@ def read_lines(bytes buf):
     while pos < len_buf:
         yield line
         line, pos = read_line(buf, pos)
-    yield line
+    if pos > 0:
+        yield line
 
 
 def version(int required_version=0):
