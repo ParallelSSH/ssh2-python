@@ -7,7 +7,8 @@ skip_branch_with_pr: true
 environment:
   global:
     PYTHONUNBUFFERED: 1
-    SYSTEM_LIBSSH: 1
+    EMBEDDED_LIB: 1
+    SYSTEM_LIBSSH2: 1
     PYPI_USER:
       secure: WKF8ok0UPIgkA+isDUuHww==
     PYPI_PASS:
