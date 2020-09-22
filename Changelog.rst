@@ -1,6 +1,15 @@
 Change Log
 =============
 
+0.20.0
+++++++
+
+Changes
+--------
+
+* Added helper function ``ssh2.utils.find_eol`` for finding end-of-line characters in buffer.
+
+
 0.19.0
 +++++++
 
