@@ -75,4 +75,6 @@ artifacts:
   - path: "*.whl"
 
 deploy_script:
-  - "%PYTHON_DEF%\\python.exe ci/appveyor/pypi_upload.py *.whl"
+  # Calling twine requires we set path
+  - "SET PATH=%PYTHON_DEF%;%PYTHON_DEF%\\Scripts;%PATH%"
+  - python ci/appveyor/pypi_upload.py *.whl
