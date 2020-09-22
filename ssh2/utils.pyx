@@ -49,11 +49,12 @@ cdef object to_str_len(char *c_str, int length):
 
 
 def find_eol(bytes buf, Py_ssize_t pos):
-    """Find end-of-line in buffer from position and return end position of line and where
-    next find_eol should start from.
+    """Find end-of-line in buffer from position and return end position of
+    line and where next find_eol should start from.
 
     Eg - find_eol(b'line\nline2', 0) would return (5, 6), next call should be
-      find_eol(b'line\nline2', 6) for next line where 6 was added to previous position.
+    find_eol(b'line\nline2', 6) for next line where 6 was added to previous
+    position.
 
     :param buf: Data buffer to parse for line.
     :type buf: bytes
