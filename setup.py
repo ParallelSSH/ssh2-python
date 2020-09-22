@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import platform
 import os
 import sys
@@ -48,7 +46,7 @@ _libs = ['ssh2'] if not ON_WINDOWS else [
 
 # _comp_args = ["-ggdb"]
 _fwd_default = 0
-_comp_args = ["-O3"] if not ON_WINDOWS else None
+_comp_args = ["-O2"] if not ON_WINDOWS else None
 _embedded_lib = bool(int(os.environ.get('EMBEDDED_LIB', 1)))
 _have_agent_fwd = bool(int(os.environ.get('HAVE_AGENT_FWD', _fwd_default)))
 
@@ -86,6 +84,10 @@ extensions = [
               **cython_args
     )
     for i in range(len(sources))]
+
+for ext in extensions:
+    if ext.name == 'ssh2.utils':
+        ext.sources.append('ssh2/find_eol.c')
 
 package_data = {'ssh2': ['*.pxd', 'libssh2.so*']}
 
