@@ -48,55 +48,30 @@ cdef object to_str_len(char *c_str, int length):
     return c_str[:length].decode(ENCODING)
 
 
-def read_line(bytes buf, Py_ssize_t pos=0):
-    """Parse buffer for line starting from position and return line and next
-    starting position in buffer.
+def find_eol(bytes buf, Py_ssize_t pos):
+    """Find end-of-line in buffer from position and return end position of line and where
+    next find_eol should start from.
 
-    A line is bytes from starting position to SSH end of line character,
-    not including a possible carriage return at the end of the line.
-    Meaning `\r\n` and `\n` are both line separators but not `\r` by itself.
+    Eg - find_eol(b'line\nline2', 0) would return (5, 6), next call should be
+      find_eol(b'line\nline2', 6) for next line where 6 was added to previous position.
 
     :param buf: Data buffer to parse for line.
     :type buf: bytes
     :param pos: Starting position to parse from
     :type pos: int
 
-    :rtype: (bytes, int)
-    """
-    cdef bytes py_line
+    :rtype: (int, int)"""
     cdef Py_ssize_t buf_len = len(buf)
-    if not buf_len:
-        return buf, pos
-    cdef bytes cur_buf = buf[pos:]
+    if buf_len == 0:
+        return -1, pos
+    cdef bytes cur_buf = buf[pos:buf_len]
     cdef char* c_buf = cur_buf
-    cdef int cur_pos
-    cdef int new_pos = 0
-    cdef Py_ssize_t end_index
+    cdef int index
+    cdef int new_pos
     with nogil:
-        cur_pos = find_eol(c_buf, &new_pos)
-        end_index = buf_len if cur_pos == -1 else pos+cur_pos
-    py_line = buf[pos:end_index]
-    pos = end_index + new_pos
-    return py_line, pos
-
-
-def read_lines(bytes buf):
-    """Generator to read from buffer and output a parsed line on each
-    iteration.
-
-    Line parsing as per `ssh2.utils.read_line`.
-
-    :rtype: generator(bytes)
-    """
-    cdef Py_ssize_t len_buf = len(buf)
-    cdef bytes line
-    cdef Py_ssize_t pos
-    line, pos = read_line(buf, 0)
-    while pos < len_buf:
-        yield line
-        line, pos = read_line(buf, pos)
-    if pos > 0:
-        yield line
+        new_pos = 0
+        index = c_find_eol(c_buf, &new_pos)
+    return index, new_pos
 
 
 def version(int required_version=0):

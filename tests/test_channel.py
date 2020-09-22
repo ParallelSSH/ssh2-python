@@ -8,7 +8,6 @@ from .base_test import SSH2TestCase
 from ssh2.exceptions import SocketSendError
 from ssh2.session import Session
 from ssh2.channel import Channel
-from ssh2.utils import read_lines
 
 
 class ChannelTestCase(SSH2TestCase):
@@ -26,7 +25,7 @@ class ChannelTestCase(SSH2TestCase):
         self.assertTrue(chan is not None)
         self.assertTrue(chan.execute(self.cmd) == 0)
         size, data = chan.read()
-        lines = [line.decode('utf-8') for line in read_lines(data)]
+        lines = [line.decode('utf-8') for line in data.splitlines()]
         self.assertTrue(size > 0)
         self.assertTrue(lines, [self.resp])
         self.assertEqual(chan.wait_eof(), 0)
@@ -58,7 +57,7 @@ class ChannelTestCase(SSH2TestCase):
         chan.execute('echo "stderr output" >&2')
         size, data = chan.read_stderr()
         self.assertTrue(size > 0)
-        lines = [line.decode('utf-8') for line in read_lines(data)]
+        lines = [line.decode('utf-8') for line in data.splitlines()]
         self.assertListEqual(expected, lines)
 
     def test_pty(self):
@@ -71,7 +70,7 @@ class ChannelTestCase(SSH2TestCase):
         # stderr output gets redirected to stdout with a PTY
         size, data = chan.read()
         self.assertTrue(size > 0)
-        lines = [line.decode('utf-8') for line in read_lines(data)]
+        lines = [line.decode('utf-8') for line in data.splitlines()]
         self.assertListEqual(expected, lines)
 
     def test_pty_failure(self):
@@ -89,7 +88,7 @@ class ChannelTestCase(SSH2TestCase):
         self.assertEqual(chan.send_eof(), 0)
         size, data = chan.read()
         self.assertTrue(size > 0)
-        lines = [line.decode('utf-8') for line in read_lines(data)]
+        lines = [line.decode('utf-8') for line in data.splitlines()]
         self.assertListEqual([_in], lines)
         chan.close()
         self.assertEqual(chan.wait_eof(), 0)
@@ -105,7 +104,7 @@ class ChannelTestCase(SSH2TestCase):
         self.assertEqual(chan.send_eof(), 0)
         size, data = chan.read()
         self.assertTrue(size > 0)
-        lines = [line.decode('utf-8') for line in read_lines(data)]
+        lines = [line.decode('utf-8') for line in data.splitlines()]
         self.assertListEqual([_in], lines)
 
     def test_write_stderr(self):
@@ -135,7 +134,7 @@ class ChannelTestCase(SSH2TestCase):
         self.assertEqual(chan.shell(), 0)
         chan.write('echo me\n')
         size, data = chan.read()
-        lines = [line.decode('utf-8') for line in read_lines(data)]
+        lines = [line.decode('utf-8') for line in data.splitlines()]
         self.assertTrue(size > 0)
         self.assertTrue(lines, [self.resp])
         self.assertTrue(chan.close() == 0)
@@ -149,7 +148,7 @@ class ChannelTestCase(SSH2TestCase):
         self.assertEqual(chan.process_startup('shell'), 0)
         chan.write('echo me\n')
         size, data = chan.read()
-        lines = [line.decode('utf-8') for line in read_lines(data)]
+        lines = [line.decode('utf-8') for line in data.splitlines()]
         self.assertTrue(size > 0)
         self.assertTrue(lines, [self.resp])
         self.assertTrue(chan.close() == 0)
@@ -159,7 +158,7 @@ class ChannelTestCase(SSH2TestCase):
         self.assertTrue(chan is not None)
         self.assertEqual(chan.process_startup('exec', self.cmd), 0)
         size, data = chan.read()
-        lines = [line.decode('utf-8') for line in read_lines(data)]
+        lines = [line.decode('utf-8') for line in data.splitlines()]
         self.assertTrue(size > 0)
         self.assertTrue(lines, [self.resp])
         self.assertTrue(chan.close() == 0)
@@ -185,5 +184,5 @@ class ChannelTestCase(SSH2TestCase):
         while size > 0:
             tot_data += data
             size, data = chan.read()
-        lines = [line for line in read_lines(tot_data)]
+        lines = [line for line in tot_data.splitlines()]
         self.assertEqual(len(lines), int(wc_output))
