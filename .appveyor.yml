@@ -3,33 +3,23 @@ build:
   parallel: true
   verbosity: minimal
 skip_branch_with_pr: true
+
 environment:
   global:
     PYTHONUNBUFFERED: 1
     EMBEDDED_LIB: 1
     SYSTEM_LIBSSH2: 1
     PYPI_USER:
-      secure: 2m0jy6JD/R9RExIosOT6YA==
+      secure: WKF8ok0UPIgkA+isDUuHww==
     PYPI_PASS:
-      secure: x+dF0A8BZUf2IrPNRN1O0w==
-  matrix:
-    - PYTHON: "C:\\Python36-x64"
-      PYTHON_VERSION: "3.6"
-      PYTHON_ARCH: "64"
-      MSVC: "Visual Studio 14 Win64"
-      ARCH: x64_86
-
-    - PYTHON: "C:\\Python37-x64"
-      PYTHON_VERSION: "3.7"
-      PYTHON_ARCH: "64"
-      MSVC: "Visual Studio 14 Win64"
-      ARCH: x64_86
-
-    - PYTHON: "C:\\Python38-x64"
-      PYTHON_VERSION: "3.8"
-      PYTHON_ARCH: "64"
-      MSVC: "Visual Studio 14 Win64"
-      ARCH: x64_86
+      secure: uXkrTaPGSNQdXTJIt3aiyyGnH/ZtvWbDVIXdMrsgwROIJ0kprWp5crS6TAqqddyrFxd7Trrfjg/TjM1/Yx9JzfuKTfoJh1zyviWD/j2zibsycmJQy4Q+CrZ6uI3IRQwe/2ILKxGzLGFBWaqt6C8NaQnkKP+h7ptnPeVhy1+kaOaJowwrCKWje1Ag3CJCAJxPjSC8yl1nlM3DA1rAIk2C5SR4eQQLJeEpPSg3nDnxR4o4YjmA7ILD3OuM1Fbh5iue/rUvWzdt6QCxCbE4egtrCQ==
+    # Default python version to run single commands with
+    PYTHON_DEF: "C:\\Python36-x64"
+    PYTHON_VERSION: "3.6"
+    # Python versions to build wheels for
+    PYTHONVERS: C:\Python36-x64 C:\Python37-x64 C:\Python38-x64
+    PYTHON_ARCH: "64"
+    MSVC: "Visual Studio 14 Win64"
 
 install:
   # If there is a newer build queued for the same PR, cancel this one.
@@ -48,49 +38,44 @@ install:
   - cp %VCLIBDIR%/msvcr*.dll ssh2/
   - cp %OPENSSL_DIR%/bin/*.dll ssh2/
 
-  # Prepend newly installed Python to the PATH of this build (this cannot be
-  # done from inside the powershell script as it would require to restart
-  # the parent CMD process).
-  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
-
-  # Check that we have the expected version and architecture for Python
-  - "python --version"
-  - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
-
-  - pip install -U wheel setuptools twine cython
+  - for %%I in (%PYTHONVERS%) do %%I\python.exe -V
+  - for %%I in (%PYTHONVERS%) do %%I\Scripts\pip install -U wheel setuptools twine cython
 
   # .c files need to be generated on Windows to handle platform
   # specific code.
   # Fix version used by versioneer to current git tag so the generated .c files
   # do not cause a version change.
-  - python ci/appveyor/fix_version.py .
+  - "%PYTHON_DEF%\\python.exe ci/appveyor/fix_version.py ."
   - mv -f .git .git.bak
   - 7z x ci\appveyor\zlib1211.zip
   - ps: ls ssh2
 
 build_script:
   - ci\\appveyor\\build_zlib.bat
+  - for %%I in (%PYTHONVERS%) do cp C:/zlib/lib/zlibstatic.lib %%I/libs/
+  - for %%I in (%PYTHONVERS%) do ls %%I/libs/
   - ci\\appveyor\\build_ssh2.bat
+  - for %%I in (%PYTHONVERS%) do cp src/src/libssh2.lib %%I/libs/ || cp src/src/Release/libssh2.lib %%I/libs/
   - rm -f ssh2/*.c
-  - python -V
-  - python setup.py build_ext -I libssh2/include
-  - python setup.py build
-  - python setup.py install
+  - for %%I in (%PYTHONVERS%) do %%I\python.exe -V
+  - for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py build_ext
+  - for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py build
+  - for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py install
   - ps: ls ssh2
 
 test_script:
   - cd dist
-  - python -c "from ssh2.session import Session; Session()"
+  - for %%I in (%PYTHONVERS%) do %%I\python.exe -c "from ssh2.session import Session; Session()"
   - cd ..
 
 after_test:
-  # If tests are successful, create binary packages for the project.
-  - python setup.py bdist_wheel
+  - for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py bdist_wheel
   - mv dist/* .
 
 artifacts:
-  # Archive the generated packages in the ci.appveyor.com build report.
   - path: "*.whl"
 
 deploy_script:
+  # Calling twine requires we set path
+  - "SET PATH=%PYTHON_DEF%;%PYTHON_DEF%\\Scripts;%PATH%"
   - python ci/appveyor/pypi_upload.py *.whl

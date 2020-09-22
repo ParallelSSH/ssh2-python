@@ -16,6 +16,4 @@ IF "%MSVC%" == "Visual Studio 9" (
 )
 
 cmake --build . --config Release --target install
-cp C:/zlib/lib/zlibstatic.lib %PYTHON%/libs/
 cd ..
-ls %PYTHON%/libs/

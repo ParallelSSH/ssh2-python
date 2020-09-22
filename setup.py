@@ -32,7 +32,7 @@ if not SYSTEM_LIBSSH2 and (len(sys.argv) >= 2 and not (
         sys.argv[1] in (
             '--help-commands', 'egg_info', '--version', 'clean',
             'sdist', '--long-description')) and
-        __name__ == '__main__'):
+                           __name__ == '__main__'):
     build_ssh2()
 
 ON_WINDOWS = platform.system() == 'Windows'
@@ -71,7 +71,9 @@ if USING_CYTHON:
 
 runtime_library_dirs = ["$ORIGIN/."] if not SYSTEM_LIBSSH2 else None
 _lib_dir = os.path.abspath("./src/src") if not SYSTEM_LIBSSH2 else "/usr/local/lib"
-include_dirs = ["libssh2/include"] if ON_RTD or not SYSTEM_LIBSSH2 else ["/usr/local/include"]
+include_dirs = ["libssh2/include"] if (ON_WINDOWS or ON_RTD) or \
+    not SYSTEM_LIBSSH2 \
+    else ["/usr/local/include"]
 
 extensions = [
     Extension(sources[i].split('.')[0].replace(os.path.sep, '.'),
