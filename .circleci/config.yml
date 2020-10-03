@@ -31,7 +31,7 @@ jobs:
           name: Build
       - run:
           command: |
-            ls -lhtr ssh/
+            ls -lhtr ssh2/
             pwd
             pytest tests
             flake8 ssh
