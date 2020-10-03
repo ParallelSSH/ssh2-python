@@ -2,7 +2,7 @@
 
 docker_tag="parallelssh/ssh2-manylinux"
 
-rm -rf build dist ssh2/libssh2.*
+rm -rf build ssh2/libssh2.*
 python ci/appveyor/fix_version.py .
 
 docker pull $docker_tag || echo
