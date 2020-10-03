@@ -76,9 +76,6 @@ jobs:
       image: ubuntu-1604:201903-01
     steps:
       - checkout
-      - run:
-          name: sdist
-          command: python setup.py sdist
       - python/load-cache:
           key: manylinuxdepsv6-{{ .Branch }}.{{ arch }}
           dependency-file: requirements_dev.txt
@@ -106,6 +103,9 @@ jobs:
               echo "$DOCKER_PASSWORD" | docker login -u="$DOCKER_USERNAME" --password-stdin;
             fi
             ./ci/travis/build-manylinux.sh
+      - run:
+          name: sdist
+          command: python setup.py sdist
       - run:
           name: Upload Wheels
           command: |
