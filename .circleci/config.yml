@@ -34,7 +34,7 @@ jobs:
             ls -lhtr ssh2/
             pwd
             pytest tests
-            flake8 ssh
+            flake8 ssh2
             python setup.py sdist
             cd dist; pip install *; python -c 'from ssh2.session import Session; Session()'; cd ..
             cd doc
@@ -57,7 +57,7 @@ jobs:
       - run:
           name: deps
           command: |
-            brew install cmake git-lfs krb5 python libssh
+            brew install cmake git-lfs python libssh2
             pip3 install twine
             which twine
       - run:
