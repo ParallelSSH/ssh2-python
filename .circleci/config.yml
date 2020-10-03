@@ -127,20 +127,19 @@ workflows:
               ignore: /.*/
       - manylinux:
           context: Docker
-          # filters:
-          #   tags:
-          #     only: /.*/
-          #   branches:
-          #     ignore: /.*/
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
       - osx:
           matrix:
             parameters:
               xcode_ver:
                 - "11.6.0"
                 - "11.1.0"
-          # context: Docker
-          # filters:
-          #   tags:
-          #     only: /.*/
-          #   branches:
-          #     ignore: /.*/
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
