@@ -68,7 +68,7 @@ int _libssh2_channel_flush(LIBSSH2_CHANNEL *channel, int streamid);
  *
  * Returns 0 on success, negative on failure
  */
-int _libssh2_channel_free(LIBSSH2_CHANNEL *channel);
+int _libssh2_channel_free(LIBSSH2_CHANNEL *channel, int terminate);
 
 int
 _libssh2_channel_extended_data(LIBSSH2_CHANNEL *channel, int ignore_mode);

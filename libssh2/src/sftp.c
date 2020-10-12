@@ -972,7 +972,7 @@ static LIBSSH2_SFTP *sftp_init(LIBSSH2_SESSION *session)
     return sftp_handle;
 
   sftp_init_error:
-    while(_libssh2_channel_free(session->sftpInit_channel) ==
+    while(_libssh2_channel_free(session->sftpInit_channel, 0) ==
            LIBSSH2_ERROR_EAGAIN);
     session->sftpInit_channel = NULL;
     if(session->sftpInit_sftp) {
@@ -1076,7 +1076,7 @@ sftp_shutdown(LIBSSH2_SFTP *sftp)
     /* TODO: We should consider walking over the sftp_handles list and kill
      * any remaining sftp handles ... */
 
-    rc = _libssh2_channel_free(sftp->channel);
+    rc = _libssh2_channel_free(sftp->channel, 1);
 
     return rc;
 }
