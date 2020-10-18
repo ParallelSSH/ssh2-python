@@ -20,3 +20,5 @@ cdef class Session:
     cdef c_ssh2.LIBSSH2_SESSION *_session
     cdef int _sock
     cdef readonly object sock
+
+    cdef readonly object _kbd_callback

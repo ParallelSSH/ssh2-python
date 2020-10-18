@@ -17,6 +17,8 @@
 from cpython cimport PyObject_AsFileDescriptor
 from libc.stdlib cimport malloc, free
 from libc.time cimport time_t
+from cython.operator cimport dereference as c_dereference
+from libc.string cimport strlen, strdup
 
 from agent cimport PyAgent, agent_auth, agent_init, init_connect_agent
 from channel cimport PyChannel
@@ -46,6 +48,22 @@ LIBSSH2_HOSTKEY_TYPE_RSA = c_ssh2.LIBSSH2_HOSTKEY_TYPE_RSA
 LIBSSH2_HOSTKEY_TYPE_DSS = c_ssh2.LIBSSH2_HOSTKEY_TYPE_DSS
 
 
+cdef void kbd_callback(const char *name, int name_len,
+                       const char *instruction, int instruction_len,
+                       int num_prompts,
+                       const c_ssh2.LIBSSH2_USERAUTH_KBDINT_PROMPT *prompts,
+                       c_ssh2.LIBSSH2_USERAUTH_KBDINT_RESPONSE *responses,
+                       void **abstract):
+    py_sess = (<Session>c_dereference(abstract))
+    if py_sess._kbd_callback is None:
+        return
+    cdef bytes b_password = to_bytes(py_sess._kbd_callback())
+    cdef char *_password = b_password
+    if num_prompts==1:
+        responses[0].text = strdup(_password)
+        responses[0].length = strlen(_password)
+
+
 cdef class Session:
 
     """LibSSH2 Session class providing session functions"""
@@ -56,6 +74,7 @@ cdef class Session:
             raise MemoryError
         self._sock = 0
         self.sock = None
+        self._kbd_callback = None
 
     def __dealloc__(self):
         if self._session is not NULL:
@@ -274,12 +293,15 @@ cdef class Session:
         """
         cdef int rc
         cdef bytes b_username = to_bytes(username)
-        cdef bytes b_password = to_bytes(password)
         cdef const char *_username = b_username
-        cdef const char *_password = b_password
-        with nogil:
-            rc = c_ssh2.libssh2_userauth_keyboard_interactive(
-                self._session, _username, _password)
+
+        def passwd():
+            return(password)
+
+        self._kbd_callback = passwd
+        rc = c_ssh2.libssh2_userauth_keyboard_interactive(
+            self._session, _username, &kbd_callback)
+        self._kbd_callback = None
         return handle_error_codes(rc)
 
     def agent_init(self):
