@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import platform
 import os
 import sys
@@ -32,7 +30,7 @@ if not SYSTEM_LIBSSH2 and (len(sys.argv) >= 2 and not (
         sys.argv[1] in (
             '--help-commands', 'egg_info', '--version', 'clean',
             'sdist', '--long-description')) and
-        __name__ == '__main__'):
+                           __name__ == '__main__'):
     build_ssh2()
 
 ON_WINDOWS = platform.system() == 'Windows'
@@ -48,7 +46,7 @@ _libs = ['ssh2'] if not ON_WINDOWS else [
 
 # _comp_args = ["-ggdb"]
 _fwd_default = 0
-_comp_args = ["-O3"] if not ON_WINDOWS else None
+_comp_args = ["-O2"] if not ON_WINDOWS else None
 _embedded_lib = bool(int(os.environ.get('EMBEDDED_LIB', 1)))
 _have_agent_fwd = bool(int(os.environ.get('HAVE_AGENT_FWD', _fwd_default)))
 
@@ -71,7 +69,9 @@ if USING_CYTHON:
 
 runtime_library_dirs = ["$ORIGIN/."] if not SYSTEM_LIBSSH2 else None
 _lib_dir = os.path.abspath("./src/src") if not SYSTEM_LIBSSH2 else "/usr/local/lib"
-include_dirs = ["libssh2/include"] if ON_RTD or not SYSTEM_LIBSSH2 else ["/usr/local/include"]
+include_dirs = ["libssh2/include"] if (ON_WINDOWS or ON_RTD) or \
+    not SYSTEM_LIBSSH2 \
+    else ["/usr/local/include"]
 
 extensions = [
     Extension(sources[i].split('.')[0].replace(os.path.sep, '.'),
@@ -85,11 +85,16 @@ extensions = [
     )
     for i in range(len(sources))]
 
+for ext in extensions:
+    if ext.name == 'ssh2.utils':
+        ext.sources.append('ssh2/find_eol.c')
+
 package_data = {'ssh2': ['*.pxd', 'libssh2.so*']}
 
 if ON_WINDOWS:
     package_data['ssh2'].extend([
         'libcrypto*.dll', 'libssl*.dll',
+        'msvc*.dll', 'vcruntime*.dll',
     ])
 
 cmdclass = versioneer.get_cmdclass()
@@ -123,9 +128,9 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
         'Topic :: System :: Shells',
         'Topic :: System :: Networking',
         'Topic :: Software Development :: Libraries',
