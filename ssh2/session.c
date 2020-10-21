@@ -244,6 +244,7 @@ void __Pyx_call_destructor(T* x) {
 #include "stdlib.h"
 #include "libssh2_sftp.h"
 #include "libssh2_publickey.h"
+#include "find_eol.h"
 #ifdef _OPENMP
 #include <omp.h>
 #endif /* _OPENMP */
