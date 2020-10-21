@@ -18,7 +18,7 @@ from cpython cimport PyObject_AsFileDescriptor
 from libc.stdlib cimport malloc, free
 from libc.time cimport time_t
 from cython.operator cimport dereference as c_dereference
-from libc.string cimport strlen, strdup
+from libc.string cimport strndup
 
 from agent cimport PyAgent, agent_auth, agent_init, init_connect_agent
 from channel cimport PyChannel
@@ -55,13 +55,14 @@ cdef void kbd_callback(const char *name, int name_len,
                        c_ssh2.LIBSSH2_USERAUTH_KBDINT_RESPONSE *responses,
                        void **abstract) except *:
     py_sess = (<Session>c_dereference(abstract))
-    if py_sess._kbd_callback is None:
+    if py_sess._kbd_callback() is None:
         return
     cdef bytes b_password = to_bytes(py_sess._kbd_callback())
     cdef char *_password = b_password
-    if num_prompts==1:
-        responses[0].text = strdup(_password)
-        responses[0].length = strlen(_password)
+    cdef size_t _len = len(b_password)
+    if num_prompts == 1:
+        responses[0].text = strndup(_password, _len)
+        responses[0].length = _len
 
 
 cdef class Session:
@@ -69,7 +70,8 @@ cdef class Session:
     """LibSSH2 Session class providing session functions"""
 
     def __cinit__(self):
-        self._session = c_ssh2.libssh2_session_init()
+        self._session = c_ssh2.libssh2_session_init_ex(
+            NULL, NULL, NULL, <void*> self)
         if self._session is NULL:
             raise MemoryError
         self._sock = 0
