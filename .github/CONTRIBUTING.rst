@@ -201,34 +201,32 @@ install the development requirements first:
 
    pip install -U -r requirements_dev.txt
 
-Test suite is run via ``nosetests``. Simply calling ``nosetests`` in
+Test suite is run via ``pytest``.
+
+Simply calling ``pytest tests`` in
 the Git repository's root directory will run all available tests.
 
-To run an individual test suite, call nosetests on a particular test file.
+To run an individual test suite, call pytest on a particular test file.
 
 .. code-block:: shell
 
-   nosetests tests/test_sftp.py
+   pytest tests/test_sftp.py
 
 The library does not use a logger and does not output anything.
 
-.. code-block:: shell
-  
-   nosetests --nologcapture
-
-To have nosetests fall back to a PDB prompt on uncaught exceptions, call it
+To have pytest fall back to a PDB prompt on uncaught exceptions, call it
 like so:
 
 .. code-block:: shell
 
-   nosetests --pdb
+   pytest --pdb
 
 If using manually set break points, via ``ipdb.set_trace()`` for example,
-call nosetests like so:
+call pytest like so:
 
 .. code-block:: shell
 
-   nosetests -s
+   pytest -s
 
 to be able to fall back to an IPDB prompt.
 
@@ -236,7 +234,7 @@ Running an individual test within a test suite is also possible, for example:
 
 .. code-block:: shell
 
-   nosetests tests/test_sftp.py:SFTPTestCase.test_readdir
+   pytest tests/test_sftp.py::SFTPTestCase::test_readdir
 
 will run the single test ``test_readdir`` in ``test_sftp.py``.
 
@@ -284,8 +282,7 @@ In root directory of repository:
 
 .. code-block:: shell
 
-   pip install sphinx
-   (cd docs; rm -rf _build; make html)
+   (cd docs; make html)
 
 After building succeeds the documentation is available at ``doc/_build/html``.
 
@@ -304,7 +301,7 @@ repository's root directory:
 
 .. code-block:: shell
 
-   nosetests
+   pytest tests
 
 To ensure documentation builds correctly:
 

@@ -610,6 +610,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include <sys/types.h>
 #include <sys/stat.h>
 #include "libssh2.h"
+#include "find_eol.h"
 #ifdef _OPENMP
 #include <omp.h>
 #endif /* _OPENMP */
@@ -853,6 +854,7 @@ struct __pyx_obj_4ssh2_7session_Session {
   LIBSSH2_SESSION *_session;
   int _sock;
   PyObject *sock;
+  PyObject *_kbd_callback;
 };
 
 

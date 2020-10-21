@@ -850,6 +850,7 @@ struct __pyx_obj_4ssh2_7session_Session {
   LIBSSH2_SESSION *_session;
   int _sock;
   PyObject *sock;
+  PyObject *_kbd_callback;
 };
 
 

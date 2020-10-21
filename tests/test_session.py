@@ -33,6 +33,18 @@ class SessionTestCase(SSH2TestCase):
             self.session.userauth_keyboardinteractive, 'FAKE USER', 'FAKE PASSWORD'
         )
 
+    def test_failed_keyboard_interactive_auth_valid_user(self):
+        self.assertRaises(
+            AuthenticationError,
+            self.session.userauth_keyboardinteractive, self.user, 'FAKE PASSWORD'
+        )
+
+    def test_failed_keyboard_interactive_auth_valid_user_no_pass(self):
+        self.assertRaises(
+            AuthenticationError,
+            self.session.userauth_keyboardinteractive, self.user, ''
+        )
+
     def test_set_get_error(self):
         msg = b'my error message'
         self.assertEqual(b'', self.session.last_error())

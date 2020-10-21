@@ -17,6 +17,7 @@
 from cpython cimport PyObject_AsFileDescriptor
 from libc.stdlib cimport malloc, free
 from libc.time cimport time_t
+from cython.operator cimport dereference as c_dereference
 
 from agent cimport PyAgent, agent_auth, agent_init, init_connect_agent
 from channel cimport PyChannel
@@ -46,16 +47,38 @@ LIBSSH2_HOSTKEY_TYPE_RSA = c_ssh2.LIBSSH2_HOSTKEY_TYPE_RSA
 LIBSSH2_HOSTKEY_TYPE_DSS = c_ssh2.LIBSSH2_HOSTKEY_TYPE_DSS
 
 
+cdef void kbd_callback(const char *name, int name_len,
+                       const char *instruction, int instruction_len,
+                       int num_prompts,
+                       const c_ssh2.LIBSSH2_USERAUTH_KBDINT_PROMPT *prompts,
+                       c_ssh2.LIBSSH2_USERAUTH_KBDINT_RESPONSE *responses,
+                       void **abstract) except *:
+    py_sess = (<Session>c_dereference(abstract))
+    if py_sess._kbd_callback() is None:
+        return
+    cdef bytes b_password = to_bytes(py_sess._kbd_callback())
+    cdef size_t _len = len(b_password)
+    cdef char *_password = b_password
+    cdef char *_password_copy = <char *>malloc(sizeof(char) * _len)
+    for i in range(_len):
+        _password_copy[i] = _password[i]
+    if num_prompts == 1:
+        responses[0].text = _password_copy
+        responses[0].length = _len
+
+
 cdef class Session:
 
     """LibSSH2 Session class providing session functions"""
 
     def __cinit__(self):
-        self._session = c_ssh2.libssh2_session_init()
+        self._session = c_ssh2.libssh2_session_init_ex(
+            NULL, NULL, NULL, <void*> self)
         if self._session is NULL:
             raise MemoryError
         self._sock = 0
         self.sock = None
+        self._kbd_callback = None
 
     def __dealloc__(self):
         if self._session is not NULL:
@@ -274,12 +297,15 @@ cdef class Session:
         """
         cdef int rc
         cdef bytes b_username = to_bytes(username)
-        cdef bytes b_password = to_bytes(password)
         cdef const char *_username = b_username
-        cdef const char *_password = b_password
-        with nogil:
-            rc = c_ssh2.libssh2_userauth_keyboard_interactive(
-                self._session, _username, _password)
+
+        def passwd():
+            return password
+
+        self._kbd_callback = passwd
+        rc = c_ssh2.libssh2_userauth_keyboard_interactive(
+            self._session, _username, &kbd_callback)
+        self._kbd_callback = None
         return handle_error_codes(rc)
 
     def agent_init(self):
