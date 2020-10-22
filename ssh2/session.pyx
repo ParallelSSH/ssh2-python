@@ -59,10 +59,11 @@ cdef void kbd_callback(const char *name, int name_len,
     cdef bytes b_password = to_bytes(py_sess._kbd_callback())
     cdef size_t _len = len(b_password)
     cdef char *_password = b_password
-    cdef char *_password_copy = <char *>malloc(sizeof(char) * _len)
-    for i in range(_len):
-        _password_copy[i] = _password[i]
+    cdef char *_password_copy
     if num_prompts == 1:
+        _password_copy = <char *>malloc(sizeof(char) * _len)
+        for i in range(_len):
+            _password_copy[i] = _password[i]
         responses[0].text = _password_copy
         responses[0].length = _len
 
