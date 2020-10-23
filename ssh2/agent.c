@@ -855,6 +855,8 @@ struct __pyx_obj_4ssh2_7session_Session {
   int _sock;
   PyObject *sock;
   PyObject *_kbd_callback;
+  PyObject *_send_callback;
+  PyObject *_recv_callback;
 };
 
 

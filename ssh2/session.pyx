@@ -48,24 +48,33 @@ LIBSSH2_HOSTKEY_TYPE_RSA = c_ssh2.LIBSSH2_HOSTKEY_TYPE_RSA
 LIBSSH2_HOSTKEY_TYPE_DSS = c_ssh2.LIBSSH2_HOSTKEY_TYPE_DSS
 
 
-cdef ssize_t _send_callback(c_ssh2.libssh2_socket_t fd,
+cdef ssize_t _send_callback(int fd,
                             char[:] buf,
                             size_t length,
                             int flags,
                             void** abstract) except -1:
-    printf("Inside send cb\n")
+    printf("in cb\n")
     py_sess = (<Session>deref(abstract))
-    printf("Calling send cb\n")
+    printf("Got session\n")
+    if py_sess._send_callback is None:
+        return 0
+    printf("calling send cb\n")
     res = py_sess._send_callback(fd, buf, flags)
-    return res
+    return length
 
 
-cdef ssize_t _recv_callback(c_ssh2.libssh2_socket_t fd,
+cdef Py_ssize_t _recv_callback(int fd,
                             char[:] buf,
                             size_t length,
                             int flags,
                             void** abstract) except -1:
-    buf = (<Session>deref(abstract))._recv_callback(fd, length, flags)
+    printf("in cb\n")
+    py_sess = (<Session>deref(abstract))
+    printf("Got session\n")
+    if py_sess._recv_callback is None:
+        return 0
+    printf("calling recv cb\n")
+    buf = py_sess._recv_callback(fd, length, flags)
     return len(buf)
 
 
@@ -76,7 +85,7 @@ cdef void kbd_callback(const char *name, int name_len,
                        c_ssh2.LIBSSH2_USERAUTH_KBDINT_RESPONSE *responses,
                        void **abstract) except *:
     py_sess = (<Session>deref(abstract))
-    if py_sess._kbd_callback() is None:
+    if py_sess._kbd_callback is None:
         return
     cdef bytes b_password = to_bytes(py_sess._kbd_callback())
     cdef size_t _len = len(b_password)
@@ -715,26 +724,33 @@ cdef class Session:
 
     def set_recv_callback(self, callback):
         """
-          Override the function used to recieve data from a particular host.
+        Override the function used to recieve data from a particular host.
 
-          Callback signature is (fd : int, buf : memoryview, flags : int) -> int
+        Callback signature is (fd : int, buf : memoryview, flags : int) -> int
         """
+        
         self._recv_callback = callback
         c_ssh2.libssh2_session_callback_set(
             self._session,
             c_ssh2.LIBSSH2_CALLBACK_RECV,
             &_recv_callback,
+            # <void*>_recv_callback,
         )
 
     def set_send_callback(self, callback):
         """
-          Override the function used to send data to a particular host.
+        Override the function used to send data to a particular host.
 
-          Callback signature is (fd : int, buf : memoryview, flags : int) -> int
+        Callback signature is (fd : int, buf : memoryview, flags : int) -> int
         """
-        self._send_callback = callback
+        def our_callback(fd, buf, flags):
+            print("Our cb")
+        # self._send_callback = callback
+        self._send_callback = our_callback
+        print("Set cb to %s" % (self._send_callback))
         c_ssh2.libssh2_session_callback_set(
             self._session,
             c_ssh2.LIBSSH2_CALLBACK_SEND,
             &_send_callback,
+            # <void*>_send_callback,
         )
