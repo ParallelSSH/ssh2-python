@@ -17,7 +17,7 @@ environment:
     PYTHON_DEF: "C:\\Python36-x64"
     PYTHON_VERSION: "3.6"
     # Python versions to build wheels for
-    PYTHONVERS: C:\Python36-x64 C:\Python37-x64 C:\Python38-x64 C:\Python39-x64
+    PYTHONVERS: C:\Python36-x64 C:\Python37-x64 C:\Python38-x64
     PYTHON_ARCH: "64"
     MSVC: "Visual Studio 14 Win64"
 
