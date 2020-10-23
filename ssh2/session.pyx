@@ -17,6 +17,7 @@
 from cpython cimport PyObject_AsFileDescriptor
 from libc.stdlib cimport malloc, free
 from libc.time cimport time_t
+from libc.stdio cimport printf
 from cython.operator cimport dereference as deref
 
 from agent cimport PyAgent, agent_auth, agent_init, init_connect_agent
@@ -46,15 +47,20 @@ LIBSSH2_HOSTKEY_TYPE_UNKNOWN = c_ssh2.LIBSSH2_HOSTKEY_TYPE_UNKNOWN
 LIBSSH2_HOSTKEY_TYPE_RSA = c_ssh2.LIBSSH2_HOSTKEY_TYPE_RSA
 LIBSSH2_HOSTKEY_TYPE_DSS = c_ssh2.LIBSSH2_HOSTKEY_TYPE_DSS
 
-cdef Py_ssize_t _send_callback(int fd,
+
+cdef ssize_t _send_callback(c_ssh2.libssh2_socket_t fd,
                             char[:] buf,
                             size_t length,
                             int flags,
                             void** abstract) except -1:
-        res = (<Session>deref(abstract))._send_callback(fd, buf, flags)
-        return length
+    printf("Inside send cb\n")
+    py_sess = (<Session>deref(abstract))
+    printf("Calling send cb\n")
+    res = py_sess._send_callback(fd, buf, flags)
+    return res
 
-cdef Py_ssize_t _recv_callback(int fd,
+
+cdef ssize_t _recv_callback(c_ssh2.libssh2_socket_t fd,
                             char[:] buf,
                             size_t length,
                             int flags,
@@ -96,6 +102,8 @@ cdef class Session:
         self._sock = 0
         self.sock = None
         self._kbd_callback = None
+        self._send_callback = None
+        self._recv_callback = None
 
     def __dealloc__(self):
         if self._session is not NULL:
@@ -715,7 +723,7 @@ cdef class Session:
         c_ssh2.libssh2_session_callback_set(
             self._session,
             c_ssh2.LIBSSH2_CALLBACK_RECV,
-            <void*>_recv_callback
+            &_recv_callback,
         )
 
     def set_send_callback(self, callback):
@@ -728,5 +736,5 @@ cdef class Session:
         c_ssh2.libssh2_session_callback_set(
             self._session,
             c_ssh2.LIBSSH2_CALLBACK_SEND,
-            <void*>_send_callback
+            &_send_callback,
         )
