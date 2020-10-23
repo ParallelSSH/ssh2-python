@@ -959,7 +959,7 @@ struct __pyx_obj_4ssh2_9knownhost_KnownHost {
 };
 
 
-/* "fileinfo.pxd":4
+/* "fileinfo.pxd":20
  * 
  * IF EMBEDDED_LIB:
  *     cdef class FileInfo:             # <<<<<<<<<<<<<<
@@ -1815,10 +1815,10 @@ static void __pyx_f_4ssh2_7session_kbd_callback(CYTHON_UNUSED char const *__pyx_
   __Pyx_RefNannyDeclarations
   void *__pyx_t_1;
   PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  int __pyx_t_5;
-  int __pyx_t_6;
+  int __pyx_t_3;
+  int __pyx_t_4;
+  PyObject *__pyx_t_5 = NULL;
+  PyObject *__pyx_t_6 = NULL;
   Py_ssize_t __pyx_t_7;
   char *__pyx_t_8;
   size_t __pyx_t_9;
@@ -1833,7 +1833,7 @@ static void __pyx_f_4ssh2_7session_kbd_callback(CYTHON_UNUSED char const *__pyx_
  *                        c_ssh2.LIBSSH2_USERAUTH_KBDINT_RESPONSE *responses,
  *                        void **abstract) except *:
  *     py_sess = (<Session>c_dereference(abstract))             # <<<<<<<<<<<<<<
- *     if py_sess._kbd_callback() is None:
+ *     if py_sess._kbd_callback is None:
  *         return
  */
   __pyx_t_1 = (*__pyx_v_abstract);
@@ -1845,34 +1845,17 @@ static void __pyx_f_4ssh2_7session_kbd_callback(CYTHON_UNUSED char const *__pyx_
   /* "ssh2/session.pyx":57
  *                        void **abstract) except *:
  *     py_sess = (<Session>c_dereference(abstract))
- *     if py_sess._kbd_callback() is None:             # <<<<<<<<<<<<<<
+ *     if py_sess._kbd_callback is None:             # <<<<<<<<<<<<<<
  *         return
  *     cdef bytes b_password = to_bytes(py_sess._kbd_callback())
  */
-  __Pyx_INCREF(__pyx_v_py_sess->_kbd_callback);
-  __pyx_t_3 = __pyx_v_py_sess->_kbd_callback; __pyx_t_4 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_4);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-    }
-  }
-  __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 57, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = (__pyx_t_2 == Py_None);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_6 = (__pyx_t_5 != 0);
-  if (__pyx_t_6) {
+  __pyx_t_3 = (__pyx_v_py_sess->_kbd_callback == Py_None);
+  __pyx_t_4 = (__pyx_t_3 != 0);
+  if (__pyx_t_4) {
 
     /* "ssh2/session.pyx":58
  *     py_sess = (<Session>c_dereference(abstract))
- *     if py_sess._kbd_callback() is None:
+ *     if py_sess._kbd_callback is None:
  *         return             # <<<<<<<<<<<<<<
  *     cdef bytes b_password = to_bytes(py_sess._kbd_callback())
  *     cdef size_t _len = len(b_password)
@@ -1882,40 +1865,40 @@ static void __pyx_f_4ssh2_7session_kbd_callback(CYTHON_UNUSED char const *__pyx_
     /* "ssh2/session.pyx":57
  *                        void **abstract) except *:
  *     py_sess = (<Session>c_dereference(abstract))
- *     if py_sess._kbd_callback() is None:             # <<<<<<<<<<<<<<
+ *     if py_sess._kbd_callback is None:             # <<<<<<<<<<<<<<
  *         return
  *     cdef bytes b_password = to_bytes(py_sess._kbd_callback())
  */
   }
 
   /* "ssh2/session.pyx":59
- *     if py_sess._kbd_callback() is None:
+ *     if py_sess._kbd_callback is None:
  *         return
  *     cdef bytes b_password = to_bytes(py_sess._kbd_callback())             # <<<<<<<<<<<<<<
  *     cdef size_t _len = len(b_password)
  *     cdef char *_password = b_password
  */
   __Pyx_INCREF(__pyx_v_py_sess->_kbd_callback);
-  __pyx_t_3 = __pyx_v_py_sess->_kbd_callback; __pyx_t_4 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_4);
+  __pyx_t_5 = __pyx_v_py_sess->_kbd_callback; __pyx_t_6 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
+    __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_5);
+    if (likely(__pyx_t_6)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
+      __Pyx_INCREF(__pyx_t_6);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
+      __Pyx_DECREF_SET(__pyx_t_5, function);
     }
   }
-  __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_2 = (__pyx_t_6) ? __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6) : __Pyx_PyObject_CallNoArg(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
   if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __pyx_f_4ssh2_5utils_to_bytes(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_5 = __pyx_f_4ssh2_5utils_to_bytes(__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 59, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_v_b_password = ((PyObject*)__pyx_t_3);
-  __pyx_t_3 = 0;
+  __pyx_v_b_password = ((PyObject*)__pyx_t_5);
+  __pyx_t_5 = 0;
 
   /* "ssh2/session.pyx":60
  *         return
@@ -1952,8 +1935,8 @@ static void __pyx_f_4ssh2_7session_kbd_callback(CYTHON_UNUSED char const *__pyx_
  *         _password_copy = <char *>malloc(sizeof(char) * _len)
  *         for i in range(_len):
  */
-  __pyx_t_6 = ((__pyx_v_num_prompts == 1) != 0);
-  if (__pyx_t_6) {
+  __pyx_t_4 = ((__pyx_v_num_prompts == 1) != 0);
+  if (__pyx_t_4) {
 
     /* "ssh2/session.pyx":64
  *     cdef char *_password_copy
@@ -2025,8 +2008,8 @@ static void __pyx_f_4ssh2_7session_kbd_callback(CYTHON_UNUSED char const *__pyx_
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_6);
   __Pyx_AddTraceback("ssh2.session.kbd_callback", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_L0:;
   __Pyx_XDECREF((PyObject *)__pyx_v_py_sess);
@@ -10311,10 +10294,10 @@ static int __Pyx_modinit_type_import_code(void) {
   __pyx_ptype_4ssh2_9knownhost_KnownHost = __Pyx_ImportType(__pyx_t_1, "ssh2.knownhost", "KnownHost", sizeof(struct __pyx_obj_4ssh2_9knownhost_KnownHost), __Pyx_ImportType_CheckSize_Warn);
    if (!__pyx_ptype_4ssh2_9knownhost_KnownHost) __PYX_ERR(10, 28, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyImport_ImportModule("ssh2.fileinfo"); if (unlikely(!__pyx_t_1)) __PYX_ERR(11, 4, __pyx_L1_error)
+  __pyx_t_1 = PyImport_ImportModule("ssh2.fileinfo"); if (unlikely(!__pyx_t_1)) __PYX_ERR(11, 20, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_ptype_4ssh2_8fileinfo_FileInfo = __Pyx_ImportType(__pyx_t_1, "ssh2.fileinfo", "FileInfo", sizeof(struct __pyx_obj_4ssh2_8fileinfo_FileInfo), __Pyx_ImportType_CheckSize_Warn);
-   if (!__pyx_ptype_4ssh2_8fileinfo_FileInfo) __PYX_ERR(11, 4, __pyx_L1_error)
+   if (!__pyx_ptype_4ssh2_8fileinfo_FileInfo) __PYX_ERR(11, 20, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -10712,8 +10695,8 @@ if (!__Pyx_RefNanny) {
 
   /* "ssh2/session.pyx":1
  * # This file is part of ssh2-python.             # <<<<<<<<<<<<<<
- * # Copyright (C) 2017 Panos Kittenis
- * 
+ * # Copyright (C) 2017-2020 Panos Kittenis
+ * #
  */
   __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
