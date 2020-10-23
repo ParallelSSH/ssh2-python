@@ -10,7 +10,7 @@ from ssh2.channel import Channel
 from ssh2.error_codes import LIBSSH2_ERROR_EAGAIN
 from ssh2.exceptions import AuthenticationError, AgentAuthenticationError, \
     SCPProtocolError, RequestDeniedError, InvalidRequestError, \
-    SocketSendError, FileError, PublickeyUnverifiedError
+    SocketSendError, FileError
 from ssh2.utils import wait_socket
 
 
@@ -269,7 +269,6 @@ class SessionTestCase(SSH2TestCase):
         self.assertEqual(self.session.keepalive_send(), 0)
 
     def test_publickey_frommemory(self):
-
         with open(self.user_key, 'rb') as pkey_f, \
              open(self.user_pub_key, 'rb') as pubkey_f:
             pkey = pkey_f.read()
@@ -292,3 +291,29 @@ class SessionTestCase(SSH2TestCase):
             self.user, pkey,
             passphrase="this still works when passphrase not required")
         self.assertEqual(ret_val, 0)
+
+    def test_callback_set(self):
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.connect((self.host, self.port))
+        session = Session()
+
+        # These variables have to be attached to the class scope
+        # in order to be modified inside the callback.  Local scope
+        # is not passed into the callback.
+        self.send_called = False
+        self.recv_called = False
+
+        def _send_callback(fd, buf, flags):
+            self.send_called = True
+            return sock.sendall(buf, flags)
+
+        def _recv_callback(fd, length, flags):
+            self.recv_called = True
+            return sock.recv(length, flags)
+
+        session.set_recv_callback(_recv_callback)
+        session.set_send_callback(_send_callback)
+        session.handshake(sock)
+
+        self.assertTrue(self.send_called)
+        self.assertTrue(self.recv_called)
