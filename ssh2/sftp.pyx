@@ -38,6 +38,21 @@ File transfer flags
 :var LIBSSH2_FXF_TRUNC: File truncate flag
 :var LIBSSH2_FXF_EXCL: Exclusive file flag
 
+
+File Attributes
+----------------
+
+These flags need to be set on `SFTPAttributes.attrs` when changing any of their
+associated attributes via `setstat`.
+
+:var LIBSSH2_SFTP_ATTR_SIZE: Size attribute flag
+:var LIBSSH2_SFTP_ATTR_UIDGID: UID and GID attribute flag
+:var LIBSSH2_SFTP_ATTR_PERMISSIONS: Permissions attribute flag
+:var LIBSSH2_SFTP_ATTR_ACMODTIME: File access/created/modified time attribute
+  flag
+:var LIBSSH2_SFTP_ATTR_EXTENDED: Extended attributes flag
+
+
 File mode masks
 -----------------
 
@@ -101,6 +116,15 @@ LIBSSH2_SFTP_S_IFREG = c_sftp.LIBSSH2_SFTP_S_IFREG
 LIBSSH2_SFTP_S_IFLNK = c_sftp.LIBSSH2_SFTP_S_IFLNK
 # socket
 LIBSSH2_SFTP_S_IFSOCK = c_sftp.LIBSSH2_SFTP_S_IFSOCK
+
+
+# Attributes
+
+LIBSSH2_SFTP_ATTR_SIZE = c_sftp.LIBSSH2_SFTP_ATTR_SIZE
+LIBSSH2_SFTP_ATTR_UIDGID = c_sftp.LIBSSH2_SFTP_ATTR_UIDGID
+LIBSSH2_SFTP_ATTR_PERMISSIONS = c_sftp.LIBSSH2_SFTP_ATTR_PERMISSIONS
+LIBSSH2_SFTP_ATTR_ACMODTIME = c_sftp.LIBSSH2_SFTP_ATTR_ACMODTIME
+LIBSSH2_SFTP_ATTR_EXTENDED = c_sftp.LIBSSH2_SFTP_ATTR_EXTENDED
 
 
 # File Transfer Flags

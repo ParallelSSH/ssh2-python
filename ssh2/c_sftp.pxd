@@ -79,6 +79,13 @@ cdef extern from "libssh2_sftp.h" nogil:
         LIBSSH2_SFTP_S_IROTH        # R for other
         LIBSSH2_SFTP_S_IWOTH        # W for other
         LIBSSH2_SFTP_S_IXOTH        # X for other
+    # SFTP attributes
+    enum:
+        LIBSSH2_SFTP_ATTR_SIZE
+        LIBSSH2_SFTP_ATTR_UIDGID
+        LIBSSH2_SFTP_ATTR_PERMISSIONS
+        LIBSSH2_SFTP_ATTR_ACMODTIME
+        LIBSSH2_SFTP_ATTR_EXTENDED
     int LIBSSH2_SFTP_S_ISLNK(unsigned long m)
     int LIBSSH2_SFTP_S_ISREG(unsigned long m)
     int LIBSSH2_SFTP_S_ISDIR(unsigned long m)
