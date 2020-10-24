@@ -3587,8 +3587,8 @@ if (!__Pyx_RefNanny) {
 
   /* "ssh2/exceptions.pyx":1
  * # This file is part of ssh2-python.             # <<<<<<<<<<<<<<
- * # Copyright (C) 2017-2018 Panos Kittenis
- * 
+ * # Copyright (C) 2017-2020 Panos Kittenis
+ * #
  */
   __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);

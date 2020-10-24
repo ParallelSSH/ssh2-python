@@ -1,15 +1,15 @@
 # This file is part of ssh2-python.
-# Copyright (C) 2017 Panos Kittenis
-
+# Copyright (C) 2017-2020 Panos Kittenis
+#
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
 # License as published by the Free Software Foundation, version 2.1.
-
+#
 # This library is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # Lesser General Public License for more details.
-
+#
 # You should have received a copy of the GNU Lesser General Public
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
@@ -54,15 +54,16 @@ cdef void kbd_callback(const char *name, int name_len,
                        c_ssh2.LIBSSH2_USERAUTH_KBDINT_RESPONSE *responses,
                        void **abstract) except *:
     py_sess = (<Session>c_dereference(abstract))
-    if py_sess._kbd_callback() is None:
+    if py_sess._kbd_callback is None:
         return
     cdef bytes b_password = to_bytes(py_sess._kbd_callback())
     cdef size_t _len = len(b_password)
     cdef char *_password = b_password
-    cdef char *_password_copy = <char *>malloc(sizeof(char) * _len)
-    for i in range(_len):
-        _password_copy[i] = _password[i]
+    cdef char *_password_copy
     if num_prompts == 1:
+        _password_copy = <char *>malloc(sizeof(char) * _len)
+        for i in range(_len):
+            _password_copy[i] = _password[i]
         responses[0].text = _password_copy
         responses[0].length = _len
 

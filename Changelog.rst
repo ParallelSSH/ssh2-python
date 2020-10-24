@@ -1,6 +1,20 @@
 Change Log
 =============
 
+0.23.0
+++++++
+
+Changes
+-------
+
+* Added ``ssh2.sftp.LIBSSH2_SFTP_ATTR_*`` constants for checking and setting SFTP attributes.
+
+Fixes
+-----
+
+* ``Session.userauth_keyboardinteractive`` would cause segmentation fault.
+
+
 0.20.0
 ++++++
 
@@ -23,7 +37,7 @@ Changes
 Fixes
 ------
 
-* Session.userauth_publickey_frommemory would not work without an empty publickey provided - #86
+* ``Session.userauth_publickey_frommemory`` would not work without an empty passphrase provided - #86
 
 Packaging
 ----------
