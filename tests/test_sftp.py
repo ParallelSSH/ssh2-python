@@ -91,7 +91,7 @@ class SFTPTestCase(SSH2TestCase):
                                        "remote_test_file"])
         with open(remote_filename, 'wb') as fh:
             fh.write(test_data)
-        _mask = int('0644') if version_info <= (2,) else 0o644
+        _mask = 0o644
         os.chmod(remote_filename, _mask)
         _size = os.stat(remote_filename).st_size
         try:
@@ -146,7 +146,7 @@ class SFTPTestCase(SSH2TestCase):
             LIBSSH2_SFTP_S_IWGRP | LIBSSH2_SFTP_S_IWOTH
         with open(remote_filename, 'wb') as fh:
             fh.write(test_data)
-        _mask = int('0666') if version_info <= (2,) else 0o666
+        _mask = 0o666
         os.chmod(remote_filename, _mask)
         attrs = sftp.stat(remote_filename)
         attrs.permissions = LIBSSH2_SFTP_S_IRUSR
@@ -154,17 +154,20 @@ class SFTPTestCase(SSH2TestCase):
         try:
             self.assertEqual(sftp.setstat(remote_filename, attrs), 0)
             attrs = sftp.stat(remote_filename)
-            self.assertEqual(oct(attrs.permissions), '0o100400')
+            expected = '0100400L' if version_info.major <= 2 else '0o100400'
+            self.assertEqual(oct(attrs.permissions), expected)
             attrs.permissions = rdonly_perms
             attrs.flags = LIBSSH2_SFTP_ATTR_PERMISSIONS
             self.assertEqual(sftp.setstat(remote_filename, attrs), 0)
             attrs = sftp.stat(remote_filename)
-            self.assertEqual(oct(attrs.permissions),'0o100444')
+            expected = '0100444L' if version_info.major <= 2 else '0o100444'
+            self.assertEqual(oct(attrs.permissions), expected)
             attrs.permissions = rw_perms
             attrs.flags = LIBSSH2_SFTP_ATTR_PERMISSIONS
             self.assertEqual(sftp.setstat(remote_filename, attrs), 0)
             attrs = sftp.stat(remote_filename)
-            self.assertEqual(oct(attrs.permissions), '0o100666')
+            expected = '0100666L' if version_info.major <= 2 else '0o100666'
+            self.assertEqual(oct(attrs.permissions), expected)
         except Exception:
             raise
         finally:
