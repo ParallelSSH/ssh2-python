@@ -1,6 +1,15 @@
 Change Log
 =============
 
+0.24.0
+++++++
+
+Changes
+-------
+
+* ``Session.forward_listen_ex`` now returns (``Listener``, ``bound_port``) tuple.
+
+
 0.23.0
 ++++++
 

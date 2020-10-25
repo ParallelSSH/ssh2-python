@@ -443,18 +443,40 @@ cdef class Session:
                 self._session))
         return PyListener(listener, self)
 
-    def forward_listen_ex(self, host not None, int port,
-                          int bound_port, int queue_maxsize):
+    def forward_listen_ex(self, int queue_maxsize, host=None, int port=0):
+        """
+        Instruct the remote SSH server to begin listening for inbound
+          TCP/IP connections. New connections will be queued by the library
+          until accepted by ``ssh2.channel.Channel.forward_accept``.
+        :param queue_maxsize: Maximum number of pending connections to queue
+          before rejecting further attempts.
+        :type queue_maxsize: int
+        :param host:  Address to bind to on the remote host. Binding
+          to 0.0.0.0 (default when `None` is passed) will bind to all available
+          addresses.
+        :type host: str
+        :param port: port to bind to on the remote host. When 0 is passed
+          (the default), the remote host will select the first available
+          dynamic port.
+        :type port: int
+        :returns: (listener, bound_port) tuple where bound_port is the
+          listen port bound on the remote host. Useful when requesting
+          dynamic port numbers.
+        :rtype: (:py:class:`ssh2.listener.Listener`, int)
+        """
         cdef c_ssh2.LIBSSH2_LISTENER *listener
-        cdef bytes b_host = to_bytes(host)
-        cdef char *_host = b_host
+        cdef bytes b_host = None if host is None else to_bytes(host)
+        cdef char *_host = NULL
+        if b_host is not None:
+            _host = b_host
+        cdef int bound_port = 0
         with nogil:
             listener = c_ssh2.libssh2_channel_forward_listen_ex(
                 self._session, _host, port, &bound_port, queue_maxsize)
         if listener is NULL:
-            return handle_error_codes(c_ssh2.libssh2_session_last_errno(
-                self._session))
-        return PyListener(listener, self)
+            return (handle_error_codes(c_ssh2.libssh2_session_last_errno(
+                self._session)), 0)
+        return (PyListener(listener, self), bound_port)
 
     def sftp_init(self):
         """Initialise SFTP channel.
