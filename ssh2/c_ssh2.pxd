@@ -1,15 +1,15 @@
 # This file is part of ssh2-python.
 # Copyright (C) 2017-2020 Panos Kittenis
-#
+
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
 # License as published by the Free Software Foundation, version 2.1.
-#
+
 # This library is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # Lesser General Public License for more details.
-#
+
 # You should have received a copy of the GNU Lesser General Public
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
@@ -39,9 +39,36 @@ cdef extern from "libssh2.h" nogil:
         LIBSSH2_HOSTKEY_TYPE_UNKNOWN
         LIBSSH2_HOSTKEY_TYPE_RSA
         LIBSSH2_HOSTKEY_TYPE_DSS
+        LIBSSH2_HOSTKEY_TYPE_ECDSA_256
+        LIBSSH2_HOSTKEY_TYPE_ECDSA_384
+        LIBSSH2_HOSTKEY_TYPE_ECDSA_521
+        LIBSSH2_HOSTKEY_TYPE_ED25519
+    enum:
+        LIBSSH2_CALLBACK_IGNORE
+        LIBSSH2_CALLBACK_DEBUG
+        LIBSSH2_CALLBACK_DISCONNECT
+        LIBSSH2_CALLBACK_MACERROR
+        LIBSSH2_CALLBACK_X11
+        LIBSSH2_CALLBACK_RECV
+        LIBSSH2_CALLBACK_SEND
     IF EMBEDDED_LIB:
         enum:
             LIBSSH2_HOSTKEY_HASH_SHA256
+
+    enum:
+        LIBSSH2_METHOD_KEX
+        LIBSSH2_METHOD_HOSTKEY
+        LIBSSH2_METHOD_CRYPT_CS
+        LIBSSH2_METHOD_CRYPT_SC
+        LIBSSH2_METHOD_MAC_CS
+        LIBSSH2_METHOD_MAC_SC
+        LIBSSH2_METHOD_COMP_CS
+        LIBSSH2_METHOD_COMP_SC
+        LIBSSH2_METHOD_LANG_CS
+        LIBSSH2_METHOD_LANG_SC
+    enum:
+        LIBSSH2_FLAG_SIGPIPE
+        LIBSSH2_FLAG_COMPRESS
 
     # ctypedef libssh2_uint64_t libssh2_struct_stat_size
     ctypedef struct libssh2_struct_stat:
@@ -422,6 +449,10 @@ cdef extern from "libssh2.h" nogil:
         LIBSSH2_KNOWNHOST_KEY_RSA1
         LIBSSH2_KNOWNHOST_KEY_SSHRSA
         LIBSSH2_KNOWNHOST_KEY_SSHDSS
+        LIBSSH2_KNOWNHOST_KEY_ECDSA_256
+        LIBSSH2_KNOWNHOST_KEY_ECDSA_384
+        LIBSSH2_KNOWNHOST_KEY_ECDSA_521
+        LIBSSH2_KNOWNHOST_KEY_ED25519
     IF EMBEDDED_LIB:
         enum:
             LIBSSH2_KNOWNHOST_KEY_UNKNOWN
