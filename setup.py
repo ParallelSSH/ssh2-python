@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import platform
 import os
 import sys
@@ -32,7 +30,7 @@ if not SYSTEM_LIBSSH2 and (len(sys.argv) >= 2 and not (
         sys.argv[1] in (
             '--help-commands', 'egg_info', '--version', 'clean',
             'sdist', '--long-description')) and
-        __name__ == '__main__'):
+                           __name__ == '__main__'):
     build_ssh2()
 
 ON_WINDOWS = platform.system() == 'Windows'
@@ -48,7 +46,7 @@ _libs = ['ssh2'] if not ON_WINDOWS else [
 
 # _comp_args = ["-ggdb"]
 _fwd_default = 0
-_comp_args = ["-O3"] if not ON_WINDOWS else None
+_comp_args = ["-O2"] if not ON_WINDOWS else None
 _embedded_lib = bool(int(os.environ.get('EMBEDDED_LIB', 1)))
 _have_agent_fwd = bool(int(os.environ.get('HAVE_AGENT_FWD', _fwd_default)))
 
@@ -56,6 +54,7 @@ cython_directives = {'embedsignature': True,
                      'boundscheck': False,
                      'optimize.use_switch': True,
                      'wraparound': False,
+                     'language_level': 2,
 }
 cython_args = {
     'cython_directives': cython_directives,
@@ -71,7 +70,9 @@ if USING_CYTHON:
 
 runtime_library_dirs = ["$ORIGIN/."] if not SYSTEM_LIBSSH2 else None
 _lib_dir = os.path.abspath("./src/src") if not SYSTEM_LIBSSH2 else "/usr/local/lib"
-include_dirs = ["libssh2/include"] if ON_RTD or not SYSTEM_LIBSSH2 else ["/usr/local/include"]
+include_dirs = ["libssh2/include"] if (ON_WINDOWS or ON_RTD) or \
+    not SYSTEM_LIBSSH2 \
+    else ["/usr/local/include"]
 
 extensions = [
     Extension(sources[i].split('.')[0].replace(os.path.sep, '.'),
@@ -84,6 +85,10 @@ extensions = [
               **cython_args
     )
     for i in range(len(sources))]
+
+for ext in extensions:
+    if ext.name == 'ssh2.utils':
+        ext.sources.append('ssh2/find_eol.c')
 
 package_data = {'ssh2': ['*.pxd', 'libssh2.so*']}
 

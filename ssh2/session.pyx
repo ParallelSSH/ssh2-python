@@ -1,15 +1,15 @@
 # This file is part of ssh2-python.
-# Copyright (C) 2017 Panos Kittenis
-
+# Copyright (C) 2017-2020 Panos Kittenis
+#
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
 # License as published by the Free Software Foundation, version 2.1.
-
+#
 # This library is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # Lesser General Public License for more details.
-
+#
 # You should have received a copy of the GNU Lesser General Public
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
@@ -17,6 +17,7 @@
 from cpython cimport PyObject_AsFileDescriptor
 from libc.stdlib cimport malloc, free
 from libc.time cimport time_t
+from cython.operator cimport dereference as c_dereference
 
 from agent cimport PyAgent, agent_auth, agent_init, init_connect_agent
 from channel cimport PyChannel
@@ -56,6 +57,27 @@ LIBSSH2_TRACE_SFTP = c_ssh2.LIBSSH2_TRACE_SFTP
 LIBSSH2_TRACE_ERROR = c_ssh2.LIBSSH2_TRACE_ERROR
 LIBSSH2_TRACE_PUBLICKEY = c_ssh2.LIBSSH2_TRACE_PUBLICKEY
 LIBSSH2_TRACE_SOCKET = c_ssh2.LIBSSH2_TRACE_SOCKET
+
+
+cdef void kbd_callback(const char *name, int name_len,
+                       const char *instruction, int instruction_len,
+                       int num_prompts,
+                       const c_ssh2.LIBSSH2_USERAUTH_KBDINT_PROMPT *prompts,
+                       c_ssh2.LIBSSH2_USERAUTH_KBDINT_RESPONSE *responses,
+                       void **abstract) except *:
+    py_sess = (<Session>c_dereference(abstract))
+    if py_sess._kbd_callback is None:
+        return
+    cdef bytes b_password = to_bytes(py_sess._kbd_callback())
+    cdef size_t _len = len(b_password)
+    cdef char *_password = b_password
+    cdef char *_password_copy
+    if num_prompts == 1:
+        _password_copy = <char *>malloc(sizeof(char) * _len)
+        for i in range(_len):
+            _password_copy[i] = _password[i]
+        responses[0].text = _password_copy
+        responses[0].length = _len
 
 
 cdef class Session:
@@ -291,12 +313,15 @@ cdef class Session:
         """
         cdef int rc
         cdef bytes b_username = to_bytes(username)
-        cdef bytes b_password = to_bytes(password)
         cdef const char *_username = b_username
-        cdef const char *_password = b_password
-        with nogil:
-            rc = c_ssh2.libssh2_userauth_keyboard_interactive(
-                self._session, _username, _password)
+
+        def passwd():
+            return password
+
+        self._kbd_callback = passwd
+        rc = c_ssh2.libssh2_userauth_keyboard_interactive(
+            self._session, _username, &kbd_callback)
+        self._kbd_callback = None
         return handle_error_codes(rc)
 
     def agent_init(self):

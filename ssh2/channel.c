@@ -612,6 +612,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include "libssh2.h"
 #include <string.h>
 #include <stdlib.h>
+#include "find_eol.h"
 #include "libssh2_sftp.h"
 #ifdef _OPENMP
 #include <omp.h>
@@ -856,6 +857,7 @@ struct __pyx_obj_4ssh2_7session_Session {
   LIBSSH2_SESSION *_session;
   int _sock;
   PyObject *sock;
+  PyObject *_kbd_callback;
 };
 
 
@@ -8390,8 +8392,8 @@ if (!__Pyx_RefNanny) {
 
   /* "ssh2/channel.pyx":1
  * # This file is part of ssh2-python.             # <<<<<<<<<<<<<<
- * # Copyright (C) 2017 Panos Kittenis
- * 
+ * # Copyright (C) 2017-2020 Panos Kittenis
+ * #
  */
   __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);

@@ -1,15 +1,15 @@
 # This file is part of ssh2-python.
-# Copyright (C) 2017-2018 Panos Kittenis
-
+# Copyright (C) 2017-2020 Panos Kittenis
+#
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
 # License as published by the Free Software Foundation, version 2.1.
-
+#
 # This library is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # Lesser General Public License for more details.
-
+#
 # You should have received a copy of the GNU Lesser General Public
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
@@ -46,6 +46,33 @@ cdef object to_str_len(char *c_str, int length):
     if PY_MAJOR_VERSION < 3:
         return c_str[:length]
     return c_str[:length].decode(ENCODING)
+
+
+def find_eol(bytes buf, Py_ssize_t pos):
+    """Find end-of-line in buffer from position and return end position of
+    line and where next find_eol should start from.
+
+    Eg - find_eol(b'line\nline2', 0) would return (5, 6), next call should be
+    find_eol(b'line\nline2', 6) for next line where 6 was added to previous
+    position.
+
+    :param buf: Data buffer to parse for line.
+    :type buf: bytes
+    :param pos: Starting position to parse from
+    :type pos: int
+
+    :rtype: (int, int)"""
+    cdef Py_ssize_t buf_len = len(buf)
+    if buf_len == 0:
+        return -1, pos
+    cdef bytes cur_buf = buf[pos:buf_len]
+    cdef char* c_buf = cur_buf
+    cdef int index
+    cdef int new_pos
+    with nogil:
+        new_pos = 0
+        index = c_find_eol(c_buf, &new_pos)
+    return index, new_pos
 
 
 def version(int required_version=0):

@@ -1,15 +1,15 @@
 # This file is part of ssh2-python.
-# Copyright (C) 2017 Panos Kittenis
-
+# Copyright (C) 2017-2020 Panos Kittenis
+#
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
 # License as published by the Free Software Foundation, version 2.1.
-
+#
 # This library is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # Lesser General Public License for more details.
-
+#
 # You should have received a copy of the GNU Lesser General Public
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
@@ -37,6 +37,21 @@ File transfer flags
 :var LIBSSH2_FXF_CREAT: File create flag
 :var LIBSSH2_FXF_TRUNC: File truncate flag
 :var LIBSSH2_FXF_EXCL: Exclusive file flag
+
+
+File Attributes
+----------------
+
+These flags need to be set on `SFTPAttributes.attrs` when changing any of their
+associated attributes via `setstat`.
+
+:var LIBSSH2_SFTP_ATTR_SIZE: Size attribute flag
+:var LIBSSH2_SFTP_ATTR_UIDGID: UID and GID attribute flag
+:var LIBSSH2_SFTP_ATTR_PERMISSIONS: Permissions attribute flag
+:var LIBSSH2_SFTP_ATTR_ACMODTIME: File access/created/modified time attribute
+  flag
+:var LIBSSH2_SFTP_ATTR_EXTENDED: Extended attributes flag
+
 
 File mode masks
 -----------------
@@ -101,6 +116,15 @@ LIBSSH2_SFTP_S_IFREG = c_sftp.LIBSSH2_SFTP_S_IFREG
 LIBSSH2_SFTP_S_IFLNK = c_sftp.LIBSSH2_SFTP_S_IFLNK
 # socket
 LIBSSH2_SFTP_S_IFSOCK = c_sftp.LIBSSH2_SFTP_S_IFSOCK
+
+
+# Attributes
+
+LIBSSH2_SFTP_ATTR_SIZE = c_sftp.LIBSSH2_SFTP_ATTR_SIZE
+LIBSSH2_SFTP_ATTR_UIDGID = c_sftp.LIBSSH2_SFTP_ATTR_UIDGID
+LIBSSH2_SFTP_ATTR_PERMISSIONS = c_sftp.LIBSSH2_SFTP_ATTR_PERMISSIONS
+LIBSSH2_SFTP_ATTR_ACMODTIME = c_sftp.LIBSSH2_SFTP_ATTR_ACMODTIME
+LIBSSH2_SFTP_ATTR_EXTENDED = c_sftp.LIBSSH2_SFTP_ATTR_EXTENDED
 
 
 # File Transfer Flags
