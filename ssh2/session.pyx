@@ -61,12 +61,18 @@ LIBSSH2_TRACE_SOCKET = c_ssh2.LIBSSH2_TRACE_SOCKET
 cdef class Session:
     """LibSSH2 Session class providing session functions"""
 
-    def __cinit__(self):
-        self._session = c_ssh2.libssh2_session_init()
+    def __cinit__(self, socket=None):
+        self._session = c_ssh2.libssh2_session_init_ex(
+            NULL, NULL, NULL, <void*> self)
         if self._session is NULL:
             raise MemoryError
-        self._sock = 0
-        self.sock = None
+        if socket is not None:
+            self._sock = PyObject_AsFileDescriptor(socket)
+            self.sock = socket
+        else:
+            self._sock = 0
+            self.sock = None
+        self._kbd_callback = None
 
     def __dealloc__(self):
         if self._session is not NULL:
