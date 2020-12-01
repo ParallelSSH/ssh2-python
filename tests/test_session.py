@@ -13,6 +13,7 @@ from ssh2.exceptions import AuthenticationError, AgentAuthenticationError, \
     SCPProtocolError, RequestDeniedError, InvalidRequestError, \
     SocketSendError, FileError, PublickeyUnverifiedError
 from ssh2.utils import wait_socket
+from ssh2.listener import Listener
 
 
 class SessionTestCase(SSH2TestCase):
@@ -249,6 +250,12 @@ class SessionTestCase(SSH2TestCase):
     def test_forward_listen_failure(self):
         self.assertEqual(self._auth(), 0)
         self.assertRaises(RequestDeniedError, self.session.forward_listen, 80)
+
+    def test_forward_listen_ex(self):
+        self.assertEqual(self._auth(), 0)
+        listener, bound_port = self.session.forward_listen_ex(1)
+        self.assertIsInstance(listener, Listener)
+        self.assertIsInstance(bound_port, int)
 
     def test_sftp_init_failure(self):
         self.assertRaises(InvalidRequestError, self.session.sftp_init)
