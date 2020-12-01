@@ -462,3 +462,13 @@ cdef extern from "libssh2.h" nogil:
                                          const char *path)
     IF HAVE_AGENT_FWD:
         int libssh2_channel_request_auth_agent(LIBSSH2_CHANNEL *channel)
+    enum:
+        LIBSSH2_TRACE_TRANS
+        LIBSSH2_TRACE_KEX
+        LIBSSH2_TRACE_AUTH
+        LIBSSH2_TRACE_CONN
+        LIBSSH2_TRACE_SCP
+        LIBSSH2_TRACE_SFTP
+        LIBSSH2_TRACE_ERROR
+        LIBSSH2_TRACE_PUBLICKEY
+        LIBSSH2_TRACE_SOCKET

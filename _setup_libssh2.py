@@ -20,9 +20,11 @@ def build_ssh2():
     os.chdir('src')
     check_call('cmake ../libssh2 -DBUILD_SHARED_LIBS=ON \
     -DENABLE_ZLIB_COMPRESSION=ON -DENABLE_CRYPT_NONE=ON \
-    -DENABLE_MAC_NONE=ON -DCRYPTO_BACKEND=OpenSSL',
+    -DENABLE_MAC_NONE=ON -DCRYPTO_BACKEND=OpenSSL \
+    -DENABLE_DEBUG_LOGGING=ON',
                shell=True, env=os.environ)
-    check_call('cmake --build . --config Release', shell=True, env=os.environ)
+    # check_call('cmake --build . --config Release', shell=True, env=os.environ)
+    check_call('cmake --build . --config Debug', shell=True, env=os.environ)
     os.chdir('..')
 
     for src in glob('src/src/libssh2.so*'):

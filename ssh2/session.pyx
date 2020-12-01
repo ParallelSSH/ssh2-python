@@ -47,6 +47,18 @@ LIBSSH2_HOSTKEY_TYPE_RSA = c_ssh2.LIBSSH2_HOSTKEY_TYPE_RSA
 LIBSSH2_HOSTKEY_TYPE_DSS = c_ssh2.LIBSSH2_HOSTKEY_TYPE_DSS
 
 
+# Trace masks
+LIBSSH2_TRACE_TRANS = c_ssh2.LIBSSH2_TRACE_TRANS
+LIBSSH2_TRACE_KEX = c_ssh2.LIBSSH2_TRACE_KEX
+LIBSSH2_TRACE_AUTH = c_ssh2.LIBSSH2_TRACE_AUTH
+LIBSSH2_TRACE_CONN = c_ssh2.LIBSSH2_TRACE_CONN
+LIBSSH2_TRACE_SCP = c_ssh2.LIBSSH2_TRACE_SCP
+LIBSSH2_TRACE_SFTP = c_ssh2.LIBSSH2_TRACE_SFTP
+LIBSSH2_TRACE_ERROR = c_ssh2.LIBSSH2_TRACE_ERROR
+LIBSSH2_TRACE_PUBLICKEY = c_ssh2.LIBSSH2_TRACE_PUBLICKEY
+LIBSSH2_TRACE_SOCKET = c_ssh2.LIBSSH2_TRACE_SOCKET
+
+
 cdef void kbd_callback(const char *name, int name_len,
                        const char *instruction, int instruction_len,
                        int num_prompts,
@@ -69,16 +81,19 @@ cdef void kbd_callback(const char *name, int name_len,
 
 
 cdef class Session:
-
     """LibSSH2 Session class providing session functions"""
 
-    def __cinit__(self):
+    def __cinit__(self, socket=None):
         self._session = c_ssh2.libssh2_session_init_ex(
             NULL, NULL, NULL, <void*> self)
         if self._session is NULL:
             raise MemoryError
-        self._sock = 0
-        self.sock = None
+        if socket is not None:
+            self._sock = PyObject_AsFileDescriptor(socket)
+            self.sock = socket
+        else:
+            self._sock = 0
+            self.sock = None
         self._kbd_callback = None
 
     def __dealloc__(self):
@@ -710,3 +725,10 @@ cdef class Session:
             rc = c_ssh2.libssh2_keepalive_send(self._session, &c_seconds)
         handle_error_codes(rc)
         return c_seconds
+
+    def trace(self, int bitmask):
+        """Enable trace logging for this session.
+
+        Bitmask is one or more of `ssh2.session.LIBSSH2_TRACE_*`.
+        """
+        c_ssh2.libssh2_trace(self._session, bitmask)

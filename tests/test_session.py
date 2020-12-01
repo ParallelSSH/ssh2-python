@@ -4,7 +4,8 @@ from unittest import skipUnless
 
 from .base_test import SSH2TestCase
 from ssh2.session import Session, LIBSSH2_HOSTKEY_HASH_MD5, \
-    LIBSSH2_HOSTKEY_HASH_SHA1
+    LIBSSH2_HOSTKEY_HASH_SHA1, LIBSSH2_TRACE_SOCKET, LIBSSH2_TRACE_ERROR, \
+    LIBSSH2_TRACE_CONN
 from ssh2.sftp import SFTP
 from ssh2.channel import Channel
 from ssh2.error_codes import LIBSSH2_ERROR_EAGAIN
@@ -299,3 +300,9 @@ class SessionTestCase(SSH2TestCase):
             self.user, pkey,
             passphrase="this still works when passphrase not required")
         self.assertEqual(ret_val, 0)
+
+    def test_trace_enable(self):
+        bitmask = LIBSSH2_TRACE_SOCKET | \
+                  LIBSSH2_TRACE_ERROR | \
+                  LIBSSH2_TRACE_CONN
+        self.session.trace(bitmask)

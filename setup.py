@@ -107,7 +107,7 @@ setup(
     version=versioneer.get_version(),
     cmdclass=cmdclass,
     url='https://github.com/ParallelSSH/ssh2-python',
-    license='LGPLv2',
+    license='LGPLv2.1',
     author='Panos Kittenis',
     author_email='22e889d8@opayq.com',
     description=('Super fast SSH library - bindings for libssh2'),
