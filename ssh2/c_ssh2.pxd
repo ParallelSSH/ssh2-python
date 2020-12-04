@@ -428,6 +428,10 @@ cdef extern from "libssh2.h" nogil:
         LIBSSH2_KNOWNHOST_KEY_SSHDSS
     IF EMBEDDED_LIB:
         enum:
+            LIBSSH2_KNOWNHOST_KEY_ECDSA_256
+            LIBSSH2_KNOWNHOST_KEY_ECDSA_384
+            LIBSSH2_KNOWNHOST_KEY_ECDSA_521
+            LIBSSH2_KNOWNHOST_KEY_ED25519
             LIBSSH2_KNOWNHOST_KEY_UNKNOWN
 
     # Public Key API
