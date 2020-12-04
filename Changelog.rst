@@ -8,6 +8,7 @@ Changes
 -------
 
 * ``Session.forward_listen_ex`` now returns (``Listener``, ``bound_port``) tuple.
+* Added new in libssh2 1.9.0 ``ssh2.session.LIBSSH2_HOSTKEY_HASH_SHA256``.
 
 
 0.23.0
