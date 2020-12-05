@@ -3,14 +3,14 @@ ssh2-python
 
 Super fast SSH2 protocol library. ``ssh2-python`` provides Python bindings for `libssh2`_.
 
-.. image:: https://img.shields.io/badge/License-LGPL%20v2-blue.svg
+.. image:: https://img.shields.io/badge/License-LGPL%20v2.1-blue.svg
    :target: https://pypi.python.org/pypi/ssh2-python
    :alt: License
 .. image:: https://img.shields.io/pypi/v/ssh2-python.svg
    :target: https://pypi.python.org/pypi/ssh2-python
    :alt: Latest Version
-.. image:: https://travis-ci.org/ParallelSSH/ssh2-python.svg?branch=master
-   :target: https://travis-ci.org/ParallelSSH/ssh2-python
+.. image:: https://circleci.com/gh/ParallelSSH/ssh2-python/tree/master.svg?style=svg
+   :target: https://circleci.com/gh/ParallelSSH/ssh2-python
 .. image:: https://ci.appveyor.com/api/projects/status/github/parallelssh/ssh2-python?svg=true&branch=master
    :target: https://ci.appveyor.com/project/pkittenis/ssh2-python
 .. image:: https://img.shields.io/pypi/wheel/ssh2-python.svg
@@ -36,6 +36,26 @@ Binary wheel packages are provided for Linux, OSX and Windows, all Python versio
 For from source installation instructions, including building against system provided libssh2, `see documentation <https://ssh2-python.readthedocs.io/en/latest/installation.html#installation-from-source>`_.
 
 For creating native system packages for Centos/RedHat, Ubuntu, Debian and Fedora, see `instructions in the documentation <http://ssh2-python.readthedocs.io/en/latest/installation.html#system-binary-packages>`_.
+
+
+Who Should Use This
+___________________
+
+Developers of bespoke SSH clients.
+
+
+Who Should Not Use This
+_______________________
+
+Developers looking for ready made SSH clients.
+
+This library is not an SSH client.
+
+Developers looking for high level easy to use clients based on this library should use `parallel-ssh <https://github.com/ParallelSSH/parallel-ssh>`_. It provides both `single <https://parallel-ssh.readthedocs.io/en/latest/native_single.html>`_ and `parallel <https://parallel-ssh.readthedocs.io/en/latest/native_parallel.html>`_ clients.
+
+This library provides bindings to libssh2 and its API closely matches libssh2.
+
+If the examples seem long, this is not the right library. Use `parallel-ssh <https://github.com/ParallelSSH/parallel-ssh>`_.
 
 
 API Feature Set
