@@ -283,5 +283,25 @@ class KnownHostGetError(KnownHostError):
     """Raised on errors retrieving known host entries"""
 
 
+class InvalidMACError(SSH2Error):
+    """Raised on invalid MAC"""
+
+
+class KexFailureError(SSH2Error):
+    """Raised on KEX failure"""
+
+
+class AllocError(SSH2Error):
+    """Raised on allocation error"""
+
+
+class ChannelWindowFullError(SSH2Error):
+    """Raised on channel window full error"""
+
+
+class KeyfileAuthFailedError(SSH2Error):
+    """Raised on key file authentication error"""
+
+
 class UnknownError(SSH2Error):
     """Raised on non-specific or unknown errors"""

@@ -134,6 +134,14 @@ cpdef int handle_error_codes(int errcode) except -1:
         raise exceptions.BannerRecvError
     elif errcode == error_codes._LIBSSH2_ERROR_BANNER_SEND:
         raise exceptions.BannerSendError
+    elif errcode == error_codes._LIBSSH2_ERROR_INVALID_MAC:
+        raise exceptions.InvalidMACError
+    elif errcode == error_codes._LIBSSH2_ERROR_KEX_FAILURE:
+        raise exceptions.KexFailureError
+    elif errcode == error_codes._LIBSSH2_ERROR_ALLOC:
+        raise exceptions.AllocError
+    elif errcode == error_codes._LIBSSH2_ERROR_SOCKET_SEND:
+        raise exceptions.SocketSendError
     elif errcode == error_codes._LIBSSH2_ERROR_KEY_EXCHANGE_FAILURE:
         raise exceptions.KeyExchangeError
     elif errcode == error_codes._LIBSSH2_ERROR_TIMEOUT:
@@ -204,14 +212,16 @@ cpdef int handle_error_codes(int errcode) except -1:
         raise exceptions.AgentProtocolError
     elif errcode == error_codes._LIBSSH2_ERROR_SOCKET_RECV:
         raise exceptions.SocketRecvError
-    elif errcode == error_codes._LIBSSH2_ERROR_SOCKET_SEND:
-        raise exceptions.SocketSendError
     elif errcode == error_codes._LIBSSH2_ERROR_ENCRYPT:
         raise exceptions.EncryptError
     elif errcode == error_codes._LIBSSH2_ERROR_BAD_SOCKET:
         raise exceptions.BadSocketError
     elif errcode == error_codes._LIBSSH2_ERROR_KNOWN_HOSTS:
         raise exceptions.KnownHostError
+    elif errcode == error_codes._LIBSSH2_ERROR_CHANNEL_WINDOW_FULL:
+        raise exceptions.ChannelWindowFullError
+    elif errcode == error_codes._LIBSSH2_ERROR_KEYFILE_AUTH_FAILED:
+        raise exceptions.KeyfileAuthFailedError
     else:
         # Switch default
         if errcode < 0:
