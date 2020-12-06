@@ -1,6 +1,17 @@
 Change Log
 =============
 
+
+0.25.0
+++++++
+
+Changes
+-------
+
+* Added new in libssh2 `1.9.0` errors as exceptions.
+* Added ``Session.methods``, ``Session.method_pref`` and ``Session.supported_algs`` functions.
+
+
 0.24.0
 ++++++
 
