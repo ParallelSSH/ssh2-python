@@ -4,7 +4,7 @@ from unittest import skipUnless
 
 from .base_test import SSH2TestCase
 from ssh2.session import Session, LIBSSH2_HOSTKEY_HASH_MD5, \
-    LIBSSH2_HOSTKEY_HASH_SHA1, LIBSSH2_METHOD_KEX, LIBSSH2_METHOD_HOSTKEY, LIBSSH2_METHOD_CRYPT_CS
+    LIBSSH2_HOSTKEY_HASH_SHA1, LIBSSH2_METHOD_KEX, LIBSSH2_METHOD_CRYPT_CS
 from ssh2.sftp import SFTP
 from ssh2.channel import Channel
 from ssh2.error_codes import LIBSSH2_ERROR_EAGAIN
