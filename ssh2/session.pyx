@@ -461,8 +461,9 @@ cdef class Session:
     def forward_listen_ex(self, int queue_maxsize, host=None, int port=0):
         """
         Instruct the remote SSH server to begin listening for inbound
-          TCP/IP connections. New connections will be queued by the library
-          until accepted by ``ssh2.channel.Channel.forward_accept``.
+        TCP/IP connections. New connections will be queued by the library
+        until accepted by ``ssh2.channel.Channel.forward_accept``.
+
         :param queue_maxsize: Maximum number of pending connections to queue
           before rejecting further attempts.
         :type queue_maxsize: int

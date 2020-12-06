@@ -158,7 +158,8 @@ cdef class SFTPHandle:
         :param buffer_maxlen: Max length of buffer to return.
         :type buffer_maxlen: int
 
-        :rtype: bytes"""
+        :returns: Size and buffer tuple.
+        :rtype: (int, bytes)"""
         cdef ssize_t rc
         cdef bytes buf = b''
         cdef char *cbuf
@@ -369,7 +370,7 @@ cdef class SFTPHandle:
     def fstat(self):
         """Get file stat attributes from handle.
 
-        :rtype: tuple(int, :py:class:`ssh2.sftp.SFTPAttributes`)"""
+        :rtype: :py:class:`ssh2.sftp.SFTPAttributes` or LIBSSH2_ERROR_EAGAIN"""
         cdef int rc
         cdef SFTPAttributes attrs = SFTPAttributes()
         with nogil:
