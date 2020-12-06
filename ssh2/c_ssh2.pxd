@@ -46,6 +46,16 @@ cdef extern from "libssh2.h" nogil:
             LIBSSH2_HOSTKEY_TYPE_ECDSA_384
             LIBSSH2_HOSTKEY_TYPE_ECDSA_521
             LIBSSH2_HOSTKEY_TYPE_ED25519
+            LIBSSH2_METHOD_KEX
+            LIBSSH2_METHOD_HOSTKEY
+            LIBSSH2_METHOD_CRYPT_CS
+            LIBSSH2_METHOD_CRYPT_SC
+            LIBSSH2_METHOD_MAC_CS
+            LIBSSH2_METHOD_MAC_SC
+            LIBSSH2_METHOD_COMP_CS
+            LIBSSH2_METHOD_COMP_SC
+            LIBSSH2_METHOD_LANG_CS
+            LIBSSH2_METHOD_LANG_SC
 
     # ctypedef libssh2_uint64_t libssh2_struct_stat_size
     ctypedef struct libssh2_struct_stat:
@@ -468,5 +478,6 @@ cdef extern from "libssh2.h" nogil:
     const char *libssh2_agent_get_identity_path(LIBSSH2_AGENT *agent)
     void libssh2_agent_set_identity_path(LIBSSH2_AGENT *agent,
                                          const char *path)
+    void libssh2_free(LIBSSH2_SESSION *session, void *ptr)
     IF HAVE_AGENT_FWD:
         int libssh2_channel_request_auth_agent(LIBSSH2_CHANNEL *channel)

@@ -1059,6 +1059,7 @@ static const char __pyx_k_SSH2Error[] = "SSH2Error";
 static const char __pyx_k_ZlibError[] = "ZlibError";
 static const char __pyx_k_metaclass[] = "__metaclass__";
 static const char __pyx_k_AgentError[] = "AgentError";
+static const char __pyx_k_AllocError[] = "AllocError";
 static const char __pyx_k_BadUseError[] = "BadUseError";
 static const char __pyx_k_ChannelError[] = "ChannelError";
 static const char __pyx_k_DecryptError[] = "DecryptError";
@@ -1074,6 +1075,8 @@ static const char __pyx_k_KnownHostError[] = "KnownHostError";
 static const char __pyx_k_PublicKeyError[] = "PublicKeyError";
 static const char __pyx_k_BannerRecvError[] = "BannerRecvError";
 static const char __pyx_k_BannerSendError[] = "BannerSendError";
+static const char __pyx_k_InvalidMACError[] = "InvalidMACError";
+static const char __pyx_k_KexFailureError[] = "KexFailureError";
 static const char __pyx_k_MethodNoneError[] = "MethodNoneError";
 static const char __pyx_k_SFTPHandleError[] = "SFTPHandleError";
 static const char __pyx_k_SocketRecvError[] = "SocketRecvError";
@@ -1111,11 +1114,15 @@ static const char __pyx_k_AgentGetIdentityError[] = "AgentGetIdentityError";
 static const char __pyx_k_ChannelPacketExceeded[] = "ChannelPacketExceeded";
 static const char __pyx_k_ChannelWindowExceeded[] = "ChannelWindowExceeded";
 static const char __pyx_k_KnownHostCheckFailure[] = "KnownHostCheckFailure";
+static const char __pyx_k_Raised_on_KEX_failure[] = "Raised on KEX failure";
 static const char __pyx_k_Raised_on_file_errors[] = "Raised on file errors";
+static const char __pyx_k_Raised_on_invalid_MAC[] = "Raised on invalid MAC";
 static const char __pyx_k_Raised_on_zlib_errors[] = "Raised on zlib errors";
 static const char __pyx_k_SessionHandshakeError[] = "SessionHandshakeError";
 static const char __pyx_k_SocketDisconnectError[] = "SocketDisconnectError";
 static const char __pyx_k_ChannelOutOfOrderError[] = "ChannelOutOfOrderError";
+static const char __pyx_k_ChannelWindowFullError[] = "ChannelWindowFullError";
+static const char __pyx_k_KeyfileAuthFailedError[] = "KeyfileAuthFailedError";
 static const char __pyx_k_KnownHostReadFileError[] = "KnownHostReadFileError";
 static const char __pyx_k_KnownHostReadLineError[] = "KnownHostReadLineError";
 static const char __pyx_k_PublicKeyProtocolError[] = "PublicKeyProtocolError";
@@ -1127,6 +1134,7 @@ static const char __pyx_k_PublickeyUnverifiedError[] = "PublickeyUnverifiedError
 static const char __pyx_k_Raised_on_protocol_errors[] = "Raised on protocol errors";
 static const char __pyx_k_Raised_on_socket_timeouts[] = "Raised on socket timeouts";
 static const char __pyx_k_Base_class_for_SFTP_errors[] = "Base class for SFTP errors";
+static const char __pyx_k_Raised_on_allocation_error[] = "Raised on allocation error";
 static const char __pyx_k_Raised_on_channel_failures[] = "Raised on channel failures";
 static const char __pyx_k_KnownHostCheckMisMatchError[] = "KnownHostCheckMisMatchError";
 static const char __pyx_k_KnownHostCheckNotFoundError[] = "KnownHostCheckNotFoundError";
@@ -1166,6 +1174,7 @@ static const char __pyx_k_Raised_on_channel_commands_out_o[] = "Raised on channe
 static const char __pyx_k_Raised_on_channel_max_packet_len[] = "Raised on channel max packet length exceeded errors";
 static const char __pyx_k_Raised_on_channel_request_denied[] = "Raised on channel request denied errors";
 static const char __pyx_k_Raised_on_channel_window_exceede[] = "Raised on channel window exceeded errors";
+static const char __pyx_k_Raised_on_channel_window_full_er[] = "Raised on channel window full error";
 static const char __pyx_k_Raised_on_errors_adding_known_ho[] = "Raised on errors adding known host entries";
 static const char __pyx_k_Raised_on_errors_exchanging_keys[] = "Raised on errors exchanging keys";
 static const char __pyx_k_Raised_on_errors_initialiasing_h[] = "Raised on errors initialiasing host key";
@@ -1179,6 +1188,7 @@ static const char __pyx_k_Raised_on_errors_writing_line_to[] = "Raised on errors
 static const char __pyx_k_Raised_on_errors_writing_to_know[] = "Raised on errors writing to known hosts file";
 static const char __pyx_k_Raised_on_invalid_poll_type_erro[] = "Raised on invalid poll type errors";
 static const char __pyx_k_Raised_on_invalid_request_errors[] = "Raised on invalid request errors";
+static const char __pyx_k_Raised_on_key_file_authenticatio[] = "Raised on key file authentication error";
 static const char __pyx_k_Raised_on_no_match_for_known_hos[] = "Raised on no match for known host check";
 static const char __pyx_k_Raised_on_non_specific_or_unknow[] = "Raised on non-specific or unknown errors";
 static const char __pyx_k_Raised_on_out_of_boundary_errors[] = "Raised on out of boundary errors";
@@ -1197,6 +1207,7 @@ static PyObject *__pyx_n_s_AgentError;
 static PyObject *__pyx_n_s_AgentGetIdentityError;
 static PyObject *__pyx_n_s_AgentListIdentitiesError;
 static PyObject *__pyx_n_s_AgentProtocolError;
+static PyObject *__pyx_n_s_AllocError;
 static PyObject *__pyx_n_s_AuthenticationError;
 static PyObject *__pyx_n_s_BadSocketError;
 static PyObject *__pyx_n_s_BadUseError;
@@ -1220,15 +1231,19 @@ static PyObject *__pyx_n_s_ChannelPacketExceeded;
 static PyObject *__pyx_n_s_ChannelRequestDenied;
 static PyObject *__pyx_n_s_ChannelUnknownError;
 static PyObject *__pyx_n_s_ChannelWindowExceeded;
+static PyObject *__pyx_n_s_ChannelWindowFullError;
 static PyObject *__pyx_n_s_CompressError;
 static PyObject *__pyx_n_s_DecryptError;
 static PyObject *__pyx_n_s_EncryptError;
 static PyObject *__pyx_n_s_FileError;
 static PyObject *__pyx_n_s_HostkeyInitError;
 static PyObject *__pyx_n_s_HostkeySignError;
+static PyObject *__pyx_n_s_InvalidMACError;
 static PyObject *__pyx_n_s_InvalidPollTypeError;
 static PyObject *__pyx_n_s_InvalidRequestError;
+static PyObject *__pyx_n_s_KexFailureError;
 static PyObject *__pyx_n_s_KeyExchangeError;
+static PyObject *__pyx_n_s_KeyfileAuthFailedError;
 static PyObject *__pyx_n_s_KnownHostAddError;
 static PyObject *__pyx_n_s_KnownHostCheckError;
 static PyObject *__pyx_n_s_KnownHostCheckFailure;
@@ -1251,6 +1266,7 @@ static PyObject *__pyx_n_s_PublicKeyInitError;
 static PyObject *__pyx_n_s_PublicKeyProtocolError;
 static PyObject *__pyx_n_s_PublickeyUnverifiedError;
 static PyObject *__pyx_kp_s_Raised_on_API_bad_use_errors;
+static PyObject *__pyx_kp_s_Raised_on_KEX_failure;
 static PyObject *__pyx_kp_s_Raised_on_SCP_protocol_errors;
 static PyObject *__pyx_kp_s_Raised_on_SFTP_handle_errors;
 static PyObject *__pyx_kp_s_Raised_on_SFTP_protocol_errors;
@@ -1259,6 +1275,7 @@ static PyObject *__pyx_kp_s_Raised_on_SSH_Agent_connection_e;
 static PyObject *__pyx_kp_s_Raised_on_SSH_Agent_get_identity;
 static PyObject *__pyx_kp_s_Raised_on_SSH_Agent_list_identit;
 static PyObject *__pyx_kp_s_Raised_on_SSH_agent_protocol_err;
+static PyObject *__pyx_kp_s_Raised_on_allocation_error;
 static PyObject *__pyx_kp_s_Raised_on_any_known_host_check_e;
 static PyObject *__pyx_kp_s_Raised_on_authentication_method;
 static PyObject *__pyx_kp_s_Raised_on_buffer_too_small_error;
@@ -1269,6 +1286,7 @@ static PyObject *__pyx_kp_s_Raised_on_channel_failures;
 static PyObject *__pyx_kp_s_Raised_on_channel_max_packet_len;
 static PyObject *__pyx_kp_s_Raised_on_channel_request_denied;
 static PyObject *__pyx_kp_s_Raised_on_channel_window_exceede;
+static PyObject *__pyx_kp_s_Raised_on_channel_window_full_er;
 static PyObject *__pyx_kp_s_Raised_on_compression_errors;
 static PyObject *__pyx_kp_s_Raised_on_decryption_errors;
 static PyObject *__pyx_kp_s_Raised_on_encryption_errors;
@@ -1287,9 +1305,11 @@ static PyObject *__pyx_kp_s_Raised_on_errors_signing_host_ke;
 static PyObject *__pyx_kp_s_Raised_on_errors_writing_line_to;
 static PyObject *__pyx_kp_s_Raised_on_errors_writing_to_know;
 static PyObject *__pyx_kp_s_Raised_on_file_errors;
+static PyObject *__pyx_kp_s_Raised_on_invalid_MAC;
 static PyObject *__pyx_kp_s_Raised_on_invalid_method_errors;
 static PyObject *__pyx_kp_s_Raised_on_invalid_poll_type_erro;
 static PyObject *__pyx_kp_s_Raised_on_invalid_request_errors;
+static PyObject *__pyx_kp_s_Raised_on_key_file_authenticatio;
 static PyObject *__pyx_kp_s_Raised_on_keys_do_not_match_for;
 static PyObject *__pyx_kp_s_Raised_on_no_match_for_known_hos;
 static PyObject *__pyx_kp_s_Raised_on_non_specific_or_unknow;
@@ -1391,6 +1411,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_AgentGetIdentityError, __pyx_k_AgentGetIdentityError, sizeof(__pyx_k_AgentGetIdentityError), 0, 0, 1, 1},
   {&__pyx_n_s_AgentListIdentitiesError, __pyx_k_AgentListIdentitiesError, sizeof(__pyx_k_AgentListIdentitiesError), 0, 0, 1, 1},
   {&__pyx_n_s_AgentProtocolError, __pyx_k_AgentProtocolError, sizeof(__pyx_k_AgentProtocolError), 0, 0, 1, 1},
+  {&__pyx_n_s_AllocError, __pyx_k_AllocError, sizeof(__pyx_k_AllocError), 0, 0, 1, 1},
   {&__pyx_n_s_AuthenticationError, __pyx_k_AuthenticationError, sizeof(__pyx_k_AuthenticationError), 0, 0, 1, 1},
   {&__pyx_n_s_BadSocketError, __pyx_k_BadSocketError, sizeof(__pyx_k_BadSocketError), 0, 0, 1, 1},
   {&__pyx_n_s_BadUseError, __pyx_k_BadUseError, sizeof(__pyx_k_BadUseError), 0, 0, 1, 1},
@@ -1414,15 +1435,19 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_ChannelRequestDenied, __pyx_k_ChannelRequestDenied, sizeof(__pyx_k_ChannelRequestDenied), 0, 0, 1, 1},
   {&__pyx_n_s_ChannelUnknownError, __pyx_k_ChannelUnknownError, sizeof(__pyx_k_ChannelUnknownError), 0, 0, 1, 1},
   {&__pyx_n_s_ChannelWindowExceeded, __pyx_k_ChannelWindowExceeded, sizeof(__pyx_k_ChannelWindowExceeded), 0, 0, 1, 1},
+  {&__pyx_n_s_ChannelWindowFullError, __pyx_k_ChannelWindowFullError, sizeof(__pyx_k_ChannelWindowFullError), 0, 0, 1, 1},
   {&__pyx_n_s_CompressError, __pyx_k_CompressError, sizeof(__pyx_k_CompressError), 0, 0, 1, 1},
   {&__pyx_n_s_DecryptError, __pyx_k_DecryptError, sizeof(__pyx_k_DecryptError), 0, 0, 1, 1},
   {&__pyx_n_s_EncryptError, __pyx_k_EncryptError, sizeof(__pyx_k_EncryptError), 0, 0, 1, 1},
   {&__pyx_n_s_FileError, __pyx_k_FileError, sizeof(__pyx_k_FileError), 0, 0, 1, 1},
   {&__pyx_n_s_HostkeyInitError, __pyx_k_HostkeyInitError, sizeof(__pyx_k_HostkeyInitError), 0, 0, 1, 1},
   {&__pyx_n_s_HostkeySignError, __pyx_k_HostkeySignError, sizeof(__pyx_k_HostkeySignError), 0, 0, 1, 1},
+  {&__pyx_n_s_InvalidMACError, __pyx_k_InvalidMACError, sizeof(__pyx_k_InvalidMACError), 0, 0, 1, 1},
   {&__pyx_n_s_InvalidPollTypeError, __pyx_k_InvalidPollTypeError, sizeof(__pyx_k_InvalidPollTypeError), 0, 0, 1, 1},
   {&__pyx_n_s_InvalidRequestError, __pyx_k_InvalidRequestError, sizeof(__pyx_k_InvalidRequestError), 0, 0, 1, 1},
+  {&__pyx_n_s_KexFailureError, __pyx_k_KexFailureError, sizeof(__pyx_k_KexFailureError), 0, 0, 1, 1},
   {&__pyx_n_s_KeyExchangeError, __pyx_k_KeyExchangeError, sizeof(__pyx_k_KeyExchangeError), 0, 0, 1, 1},
+  {&__pyx_n_s_KeyfileAuthFailedError, __pyx_k_KeyfileAuthFailedError, sizeof(__pyx_k_KeyfileAuthFailedError), 0, 0, 1, 1},
   {&__pyx_n_s_KnownHostAddError, __pyx_k_KnownHostAddError, sizeof(__pyx_k_KnownHostAddError), 0, 0, 1, 1},
   {&__pyx_n_s_KnownHostCheckError, __pyx_k_KnownHostCheckError, sizeof(__pyx_k_KnownHostCheckError), 0, 0, 1, 1},
   {&__pyx_n_s_KnownHostCheckFailure, __pyx_k_KnownHostCheckFailure, sizeof(__pyx_k_KnownHostCheckFailure), 0, 0, 1, 1},
@@ -1445,6 +1470,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_PublicKeyProtocolError, __pyx_k_PublicKeyProtocolError, sizeof(__pyx_k_PublicKeyProtocolError), 0, 0, 1, 1},
   {&__pyx_n_s_PublickeyUnverifiedError, __pyx_k_PublickeyUnverifiedError, sizeof(__pyx_k_PublickeyUnverifiedError), 0, 0, 1, 1},
   {&__pyx_kp_s_Raised_on_API_bad_use_errors, __pyx_k_Raised_on_API_bad_use_errors, sizeof(__pyx_k_Raised_on_API_bad_use_errors), 0, 0, 1, 0},
+  {&__pyx_kp_s_Raised_on_KEX_failure, __pyx_k_Raised_on_KEX_failure, sizeof(__pyx_k_Raised_on_KEX_failure), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_SCP_protocol_errors, __pyx_k_Raised_on_SCP_protocol_errors, sizeof(__pyx_k_Raised_on_SCP_protocol_errors), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_SFTP_handle_errors, __pyx_k_Raised_on_SFTP_handle_errors, sizeof(__pyx_k_Raised_on_SFTP_handle_errors), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_SFTP_protocol_errors, __pyx_k_Raised_on_SFTP_protocol_errors, sizeof(__pyx_k_Raised_on_SFTP_protocol_errors), 0, 0, 1, 0},
@@ -1453,6 +1479,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_Raised_on_SSH_Agent_get_identity, __pyx_k_Raised_on_SSH_Agent_get_identity, sizeof(__pyx_k_Raised_on_SSH_Agent_get_identity), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_SSH_Agent_list_identit, __pyx_k_Raised_on_SSH_Agent_list_identit, sizeof(__pyx_k_Raised_on_SSH_Agent_list_identit), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_SSH_agent_protocol_err, __pyx_k_Raised_on_SSH_agent_protocol_err, sizeof(__pyx_k_Raised_on_SSH_agent_protocol_err), 0, 0, 1, 0},
+  {&__pyx_kp_s_Raised_on_allocation_error, __pyx_k_Raised_on_allocation_error, sizeof(__pyx_k_Raised_on_allocation_error), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_any_known_host_check_e, __pyx_k_Raised_on_any_known_host_check_e, sizeof(__pyx_k_Raised_on_any_known_host_check_e), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_authentication_method, __pyx_k_Raised_on_authentication_method, sizeof(__pyx_k_Raised_on_authentication_method), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_buffer_too_small_error, __pyx_k_Raised_on_buffer_too_small_error, sizeof(__pyx_k_Raised_on_buffer_too_small_error), 0, 0, 1, 0},
@@ -1463,6 +1490,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_Raised_on_channel_max_packet_len, __pyx_k_Raised_on_channel_max_packet_len, sizeof(__pyx_k_Raised_on_channel_max_packet_len), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_channel_request_denied, __pyx_k_Raised_on_channel_request_denied, sizeof(__pyx_k_Raised_on_channel_request_denied), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_channel_window_exceede, __pyx_k_Raised_on_channel_window_exceede, sizeof(__pyx_k_Raised_on_channel_window_exceede), 0, 0, 1, 0},
+  {&__pyx_kp_s_Raised_on_channel_window_full_er, __pyx_k_Raised_on_channel_window_full_er, sizeof(__pyx_k_Raised_on_channel_window_full_er), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_compression_errors, __pyx_k_Raised_on_compression_errors, sizeof(__pyx_k_Raised_on_compression_errors), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_decryption_errors, __pyx_k_Raised_on_decryption_errors, sizeof(__pyx_k_Raised_on_decryption_errors), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_encryption_errors, __pyx_k_Raised_on_encryption_errors, sizeof(__pyx_k_Raised_on_encryption_errors), 0, 0, 1, 0},
@@ -1481,9 +1509,11 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_Raised_on_errors_writing_line_to, __pyx_k_Raised_on_errors_writing_line_to, sizeof(__pyx_k_Raised_on_errors_writing_line_to), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_errors_writing_to_know, __pyx_k_Raised_on_errors_writing_to_know, sizeof(__pyx_k_Raised_on_errors_writing_to_know), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_file_errors, __pyx_k_Raised_on_file_errors, sizeof(__pyx_k_Raised_on_file_errors), 0, 0, 1, 0},
+  {&__pyx_kp_s_Raised_on_invalid_MAC, __pyx_k_Raised_on_invalid_MAC, sizeof(__pyx_k_Raised_on_invalid_MAC), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_invalid_method_errors, __pyx_k_Raised_on_invalid_method_errors, sizeof(__pyx_k_Raised_on_invalid_method_errors), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_invalid_poll_type_erro, __pyx_k_Raised_on_invalid_poll_type_erro, sizeof(__pyx_k_Raised_on_invalid_poll_type_erro), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_invalid_request_errors, __pyx_k_Raised_on_invalid_request_errors, sizeof(__pyx_k_Raised_on_invalid_request_errors), 0, 0, 1, 0},
+  {&__pyx_kp_s_Raised_on_key_file_authenticatio, __pyx_k_Raised_on_key_file_authenticatio, sizeof(__pyx_k_Raised_on_key_file_authenticatio), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_keys_do_not_match_for, __pyx_k_Raised_on_keys_do_not_match_for, sizeof(__pyx_k_Raised_on_keys_do_not_match_for), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_no_match_for_known_hos, __pyx_k_Raised_on_no_match_for_known_hos, sizeof(__pyx_k_Raised_on_no_match_for_known_hos), 0, 0, 1, 0},
   {&__pyx_kp_s_Raised_on_non_specific_or_unknow, __pyx_k_Raised_on_non_specific_or_unknow, sizeof(__pyx_k_Raised_on_non_specific_or_unknow), 0, 0, 1, 0},
@@ -3563,8 +3593,9 @@ if (!__Pyx_RefNanny) {
   /* "ssh2/exceptions.pyx":286
  * 
  * 
- * class UnknownError(SSH2Error):             # <<<<<<<<<<<<<<
- *     """Raised on non-specific or unknown errors"""
+ * class InvalidMACError(SSH2Error):             # <<<<<<<<<<<<<<
+ *     """Raised on invalid MAC"""
+ * 
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_SSH2Error); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 286, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -3575,25 +3606,154 @@ if (!__Pyx_RefNanny) {
   __pyx_t_1 = 0;
   __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 286, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_UnknownError, __pyx_n_s_UnknownError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, __pyx_kp_s_Raised_on_non_specific_or_unknow); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 286, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_InvalidMACError, __pyx_n_s_InvalidMACError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, __pyx_kp_s_Raised_on_invalid_MAC); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 286, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_UnknownError, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 286, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_InvalidMACError, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 286, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_UnknownError, __pyx_t_4) < 0) __PYX_ERR(0, 286, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_InvalidMACError, __pyx_t_4) < 0) __PYX_ERR(0, 286, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "ssh2/exceptions.pyx":290
+ * 
+ * 
+ * class KexFailureError(SSH2Error):             # <<<<<<<<<<<<<<
+ *     """Raised on KEX failure"""
+ * 
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_SSH2Error); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 290, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 290, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 290, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_KexFailureError, __pyx_n_s_KexFailureError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, __pyx_kp_s_Raised_on_KEX_failure); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 290, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_KexFailureError, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 290, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_KexFailureError, __pyx_t_4) < 0) __PYX_ERR(0, 290, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/exceptions.pyx":294
+ * 
+ * 
+ * class AllocError(SSH2Error):             # <<<<<<<<<<<<<<
+ *     """Raised on allocation error"""
+ * 
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_SSH2Error); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_AllocError, __pyx_n_s_AllocError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, __pyx_kp_s_Raised_on_allocation_error); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_AllocError, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_AllocError, __pyx_t_4) < 0) __PYX_ERR(0, 294, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "ssh2/exceptions.pyx":298
+ * 
+ * 
+ * class ChannelWindowFullError(SSH2Error):             # <<<<<<<<<<<<<<
+ *     """Raised on channel window full error"""
+ * 
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_SSH2Error); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_ChannelWindowFullError, __pyx_n_s_ChannelWindowFullError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, __pyx_kp_s_Raised_on_channel_window_full_er); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_ChannelWindowFullError, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ChannelWindowFullError, __pyx_t_4) < 0) __PYX_ERR(0, 298, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh2/exceptions.pyx":302
+ * 
+ * 
+ * class KeyfileAuthFailedError(SSH2Error):             # <<<<<<<<<<<<<<
+ *     """Raised on key file authentication error"""
+ * 
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_SSH2Error); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_KeyfileAuthFailedError, __pyx_n_s_KeyfileAuthFailedError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, __pyx_kp_s_Raised_on_key_file_authenticatio); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_KeyfileAuthFailedError, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_KeyfileAuthFailedError, __pyx_t_4) < 0) __PYX_ERR(0, 302, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "ssh2/exceptions.pyx":306
+ * 
+ * 
+ * class UnknownError(SSH2Error):             # <<<<<<<<<<<<<<
+ *     """Raised on non-specific or unknown errors"""
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_SSH2Error); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 306, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 306, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 306, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_UnknownError, __pyx_n_s_UnknownError, (PyObject *) NULL, __pyx_n_s_ssh2_exceptions, __pyx_kp_s_Raised_on_non_specific_or_unknow); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 306, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_UnknownError, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 306, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_UnknownError, __pyx_t_4) < 0) __PYX_ERR(0, 306, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "ssh2/exceptions.pyx":1
  * # This file is part of ssh2-python.             # <<<<<<<<<<<<<<
  * # Copyright (C) 2017-2020 Panos Kittenis
  * #
  */
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_2) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_1) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /*--- Wrapped vars code ---*/
 
