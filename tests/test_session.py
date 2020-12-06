@@ -4,13 +4,13 @@ from unittest import skipUnless
 
 from .base_test import SSH2TestCase
 from ssh2.session import Session, LIBSSH2_HOSTKEY_HASH_MD5, \
-    LIBSSH2_HOSTKEY_HASH_SHA1
+    LIBSSH2_HOSTKEY_HASH_SHA1, LIBSSH2_METHOD_KEX, LIBSSH2_METHOD_HOSTKEY, LIBSSH2_METHOD_CRYPT_CS
 from ssh2.sftp import SFTP
 from ssh2.channel import Channel
 from ssh2.error_codes import LIBSSH2_ERROR_EAGAIN
 from ssh2.exceptions import AuthenticationError, AgentAuthenticationError, \
     SCPProtocolError, RequestDeniedError, InvalidRequestError, \
-    SocketSendError, FileError, PublickeyUnverifiedError
+    SocketSendError, FileError, PublickeyUnverifiedError, MethodNotSupported
 from ssh2.utils import wait_socket
 from ssh2.listener import Listener
 
@@ -299,3 +299,19 @@ class SessionTestCase(SSH2TestCase):
             self.user, pkey,
             passphrase="this still works when passphrase not required")
         self.assertEqual(ret_val, 0)
+
+    def test_methods(self):
+        methods = self.session.methods(LIBSSH2_METHOD_KEX)
+        self.assertTrue(len(methods) > 0)
+        methods = self.session.methods(LIBSSH2_METHOD_CRYPT_CS)
+        self.assertEqual(self.session.method_pref(LIBSSH2_METHOD_CRYPT_CS, methods), 0)
+        algs = self.session.supported_algs(LIBSSH2_METHOD_CRYPT_CS)
+        self.assertTrue(len(algs) > 0)
+        alg = algs[0]
+        self.assertEqual(self.session.method_pref(LIBSSH2_METHOD_CRYPT_CS, alg), 0)
+
+    def test_invalid_methods(self):
+        self.assertRaises(
+            MethodNotSupported,
+            self.session.method_pref, LIBSSH2_METHOD_CRYPT_CS, 'invalid algorithm')
+        self.assertRaises(TypeError, self.session.method_pref, 0, 'fake')

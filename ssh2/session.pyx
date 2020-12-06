@@ -62,6 +62,24 @@ LIBSSH2_HOSTKEY_TYPE_RSA = c_ssh2.LIBSSH2_HOSTKEY_TYPE_RSA
 LIBSSH2_HOSTKEY_TYPE_DSS = c_ssh2.LIBSSH2_HOSTKEY_TYPE_DSS
 
 
+cdef class MethodType:
+    def __cinit__(self, value):
+        self.value = value
+
+
+IF EMBEDDED_LIB:
+    LIBSSH2_METHOD_KEX = MethodType(c_ssh2.LIBSSH2_METHOD_KEX)
+    LIBSSH2_METHOD_HOSTKEY = MethodType(c_ssh2.LIBSSH2_METHOD_HOSTKEY)
+    LIBSSH2_METHOD_CRYPT_CS = MethodType(c_ssh2.LIBSSH2_METHOD_CRYPT_CS)
+    LIBSSH2_METHOD_CRYPT_SC = MethodType(c_ssh2.LIBSSH2_METHOD_CRYPT_SC)
+    LIBSSH2_METHOD_MAC_CS = MethodType(c_ssh2.LIBSSH2_METHOD_MAC_CS)
+    LIBSSH2_METHOD_MAC_SC = MethodType(c_ssh2.LIBSSH2_METHOD_MAC_SC)
+    LIBSSH2_METHOD_COMP_CS = MethodType(c_ssh2.LIBSSH2_METHOD_COMP_CS)
+    LIBSSH2_METHOD_COMP_SC = MethodType(c_ssh2.LIBSSH2_METHOD_COMP_SC)
+    LIBSSH2_METHOD_LANG_CS = MethodType(c_ssh2.LIBSSH2_METHOD_LANG_CS)
+    LIBSSH2_METHOD_LANG_SC = MethodType(c_ssh2.LIBSSH2_METHOD_LANG_SC)
+
+
 cdef void kbd_callback(const char *name, int name_len,
                        const char *instruction, int instruction_len,
                        int num_prompts,
@@ -726,3 +744,65 @@ cdef class Session:
             rc = c_ssh2.libssh2_keepalive_send(self._session, &c_seconds)
         handle_error_codes(rc)
         return c_seconds
+
+    def supported_algs(self, MethodType method_type):
+        """Get supportd algorithms for method type.
+
+        :param method_type: Type of method to get
+        :type method_type: :py:class:`MethodType`
+
+        :returns: List of supported algorithms.
+        :rtype: list(str)
+        """
+        cdef const char **c_algs
+        cdef int rc
+        with nogil:
+            rc = c_ssh2.libssh2_session_supported_algs(
+                self._session, method_type.value, &c_algs)
+        if rc < 0:
+            return handle_error_codes(rc)
+        elif rc == 0:
+            return []
+        try:
+            algs = [to_str(c_algs[i]) for i in range(rc)]
+        finally:
+            with nogil:
+                c_ssh2.libssh2_free(self._session, c_algs)
+        return algs
+
+    def methods(self, MethodType method_type):
+        """Get currently active algorithms for method type.
+
+        :param method_type: Type of method to get
+        :type method_type: :py:class:`MethodType`
+
+        :rtype: str
+        """
+        with nogil:
+            methods = c_ssh2.libssh2_session_methods(
+                self._session, method_type.value)
+        return to_str(methods)
+
+    def method_pref(self, MethodType method_type, prefs not None):
+        """Set preference for session method.
+
+        See :py:func:`Session.supported_algs` for supported algorithms
+        for method type.
+
+        :param method_type: A supported session method LIBSSH2_METHOD_*
+        :type method_type: :py:class:`MethodType`
+        :param prefs: Algorithm preference for method type provided.
+        :type prefs: str
+
+        :rtype: int
+        :raises: :py:class:`ssh2.exceptions.MethodNotSupported`
+          on unsupported method preference
+        """
+        cdef bytes b_prefs = to_bytes(prefs)
+        cdef const char *c_prefs = b_prefs
+        cdef int rc
+        with nogil:
+            rc = c_ssh2.libssh2_session_method_pref(
+                self._session, method_type.value, c_prefs)
+        handle_error_codes(rc)
+        return rc

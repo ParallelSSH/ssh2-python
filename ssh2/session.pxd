@@ -21,3 +21,7 @@ cdef class Session:
     cdef int _sock
     cdef readonly object sock
     cdef readonly object _kbd_callback
+
+
+cdef class MethodType:
+    cdef int value
