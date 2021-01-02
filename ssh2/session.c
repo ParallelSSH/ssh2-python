@@ -616,8 +616,6 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include "libssh2_sftp.h"
 #include "libssh2_publickey.h"
 #include "find_eol.h"
-#include <sys/types.h>
-#include <unistd.h>
 #ifdef _OPENMP
 #include <omp.h>
 #endif /* _OPENMP */
@@ -1627,10 +1625,6 @@ static PyObject *(*__pyx_f_4ssh2_9publickey_PyPublicKeySystem)(LIBSSH2_PUBLICKEY
 static PyObject *(*__pyx_f_4ssh2_5utils_to_bytes)(PyObject *); /*proto*/
 static PyObject *(*__pyx_f_4ssh2_5utils_to_str)(char *); /*proto*/
 static int (*__pyx_f_4ssh2_5utils_handle_error_codes)(int, int __pyx_skip_dispatch); /*proto*/
-
-/* Module declarations from 'posix.types' */
-
-/* Module declarations from 'posix.stat' */
 
 /* Module declarations from 'ssh2.statinfo' */
 static PyTypeObject *__pyx_ptype_4ssh2_8statinfo_StatInfo = 0;
