@@ -6,6 +6,7 @@ cmake ..\libssh2 -G "NMake Makefiles"         ^
        -DCMAKE_BUILD_TYPE=Release             ^
        -DCRYPTO_BACKEND=OpenSSL               ^
        -G"%MSVC%"                             ^
+       -A x64                                 ^
        -DBUILD_SHARED_LIBS=OFF                ^
        -DENABLE_ZLIB_COMPRESSION=ON           ^
        -DENABLE_CRYPT_NONE=ON                 ^

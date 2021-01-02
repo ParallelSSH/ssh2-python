@@ -3,6 +3,7 @@ build:
   parallel: true
   verbosity: minimal
 skip_branch_with_pr: true
+image: Visual Studio 2019
 
 environment:
   global:
@@ -14,12 +15,12 @@ environment:
     PYPI_PASS:
       secure: uXkrTaPGSNQdXTJIt3aiyyGnH/ZtvWbDVIXdMrsgwROIJ0kprWp5crS6TAqqddyrFxd7Trrfjg/TjM1/Yx9JzfuKTfoJh1zyviWD/j2zibsycmJQy4Q+CrZ6uI3IRQwe/2ILKxGzLGFBWaqt6C8NaQnkKP+h7ptnPeVhy1+kaOaJowwrCKWje1Ag3CJCAJxPjSC8yl1nlM3DA1rAIk2C5SR4eQQLJeEpPSg3nDnxR4o4YjmA7ILD3OuM1Fbh5iue/rUvWzdt6QCxCbE4egtrCQ==
     # Default python version to run single commands with
-    PYTHON_DEF: "C:\\Python36-x64"
-    PYTHON_VERSION: "3.6"
+    PYTHON_DEF: "C:\\Python38-x64"
+    PYTHON_VERSION: "3.8"
     # Python versions to build wheels for
-    PYTHONVERS: C:\Python36-x64 C:\Python37-x64 C:\Python38-x64
+    PYTHONVERS: C:\Python36-x64 C:\Python37-x64 C:\Python38-x64 C:\Python39-x64
     PYTHON_ARCH: "64"
-    MSVC: "Visual Studio 14 Win64"
+    MSVC: "Visual Studio 16 2019"
 
 install:
   # If there is a newer build queued for the same PR, cancel this one.
