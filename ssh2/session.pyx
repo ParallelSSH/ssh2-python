@@ -29,8 +29,7 @@ from publickey cimport PyPublicKeySystem
 from utils cimport to_bytes, to_str, handle_error_codes
 from statinfo cimport StatInfo
 from knownhost cimport PyKnownHost
-IF EMBEDDED_LIB:
-    from fileinfo cimport FileInfo
+from fileinfo cimport FileInfo
 
 
 cimport c_ssh2
@@ -43,20 +42,12 @@ LIBSSH2_SESSION_BLOCK_OUTBOUND = c_ssh2.LIBSSH2_SESSION_BLOCK_OUTBOUND
 
 LIBSSH2_HOSTKEY_HASH_MD5 = c_ssh2.LIBSSH2_HOSTKEY_HASH_MD5
 LIBSSH2_HOSTKEY_HASH_SHA1 = c_ssh2.LIBSSH2_HOSTKEY_HASH_SHA1
-IF EMBEDDED_LIB:
-    LIBSSH2_HOSTKEY_HASH_SHA256 = c_ssh2.LIBSSH2_HOSTKEY_HASH_SHA256
-    LIBSSH2_HOSTKEY_TYPE_ECDSA_256 = c_ssh2.LIBSSH2_HOSTKEY_TYPE_ECDSA_256
-    LIBSSH2_HOSTKEY_TYPE_ECDSA_384 = c_ssh2.LIBSSH2_HOSTKEY_TYPE_ECDSA_384
-    LIBSSH2_HOSTKEY_TYPE_ECDSA_521 = c_ssh2.LIBSSH2_HOSTKEY_TYPE_ECDSA_521
-    LIBSSH2_HOSTKEY_TYPE_ED25519 = c_ssh2.LIBSSH2_HOSTKEY_TYPE_ED25519
-ELSE:
-    LIBSSH2_HOSTKEY_HASH_SHA256 = None
-    LIBSSH2_HOSTKEY_HASH_SHA256 = None
-    LIBSSH2_HOSTKEY_TYPE_ECDSA_256 = None
-    LIBSSH2_HOSTKEY_TYPE_ECDSA_384 = None
-    LIBSSH2_HOSTKEY_TYPE_ECDSA_521 = None
-    LIBSSH2_HOSTKEY_TYPE_ED25519 = None
+LIBSSH2_HOSTKEY_HASH_SHA256 = c_ssh2.LIBSSH2_HOSTKEY_HASH_SHA256
 
+LIBSSH2_HOSTKEY_TYPE_ECDSA_256 = c_ssh2.LIBSSH2_HOSTKEY_TYPE_ECDSA_256
+LIBSSH2_HOSTKEY_TYPE_ECDSA_384 = c_ssh2.LIBSSH2_HOSTKEY_TYPE_ECDSA_384
+LIBSSH2_HOSTKEY_TYPE_ECDSA_521 = c_ssh2.LIBSSH2_HOSTKEY_TYPE_ECDSA_521
+LIBSSH2_HOSTKEY_TYPE_ED25519 = c_ssh2.LIBSSH2_HOSTKEY_TYPE_ED25519
 LIBSSH2_HOSTKEY_TYPE_UNKNOWN = c_ssh2.LIBSSH2_HOSTKEY_TYPE_UNKNOWN
 LIBSSH2_HOSTKEY_TYPE_RSA = c_ssh2.LIBSSH2_HOSTKEY_TYPE_RSA
 LIBSSH2_HOSTKEY_TYPE_DSS = c_ssh2.LIBSSH2_HOSTKEY_TYPE_DSS
@@ -67,17 +58,16 @@ cdef class MethodType:
         self.value = value
 
 
-IF EMBEDDED_LIB:
-    LIBSSH2_METHOD_KEX = MethodType(c_ssh2.LIBSSH2_METHOD_KEX)
-    LIBSSH2_METHOD_HOSTKEY = MethodType(c_ssh2.LIBSSH2_METHOD_HOSTKEY)
-    LIBSSH2_METHOD_CRYPT_CS = MethodType(c_ssh2.LIBSSH2_METHOD_CRYPT_CS)
-    LIBSSH2_METHOD_CRYPT_SC = MethodType(c_ssh2.LIBSSH2_METHOD_CRYPT_SC)
-    LIBSSH2_METHOD_MAC_CS = MethodType(c_ssh2.LIBSSH2_METHOD_MAC_CS)
-    LIBSSH2_METHOD_MAC_SC = MethodType(c_ssh2.LIBSSH2_METHOD_MAC_SC)
-    LIBSSH2_METHOD_COMP_CS = MethodType(c_ssh2.LIBSSH2_METHOD_COMP_CS)
-    LIBSSH2_METHOD_COMP_SC = MethodType(c_ssh2.LIBSSH2_METHOD_COMP_SC)
-    LIBSSH2_METHOD_LANG_CS = MethodType(c_ssh2.LIBSSH2_METHOD_LANG_CS)
-    LIBSSH2_METHOD_LANG_SC = MethodType(c_ssh2.LIBSSH2_METHOD_LANG_SC)
+LIBSSH2_METHOD_KEX = MethodType(c_ssh2.LIBSSH2_METHOD_KEX)
+LIBSSH2_METHOD_HOSTKEY = MethodType(c_ssh2.LIBSSH2_METHOD_HOSTKEY)
+LIBSSH2_METHOD_CRYPT_CS = MethodType(c_ssh2.LIBSSH2_METHOD_CRYPT_CS)
+LIBSSH2_METHOD_CRYPT_SC = MethodType(c_ssh2.LIBSSH2_METHOD_CRYPT_SC)
+LIBSSH2_METHOD_MAC_CS = MethodType(c_ssh2.LIBSSH2_METHOD_MAC_CS)
+LIBSSH2_METHOD_MAC_SC = MethodType(c_ssh2.LIBSSH2_METHOD_MAC_SC)
+LIBSSH2_METHOD_COMP_CS = MethodType(c_ssh2.LIBSSH2_METHOD_COMP_CS)
+LIBSSH2_METHOD_COMP_SC = MethodType(c_ssh2.LIBSSH2_METHOD_COMP_SC)
+LIBSSH2_METHOD_LANG_CS = MethodType(c_ssh2.LIBSSH2_METHOD_LANG_CS)
+LIBSSH2_METHOD_LANG_SC = MethodType(c_ssh2.LIBSSH2_METHOD_LANG_SC)
 
 
 cdef void kbd_callback(const char *name, int name_len,
@@ -278,30 +268,29 @@ cdef class Session:
                 _privatekey, _passphrase, _hostname)
         return handle_error_codes(rc)
 
-    IF EMBEDDED_LIB:
-        def userauth_publickey_frommemory(
-                self, username, bytes privatekeyfiledata,
-                passphrase='', bytes publickeyfiledata=None):
-            cdef int rc
-            cdef bytes b_username = to_bytes(username)
-            cdef bytes b_passphrase = to_bytes(passphrase)
-            cdef char *_username = b_username
-            cdef char *_passphrase = b_passphrase
-            cdef char *_publickeyfiledata = NULL
-            cdef char *_privatekeyfiledata = privatekeyfiledata
-            cdef size_t username_len, privatekeydata_len
-            cdef size_t pubkeydata_len = 0
-            username_len, privatekeydata_len = \
-                len(b_username), len(privatekeyfiledata)
-            if publickeyfiledata is not None:
-                _publickeyfiledata = publickeyfiledata
-                pubkeydata_len = len(publickeyfiledata)
-            with nogil:
-                rc = c_ssh2.libssh2_userauth_publickey_frommemory(
-                    self._session, _username, username_len, _publickeyfiledata,
-                    pubkeydata_len, _privatekeyfiledata,
-                    privatekeydata_len, _passphrase)
-            return handle_error_codes(rc)
+    def userauth_publickey_frommemory(
+            self, username, bytes privatekeyfiledata,
+            passphrase='', bytes publickeyfiledata=None):
+        cdef int rc
+        cdef bytes b_username = to_bytes(username)
+        cdef bytes b_passphrase = to_bytes(passphrase)
+        cdef char *_username = b_username
+        cdef char *_passphrase = b_passphrase
+        cdef char *_publickeyfiledata = NULL
+        cdef char *_privatekeyfiledata = privatekeyfiledata
+        cdef size_t username_len, privatekeydata_len
+        cdef size_t pubkeydata_len = 0
+        username_len, privatekeydata_len = \
+            len(b_username), len(privatekeyfiledata)
+        if publickeyfiledata is not None:
+            _publickeyfiledata = publickeyfiledata
+            pubkeydata_len = len(publickeyfiledata)
+        with nogil:
+            rc = c_ssh2.libssh2_userauth_publickey_frommemory(
+                self._session, _username, username_len, _publickeyfiledata,
+                pubkeydata_len, _privatekeyfiledata,
+                privatekeydata_len, _passphrase)
+        return handle_error_codes(rc)
 
     def userauth_password(self, username not None, password not None):
         """Perform password authentication
@@ -557,15 +546,14 @@ cdef class Session:
                 self._session)
         return rc
 
-    IF EMBEDDED_LIB:
-        def set_last_error(self, int errcode, errmsg not None):
-            cdef bytes b_errmsg = to_bytes(errmsg)
-            cdef char *_errmsg = b_errmsg
-            cdef int rc
-            with nogil:
-                rc = c_ssh2.libssh2_session_set_last_error(
-                    self._session, errcode, _errmsg)
-            return rc
+    def set_last_error(self, int errcode, errmsg not None):
+        cdef bytes b_errmsg = to_bytes(errmsg)
+        cdef char *_errmsg = b_errmsg
+        cdef int rc
+        with nogil:
+            rc = c_ssh2.libssh2_session_set_last_error(
+                self._session, errcode, _errmsg)
+        return rc
 
     def scp_recv(self, path not None):
         """Receive file via SCP.
@@ -589,28 +577,26 @@ cdef class Session:
                 self._session))
         return PyChannel(channel, self), statinfo
 
-    IF EMBEDDED_LIB:
-        def scp_recv2(self, path not None):
-            """Receive file via SCP.
+    def scp_recv2(self, path not None):
+        """Receive file via SCP.
 
-            Available only on libssh2 >= 1.7.
+        :param path: File path to receive.
+        :type path: str
 
-            :param path: File path to receive.
-            :type path: str
-
-            :rtype: tuple(:py:class:`ssh2.channel.Channel`,
-              :py:class:`ssh2.fileinfo.FileInfo`) or ``None``"""
-            cdef FileInfo fileinfo = FileInfo()
-            cdef bytes b_path = to_bytes(path)
-            cdef char *_path = b_path
-            cdef c_ssh2.LIBSSH2_CHANNEL *channel
-            with nogil:
-                channel = c_ssh2.libssh2_scp_recv2(
-                    self._session, _path, fileinfo._stat)
-            if channel is NULL:
-                return handle_error_codes(c_ssh2.libssh2_session_last_errno(
-                    self._session))
-            return PyChannel(channel, self), fileinfo
+        :rtype: tuple(:py:class:`ssh2.channel.Channel`,
+          :py:class:`ssh2.fileinfo.FileInfo`) or ``None``
+        """
+        cdef FileInfo fileinfo = FileInfo()
+        cdef bytes b_path = to_bytes(path)
+        cdef char *_path = b_path
+        cdef c_ssh2.LIBSSH2_CHANNEL *channel
+        with nogil:
+            channel = c_ssh2.libssh2_scp_recv2(
+                self._session, _path, fileinfo._stat)
+        if channel is NULL:
+            return handle_error_codes(c_ssh2.libssh2_session_last_errno(
+                self._session))
+        return PyChannel(channel, self), fileinfo
 
     def scp_send(self, path not None, int mode, size_t size):
         """Deprecated in favour of scp_send64. Send file via SCP.

@@ -142,7 +142,8 @@ cdef class SFTPHandle:
         """Close handle. Called automatically when object is deleted
         and/or garbage collected.
 
-        :rtype: int"""
+        :rtype: int
+        """
         cdef int rc
         if self.closed == 0:
             with nogil:
@@ -159,7 +160,8 @@ cdef class SFTPHandle:
         :type buffer_maxlen: int
 
         :returns: Size and buffer tuple.
-        :rtype: (int, bytes)"""
+        :rtype: (int, bytes)
+        """
         cdef ssize_t rc
         cdef bytes buf = b''
         cdef char *cbuf
@@ -235,7 +237,8 @@ cdef class SFTPHandle:
 
         :param buffer_maxlen: Max length of returned file entry.
 
-        :rtype: iter(bytes)"""
+        :rtype: iter(bytes)
+        """
         rc, buf, attrs = self._readdir(buffer_maxlen)
         while rc == c_ssh2.LIBSSH2_ERROR_EAGAIN or rc > 0:
             yield rc, buf, attrs
@@ -277,7 +280,8 @@ cdef class SFTPHandle:
         :param buf: Buffer to write.
         :type buf: bytes
 
-        :rtype: tuple(int, int)"""
+        :rtype: tuple(int, int)
+        """
         cdef size_t _size = len(buf)
         cdef size_t tot_size = _size
         cdef size_t bytes_written = 0
@@ -297,17 +301,15 @@ cdef class SFTPHandle:
             bytes_written = tot_size - _size
         return rc, bytes_written
 
-    IF EMBEDDED_LIB:
-        def fsync(self):
-            """Sync file handle data.
+    def fsync(self):
+        """Sync file handle data.
 
-            Available from libssh2 >= ``1.4.4``
-
-            :rtype: int"""
-            cdef int rc
-            with nogil:
-                rc = c_sftp.libssh2_sftp_fsync(self._handle)
-            return handle_error_codes(rc)
+        :rtype: int
+        """
+        cdef int rc
+        with nogil:
+            rc = c_sftp.libssh2_sftp_fsync(self._handle)
+        return handle_error_codes(rc)
 
     def seek(self, size_t offset):
         """Deprecated, use seek64.
@@ -317,7 +319,8 @@ cdef class SFTPHandle:
         :param offset: Offset to seek to.
         :type offset: int
 
-        :rtype: None"""
+        :rtype: None
+        """
         with nogil:
             c_sftp.libssh2_sftp_seek(self._handle, offset)
 
@@ -327,14 +330,16 @@ cdef class SFTPHandle:
         :param offset: Offset to seek to.
         :type offset: int
 
-        :rtype: None"""
+        :rtype: None
+        """
         with nogil:
             c_sftp.libssh2_sftp_seek64(self._handle, offset)
 
     def rewind(self):
         """Rewind file handle to beginning of file.
 
-        :rtype: None"""
+        :rtype: None
+        """
         with nogil:
             c_sftp.libssh2_sftp_rewind(self._handle)
 
@@ -343,7 +348,8 @@ cdef class SFTPHandle:
 
         Get current file handle offset.
 
-        :rtype: int"""
+        :rtype: int
+        """
         cdef size_t rc
         with nogil:
             rc = c_sftp.libssh2_sftp_tell(self._handle)
@@ -352,15 +358,19 @@ cdef class SFTPHandle:
     def tell64(self):
         """Get current file handle 64-bit offset.
 
-        :rtype: int"""
+        :rtype: int
+        """
         cdef c_ssh2.libssh2_uint64_t rc
         with nogil:
             rc = c_sftp.libssh2_sftp_tell(self._handle)
         return handle_error_codes(rc)
 
     def fstat_ex(self, SFTPAttributes attrs, int setstat):
-        """Get or set file attributes. Clients would typically use one of the
-        fstat or fsetstat functions instead"""
+        """Get or set file attributes.
+
+        Clients would typically use one of the fstat or fsetstat 
+        functions instead.
+        """
         cdef int rc
         with nogil:
             rc = c_sftp.libssh2_sftp_fstat_ex(
@@ -370,7 +380,8 @@ cdef class SFTPHandle:
     def fstat(self):
         """Get file stat attributes from handle.
 
-        :rtype: :py:class:`ssh2.sftp.SFTPAttributes` or LIBSSH2_ERROR_EAGAIN"""
+        :rtype: :py:class:`ssh2.sftp.SFTPAttributes` or LIBSSH2_ERROR_EAGAIN
+        """
         cdef int rc
         cdef SFTPAttributes attrs = SFTPAttributes()
         with nogil:
@@ -383,7 +394,8 @@ cdef class SFTPHandle:
         """Set file handle attributes.
 
         :param attrs: Attributes to set.
-        :type attrs: :py:class:`ssh2.sftp.SFTPAttributes`"""
+        :type attrs: :py:class:`ssh2.sftp.SFTPAttributes`
+        """
         cdef int rc
         with nogil:
             rc = c_sftp.libssh2_sftp_fsetstat(self._handle, attrs._attrs)
@@ -392,7 +404,8 @@ cdef class SFTPHandle:
     def fstatvfs(self):
         """Get file system statistics for handle
 
-        :rtype: `ssh2.sftp.SFTPStatVFS`"""
+        :rtype: `ssh2.sftp.SFTPStatVFS`
+        """
         cdef SFTPStatVFS vfs = SFTPStatVFS(self)
         cdef int rc
         with nogil:
