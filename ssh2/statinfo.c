@@ -605,12 +605,13 @@ static CYTHON_INLINE float __PYX_NAN() {
 #define __PYX_HAVE__ssh2__statinfo
 #define __PYX_HAVE_API__ssh2__statinfo
 /* Early includes */
-#include <stddef.h>
-#include <time.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stddef.h>
+#include <time.h>
 #ifdef _OPENMP
 #include <omp.h>
 #endif /* _OPENMP */
@@ -1117,17 +1118,19 @@ static int __Pyx_check_binary_version(void);
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 
-/* Module declarations from 'libc.stddef' */
-
-/* Module declarations from 'libc.time' */
-
 /* Module declarations from 'posix.types' */
 
-/* Module declarations from 'ssh2.c_stat' */
+/* Module declarations from 'posix.stat' */
 
 /* Module declarations from 'libc.string' */
 
 /* Module declarations from 'libc.stdlib' */
+
+/* Module declarations from 'libc.stddef' */
+
+/* Module declarations from 'libc.time' */
+
+/* Module declarations from 'ssh2.c_stat' */
 
 /* Module declarations from 'ssh2.statinfo' */
 static PyTypeObject *__pyx_ptype_4ssh2_8statinfo_StatInfo = 0;
