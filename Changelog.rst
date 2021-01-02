@@ -1,6 +1,14 @@
 Change Log
 =============
 
+0.26.0
+++++++
+
+Changes
+-------
+
+* Enabled ``ssh2.fileinfo.FileInfo`` attributes on Windows builds - #131.
+
 
 0.25.0
 ++++++
