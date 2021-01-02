@@ -54,22 +54,7 @@ cdef extern from "libssh2.h" nogil:
             LIBSSH2_METHOD_LANG_CS
             LIBSSH2_METHOD_LANG_SC
 
-    # ctypedef libssh2_uint64_t libssh2_struct_stat_size
     ctypedef struct_stat libssh2_struct_stat
-    # ctypedef struct libssh2_struct_stat:
-    #     long   st_dev
-    #     unsigned long   st_ino
-    #     unsigned long st_mode
-    #     long st_nlink
-    #     long   st_uid
-    #     long   st_gid
-    #     long   st_rdev
-    #     libssh2_uint64_t st_size
-    #     long st_blksize
-    #     long st_blocks
-    #     long  st_atime
-    #     long  st_mtime
-    #     long st_ctime
     ctypedef struct LIBSSH2_USERAUTH_KBDINT_PROMPT:
         char *text
         unsigned int length
