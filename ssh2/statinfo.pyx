@@ -15,7 +15,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 from libc.stdlib cimport malloc, free
-from posix.stat cimport struct_stat
+from c_stat cimport struct_stat
 
 
 cdef class StatInfo:
