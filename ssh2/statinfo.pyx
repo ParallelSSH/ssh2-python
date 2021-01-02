@@ -60,11 +60,17 @@ cdef class StatInfo:
 
     @property
     def st_blksize(self):
-        return self._stat.st_blksize
+        IF UNAME_SYSNAME != 'Windows':
+            return self._stat.st_blksize
+        ELSE:
+            return None
 
     @property
     def st_blocks(self):
-        return self._stat.st_blocks
+        IF UNAME_SYSNAME != 'Windows':
+            return self._stat.st_blocks
+        ELSE:
+            return None
 
     @property
     def st_atime(self):
