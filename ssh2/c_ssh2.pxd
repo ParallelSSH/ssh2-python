@@ -15,9 +15,6 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 from libc.time cimport time_t
-from posix.types cimport blkcnt_t, blksize_t, dev_t, gid_t, ino_t, \
-    nlink_t, time_t, uid_t
-
 from c_stat cimport struct_stat
 
 
@@ -57,21 +54,7 @@ cdef extern from "libssh2.h" nogil:
             LIBSSH2_METHOD_LANG_CS
             LIBSSH2_METHOD_LANG_SC
 
-    # ctypedef libssh2_uint64_t libssh2_struct_stat_size
-    ctypedef struct libssh2_struct_stat:
-        dev_t   st_dev
-        ino_t   st_ino
-        unsigned long st_mode
-        nlink_t st_nlink
-        uid_t   st_uid
-        gid_t   st_gid
-        dev_t   st_rdev
-        libssh2_uint64_t st_size
-        blksize_t st_blksize
-        blkcnt_t st_blocks
-        time_t  st_atime
-        time_t  st_mtime
-        time_t st_ctime
+    ctypedef struct_stat libssh2_struct_stat
     ctypedef struct LIBSSH2_USERAUTH_KBDINT_PROMPT:
         char *text
         unsigned int length
