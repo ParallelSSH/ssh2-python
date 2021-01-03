@@ -23,4 +23,4 @@ cdef object PyChannel(c_ssh2.LIBSSH2_CHANNEL *channel, Session session)
 
 cdef class Channel:
     cdef c_ssh2.LIBSSH2_CHANNEL *_channel
-    cdef Session _session
+    cdef readonly Session _session

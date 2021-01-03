@@ -882,7 +882,7 @@ struct __pyx_obj_4ssh2_5agent_Agent {
  * 
  * cdef class Channel:             # <<<<<<<<<<<<<<
  *     cdef c_ssh2.LIBSSH2_CHANNEL *_channel
- *     cdef Session _session
+ *     cdef readonly Session _session
  */
 struct __pyx_obj_4ssh2_7channel_Channel {
   PyObject_HEAD

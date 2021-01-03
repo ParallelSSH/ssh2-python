@@ -843,8 +843,8 @@ struct __pyx_obj_4ssh2_7session_MethodType;
 struct __pyx_obj_4ssh2_9knownhost_KnownHostEntry;
 struct __pyx_obj_4ssh2_9knownhost_KnownHost;
 
-/* "session.pxd":19
- * cimport c_ssh2
+/* "session.pxd":20
+ * 
  * 
  * cdef class Session:             # <<<<<<<<<<<<<<
  *     cdef c_ssh2.LIBSSH2_SESSION *_session
@@ -859,7 +859,7 @@ struct __pyx_obj_4ssh2_7session_Session {
 };
 
 
-/* "session.pxd":26
+/* "session.pxd":27
  * 
  * 
  * cdef class MethodType:             # <<<<<<<<<<<<<<
@@ -6757,12 +6757,12 @@ static int __Pyx_modinit_type_import_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_import_code", 0);
   /*--- Type import code ---*/
-  __pyx_t_1 = PyImport_ImportModule("ssh2.session"); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 19, __pyx_L1_error)
+  __pyx_t_1 = PyImport_ImportModule("ssh2.session"); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 20, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_ptype_4ssh2_7session_Session = __Pyx_ImportType(__pyx_t_1, "ssh2.session", "Session", sizeof(struct __pyx_obj_4ssh2_7session_Session), __Pyx_ImportType_CheckSize_Warn);
-   if (!__pyx_ptype_4ssh2_7session_Session) __PYX_ERR(2, 19, __pyx_L1_error)
+   if (!__pyx_ptype_4ssh2_7session_Session) __PYX_ERR(2, 20, __pyx_L1_error)
   __pyx_ptype_4ssh2_7session_MethodType = __Pyx_ImportType(__pyx_t_1, "ssh2.session", "MethodType", sizeof(struct __pyx_obj_4ssh2_7session_MethodType), __Pyx_ImportType_CheckSize_Warn);
-   if (!__pyx_ptype_4ssh2_7session_MethodType) __PYX_ERR(2, 26, __pyx_L1_error)
+   if (!__pyx_ptype_4ssh2_7session_MethodType) __PYX_ERR(2, 27, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_RefNannyFinishContext();
   return 0;

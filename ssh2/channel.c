@@ -892,7 +892,7 @@ struct __pyx_obj_4ssh2_4sftp_SFTP {
  * 
  * cdef class Channel:             # <<<<<<<<<<<<<<
  *     cdef c_ssh2.LIBSSH2_CHANNEL *_channel
- *     cdef Session _session
+ *     cdef readonly Session _session
  */
 struct __pyx_obj_4ssh2_7channel_Channel {
   PyObject_HEAD
@@ -1359,6 +1359,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_64poll_channel_read(struct __p
 static PyObject *__pyx_pf_4ssh2_7channel_7Channel_66handle_extended_data(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_ignore_mode); /* proto */
 static PyObject *__pyx_pf_4ssh2_7channel_7Channel_68handle_extended_data2(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_ignore_mode); /* proto */
 static PyObject *__pyx_pf_4ssh2_7channel_7Channel_70ignore_extended_data(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_ignore_mode); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_8_session___get__(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_4ssh2_7channel_7Channel_72__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_4ssh2_7channel_7Channel_74__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_4ssh2_7channel_Channel(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -7640,6 +7641,41 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_70ignore_extended_data(struct 
   return __pyx_r;
 }
 
+/* "ssh2/channel.pxd":26
+ * cdef class Channel:
+ *     cdef c_ssh2.LIBSSH2_CHANNEL *_channel
+ *     cdef readonly Session _session             # <<<<<<<<<<<<<<
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_8_session_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_8_session_1__get__(PyObject *__pyx_v_self) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_8_session___get__(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_8_session___get__(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__get__", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __Pyx_INCREF(((PyObject *)__pyx_v_self->_session));
+  __pyx_r = ((PyObject *)__pyx_v_self->_session);
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
 /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
@@ -7815,6 +7851,10 @@ static PyObject *__pyx_getprop_4ssh2_7channel_7Channel_session(PyObject *o, CYTH
   return __pyx_pw_4ssh2_7channel_7Channel_7session_1__get__(o);
 }
 
+static PyObject *__pyx_getprop_4ssh2_7channel_7Channel__session(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_4ssh2_7channel_7Channel_8_session_1__get__(o);
+}
+
 static PyMethodDef __pyx_methods_4ssh2_7channel_Channel[] = {
   {"pty", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_5pty, METH_VARARGS|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_4pty},
   {"execute", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_7execute, METH_O, __pyx_doc_4ssh2_7channel_7Channel_6execute},
@@ -7857,6 +7897,7 @@ static PyMethodDef __pyx_methods_4ssh2_7channel_Channel[] = {
 
 static struct PyGetSetDef __pyx_getsets_4ssh2_7channel_Channel[] = {
   {(char *)"session", __pyx_getprop_4ssh2_7channel_7Channel_session, 0, (char *)"Originating session.", 0},
+  {(char *)"_session", __pyx_getprop_4ssh2_7channel_7Channel__session, 0, (char *)0, 0},
   {0, 0, 0, 0, 0}
 };
 
