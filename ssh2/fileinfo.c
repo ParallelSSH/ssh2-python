@@ -607,7 +607,6 @@ static CYTHON_INLINE float __PYX_NAN() {
 /* Early includes */
 #include <stddef.h>
 #include <time.h>
-#include <sys/types.h>
 #include <sys/stat.h>
 #include "libssh2.h"
 #include <string.h>
@@ -823,18 +822,6 @@ static const char *__pyx_f[] = {
   "ssh2/fileinfo.pyx",
   "stringsource",
 };
-/* NoFastGil.proto */
-#define __Pyx_PyGILState_Ensure PyGILState_Ensure
-#define __Pyx_PyGILState_Release PyGILState_Release
-#define __Pyx_FastGIL_Remember()
-#define __Pyx_FastGIL_Forget()
-#define __Pyx_FastGilFuncInit()
-
-/* ForceInitThreads.proto */
-#ifndef __PYX_FORCE_INIT_THREADS
-  #define __PYX_FORCE_INIT_THREADS 0
-#endif
-
 
 /*--- Type declarations ---*/
 struct __pyx_obj_4ssh2_8fileinfo_FileInfo;
@@ -1060,37 +1047,16 @@ static void __Pyx_AddTraceback(const char *funcname, int c_line,
                                int py_line, const char *filename);
 
 /* CIntToPy.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_libssh2_uint64_t(libssh2_uint64_t value);
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_unsigned_PY_LONG_LONG(unsigned PY_LONG_LONG value);
 
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_unsigned_long(unsigned long value);
 
 /* CIntToPy.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_ino_t(ino_t value);
-
-/* CIntToPy.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_nlink_t(nlink_t value);
-
-/* CIntToPy.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_uid_t(uid_t value);
-
-/* CIntToPy.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_gid_t(gid_t value);
-
-/* CIntToPy.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_dev_t(dev_t value);
-
-/* CIntToPy.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_blksize_t(blksize_t value);
-
-/* CIntToPy.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_blkcnt_t(blkcnt_t value);
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value);
 
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_time_t(time_t value);
-
-/* CIntToPy.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value);
 
 /* CIntFromPy.proto */
 static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *);
@@ -1121,8 +1087,6 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 /* Module declarations from 'libc.stddef' */
 
 /* Module declarations from 'libc.time' */
-
-/* Module declarations from 'posix.types' */
 
 /* Module declarations from 'ssh2.c_stat' */
 
@@ -1195,8 +1159,8 @@ static PyObject *__pyx_tuple__2;
  *         """Representation of stat structure - libssh2 >= 1.7"""
  * 
  *         def __cinit__(self):             # <<<<<<<<<<<<<<
- *             with nogil:
- *                 self._stat = <c_ssh2.libssh2_struct_stat *>malloc(
+ *             self._stat = <c_ssh2.libssh2_struct_stat *>malloc(
+ *                 sizeof(c_ssh2.libssh2_struct_stat))
  */
 
 /* Python wrapper */
@@ -1227,119 +1191,46 @@ static int __pyx_pf_4ssh2_8fileinfo_8FileInfo___cinit__(struct __pyx_obj_4ssh2_8
   /* "ssh2/fileinfo.pyx":29
  * 
  *         def __cinit__(self):
- *             with nogil:             # <<<<<<<<<<<<<<
- *                 self._stat = <c_ssh2.libssh2_struct_stat *>malloc(
- *                     sizeof(c_ssh2.libssh2_struct_stat))
+ *             self._stat = <c_ssh2.libssh2_struct_stat *>malloc(             # <<<<<<<<<<<<<<
+ *                 sizeof(c_ssh2.libssh2_struct_stat))
+ *             if self._stat is NULL:
  */
-  {
-      #ifdef WITH_THREAD
-      PyThreadState *_save;
-      Py_UNBLOCK_THREADS
-      __Pyx_FastGIL_Remember();
-      #endif
-      /*try:*/ {
+  __pyx_v_self->_stat = ((libssh2_struct_stat *)malloc((sizeof(libssh2_struct_stat))));
 
-        /* "ssh2/fileinfo.pyx":30
- *         def __cinit__(self):
- *             with nogil:
- *                 self._stat = <c_ssh2.libssh2_struct_stat *>malloc(             # <<<<<<<<<<<<<<
- *                     sizeof(c_ssh2.libssh2_struct_stat))
- *                 if self._stat is NULL:
- */
-        __pyx_v_self->_stat = ((libssh2_struct_stat *)malloc((sizeof(libssh2_struct_stat))));
-
-        /* "ssh2/fileinfo.pyx":32
- *                 self._stat = <c_ssh2.libssh2_struct_stat *>malloc(
- *                     sizeof(c_ssh2.libssh2_struct_stat))
- *                 if self._stat is NULL:             # <<<<<<<<<<<<<<
- *                     with gil:
- *                         raise MemoryError
- */
-        __pyx_t_1 = ((__pyx_v_self->_stat == NULL) != 0);
-        if (__pyx_t_1) {
-
-          /* "ssh2/fileinfo.pyx":33
- *                     sizeof(c_ssh2.libssh2_struct_stat))
- *                 if self._stat is NULL:
- *                     with gil:             # <<<<<<<<<<<<<<
- *                         raise MemoryError
+  /* "ssh2/fileinfo.pyx":31
+ *             self._stat = <c_ssh2.libssh2_struct_stat *>malloc(
+ *                 sizeof(c_ssh2.libssh2_struct_stat))
+ *             if self._stat is NULL:             # <<<<<<<<<<<<<<
+ *                 raise MemoryError
  * 
  */
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = __Pyx_PyGILState_Ensure();
-              #endif
-              /*try:*/ {
+  __pyx_t_1 = ((__pyx_v_self->_stat == NULL) != 0);
+  if (unlikely(__pyx_t_1)) {
 
-                /* "ssh2/fileinfo.pyx":34
- *                 if self._stat is NULL:
- *                     with gil:
- *                         raise MemoryError             # <<<<<<<<<<<<<<
+    /* "ssh2/fileinfo.pyx":32
+ *                 sizeof(c_ssh2.libssh2_struct_stat))
+ *             if self._stat is NULL:
+ *                 raise MemoryError             # <<<<<<<<<<<<<<
  * 
  *         def __dealloc__(self):
  */
-                PyErr_NoMemory(); __PYX_ERR(0, 34, __pyx_L8_error)
-              }
+    PyErr_NoMemory(); __PYX_ERR(0, 32, __pyx_L1_error)
 
-              /* "ssh2/fileinfo.pyx":33
- *                     sizeof(c_ssh2.libssh2_struct_stat))
- *                 if self._stat is NULL:
- *                     with gil:             # <<<<<<<<<<<<<<
- *                         raise MemoryError
+    /* "ssh2/fileinfo.pyx":31
+ *             self._stat = <c_ssh2.libssh2_struct_stat *>malloc(
+ *                 sizeof(c_ssh2.libssh2_struct_stat))
+ *             if self._stat is NULL:             # <<<<<<<<<<<<<<
+ *                 raise MemoryError
  * 
  */
-              /*finally:*/ {
-                __pyx_L8_error: {
-                  #ifdef WITH_THREAD
-                  __Pyx_PyGILState_Release(__pyx_gilstate_save);
-                  #endif
-                  goto __pyx_L4_error;
-                }
-              }
-          }
-
-          /* "ssh2/fileinfo.pyx":32
- *                 self._stat = <c_ssh2.libssh2_struct_stat *>malloc(
- *                     sizeof(c_ssh2.libssh2_struct_stat))
- *                 if self._stat is NULL:             # <<<<<<<<<<<<<<
- *                     with gil:
- *                         raise MemoryError
- */
-        }
-      }
-
-      /* "ssh2/fileinfo.pyx":29
- * 
- *         def __cinit__(self):
- *             with nogil:             # <<<<<<<<<<<<<<
- *                 self._stat = <c_ssh2.libssh2_struct_stat *>malloc(
- *                     sizeof(c_ssh2.libssh2_struct_stat))
- */
-      /*finally:*/ {
-        /*normal exit:*/{
-          #ifdef WITH_THREAD
-          __Pyx_FastGIL_Forget();
-          Py_BLOCK_THREADS
-          #endif
-          goto __pyx_L5;
-        }
-        __pyx_L4_error: {
-          #ifdef WITH_THREAD
-          __Pyx_FastGIL_Forget();
-          Py_BLOCK_THREADS
-          #endif
-          goto __pyx_L1_error;
-        }
-        __pyx_L5:;
-      }
   }
 
   /* "ssh2/fileinfo.pyx":28
  *         """Representation of stat structure - libssh2 >= 1.7"""
  * 
  *         def __cinit__(self):             # <<<<<<<<<<<<<<
- *             with nogil:
- *                 self._stat = <c_ssh2.libssh2_struct_stat *>malloc(
+ *             self._stat = <c_ssh2.libssh2_struct_stat *>malloc(
+ *                 sizeof(c_ssh2.libssh2_struct_stat))
  */
 
   /* function exit code */
@@ -1353,8 +1244,8 @@ static int __pyx_pf_4ssh2_8fileinfo_8FileInfo___cinit__(struct __pyx_obj_4ssh2_8
   return __pyx_r;
 }
 
-/* "ssh2/fileinfo.pyx":36
- *                         raise MemoryError
+/* "ssh2/fileinfo.pyx":34
+ *                 raise MemoryError
  * 
  *         def __dealloc__(self):             # <<<<<<<<<<<<<<
  *             free(self._stat)
@@ -1376,7 +1267,7 @@ static void __pyx_pf_4ssh2_8fileinfo_8FileInfo_2__dealloc__(struct __pyx_obj_4ss
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "ssh2/fileinfo.pyx":37
+  /* "ssh2/fileinfo.pyx":35
  * 
  *         def __dealloc__(self):
  *             free(self._stat)             # <<<<<<<<<<<<<<
@@ -1385,8 +1276,8 @@ static void __pyx_pf_4ssh2_8fileinfo_8FileInfo_2__dealloc__(struct __pyx_obj_4ss
  */
   free(__pyx_v_self->_stat);
 
-  /* "ssh2/fileinfo.pyx":36
- *                         raise MemoryError
+  /* "ssh2/fileinfo.pyx":34
+ *                 raise MemoryError
  * 
  *         def __dealloc__(self):             # <<<<<<<<<<<<<<
  *             free(self._stat)
@@ -1397,7 +1288,7 @@ static void __pyx_pf_4ssh2_8fileinfo_8FileInfo_2__dealloc__(struct __pyx_obj_4ss
   __Pyx_RefNannyFinishContext();
 }
 
-/* "ssh2/fileinfo.pyx":40
+/* "ssh2/fileinfo.pyx":38
  * 
  *         @property
  *         def st_size(self):             # <<<<<<<<<<<<<<
@@ -1427,7 +1318,7 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_7st_size___get__(struct __py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "ssh2/fileinfo.pyx":41
+  /* "ssh2/fileinfo.pyx":39
  *         @property
  *         def st_size(self):
  *             return self._stat.st_size             # <<<<<<<<<<<<<<
@@ -1435,13 +1326,13 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_7st_size___get__(struct __py
  *         @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_libssh2_uint64_t(__pyx_v_self->_stat->st_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_PY_LONG_LONG(__pyx_v_self->_stat->st_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/fileinfo.pyx":40
+  /* "ssh2/fileinfo.pyx":38
  * 
  *         @property
  *         def st_size(self):             # <<<<<<<<<<<<<<
@@ -1460,7 +1351,7 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_7st_size___get__(struct __py
   return __pyx_r;
 }
 
-/* "ssh2/fileinfo.pyx":44
+/* "ssh2/fileinfo.pyx":42
  * 
  *         @property
  *         def st_mode(self):             # <<<<<<<<<<<<<<
@@ -1490,21 +1381,21 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_7st_mode___get__(struct __py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "ssh2/fileinfo.pyx":45
+  /* "ssh2/fileinfo.pyx":43
  *         @property
  *         def st_mode(self):
  *             return self._stat.st_mode             # <<<<<<<<<<<<<<
  * 
- *         IF UNAME_SYSNAME != "Windows":
+ *         @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_long(__pyx_v_self->_stat->st_mode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_long(__pyx_v_self->_stat->st_mode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 43, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/fileinfo.pyx":44
+  /* "ssh2/fileinfo.pyx":42
  * 
  *         @property
  *         def st_mode(self):             # <<<<<<<<<<<<<<
@@ -1523,11 +1414,11 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_7st_mode___get__(struct __py
   return __pyx_r;
 }
 
-/* "ssh2/fileinfo.pyx":49
- *         IF UNAME_SYSNAME != "Windows":
- *             @property
- *             def st_ino(self):             # <<<<<<<<<<<<<<
- *                 return self._stat.st_ino
+/* "ssh2/fileinfo.pyx":46
+ * 
+ *         @property
+ *         def st_ino(self):             # <<<<<<<<<<<<<<
+ *             return self._stat.st_ino
  * 
  */
 
@@ -1553,25 +1444,25 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_6st_ino___get__(struct __pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "ssh2/fileinfo.pyx":50
- *             @property
- *             def st_ino(self):
- *                 return self._stat.st_ino             # <<<<<<<<<<<<<<
+  /* "ssh2/fileinfo.pyx":47
+ *         @property
+ *         def st_ino(self):
+ *             return self._stat.st_ino             # <<<<<<<<<<<<<<
  * 
- *             @property
+ *         @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_ino_t(__pyx_v_self->_stat->st_ino); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_long(__pyx_v_self->_stat->st_ino); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/fileinfo.pyx":49
- *         IF UNAME_SYSNAME != "Windows":
- *             @property
- *             def st_ino(self):             # <<<<<<<<<<<<<<
- *                 return self._stat.st_ino
+  /* "ssh2/fileinfo.pyx":46
+ * 
+ *         @property
+ *         def st_ino(self):             # <<<<<<<<<<<<<<
+ *             return self._stat.st_ino
  * 
  */
 
@@ -1586,11 +1477,11 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_6st_ino___get__(struct __pyx
   return __pyx_r;
 }
 
-/* "ssh2/fileinfo.pyx":53
+/* "ssh2/fileinfo.pyx":50
  * 
- *             @property
- *             def st_nlink(self):             # <<<<<<<<<<<<<<
- *                 return self._stat.st_nlink
+ *         @property
+ *         def st_nlink(self):             # <<<<<<<<<<<<<<
+ *             return self._stat.st_nlink
  * 
  */
 
@@ -1616,25 +1507,25 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_8st_nlink___get__(struct __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "ssh2/fileinfo.pyx":54
- *             @property
- *             def st_nlink(self):
- *                 return self._stat.st_nlink             # <<<<<<<<<<<<<<
+  /* "ssh2/fileinfo.pyx":51
+ *         @property
+ *         def st_nlink(self):
+ *             return self._stat.st_nlink             # <<<<<<<<<<<<<<
  * 
- *             @property
+ *         @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_nlink_t(__pyx_v_self->_stat->st_nlink); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_self->_stat->st_nlink); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/fileinfo.pyx":53
+  /* "ssh2/fileinfo.pyx":50
  * 
- *             @property
- *             def st_nlink(self):             # <<<<<<<<<<<<<<
- *                 return self._stat.st_nlink
+ *         @property
+ *         def st_nlink(self):             # <<<<<<<<<<<<<<
+ *             return self._stat.st_nlink
  * 
  */
 
@@ -1649,11 +1540,11 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_8st_nlink___get__(struct __p
   return __pyx_r;
 }
 
-/* "ssh2/fileinfo.pyx":57
+/* "ssh2/fileinfo.pyx":54
  * 
- *             @property
- *             def st_uid(self):             # <<<<<<<<<<<<<<
- *                 return self._stat.st_uid
+ *         @property
+ *         def st_uid(self):             # <<<<<<<<<<<<<<
+ *             return self._stat.st_uid
  * 
  */
 
@@ -1679,25 +1570,25 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_6st_uid___get__(struct __pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "ssh2/fileinfo.pyx":58
- *             @property
- *             def st_uid(self):
- *                 return self._stat.st_uid             # <<<<<<<<<<<<<<
+  /* "ssh2/fileinfo.pyx":55
+ *         @property
+ *         def st_uid(self):
+ *             return self._stat.st_uid             # <<<<<<<<<<<<<<
  * 
- *             @property
+ *         @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_uid_t(__pyx_v_self->_stat->st_uid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_self->_stat->st_uid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/fileinfo.pyx":57
+  /* "ssh2/fileinfo.pyx":54
  * 
- *             @property
- *             def st_uid(self):             # <<<<<<<<<<<<<<
- *                 return self._stat.st_uid
+ *         @property
+ *         def st_uid(self):             # <<<<<<<<<<<<<<
+ *             return self._stat.st_uid
  * 
  */
 
@@ -1712,11 +1603,11 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_6st_uid___get__(struct __pyx
   return __pyx_r;
 }
 
-/* "ssh2/fileinfo.pyx":61
+/* "ssh2/fileinfo.pyx":58
  * 
- *             @property
- *             def st_gid(self):             # <<<<<<<<<<<<<<
- *                 return self._stat.st_gid
+ *         @property
+ *         def st_gid(self):             # <<<<<<<<<<<<<<
+ *             return self._stat.st_gid
  * 
  */
 
@@ -1742,25 +1633,25 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_6st_gid___get__(struct __pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "ssh2/fileinfo.pyx":62
- *             @property
- *             def st_gid(self):
- *                 return self._stat.st_gid             # <<<<<<<<<<<<<<
+  /* "ssh2/fileinfo.pyx":59
+ *         @property
+ *         def st_gid(self):
+ *             return self._stat.st_gid             # <<<<<<<<<<<<<<
  * 
- *             @property
+ *         @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_gid_t(__pyx_v_self->_stat->st_gid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_self->_stat->st_gid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/fileinfo.pyx":61
+  /* "ssh2/fileinfo.pyx":58
  * 
- *             @property
- *             def st_gid(self):             # <<<<<<<<<<<<<<
- *                 return self._stat.st_gid
+ *         @property
+ *         def st_gid(self):             # <<<<<<<<<<<<<<
+ *             return self._stat.st_gid
  * 
  */
 
@@ -1775,11 +1666,11 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_6st_gid___get__(struct __pyx
   return __pyx_r;
 }
 
-/* "ssh2/fileinfo.pyx":65
+/* "ssh2/fileinfo.pyx":62
  * 
- *             @property
- *             def st_rdev(self):             # <<<<<<<<<<<<<<
- *                 return self._stat.st_rdev
+ *         @property
+ *         def st_rdev(self):             # <<<<<<<<<<<<<<
+ *             return self._stat.st_rdev
  * 
  */
 
@@ -1805,25 +1696,25 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_7st_rdev___get__(struct __py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "ssh2/fileinfo.pyx":66
- *             @property
- *             def st_rdev(self):
- *                 return self._stat.st_rdev             # <<<<<<<<<<<<<<
+  /* "ssh2/fileinfo.pyx":63
+ *         @property
+ *         def st_rdev(self):
+ *             return self._stat.st_rdev             # <<<<<<<<<<<<<<
  * 
- *             @property
+ *         @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_dev_t(__pyx_v_self->_stat->st_rdev); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_self->_stat->st_rdev); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/fileinfo.pyx":65
+  /* "ssh2/fileinfo.pyx":62
  * 
- *             @property
- *             def st_rdev(self):             # <<<<<<<<<<<<<<
- *                 return self._stat.st_rdev
+ *         @property
+ *         def st_rdev(self):             # <<<<<<<<<<<<<<
+ *             return self._stat.st_rdev
  * 
  */
 
@@ -1838,12 +1729,12 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_7st_rdev___get__(struct __py
   return __pyx_r;
 }
 
-/* "ssh2/fileinfo.pyx":69
+/* "ssh2/fileinfo.pyx":66
  * 
- *             @property
- *             def st_blksize(self):             # <<<<<<<<<<<<<<
+ *         @property
+ *         def st_blksize(self):             # <<<<<<<<<<<<<<
+ *             IF UNAME_SYSNAME != 'Windows':
  *                 return self._stat.st_blksize
- * 
  */
 
 /* Python wrapper */
@@ -1868,26 +1759,26 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_10st_blksize___get__(struct 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "ssh2/fileinfo.pyx":70
- *             @property
- *             def st_blksize(self):
+  /* "ssh2/fileinfo.pyx":68
+ *         def st_blksize(self):
+ *             IF UNAME_SYSNAME != 'Windows':
  *                 return self._stat.st_blksize             # <<<<<<<<<<<<<<
- * 
- *             @property
+ *             ELSE:
+ *                 return None
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_blksize_t(__pyx_v_self->_stat->st_blksize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_self->_stat->st_blksize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/fileinfo.pyx":69
+  /* "ssh2/fileinfo.pyx":66
  * 
- *             @property
- *             def st_blksize(self):             # <<<<<<<<<<<<<<
+ *         @property
+ *         def st_blksize(self):             # <<<<<<<<<<<<<<
+ *             IF UNAME_SYSNAME != 'Windows':
  *                 return self._stat.st_blksize
- * 
  */
 
   /* function exit code */
@@ -1903,10 +1794,10 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_10st_blksize___get__(struct 
 
 /* "ssh2/fileinfo.pyx":73
  * 
- *             @property
- *             def st_blocks(self):             # <<<<<<<<<<<<<<
+ *         @property
+ *         def st_blocks(self):             # <<<<<<<<<<<<<<
+ *             IF UNAME_SYSNAME != 'Windows':
  *                 return self._stat.st_blocks
- * 
  */
 
 /* Python wrapper */
@@ -1931,15 +1822,15 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_9st_blocks___get__(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "ssh2/fileinfo.pyx":74
- *             @property
- *             def st_blocks(self):
+  /* "ssh2/fileinfo.pyx":75
+ *         def st_blocks(self):
+ *             IF UNAME_SYSNAME != 'Windows':
  *                 return self._stat.st_blocks             # <<<<<<<<<<<<<<
- * 
- *             @property
+ *             ELSE:
+ *                 return None
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_blkcnt_t(__pyx_v_self->_stat->st_blocks); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_self->_stat->st_blocks); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -1947,10 +1838,10 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_9st_blocks___get__(struct __
 
   /* "ssh2/fileinfo.pyx":73
  * 
- *             @property
- *             def st_blocks(self):             # <<<<<<<<<<<<<<
+ *         @property
+ *         def st_blocks(self):             # <<<<<<<<<<<<<<
+ *             IF UNAME_SYSNAME != 'Windows':
  *                 return self._stat.st_blocks
- * 
  */
 
   /* function exit code */
@@ -1964,11 +1855,11 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_9st_blocks___get__(struct __
   return __pyx_r;
 }
 
-/* "ssh2/fileinfo.pyx":77
+/* "ssh2/fileinfo.pyx":80
  * 
- *             @property
- *             def st_atime(self):             # <<<<<<<<<<<<<<
- *                 return self._stat.st_atime
+ *         @property
+ *         def st_atime(self):             # <<<<<<<<<<<<<<
+ *             return self._stat.st_atime
  * 
  */
 
@@ -1994,25 +1885,25 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_8st_atime___get__(struct __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "ssh2/fileinfo.pyx":78
- *             @property
- *             def st_atime(self):
- *                 return self._stat.st_atime             # <<<<<<<<<<<<<<
+  /* "ssh2/fileinfo.pyx":81
+ *         @property
+ *         def st_atime(self):
+ *             return self._stat.st_atime             # <<<<<<<<<<<<<<
  * 
- *             @property
+ *         @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_time_t(__pyx_v_self->_stat->st_atime); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_time_t(__pyx_v_self->_stat->st_atime); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/fileinfo.pyx":77
+  /* "ssh2/fileinfo.pyx":80
  * 
- *             @property
- *             def st_atime(self):             # <<<<<<<<<<<<<<
- *                 return self._stat.st_atime
+ *         @property
+ *         def st_atime(self):             # <<<<<<<<<<<<<<
+ *             return self._stat.st_atime
  * 
  */
 
@@ -2027,11 +1918,11 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_8st_atime___get__(struct __p
   return __pyx_r;
 }
 
-/* "ssh2/fileinfo.pyx":81
+/* "ssh2/fileinfo.pyx":84
  * 
- *             @property
- *             def st_mtime(self):             # <<<<<<<<<<<<<<
- *                 return self._stat.st_mtime
+ *         @property
+ *         def st_mtime(self):             # <<<<<<<<<<<<<<
+ *             return self._stat.st_mtime
  * 
  */
 
@@ -2057,25 +1948,25 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_8st_mtime___get__(struct __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "ssh2/fileinfo.pyx":82
- *             @property
- *             def st_mtime(self):
- *                 return self._stat.st_mtime             # <<<<<<<<<<<<<<
+  /* "ssh2/fileinfo.pyx":85
+ *         @property
+ *         def st_mtime(self):
+ *             return self._stat.st_mtime             # <<<<<<<<<<<<<<
  * 
- *             @property
+ *         @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_time_t(__pyx_v_self->_stat->st_mtime); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_time_t(__pyx_v_self->_stat->st_mtime); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/fileinfo.pyx":81
+  /* "ssh2/fileinfo.pyx":84
  * 
- *             @property
- *             def st_mtime(self):             # <<<<<<<<<<<<<<
- *                 return self._stat.st_mtime
+ *         @property
+ *         def st_mtime(self):             # <<<<<<<<<<<<<<
+ *             return self._stat.st_mtime
  * 
  */
 
@@ -2090,11 +1981,11 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_8st_mtime___get__(struct __p
   return __pyx_r;
 }
 
-/* "ssh2/fileinfo.pyx":85
+/* "ssh2/fileinfo.pyx":88
  * 
- *             @property
- *             def st_ctime(self):             # <<<<<<<<<<<<<<
- *                 return self._stat.st_ctime
+ *         @property
+ *         def st_ctime(self):             # <<<<<<<<<<<<<<
+ *             return self._stat.st_ctime
  */
 
 /* Python wrapper */
@@ -2119,23 +2010,23 @@ static PyObject *__pyx_pf_4ssh2_8fileinfo_8FileInfo_8st_ctime___get__(struct __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "ssh2/fileinfo.pyx":86
- *             @property
- *             def st_ctime(self):
- *                 return self._stat.st_ctime             # <<<<<<<<<<<<<<
+  /* "ssh2/fileinfo.pyx":89
+ *         @property
+ *         def st_ctime(self):
+ *             return self._stat.st_ctime             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_time_t(__pyx_v_self->_stat->st_ctime); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_time_t(__pyx_v_self->_stat->st_ctime); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/fileinfo.pyx":85
+  /* "ssh2/fileinfo.pyx":88
  * 
- *             @property
- *             def st_ctime(self):             # <<<<<<<<<<<<<<
- *                 return self._stat.st_ctime
+ *         @property
+ *         def st_ctime(self):             # <<<<<<<<<<<<<<
+ *             return self._stat.st_ctime
  */
 
   /* function exit code */
@@ -2498,7 +2389,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(0, 32, __pyx_L1_error)
   __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(1, 2, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
@@ -3587,24 +3478,24 @@ bad:
 }
 
 /* CIntToPy */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_libssh2_uint64_t(libssh2_uint64_t value) {
-    const libssh2_uint64_t neg_one = (libssh2_uint64_t) ((libssh2_uint64_t) 0 - (libssh2_uint64_t) 1), const_zero = (libssh2_uint64_t) 0;
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_unsigned_PY_LONG_LONG(unsigned PY_LONG_LONG value) {
+    const unsigned PY_LONG_LONG neg_one = (unsigned PY_LONG_LONG) ((unsigned PY_LONG_LONG) 0 - (unsigned PY_LONG_LONG) 1), const_zero = (unsigned PY_LONG_LONG) 0;
     const int is_unsigned = neg_one > const_zero;
     if (is_unsigned) {
-        if (sizeof(libssh2_uint64_t) < sizeof(long)) {
+        if (sizeof(unsigned PY_LONG_LONG) < sizeof(long)) {
             return PyInt_FromLong((long) value);
-        } else if (sizeof(libssh2_uint64_t) <= sizeof(unsigned long)) {
+        } else if (sizeof(unsigned PY_LONG_LONG) <= sizeof(unsigned long)) {
             return PyLong_FromUnsignedLong((unsigned long) value);
 #ifdef HAVE_LONG_LONG
-        } else if (sizeof(libssh2_uint64_t) <= sizeof(unsigned PY_LONG_LONG)) {
+        } else if (sizeof(unsigned PY_LONG_LONG) <= sizeof(unsigned PY_LONG_LONG)) {
             return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
 #endif
         }
     } else {
-        if (sizeof(libssh2_uint64_t) <= sizeof(long)) {
+        if (sizeof(unsigned PY_LONG_LONG) <= sizeof(long)) {
             return PyInt_FromLong((long) value);
 #ifdef HAVE_LONG_LONG
-        } else if (sizeof(libssh2_uint64_t) <= sizeof(PY_LONG_LONG)) {
+        } else if (sizeof(unsigned PY_LONG_LONG) <= sizeof(PY_LONG_LONG)) {
             return PyLong_FromLongLong((PY_LONG_LONG) value);
 #endif
         }
@@ -3612,7 +3503,7 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_libssh2_uint64_t(libssh2_uint64_
     {
         int one = 1; int little = (int)*(unsigned char *)&one;
         unsigned char *bytes = (unsigned char *)&value;
-        return _PyLong_FromByteArray(bytes, sizeof(libssh2_uint64_t),
+        return _PyLong_FromByteArray(bytes, sizeof(unsigned PY_LONG_LONG),
                                      little, !is_unsigned);
     }
 }
@@ -3649,24 +3540,24 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_unsigned_long(unsigned long valu
 }
 
 /* CIntToPy */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_ino_t(ino_t value) {
-    const ino_t neg_one = (ino_t) ((ino_t) 0 - (ino_t) 1), const_zero = (ino_t) 0;
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
+    const long neg_one = (long) ((long) 0 - (long) 1), const_zero = (long) 0;
     const int is_unsigned = neg_one > const_zero;
     if (is_unsigned) {
-        if (sizeof(ino_t) < sizeof(long)) {
+        if (sizeof(long) < sizeof(long)) {
             return PyInt_FromLong((long) value);
-        } else if (sizeof(ino_t) <= sizeof(unsigned long)) {
+        } else if (sizeof(long) <= sizeof(unsigned long)) {
             return PyLong_FromUnsignedLong((unsigned long) value);
 #ifdef HAVE_LONG_LONG
-        } else if (sizeof(ino_t) <= sizeof(unsigned PY_LONG_LONG)) {
+        } else if (sizeof(long) <= sizeof(unsigned PY_LONG_LONG)) {
             return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
 #endif
         }
     } else {
-        if (sizeof(ino_t) <= sizeof(long)) {
+        if (sizeof(long) <= sizeof(long)) {
             return PyInt_FromLong((long) value);
 #ifdef HAVE_LONG_LONG
-        } else if (sizeof(ino_t) <= sizeof(PY_LONG_LONG)) {
+        } else if (sizeof(long) <= sizeof(PY_LONG_LONG)) {
             return PyLong_FromLongLong((PY_LONG_LONG) value);
 #endif
         }
@@ -3674,193 +3565,7 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_ino_t(ino_t value) {
     {
         int one = 1; int little = (int)*(unsigned char *)&one;
         unsigned char *bytes = (unsigned char *)&value;
-        return _PyLong_FromByteArray(bytes, sizeof(ino_t),
-                                     little, !is_unsigned);
-    }
-}
-
-/* CIntToPy */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_nlink_t(nlink_t value) {
-    const nlink_t neg_one = (nlink_t) ((nlink_t) 0 - (nlink_t) 1), const_zero = (nlink_t) 0;
-    const int is_unsigned = neg_one > const_zero;
-    if (is_unsigned) {
-        if (sizeof(nlink_t) < sizeof(long)) {
-            return PyInt_FromLong((long) value);
-        } else if (sizeof(nlink_t) <= sizeof(unsigned long)) {
-            return PyLong_FromUnsignedLong((unsigned long) value);
-#ifdef HAVE_LONG_LONG
-        } else if (sizeof(nlink_t) <= sizeof(unsigned PY_LONG_LONG)) {
-            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
-#endif
-        }
-    } else {
-        if (sizeof(nlink_t) <= sizeof(long)) {
-            return PyInt_FromLong((long) value);
-#ifdef HAVE_LONG_LONG
-        } else if (sizeof(nlink_t) <= sizeof(PY_LONG_LONG)) {
-            return PyLong_FromLongLong((PY_LONG_LONG) value);
-#endif
-        }
-    }
-    {
-        int one = 1; int little = (int)*(unsigned char *)&one;
-        unsigned char *bytes = (unsigned char *)&value;
-        return _PyLong_FromByteArray(bytes, sizeof(nlink_t),
-                                     little, !is_unsigned);
-    }
-}
-
-/* CIntToPy */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_uid_t(uid_t value) {
-    const uid_t neg_one = (uid_t) ((uid_t) 0 - (uid_t) 1), const_zero = (uid_t) 0;
-    const int is_unsigned = neg_one > const_zero;
-    if (is_unsigned) {
-        if (sizeof(uid_t) < sizeof(long)) {
-            return PyInt_FromLong((long) value);
-        } else if (sizeof(uid_t) <= sizeof(unsigned long)) {
-            return PyLong_FromUnsignedLong((unsigned long) value);
-#ifdef HAVE_LONG_LONG
-        } else if (sizeof(uid_t) <= sizeof(unsigned PY_LONG_LONG)) {
-            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
-#endif
-        }
-    } else {
-        if (sizeof(uid_t) <= sizeof(long)) {
-            return PyInt_FromLong((long) value);
-#ifdef HAVE_LONG_LONG
-        } else if (sizeof(uid_t) <= sizeof(PY_LONG_LONG)) {
-            return PyLong_FromLongLong((PY_LONG_LONG) value);
-#endif
-        }
-    }
-    {
-        int one = 1; int little = (int)*(unsigned char *)&one;
-        unsigned char *bytes = (unsigned char *)&value;
-        return _PyLong_FromByteArray(bytes, sizeof(uid_t),
-                                     little, !is_unsigned);
-    }
-}
-
-/* CIntToPy */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_gid_t(gid_t value) {
-    const gid_t neg_one = (gid_t) ((gid_t) 0 - (gid_t) 1), const_zero = (gid_t) 0;
-    const int is_unsigned = neg_one > const_zero;
-    if (is_unsigned) {
-        if (sizeof(gid_t) < sizeof(long)) {
-            return PyInt_FromLong((long) value);
-        } else if (sizeof(gid_t) <= sizeof(unsigned long)) {
-            return PyLong_FromUnsignedLong((unsigned long) value);
-#ifdef HAVE_LONG_LONG
-        } else if (sizeof(gid_t) <= sizeof(unsigned PY_LONG_LONG)) {
-            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
-#endif
-        }
-    } else {
-        if (sizeof(gid_t) <= sizeof(long)) {
-            return PyInt_FromLong((long) value);
-#ifdef HAVE_LONG_LONG
-        } else if (sizeof(gid_t) <= sizeof(PY_LONG_LONG)) {
-            return PyLong_FromLongLong((PY_LONG_LONG) value);
-#endif
-        }
-    }
-    {
-        int one = 1; int little = (int)*(unsigned char *)&one;
-        unsigned char *bytes = (unsigned char *)&value;
-        return _PyLong_FromByteArray(bytes, sizeof(gid_t),
-                                     little, !is_unsigned);
-    }
-}
-
-/* CIntToPy */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_dev_t(dev_t value) {
-    const dev_t neg_one = (dev_t) ((dev_t) 0 - (dev_t) 1), const_zero = (dev_t) 0;
-    const int is_unsigned = neg_one > const_zero;
-    if (is_unsigned) {
-        if (sizeof(dev_t) < sizeof(long)) {
-            return PyInt_FromLong((long) value);
-        } else if (sizeof(dev_t) <= sizeof(unsigned long)) {
-            return PyLong_FromUnsignedLong((unsigned long) value);
-#ifdef HAVE_LONG_LONG
-        } else if (sizeof(dev_t) <= sizeof(unsigned PY_LONG_LONG)) {
-            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
-#endif
-        }
-    } else {
-        if (sizeof(dev_t) <= sizeof(long)) {
-            return PyInt_FromLong((long) value);
-#ifdef HAVE_LONG_LONG
-        } else if (sizeof(dev_t) <= sizeof(PY_LONG_LONG)) {
-            return PyLong_FromLongLong((PY_LONG_LONG) value);
-#endif
-        }
-    }
-    {
-        int one = 1; int little = (int)*(unsigned char *)&one;
-        unsigned char *bytes = (unsigned char *)&value;
-        return _PyLong_FromByteArray(bytes, sizeof(dev_t),
-                                     little, !is_unsigned);
-    }
-}
-
-/* CIntToPy */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_blksize_t(blksize_t value) {
-    const blksize_t neg_one = (blksize_t) ((blksize_t) 0 - (blksize_t) 1), const_zero = (blksize_t) 0;
-    const int is_unsigned = neg_one > const_zero;
-    if (is_unsigned) {
-        if (sizeof(blksize_t) < sizeof(long)) {
-            return PyInt_FromLong((long) value);
-        } else if (sizeof(blksize_t) <= sizeof(unsigned long)) {
-            return PyLong_FromUnsignedLong((unsigned long) value);
-#ifdef HAVE_LONG_LONG
-        } else if (sizeof(blksize_t) <= sizeof(unsigned PY_LONG_LONG)) {
-            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
-#endif
-        }
-    } else {
-        if (sizeof(blksize_t) <= sizeof(long)) {
-            return PyInt_FromLong((long) value);
-#ifdef HAVE_LONG_LONG
-        } else if (sizeof(blksize_t) <= sizeof(PY_LONG_LONG)) {
-            return PyLong_FromLongLong((PY_LONG_LONG) value);
-#endif
-        }
-    }
-    {
-        int one = 1; int little = (int)*(unsigned char *)&one;
-        unsigned char *bytes = (unsigned char *)&value;
-        return _PyLong_FromByteArray(bytes, sizeof(blksize_t),
-                                     little, !is_unsigned);
-    }
-}
-
-/* CIntToPy */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_blkcnt_t(blkcnt_t value) {
-    const blkcnt_t neg_one = (blkcnt_t) ((blkcnt_t) 0 - (blkcnt_t) 1), const_zero = (blkcnt_t) 0;
-    const int is_unsigned = neg_one > const_zero;
-    if (is_unsigned) {
-        if (sizeof(blkcnt_t) < sizeof(long)) {
-            return PyInt_FromLong((long) value);
-        } else if (sizeof(blkcnt_t) <= sizeof(unsigned long)) {
-            return PyLong_FromUnsignedLong((unsigned long) value);
-#ifdef HAVE_LONG_LONG
-        } else if (sizeof(blkcnt_t) <= sizeof(unsigned PY_LONG_LONG)) {
-            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
-#endif
-        }
-    } else {
-        if (sizeof(blkcnt_t) <= sizeof(long)) {
-            return PyInt_FromLong((long) value);
-#ifdef HAVE_LONG_LONG
-        } else if (sizeof(blkcnt_t) <= sizeof(PY_LONG_LONG)) {
-            return PyLong_FromLongLong((PY_LONG_LONG) value);
-#endif
-        }
-    }
-    {
-        int one = 1; int little = (int)*(unsigned char *)&one;
-        unsigned char *bytes = (unsigned char *)&value;
-        return _PyLong_FromByteArray(bytes, sizeof(blkcnt_t),
+        return _PyLong_FromByteArray(bytes, sizeof(long),
                                      little, !is_unsigned);
     }
 }
@@ -3892,37 +3597,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_time_t(time_t value) {
         int one = 1; int little = (int)*(unsigned char *)&one;
         unsigned char *bytes = (unsigned char *)&value;
         return _PyLong_FromByteArray(bytes, sizeof(time_t),
-                                     little, !is_unsigned);
-    }
-}
-
-/* CIntToPy */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
-    const long neg_one = (long) ((long) 0 - (long) 1), const_zero = (long) 0;
-    const int is_unsigned = neg_one > const_zero;
-    if (is_unsigned) {
-        if (sizeof(long) < sizeof(long)) {
-            return PyInt_FromLong((long) value);
-        } else if (sizeof(long) <= sizeof(unsigned long)) {
-            return PyLong_FromUnsignedLong((unsigned long) value);
-#ifdef HAVE_LONG_LONG
-        } else if (sizeof(long) <= sizeof(unsigned PY_LONG_LONG)) {
-            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
-#endif
-        }
-    } else {
-        if (sizeof(long) <= sizeof(long)) {
-            return PyInt_FromLong((long) value);
-#ifdef HAVE_LONG_LONG
-        } else if (sizeof(long) <= sizeof(PY_LONG_LONG)) {
-            return PyLong_FromLongLong((PY_LONG_LONG) value);
-#endif
-        }
-    }
-    {
-        int one = 1; int little = (int)*(unsigned char *)&one;
-        unsigned char *bytes = (unsigned char *)&value;
-        return _PyLong_FromByteArray(bytes, sizeof(long),
                                      little, !is_unsigned);
     }
 }
