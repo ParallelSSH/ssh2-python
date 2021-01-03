@@ -14,76 +14,81 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-"""Available only when built on libssh2 >= ``1.7``"""
+"""Fileinfo attributes returned by SCP functions in libssh2 >= 1.7"""
 
 from libc.stdlib cimport malloc, free
 
 cimport c_ssh2
 
 
-IF EMBEDDED_LIB:
-    cdef class FileInfo:
-        """Representation of stat structure - libssh2 >= 1.7"""
+cdef class FileInfo:
+    """Representation of stat structure - libssh2 >= 1.7"""
 
-        def __cinit__(self):
-            self._stat = <c_ssh2.libssh2_struct_stat *>malloc(
-                sizeof(c_ssh2.libssh2_struct_stat))
-            if self._stat is NULL:
-                raise MemoryError
+    def __cinit__(self):
+        self._stat = <c_ssh2.libssh2_struct_stat *>malloc(
+            sizeof(c_ssh2.libssh2_struct_stat))
+        if self._stat is NULL:
+            raise MemoryError
 
-        def __dealloc__(self):
-            free(self._stat)
+    def __dealloc__(self):
+        free(self._stat)
 
-        @property
-        def st_size(self):
-            return self._stat.st_size
+    @property
+    def st_size(self):
+        return self._stat.st_size
 
-        @property
-        def st_mode(self):
-            return self._stat.st_mode
+    @property
+    def st_mode(self):
+        return self._stat.st_mode
 
-        @property
-        def st_ino(self):
-            return self._stat.st_ino
+    @property
+    def st_ino(self):
+        return self._stat.st_ino
 
-        @property
-        def st_nlink(self):
-            return self._stat.st_nlink
+    @property
+    def st_nlink(self):
+        return self._stat.st_nlink
 
-        @property
-        def st_uid(self):
-            return self._stat.st_uid
+    @property
+    def st_uid(self):
+        return self._stat.st_uid
 
-        @property
-        def st_gid(self):
-            return self._stat.st_gid
+    @property
+    def st_gid(self):
+        return self._stat.st_gid
 
-        @property
-        def st_rdev(self):
-            return self._stat.st_rdev
+    @property
+    def st_rdev(self):
+        return self._stat.st_rdev
 
-        @property
-        def st_blksize(self):
-            IF UNAME_SYSNAME != 'Windows':
-                return self._stat.st_blksize
-            ELSE:
-                return None
+    @property
+    def st_blksize(self):
+        """This property is not supported by Windows platforms.
+        Always returns ``None`` on Windows.
+        """
+        IF UNAME_SYSNAME != 'Windows':
+            return self._stat.st_blksize
+        ELSE:
+            return None
 
-        @property
-        def st_blocks(self):
-            IF UNAME_SYSNAME != 'Windows':
-                return self._stat.st_blocks
-            ELSE:
-                return None
+    @property
+    def st_blocks(self):
+        """This property is not supported by Windows platforms.
+        Always returns ``None`` on Windows.
+        """
+        IF UNAME_SYSNAME != 'Windows':
+            return self._stat.st_blocks
+        ELSE:
+            return None
 
-        @property
-        def st_atime(self):
-            return self._stat.st_atime
+    @property
+    def st_atime(self):
+        return self._stat.st_atime
 
-        @property
-        def st_mtime(self):
-            return self._stat.st_mtime
+    @property
+    def st_mtime(self):
+        return self._stat.st_mtime
 
-        @property
-        def st_ctime(self):
-            return self._stat.st_ctime
+    @property
+    def st_ctime(self):
+        return self._stat.st_ctime

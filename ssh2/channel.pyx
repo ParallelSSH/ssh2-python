@@ -31,6 +31,7 @@ cdef object PyChannel(c_ssh2.LIBSSH2_CHANNEL *channel, Session session):
 
 
 cdef class Channel:
+    """An SSH channel spawned by :py:class:`ssh2.session.Session`."""
 
     def __cinit__(self, Session session):
         self._session = session
@@ -158,7 +159,8 @@ cdef class Channel:
     def eof(self):
         """Get channel EOF status.
 
-        :rtype: bool"""
+        :rtype: bool
+        """
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_eof(self._channel)

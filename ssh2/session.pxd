@@ -16,6 +16,7 @@
 
 cimport c_ssh2
 
+
 cdef class Session:
     cdef c_ssh2.LIBSSH2_SESSION *_session
     cdef int _sock

@@ -24,7 +24,7 @@ ON_RTD = os.environ.get('READTHEDOCS') == 'True'
 
 SYSTEM_LIBSSH2 = bool(os.environ.get('SYSTEM_LIBSSH2', 0)) or ON_RTD
 
-# Only build libssh if running a build
+# Only build libssh2 if running a build
 if not SYSTEM_LIBSSH2 and (len(sys.argv) >= 2 and not (
         '--help' in sys.argv[1:] or
         sys.argv[1] in (

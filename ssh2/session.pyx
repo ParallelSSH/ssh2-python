@@ -54,6 +54,11 @@ LIBSSH2_HOSTKEY_TYPE_DSS = c_ssh2.LIBSSH2_HOSTKEY_TYPE_DSS
 
 
 cdef class MethodType:
+    """Base type for all LIBSSH2_METHOD_* attributes.
+
+    One of the existing ``ssh2.session.LIBSSH2_METHOD_*`` objects should be used
+    directly.
+    """
     def __cinit__(self, value):
         self.value = value
 
@@ -92,7 +97,6 @@ cdef void kbd_callback(const char *name, int name_len,
 
 
 cdef class Session:
-
     """LibSSH2 Session class providing session functions"""
 
     def __cinit__(self):
@@ -110,6 +114,7 @@ cdef class Session:
         self._session = NULL
 
     def disconnect(self):
+        """Disconnect session."""
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_session_disconnect(self._session, b"end")
@@ -271,6 +276,17 @@ cdef class Session:
     def userauth_publickey_frommemory(
             self, username, bytes privatekeyfiledata,
             passphrase='', bytes publickeyfiledata=None):
+        """Authenticate with publickey using in-memory private key data.
+
+        :param username: User name to authenticate.
+        :type username: str
+        :param privatekeyfiledata: Private key data.
+        :type privatekeyfiledata: bytes
+        :param publickeyfiledata: (Optional) Public key data.
+        :type publickeyfiledata: bytes
+        :param passphrase: (Optional) Passphrase for private key.
+        :type passphrase: str
+        """
         cdef int rc
         cdef bytes b_username = to_bytes(username)
         cdef bytes b_passphrase = to_bytes(passphrase)
@@ -293,12 +309,13 @@ cdef class Session:
         return handle_error_codes(rc)
 
     def userauth_password(self, username not None, password not None):
-        """Perform password authentication
+        """Perform password authentication.
 
         :param username: User name to authenticate.
         :type username: str
         :param password: Password
-        :type password: str"""
+        :type password: str
+        """
         cdef int rc
         cdef bytes b_username = to_bytes(username)
         cdef bytes b_password = to_bytes(password)
