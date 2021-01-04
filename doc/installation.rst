@@ -27,7 +27,9 @@ Wheel packages have **no dependencies**.
 System Binary Packages
 =======================
 
-System packages can be built for Centos/RedHat 7, Ubuntu 14.04/16.04/18.04, Debian 8 and Fedora 22/23/24 by running `ci/docker/build-packages.sh <https://github.com/ParallelSSH/ssh2-python/blob/master/ci/docker/build-packages.sh>`_ script in the repository's directory, based on Docker.
+System packages can be built for Centos/RedHat 7, Ubuntu 18.04, Debian 8 and Fedora 24 by running `ci/docker/build-packages.sh <https://github.com/ParallelSSH/ssh2-python/blob/master/ci/docker/build-packages.sh>`_ script in the repository's directory, based on Docker.
+
+The docker files and scripts can be adjusted for newer distribution versions, or other distributions.
 
 To use the built packages, install via the system's package manager, for example for Centos/RedHat based systems:
 
@@ -109,9 +111,9 @@ If there are multiple ``libssh2`` installations on the system, the following can
 
 
 Ubuntu
-_______
+-------
 
-Example for Debian or Ubuntu based distributions.
+Example build for Debian or Ubuntu based distributions.
 
 .. code-block:: shell
 
@@ -123,9 +125,9 @@ Example for Debian or Ubuntu based distributions.
 
 
 RedHat
-_______
+-------
 
-Example for RedHat based distributions.
+Example build for RedHat based distributions.
    
 .. code-block:: shell
 
