@@ -37,27 +37,35 @@ To use the built packages, install via the system's package manager, for example
 
 .. note::
 
-  System packages as built by the above script use system provided ``libssh2`` and do not have all features enabled as most distributions do not have a new enough version. In addition, there are known issues with older versions of ``libssh2`` like what is provided by distributions.
+  These scripts will use the distribution's libssh2 package.
+
+  Starting from ``ssh2-python`` version ``0.27.0``, libssh2 >= ``1.7.0`` is required.
 
   For best compatibility, it is recommended to install binary packages with ``pip``.
 
-Conda package
-===============
-
-A `conda <https://conda.io/miniconda.html>`_ package is available in the ``conda-forge`` channel.
-
-To install, run the following.
-
-.. code-block:: shell
-
-   conda install -c conda-forge ssh2-python
-
 Installation from Source
-==========================
+=========================
 
 Source distributions inlude a bundled ``libssh2`` which is built automatically by default. OpenSSL development libraries are required.
 
-For builds against system provided ``libssh2``, the ``SYSTEM_LIBSSH2=1`` environment variable setting can be used.
+To build against system provided ``libssh2``, the ``SYSTEM_LIBSSH2=1`` environment variable setting can be used.
+
+Dependencies
+------------
+
+================================= ============
+Package                           Version
+================================= ============
+libssh2 (ssh2-python >= 0.27.0)   >=1.7.0
+libssh2 (ssh2-python <= 0.26.0)   >=1.4.0
+OpenSSL                           1.0 or 1.1
+zlib (for compression support)    Any
+Kerberos (for GSS-API support)    5
+================================= ============
+
+Other cryptography libraries are supported by libssh2, though more authentication methods are supported with OpenSSL.
+
+Newer public key types like ED-25519 require OpenSSL 1.1.
 
 Standard build
 ---------------
