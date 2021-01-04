@@ -4,7 +4,7 @@ Change Log
 0.27.0
 ++++++
 
-* Removed build support for libssh2 < 1,7.
+* Removed build support for libssh2 < 1.7.
 
 
 0.26.0

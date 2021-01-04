@@ -6829,7 +6829,7 @@ static PyObject *__pyx_pf_4ssh2_11sftp_handle_10SFTPHandle_38tell64(struct __pyx
 
 /* Python wrapper */
 static PyObject *__pyx_pw_4ssh2_11sftp_handle_10SFTPHandle_41fstat_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_4ssh2_11sftp_handle_10SFTPHandle_40fstat_ex[] = "SFTPHandle.fstat_ex(self, SFTPAttributes attrs, int setstat)\nGet or set file attributes.\n\n        Clients would typically use one of the fstat or fsetstat \n        functions instead.\n        ";
+static char __pyx_doc_4ssh2_11sftp_handle_10SFTPHandle_40fstat_ex[] = "SFTPHandle.fstat_ex(self, SFTPAttributes attrs, int setstat)\nGet or set file attributes.\n\n        Clients would typically use one of the fstat or fsetstat\n        functions instead.\n        ";
 static PyObject *__pyx_pw_4ssh2_11sftp_handle_10SFTPHandle_41fstat_ex(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   struct __pyx_obj_4ssh2_11sftp_handle_SFTPAttributes *__pyx_v_attrs = 0;
   int __pyx_v_setstat;

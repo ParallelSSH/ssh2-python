@@ -368,7 +368,7 @@ cdef class SFTPHandle:
     def fstat_ex(self, SFTPAttributes attrs, int setstat):
         """Get or set file attributes.
 
-        Clients would typically use one of the fstat or fsetstat 
+        Clients would typically use one of the fstat or fsetstat
         functions instead.
         """
         cdef int rc
