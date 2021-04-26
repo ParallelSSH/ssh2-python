@@ -256,7 +256,7 @@ class SFTPTestCase(SSH2TestCase):
         sftp = self.session.sftp_init()
         vfs = sftp.statvfs('.')
         self.assertTrue(vfs is not None)
-        self.assertTrue(vfs.f_files > 0)
+        self.assertTrue(vfs.f_files >= 0)
         self.assertTrue(vfs.f_bsize > 0)
         self.assertTrue(vfs.f_namemax > 0)
 
@@ -272,7 +272,7 @@ class SFTPTestCase(SSH2TestCase):
             with sftp.open(remote_filename, 0, 0) as fh:
                 vfs = fh.fstatvfs()
                 self.assertTrue(vfs is not None)
-                self.assertTrue(vfs.f_files > 0)
+                self.assertTrue(vfs.f_files >= 0)
                 self.assertTrue(vfs.f_bsize > 0)
                 self.assertTrue(vfs.f_namemax > 0)
         except Exception:
