@@ -2,6 +2,7 @@ import unittest
 
 from ssh2.utils import find_eol
 
+
 class UtilsTest(unittest.TestCase):
 
     def test_find_eol_no_lines(self):

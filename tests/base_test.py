@@ -41,8 +41,8 @@ class SSH2TestCase(unittest.TestCase):
         self.session.handshake(self.sock)
 
     def tearDown(self):
-        del self.session
-        del self.sock
+        self.session.disconnect()
+        self.sock.close()
 
     def _auth(self):
         return self.session.userauth_publickey_fromfile(
