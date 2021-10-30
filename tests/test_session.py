@@ -246,10 +246,6 @@ class SessionTestCase(SSH2TestCase):
             hostkey = self.session.hostkey_hash(_type)
             self.assertTrue(len(hostkey) > 0)
 
-    def test_forward_listen_failure(self):
-        self.assertEqual(self._auth(), 0)
-        self.assertRaises(RequestDeniedError, self.session.forward_listen, 1)
-
     def test_forward_listen_ex(self):
         self.assertEqual(self._auth(), 0)
         listener, bound_port = self.session.forward_listen_ex(1)
