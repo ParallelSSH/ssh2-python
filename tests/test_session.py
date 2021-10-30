@@ -248,7 +248,7 @@ class SessionTestCase(SSH2TestCase):
 
     def test_forward_listen_failure(self):
         self.assertEqual(self._auth(), 0)
-        self.assertRaises(RequestDeniedError, self.session.forward_listen, 80)
+        self.assertRaises(RequestDeniedError, self.session.forward_listen, 1)
 
     def test_forward_listen_ex(self):
         self.assertEqual(self._auth(), 0)
