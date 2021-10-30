@@ -111,6 +111,44 @@ jobs:
           command: |
             twine upload --skip-existing -u $PYPI_USER -p $PYPI_PASSWORD dist/* wheelhouse/*
 
+  manylinux2014-aarch64:
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: arm.medium
+    steps:
+      - checkout
+      - python/load-cache:
+          key: manylinuxdepsv6-{{ .Branch }}.{{ arch }}
+          dependency-file: requirements_dev.txt
+      - run:
+          name: Git LFS
+          command: |
+            curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+            sudo apt-get install git-lfs
+            git lfs install
+            git lfs pull
+      - run:
+          name: Deps
+          command: |
+            sudo apt-get install python3-pip
+            pip3 install -U pip
+            pip3 install twine
+            which twine
+      - python/save-cache:
+          key: manylinuxdepsv6-{{ .Branch }}.{{ arch }}
+          dependency-file: requirements_dev.txt
+      - run:
+          name: Build Wheels
+          command: |
+            if [[ -z "${CIRCLE_PULL_REQUEST}" ]]; then
+              docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" ;
+            fi
+            ./ci/travis/build-manylinux.sh
+      - run:
+          name: Upload Wheels
+          command: |
+            twine upload --skip-existing -u $PYPI_USER -p $PYPI_PASSWORD dist/* wheelhouse/*
+
 workflows:
   version: 2.1
   main:
@@ -126,6 +164,13 @@ workflows:
             tags:
               ignore: /.*/
       - manylinux:
+          context: Docker
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
+      - manylinux2014-aarch64:
           context: Docker
           filters:
             tags:
