@@ -8,8 +8,8 @@ import argparse
 import socket
 import os
 import pwd
-import sys
 from datetime import datetime
+from pathlib import Path
 
 from ssh2.session import Session
 from ssh2.sftp import LIBSSH2_FXF_CREAT, LIBSSH2_FXF_WRITE, \
@@ -44,13 +44,12 @@ def main():
            LIBSSH2_SFTP_S_IRGRP | \
            LIBSSH2_SFTP_S_IROTH
     f_flags = LIBSSH2_FXF_CREAT | LIBSSH2_FXF_WRITE
+    data = Path(args.source).read_bytes()
     print("Starting copy of local file %s to remote %s:%s" % (
         args.source, args.host, args.destination))
     now = datetime.now()
-    with open(args.source, 'rb') as local_fh, \
-            sftp.open(args.destination, f_flags, mode) as remote_fh:
-        for data in local_fh:
-            remote_fh.write(data)
+    with sftp.open(args.destination, f_flags, mode) as remote_fh:
+        remote_fh.write(data)
     print("Finished writing remote file in %s" % (datetime.now() - now,))
 
 
