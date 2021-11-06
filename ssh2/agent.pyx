@@ -104,8 +104,9 @@ cdef class Agent:
         self._session = session
 
     def __dealloc__(self):
-        with nogil:
+        if self._session._session is not NULL and self._agent is not NULL:
             clear_agent(self._agent)
+        self._agent = NULL
 
     def list_identities(self):
         """This method is a no-op - use

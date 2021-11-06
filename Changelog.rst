@@ -1,6 +1,25 @@
 Change Log
 =============
 
+0.27.0
+++++++
+
+Changes
+-------
+
+* Python 3.10 support.
+
+Fixes
+-----
+
+* Agent object that tried to connect and failed would sometimes cause segfault on interpreter shutdown.
+
+Packaging
+---------
+
+* Added ARM wheel builds - #
+
+
 0.26.0
 ++++++
 
