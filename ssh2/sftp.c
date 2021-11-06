@@ -622,7 +622,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include "libssh2_sftp.h"
 #include <string.h>
 #include <stdlib.h>
-#include "find_eol.h"
+#include "ext/find_eol.h"
 #ifdef _OPENMP
 #include <omp.h>
 #endif /* _OPENMP */

@@ -619,7 +619,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include <time.h>
 #include <sys/stat.h>
 #include "libssh2.h"
-#include "find_eol.h"
+#include "ext/find_eol.h"
 #ifdef _OPENMP
 #include <omp.h>
 #endif /* _OPENMP */

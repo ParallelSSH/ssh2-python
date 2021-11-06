@@ -80,13 +80,13 @@ extensions = [
               library_dirs=[_lib_dir],
               runtime_library_dirs=runtime_library_dirs,
               extra_compile_args=_comp_args,
-              **cython_args
-    )
+              **cython_args,
+              )
     for i in range(len(sources))]
 
 for ext in extensions:
     if ext.name == 'ssh2.utils':
-        ext.sources.append('ssh2/find_eol.c')
+        ext.sources.append('ssh2/ext/find_eol.c')
 
 package_data = {'ssh2': ['*.pxd', 'libssh2.so*']}
 
@@ -108,7 +108,7 @@ setup(
     license='LGPLv2',
     author='Panos Kittenis',
     author_email='22e889d8@opayq.com',
-    description=('Super fast SSH library - bindings for libssh2'),
+    description='Super fast SSH library - bindings for libssh2',
     long_description=open('README.rst').read(),
     packages=find_packages(
         '.', exclude=('embedded_server', 'embedded_server.*',
