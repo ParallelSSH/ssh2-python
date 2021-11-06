@@ -108,7 +108,7 @@ setup(
     license='LGPLv2',
     author='Panos Kittenis',
     author_email='22e889d8@opayq.com',
-    description='Super fast SSH library - bindings for libssh2',
+    description='Bindings for libssh2 C library',
     long_description=open('README.rst').read(),
     packages=find_packages(
         '.', exclude=('embedded_server', 'embedded_server.*',
