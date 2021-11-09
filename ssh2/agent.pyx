@@ -104,7 +104,7 @@ cdef class Agent:
         self._session = session
 
     def __dealloc__(self):
-        if self._session._session is not NULL and self._agent is not NULL:
+        if self._session is not None and self._session._session is not NULL and self._agent is not NULL:
             clear_agent(self._agent)
         self._agent = NULL
 

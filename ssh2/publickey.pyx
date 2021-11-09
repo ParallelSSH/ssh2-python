@@ -131,8 +131,10 @@ cdef class PublicKeySystem:
         self.session = session
 
     def __dealloc__(self):
-        with nogil:
-            c_pkey.libssh2_publickey_shutdown(self.pkey_s)
+        if self.session is not None and self.session._session is not NULL and self.pkey_s is not NULL:
+            with nogil:
+                c_pkey.libssh2_publickey_shutdown(self.pkey_s)
+        self.pkey_s = NULL
 
     def add(self, bytes name, bytes blob,
             char overwrite,

@@ -92,8 +92,10 @@ cdef class KnownHostEntry:
         return self.__repr__()
 
     def _dealloc__(self):
-        with nogil:
-            free(self._store)
+        if self._store is not NULL:
+            with nogil:
+                free(self._store)
+        self._store = NULL
 
     @property
     def magic(self):
@@ -134,9 +136,9 @@ cdef class KnownHost:
         self._session = session
 
     def __dealloc__(self):
-        if self._ptr is not NULL:
+        if self._session is not None and self._session._session is not NULL and self._ptr is not NULL:
             c_ssh2.libssh2_knownhost_free(self._ptr)
-            self._ptr = NULL
+        self._ptr = NULL
 
     def add(self, bytes host, bytes salt, bytes key, int typemask):
         """Deprecated - use ``self.addc``"""

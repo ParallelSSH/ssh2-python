@@ -2623,7 +2623,7 @@ static int __pyx_pf_4ssh2_5agent_5Agent___cinit__(struct __pyx_obj_4ssh2_5agent_
  *         self._session = session
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
- *         if self._session._session is not NULL and self._agent is not NULL:
+ *         if self._session is not None and self._session._session is not NULL and self._agent is not NULL:
  *             clear_agent(self._agent)
  */
 
@@ -2642,29 +2642,37 @@ static void __pyx_pf_4ssh2_5agent_5Agent_2__dealloc__(struct __pyx_obj_4ssh2_5ag
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
   int __pyx_t_2;
+  int __pyx_t_3;
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
   /* "ssh2/agent.pyx":107
  * 
  *     def __dealloc__(self):
- *         if self._session._session is not NULL and self._agent is not NULL:             # <<<<<<<<<<<<<<
+ *         if self._session is not None and self._session._session is not NULL and self._agent is not NULL:             # <<<<<<<<<<<<<<
  *             clear_agent(self._agent)
  *         self._agent = NULL
  */
-  __pyx_t_2 = ((__pyx_v_self->_session->_session != NULL) != 0);
-  if (__pyx_t_2) {
+  __pyx_t_2 = (((PyObject *)__pyx_v_self->_session) != Py_None);
+  __pyx_t_3 = (__pyx_t_2 != 0);
+  if (__pyx_t_3) {
   } else {
-    __pyx_t_1 = __pyx_t_2;
+    __pyx_t_1 = __pyx_t_3;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_2 = ((__pyx_v_self->_agent != NULL) != 0);
-  __pyx_t_1 = __pyx_t_2;
+  __pyx_t_3 = ((__pyx_v_self->_session->_session != NULL) != 0);
+  if (__pyx_t_3) {
+  } else {
+    __pyx_t_1 = __pyx_t_3;
+    goto __pyx_L4_bool_binop_done;
+  }
+  __pyx_t_3 = ((__pyx_v_self->_agent != NULL) != 0);
+  __pyx_t_1 = __pyx_t_3;
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
     /* "ssh2/agent.pyx":108
  *     def __dealloc__(self):
- *         if self._session._session is not NULL and self._agent is not NULL:
+ *         if self._session is not None and self._session._session is not NULL and self._agent is not NULL:
  *             clear_agent(self._agent)             # <<<<<<<<<<<<<<
  *         self._agent = NULL
  * 
@@ -2674,14 +2682,14 @@ static void __pyx_pf_4ssh2_5agent_5Agent_2__dealloc__(struct __pyx_obj_4ssh2_5ag
     /* "ssh2/agent.pyx":107
  * 
  *     def __dealloc__(self):
- *         if self._session._session is not NULL and self._agent is not NULL:             # <<<<<<<<<<<<<<
+ *         if self._session is not None and self._session._session is not NULL and self._agent is not NULL:             # <<<<<<<<<<<<<<
  *             clear_agent(self._agent)
  *         self._agent = NULL
  */
   }
 
   /* "ssh2/agent.pyx":109
- *         if self._session._session is not NULL and self._agent is not NULL:
+ *         if self._session is not None and self._session._session is not NULL and self._agent is not NULL:
  *             clear_agent(self._agent)
  *         self._agent = NULL             # <<<<<<<<<<<<<<
  * 
@@ -2693,7 +2701,7 @@ static void __pyx_pf_4ssh2_5agent_5Agent_2__dealloc__(struct __pyx_obj_4ssh2_5ag
  *         self._session = session
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
- *         if self._session._session is not NULL and self._agent is not NULL:
+ *         if self._session is not None and self._session._session is not NULL and self._agent is not NULL:
  *             clear_agent(self._agent)
  */
 

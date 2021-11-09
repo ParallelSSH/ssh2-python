@@ -28,7 +28,9 @@ cdef class StatInfo:
             raise MemoryError
 
     def __dealloc__(self):
-        free(self._stat)
+        if self._stat is not NULL:
+            free(self._stat)
+        self._stat = NULL
 
     @property
     def st_size(self):
