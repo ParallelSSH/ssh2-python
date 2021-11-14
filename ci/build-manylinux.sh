@@ -8,7 +8,7 @@ python ci/appveyor/fix_version.py .
 
 if [[ `uname -m` == "aarch64" ]]; then
     docker_tag="${docker_tag}:aarch64"
-    docker_files=("ci/docker/manylinux/Dockerfile.aarch64",)
+    docker_files=("ci/docker/manylinux/Dockerfile.aarch64")
 fi
 
 for docker_file in ${docker_files[@]}; do
