@@ -20,7 +20,7 @@ ls -l wheels/*.whl
 rm -f /usr/local/lib/libssh2*
 pip3 install -v wheels/*.whl
 pwd; mkdir -p temp; cd temp; pwd
-python3 -c "from ssh2.session import Session; Session()" && echo "Import successfull"
+python3 -c "from ssh2.session import Session; Session()" && echo "Import successful"
 cd ..; pwd
 set +x
 deactivate
