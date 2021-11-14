@@ -4,7 +4,7 @@ echo "Travis tag: $TRAVIS_TAG"
 
 # Compile wheels
 # For testing
-# for PYBIN in `ls -1d /opt/python/cp27-cp27m/bin | grep -v cpython`; do
+# for PYBIN in `ls -1d /opt/python/cp36-cp36m/bin | grep -v cpython`; do
 for PYBIN in `ls -1d /opt/python/*/bin | grep -v cpython`; do
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
 done

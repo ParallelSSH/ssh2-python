@@ -12,7 +12,7 @@ Changes
 Fixes
 -----
 
-* Agent object that tried to connect and failed would sometimes cause segfault on interpreter shutdown.
+* Objects depending on ``ssh2.Session`` would sometimes cause segfault on interpreter shutdown.
 
 Packaging
 ---------
