@@ -17,7 +17,10 @@ Fixes
 Packaging
 ---------
 
-* Added ARM wheel builds - #
+* Added manylinux-2014 ARM (aarch64) wheel builds - #156 - Thanks @enaydanov
+* Added manylinux-2014 x86_64 wheels for all currently available Python 3 versions.
+* Added Windows 3.10 wheels.
+* Added OSX 11.6, 11.5 and 11.4 wheels.
 
 
 0.26.0
