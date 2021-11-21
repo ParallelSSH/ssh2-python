@@ -122,7 +122,9 @@ jobs:
             ./ci/build-manylinux.sh
       - run:
           name: sdist
-          command: python setup.py sdist
+          command: |
+            sudo chown circleci -R *
+            python setup.py sdist
       - run:
           name: Upload Wheels
           command: |
