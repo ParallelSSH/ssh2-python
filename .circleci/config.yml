@@ -103,7 +103,7 @@ jobs:
             if [[ -z "${CIRCLE_PULL_REQUEST}" ]]; then
               echo "$DOCKER_PASSWORD" | docker login -u="$DOCKER_USERNAME" --password-stdin;
             fi
-            ./ci/travis/build-manylinux.sh
+            ./ci/build-manylinux.sh
       - run:
           name: sdist
           command: python setup.py sdist
