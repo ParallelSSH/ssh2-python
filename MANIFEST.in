@@ -7,5 +7,5 @@ exclude .travis.yml
 include LICENSE
 include ssh2/*.pyx
 include ssh2/*.pxd
-include ssh2/find_eol*
+include ssh2/ext/find_eol*
 include ssh2/*.c
