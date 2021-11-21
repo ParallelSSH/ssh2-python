@@ -90,8 +90,8 @@ jobs:
           name: Deps
           command: |
             sudo apt-get install python3-pip
-            pip install -U pip
-            pip install twine
+            pip3 install -U pip
+            pip3 install twine
             which twine
       - python/save-cache:
           key: manylinuxdepsv6-{{ .Branch }}.{{ arch }}
