@@ -55,9 +55,7 @@ build_script:
   - for %%I in (%PYTHONVERS%) do ls %%I/libs/
   - ci\\appveyor\\build_ssh2.bat
   - for %%I in (%PYTHONVERS%) do cp src/src/libssh2.lib %%I/libs/ || cp src/src/Release/libssh2.lib %%I/libs/
-  - mv -f ssh2/find_eol.c .
   - rm -f ssh2/*.c
-  - mv -f find_eol.c ssh2/
   - ps: ls ssh2
   - for %%I in (%PYTHONVERS%) do %%I\python.exe -V
   - for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py build_ext

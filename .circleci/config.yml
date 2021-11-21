@@ -89,7 +89,7 @@ jobs:
       - run:
           name: Deps
           command: |
-            sudo apt-get install python-pip
+            sudo apt-get install python3-pip
             pip install -U pip
             pip install twine
             which twine
@@ -143,6 +143,9 @@ workflows:
           matrix:
             parameters:
               xcode_ver:
+                - "13.1.0"
+                - "13.0.0"
+                - "12.5.1"
                 - "11.6.0"
                 - "11.1.0"
           filters:
