@@ -621,7 +621,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include "libssh2.h"
 #include <string.h>
 #include <stdlib.h>
-#include "find_eol.h"
+#include "ext/find_eol.h"
 #include "libssh2_sftp.h"
 #ifdef _OPENMP
 #include <omp.h>
@@ -1563,7 +1563,7 @@ static int __pyx_pf_4ssh2_7channel_7Channel___cinit__(struct __pyx_obj_4ssh2_7ch
  *         self._session = session
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
- *         if self._channel is not NULL:
+ *         if self._session is not None and self._session._session is not NULL and self._channel is not NULL:
  *             c_ssh2.libssh2_channel_free(self._channel)
  */
 
@@ -1581,21 +1581,38 @@ static void __pyx_pw_4ssh2_7channel_7Channel_3__dealloc__(PyObject *__pyx_v_self
 static void __pyx_pf_4ssh2_7channel_7Channel_2__dealloc__(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
+  int __pyx_t_2;
+  int __pyx_t_3;
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
   /* "ssh2/channel.pyx":39
  * 
  *     def __dealloc__(self):
- *         if self._channel is not NULL:             # <<<<<<<<<<<<<<
+ *         if self._session is not None and self._session._session is not NULL and self._channel is not NULL:             # <<<<<<<<<<<<<<
  *             c_ssh2.libssh2_channel_free(self._channel)
  *         self._channel = NULL
  */
-  __pyx_t_1 = ((__pyx_v_self->_channel != NULL) != 0);
+  __pyx_t_2 = (((PyObject *)__pyx_v_self->_session) != Py_None);
+  __pyx_t_3 = (__pyx_t_2 != 0);
+  if (__pyx_t_3) {
+  } else {
+    __pyx_t_1 = __pyx_t_3;
+    goto __pyx_L4_bool_binop_done;
+  }
+  __pyx_t_3 = ((__pyx_v_self->_session->_session != NULL) != 0);
+  if (__pyx_t_3) {
+  } else {
+    __pyx_t_1 = __pyx_t_3;
+    goto __pyx_L4_bool_binop_done;
+  }
+  __pyx_t_3 = ((__pyx_v_self->_channel != NULL) != 0);
+  __pyx_t_1 = __pyx_t_3;
+  __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
     /* "ssh2/channel.pyx":40
  *     def __dealloc__(self):
- *         if self._channel is not NULL:
+ *         if self._session is not None and self._session._session is not NULL and self._channel is not NULL:
  *             c_ssh2.libssh2_channel_free(self._channel)             # <<<<<<<<<<<<<<
  *         self._channel = NULL
  * 
@@ -1605,14 +1622,14 @@ static void __pyx_pf_4ssh2_7channel_7Channel_2__dealloc__(struct __pyx_obj_4ssh2
     /* "ssh2/channel.pyx":39
  * 
  *     def __dealloc__(self):
- *         if self._channel is not NULL:             # <<<<<<<<<<<<<<
+ *         if self._session is not None and self._session._session is not NULL and self._channel is not NULL:             # <<<<<<<<<<<<<<
  *             c_ssh2.libssh2_channel_free(self._channel)
  *         self._channel = NULL
  */
   }
 
   /* "ssh2/channel.pyx":41
- *         if self._channel is not NULL:
+ *         if self._session is not None and self._session._session is not NULL and self._channel is not NULL:
  *             c_ssh2.libssh2_channel_free(self._channel)
  *         self._channel = NULL             # <<<<<<<<<<<<<<
  * 
@@ -1624,7 +1641,7 @@ static void __pyx_pf_4ssh2_7channel_7Channel_2__dealloc__(struct __pyx_obj_4ssh2
  *         self._session = session
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
- *         if self._channel is not NULL:
+ *         if self._session is not None and self._session._session is not NULL and self._channel is not NULL:
  *             c_ssh2.libssh2_channel_free(self._channel)
  */
 

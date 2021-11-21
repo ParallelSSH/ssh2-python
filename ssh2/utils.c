@@ -615,7 +615,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #define __PYX_HAVE__ssh2__utils
 #define __PYX_HAVE_API__ssh2__utils
 /* Early includes */
-#include "find_eol.h"
+#include "ext/find_eol.h"
 #include <stddef.h>
 #include <time.h>
 #include <sys/stat.h>

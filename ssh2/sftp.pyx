@@ -178,8 +178,10 @@ cdef class SFTP:
         self._session = session
 
     def __dealloc__(self):
-        with nogil:
-            c_sftp.libssh2_sftp_shutdown(self._sftp)
+        if self._session is not None and self._session._session is not NULL and self._sftp is not NULL:
+            with nogil:
+                c_sftp.libssh2_sftp_shutdown(self._sftp)
+        self._sftp = NULL
 
     @property
     def session(self):

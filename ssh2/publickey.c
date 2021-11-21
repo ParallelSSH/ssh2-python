@@ -622,7 +622,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include "libssh2_publickey.h"
 #include <string.h>
 #include <stdlib.h>
-#include "find_eol.h"
+#include "ext/find_eol.h"
 #ifdef _OPENMP
 #include <omp.h>
 #endif /* _OPENMP */
@@ -3209,8 +3209,8 @@ static int __pyx_pf_4ssh2_9publickey_15PublicKeySystem___cinit__(struct __pyx_ob
  *         self.session = session
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
- *         with nogil:
- *             c_pkey.libssh2_publickey_shutdown(self.pkey_s)
+ *         if self.session is not None and self.session._session is not NULL and self.pkey_s is not NULL:
+ *             with nogil:
  */
 
 /* Python wrapper */
@@ -3226,66 +3226,112 @@ static void __pyx_pw_4ssh2_9publickey_15PublicKeySystem_3__dealloc__(PyObject *_
 
 static void __pyx_pf_4ssh2_9publickey_15PublicKeySystem_2__dealloc__(struct __pyx_obj_4ssh2_9publickey_PublicKeySystem *__pyx_v_self) {
   __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  int __pyx_t_2;
+  int __pyx_t_3;
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
   /* "ssh2/publickey.pyx":134
  * 
  *     def __dealloc__(self):
- *         with nogil:             # <<<<<<<<<<<<<<
- *             c_pkey.libssh2_publickey_shutdown(self.pkey_s)
+ *         if self.session is not None and self.session._session is not NULL and self.pkey_s is not NULL:             # <<<<<<<<<<<<<<
+ *             with nogil:
+ *                 c_pkey.libssh2_publickey_shutdown(self.pkey_s)
+ */
+  __pyx_t_2 = (((PyObject *)__pyx_v_self->session) != Py_None);
+  __pyx_t_3 = (__pyx_t_2 != 0);
+  if (__pyx_t_3) {
+  } else {
+    __pyx_t_1 = __pyx_t_3;
+    goto __pyx_L4_bool_binop_done;
+  }
+  __pyx_t_3 = ((__pyx_v_self->session->_session != NULL) != 0);
+  if (__pyx_t_3) {
+  } else {
+    __pyx_t_1 = __pyx_t_3;
+    goto __pyx_L4_bool_binop_done;
+  }
+  __pyx_t_3 = ((__pyx_v_self->pkey_s != NULL) != 0);
+  __pyx_t_1 = __pyx_t_3;
+  __pyx_L4_bool_binop_done:;
+  if (__pyx_t_1) {
+
+    /* "ssh2/publickey.pyx":135
+ *     def __dealloc__(self):
+ *         if self.session is not None and self.session._session is not NULL and self.pkey_s is not NULL:
+ *             with nogil:             # <<<<<<<<<<<<<<
+ *                 c_pkey.libssh2_publickey_shutdown(self.pkey_s)
+ *         self.pkey_s = NULL
+ */
+    {
+        #ifdef WITH_THREAD
+        PyThreadState *_save;
+        Py_UNBLOCK_THREADS
+        __Pyx_FastGIL_Remember();
+        #endif
+        /*try:*/ {
+
+          /* "ssh2/publickey.pyx":136
+ *         if self.session is not None and self.session._session is not NULL and self.pkey_s is not NULL:
+ *             with nogil:
+ *                 c_pkey.libssh2_publickey_shutdown(self.pkey_s)             # <<<<<<<<<<<<<<
+ *         self.pkey_s = NULL
  * 
  */
-  {
-      #ifdef WITH_THREAD
-      PyThreadState *_save;
-      Py_UNBLOCK_THREADS
-      __Pyx_FastGIL_Remember();
-      #endif
-      /*try:*/ {
+          (void)(libssh2_publickey_shutdown(__pyx_v_self->pkey_s));
+        }
 
         /* "ssh2/publickey.pyx":135
  *     def __dealloc__(self):
- *         with nogil:
- *             c_pkey.libssh2_publickey_shutdown(self.pkey_s)             # <<<<<<<<<<<<<<
+ *         if self.session is not None and self.session._session is not NULL and self.pkey_s is not NULL:
+ *             with nogil:             # <<<<<<<<<<<<<<
+ *                 c_pkey.libssh2_publickey_shutdown(self.pkey_s)
+ *         self.pkey_s = NULL
+ */
+        /*finally:*/ {
+          /*normal exit:*/{
+            #ifdef WITH_THREAD
+            __Pyx_FastGIL_Forget();
+            Py_BLOCK_THREADS
+            #endif
+            goto __pyx_L9;
+          }
+          __pyx_L9:;
+        }
+    }
+
+    /* "ssh2/publickey.pyx":134
+ * 
+ *     def __dealloc__(self):
+ *         if self.session is not None and self.session._session is not NULL and self.pkey_s is not NULL:             # <<<<<<<<<<<<<<
+ *             with nogil:
+ *                 c_pkey.libssh2_publickey_shutdown(self.pkey_s)
+ */
+  }
+
+  /* "ssh2/publickey.pyx":137
+ *             with nogil:
+ *                 c_pkey.libssh2_publickey_shutdown(self.pkey_s)
+ *         self.pkey_s = NULL             # <<<<<<<<<<<<<<
  * 
  *     def add(self, bytes name, bytes blob,
  */
-        (void)(libssh2_publickey_shutdown(__pyx_v_self->pkey_s));
-      }
-
-      /* "ssh2/publickey.pyx":134
- * 
- *     def __dealloc__(self):
- *         with nogil:             # <<<<<<<<<<<<<<
- *             c_pkey.libssh2_publickey_shutdown(self.pkey_s)
- * 
- */
-      /*finally:*/ {
-        /*normal exit:*/{
-          #ifdef WITH_THREAD
-          __Pyx_FastGIL_Forget();
-          Py_BLOCK_THREADS
-          #endif
-          goto __pyx_L5;
-        }
-        __pyx_L5:;
-      }
-  }
+  __pyx_v_self->pkey_s = NULL;
 
   /* "ssh2/publickey.pyx":133
  *         self.session = session
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
- *         with nogil:
- *             c_pkey.libssh2_publickey_shutdown(self.pkey_s)
+ *         if self.session is not None and self.session._session is not NULL and self.pkey_s is not NULL:
+ *             with nogil:
  */
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
 }
 
-/* "ssh2/publickey.pyx":137
- *             c_pkey.libssh2_publickey_shutdown(self.pkey_s)
+/* "ssh2/publickey.pyx":139
+ *         self.pkey_s = NULL
  * 
  *     def add(self, bytes name, bytes blob,             # <<<<<<<<<<<<<<
  *             char overwrite,
@@ -3333,23 +3379,23 @@ static PyObject *__pyx_pw_4ssh2_9publickey_15PublicKeySystem_5add(PyObject *__py
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_blob)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("add", 1, 4, 4, 1); __PYX_ERR(1, 137, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("add", 1, 4, 4, 1); __PYX_ERR(1, 139, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_overwrite)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("add", 1, 4, 4, 2); __PYX_ERR(1, 137, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("add", 1, 4, 4, 2); __PYX_ERR(1, 139, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_attrs)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("add", 1, 4, 4, 3); __PYX_ERR(1, 137, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("add", 1, 4, 4, 3); __PYX_ERR(1, 139, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "add") < 0)) __PYX_ERR(1, 137, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "add") < 0)) __PYX_ERR(1, 139, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
       goto __pyx_L5_argtuple_error;
@@ -3361,20 +3407,20 @@ static PyObject *__pyx_pw_4ssh2_9publickey_15PublicKeySystem_5add(PyObject *__py
     }
     __pyx_v_name = ((PyObject*)values[0]);
     __pyx_v_blob = ((PyObject*)values[1]);
-    __pyx_v_overwrite = __Pyx_PyInt_As_char(values[2]); if (unlikely((__pyx_v_overwrite == (char)-1) && PyErr_Occurred())) __PYX_ERR(1, 138, __pyx_L3_error)
+    __pyx_v_overwrite = __Pyx_PyInt_As_char(values[2]); if (unlikely((__pyx_v_overwrite == (char)-1) && PyErr_Occurred())) __PYX_ERR(1, 140, __pyx_L3_error)
     __pyx_v_attrs = ((PyObject*)values[3]);
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("add", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 137, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("add", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 139, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("ssh2.publickey.PublicKeySystem.add", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_name), (&PyBytes_Type), 1, "name", 1))) __PYX_ERR(1, 137, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_blob), (&PyBytes_Type), 1, "blob", 1))) __PYX_ERR(1, 137, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_attrs), (&PyList_Type), 1, "attrs", 1))) __PYX_ERR(1, 139, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_name), (&PyBytes_Type), 1, "name", 1))) __PYX_ERR(1, 139, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_blob), (&PyBytes_Type), 1, "blob", 1))) __PYX_ERR(1, 139, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_attrs), (&PyList_Type), 1, "attrs", 1))) __PYX_ERR(1, 141, __pyx_L1_error)
   __pyx_r = __pyx_pf_4ssh2_9publickey_15PublicKeySystem_4add(((struct __pyx_obj_4ssh2_9publickey_PublicKeySystem *)__pyx_v_self), __pyx_v_name, __pyx_v_blob, __pyx_v_overwrite, __pyx_v_attrs);
 
   /* function exit code */
@@ -3407,7 +3453,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_4add(struct __pyx_o
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("add", 0);
 
-  /* "ssh2/publickey.pyx":140
+  /* "ssh2/publickey.pyx":142
  *             char overwrite,
  *             list attrs):
  *         cdef unsigned long name_len = len(name)             # <<<<<<<<<<<<<<
@@ -3416,12 +3462,12 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_4add(struct __pyx_o
  */
   if (unlikely(__pyx_v_name == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(1, 140, __pyx_L1_error)
+    __PYX_ERR(1, 142, __pyx_L1_error)
   }
-  __pyx_t_1 = PyBytes_GET_SIZE(__pyx_v_name); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(1, 140, __pyx_L1_error)
+  __pyx_t_1 = PyBytes_GET_SIZE(__pyx_v_name); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(1, 142, __pyx_L1_error)
   __pyx_v_name_len = __pyx_t_1;
 
-  /* "ssh2/publickey.pyx":141
+  /* "ssh2/publickey.pyx":143
  *             list attrs):
  *         cdef unsigned long name_len = len(name)
  *         cdef unsigned long num_attrs = len(attrs)             # <<<<<<<<<<<<<<
@@ -3430,12 +3476,12 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_4add(struct __pyx_o
  */
   if (unlikely(__pyx_v_attrs == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(1, 141, __pyx_L1_error)
+    __PYX_ERR(1, 143, __pyx_L1_error)
   }
-  __pyx_t_1 = PyList_GET_SIZE(__pyx_v_attrs); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(1, 141, __pyx_L1_error)
+  __pyx_t_1 = PyList_GET_SIZE(__pyx_v_attrs); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(1, 143, __pyx_L1_error)
   __pyx_v_num_attrs = __pyx_t_1;
 
-  /* "ssh2/publickey.pyx":142
+  /* "ssh2/publickey.pyx":144
  *         cdef unsigned long name_len = len(name)
  *         cdef unsigned long num_attrs = len(attrs)
  *         cdef c_pkey.libssh2_publickey_attribute *_attrs = NULL             # <<<<<<<<<<<<<<
@@ -3444,7 +3490,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_4add(struct __pyx_o
  */
   __pyx_v__attrs = NULL;
 
-  /* "ssh2/publickey.pyx":143
+  /* "ssh2/publickey.pyx":145
  *         cdef unsigned long num_attrs = len(attrs)
  *         cdef c_pkey.libssh2_publickey_attribute *_attrs = NULL
  *         if num_attrs > 0:             # <<<<<<<<<<<<<<
@@ -3454,7 +3500,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_4add(struct __pyx_o
   __pyx_t_2 = ((__pyx_v_num_attrs > 0) != 0);
   if (__pyx_t_2) {
 
-    /* "ssh2/publickey.pyx":144
+    /* "ssh2/publickey.pyx":146
  *         cdef c_pkey.libssh2_publickey_attribute *_attrs = NULL
  *         if num_attrs > 0:
  *             _attrs = to_c_attr(attrs)             # <<<<<<<<<<<<<<
@@ -3463,7 +3509,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_4add(struct __pyx_o
  */
     __pyx_v__attrs = __pyx_f_4ssh2_9publickey_to_c_attr(__pyx_v_attrs);
 
-    /* "ssh2/publickey.pyx":143
+    /* "ssh2/publickey.pyx":145
  *         cdef unsigned long num_attrs = len(attrs)
  *         cdef c_pkey.libssh2_publickey_attribute *_attrs = NULL
  *         if num_attrs > 0:             # <<<<<<<<<<<<<<
@@ -3472,7 +3518,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_4add(struct __pyx_o
  */
   }
 
-  /* "ssh2/publickey.pyx":145
+  /* "ssh2/publickey.pyx":147
  *         if num_attrs > 0:
  *             _attrs = to_c_attr(attrs)
  *         cdef const unsigned char *_name = name             # <<<<<<<<<<<<<<
@@ -3481,12 +3527,12 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_4add(struct __pyx_o
  */
   if (unlikely(__pyx_v_name == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
-    __PYX_ERR(1, 145, __pyx_L1_error)
+    __PYX_ERR(1, 147, __pyx_L1_error)
   }
-  __pyx_t_3 = __Pyx_PyBytes_AsUString(__pyx_v_name); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(1, 145, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBytes_AsUString(__pyx_v_name); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(1, 147, __pyx_L1_error)
   __pyx_v__name = __pyx_t_3;
 
-  /* "ssh2/publickey.pyx":146
+  /* "ssh2/publickey.pyx":148
  *             _attrs = to_c_attr(attrs)
  *         cdef const unsigned char *_name = name
  *         cdef size_t blob_len = len(blob)             # <<<<<<<<<<<<<<
@@ -3495,12 +3541,12 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_4add(struct __pyx_o
  */
   if (unlikely(__pyx_v_blob == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(1, 146, __pyx_L1_error)
+    __PYX_ERR(1, 148, __pyx_L1_error)
   }
-  __pyx_t_1 = PyBytes_GET_SIZE(__pyx_v_blob); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(1, 146, __pyx_L1_error)
+  __pyx_t_1 = PyBytes_GET_SIZE(__pyx_v_blob); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(1, 148, __pyx_L1_error)
   __pyx_v_blob_len = __pyx_t_1;
 
-  /* "ssh2/publickey.pyx":147
+  /* "ssh2/publickey.pyx":149
  *         cdef const unsigned char *_name = name
  *         cdef size_t blob_len = len(blob)
  *         cdef const unsigned char *_blob = blob             # <<<<<<<<<<<<<<
@@ -3509,12 +3555,12 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_4add(struct __pyx_o
  */
   if (unlikely(__pyx_v_blob == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
-    __PYX_ERR(1, 147, __pyx_L1_error)
+    __PYX_ERR(1, 149, __pyx_L1_error)
   }
-  __pyx_t_4 = __Pyx_PyBytes_AsUString(__pyx_v_blob); if (unlikely((!__pyx_t_4) && PyErr_Occurred())) __PYX_ERR(1, 147, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyBytes_AsUString(__pyx_v_blob); if (unlikely((!__pyx_t_4) && PyErr_Occurred())) __PYX_ERR(1, 149, __pyx_L1_error)
   __pyx_v__blob = __pyx_t_4;
 
-  /* "ssh2/publickey.pyx":148
+  /* "ssh2/publickey.pyx":150
  *         cdef size_t blob_len = len(blob)
  *         cdef const unsigned char *_blob = blob
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3529,7 +3575,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_4add(struct __pyx_o
       #endif
       /*try:*/ {
 
-        /* "ssh2/publickey.pyx":149
+        /* "ssh2/publickey.pyx":151
  *         cdef const unsigned char *_blob = blob
  *         with nogil:
  *             rc = c_pkey.libssh2_publickey_add_ex(             # <<<<<<<<<<<<<<
@@ -3538,7 +3584,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_4add(struct __pyx_o
  */
         __pyx_v_rc = libssh2_publickey_add_ex(__pyx_v_self->pkey_s, __pyx_v__name, __pyx_v_name_len, __pyx_v__blob, __pyx_v_blob_len, __pyx_v_overwrite, __pyx_v_num_attrs, __pyx_v__attrs);
 
-        /* "ssh2/publickey.pyx":152
+        /* "ssh2/publickey.pyx":154
  *                 self.pkey_s, _name, name_len, _blob,
  *                 blob_len, overwrite, num_attrs, _attrs)
  *             if _attrs is not NULL:             # <<<<<<<<<<<<<<
@@ -3548,7 +3594,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_4add(struct __pyx_o
         __pyx_t_2 = ((__pyx_v__attrs != NULL) != 0);
         if (__pyx_t_2) {
 
-          /* "ssh2/publickey.pyx":153
+          /* "ssh2/publickey.pyx":155
  *                 blob_len, overwrite, num_attrs, _attrs)
  *             if _attrs is not NULL:
  *                 free(_attrs)             # <<<<<<<<<<<<<<
@@ -3557,7 +3603,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_4add(struct __pyx_o
  */
           free(__pyx_v__attrs);
 
-          /* "ssh2/publickey.pyx":152
+          /* "ssh2/publickey.pyx":154
  *                 self.pkey_s, _name, name_len, _blob,
  *                 blob_len, overwrite, num_attrs, _attrs)
  *             if _attrs is not NULL:             # <<<<<<<<<<<<<<
@@ -3567,7 +3613,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_4add(struct __pyx_o
         }
       }
 
-      /* "ssh2/publickey.pyx":148
+      /* "ssh2/publickey.pyx":150
  *         cdef size_t blob_len = len(blob)
  *         cdef const unsigned char *_blob = blob
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3586,7 +3632,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_4add(struct __pyx_o
       }
   }
 
-  /* "ssh2/publickey.pyx":154
+  /* "ssh2/publickey.pyx":156
  *             if _attrs is not NULL:
  *                 free(_attrs)
  *         return handle_error_codes(rc)             # <<<<<<<<<<<<<<
@@ -3594,15 +3640,15 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_4add(struct __pyx_o
  *     def remove(self, bytes name, bytes blob):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_5 = __pyx_f_4ssh2_5utils_handle_error_codes(__pyx_v_rc, 0); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(1, 154, __pyx_L1_error)
-  __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 154, __pyx_L1_error)
+  __pyx_t_5 = __pyx_f_4ssh2_5utils_handle_error_codes(__pyx_v_rc, 0); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(1, 156, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 156, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_r = __pyx_t_6;
   __pyx_t_6 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/publickey.pyx":137
- *             c_pkey.libssh2_publickey_shutdown(self.pkey_s)
+  /* "ssh2/publickey.pyx":139
+ *         self.pkey_s = NULL
  * 
  *     def add(self, bytes name, bytes blob,             # <<<<<<<<<<<<<<
  *             char overwrite,
@@ -3620,7 +3666,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_4add(struct __pyx_o
   return __pyx_r;
 }
 
-/* "ssh2/publickey.pyx":156
+/* "ssh2/publickey.pyx":158
  *         return handle_error_codes(rc)
  * 
  *     def remove(self, bytes name, bytes blob):             # <<<<<<<<<<<<<<
@@ -3663,11 +3709,11 @@ static PyObject *__pyx_pw_4ssh2_9publickey_15PublicKeySystem_7remove(PyObject *_
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_blob)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("remove", 1, 2, 2, 1); __PYX_ERR(1, 156, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("remove", 1, 2, 2, 1); __PYX_ERR(1, 158, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "remove") < 0)) __PYX_ERR(1, 156, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "remove") < 0)) __PYX_ERR(1, 158, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -3680,14 +3726,14 @@ static PyObject *__pyx_pw_4ssh2_9publickey_15PublicKeySystem_7remove(PyObject *_
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("remove", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 156, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("remove", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 158, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("ssh2.publickey.PublicKeySystem.remove", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_name), (&PyBytes_Type), 1, "name", 1))) __PYX_ERR(1, 156, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_blob), (&PyBytes_Type), 1, "blob", 1))) __PYX_ERR(1, 156, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_name), (&PyBytes_Type), 1, "name", 1))) __PYX_ERR(1, 158, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_blob), (&PyBytes_Type), 1, "blob", 1))) __PYX_ERR(1, 158, __pyx_L1_error)
   __pyx_r = __pyx_pf_4ssh2_9publickey_15PublicKeySystem_6remove(((struct __pyx_obj_4ssh2_9publickey_PublicKeySystem *)__pyx_v_self), __pyx_v_name, __pyx_v_blob);
 
   /* function exit code */
@@ -3717,7 +3763,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_6remove(struct __py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("remove", 0);
 
-  /* "ssh2/publickey.pyx":157
+  /* "ssh2/publickey.pyx":159
  * 
  *     def remove(self, bytes name, bytes blob):
  *         cdef unsigned long name_len = len(name)             # <<<<<<<<<<<<<<
@@ -3726,12 +3772,12 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_6remove(struct __py
  */
   if (unlikely(__pyx_v_name == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(1, 157, __pyx_L1_error)
+    __PYX_ERR(1, 159, __pyx_L1_error)
   }
-  __pyx_t_1 = PyBytes_GET_SIZE(__pyx_v_name); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(1, 157, __pyx_L1_error)
+  __pyx_t_1 = PyBytes_GET_SIZE(__pyx_v_name); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(1, 159, __pyx_L1_error)
   __pyx_v_name_len = __pyx_t_1;
 
-  /* "ssh2/publickey.pyx":158
+  /* "ssh2/publickey.pyx":160
  *     def remove(self, bytes name, bytes blob):
  *         cdef unsigned long name_len = len(name)
  *         cdef unsigned long blob_len = len(blob)             # <<<<<<<<<<<<<<
@@ -3740,12 +3786,12 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_6remove(struct __py
  */
   if (unlikely(__pyx_v_blob == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(1, 158, __pyx_L1_error)
+    __PYX_ERR(1, 160, __pyx_L1_error)
   }
-  __pyx_t_1 = PyBytes_GET_SIZE(__pyx_v_blob); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(1, 158, __pyx_L1_error)
+  __pyx_t_1 = PyBytes_GET_SIZE(__pyx_v_blob); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(1, 160, __pyx_L1_error)
   __pyx_v_blob_len = __pyx_t_1;
 
-  /* "ssh2/publickey.pyx":159
+  /* "ssh2/publickey.pyx":161
  *         cdef unsigned long name_len = len(name)
  *         cdef unsigned long blob_len = len(blob)
  *         cdef const unsigned char *_name = name             # <<<<<<<<<<<<<<
@@ -3754,12 +3800,12 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_6remove(struct __py
  */
   if (unlikely(__pyx_v_name == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
-    __PYX_ERR(1, 159, __pyx_L1_error)
+    __PYX_ERR(1, 161, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_PyBytes_AsUString(__pyx_v_name); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(1, 159, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBytes_AsUString(__pyx_v_name); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(1, 161, __pyx_L1_error)
   __pyx_v__name = __pyx_t_2;
 
-  /* "ssh2/publickey.pyx":160
+  /* "ssh2/publickey.pyx":162
  *         cdef unsigned long blob_len = len(blob)
  *         cdef const unsigned char *_name = name
  *         cdef const unsigned char *_blob = blob             # <<<<<<<<<<<<<<
@@ -3768,12 +3814,12 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_6remove(struct __py
  */
   if (unlikely(__pyx_v_blob == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
-    __PYX_ERR(1, 160, __pyx_L1_error)
+    __PYX_ERR(1, 162, __pyx_L1_error)
   }
-  __pyx_t_3 = __Pyx_PyBytes_AsUString(__pyx_v_blob); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(1, 160, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBytes_AsUString(__pyx_v_blob); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(1, 162, __pyx_L1_error)
   __pyx_v__blob = __pyx_t_3;
 
-  /* "ssh2/publickey.pyx":161
+  /* "ssh2/publickey.pyx":163
  *         cdef const unsigned char *_name = name
  *         cdef const unsigned char *_blob = blob
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3788,7 +3834,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_6remove(struct __py
       #endif
       /*try:*/ {
 
-        /* "ssh2/publickey.pyx":162
+        /* "ssh2/publickey.pyx":164
  *         cdef const unsigned char *_blob = blob
  *         with nogil:
  *             rc = c_pkey.libssh2_publickey_remove_ex(             # <<<<<<<<<<<<<<
@@ -3798,7 +3844,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_6remove(struct __py
         __pyx_v_rc = libssh2_publickey_remove_ex(__pyx_v_self->pkey_s, __pyx_v__name, __pyx_v_name_len, __pyx_v__blob, __pyx_v_blob_len);
       }
 
-      /* "ssh2/publickey.pyx":161
+      /* "ssh2/publickey.pyx":163
  *         cdef const unsigned char *_name = name
  *         cdef const unsigned char *_blob = blob
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3817,7 +3863,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_6remove(struct __py
       }
   }
 
-  /* "ssh2/publickey.pyx":164
+  /* "ssh2/publickey.pyx":166
  *             rc = c_pkey.libssh2_publickey_remove_ex(
  *                 self.pkey_s, _name, name_len, _blob, blob_len)
  *         return handle_error_codes(rc)             # <<<<<<<<<<<<<<
@@ -3825,14 +3871,14 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_6remove(struct __py
  *     def list_fetch(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = __pyx_f_4ssh2_5utils_handle_error_codes(__pyx_v_rc, 0); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(1, 164, __pyx_L1_error)
-  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 164, __pyx_L1_error)
+  __pyx_t_4 = __pyx_f_4ssh2_5utils_handle_error_codes(__pyx_v_rc, 0); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(1, 166, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_r = __pyx_t_5;
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/publickey.pyx":156
+  /* "ssh2/publickey.pyx":158
  *         return handle_error_codes(rc)
  * 
  *     def remove(self, bytes name, bytes blob):             # <<<<<<<<<<<<<<
@@ -3851,7 +3897,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_6remove(struct __py
   return __pyx_r;
 }
 
-/* "ssh2/publickey.pyx":166
+/* "ssh2/publickey.pyx":168
  *         return handle_error_codes(rc)
  * 
  *     def list_fetch(self):             # <<<<<<<<<<<<<<
@@ -3893,7 +3939,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_8list_fetch(struct 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("list_fetch", 0);
 
-  /* "ssh2/publickey.pyx":167
+  /* "ssh2/publickey.pyx":169
  * 
  *     def list_fetch(self):
  *         cdef unsigned long num_keys = 0             # <<<<<<<<<<<<<<
@@ -3902,7 +3948,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_8list_fetch(struct 
  */
   __pyx_v_num_keys = 0;
 
-  /* "ssh2/publickey.pyx":168
+  /* "ssh2/publickey.pyx":170
  *     def list_fetch(self):
  *         cdef unsigned long num_keys = 0
  *         cdef c_pkey.libssh2_publickey_list **pkey_list = NULL             # <<<<<<<<<<<<<<
@@ -3911,7 +3957,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_8list_fetch(struct 
  */
   __pyx_v_pkey_list = NULL;
 
-  /* "ssh2/publickey.pyx":171
+  /* "ssh2/publickey.pyx":173
  *         cdef int rc
  *         cdef list keys
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3926,7 +3972,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_8list_fetch(struct 
       #endif
       /*try:*/ {
 
-        /* "ssh2/publickey.pyx":172
+        /* "ssh2/publickey.pyx":174
  *         cdef list keys
  *         with nogil:
  *             rc = c_pkey.libssh2_publickey_list_fetch(             # <<<<<<<<<<<<<<
@@ -3936,7 +3982,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_8list_fetch(struct 
         __pyx_v_rc = libssh2_publickey_list_fetch(__pyx_v_self->pkey_s, (&__pyx_v_num_keys), __pyx_v_pkey_list);
       }
 
-      /* "ssh2/publickey.pyx":171
+      /* "ssh2/publickey.pyx":173
  *         cdef int rc
  *         cdef list keys
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3955,7 +4001,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_8list_fetch(struct 
       }
   }
 
-  /* "ssh2/publickey.pyx":174
+  /* "ssh2/publickey.pyx":176
  *             rc = c_pkey.libssh2_publickey_list_fetch(
  *                 self.pkey_s, &num_keys, pkey_list)
  *         if rc != 0:             # <<<<<<<<<<<<<<
@@ -3965,7 +4011,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_8list_fetch(struct 
   __pyx_t_1 = ((__pyx_v_rc != 0) != 0);
   if (__pyx_t_1) {
 
-    /* "ssh2/publickey.pyx":175
+    /* "ssh2/publickey.pyx":177
  *                 self.pkey_s, &num_keys, pkey_list)
  *         if rc != 0:
  *             return handle_error_codes(rc)             # <<<<<<<<<<<<<<
@@ -3973,14 +4019,14 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_8list_fetch(struct 
  *             return []
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = __pyx_f_4ssh2_5utils_handle_error_codes(__pyx_v_rc, 0); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(1, 175, __pyx_L1_error)
-    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 175, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_4ssh2_5utils_handle_error_codes(__pyx_v_rc, 0); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(1, 177, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 177, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_r = __pyx_t_3;
     __pyx_t_3 = 0;
     goto __pyx_L0;
 
-    /* "ssh2/publickey.pyx":174
+    /* "ssh2/publickey.pyx":176
  *             rc = c_pkey.libssh2_publickey_list_fetch(
  *                 self.pkey_s, &num_keys, pkey_list)
  *         if rc != 0:             # <<<<<<<<<<<<<<
@@ -3989,7 +4035,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_8list_fetch(struct 
  */
   }
 
-  /* "ssh2/publickey.pyx":176
+  /* "ssh2/publickey.pyx":178
  *         if rc != 0:
  *             return handle_error_codes(rc)
  *         if num_keys < 1:             # <<<<<<<<<<<<<<
@@ -3999,7 +4045,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_8list_fetch(struct 
   __pyx_t_1 = ((__pyx_v_num_keys < 1) != 0);
   if (__pyx_t_1) {
 
-    /* "ssh2/publickey.pyx":177
+    /* "ssh2/publickey.pyx":179
  *             return handle_error_codes(rc)
  *         if num_keys < 1:
  *             return []             # <<<<<<<<<<<<<<
@@ -4007,13 +4053,13 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_8list_fetch(struct 
  *         return keys
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 177, __pyx_L1_error)
+    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 179, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_r = __pyx_t_3;
     __pyx_t_3 = 0;
     goto __pyx_L0;
 
-    /* "ssh2/publickey.pyx":176
+    /* "ssh2/publickey.pyx":178
  *         if rc != 0:
  *             return handle_error_codes(rc)
  *         if num_keys < 1:             # <<<<<<<<<<<<<<
@@ -4022,28 +4068,28 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_8list_fetch(struct 
  */
   }
 
-  /* "ssh2/publickey.pyx":178
+  /* "ssh2/publickey.pyx":180
  *         if num_keys < 1:
  *             return []
  *         keys = [PyPublicKeyList(pkey_list[i]) for i in range(num_keys)]             # <<<<<<<<<<<<<<
  *         return keys
  * 
  */
-  __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 178, __pyx_L1_error)
+  __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 180, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = __pyx_v_num_keys;
   __pyx_t_5 = __pyx_t_4;
   for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_5; __pyx_t_6+=1) {
     __pyx_v_i = __pyx_t_6;
-    __pyx_t_7 = __pyx_f_4ssh2_9publickey_PyPublicKeyList((__pyx_v_pkey_list[__pyx_v_i])); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 178, __pyx_L1_error)
+    __pyx_t_7 = __pyx_f_4ssh2_9publickey_PyPublicKeyList((__pyx_v_pkey_list[__pyx_v_i])); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 180, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    if (unlikely(__Pyx_ListComp_Append(__pyx_t_3, (PyObject*)__pyx_t_7))) __PYX_ERR(1, 178, __pyx_L1_error)
+    if (unlikely(__Pyx_ListComp_Append(__pyx_t_3, (PyObject*)__pyx_t_7))) __PYX_ERR(1, 180, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
   __pyx_v_keys = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "ssh2/publickey.pyx":179
+  /* "ssh2/publickey.pyx":181
  *             return []
  *         keys = [PyPublicKeyList(pkey_list[i]) for i in range(num_keys)]
  *         return keys             # <<<<<<<<<<<<<<
@@ -4055,7 +4101,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_8list_fetch(struct 
   __pyx_r = __pyx_v_keys;
   goto __pyx_L0;
 
-  /* "ssh2/publickey.pyx":166
+  /* "ssh2/publickey.pyx":168
  *         return handle_error_codes(rc)
  * 
  *     def list_fetch(self):             # <<<<<<<<<<<<<<
@@ -4076,7 +4122,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_8list_fetch(struct 
   return __pyx_r;
 }
 
-/* "ssh2/publickey.pyx":181
+/* "ssh2/publickey.pyx":183
  *         return keys
  * 
  *     def list_free(self):             # <<<<<<<<<<<<<<
@@ -4110,7 +4156,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_10list_free(CYTHON_
   return __pyx_r;
 }
 
-/* "ssh2/publickey.pyx":186
+/* "ssh2/publickey.pyx":188
  *         pass
  * 
  *     def shutdown(self):             # <<<<<<<<<<<<<<
@@ -4143,7 +4189,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_12shutdown(struct _
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("shutdown", 0);
 
-  /* "ssh2/publickey.pyx":190
+  /* "ssh2/publickey.pyx":192
  *         Called automatically by object destructor"""
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -4158,7 +4204,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_12shutdown(struct _
       #endif
       /*try:*/ {
 
-        /* "ssh2/publickey.pyx":191
+        /* "ssh2/publickey.pyx":193
  *         cdef int rc
  *         with nogil:
  *             rc = c_pkey.libssh2_publickey_shutdown(self.pkey_s)             # <<<<<<<<<<<<<<
@@ -4167,7 +4213,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_12shutdown(struct _
         __pyx_v_rc = libssh2_publickey_shutdown(__pyx_v_self->pkey_s);
       }
 
-      /* "ssh2/publickey.pyx":190
+      /* "ssh2/publickey.pyx":192
  *         Called automatically by object destructor"""
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -4186,20 +4232,20 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_12shutdown(struct _
       }
   }
 
-  /* "ssh2/publickey.pyx":192
+  /* "ssh2/publickey.pyx":194
  *         with nogil:
  *             rc = c_pkey.libssh2_publickey_shutdown(self.pkey_s)
  *         return handle_error_codes(rc)             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_4ssh2_5utils_handle_error_codes(__pyx_v_rc, 0); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(1, 192, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 192, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_4ssh2_5utils_handle_error_codes(__pyx_v_rc, 0); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(1, 194, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 194, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/publickey.pyx":186
+  /* "ssh2/publickey.pyx":188
  *         pass
  * 
  *     def shutdown(self):             # <<<<<<<<<<<<<<

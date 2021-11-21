@@ -1,3 +1,18 @@
+# This file is part of ssh2-python.
+# Copyright (C) 2017-2021 Panos Kittenis and contributors.
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation, version 2.1.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 max_jobs: 5
 build:
   parallel: true
@@ -8,7 +23,6 @@ image: Visual Studio 2019
 environment:
   global:
     PYTHONUNBUFFERED: 1
-    EMBEDDED_LIB: 1
     SYSTEM_LIBSSH2: 1
     PYPI_USER:
       secure: WKF8ok0UPIgkA+isDUuHww==
@@ -18,7 +32,7 @@ environment:
     PYTHON_DEF: "C:\\Python38-x64"
     PYTHON_VERSION: "3.8"
     # Python versions to build wheels for
-    PYTHONVERS: C:\Python36-x64 C:\Python37-x64 C:\Python38-x64 C:\Python39-x64
+    PYTHONVERS: C:\Python36-x64 C:\Python37-x64 C:\Python38-x64 C:\Python39-x64 C:\Python310-x64
     PYTHON_ARCH: "64"
     MSVC: "Visual Studio 16 2019"
 
@@ -56,9 +70,7 @@ build_script:
   - for %%I in (%PYTHONVERS%) do ls %%I/libs/
   - ci\\appveyor\\build_ssh2.bat
   - for %%I in (%PYTHONVERS%) do cp src/src/libssh2.lib %%I/libs/ || cp src/src/Release/libssh2.lib %%I/libs/
-  - mv -f ssh2/find_eol.c .
   - rm -f ssh2/*.c
-  - mv -f find_eol.c ssh2/
   - ps: ls ssh2
   - for %%I in (%PYTHONVERS%) do %%I\python.exe -V
   - for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py build_ext

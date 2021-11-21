@@ -1,3 +1,18 @@
+# This file is part of ssh2-python.
+# Copyright (C) 2017-2021 Panos Kittenis and contributors.
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation, version 2.1.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 version: 2.1
 
 orbs:
@@ -31,6 +46,7 @@ jobs:
           name: Build
       - run:
           command: |
+            set -x
             ls -lhtr ssh2/
             pwd
             pytest tests
@@ -71,51 +87,10 @@ jobs:
           command: |
             twine upload --skip-existing -u $PYPI_USER -p $PYPI_PASSWORD wheels/*
 
-  manylinux:
+  manylinux-x86_64:
     machine:
       image: ubuntu-1604:201903-01
-    steps:
-      - checkout
-      - python/load-cache:
-          key: manylinuxdepsv6-{{ .Branch }}.{{ arch }}
-          dependency-file: requirements_dev.txt
-      - run:
-          name: Git LFS
-          command: |
-            curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
-            sudo apt-get install git-lfs
-            git lfs install
-            git lfs pull
-      - run:
-          name: Deps
-          command: |
-            sudo apt-get install python-pip
-            pip install -U pip
-            pip install twine
-            which twine
-      - python/save-cache:
-          key: manylinuxdepsv6-{{ .Branch }}.{{ arch }}
-          dependency-file: requirements_dev.txt
-      - run:
-          name: Build Wheels
-          command: |
-            if [[ -z "${CIRCLE_PULL_REQUEST}" ]]; then
-              echo "$DOCKER_PASSWORD" | docker login -u="$DOCKER_USERNAME" --password-stdin;
-            fi
-            ./ci/travis/build-manylinux.sh
-      - run:
-          name: sdist
-          command: python setup.py sdist
-      - run:
-          name: Upload Wheels
-          command: |
-            twine upload --skip-existing -u $PYPI_USER -p $PYPI_PASSWORD dist/* wheelhouse/*
-
-  manylinux2014-aarch64:
-    machine:
-      image: ubuntu-2004:202101-01
-    resource_class: arm.medium
-    steps:
+    steps: &manylinux-steps
       - checkout
       - python/load-cache:
           key: manylinuxdepsv6-{{ .Branch }}.{{ arch }}
@@ -131,8 +106,9 @@ jobs:
           name: Deps
           command: |
             sudo apt-get install python3-pip
-            pip3 install -U pip
-            pip3 install twine
+            pyenv global 3.7.0 || pyenv global 3.9.1
+            pip install -U pip
+            pip install twine
             which twine
       - python/save-cache:
           key: manylinuxdepsv6-{{ .Branch }}.{{ arch }}
@@ -141,13 +117,22 @@ jobs:
           name: Build Wheels
           command: |
             if [[ -z "${CIRCLE_PULL_REQUEST}" ]]; then
-              docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" ;
+              echo "$DOCKER_PASSWORD" | docker login -u="$DOCKER_USERNAME" --password-stdin;
             fi
-            ./ci/travis/build-manylinux.sh
+            ./ci/build-manylinux.sh
+      - run:
+          name: sdist
+          command: python setup.py sdist
       - run:
           name: Upload Wheels
           command: |
             twine upload --skip-existing -u $PYPI_USER -p $PYPI_PASSWORD dist/* wheelhouse/*
+
+  manylinux2014-aarch64:
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: arm.medium
+    steps: *manylinux-steps
 
 workflows:
   version: 2.1
@@ -160,27 +145,26 @@ workflows:
                 - "3.6"
                 - "3.7"
                 - "3.8"
+                - "3.9"
+                - "3.10"
           filters:
             tags:
               ignore: /.*/
-      - manylinux:
+      - manylinux-x86_64: &manylinux-wf
           context: Docker
           filters:
             tags:
               only: /.*/
             branches:
               ignore: /.*/
-      - manylinux2014-aarch64:
-          context: Docker
-          filters:
-            tags:
-              only: /.*/
-            branches:
-              ignore: /.*/
+      - manylinux2014-aarch64: *manylinux-wf
       - osx:
           matrix:
             parameters:
               xcode_ver:
+                - "13.1.0"
+                - "13.0.0"
+                - "12.5.1"
                 - "11.6.0"
                 - "11.1.0"
           filters:

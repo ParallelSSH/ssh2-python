@@ -45,12 +45,11 @@ LIBSSH2_KNOWNHOST_KEY_SHIFT = c_ssh2.LIBSSH2_KNOWNHOST_KEY_SHIFT
 LIBSSH2_KNOWNHOST_KEY_RSA1 = c_ssh2.LIBSSH2_KNOWNHOST_KEY_RSA1
 LIBSSH2_KNOWNHOST_KEY_SSHRSA = c_ssh2.LIBSSH2_KNOWNHOST_KEY_SSHRSA
 LIBSSH2_KNOWNHOST_KEY_SSHDSS = c_ssh2.LIBSSH2_KNOWNHOST_KEY_SSHDSS
-IF EMBEDDED_LIB:
-    LIBSSH2_KNOWNHOST_KEY_ECDSA_256 = c_ssh2.LIBSSH2_KNOWNHOST_KEY_ECDSA_256
-    LIBSSH2_KNOWNHOST_KEY_ECDSA_384 = c_ssh2.LIBSSH2_KNOWNHOST_KEY_ECDSA_384
-    LIBSSH2_KNOWNHOST_KEY_ECDSA_521 = c_ssh2.LIBSSH2_KNOWNHOST_KEY_ECDSA_521
-    LIBSSH2_KNOWNHOST_KEY_ED25519 = c_ssh2.LIBSSH2_KNOWNHOST_KEY_ED25519
-    LIBSSH2_KNOWNHOST_KEY_UNKNOWN = c_ssh2.LIBSSH2_KNOWNHOST_KEY_UNKNOWN
+LIBSSH2_KNOWNHOST_KEY_ECDSA_256 = c_ssh2.LIBSSH2_KNOWNHOST_KEY_ECDSA_256
+LIBSSH2_KNOWNHOST_KEY_ECDSA_384 = c_ssh2.LIBSSH2_KNOWNHOST_KEY_ECDSA_384
+LIBSSH2_KNOWNHOST_KEY_ECDSA_521 = c_ssh2.LIBSSH2_KNOWNHOST_KEY_ECDSA_521
+LIBSSH2_KNOWNHOST_KEY_ED25519 = c_ssh2.LIBSSH2_KNOWNHOST_KEY_ED25519
+LIBSSH2_KNOWNHOST_KEY_UNKNOWN = c_ssh2.LIBSSH2_KNOWNHOST_KEY_UNKNOWN
 
 
 cdef KnownHost PyKnownHost(Session session, c_ssh2.LIBSSH2_KNOWNHOSTS *_ptr):
@@ -93,8 +92,10 @@ cdef class KnownHostEntry:
         return self.__repr__()
 
     def _dealloc__(self):
-        with nogil:
-            free(self._store)
+        if self._store is not NULL:
+            with nogil:
+                free(self._store)
+        self._store = NULL
 
     @property
     def magic(self):
@@ -135,9 +136,9 @@ cdef class KnownHost:
         self._session = session
 
     def __dealloc__(self):
-        if self._ptr is not NULL:
+        if self._session is not None and self._session._session is not NULL and self._ptr is not NULL:
             c_ssh2.libssh2_knownhost_free(self._ptr)
-            self._ptr = NULL
+        self._ptr = NULL
 
     def add(self, bytes host, bytes salt, bytes key, int typemask):
         """Deprecated - use ``self.addc``"""

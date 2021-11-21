@@ -297,17 +297,14 @@ cdef class SFTPHandle:
             bytes_written = tot_size - _size
         return rc, bytes_written
 
-    IF EMBEDDED_LIB:
-        def fsync(self):
-            """Sync file handle data.
+    def fsync(self):
+        """Sync file handle data.
 
-            Available from libssh2 >= ``1.4.4``
-
-            :rtype: int"""
-            cdef int rc
-            with nogil:
-                rc = c_sftp.libssh2_sftp_fsync(self._handle)
-            return handle_error_codes(rc)
+        :rtype: int"""
+        cdef int rc
+        with nogil:
+            rc = c_sftp.libssh2_sftp_fsync(self._handle)
+        return handle_error_codes(rc)
 
     def seek(self, size_t offset):
         """Deprecated, use seek64.
