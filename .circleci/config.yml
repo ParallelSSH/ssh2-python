@@ -46,6 +46,7 @@ jobs:
           name: Build
       - run:
           command: |
+            set -x
             ls -lhtr ssh2/
             pwd
             pytest tests
@@ -142,6 +143,8 @@ workflows:
             parameters:
               python_ver:
                 - "3.6"
+                - "3.7"
+                - "3.8"
                 - "3.9"
                 - "3.10"
           filters:
