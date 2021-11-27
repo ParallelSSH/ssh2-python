@@ -2,13 +2,9 @@
 
 """Example script for SFTP write"""
 
-from __future__ import print_function
-
 import argparse
 import socket
 import os
-import pwd
-import sys
 from datetime import datetime
 
 from ssh2.session import Session
@@ -17,7 +13,7 @@ from ssh2.sftp import LIBSSH2_FXF_CREAT, LIBSSH2_FXF_WRITE, \
     LIBSSH2_SFTP_S_IROTH
 
 
-USERNAME = pwd.getpwuid(os.geteuid()).pw_name
+USERNAME = os.getlogin()
 
 parser = argparse.ArgumentParser()
 
@@ -32,6 +28,7 @@ parser.add_argument('-u', dest='user', default=USERNAME, help="User name to auth
 
 
 def main():
+    buf_size = 1024 * 1024
     args = parser.parse_args()
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect((args.host, args.port))
@@ -40,18 +37,23 @@ def main():
     s.agent_auth(args.user)
     sftp = s.sftp_init()
     mode = LIBSSH2_SFTP_S_IRUSR | \
-           LIBSSH2_SFTP_S_IWUSR | \
-           LIBSSH2_SFTP_S_IRGRP | \
-           LIBSSH2_SFTP_S_IROTH
+        LIBSSH2_SFTP_S_IWUSR | \
+        LIBSSH2_SFTP_S_IRGRP | \
+        LIBSSH2_SFTP_S_IROTH
     f_flags = LIBSSH2_FXF_CREAT | LIBSSH2_FXF_WRITE
+    fileinfo = os.stat(args.source)
     print("Starting copy of local file %s to remote %s:%s" % (
         args.source, args.host, args.destination))
     now = datetime.now()
-    with open(args.source, 'rb') as local_fh, \
+    with open(args.source, 'rb', buf_size) as local_fh, \
             sftp.open(args.destination, f_flags, mode) as remote_fh:
-        for data in local_fh:
+        data = local_fh.read(buf_size)
+        while data:
             remote_fh.write(data)
-    print("Finished writing remote file in %s" % (datetime.now() - now,))
+            data = local_fh.read(buf_size)
+    taken = datetime.now() - now
+    rate = (fileinfo.st_size / 1024000.0) / taken.total_seconds()
+    print(f"Finished writing remote file in {taken}, transfer rate {rate} MB/s")
 
 
 if __name__ == "__main__":
