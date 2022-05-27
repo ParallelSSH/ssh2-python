@@ -141,19 +141,16 @@ _libssh2_recv(libssh2_socket_t sock, void *buffer, size_t length,
 #ifdef WIN32
     if(rc < 0)
         return -wsa2errno();
-#elif defined(__VMS)
-    if(rc < 0) {
-        if(errno == EWOULDBLOCK)
-            return -EAGAIN;
-        else
-            return -errno;
-    }
 #else
     if(rc < 0) {
         /* Sometimes the first recv() function call sets errno to ENOENT on
            Solaris and HP-UX */
         if(errno == ENOENT)
             return -EAGAIN;
+#ifdef EWOULDBLOCK /* For VMS and other special unixes */
+        else if(errno == EWOULDBLOCK)
+          return -EAGAIN;
+#endif
         else
             return -errno;
     }
@@ -177,16 +174,14 @@ _libssh2_send(libssh2_socket_t sock, const void *buffer, size_t length,
 #ifdef WIN32
     if(rc < 0)
         return -wsa2errno();
-#elif defined(__VMS)
-    if(rc < 0) {
-        if(errno == EWOULDBLOCK)
-            return -EAGAIN;
-        else
-            return -errno;
-    }
 #else
-    if(rc < 0)
-        return -errno;
+    if(rc < 0) {
+#ifdef EWOULDBLOCK /* For VMS and other special unixes */
+      if(errno == EWOULDBLOCK)
+        return -EAGAIN;
+#endif
+      return -errno;
+    }
 #endif
     return rc;
 }
@@ -196,7 +191,10 @@ _libssh2_send(libssh2_socket_t sock, const void *buffer, size_t length,
 unsigned int
 _libssh2_ntohu32(const unsigned char *buf)
 {
-    return (buf[0] << 24) | (buf[1] << 16) | (buf[2] << 8) | buf[3];
+    return (((unsigned int)buf[0] << 24)
+           | ((unsigned int)buf[1] << 16)
+           | ((unsigned int)buf[2] << 8)
+           | ((unsigned int)buf[3]));
 }
 
 
@@ -734,6 +732,29 @@ void _libssh2_string_buf_free(LIBSSH2_SESSION *session, struct string_buf *buf)
     buf = NULL;
 }
 
+int _libssh2_get_byte(struct string_buf *buf, unsigned char *out)
+{
+    if(!_libssh2_check_length(buf, 1)) {
+        return -1;
+    }
+
+    *out = buf->dataptr[0];
+    buf->dataptr += 1;
+    return 0;
+}
+
+int _libssh2_get_boolean(struct string_buf *buf, unsigned char *out)
+{
+    if(!_libssh2_check_length(buf, 1)) {
+        return -1;
+    }
+
+
+    *out = buf->dataptr[0] == 0 ? 0 : 1;
+    buf->dataptr += 1;
+    return 0;
+}
+
 int _libssh2_get_u32(struct string_buf *buf, uint32_t *out)
 {
     if(!_libssh2_check_length(buf, 4)) {
@@ -796,12 +817,18 @@ int _libssh2_copy_string(LIBSSH2_SESSION *session, struct string_buf *buf,
         return -1;
     }
 
-    *outbuf = LIBSSH2_ALLOC(session, str_len);
-    if(*outbuf) {
-        memcpy(*outbuf, str, str_len);
+    if(str_len) {
+        *outbuf = LIBSSH2_ALLOC(session, str_len);
+        if(*outbuf) {
+            memcpy(*outbuf, str, str_len);
+        }
+        else {
+            return -1;
+        }
     }
     else {
-        return -1;
+        *outlen = 0;
+        *outbuf = NULL;
     }
 
     if(outlen)
@@ -851,6 +878,12 @@ int _libssh2_check_length(struct string_buf *buf, size_t len)
     unsigned char *endp = &buf->data[buf->len];
     size_t left = endp - buf->dataptr;
     return ((len <= left) && (left <= buf->len));
+}
+
+int _libssh2_eob(struct string_buf *buf)
+{
+    unsigned char *endp = &buf->data[buf->len];
+    return buf->dataptr >= endp;
 }
 
 /* Wrappers */

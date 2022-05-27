@@ -1,7 +1,7 @@
 # $Id: Makefile.am,v 1.37 2009/03/26 15:41:15 bagder Exp $
 
-EXTRA_DIST = template.3 BINDINGS INSTALL_AUTOTOOLS INSTALL_CMAKE HACKING TODO	\
- AUTHORS CMakeLists.txt HACKING.CRYPTO SECURITY.md
+EXTRA_DIST = template.3 BINDINGS INSTALL_AUTOTOOLS INSTALL_CMAKE.md HACKING TODO \
+ AUTHORS CMakeLists.txt HACKING-CRYPTO SECURITY.md
 
 dist_man_MANS = \
 	libssh2_agent_connect.3 \
@@ -62,6 +62,7 @@ dist_man_MANS = \
 	libssh2_channel_write_stderr.3 \
 	libssh2_channel_x11_req.3 \
 	libssh2_channel_x11_req_ex.3 \
+	libssh2_crypto_engine.3 \
 	libssh2_exit.3 \
 	libssh2_free.3 \
 	libssh2_hostkey_hash.3 \
@@ -163,6 +164,7 @@ dist_man_MANS = \
 	libssh2_trace.3 \
 	libssh2_trace_sethandler.3 \
 	libssh2_userauth_authenticated.3 \
+	libssh2_userauth_banner.3 \
 	libssh2_userauth_hostbased_fromfile.3 \
 	libssh2_userauth_hostbased_fromfile_ex.3 \
 	libssh2_userauth_keyboard_interactive.3 \

@@ -33,7 +33,7 @@
 # USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 # OF SUCH DAMAGE.
 
-cmake_minimum_required(VERSION 2.8.11)
+cmake_minimum_required(VERSION 2.8.12)
 
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
@@ -96,6 +96,14 @@ option(BUILD_TESTING "Build libssh2 test suite" ON)
 if(BUILD_TESTING)
   enable_testing()
   add_subdirectory(tests)
+endif()
+
+option(LINT "Check style while building" OFF)
+if(LINT)
+  add_custom_target(lint ALL
+    ./ci/checksrc.sh
+    WORKING_DIRECTORY ${libssh2_SOURCE_DIR})
+  add_dependencies(libssh2 lint)
 endif()
 
 add_subdirectory(docs)

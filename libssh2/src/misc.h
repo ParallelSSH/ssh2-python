@@ -91,6 +91,8 @@ void _libssh2_explicit_zero(void *buf, size_t size);
 struct string_buf* _libssh2_string_buf_new(LIBSSH2_SESSION *session);
 void _libssh2_string_buf_free(LIBSSH2_SESSION *session,
                               struct string_buf *buf);
+int _libssh2_get_boolean(struct string_buf *buf, unsigned char *out);
+int _libssh2_get_byte(struct string_buf *buf, unsigned char *out);
 int _libssh2_get_u32(struct string_buf *buf, uint32_t *out);
 int _libssh2_get_u64(struct string_buf *buf, libssh2_uint64_t *out);
 int _libssh2_match_string(struct string_buf *buf, const char *match);
@@ -101,6 +103,7 @@ int _libssh2_copy_string(LIBSSH2_SESSION* session, struct string_buf *buf,
 int _libssh2_get_bignum_bytes(struct string_buf *buf, unsigned char **outbuf,
                               size_t *outlen);
 int _libssh2_check_length(struct string_buf *buf, size_t requested_len);
+int _libssh2_eob(struct string_buf *buf);
 
 #if defined(LIBSSH2_WIN32) && !defined(__MINGW32__) && !defined(__CYGWIN__)
 /* provide a private one */

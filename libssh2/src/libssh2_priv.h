@@ -1,3 +1,5 @@
+#ifndef __LIBSSH2_PRIV_H
+#define __LIBSSH2_PRIV_H
 /* Copyright (c) 2004-2008, 2010, Sara Golemon <sarag@libssh2.org>
  * Copyright (c) 2009-2014 by Daniel Stenberg
  * Copyright (c) 2010 Simon Josefsson
@@ -36,9 +38,6 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
  * OF SUCH DAMAGE.
  */
-
-#ifndef LIBSSH2_PRIV_H
-#define LIBSSH2_PRIV_H 1
 
 #define LIBSSH2_LIBRARY
 #include "libssh2_config.h"
@@ -110,13 +109,18 @@
 #define inline __inline
 #endif
 
-/* Provide iovec / writev on WIN32 platform. */
-#ifdef WIN32
+/* 3DS doesn't seem to have iovec */
+#if defined(WIN32) || defined(_3DS)
 
 struct iovec {
     size_t iov_len;
     void *iov_base;
 };
+
+#endif
+
+/* Provide iovec / writev on WIN32 platform. */
+#ifdef WIN32
 
 static inline int writev(int sock, struct iovec *iov, int nvecs)
 {
@@ -452,6 +456,13 @@ struct _LIBSSH2_CHANNEL
     /* State variables used in libssh2_channel_handle_extended_data2() */
     libssh2_nonblocking_states extData2_state;
 
+    /* State variables used in libssh2_channel_request_auth_agent() */
+    libssh2_nonblocking_states req_auth_agent_try_state;
+    libssh2_nonblocking_states req_auth_agent_state;
+    unsigned char req_auth_agent_packet[36];
+    size_t req_auth_agent_packet_len;
+    unsigned char req_auth_agent_local_channel[4];
+    packet_requirev_state_t req_auth_agent_requirev_state;
 };
 
 struct _LIBSSH2_LISTENER
@@ -629,6 +640,12 @@ struct _LIBSSH2_SESSION
     unsigned char server_hostkey_sha256[SHA256_DIGEST_LENGTH];
     int server_hostkey_sha256_valid;
 
+    /* public key algorithms accepted as comma separated list */
+    char *server_sign_algorithms;
+
+    /* key signing algorithm preferences -- NULL yields server order */
+    char *sign_algo_prefs;
+
     /* (remote as source of data -- packet_read ) */
     libssh2_endpoint_data remote;
 
@@ -702,6 +719,7 @@ struct _LIBSSH2_SESSION
     libssh2_nonblocking_states userauth_list_state;
     unsigned char *userauth_list_data;
     size_t userauth_list_data_len;
+    char *userauth_banner;
     packet_requirev_state_t userauth_list_packet_requirev_state;
 
     /* State variables used in libssh2_userauth_password_ex() */
@@ -742,10 +760,10 @@ struct _LIBSSH2_SESSION
     size_t userauth_kybd_data_len;
     unsigned char *userauth_kybd_packet;
     size_t userauth_kybd_packet_len;
-    unsigned int userauth_kybd_auth_name_len;
-    char *userauth_kybd_auth_name;
-    unsigned userauth_kybd_auth_instruction_len;
-    char *userauth_kybd_auth_instruction;
+    size_t userauth_kybd_auth_name_len;
+    unsigned char *userauth_kybd_auth_name;
+    size_t userauth_kybd_auth_instruction_len;
+    unsigned char *userauth_kybd_auth_instruction;
     unsigned int userauth_kybd_num_prompts;
     int userauth_kybd_auth_failure;
     LIBSSH2_USERAUTH_KBDINT_PROMPT *userauth_kybd_prompts;
@@ -995,6 +1013,7 @@ _libssh2_debug(LIBSSH2_SESSION * session, int context, const char *format, ...)
 #define SSH_MSG_DEBUG                               4
 #define SSH_MSG_SERVICE_REQUEST                     5
 #define SSH_MSG_SERVICE_ACCEPT                      6
+#define SSH_MSG_EXT_INFO                            7
 
 #define SSH_MSG_KEXINIT                             20
 #define SSH_MSG_NEWKEYS                             21
@@ -1140,4 +1159,4 @@ endings either CRLF or LF so 't' is appropriate.
 #define FOPEN_APPENDTEXT "a"
 #endif
 
-#endif /* LIBSSH2_H */
+#endif /* __LIBSSH2_PRIV_H */

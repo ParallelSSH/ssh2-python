@@ -1,3 +1,5 @@
+#ifndef __LIBSSH2_OPENSSL_H
+#define __LIBSSH2_OPENSSL_H
 /* Copyright (C) 2009, 2010 Simon Josefsson
  * Copyright (C) 2006, 2007 The Written Word, Inc.  All rights reserved.
  *
@@ -37,6 +39,43 @@
  * OF SUCH DAMAGE.
  */
 
+#ifdef LIBSSH2_WOLFSSL
+
+#include <wolfssl/options.h>
+#include <openssl/ecdh.h>
+
+#if defined(NO_DSA) || defined(HAVE_FIPS)
+#define OPENSSL_NO_DSA
+#endif
+
+#if defined(NO_MD5) || defined(HAVE_FIPS)
+#define OPENSSL_NO_MD5
+#endif
+
+#if !defined(WOLFSSL_RIPEMD) || defined(HAVE_FIPS)
+#define OPENSSL_NO_RIPEMD
+#endif
+
+#if defined(NO_RC4) || defined(HAVE_FIPS)
+#define OPENSSL_NO_RC4
+#endif
+
+#ifdef NO_DES3
+#define OPENSSL_NO_DES
+#endif
+
+#ifdef EVP_aes_128_ctr
+#define HAVE_EVP_AES_128_CTR
+#endif
+
+/* wolfSSL doesn't support Blowfish or CAST. */
+#define OPENSSL_NO_BF
+#define OPENSSL_NO_CAST
+/* wolfSSL has no engine framework. */
+#define OPENSSL_NO_ENGINE
+
+#endif /* LIBSSH2_WOLFSSL */
+
 #include <openssl/opensslconf.h>
 #include <openssl/sha.h>
 #include <openssl/rsa.h>
@@ -55,15 +94,20 @@
 #include <openssl/pem.h>
 #include <openssl/rand.h>
 
-#if OPENSSL_VERSION_NUMBER >= 0x10100000L && \
-    !defined(LIBRESSL_VERSION_NUMBER)
+#if (OPENSSL_VERSION_NUMBER >= 0x10100000L && \
+    !defined(LIBRESSL_VERSION_NUMBER)) || defined(LIBSSH2_WOLFSSL) || \
+    LIBRESSL_VERSION_NUMBER >= 0x3050000fL
+/* For wolfSSL, whether the structs are truly opaque or not, it's best to not
+ * rely on their internal data members being exposed publicly. */
 # define HAVE_OPAQUE_STRUCTS 1
 #endif
 
 #ifdef OPENSSL_NO_RSA
 # define LIBSSH2_RSA 0
+# define LIBSSH2_RSA_SHA2 0
 #else
 # define LIBSSH2_RSA 1
+# define LIBSSH2_RSA_SHA2 1
 #endif
 
 #ifdef OPENSSL_NO_DSA
@@ -72,7 +116,7 @@
 # define LIBSSH2_DSA 1
 #endif
 
-#ifdef OPENSSL_NO_ECDSA
+#if defined(OPENSSL_NO_ECDSA) || defined(OPENSSL_NO_EC)
 # define LIBSSH2_ECDSA 0
 #else
 # define LIBSSH2_ECDSA 1
@@ -92,7 +136,7 @@
 # define LIBSSH2_MD5 1
 #endif
 
-#ifdef OPENSSL_NO_RIPEMD
+#if defined(OPENSSL_NO_RIPEMD) || defined(OPENSSL_NO_RMD160)
 # define LIBSSH2_HMAC_RIPEMD 0
 #else
 # define LIBSSH2_HMAC_RIPEMD 1
@@ -101,7 +145,8 @@
 #define LIBSSH2_HMAC_SHA256 1
 #define LIBSSH2_HMAC_SHA512 1
 
-#if OPENSSL_VERSION_NUMBER >= 0x00907000L && !defined(OPENSSL_NO_AES)
+#if (OPENSSL_VERSION_NUMBER >= 0x00907000L && !defined(OPENSSL_NO_AES)) || \
+    (defined(LIBSSH2_WOLFSSL) && defined(WOLFSSL_AES_COUNTER))
 # define LIBSSH2_AES_CTR 1
 # define LIBSSH2_AES 1
 #else
@@ -135,7 +180,7 @@
 
 #define EC_MAX_POINT_LEN ((528 * 2 / 8) + 1)
 
-#define _libssh2_random(buf, len) RAND_bytes ((buf), (len))
+#define _libssh2_random(buf, len) (RAND_bytes((buf), (len)) == 1 ? 0 : -1)
 
 #define libssh2_prepare_iovec(vec, len)  /* Empty. */
 
@@ -306,7 +351,7 @@ extern void _libssh2_openssl_crypto_exit(void);
 
 #define _libssh2_dsa_free(dsactx) DSA_free(dsactx)
 
-#ifdef LIBSSH2_ECDSA
+#if LIBSSH2_ECDSA
 #define libssh2_ecdsa_ctx EC_KEY
 #define _libssh2_ecdsa_free(ecdsactx) EC_KEY_free(ecdsactx)
 #define _libssh2_ec_key EC_KEY
@@ -321,27 +366,10 @@ libssh2_curve_type;
 #define _libssh2_ec_key void
 #endif /* LIBSSH2_ECDSA */
 
-#ifdef LIBSSH2_ED25519
+#if LIBSSH2_ED25519
+#define libssh2_ed25519_ctx EVP_PKEY
 
-typedef struct {
-    EVP_PKEY *public_key;
-    EVP_PKEY *private_key;
-} libssh2_curve25519_keys;
-
-#define libssh2_ed25519_ctx libssh2_curve25519_keys
-#define libssh2_x25519_ctx libssh2_curve25519_keys
-
-#define _libssh2_ed25519_new_ctx() calloc(1, sizeof(libssh2_ed25519_ctx))
-#define _libssh2_ed25519_free(ctx) do { \
- if(ctx) { \
-  if(ctx->public_key) EVP_PKEY_free(ctx->public_key); \
-  if(ctx->private_key) EVP_PKEY_free(ctx->private_key); \
-  free(ctx); \
- } \
-} while(0)
-
-#define _libssh2_x25519_free(ctx) _libssh2_ed25519_free(ctx)
-
+#define _libssh2_ed25519_free(ctx) EVP_PKEY_free(ctx)
 #endif /* ED25519 */
 
 #define _libssh2_cipher_type(name) const EVP_CIPHER *(*name)(void)
@@ -407,3 +435,5 @@ extern void _libssh2_dh_dtor(_libssh2_dh_ctx *dhctx);
 const EVP_CIPHER *_libssh2_EVP_aes_128_ctr(void);
 const EVP_CIPHER *_libssh2_EVP_aes_192_ctr(void);
 const EVP_CIPHER *_libssh2_EVP_aes_256_ctr(void);
+
+#endif /* __LIBSSH2_OPENSSL_H */

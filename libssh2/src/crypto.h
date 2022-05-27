@@ -1,3 +1,5 @@
+#ifndef __LIBSSH2_CRYPTO_H
+#define __LIBSSH2_CRYPTO_H
 /* Copyright (C) 2009, 2010 Simon Josefsson
  * Copyright (C) 2006, 2007 The Written Word, Inc.  All rights reserved.
  * Copyright (C) 2010-2019 Daniel Stenberg
@@ -35,10 +37,8 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
  * OF SUCH DAMAGE.
  */
-#ifndef LIBSSH2_CRYPTO_H
-#define LIBSSH2_CRYPTO_H
 
-#ifdef LIBSSH2_OPENSSL
+#if defined(LIBSSH2_OPENSSL) || defined(LIBSSH2_WOLFSSL)
 #include "openssl.h"
 #endif
 
@@ -93,6 +93,19 @@ int _libssh2_rsa_sha1_sign(LIBSSH2_SESSION * session,
                            size_t hash_len,
                            unsigned char **signature,
                            size_t *signature_len);
+#if LIBSSH2_RSA_SHA2
+int _libssh2_rsa_sha2_sign(LIBSSH2_SESSION * session,
+                           libssh2_rsa_ctx * rsactx,
+                           const unsigned char *hash,
+                           size_t hash_len,
+                           unsigned char **signature,
+                           size_t *signature_len);
+int _libssh2_rsa_sha2_verify(libssh2_rsa_ctx * rsa,
+                             size_t hash_len,
+                             const unsigned char *sig,
+                             unsigned long sig_len,
+                             const unsigned char *m, unsigned long m_len);
+#endif
 int _libssh2_rsa_new_private_frommemory(libssh2_rsa_ctx ** rsa,
                                         LIBSSH2_SESSION * session,
                                         const char *filedata,
@@ -170,7 +183,7 @@ int _libssh2_ecdsa_new_private_frommemory(libssh2_ecdsa_ctx ** ec_ctx,
                                           unsigned const char *passphrase);
 
 libssh2_curve_type
-_libssh2_ecdsa_key_get_curve_type(_libssh2_ec_key *key);
+_libssh2_ecdsa_get_curve_type(libssh2_ecdsa_ctx *ec_ctx);
 
 int
 _libssh2_ecdsa_curve_type_from_name(const char *name,
@@ -181,8 +194,8 @@ _libssh2_ecdsa_curve_type_from_name(const char *name,
 #if LIBSSH2_ED25519
 
 int
-_libssh2_curve25519_new(LIBSSH2_SESSION *session, libssh2_ed25519_ctx **ctx,
-                        uint8_t **out_public_key, uint8_t **out_private_key);
+_libssh2_curve25519_new(LIBSSH2_SESSION *session, uint8_t **out_public_key,
+                        uint8_t **out_private_key);
 
 int
 _libssh2_curve25519_gen_k(_libssh2_bn **k,
@@ -245,4 +258,23 @@ int _libssh2_pub_priv_keyfilememory(LIBSSH2_SESSION *session,
                                     size_t privatekeydata_len,
                                     const char *passphrase);
 
-#endif
+
+/**
+ * @function _libssh2_supported_key_sign_algorithms
+ * @abstract Returns supported algorithms used for upgrading public
+ * key signing RFC 8332
+ * @discussion Based on the incoming key_method value, this function
+ * will return supported algorithms that can upgrade the key method
+ * @related _libssh2_key_sign_algorithm()
+ * @param key_method current key method, usually the default key sig method
+ * @param key_method_len length of the key method buffer
+ * @result comma seperated list of supported upgrade options per RFC 8332, if
+ * there is no upgrade option return NULL
+ */
+
+const char *
+_libssh2_supported_key_sign_algorithms(LIBSSH2_SESSION *session,
+                                       unsigned char *key_method,
+                                       size_t key_method_len);
+
+#endif /* __LIBSSH2_CRYPTO_H */

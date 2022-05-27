@@ -52,6 +52,7 @@
 #include "transport.h"
 #include "session.h"
 #include "userauth.h"
+#include "userauth_kbd_packet.h"
 
 /* libssh2_userauth_list
  *
@@ -63,11 +64,13 @@
 static char *userauth_list(LIBSSH2_SESSION *session, const char *username,
                            unsigned int username_len)
 {
-    static const unsigned char reply_codes[3] =
-        { SSH_MSG_USERAUTH_SUCCESS, SSH_MSG_USERAUTH_FAILURE, 0 };
+    unsigned char reply_codes[4] =
+        { SSH_MSG_USERAUTH_SUCCESS, SSH_MSG_USERAUTH_FAILURE,
+          SSH_MSG_USERAUTH_BANNER, 0 };
     /* packet_type(1) + username_len(4) + service_len(4) +
        service(14)"ssh-connection" + method_len(4) = 27 */
     unsigned long methods_len;
+    unsigned int banner_len;
     unsigned char *s;
     int rc;
 
@@ -134,6 +137,57 @@ static char *userauth_list(LIBSSH2_SESSION *session, const char *username,
             return NULL;
         }
 
+        if(session->userauth_list_data[0] == SSH_MSG_USERAUTH_BANNER) {
+            if(session->userauth_list_data_len < 5) {
+                LIBSSH2_FREE(session, session->userauth_list_data);
+                session->userauth_list_data = NULL;
+                _libssh2_error(session, LIBSSH2_ERROR_PROTO,
+                               "Unexpected packet size");
+                return NULL;
+            }
+            banner_len = _libssh2_ntohu32(session->userauth_list_data + 1);
+            if(banner_len > session->userauth_list_data_len - 5) {
+                LIBSSH2_FREE(session, session->userauth_list_data);
+                session->userauth_list_data = NULL;
+                _libssh2_error(session, LIBSSH2_ERROR_OUT_OF_BOUNDARY,
+                               "Unexpected userauth banner size");
+                return NULL;
+            }
+            session->userauth_banner = LIBSSH2_ALLOC(session, banner_len + 1);
+            if(!session->userauth_banner) {
+                LIBSSH2_FREE(session, session->userauth_list_data);
+                session->userauth_list_data = NULL;
+                _libssh2_error(session, LIBSSH2_ERROR_ALLOC,
+                              "Unable to allocate memory for userauth_banner");
+                return NULL;
+            }
+            memcpy(session->userauth_banner, session->userauth_list_data + 5,
+                    banner_len);
+            session->userauth_banner[banner_len] = '\0';
+            _libssh2_debug(session, LIBSSH2_TRACE_AUTH,
+                           "Banner: %s",
+                           session->userauth_banner);
+            LIBSSH2_FREE(session, session->userauth_list_data);
+            session->userauth_list_data = NULL;
+            /* SSH_MSG_USERAUTH_BANNER has been handled */
+            reply_codes[2] = 0;
+            rc = _libssh2_packet_requirev(session, reply_codes,
+                                          &session->userauth_list_data,
+                                          &session->userauth_list_data_len, 0,
+                                          NULL, 0,
+                                &session->userauth_list_packet_requirev_state);
+            if(rc == LIBSSH2_ERROR_EAGAIN) {
+                _libssh2_error(session, LIBSSH2_ERROR_EAGAIN,
+                               "Would block requesting userauth list");
+                return NULL;
+            }
+            else if(rc || (session->userauth_list_data_len < 1)) {
+                _libssh2_error(session, rc, "Failed getting response");
+                session->userauth_list_state = libssh2_NB_state_idle;
+                return NULL;
+            }
+        }
+
         if(session->userauth_list_data[0] == SSH_MSG_USERAUTH_SUCCESS) {
             /* Wow, who'dve thought... */
             _libssh2_error(session, LIBSSH2_ERROR_NONE, "No error");
@@ -187,6 +241,30 @@ libssh2_userauth_list(LIBSSH2_SESSION * session, const char *user,
     BLOCK_ADJUST_ERRNO(ptr, session,
                        userauth_list(session, user, user_len));
     return ptr;
+}
+
+/* libssh2_userauth_banner
+ *
+ * Retrieve banner message from server, if available.
+ * When no such message is sent by server or if no authentication attempt has
+ * been made, this function returns LIBSSH2_ERROR_MISSING_AUTH_BANNER.
+ */
+LIBSSH2_API int
+libssh2_userauth_banner(LIBSSH2_SESSION *session, char **banner)
+{
+    if(NULL == session)
+        return LIBSSH2_ERROR_MISSING_USERAUTH_BANNER;
+
+    if(!session->userauth_banner) {
+        return _libssh2_error(session,
+                              LIBSSH2_ERROR_MISSING_USERAUTH_BANNER,
+                              "Missing userauth banner");
+    }
+
+    if(banner != NULL)
+        *banner = session->userauth_banner;
+
+    return LIBSSH2_ERROR_NONE;
 }
 
 /*
@@ -629,7 +707,7 @@ file_read_publickey(LIBSSH2_SESSION * session, unsigned char **method,
 
     sp1++;
 
-    sp_len = sp1 > pubkey ? (sp1 - pubkey) - 1 : 0;
+    sp_len = sp1 > pubkey ? (sp1 - pubkey) : 0;
     sp2 = memchr(sp1, ' ', pubkey_len - sp_len);
     if(sp2 == NULL) {
         /* Assume that the id string is missing, but that it's okay */
@@ -687,7 +765,7 @@ memory_read_privatekey(LIBSSH2_SESSION * session,
                           (unsigned char *) passphrase,
                           hostkey_abstract)) {
         return _libssh2_error(session, LIBSSH2_ERROR_FILE,
-                              "Unable to initialize private key from file");
+                              "Unable to initialize private key from memory");
     }
 
     return 0;
@@ -827,11 +905,6 @@ userauth_hostbased_fromfile(LIBSSH2_SESSION *session,
                             size_t local_username_len)
 {
     int rc;
-
-#if !LIBSSH2_RSA
-    return _libssh2_error(session, LIBSSH2_ERROR_METHOD_NOT_SUPPORTED,
-                          "RSA is not supported by crypto backend");
-#endif
 
     if(session->userauth_host_state == libssh2_NB_state_idle) {
         const LIBSSH2_HOSTKEY_METHOD *privkeyobj;
@@ -1075,7 +1148,160 @@ libssh2_userauth_hostbased_fromfile_ex(LIBSSH2_SESSION *session,
     return rc;
 }
 
+static int plain_method_len(const char *method, size_t method_len)
+{
+    if(!strncmp("ecdsa-sha2-nistp256-cert-v01@openssh.com",
+                method,
+                method_len) ||
+       !strncmp("ecdsa-sha2-nistp384-cert-v01@openssh.com",
+                method,
+                method_len) ||
+       !strncmp("ecdsa-sha2-nistp521-cert-v01@openssh.com",
+                method,
+                method_len)) {
+        return 19;
+    }
+    return method_len;
+}
 
+/**
+ * @function _libssh2_key_sign_algorithm
+ * @abstract Upgrades the algorithm used for public key signing RFC 8332
+ * @discussion Based on the incoming key_method value, this function
+ * will upgrade the key method input based on user preferences,
+ * server support algos and crypto backend support
+ * @related _libssh2_supported_key_sign_algorithms()
+ * @param key_method current key method, usually the default key sig method
+ * @param key_method_len length of the key method buffer
+ * @result error code or zero on success
+ */
+
+static int
+_libssh2_key_sign_algorithm(LIBSSH2_SESSION *session,
+                            unsigned char **key_method,
+                            size_t *key_method_len)
+{
+    const char *s = NULL;
+    const char *a = NULL;
+    const char *match = NULL;
+    const char *p = NULL;
+    const char *f = NULL;
+    char *i = NULL;
+    int p_len = 0;
+    int f_len = 0;
+    int rc = 0;
+    int match_len = 0;
+    char *filtered_algs = NULL;
+
+    const char *supported_algs =
+    _libssh2_supported_key_sign_algorithms(session,
+                                           *key_method,
+                                           *key_method_len);
+
+    if(supported_algs == NULL || session->server_sign_algorithms == NULL) {
+        /* no upgrading key algorithm supported, do nothing */
+        return LIBSSH2_ERROR_NONE;
+    }
+
+    filtered_algs = LIBSSH2_ALLOC(session, strlen(supported_algs) + 1);
+    if(!filtered_algs) {
+        rc = _libssh2_error(session, LIBSSH2_ERROR_ALLOC,
+                            "Unable to allocate filtered algs");
+        return rc;
+    }
+
+    s = session->server_sign_algorithms;
+    i = filtered_algs;
+
+    /* this walks the server algo list and the supported algo list and creates
+     a filtered list that includes matches */
+
+    while(s && *s) {
+        p = strchr(s, ',');
+        p_len = p ? (p - s) : (int) strlen(s);
+        a = supported_algs;
+
+        while(a && *a) {
+            f = strchr(a, ',');
+            f_len = f ? (f - a) : (int) strlen(a);
+
+            if(f_len == p_len && memcmp(a, s, p_len) == 0) {
+
+                if(i != filtered_algs) {
+                    memcpy(i, ",", 1);
+                    i += 1;
+                }
+
+                memcpy(i, s, p_len);
+                i += p_len;
+            }
+
+            a = f ? (f + 1) : NULL;
+        }
+
+        s = p ? (p + 1) : NULL;
+    }
+
+    filtered_algs[i - filtered_algs] = '\0';
+
+    if(session->sign_algo_prefs) {
+        s = session->sign_algo_prefs;
+    }
+    else {
+        s = supported_algs;
+    }
+
+    /* now that we have the possible supported algos, match based on the prefs
+     or what is supported by the crypto backend, look for a match */
+
+    while(s && *s && !match) {
+        p = strchr(s, ',');
+        p_len = p ? (p - s) : (int) strlen(s);
+        a = filtered_algs;
+
+        while(a && *a && !match) {
+            f = strchr(a, ',');
+            f_len = f ? (f - a) : (int) strlen(a);
+
+            if(f_len == p_len && memcmp(a, s, p_len) == 0) {
+                /* found a match, upgrade key method */
+                match = s;
+                match_len = p_len;
+            }
+            else {
+                a = f ? (f + 1) : NULL;
+            }
+        }
+
+        s = p ? (p + 1) : NULL;
+    }
+
+    if(match != NULL) {
+        if(*key_method)
+            LIBSSH2_FREE(session, *key_method);
+
+        *key_method = LIBSSH2_ALLOC(session, match_len);
+        if(key_method) {
+            memcpy(*key_method, match, match_len);
+            *key_method_len = match_len;
+        }
+        else {
+            *key_method_len = 0;
+            rc = _libssh2_error(session, LIBSSH2_ERROR_ALLOC,
+                                "Unable to allocate key method upgrade");
+        }
+    }
+    else {
+        /* no match was found */
+        rc = _libssh2_error(session, LIBSSH2_ERROR_METHOD_NONE,
+                            "No signing signature matched");
+    }
+
+    if(filtered_algs)
+        LIBSSH2_FREE(session, filtered_algs);
+
+    return rc;
+}
 
 int
 _libssh2_userauth_publickey(LIBSSH2_SESSION *session,
@@ -1093,6 +1319,10 @@ _libssh2_userauth_publickey(LIBSSH2_SESSION *session,
         };
     int rc;
     unsigned char *s;
+    int auth_attempts = 0;
+
+    retry_auth:
+    auth_attempts++;
 
     if(session->userauth_pblc_state == libssh2_NB_state_idle) {
 
@@ -1135,15 +1365,27 @@ _libssh2_userauth_publickey(LIBSSH2_SESSION *session,
             memcpy(session->userauth_pblc_method, pubkeydata + 4,
                    session->userauth_pblc_method_len);
         }
-        /*
-         * The length of the method name read from plaintext prefix in the
-         * file must match length embedded in the key.
-         * TODO: The data should match too but we don't check that. Should we?
-         */
-        else if(session->userauth_pblc_method_len !=
-                 _libssh2_ntohu32(pubkeydata))
-            return _libssh2_error(session, LIBSSH2_ERROR_PUBLICKEY_UNVERIFIED,
-                                  "Invalid public key");
+
+        /* upgrade key signing algo if it is supported and
+         * it is our first auth attempt, otherwise fallback to
+         * the key default algo */
+        if(auth_attempts == 1) {
+            rc = _libssh2_key_sign_algorithm(session,
+                                        &session->userauth_pblc_method,
+                                        &session->userauth_pblc_method_len);
+
+            if(rc)
+                return rc;
+        }
+
+        if(session->userauth_pblc_method_len &&
+           session->userauth_pblc_method) {
+            _libssh2_debug(session,
+                           LIBSSH2_TRACE_KEX,
+                           "Signing using %.*s",
+                           session->userauth_pblc_method_len,
+                           session->userauth_pblc_method);
+        }
 
         /*
          * 45 = packet_type(1) + username_len(4) + servicename_len(4) +
@@ -1301,6 +1543,17 @@ _libssh2_userauth_publickey(LIBSSH2_SESSION *session,
             return _libssh2_error(session, LIBSSH2_ERROR_EAGAIN,
                                   "Would block");
         }
+        else if(rc == LIBSSH2_ERROR_ALGO_UNSUPPORTED && auth_attempts == 1) {
+            /* try again with the default key algo */
+            LIBSSH2_FREE(session, session->userauth_pblc_method);
+            session->userauth_pblc_method = NULL;
+            LIBSSH2_FREE(session, session->userauth_pblc_packet);
+            session->userauth_pblc_packet = NULL;
+            session->userauth_pblc_state = libssh2_NB_state_idle;
+
+            rc = LIBSSH2_ERROR_NONE;
+            goto retry_auth;
+        }
         else if(rc) {
             LIBSSH2_FREE(session, session->userauth_pblc_method);
             session->userauth_pblc_method = NULL;
@@ -1339,6 +1592,10 @@ _libssh2_userauth_publickey(LIBSSH2_SESSION *session,
 
         s = session->userauth_pblc_packet + session->userauth_pblc_packet_len;
         session->userauth_pblc_b = NULL;
+
+        session->userauth_pblc_method_len =
+           plain_method_len((const char *)session->userauth_pblc_method,
+                            session->userauth_pblc_method_len);
 
         _libssh2_store_u32(&s,
                            4 + session->userauth_pblc_method_len + 4 +
@@ -1438,11 +1695,6 @@ userauth_publickey_frommemory(LIBSSH2_SESSION *session,
     void *abstract = &privkey_file;
     int rc;
 
-#if !LIBSSH2_RSA
-    return _libssh2_error(session, LIBSSH2_ERROR_METHOD_NOT_SUPPORTED,
-                          "RSA is not supported by crypto backend");
-#endif
-
     privkey_file.filename = privatekeydata;
     privkey_file.passphrase = passphrase;
 
@@ -1457,15 +1709,14 @@ userauth_publickey_frommemory(LIBSSH2_SESSION *session,
         }
         else if(privatekeydata_len && privatekeydata) {
             /* Compute public key from private key. */
-            if(_libssh2_pub_priv_keyfilememory(session,
+            rc = _libssh2_pub_priv_keyfilememory(session,
                                             &session->userauth_pblc_method,
                                             &session->userauth_pblc_method_len,
                                             &pubkeydata, &pubkeydata_len,
                                             privatekeydata, privatekeydata_len,
-                                            passphrase))
-                return _libssh2_error(session, LIBSSH2_ERROR_FILE,
-                                      "Unable to extract public key "
-                                      "from private key.");
+                                            passphrase);
+            if(rc)
+                return rc;
         }
         else {
             return _libssh2_error(session, LIBSSH2_ERROR_FILE,
@@ -1499,11 +1750,6 @@ userauth_publickey_fromfile(LIBSSH2_SESSION *session,
     struct privkey_file privkey_file;
     void *abstract = &privkey_file;
     int rc;
-
-#if !LIBSSH2_RSA
-    return _libssh2_error(session, LIBSSH2_ERROR_METHOD_NOT_SUPPORTED,
-                          "RSA is not supported by crypto backend");
-#endif
 
     privkey_file.filename = privatekey;
     privkey_file.passphrase = passphrase;
@@ -1633,13 +1879,13 @@ userauth_keyboard_interactive(LIBSSH2_SESSION * session,
                               ((*response_callback)))
 {
     unsigned char *s;
+
     int rc;
 
     static const unsigned char reply_codes[4] = {
         SSH_MSG_USERAUTH_SUCCESS,
         SSH_MSG_USERAUTH_FAILURE, SSH_MSG_USERAUTH_INFO_REQUEST, 0
     };
-    unsigned int language_tag_len;
     unsigned int i;
 
     if(session->userauth_kybd_state == libssh2_NB_state_idle) {
@@ -1762,210 +2008,14 @@ userauth_keyboard_interactive(LIBSSH2_SESSION * session,
             }
 
             /* server requested PAM-like conversation */
-            s = session->userauth_kybd_data + 1;
-
-            if(session->userauth_kybd_data_len >= 5) {
-                /* string    name (ISO-10646 UTF-8) */
-                session->userauth_kybd_auth_name_len = _libssh2_ntohu32(s);
-                s += 4;
-            }
-            else {
-                _libssh2_error(session, LIBSSH2_ERROR_BUFFER_TOO_SMALL,
-                               "userauth keyboard data buffer too small"
-                               "to get length");
+            if(userauth_keyboard_interactive_decode_info_request(session)
+               < 0) {
                 goto cleanup;
             }
 
-            if(session->userauth_kybd_auth_name_len) {
-                session->userauth_kybd_auth_name =
-                    LIBSSH2_ALLOC(session,
-                                  session->userauth_kybd_auth_name_len);
-                if(!session->userauth_kybd_auth_name) {
-                    _libssh2_error(session, LIBSSH2_ERROR_ALLOC,
-                                   "Unable to allocate memory for "
-                                   "keyboard-interactive 'name' "
-                                   "request field");
-                    goto cleanup;
-                }
-                if(s + session->userauth_list_data_len <=
-                   session->userauth_kybd_data +
-                   session->userauth_kybd_data_len) {
-                    memcpy(session->userauth_kybd_auth_name, s,
-                           session->userauth_kybd_auth_name_len);
-                    s += session->userauth_kybd_auth_name_len;
-                }
-                else {
-                    _libssh2_error(session, LIBSSH2_ERROR_BUFFER_TOO_SMALL,
-                                   "userauth keyboard data buffer too small"
-                                   "for auth name");
-                    goto cleanup;
-                }
-            }
-
-            if(s + 4 <= session->userauth_kybd_data +
-               session->userauth_kybd_data_len) {
-                /* string    instruction (ISO-10646 UTF-8) */
-                session->userauth_kybd_auth_instruction_len =
-                    _libssh2_ntohu32(s);
-                s += 4;
-            }
-            else {
-                _libssh2_error(session, LIBSSH2_ERROR_BUFFER_TOO_SMALL,
-                               "userauth keyboard data buffer too small"
-                               "for auth instruction length");
-                goto cleanup;
-            }
-
-            if(session->userauth_kybd_auth_instruction_len) {
-                session->userauth_kybd_auth_instruction =
-                    LIBSSH2_ALLOC(session,
-                                  session->userauth_kybd_auth_instruction_len);
-                if(!session->userauth_kybd_auth_instruction) {
-                    _libssh2_error(session, LIBSSH2_ERROR_ALLOC,
-                                   "Unable to allocate memory for "
-                                   "keyboard-interactive 'instruction' "
-                                   "request field");
-                    goto cleanup;
-                }
-                if(s + session->userauth_kybd_auth_instruction_len <=
-                   session->userauth_kybd_data +
-                   session->userauth_kybd_data_len) {
-                    memcpy(session->userauth_kybd_auth_instruction, s,
-                           session->userauth_kybd_auth_instruction_len);
-                    s += session->userauth_kybd_auth_instruction_len;
-                }
-                else {
-                    _libssh2_error(session, LIBSSH2_ERROR_BUFFER_TOO_SMALL,
-                                   "userauth keyboard data buffer too small"
-                                   "for auth instruction");
-                    goto cleanup;
-                }
-            }
-
-            if(s + 4 <= session->userauth_kybd_data +
-               session->userauth_kybd_data_len) {
-                /* string    language tag (as defined in [RFC-3066]) */
-                language_tag_len = _libssh2_ntohu32(s);
-                s += 4;
-            }
-            else {
-                _libssh2_error(session, LIBSSH2_ERROR_BUFFER_TOO_SMALL,
-                               "userauth keyboard data buffer too small"
-                               "for auth language tag length");
-                goto cleanup;
-            }
-
-            if(s + language_tag_len <= session->userauth_kybd_data +
-               session->userauth_kybd_data_len) {
-                /* ignoring this field as deprecated */
-                s += language_tag_len;
-            }
-            else {
-                _libssh2_error(session, LIBSSH2_ERROR_BUFFER_TOO_SMALL,
-                               "userauth keyboard data buffer too small"
-                               "for auth language tag");
-                goto cleanup;
-            }
-
-            if(s + 4 <= session->userauth_kybd_data +
-               session->userauth_kybd_data_len) {
-                /* int       num-prompts */
-                session->userauth_kybd_num_prompts = _libssh2_ntohu32(s);
-                s += 4;
-            }
-            else {
-                _libssh2_error(session, LIBSSH2_ERROR_BUFFER_TOO_SMALL,
-                               "userauth keyboard data buffer too small"
-                               "for auth num keyboard prompts");
-                goto cleanup;
-            }
-
-            if(session->userauth_kybd_num_prompts > 100) {
-                _libssh2_error(session, LIBSSH2_ERROR_OUT_OF_BOUNDARY,
-                               "Too many replies for "
-                               "keyboard-interactive prompts");
-                goto cleanup;
-            }
-
-            if(session->userauth_kybd_num_prompts) {
-                session->userauth_kybd_prompts =
-                    LIBSSH2_CALLOC(session,
-                                   sizeof(LIBSSH2_USERAUTH_KBDINT_PROMPT) *
-                                   session->userauth_kybd_num_prompts);
-                if(!session->userauth_kybd_prompts) {
-                    _libssh2_error(session, LIBSSH2_ERROR_ALLOC,
-                                   "Unable to allocate memory for "
-                                   "keyboard-interactive prompts array");
-                    goto cleanup;
-                }
-
-                session->userauth_kybd_responses =
-                    LIBSSH2_CALLOC(session,
-                                   sizeof(LIBSSH2_USERAUTH_KBDINT_RESPONSE) *
-                                   session->userauth_kybd_num_prompts);
-                if(!session->userauth_kybd_responses) {
-                    _libssh2_error(session, LIBSSH2_ERROR_ALLOC,
-                                   "Unable to allocate memory for "
-                                   "keyboard-interactive responses array");
-                    goto cleanup;
-                }
-
-                for(i = 0; i < session->userauth_kybd_num_prompts; i++) {
-                    if(s + 4 <= session->userauth_kybd_data +
-                       session->userauth_kybd_data_len) {
-                        /* string    prompt[1] (ISO-10646 UTF-8) */
-                        session->userauth_kybd_prompts[i].length =
-                            _libssh2_ntohu32(s);
-                        s += 4;
-                    }
-                    else {
-                        _libssh2_error(session, LIBSSH2_ERROR_BUFFER_TOO_SMALL,
-                                       "userauth keyboard data buffer too "
-                                       "small for auth keyboard "
-                                       "prompt length");
-                        goto cleanup;
-                    }
-
-                    session->userauth_kybd_prompts[i].text =
-                        LIBSSH2_CALLOC(session,
-                                       session->userauth_kybd_prompts[i].
-                                       length);
-                    if(!session->userauth_kybd_prompts[i].text) {
-                        _libssh2_error(session, LIBSSH2_ERROR_ALLOC,
-                                       "Unable to allocate memory for "
-                                       "keyboard-interactive prompt message");
-                        goto cleanup;
-                    }
-
-                    if(s + session->userauth_kybd_prompts[i].length <=
-                       session->userauth_kybd_data +
-                       session->userauth_kybd_data_len) {
-                        memcpy(session->userauth_kybd_prompts[i].text, s,
-                               session->userauth_kybd_prompts[i].length);
-                        s += session->userauth_kybd_prompts[i].length;
-                    }
-                    else {
-                        _libssh2_error(session, LIBSSH2_ERROR_BUFFER_TOO_SMALL,
-                                       "userauth keyboard data buffer too "
-                                       "small for auth keyboard prompt");
-                        goto cleanup;
-                    }
-                    if(s < session->userauth_kybd_data +
-                       session->userauth_kybd_data_len) {
-                        /* boolean   echo[1] */
-                        session->userauth_kybd_prompts[i].echo = *s++;
-                    }
-                    else {
-                        _libssh2_error(session, LIBSSH2_ERROR_BUFFER_TOO_SMALL,
-                                       "userauth keyboard data buffer too "
-                                       "small for auth keyboard prompt echo");
-                        goto cleanup;
-                    }
-                }
-            }
-
-            response_callback(session->userauth_kybd_auth_name,
+            response_callback((const char *)session->userauth_kybd_auth_name,
                               session->userauth_kybd_auth_name_len,
+                              (const char *)
                               session->userauth_kybd_auth_instruction,
                               session->userauth_kybd_auth_instruction_len,
                               session->userauth_kybd_num_prompts,
