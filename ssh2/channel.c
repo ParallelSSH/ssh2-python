@@ -1453,8 +1453,9 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_64poll_channel_read(struct __p
 static PyObject *__pyx_pf_4ssh2_7channel_7Channel_66handle_extended_data(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_ignore_mode); /* proto */
 static PyObject *__pyx_pf_4ssh2_7channel_7Channel_68handle_extended_data2(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_ignore_mode); /* proto */
 static PyObject *__pyx_pf_4ssh2_7channel_7Channel_70ignore_extended_data(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_ignore_mode); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_72__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_74__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_72request_auth_agent(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_74__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_76__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_4ssh2_7channel_Channel(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_tuple__2;
@@ -7751,6 +7752,114 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_70ignore_extended_data(struct 
   return __pyx_r;
 }
 
+/* "ssh2/channel.pyx":558
+ *                 self._channel, ignore_mode)
+ * 
+ *     def request_auth_agent(self):             # <<<<<<<<<<<<<<
+ *         """Request SSH agent authentication forwarding on channel."""
+ *         cdef int rc
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_73request_auth_agent(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_72request_auth_agent[] = "Channel.request_auth_agent(self)\nRequest SSH agent authentication forwarding on channel.";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_73request_auth_agent(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("request_auth_agent (wrapper)", 0);
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_72request_auth_agent(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_72request_auth_agent(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
+  int __pyx_v_rc;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("request_auth_agent", 0);
+
+  /* "ssh2/channel.pyx":561
+ *         """Request SSH agent authentication forwarding on channel."""
+ *         cdef int rc
+ *         with nogil:             # <<<<<<<<<<<<<<
+ *             rc = c_ssh2.libssh2_channel_request_auth_agent(self._channel)
+ *         return handle_error_codes(rc)
+ */
+  {
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
+      __Pyx_FastGIL_Remember();
+      #endif
+      /*try:*/ {
+
+        /* "ssh2/channel.pyx":562
+ *         cdef int rc
+ *         with nogil:
+ *             rc = c_ssh2.libssh2_channel_request_auth_agent(self._channel)             # <<<<<<<<<<<<<<
+ *         return handle_error_codes(rc)
+ */
+        __pyx_v_rc = libssh2_channel_request_auth_agent(__pyx_v_self->_channel);
+      }
+
+      /* "ssh2/channel.pyx":561
+ *         """Request SSH agent authentication forwarding on channel."""
+ *         cdef int rc
+ *         with nogil:             # <<<<<<<<<<<<<<
+ *             rc = c_ssh2.libssh2_channel_request_auth_agent(self._channel)
+ *         return handle_error_codes(rc)
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          __Pyx_FastGIL_Forget();
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L5:;
+      }
+  }
+
+  /* "ssh2/channel.pyx":563
+ *         with nogil:
+ *             rc = c_ssh2.libssh2_channel_request_auth_agent(self._channel)
+ *         return handle_error_codes(rc)             # <<<<<<<<<<<<<<
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_f_4ssh2_5utils_handle_error_codes(__pyx_v_rc, 0); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 563, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 563, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "ssh2/channel.pyx":558
+ *                 self._channel, ignore_mode)
+ * 
+ *     def request_auth_agent(self):             # <<<<<<<<<<<<<<
+ *         """Request SSH agent authentication forwarding on channel."""
+ *         cdef int rc
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("ssh2.channel.Channel.request_auth_agent", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
 /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
@@ -7758,20 +7867,20 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_70ignore_extended_data(struct 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_73__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_72__reduce_cython__[] = "Channel.__reduce_cython__(self)";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_73__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_75__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_74__reduce_cython__[] = "Channel.__reduce_cython__(self)";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_75__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_72__reduce_cython__(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_74__reduce_cython__(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_72__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_74__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -7816,20 +7925,20 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_72__reduce_cython__(CYTHON_UNU
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_75__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static char __pyx_doc_4ssh2_7channel_7Channel_74__setstate_cython__[] = "Channel.__setstate_cython__(self, __pyx_state)";
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_75__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_77__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static char __pyx_doc_4ssh2_7channel_7Channel_76__setstate_cython__[] = "Channel.__setstate_cython__(self, __pyx_state)";
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_77__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_74__setstate_cython__(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_76__setstate_cython__(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_74__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_76__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -7961,8 +8070,9 @@ static PyMethodDef __pyx_methods_4ssh2_7channel_Channel[] = {
   {"handle_extended_data", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_67handle_extended_data, METH_O, __pyx_doc_4ssh2_7channel_7Channel_66handle_extended_data},
   {"handle_extended_data2", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_69handle_extended_data2, METH_O, __pyx_doc_4ssh2_7channel_7Channel_68handle_extended_data2},
   {"ignore_extended_data", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_71ignore_extended_data, METH_O, __pyx_doc_4ssh2_7channel_7Channel_70ignore_extended_data},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_73__reduce_cython__, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_72__reduce_cython__},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_75__setstate_cython__, METH_O, __pyx_doc_4ssh2_7channel_7Channel_74__setstate_cython__},
+  {"request_auth_agent", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_73request_auth_agent, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_72request_auth_agent},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_75__reduce_cython__, METH_NOARGS, __pyx_doc_4ssh2_7channel_7Channel_74__reduce_cython__},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_4ssh2_7channel_7Channel_77__setstate_cython__, METH_O, __pyx_doc_4ssh2_7channel_7Channel_76__setstate_cython__},
   {0, 0, 0, 0}
 };
 

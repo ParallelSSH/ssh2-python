@@ -19,7 +19,6 @@ from sys import stderr
 from subprocess import check_call
 from glob import glob
 from shutil import copy2
-from multiprocessing import cpu_count
 
 
 def build_ssh2():
