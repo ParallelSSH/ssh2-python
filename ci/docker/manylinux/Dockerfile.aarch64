@@ -15,9 +15,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 FROM quay.io/pypa/manylinux2014_aarch64
 
-ENV OPENSSL openssl-1.1.1g
+ENV OPENSSL openssl-1.1.1o
 ENV SYSTEM_LIBSSH2 1
-ENV LIBSSH2_VERSION 1.9.0
+ENV LIBSSH2_VERSION 1.10.0
 
 RUN yum install zlib-devel -y
 
