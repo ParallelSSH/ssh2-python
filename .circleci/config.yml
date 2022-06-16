@@ -149,16 +149,17 @@ workflows:
                 - "3.8"
                 - "3.9"
                 - "3.10"
+                - "3.11"
           filters:
             tags:
               ignore: /.*/
       - manylinux-x86_64: &manylinux-wf
           context: Docker
-          filters:
-            tags:
-              only: /.*/
-            branches:
-              ignore: /.*/
+#          filters:
+#            tags:
+#              only: /.*/
+#            branches:
+#              ignore: /.*/
       - manylinux2014-aarch64: *manylinux-wf
       - osx:
           matrix:
@@ -169,8 +170,8 @@ workflows:
                 - "12.5.1"
                 - "11.6.0"
                 - "11.1.0"
-          filters:
-            tags:
-              only: /.*/
-            branches:
-              ignore: /.*/
+#          filters:
+#            tags:
+#              only: /.*/
+#            branches:
+#              ignore: /.*/
