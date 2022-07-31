@@ -4,7 +4,7 @@ dist
 build
 *~
 *.so
-src
+build_dir
 wheelhouse
 .idea/
 ssh2/libssh2.so*

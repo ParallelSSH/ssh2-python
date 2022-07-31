@@ -90,7 +90,7 @@ jobs:
 
   manylinux-x86_64:
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-2004:202201-02
     steps: &manylinux-steps
       - checkout
       - python/load-cache:
