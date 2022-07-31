@@ -15,12 +15,10 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-echo "Travis tag: $TRAVIS_TAG"
-
 # Compile wheels
 # For testing
 # for PYBIN in `ls -1d /opt/python/cp36-cp36m/bin | grep -v cpython`; do
-for PYBIN in `ls -1d /opt/python/*/bin | grep -v cpython`; do
+for PYBIN in $(ls -1d /opt/python/*/bin | grep -v cpython); do
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
 done
 
@@ -30,9 +28,7 @@ for whl in wheelhouse/*.whl; do
 done
 
 # Install packages and test
-if [[ ! -z "$TRAVIS_TAG" ]]; then
-    for PYBIN in `ls -1d /opt/python/*/bin | grep -v cpython`; do
-        "${PYBIN}/pip" install ssh2-python --no-index -f /io/wheelhouse
-        (cd "$HOME"; "${PYBIN}/python" -c 'from ssh2.session import Session; Session()')
-    done
-fi
+for PYBIN in $(ls -1d /opt/python/*/bin | grep -v cpython); do
+  "${PYBIN}/pip" install ssh2-python --no-index -f /io/wheelhouse
+  (cd "$HOME"; "${PYBIN}/python" -c 'from ssh2.session import Session; Session()')
+done
