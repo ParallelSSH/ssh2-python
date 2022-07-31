@@ -34,6 +34,7 @@ jobs:
       - run:
           name: Deps
           command: |
+            sudo apt-get update
             sudo apt-get install cmake openssh-server
             pip install -r requirements_dev.txt
       - python/save-cache:
@@ -165,11 +166,9 @@ workflows:
           matrix:
             parameters:
               xcode_ver:
+                - "14.0.0"
+                - "13.4.1"
                 - "13.1.0"
-                - "13.0.0"
-                - "12.5.1"
-                - "11.6.0"
-                - "11.1.0"
 #          filters:
 #            tags:
 #              only: /.*/
