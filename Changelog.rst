@@ -1,6 +1,23 @@
 Change Log
 =============
 
+1.0.0
+++++++
+
+Changes
+--------
+
+* Upgraded embedded and wheel libssh2 to 1.10.0.
+* Upgraded wheel OpenSSL to 1.1.1q.
+* Added testing for Python 3.10.
+* Removed testing for Python 3.7.
+
+Packaging
+----------
+
+* Added OSX 12.0 wheels.
+* Removed OSX <= 10.0 wheels.
+
 0.27.0
 ++++++
 
