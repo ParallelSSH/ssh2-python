@@ -110,6 +110,8 @@ jobs:
             pip install -U pip
             pip install twine
             which twine
+            which python
+            which python3
       - python/save-cache:
           key: manylinuxdepsv6-{{ .Branch }}.{{ arch }}
           dependency-file: requirements_dev.txt
@@ -124,7 +126,7 @@ jobs:
           name: sdist
           command: |
             sudo chown circleci -R *
-            python setup.py sdist
+            python3 setup.py sdist
       - run:
           name: Upload Wheels
           command: |
