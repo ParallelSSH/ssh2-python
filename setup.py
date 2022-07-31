@@ -2,7 +2,6 @@ import platform
 import os
 import sys
 from glob import glob
-from multiprocessing import cpu_count
 
 from _setup_libssh2 import build_ssh2
 
@@ -20,11 +19,10 @@ except ImportError:
 else:
     USING_CYTHON = True
 
-ON_RTD = os.environ.get('READTHEDOCS') == 'True'
+ON_WINDOWS = platform.system() == 'Windows'
+SYSTEM_LIBSSH2 = bool(os.environ.get('SYSTEM_LIBSSH2', 0)) or ON_WINDOWS
 
-SYSTEM_LIBSSH2 = bool(os.environ.get('SYSTEM_LIBSSH2', 0)) or ON_RTD
-
-# Only build libssh if running a build
+# Only build libssh2 if SYSTEM_LIBSSH2 is not set and running a build
 if not SYSTEM_LIBSSH2 and (len(sys.argv) >= 2 and not (
         '--help' in sys.argv[1:] or
         sys.argv[1] in (
@@ -32,8 +30,6 @@ if not SYSTEM_LIBSSH2 and (len(sys.argv) >= 2 and not (
             'sdist', '--long-description')) and
                            __name__ == '__main__'):
     build_ssh2()
-
-ON_WINDOWS = platform.system() == 'Windows'
 
 ext = 'pyx' if USING_CYTHON else 'c'
 sources = glob('ssh2/*.%s' % (ext,))
@@ -47,7 +43,6 @@ _libs = ['ssh2'] if not ON_WINDOWS else [
 # _comp_args = ["-ggdb"]
 _fwd_default = 0
 _comp_args = ["-O2"] if not ON_WINDOWS else None
-_have_agent_fwd = bool(int(os.environ.get('HAVE_AGENT_FWD', _fwd_default)))
 
 cython_directives = {'embedsignature': True,
                      'boundscheck': False,
@@ -57,20 +52,16 @@ cython_directives = {'embedsignature': True,
 }
 cython_args = {
     'cython_directives': cython_directives,
-    'cython_compile_time_env': {
-        'HAVE_AGENT_FWD': _have_agent_fwd,
-    }} \
-    if USING_CYTHON else {}
+    'cython_compile_time_env': {},
+}
 
 if USING_CYTHON:
     sys.stdout.write("Cython arguments: %s%s" % (cython_args, os.linesep))
 
 
 runtime_library_dirs = ["$ORIGIN/."] if not SYSTEM_LIBSSH2 else None
-_lib_dir = os.path.abspath("./src/src") if not SYSTEM_LIBSSH2 else "/usr/local/lib"
-include_dirs = ["libssh2/include"] if (ON_WINDOWS or ON_RTD) or \
-    not SYSTEM_LIBSSH2 \
-    else ["/usr/local/include"]
+_lib_dir = os.path.abspath("./build_dir/src") if not SYSTEM_LIBSSH2 else "/usr/local/lib"
+include_dirs = ["libssh2/include"] if ON_WINDOWS or not SYSTEM_LIBSSH2 else ["/usr/local/include"]
 
 extensions = [
     Extension(sources[i].split('.')[0].replace(os.path.sep, '.'),
@@ -115,7 +106,7 @@ setup(
                       'tests', 'tests.*',
                       '*.tests', '*.tests.*')),
     zip_safe=False,
-    include_package_data=True,
+    include_package_data=False,
     platforms='any',
     classifiers=[
         'Development Status :: 5 - Production/Stable',

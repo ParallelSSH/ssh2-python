@@ -1,5 +1,5 @@
 # This file is part of ssh2-python.
-# Copyright (C) 2017-2021 Panos Kittenis and contributors.
+# Copyright (C) 2017-2022 Panos Kittenis and contributors.
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -34,6 +34,7 @@ jobs:
       - run:
           name: Deps
           command: |
+            sudo apt-get update
             sudo apt-get install cmake openssh-server
             pip install -r requirements_dev.txt
       - python/save-cache:
@@ -89,7 +90,7 @@ jobs:
 
   manylinux-x86_64:
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-2004:202201-02
     steps: &manylinux-steps
       - checkout
       - python/load-cache:
@@ -106,7 +107,6 @@ jobs:
           name: Deps
           command: |
             sudo apt-get install python3-pip
-            pyenv global 3.7.0 || pyenv global 3.9.1
             pip install -U pip
             pip install twine
             which twine
@@ -145,7 +145,6 @@ workflows:
             parameters:
               python_ver:
                 - "3.6"
-                - "3.7"
                 - "3.8"
                 - "3.9"
                 - "3.10"
@@ -164,11 +163,8 @@ workflows:
           matrix:
             parameters:
               xcode_ver:
+                - "14.0.0"
                 - "13.1.0"
-                - "13.0.0"
-                - "12.5.1"
-                - "11.6.0"
-                - "11.1.0"
           filters:
             tags:
               only: /.*/
