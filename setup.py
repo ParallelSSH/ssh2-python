@@ -60,7 +60,7 @@ if USING_CYTHON:
 
 
 runtime_library_dirs = ["$ORIGIN/."] if not SYSTEM_LIBSSH2 else None
-_lib_dir = os.path.abspath("./src/src") if not SYSTEM_LIBSSH2 else "/usr/local/lib"
+_lib_dir = os.path.abspath("./libssh2/build_dir/src") if not SYSTEM_LIBSSH2 else "/usr/local/lib"
 include_dirs = ["libssh2/include"] if ON_WINDOWS or not SYSTEM_LIBSSH2 else ["/usr/local/include"]
 
 extensions = [
