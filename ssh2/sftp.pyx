@@ -243,6 +243,8 @@ cdef class SFTP:
           ``LIBSSH2_SFTP_S_IROTH``
         :type mode: int
 
+        :rtype: :py:class:`ssh2.sftp.SFTPHandle` or `None`
+
         :raises: :py:class:`ssh2.exceptions.SFTPHandleError` on errors opening
           file.
         """  # noqa: W605
