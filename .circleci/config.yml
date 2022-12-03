@@ -23,7 +23,7 @@ jobs:
     parameters:
       python_ver:
         type: string
-        default: "3.6"
+        default: "3.9"
     docker:
       - image: circleci/python:<< parameters.python_ver >>
     steps:
@@ -63,7 +63,6 @@ jobs:
     parameters:
       xcode_ver:
         type: string
-        default: "11.6.0"
     macos:
       xcode: << parameters.xcode_ver >>
     environment:
@@ -110,7 +109,6 @@ jobs:
             pip install -U pip
             pip install twine
             which twine
-            which python
             which python3
       - python/save-cache:
           key: manylinuxdepsv6-{{ .Branch }}.{{ arch }}
@@ -139,7 +137,7 @@ jobs:
     steps: *manylinux-steps
 
 workflows:
-  version: 2.1
+  version: 2
   main:
     jobs:
       - python_test:
