@@ -1,0 +1,25 @@
+Source: python3-ssh2
+Maintainer: Scott Hamilton <sgn.hamilton+obs@protonmail.com>
+Section: utils
+Priority: optional
+Build-Depends: dh-python,
+               python3-all,
+               python3-setuptools,
+               debhelper-compat (= 12),
+	       libssl-dev,
+	       zlib1g-dev,
+	       libpython3-dev,
+	       libc6,
+	       python3-jinja2,
+	       openssh-server,
+	       openssh-client,
+	       cmake
+Standards-Version: 4.5.0
+
+Package: python3-ssh2
+Architecture: any
+Depends: ${python3:Depends},
+	 ${shlibs:Depends},
+         ${misc:Depends}
+Description: Python bindings for libssh2 C library.
+ ssh2-python is a super fast SSH2 protocol library

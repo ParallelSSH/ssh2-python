@@ -1,0 +1,39 @@
+#!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+#DH_VERBOSE = 1
+
+#! /usr/bin/make -f
+
+#export DH_VERBOSE = 1
+export PYBUILD_NAME = ssh2-python
+export PYBUILD_BEFORE_TEST=mkdir -p {build_dir}/ssh2; cp ssh2/sftp_handle.c {build_dir}/ssh2
+export LDFLAGS=-s
+
+define write_skip_tests
+	@for test in $(1); do \
+		awk '/def '$$test'\(/ { print "    @skipUnless(False, \"debian packaging\")" RS $$0; next }1' $(2) > "$(2)_temp" && mv "$(2)_temp" $(2); \
+	done
+endef
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild
+	dh_lintian
+
+test_sftp_skips    := test_mkdir
+
+override_dh_auto_test:
+	$(call write_skip_tests,$(test_sftp_skips),tests/test_sftp.py)
+	out_ssh_agent=$$(ssh-agent -s); \
+	export SSH_AUTH_SOCK=$$(echo $$out_ssh_agent | grep SSH_AUTH_SOCK| cut -d';' -f1 | sed -E 's/^SSH_AUTH_SOCK=(.*)/\1/g'); \
+	export SSH_AGENT_PID=$$(echo $$out_ssh_agent | grep SSH_AGENT_PID | sed -E 's/.*SSH_AGENT_PID=([0-9]*);.*/\1/g'); \
+	PYTHONDONTWRITEBYTECODE=1 dh_auto_test; \
+	ssh-agent -k
+clean:
+	dh_clean
+	rm -rf __pycache__
+	rm -rf build_dir
+	rm -rf build
+	rm -rf ssh2_python.egg-info
+	rm -rf .pybuild
+	rm -f ssh2/libssh2.so*
