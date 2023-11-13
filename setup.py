@@ -45,15 +45,15 @@ _libs = ['ssh2'] if not ON_WINDOWS else [
 _fwd_default = 0
 _comp_args = ["-O2"] if not ON_WINDOWS else None
 
-cython_directives = {'embedsignature': True,
+compiler_directives = {'embedsignature': True,
                      'boundscheck': False,
                      'optimize.use_switch': True,
                      'wraparound': False,
                      'language_level': 2,
 }
 cython_args = {
-    'cython_directives': cython_directives,
-    'cython_compile_time_env': {},
+    'compiler_directives': compiler_directives,
+    'compile_time_env': {},
 }
 
 if USING_CYTHON:

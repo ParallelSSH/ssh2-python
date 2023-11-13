@@ -16,7 +16,7 @@
 version: 2.1
 
 orbs:
-  python: circleci/python@2.0.3
+  python: circleci/python@2.1.1
 
 jobs:
   python_test:
@@ -25,7 +25,7 @@ jobs:
         type: string
         default: "3.11"
     docker:
-      - image: circleci/python:<< parameters.python_ver >>
+      - image: cimg/python:<< parameters.python_ver >>
     steps:
       - checkout
       # - python/load-cache:  #  This command is unavailable in the orb
@@ -139,7 +139,7 @@ jobs:
     steps: *manylinux-steps
 
 workflows:
-  # version: 2.1 - default?
+  version: 2
   main:
     jobs:
       - python_test:
