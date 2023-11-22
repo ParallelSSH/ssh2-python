@@ -1,4 +1,6 @@
 #!/bin/sh
+# Copyright (C) The libssh2 project and its contributors.
+# SPDX-License-Identifier: BSD-3-Clause
 #
 #       libssh2 compilation script for the OS/400.
 #
@@ -78,7 +80,7 @@ fi
 
 #       Get source list.
 
-cat ../Makefile.inc ../Makefile.os400qc3.inc                            |
+cat Makefile.inc                                                        |
   sed -e ':begin'                                                       \
     -e '/\\$/{'                                                         \
     -e 's/\\$/ /'                                                       \
@@ -98,7 +100,7 @@ cat ../Makefile.inc ../Makefile.os400qc3.inc                            |
 INCLUDES="'`pwd`'"
 
 for SRC in "${TOPDIR}/os400/os400sys.c" "${TOPDIR}/os400/ccsid.c"       \
-           ${CSOURCES} ${CRYPTO_CSOURCES} macros.c
+           ${CSOURCES} macros.c
 do      MODULE=`db2_name "${SRC}"`
         make_module "${MODULE}" "${SRC}"
 done
