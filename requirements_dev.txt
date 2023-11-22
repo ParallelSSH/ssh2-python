@@ -1,4 +1,4 @@
-cython>=0.29.34,<3.0.0
+cython>=0.29.34
 flake8
 jinja2
 sphinx
