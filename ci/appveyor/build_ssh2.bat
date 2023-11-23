@@ -2,7 +2,7 @@ mkdir build_dir
 cd build_dir
 
 ECHO "Building with platform %MSVC%"
-cmake ..\libssh2\libssh2 -G "NMake Makefiles" ^
+cmake ..\libssh2 -G "NMake Makefiles" ^
        -DCMAKE_BUILD_TYPE=Release             ^
        -DCRYPTO_BACKEND=OpenSSL               ^
        -G"%MSVC%"                             ^

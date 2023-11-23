@@ -1,4 +1,6 @@
 #!/bin/sh
+# Copyright (C) The libssh2 project and its contributors.
+# SPDX-License-Identifier: BSD-3-Clause
 #
 #       libssh2 compilation script for the OS/400.
 #
@@ -31,7 +33,7 @@ fi
 
 for TEXT in "${TOPDIR}/COPYING" "${SCRIPTDIR}/README400"                \
     "${TOPDIR}/NEWS" "${TOPDIR}/README" "${TOPDIR}/docs/AUTHORS"        \
-    "${TOPDIR}/docs/BINDINGS"
+    "${TOPDIR}/docs/BINDINGS.md"
 do      MEMBER="${LIBIFSNAME}/DOCS.FILE/`db2_name \"${TEXT}\"`.MBR"
 
         if action_needed "${MEMBER}" "${TEXT}"

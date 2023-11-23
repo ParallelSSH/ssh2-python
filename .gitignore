@@ -9,4 +9,4 @@ wheelhouse
 .idea/
 ssh2/libssh2.so*
 doc/_build
-venv
+ven*

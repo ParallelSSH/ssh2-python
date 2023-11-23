@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Alexander Lamaison
+/* Copyright (C) Alexander Lamaison
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms,
@@ -33,13 +33,17 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
  * OF SUCH DAMAGE.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
  */
 
 #ifndef LIBSSH2_TESTS_OPENSSH_FIXTURE_H
 #define LIBSSH2_TESTS_OPENSSH_FIXTURE_H
 
-int start_openssh_fixture();
-void stop_openssh_fixture();
-int open_socket_to_openssh_server();
+int start_openssh_fixture(void);
+void stop_openssh_fixture(void);
+libssh2_socket_t open_socket_to_openssh_server(void);
+void close_socket_to_openssh_server(libssh2_socket_t sock);
+int openssh_fixture_have_docker(void);
 
 #endif

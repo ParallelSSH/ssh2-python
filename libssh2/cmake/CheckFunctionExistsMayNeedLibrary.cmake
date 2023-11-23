@@ -1,4 +1,4 @@
-# Copyright (c) 2014 Alexander Lamaison <alexander.lamaison@gmail.com>
+# Copyright (C) Alexander Lamaison <alexander.lamaison@gmail.com>
 #
 # Redistribution and use in source and binary forms,
 # with or without modification, are permitted provided
@@ -32,6 +32,8 @@
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
 # USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 # OF SUCH DAMAGE.
+#
+# SPDX-License-Identifier: BSD-3-Clause
 
 
 # - check_function_exists_maybe_need_library(<function> <var> [lib1 ... libn])
@@ -63,17 +65,17 @@ function(check_function_exists_may_need_library function variable)
   check_function_exists(${function} ${variable})
 
   if(NOT ${variable})
-    foreach(lib ${ARGN})
+    foreach(lib IN LISTS ARGN)
       string(TOUPPER ${lib} UP_LIB)
       # Use new variable to prevent cache from previous step shortcircuiting
       # new test
       check_library_exists(${lib} ${function} "" HAVE_${function}_IN_${lib})
       if(HAVE_${function}_IN_${lib})
-	set(${variable} 1 CACHE INTERNAL
-	  "Function ${function} found in library ${lib}")
-	set(NEED_LIB_${UP_LIB} 1 CACHE INTERNAL
-	  "Need to link ${lib}")
-	break()
+        set(${variable} 1 CACHE INTERNAL
+          "Function ${function} found in library ${lib}")
+        set(NEED_LIB_${UP_LIB} 1 CACHE INTERNAL
+          "Need to link ${lib}")
+        break()
       endif()
     endforeach()
   endif()

@@ -5,7 +5,8 @@ import json
 import sys
 
 def get_describe_tag():
-    return subprocess.check_output(['git', 'describe', '--tags']).strip().decode('utf-8')
+    ver, change, commit = subprocess.check_output(['git', 'describe', '--tags']).strip().decode('utf-8').split('-')
+    return f'{ver}+{change}.{commit}'  # PEP440 compatible
 
 def make_version_file(basedir):
     rev = os.environ.get('APPVEYOR_REPO_COMMIT',

@@ -13,6 +13,7 @@ cpython = platform.python_implementation() == 'CPython'
 try:
     from Cython.Distutils.extension import Extension
     from Cython.Distutils import build_ext
+    from Cython.Build import cythonize
 except ImportError:
     from setuptools import Extension
     USING_CYTHON = False
@@ -44,15 +45,15 @@ _libs = ['ssh2'] if not ON_WINDOWS else [
 _fwd_default = 0
 _comp_args = ["-O2"] if not ON_WINDOWS else None
 
-cython_directives = {'embedsignature': True,
+compiler_directives = {'embedsignature': True,
                      'boundscheck': False,
                      'optimize.use_switch': True,
                      'wraparound': False,
                      'language_level': 2,
 }
 cython_args = {
-    'cython_directives': cython_directives,
-    'cython_compile_time_env': {},
+    'compiler_directives': compiler_directives,
+    'compile_time_env': {},
 }
 
 if USING_CYTHON:
@@ -71,7 +72,6 @@ extensions = [
               library_dirs=[_lib_dir],
               runtime_library_dirs=runtime_library_dirs,
               extra_compile_args=_comp_args,
-              **cython_args,
               )
     for i in range(len(sources))]
 
@@ -131,6 +131,6 @@ setup(
         'Operating System :: Microsoft :: Windows',
         'Operating System :: MacOS :: MacOS X',
     ],
-    ext_modules=extensions,
+    ext_modules=cythonize(extensions, **cython_args) if USING_CYTHON else extensions,
     package_data=package_data,
 )
