@@ -6,6 +6,7 @@ from sys import version_info
 
 from .embedded_server.openssh import OpenSSHServer
 from ssh2.session import Session
+from ssh2.exceptions import SSH2Error
 
 
 PKEY_FILENAME = os.path.sep.join([os.path.dirname(__file__), 'unit_test_key'])
@@ -38,7 +39,11 @@ class SSH2TestCase(unittest.TestCase):
         sock.connect((self.host, self.port))
         self.sock = sock
         self.session = Session()
-        self.session.handshake(self.sock)
+        try:
+            self.session.handshake(self.sock)
+        except SSH2Error as e:
+            print('libssh2>', e, self.session.last_error())
+            raise
 
     def tearDown(self):
         self.session.disconnect()
