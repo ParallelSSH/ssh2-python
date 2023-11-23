@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Patrick Monnerat, D+H <patrick.monnerat@dh.com>
+ * Copyright (C) Patrick Monnerat, D+H <patrick.monnerat@dh.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms,
@@ -34,6 +34,8 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
  * OF SUCH DAMAGE.
+ *
+* SPDX-License-Identifier: BSD-3-Clause
  */
 
 #ifndef LIBSSH2_MACROS_H_
@@ -116,9 +118,9 @@ libssh2_scp_send(LIBSSH2_SESSION *session,
 
 LIBSSH2_API int
 libssh2_publickey_add(LIBSSH2_PUBLICKEY *pkey, const unsigned char *name,
-		      const unsigned char *blob, unsigned long blob_len,
+                      const unsigned char *blob, unsigned long blob_len,
                       char overwrite, unsigned long num_attrs,
-		      const libssh2_publickey_attribute attrs[]);
+                      const libssh2_publickey_attribute attrs[]);
 LIBSSH2_API int
 libssh2_publickey_remove(LIBSSH2_PUBLICKEY *pkey, const unsigned char *name,
                          const unsigned char *blob, unsigned long blob_len);

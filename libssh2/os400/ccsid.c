@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Patrick Monnerat, D+H <patrick.monnerat@dh.com>
+ * Copyright (C) Patrick Monnerat, D+H <patrick.monnerat@dh.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms,
@@ -34,6 +34,8 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
  * OF SUCH DAMAGE.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
  */
 
 /* Character encoding wrappers. */
@@ -138,7 +140,7 @@ convert_ccsid(LIBSSH2_SESSION *session, libssh2_string_cache **cache,
     termsize = terminator_size(outccsid);
     if (termsize < 0)
         return NULL;
- 
+
     /* Prepare conversion parameters. */
     memset((void *) &incode, 0, sizeof incode);
     memset((void *) &outcode, 0, sizeof outcode);
