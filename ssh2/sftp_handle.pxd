@@ -14,9 +14,9 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-from sftp cimport SFTP
+from .sftp cimport SFTP
 
-cimport c_sftp
+from . cimport c_sftp
 
 
 cdef object PySFTPHandle(c_sftp.LIBSSH2_SFTP_HANDLE *handle, SFTP sftp)

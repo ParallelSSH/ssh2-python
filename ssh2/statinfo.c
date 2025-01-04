@@ -56,7 +56,7 @@ END: Cython Metadata */
 #define __PYX_ABI_MODULE_NAME "_cython_" CYTHON_ABI
 #define __PYX_TYPE_MODULE_PREFIX __PYX_ABI_MODULE_NAME "."
 #define CYTHON_HEX_VERSION 0x03000BF0
-#define CYTHON_FUTURE_DIVISION 0
+#define CYTHON_FUTURE_DIVISION 1
 #include <stddef.h>
 #ifndef offsetof
   #define offsetof(type, member) ( (size_t) & ((type*)0) -> member )
@@ -2453,7 +2453,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_codeobj__4 __pyx_mstate_global->__pyx_codeobj__4
 /* #### Code section: module_code ### */
 
-/* "ssh2/statinfo.pyx":24
+/* "ssh2/statinfo.pyx":25
  *     """Representation of stat structure - libssh2 <1.7 version"""
  * 
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -2492,7 +2492,7 @@ static int __pyx_pf_4ssh2_8statinfo_8StatInfo___cinit__(struct __pyx_obj_4ssh2_8
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
 
-  /* "ssh2/statinfo.pyx":25
+  /* "ssh2/statinfo.pyx":26
  * 
  *     def __cinit__(self):
  *         self._stat = <struct_stat *>malloc(             # <<<<<<<<<<<<<<
@@ -2501,7 +2501,7 @@ static int __pyx_pf_4ssh2_8statinfo_8StatInfo___cinit__(struct __pyx_obj_4ssh2_8
  */
   __pyx_v_self->_stat = ((struct stat *)malloc((sizeof(struct stat))));
 
-  /* "ssh2/statinfo.pyx":27
+  /* "ssh2/statinfo.pyx":28
  *         self._stat = <struct_stat *>malloc(
  *             sizeof(struct_stat))
  *         if self._stat is NULL:             # <<<<<<<<<<<<<<
@@ -2511,16 +2511,16 @@ static int __pyx_pf_4ssh2_8statinfo_8StatInfo___cinit__(struct __pyx_obj_4ssh2_8
   __pyx_t_1 = (__pyx_v_self->_stat == NULL);
   if (unlikely(__pyx_t_1)) {
 
-    /* "ssh2/statinfo.pyx":28
+    /* "ssh2/statinfo.pyx":29
  *             sizeof(struct_stat))
  *         if self._stat is NULL:
  *             raise MemoryError             # <<<<<<<<<<<<<<
  * 
  *     def __dealloc__(self):
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 28, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 29, __pyx_L1_error)
 
-    /* "ssh2/statinfo.pyx":27
+    /* "ssh2/statinfo.pyx":28
  *         self._stat = <struct_stat *>malloc(
  *             sizeof(struct_stat))
  *         if self._stat is NULL:             # <<<<<<<<<<<<<<
@@ -2529,7 +2529,7 @@ static int __pyx_pf_4ssh2_8statinfo_8StatInfo___cinit__(struct __pyx_obj_4ssh2_8
  */
   }
 
-  /* "ssh2/statinfo.pyx":24
+  /* "ssh2/statinfo.pyx":25
  *     """Representation of stat structure - libssh2 <1.7 version"""
  * 
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -2547,7 +2547,7 @@ static int __pyx_pf_4ssh2_8statinfo_8StatInfo___cinit__(struct __pyx_obj_4ssh2_8
   return __pyx_r;
 }
 
-/* "ssh2/statinfo.pyx":30
+/* "ssh2/statinfo.pyx":31
  *             raise MemoryError
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -2571,7 +2571,7 @@ static void __pyx_pw_4ssh2_8statinfo_8StatInfo_3__dealloc__(PyObject *__pyx_v_se
 static void __pyx_pf_4ssh2_8statinfo_8StatInfo_2__dealloc__(struct __pyx_obj_4ssh2_8statinfo_StatInfo *__pyx_v_self) {
   int __pyx_t_1;
 
-  /* "ssh2/statinfo.pyx":31
+  /* "ssh2/statinfo.pyx":32
  * 
  *     def __dealloc__(self):
  *         if self._stat is not NULL:             # <<<<<<<<<<<<<<
@@ -2581,7 +2581,7 @@ static void __pyx_pf_4ssh2_8statinfo_8StatInfo_2__dealloc__(struct __pyx_obj_4ss
   __pyx_t_1 = (__pyx_v_self->_stat != NULL);
   if (__pyx_t_1) {
 
-    /* "ssh2/statinfo.pyx":32
+    /* "ssh2/statinfo.pyx":33
  *     def __dealloc__(self):
  *         if self._stat is not NULL:
  *             free(self._stat)             # <<<<<<<<<<<<<<
@@ -2590,7 +2590,7 @@ static void __pyx_pf_4ssh2_8statinfo_8StatInfo_2__dealloc__(struct __pyx_obj_4ss
  */
     free(__pyx_v_self->_stat);
 
-    /* "ssh2/statinfo.pyx":31
+    /* "ssh2/statinfo.pyx":32
  * 
  *     def __dealloc__(self):
  *         if self._stat is not NULL:             # <<<<<<<<<<<<<<
@@ -2599,7 +2599,7 @@ static void __pyx_pf_4ssh2_8statinfo_8StatInfo_2__dealloc__(struct __pyx_obj_4ss
  */
   }
 
-  /* "ssh2/statinfo.pyx":33
+  /* "ssh2/statinfo.pyx":34
  *         if self._stat is not NULL:
  *             free(self._stat)
  *         self._stat = NULL             # <<<<<<<<<<<<<<
@@ -2608,7 +2608,7 @@ static void __pyx_pf_4ssh2_8statinfo_8StatInfo_2__dealloc__(struct __pyx_obj_4ss
  */
   __pyx_v_self->_stat = NULL;
 
-  /* "ssh2/statinfo.pyx":30
+  /* "ssh2/statinfo.pyx":31
  *             raise MemoryError
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -2619,7 +2619,7 @@ static void __pyx_pf_4ssh2_8statinfo_8StatInfo_2__dealloc__(struct __pyx_obj_4ss
   /* function exit code */
 }
 
-/* "ssh2/statinfo.pyx":35
+/* "ssh2/statinfo.pyx":36
  *         self._stat = NULL
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -2651,7 +2651,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_7st_size___get__(struct __py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
 
-  /* "ssh2/statinfo.pyx":37
+  /* "ssh2/statinfo.pyx":38
  *     @property
  *     def st_size(self):
  *         return self._stat.st_size             # <<<<<<<<<<<<<<
@@ -2659,13 +2659,13 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_7st_size___get__(struct __py
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_PY_LONG_LONG(__pyx_v_self->_stat->st_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_PY_LONG_LONG(__pyx_v_self->_stat->st_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/statinfo.pyx":35
+  /* "ssh2/statinfo.pyx":36
  *         self._stat = NULL
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -2684,7 +2684,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_7st_size___get__(struct __py
   return __pyx_r;
 }
 
-/* "ssh2/statinfo.pyx":39
+/* "ssh2/statinfo.pyx":40
  *         return self._stat.st_size
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -2716,7 +2716,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_6st_ino___get__(struct __pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
 
-  /* "ssh2/statinfo.pyx":41
+  /* "ssh2/statinfo.pyx":42
  *     @property
  *     def st_ino(self):
  *         return self._stat.st_ino             # <<<<<<<<<<<<<<
@@ -2724,13 +2724,13 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_6st_ino___get__(struct __pyx
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_long(__pyx_v_self->_stat->st_ino); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_long(__pyx_v_self->_stat->st_ino); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/statinfo.pyx":39
+  /* "ssh2/statinfo.pyx":40
  *         return self._stat.st_size
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -2749,7 +2749,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_6st_ino___get__(struct __pyx
   return __pyx_r;
 }
 
-/* "ssh2/statinfo.pyx":43
+/* "ssh2/statinfo.pyx":44
  *         return self._stat.st_ino
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -2781,7 +2781,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_7st_mode___get__(struct __py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
 
-  /* "ssh2/statinfo.pyx":45
+  /* "ssh2/statinfo.pyx":46
  *     @property
  *     def st_mode(self):
  *         return self._stat.st_mode             # <<<<<<<<<<<<<<
@@ -2789,13 +2789,13 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_7st_mode___get__(struct __py
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_long(__pyx_v_self->_stat->st_mode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_long(__pyx_v_self->_stat->st_mode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/statinfo.pyx":43
+  /* "ssh2/statinfo.pyx":44
  *         return self._stat.st_ino
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -2814,7 +2814,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_7st_mode___get__(struct __py
   return __pyx_r;
 }
 
-/* "ssh2/statinfo.pyx":47
+/* "ssh2/statinfo.pyx":48
  *         return self._stat.st_mode
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -2846,7 +2846,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_8st_nlink___get__(struct __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
 
-  /* "ssh2/statinfo.pyx":49
+  /* "ssh2/statinfo.pyx":50
  *     @property
  *     def st_nlink(self):
  *         return self._stat.st_nlink             # <<<<<<<<<<<<<<
@@ -2854,13 +2854,13 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_8st_nlink___get__(struct __p
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_self->_stat->st_nlink); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_self->_stat->st_nlink); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/statinfo.pyx":47
+  /* "ssh2/statinfo.pyx":48
  *         return self._stat.st_mode
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -2879,7 +2879,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_8st_nlink___get__(struct __p
   return __pyx_r;
 }
 
-/* "ssh2/statinfo.pyx":51
+/* "ssh2/statinfo.pyx":52
  *         return self._stat.st_nlink
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -2911,7 +2911,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_6st_uid___get__(struct __pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
 
-  /* "ssh2/statinfo.pyx":53
+  /* "ssh2/statinfo.pyx":54
  *     @property
  *     def st_uid(self):
  *         return self._stat.st_uid             # <<<<<<<<<<<<<<
@@ -2919,13 +2919,13 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_6st_uid___get__(struct __pyx
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_self->_stat->st_uid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_self->_stat->st_uid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/statinfo.pyx":51
+  /* "ssh2/statinfo.pyx":52
  *         return self._stat.st_nlink
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -2944,7 +2944,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_6st_uid___get__(struct __pyx
   return __pyx_r;
 }
 
-/* "ssh2/statinfo.pyx":55
+/* "ssh2/statinfo.pyx":56
  *         return self._stat.st_uid
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -2976,7 +2976,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_6st_gid___get__(struct __pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
 
-  /* "ssh2/statinfo.pyx":57
+  /* "ssh2/statinfo.pyx":58
  *     @property
  *     def st_gid(self):
  *         return self._stat.st_gid             # <<<<<<<<<<<<<<
@@ -2984,13 +2984,13 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_6st_gid___get__(struct __pyx
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_self->_stat->st_gid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_self->_stat->st_gid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/statinfo.pyx":55
+  /* "ssh2/statinfo.pyx":56
  *         return self._stat.st_uid
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -3009,7 +3009,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_6st_gid___get__(struct __pyx
   return __pyx_r;
 }
 
-/* "ssh2/statinfo.pyx":59
+/* "ssh2/statinfo.pyx":60
  *         return self._stat.st_gid
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -3041,7 +3041,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_7st_rdev___get__(struct __py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
 
-  /* "ssh2/statinfo.pyx":61
+  /* "ssh2/statinfo.pyx":62
  *     @property
  *     def st_rdev(self):
  *         return self._stat.st_rdev             # <<<<<<<<<<<<<<
@@ -3049,13 +3049,13 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_7st_rdev___get__(struct __py
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_self->_stat->st_rdev); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_self->_stat->st_rdev); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/statinfo.pyx":59
+  /* "ssh2/statinfo.pyx":60
  *         return self._stat.st_gid
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -3074,7 +3074,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_7st_rdev___get__(struct __py
   return __pyx_r;
 }
 
-/* "ssh2/statinfo.pyx":63
+/* "ssh2/statinfo.pyx":64
  *         return self._stat.st_rdev
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -3106,7 +3106,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_10st_blksize___get__(struct 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
 
-  /* "ssh2/statinfo.pyx":66
+  /* "ssh2/statinfo.pyx":67
  *     def st_blksize(self):
  *         IF UNAME_SYSNAME != 'Windows':
  *             return self._stat.st_blksize             # <<<<<<<<<<<<<<
@@ -3114,13 +3114,13 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_10st_blksize___get__(struct 
  *             return None
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_self->_stat->st_blksize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_self->_stat->st_blksize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/statinfo.pyx":63
+  /* "ssh2/statinfo.pyx":64
  *         return self._stat.st_rdev
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -3139,7 +3139,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_10st_blksize___get__(struct 
   return __pyx_r;
 }
 
-/* "ssh2/statinfo.pyx":70
+/* "ssh2/statinfo.pyx":71
  *             return None
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -3171,7 +3171,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_9st_blocks___get__(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
 
-  /* "ssh2/statinfo.pyx":73
+  /* "ssh2/statinfo.pyx":74
  *     def st_blocks(self):
  *         IF UNAME_SYSNAME != 'Windows':
  *             return self._stat.st_blocks             # <<<<<<<<<<<<<<
@@ -3179,13 +3179,13 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_9st_blocks___get__(struct __
  *             return None
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_self->_stat->st_blocks); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_self->_stat->st_blocks); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/statinfo.pyx":70
+  /* "ssh2/statinfo.pyx":71
  *             return None
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -3204,7 +3204,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_9st_blocks___get__(struct __
   return __pyx_r;
 }
 
-/* "ssh2/statinfo.pyx":77
+/* "ssh2/statinfo.pyx":78
  *             return None
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -3236,7 +3236,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_8st_atime___get__(struct __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
 
-  /* "ssh2/statinfo.pyx":79
+  /* "ssh2/statinfo.pyx":80
  *     @property
  *     def st_atime(self):
  *         return self._stat.st_atime             # <<<<<<<<<<<<<<
@@ -3244,13 +3244,13 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_8st_atime___get__(struct __p
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_time_t(__pyx_v_self->_stat->st_atime); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_time_t(__pyx_v_self->_stat->st_atime); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/statinfo.pyx":77
+  /* "ssh2/statinfo.pyx":78
  *             return None
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -3269,7 +3269,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_8st_atime___get__(struct __p
   return __pyx_r;
 }
 
-/* "ssh2/statinfo.pyx":81
+/* "ssh2/statinfo.pyx":82
  *         return self._stat.st_atime
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -3301,7 +3301,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_8st_mtime___get__(struct __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
 
-  /* "ssh2/statinfo.pyx":83
+  /* "ssh2/statinfo.pyx":84
  *     @property
  *     def st_mtime(self):
  *         return self._stat.st_mtime             # <<<<<<<<<<<<<<
@@ -3309,13 +3309,13 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_8st_mtime___get__(struct __p
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_time_t(__pyx_v_self->_stat->st_mtime); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_time_t(__pyx_v_self->_stat->st_mtime); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 84, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/statinfo.pyx":81
+  /* "ssh2/statinfo.pyx":82
  *         return self._stat.st_atime
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -3334,7 +3334,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_8st_mtime___get__(struct __p
   return __pyx_r;
 }
 
-/* "ssh2/statinfo.pyx":85
+/* "ssh2/statinfo.pyx":86
  *         return self._stat.st_mtime
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -3366,19 +3366,19 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_8st_ctime___get__(struct __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
 
-  /* "ssh2/statinfo.pyx":87
+  /* "ssh2/statinfo.pyx":88
  *     @property
  *     def st_ctime(self):
  *         return self._stat.st_ctime             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_time_t(__pyx_v_self->_stat->st_ctime); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_time_t(__pyx_v_self->_stat->st_ctime); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/statinfo.pyx":85
+  /* "ssh2/statinfo.pyx":86
  *         return self._stat.st_mtime
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -3880,7 +3880,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
 }
 /* #### Code section: cached_builtins ### */
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(0, 28, __pyx_L1_error)
+  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(0, 29, __pyx_L1_error)
   __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(1, 2, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
@@ -3973,15 +3973,15 @@ static int __Pyx_modinit_type_init_code(void) {
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_ptype_4ssh2_8statinfo_StatInfo = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_4ssh2_8statinfo_StatInfo_spec, NULL); if (unlikely(!__pyx_ptype_4ssh2_8statinfo_StatInfo)) __PYX_ERR(0, 21, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_4ssh2_8statinfo_StatInfo_spec, __pyx_ptype_4ssh2_8statinfo_StatInfo) < 0) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_ptype_4ssh2_8statinfo_StatInfo = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_4ssh2_8statinfo_StatInfo_spec, NULL); if (unlikely(!__pyx_ptype_4ssh2_8statinfo_StatInfo)) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_4ssh2_8statinfo_StatInfo_spec, __pyx_ptype_4ssh2_8statinfo_StatInfo) < 0) __PYX_ERR(0, 22, __pyx_L1_error)
   #else
   __pyx_ptype_4ssh2_8statinfo_StatInfo = &__pyx_type_4ssh2_8statinfo_StatInfo;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_4ssh2_8statinfo_StatInfo) < 0) __PYX_ERR(0, 21, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_4ssh2_8statinfo_StatInfo) < 0) __PYX_ERR(0, 22, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
   __pyx_ptype_4ssh2_8statinfo_StatInfo->tp_print = 0;
@@ -3991,9 +3991,9 @@ static int __Pyx_modinit_type_init_code(void) {
     __pyx_ptype_4ssh2_8statinfo_StatInfo->tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
   #endif
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_StatInfo, (PyObject *) __pyx_ptype_4ssh2_8statinfo_StatInfo) < 0) __PYX_ERR(0, 21, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_StatInfo, (PyObject *) __pyx_ptype_4ssh2_8statinfo_StatInfo) < 0) __PYX_ERR(0, 22, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_4ssh2_8statinfo_StatInfo) < 0) __PYX_ERR(0, 21, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_4ssh2_8statinfo_StatInfo) < 0) __PYX_ERR(0, 22, __pyx_L1_error)
   #endif
   __Pyx_RefNannyFinishContext();
   return 0;

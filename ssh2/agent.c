@@ -4,7 +4,6 @@
 {
     "distutils": {
         "depends": [
-            "libssh2/include/libssh2.h",
             "ssh2/ext/find_eol.h"
         ],
         "extra_compile_args": [
@@ -60,7 +59,7 @@ END: Cython Metadata */
 #define __PYX_ABI_MODULE_NAME "_cython_" CYTHON_ABI
 #define __PYX_TYPE_MODULE_PREFIX __PYX_ABI_MODULE_NAME "."
 #define CYTHON_HEX_VERSION 0x03000BF0
-#define CYTHON_FUTURE_DIVISION 0
+#define CYTHON_FUTURE_DIVISION 1
 #include <stddef.h>
 #ifndef offsetof
   #define offsetof(type, member) ( (size_t) & ((type*)0) -> member )
@@ -1533,7 +1532,7 @@ struct __pyx_obj_4ssh2_4pkey_PublicKey;
 struct __pyx_obj_4ssh2_5agent_Agent;
 
 /* "session.pxd":19
- * cimport c_ssh2
+ * from . cimport c_ssh2
  * 
  * cdef class Session:             # <<<<<<<<<<<<<<
  *     cdef c_ssh2.LIBSSH2_SESSION *_session
@@ -2249,6 +2248,8 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 /* #### Code section: module_declarations ### */
 
+/* Module declarations from "ssh2" */
+
 /* Module declarations from "libc.stddef" */
 
 /* Module declarations from "libc.time" */
@@ -2398,6 +2399,8 @@ typedef struct {
   #endif
   #if CYTHON_USE_MODULE_STATE
   #endif
+  #if CYTHON_USE_MODULE_STATE
+  #endif
   PyTypeObject *__pyx_ptype_4ssh2_7session_Session;
   PyTypeObject *__pyx_ptype_4ssh2_7session_MethodType;
   #if CYTHON_USE_MODULE_STATE
@@ -2425,14 +2428,14 @@ typedef struct {
   PyObject *__pyx_n_s_Agent_list_identities;
   PyObject *__pyx_n_s_Agent_set_identity_path;
   PyObject *__pyx_n_s_Agent_userauth;
-  PyObject *__pyx_kp_s_Error_authenticating_user_s_with;
-  PyObject *__pyx_kp_s_Error_initialising_agent;
-  PyObject *__pyx_kp_s_Failure_getting_identity_for_use;
-  PyObject *__pyx_kp_s_Failure_requesting_identities_fr;
-  PyObject *__pyx_kp_s_Failure_requesting_identities_fr_2;
-  PyObject *__pyx_kp_s_No_identities_match_for_user_s;
+  PyObject *__pyx_kp_u_Error_authenticating_user_s_with;
+  PyObject *__pyx_kp_u_Error_initialising_agent;
+  PyObject *__pyx_kp_u_Failure_getting_identity_for_use;
+  PyObject *__pyx_kp_u_Failure_requesting_identities_fr;
+  PyObject *__pyx_kp_u_Failure_requesting_identities_fr_2;
+  PyObject *__pyx_kp_u_No_identities_match_for_user_s;
   PyObject *__pyx_n_s_TypeError;
-  PyObject *__pyx_kp_s_Unable_to_connect_to_agent;
+  PyObject *__pyx_kp_u_Unable_to_connect_to_agent;
   PyObject *__pyx_n_s__18;
   PyObject *__pyx_n_s_asyncio_coroutines;
   PyObject *__pyx_n_s_b_path;
@@ -2557,14 +2560,14 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_Agent_list_identities);
   Py_CLEAR(clear_module_state->__pyx_n_s_Agent_set_identity_path);
   Py_CLEAR(clear_module_state->__pyx_n_s_Agent_userauth);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_Error_authenticating_user_s_with);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_Error_initialising_agent);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_Failure_getting_identity_for_use);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_Failure_requesting_identities_fr);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_Failure_requesting_identities_fr_2);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_No_identities_match_for_user_s);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_Error_authenticating_user_s_with);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_Error_initialising_agent);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_Failure_getting_identity_for_use);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_Failure_requesting_identities_fr);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_Failure_requesting_identities_fr_2);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_No_identities_match_for_user_s);
   Py_CLEAR(clear_module_state->__pyx_n_s_TypeError);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_Unable_to_connect_to_agent);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_Unable_to_connect_to_agent);
   Py_CLEAR(clear_module_state->__pyx_n_s__18);
   Py_CLEAR(clear_module_state->__pyx_n_s_asyncio_coroutines);
   Py_CLEAR(clear_module_state->__pyx_n_s_b_path);
@@ -2667,14 +2670,14 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_Agent_list_identities);
   Py_VISIT(traverse_module_state->__pyx_n_s_Agent_set_identity_path);
   Py_VISIT(traverse_module_state->__pyx_n_s_Agent_userauth);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_Error_authenticating_user_s_with);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_Error_initialising_agent);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_Failure_getting_identity_for_use);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_Failure_requesting_identities_fr);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_Failure_requesting_identities_fr_2);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_No_identities_match_for_user_s);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_Error_authenticating_user_s_with);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_Error_initialising_agent);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_Failure_getting_identity_for_use);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_Failure_requesting_identities_fr);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_Failure_requesting_identities_fr_2);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_No_identities_match_for_user_s);
   Py_VISIT(traverse_module_state->__pyx_n_s_TypeError);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_Unable_to_connect_to_agent);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_Unable_to_connect_to_agent);
   Py_VISIT(traverse_module_state->__pyx_n_s__18);
   Py_VISIT(traverse_module_state->__pyx_n_s_asyncio_coroutines);
   Py_VISIT(traverse_module_state->__pyx_n_s_b_path);
@@ -2774,6 +2777,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #endif
 #if CYTHON_USE_MODULE_STATE
 #endif
+#if CYTHON_USE_MODULE_STATE
+#endif
 #define __pyx_ptype_4ssh2_7session_Session __pyx_mstate_global->__pyx_ptype_4ssh2_7session_Session
 #define __pyx_ptype_4ssh2_7session_MethodType __pyx_mstate_global->__pyx_ptype_4ssh2_7session_MethodType
 #if CYTHON_USE_MODULE_STATE
@@ -2801,14 +2806,14 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_Agent_list_identities __pyx_mstate_global->__pyx_n_s_Agent_list_identities
 #define __pyx_n_s_Agent_set_identity_path __pyx_mstate_global->__pyx_n_s_Agent_set_identity_path
 #define __pyx_n_s_Agent_userauth __pyx_mstate_global->__pyx_n_s_Agent_userauth
-#define __pyx_kp_s_Error_authenticating_user_s_with __pyx_mstate_global->__pyx_kp_s_Error_authenticating_user_s_with
-#define __pyx_kp_s_Error_initialising_agent __pyx_mstate_global->__pyx_kp_s_Error_initialising_agent
-#define __pyx_kp_s_Failure_getting_identity_for_use __pyx_mstate_global->__pyx_kp_s_Failure_getting_identity_for_use
-#define __pyx_kp_s_Failure_requesting_identities_fr __pyx_mstate_global->__pyx_kp_s_Failure_requesting_identities_fr
-#define __pyx_kp_s_Failure_requesting_identities_fr_2 __pyx_mstate_global->__pyx_kp_s_Failure_requesting_identities_fr_2
-#define __pyx_kp_s_No_identities_match_for_user_s __pyx_mstate_global->__pyx_kp_s_No_identities_match_for_user_s
+#define __pyx_kp_u_Error_authenticating_user_s_with __pyx_mstate_global->__pyx_kp_u_Error_authenticating_user_s_with
+#define __pyx_kp_u_Error_initialising_agent __pyx_mstate_global->__pyx_kp_u_Error_initialising_agent
+#define __pyx_kp_u_Failure_getting_identity_for_use __pyx_mstate_global->__pyx_kp_u_Failure_getting_identity_for_use
+#define __pyx_kp_u_Failure_requesting_identities_fr __pyx_mstate_global->__pyx_kp_u_Failure_requesting_identities_fr
+#define __pyx_kp_u_Failure_requesting_identities_fr_2 __pyx_mstate_global->__pyx_kp_u_Failure_requesting_identities_fr_2
+#define __pyx_kp_u_No_identities_match_for_user_s __pyx_mstate_global->__pyx_kp_u_No_identities_match_for_user_s
 #define __pyx_n_s_TypeError __pyx_mstate_global->__pyx_n_s_TypeError
-#define __pyx_kp_s_Unable_to_connect_to_agent __pyx_mstate_global->__pyx_kp_s_Unable_to_connect_to_agent
+#define __pyx_kp_u_Unable_to_connect_to_agent __pyx_mstate_global->__pyx_kp_u_Unable_to_connect_to_agent
 #define __pyx_n_s__18 __pyx_mstate_global->__pyx_n_s__18
 #define __pyx_n_s_asyncio_coroutines __pyx_mstate_global->__pyx_n_s_asyncio_coroutines
 #define __pyx_n_s_b_path __pyx_mstate_global->__pyx_n_s_b_path
@@ -2974,7 +2979,7 @@ static int __pyx_f_4ssh2_5agent_agent_auth(char *__pyx_v__username, LIBSSH2_AGEN
           }
           #endif
           {
-            PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_kp_s_Failure_requesting_identities_fr};
+            PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_kp_u_Failure_requesting_identities_fr};
             __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
             __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
             if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 33, __pyx_L5_error)
@@ -3079,7 +3084,7 @@ static int __pyx_f_4ssh2_5agent_agent_auth(char *__pyx_v__username, LIBSSH2_AGEN
             }
             #endif
             {
-              PyObject *__pyx_callargs[3] = {__pyx_t_7, __pyx_kp_s_No_identities_match_for_user_s, __pyx_t_4};
+              PyObject *__pyx_callargs[3] = {__pyx_t_7, __pyx_kp_u_No_identities_match_for_user_s, __pyx_t_4};
               __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 2+__pyx_t_5);
               __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -3341,7 +3346,7 @@ static int __pyx_f_4ssh2_5agent_auth_identity(char const *__pyx_v_username, LIBS
           }
           #endif
           {
-            PyObject *__pyx_callargs[3] = {__pyx_t_5, __pyx_kp_s_Failure_getting_identity_for_use, __pyx_t_4};
+            PyObject *__pyx_callargs[3] = {__pyx_t_5, __pyx_kp_u_Failure_getting_identity_for_use, __pyx_t_4};
             __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_6, 2+__pyx_t_6);
             __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -3499,7 +3504,7 @@ static LIBSSH2_AGENT *__pyx_f_4ssh2_5agent_agent_init(LIBSSH2_SESSION *__pyx_v__
           }
           #endif
           {
-            PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_kp_s_Error_initialising_agent};
+            PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_kp_u_Error_initialising_agent};
             __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
             __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
             if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 73, __pyx_L5_error)
@@ -3663,7 +3668,7 @@ static LIBSSH2_AGENT *__pyx_f_4ssh2_5agent_init_connect_agent(LIBSSH2_SESSION *_
           }
           #endif
           {
-            PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_kp_s_Unable_to_connect_to_agent};
+            PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_kp_u_Unable_to_connect_to_agent};
             __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
             __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
             if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 84, __pyx_L5_error)
@@ -4295,7 +4300,7 @@ static PyObject *__pyx_pf_4ssh2_5agent_5Agent_6get_identities(struct __pyx_obj_4
     }
     #endif
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_kp_s_Failure_requesting_identities_fr_2};
+      PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_kp_u_Failure_requesting_identities_fr_2};
       __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 126, __pyx_L1_error)
@@ -4649,7 +4654,7 @@ static PyObject *__pyx_pf_4ssh2_5agent_5Agent_8userauth(struct __pyx_obj_4ssh2_5
                 }
                 #endif
                 {
-                  PyObject *__pyx_callargs[3] = {__pyx_t_5, __pyx_kp_s_Error_authenticating_user_s_with, __pyx_v_username};
+                  PyObject *__pyx_callargs[3] = {__pyx_t_5, __pyx_kp_u_Error_authenticating_user_s_with, __pyx_v_username};
                   __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_6, 2+__pyx_t_6);
                   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
                   if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 156, __pyx_L8_error)
@@ -4995,7 +5000,7 @@ static PyObject *__pyx_pf_4ssh2_5agent_5Agent_12connect(struct __pyx_obj_4ssh2_5
     }
     #endif
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_kp_s_Unable_to_connect_to_agent};
+      PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_kp_u_Unable_to_connect_to_agent};
       __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 180, __pyx_L1_error)
@@ -5889,14 +5894,14 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_Agent_list_identities, __pyx_k_Agent_list_identities, sizeof(__pyx_k_Agent_list_identities), 0, 0, 1, 1},
     {&__pyx_n_s_Agent_set_identity_path, __pyx_k_Agent_set_identity_path, sizeof(__pyx_k_Agent_set_identity_path), 0, 0, 1, 1},
     {&__pyx_n_s_Agent_userauth, __pyx_k_Agent_userauth, sizeof(__pyx_k_Agent_userauth), 0, 0, 1, 1},
-    {&__pyx_kp_s_Error_authenticating_user_s_with, __pyx_k_Error_authenticating_user_s_with, sizeof(__pyx_k_Error_authenticating_user_s_with), 0, 0, 1, 0},
-    {&__pyx_kp_s_Error_initialising_agent, __pyx_k_Error_initialising_agent, sizeof(__pyx_k_Error_initialising_agent), 0, 0, 1, 0},
-    {&__pyx_kp_s_Failure_getting_identity_for_use, __pyx_k_Failure_getting_identity_for_use, sizeof(__pyx_k_Failure_getting_identity_for_use), 0, 0, 1, 0},
-    {&__pyx_kp_s_Failure_requesting_identities_fr, __pyx_k_Failure_requesting_identities_fr, sizeof(__pyx_k_Failure_requesting_identities_fr), 0, 0, 1, 0},
-    {&__pyx_kp_s_Failure_requesting_identities_fr_2, __pyx_k_Failure_requesting_identities_fr_2, sizeof(__pyx_k_Failure_requesting_identities_fr_2), 0, 0, 1, 0},
-    {&__pyx_kp_s_No_identities_match_for_user_s, __pyx_k_No_identities_match_for_user_s, sizeof(__pyx_k_No_identities_match_for_user_s), 0, 0, 1, 0},
+    {&__pyx_kp_u_Error_authenticating_user_s_with, __pyx_k_Error_authenticating_user_s_with, sizeof(__pyx_k_Error_authenticating_user_s_with), 0, 1, 0, 0},
+    {&__pyx_kp_u_Error_initialising_agent, __pyx_k_Error_initialising_agent, sizeof(__pyx_k_Error_initialising_agent), 0, 1, 0, 0},
+    {&__pyx_kp_u_Failure_getting_identity_for_use, __pyx_k_Failure_getting_identity_for_use, sizeof(__pyx_k_Failure_getting_identity_for_use), 0, 1, 0, 0},
+    {&__pyx_kp_u_Failure_requesting_identities_fr, __pyx_k_Failure_requesting_identities_fr, sizeof(__pyx_k_Failure_requesting_identities_fr), 0, 1, 0, 0},
+    {&__pyx_kp_u_Failure_requesting_identities_fr_2, __pyx_k_Failure_requesting_identities_fr_2, sizeof(__pyx_k_Failure_requesting_identities_fr_2), 0, 1, 0, 0},
+    {&__pyx_kp_u_No_identities_match_for_user_s, __pyx_k_No_identities_match_for_user_s, sizeof(__pyx_k_No_identities_match_for_user_s), 0, 1, 0, 0},
     {&__pyx_n_s_TypeError, __pyx_k_TypeError, sizeof(__pyx_k_TypeError), 0, 0, 1, 1},
-    {&__pyx_kp_s_Unable_to_connect_to_agent, __pyx_k_Unable_to_connect_to_agent, sizeof(__pyx_k_Unable_to_connect_to_agent), 0, 0, 1, 0},
+    {&__pyx_kp_u_Unable_to_connect_to_agent, __pyx_k_Unable_to_connect_to_agent, sizeof(__pyx_k_Unable_to_connect_to_agent), 0, 1, 0, 0},
     {&__pyx_n_s__18, __pyx_k__18, sizeof(__pyx_k__18), 0, 0, 1, 1},
     {&__pyx_n_s_asyncio_coroutines, __pyx_k_asyncio_coroutines, sizeof(__pyx_k_asyncio_coroutines), 0, 0, 1, 1},
     {&__pyx_n_s_b_path, __pyx_k_b_path, sizeof(__pyx_k_b_path), 0, 0, 1, 1},
@@ -6496,7 +6501,7 @@ if (!__Pyx_RefNanny) {
   #endif
 
   /* "ssh2/agent.pyx":20
- * from utils cimport to_bytes
+ * from .utils cimport to_bytes
  * 
  * from .exceptions import AgentConnectionError, AgentListIdentitiesError, \             # <<<<<<<<<<<<<<
  *     AgentGetIdentityError, AgentAuthenticationError, AgentError

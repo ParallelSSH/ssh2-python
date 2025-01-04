@@ -4,8 +4,6 @@
 {
     "distutils": {
         "depends": [
-            "libssh2/include/libssh2.h",
-            "libssh2/include/libssh2_publickey.h",
             "ssh2/ext/find_eol.h"
         ],
         "extra_compile_args": [
@@ -61,7 +59,7 @@ END: Cython Metadata */
 #define __PYX_ABI_MODULE_NAME "_cython_" CYTHON_ABI
 #define __PYX_TYPE_MODULE_PREFIX __PYX_ABI_MODULE_NAME "."
 #define CYTHON_HEX_VERSION 0x03000BF0
-#define CYTHON_FUTURE_DIVISION 0
+#define CYTHON_FUTURE_DIVISION 1
 #include <stddef.h>
 #ifndef offsetof
   #define offsetof(type, member) ( (size_t) & ((type*)0) -> member )
@@ -1537,7 +1535,7 @@ struct __pyx_obj_4ssh2_9publickey_PublicKeyAttribute;
 struct __pyx_obj_4ssh2_9publickey_PublicKeySystem;
 
 /* "session.pxd":19
- * cimport c_ssh2
+ * from . cimport c_ssh2
  * 
  * cdef class Session:             # <<<<<<<<<<<<<<
  *     cdef c_ssh2.LIBSSH2_SESSION *_session
@@ -2286,6 +2284,8 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 /* #### Code section: module_declarations ### */
 
+/* Module declarations from "ssh2" */
+
 /* Module declarations from "libc.stddef" */
 
 /* Module declarations from "libc.time" */
@@ -2453,6 +2453,8 @@ typedef struct {
   #endif
   #ifdef __Pyx_Coroutine_USED
   PyTypeObject *__pyx_CoroutineType;
+  #endif
+  #if CYTHON_USE_MODULE_STATE
   #endif
   #if CYTHON_USE_MODULE_STATE
   #endif
@@ -2872,6 +2874,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #endif
 #ifdef __Pyx_Coroutine_USED
 #define __pyx_CoroutineType __pyx_mstate_global->__pyx_CoroutineType
+#endif
+#if CYTHON_USE_MODULE_STATE
 #endif
 #if CYTHON_USE_MODULE_STATE
 #endif
@@ -6536,7 +6540,7 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_8list_fetch(struct 
   libssh2_publickey_list **__pyx_v_pkey_list;
   int __pyx_v_rc;
   PyObject *__pyx_v_keys = 0;
-  unsigned long __pyx_v_i;
+  unsigned long __pyx_7genexpr__pyx_v_i;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -6688,17 +6692,19 @@ static PyObject *__pyx_pf_4ssh2_9publickey_15PublicKeySystem_8list_fetch(struct 
  *         return keys
  * 
  */
-  __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 180, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __pyx_v_num_keys;
-  __pyx_t_5 = __pyx_t_4;
-  for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_5; __pyx_t_6+=1) {
-    __pyx_v_i = __pyx_t_6;
-    __pyx_t_7 = __pyx_f_4ssh2_9publickey_PyPublicKeyList((__pyx_v_pkey_list[__pyx_v_i])); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 180, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_7);
-    if (unlikely(__Pyx_ListComp_Append(__pyx_t_3, (PyObject*)__pyx_t_7))) __PYX_ERR(1, 180, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  }
+  { /* enter inner scope */
+    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 180, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_4 = __pyx_v_num_keys;
+    __pyx_t_5 = __pyx_t_4;
+    for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_5; __pyx_t_6+=1) {
+      __pyx_7genexpr__pyx_v_i = __pyx_t_6;
+      __pyx_t_7 = __pyx_f_4ssh2_9publickey_PyPublicKeyList((__pyx_v_pkey_list[__pyx_7genexpr__pyx_v_i])); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 180, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_3, (PyObject*)__pyx_t_7))) __PYX_ERR(1, 180, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    }
+  } /* exit inner scope */
   __pyx_v_keys = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 

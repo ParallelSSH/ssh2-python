@@ -15,7 +15,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 from libc.time cimport time_t
-from c_stat cimport struct_stat
+from .c_stat cimport struct_stat
 
 
 cdef extern from "libssh2.h" nogil:

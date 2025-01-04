@@ -4,8 +4,6 @@
 {
     "distutils": {
         "depends": [
-            "libssh2/include/libssh2.h",
-            "libssh2/include/libssh2_sftp.h",
             "ssh2/ext/find_eol.h"
         ],
         "extra_compile_args": [
@@ -61,7 +59,7 @@ END: Cython Metadata */
 #define __PYX_ABI_MODULE_NAME "_cython_" CYTHON_ABI
 #define __PYX_TYPE_MODULE_PREFIX __PYX_ABI_MODULE_NAME "."
 #define CYTHON_HEX_VERSION 0x03000BF0
-#define CYTHON_FUTURE_DIVISION 0
+#define CYTHON_FUTURE_DIVISION 1
 #include <stddef.h>
 #ifndef offsetof
   #define offsetof(type, member) ( (size_t) & ((type*)0) -> member )
@@ -1541,7 +1539,7 @@ struct __pyx_obj_4ssh2_11sftp_handle_SFTPStatVFS;
 struct __pyx_obj_4ssh2_4sftp_SFTP;
 
 /* "session.pxd":19
- * cimport c_ssh2
+ * from . cimport c_ssh2
  * 
  * cdef class Session:             # <<<<<<<<<<<<<<
  *     cdef c_ssh2.LIBSSH2_SESSION *_session
@@ -2295,6 +2293,8 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 /* #### Code section: module_declarations ### */
 
+/* Module declarations from "ssh2" */
+
 /* Module declarations from "libc.stddef" */
 
 /* Module declarations from "libc.time" */
@@ -2507,6 +2507,8 @@ typedef struct {
   #endif
   #ifdef __Pyx_Coroutine_USED
   PyTypeObject *__pyx_CoroutineType;
+  #endif
+  #if CYTHON_USE_MODULE_STATE
   #endif
   #if CYTHON_USE_MODULE_STATE
   #endif
@@ -3125,6 +3127,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #endif
 #ifdef __Pyx_Coroutine_USED
 #define __pyx_CoroutineType __pyx_mstate_global->__pyx_CoroutineType
+#endif
+#if CYTHON_USE_MODULE_STATE
 #endif
 #if CYTHON_USE_MODULE_STATE
 #endif

@@ -16,16 +16,17 @@
 
 from base64 import b64decode
 from libc.stdlib cimport malloc, free
-from session cimport Session
-from utils cimport to_bytes
+
+from .session cimport Session
+from .utils cimport to_bytes
 from .exceptions import KnownHostAddError, KnownHostCheckMisMatchError, \
     KnownHostCheckFailure, KnownHostCheckNotFoundError, KnownHostError, \
     KnownHostDeleteError, KnownHostReadLineError, KnownHostReadFileError, \
     KnownHostWriteLineError, KnownHostWriteFileError, KnownHostGetError, \
     KnownHostCheckError
-from error_codes cimport _LIBSSH2_ERROR_BUFFER_TOO_SMALL
+from .error_codes cimport _LIBSSH2_ERROR_BUFFER_TOO_SMALL
 
-cimport c_ssh2
+from . cimport c_ssh2
 
 
 # Host format type masks

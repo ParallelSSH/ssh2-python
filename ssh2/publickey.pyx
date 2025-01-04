@@ -16,9 +16,9 @@
 
 from libc.stdlib cimport malloc, free
 
-from session cimport Session
-from utils cimport to_bytes, handle_error_codes
-cimport c_pkey
+from .session cimport Session
+from .utils cimport to_bytes, handle_error_codes
+from . cimport c_pkey
 
 
 cdef object PyPublicKeyList(c_pkey.libssh2_publickey_list *_list):

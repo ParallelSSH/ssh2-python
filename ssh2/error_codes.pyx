@@ -14,8 +14,8 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-cimport error_codes
-cimport c_ssh2
+from . cimport error_codes
+from . cimport c_ssh2
 
 
 LIBSSH2_ERROR_NONE = error_codes._LIBSSH2_ERROR_NONE

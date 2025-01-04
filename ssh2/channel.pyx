@@ -15,13 +15,14 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 from libc.stdlib cimport malloc, free
-from session cimport Session
-from exceptions import ChannelError
-from utils cimport to_bytes, handle_error_codes
 
-cimport c_ssh2
-cimport sftp
-cimport error_codes
+from .session cimport Session
+from .exceptions import ChannelError
+from .utils cimport to_bytes, handle_error_codes
+
+from . cimport c_ssh2
+from . cimport sftp
+from . cimport error_codes
 
 
 cdef object PyChannel(c_ssh2.LIBSSH2_CHANNEL *channel, Session session):

@@ -19,22 +19,22 @@ from libc.stdlib cimport malloc, free
 from libc.time cimport time_t
 from cython.operator cimport dereference as c_dereference
 
-from agent cimport PyAgent, agent_auth, agent_init, init_connect_agent
-from channel cimport PyChannel
-from exceptions import SessionHostKeyError, KnownHostError, \
+from .agent cimport PyAgent, agent_auth, agent_init, init_connect_agent
+from .channel cimport PyChannel
+from .exceptions import SessionHostKeyError, KnownHostError, \
     PublicKeyInitError, ChannelError
-from listener cimport PyListener
-from sftp cimport PySFTP
-from publickey cimport PyPublicKeySystem
-from utils cimport to_bytes, to_str, handle_error_codes
-from statinfo cimport StatInfo
-from knownhost cimport PyKnownHost
-from fileinfo cimport FileInfo
+from .listener cimport PyListener
+from .sftp cimport PySFTP
+from .publickey cimport PyPublicKeySystem
+from .utils cimport to_bytes, to_str, handle_error_codes
+from .statinfo cimport StatInfo
+from .knownhost cimport PyKnownHost
+from .fileinfo cimport FileInfo
 
 
-cimport c_ssh2
-cimport c_sftp
-cimport c_pkey
+from . cimport c_ssh2
+from . cimport c_sftp
+from . cimport c_pkey
 
 
 LIBSSH2_SESSION_BLOCK_INBOUND = c_ssh2.LIBSSH2_SESSION_BLOCK_INBOUND

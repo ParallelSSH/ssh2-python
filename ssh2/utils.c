@@ -4,7 +4,6 @@
 {
     "distutils": {
         "depends": [
-            "libssh2/include/libssh2.h",
             "ssh2/ext/find_eol.h"
         ],
         "extra_compile_args": [
@@ -61,7 +60,7 @@ END: Cython Metadata */
 #define __PYX_ABI_MODULE_NAME "_cython_" CYTHON_ABI
 #define __PYX_TYPE_MODULE_PREFIX __PYX_ABI_MODULE_NAME "."
 #define CYTHON_HEX_VERSION 0x03000BF0
-#define CYTHON_FUTURE_DIVISION 0
+#define CYTHON_FUTURE_DIVISION 1
 #include <stddef.h>
 #ifndef offsetof
   #define offsetof(type, member) ( (size_t) & ((type*)0) -> member )
@@ -1530,7 +1529,7 @@ struct __pyx_obj_4ssh2_7session_Session;
 struct __pyx_obj_4ssh2_7session_MethodType;
 
 /* "session.pxd":19
- * cimport c_ssh2
+ * from . cimport c_ssh2
  * 
  * cdef class Session:             # <<<<<<<<<<<<<<
  *     cdef c_ssh2.LIBSSH2_SESSION *_session
@@ -1914,15 +1913,6 @@ static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level);
 /* ImportFrom.proto */
 static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name);
 
-/* ImportDottedModule.proto */
-static PyObject *__Pyx_ImportDottedModule(PyObject *name, PyObject *parts_tuple);
-#if PY_MAJOR_VERSION >= 3
-static PyObject *__Pyx_ImportDottedModule_WalkParts(PyObject *module, PyObject *name, PyObject *parts_tuple);
-#endif
-
-/* ImportDottedModuleRelFirst.proto */
-static PyObject *__Pyx_ImportDottedModuleRelFirst(PyObject *name, PyObject *parts_tuple);
-
 /* IncludeStructmemberH.proto */
 #include <structmember.h>
 
@@ -2160,6 +2150,8 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 /* Module declarations from "cpython.version" */
 
+/* Module declarations from "ssh2" */
+
 /* Module declarations from "libc.stddef" */
 
 /* Module declarations from "libc.time" */
@@ -2184,13 +2176,12 @@ int __pyx_module_is_main_ssh2__utils = 0;
 /* #### Code section: global_var ### */
 /* #### Code section: string_decls ### */
 static const char __pyx_k_[] = ".";
-static const char __pyx_k__2[] = "*";
+static const char __pyx_k__2[] = "";
 static const char __pyx_k__13[] = "?";
 static const char __pyx_k_buf[] = "buf";
 static const char __pyx_k_pos[] = "pos";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
-static const char __pyx_k_spec[] = "__spec__";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_c_buf[] = "c_buf";
 static const char __pyx_k_index[] = "index";
@@ -2225,7 +2216,6 @@ static const char __pyx_k_wait_socket[] = "wait_socket";
 static const char __pyx_k_DecryptError[] = "DecryptError";
 static const char __pyx_k_EncryptError[] = "EncryptError";
 static const char __pyx_k_UnknownError[] = "UnknownError";
-static const char __pyx_k_initializing[] = "_initializing";
 static const char __pyx_k_is_coroutine[] = "_is_coroutine";
 static const char __pyx_k_CompressError[] = "CompressError";
 static const char __pyx_k_ProtocolError[] = "ProtocolError";
@@ -2318,6 +2308,8 @@ typedef struct {
   #endif
   #if CYTHON_USE_MODULE_STATE
   #endif
+  #if CYTHON_USE_MODULE_STATE
+  #endif
   PyTypeObject *__pyx_ptype_4ssh2_7session_Session;
   PyTypeObject *__pyx_ptype_4ssh2_7session_MethodType;
   #if CYTHON_USE_MODULE_STATE
@@ -2346,7 +2338,7 @@ typedef struct {
   PyObject *__pyx_n_s_DecryptError;
   PyObject *__pyx_n_s_ENCODING;
   PyObject *__pyx_n_s_EncryptError;
-  PyObject *__pyx_kp_s_Error_code_s_not_known;
+  PyObject *__pyx_kp_u_Error_code_s_not_known;
   PyObject *__pyx_n_s_FileError;
   PyObject *__pyx_n_s_HostkeyInitError;
   PyObject *__pyx_n_s_HostkeySignError;
@@ -2393,7 +2385,6 @@ typedef struct {
   PyObject *__pyx_n_s_handle_error_codes;
   PyObject *__pyx_n_s_import;
   PyObject *__pyx_n_s_index;
-  PyObject *__pyx_n_s_initializing;
   PyObject *__pyx_n_s_is_coroutine;
   PyObject *__pyx_n_s_main;
   PyObject *__pyx_n_s_name;
@@ -2404,13 +2395,12 @@ typedef struct {
   PyObject *__pyx_n_s_select;
   PyObject *__pyx_n_s_session;
   PyObject *__pyx_n_s_socket;
-  PyObject *__pyx_n_s_spec;
   PyObject *__pyx_n_s_ssh2_exit;
   PyObject *__pyx_n_s_ssh2_utils;
   PyObject *__pyx_kp_s_ssh2_utils_pyx;
   PyObject *__pyx_n_s_test;
   PyObject *__pyx_n_s_timeout;
-  PyObject *__pyx_kp_s_utf_8;
+  PyObject *__pyx_kp_u_utf_8;
   PyObject *__pyx_n_s_version;
   PyObject *__pyx_n_s_wait_socket;
   PyObject *__pyx_n_s_writefds;
@@ -2493,7 +2483,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_DecryptError);
   Py_CLEAR(clear_module_state->__pyx_n_s_ENCODING);
   Py_CLEAR(clear_module_state->__pyx_n_s_EncryptError);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_Error_code_s_not_known);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_Error_code_s_not_known);
   Py_CLEAR(clear_module_state->__pyx_n_s_FileError);
   Py_CLEAR(clear_module_state->__pyx_n_s_HostkeyInitError);
   Py_CLEAR(clear_module_state->__pyx_n_s_HostkeySignError);
@@ -2540,7 +2530,6 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_handle_error_codes);
   Py_CLEAR(clear_module_state->__pyx_n_s_import);
   Py_CLEAR(clear_module_state->__pyx_n_s_index);
-  Py_CLEAR(clear_module_state->__pyx_n_s_initializing);
   Py_CLEAR(clear_module_state->__pyx_n_s_is_coroutine);
   Py_CLEAR(clear_module_state->__pyx_n_s_main);
   Py_CLEAR(clear_module_state->__pyx_n_s_name);
@@ -2551,13 +2540,12 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_select);
   Py_CLEAR(clear_module_state->__pyx_n_s_session);
   Py_CLEAR(clear_module_state->__pyx_n_s_socket);
-  Py_CLEAR(clear_module_state->__pyx_n_s_spec);
   Py_CLEAR(clear_module_state->__pyx_n_s_ssh2_exit);
   Py_CLEAR(clear_module_state->__pyx_n_s_ssh2_utils);
   Py_CLEAR(clear_module_state->__pyx_kp_s_ssh2_utils_pyx);
   Py_CLEAR(clear_module_state->__pyx_n_s_test);
   Py_CLEAR(clear_module_state->__pyx_n_s_timeout);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_utf_8);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_utf_8);
   Py_CLEAR(clear_module_state->__pyx_n_s_version);
   Py_CLEAR(clear_module_state->__pyx_n_s_wait_socket);
   Py_CLEAR(clear_module_state->__pyx_n_s_writefds);
@@ -2618,7 +2606,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_DecryptError);
   Py_VISIT(traverse_module_state->__pyx_n_s_ENCODING);
   Py_VISIT(traverse_module_state->__pyx_n_s_EncryptError);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_Error_code_s_not_known);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_Error_code_s_not_known);
   Py_VISIT(traverse_module_state->__pyx_n_s_FileError);
   Py_VISIT(traverse_module_state->__pyx_n_s_HostkeyInitError);
   Py_VISIT(traverse_module_state->__pyx_n_s_HostkeySignError);
@@ -2665,7 +2653,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_handle_error_codes);
   Py_VISIT(traverse_module_state->__pyx_n_s_import);
   Py_VISIT(traverse_module_state->__pyx_n_s_index);
-  Py_VISIT(traverse_module_state->__pyx_n_s_initializing);
   Py_VISIT(traverse_module_state->__pyx_n_s_is_coroutine);
   Py_VISIT(traverse_module_state->__pyx_n_s_main);
   Py_VISIT(traverse_module_state->__pyx_n_s_name);
@@ -2676,13 +2663,12 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_select);
   Py_VISIT(traverse_module_state->__pyx_n_s_session);
   Py_VISIT(traverse_module_state->__pyx_n_s_socket);
-  Py_VISIT(traverse_module_state->__pyx_n_s_spec);
   Py_VISIT(traverse_module_state->__pyx_n_s_ssh2_exit);
   Py_VISIT(traverse_module_state->__pyx_n_s_ssh2_utils);
   Py_VISIT(traverse_module_state->__pyx_kp_s_ssh2_utils_pyx);
   Py_VISIT(traverse_module_state->__pyx_n_s_test);
   Py_VISIT(traverse_module_state->__pyx_n_s_timeout);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_utf_8);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_utf_8);
   Py_VISIT(traverse_module_state->__pyx_n_s_version);
   Py_VISIT(traverse_module_state->__pyx_n_s_wait_socket);
   Py_VISIT(traverse_module_state->__pyx_n_s_writefds);
@@ -2739,6 +2725,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #endif
 #if CYTHON_USE_MODULE_STATE
 #endif
+#if CYTHON_USE_MODULE_STATE
+#endif
 #define __pyx_ptype_4ssh2_7session_Session __pyx_mstate_global->__pyx_ptype_4ssh2_7session_Session
 #define __pyx_ptype_4ssh2_7session_MethodType __pyx_mstate_global->__pyx_ptype_4ssh2_7session_MethodType
 #if CYTHON_USE_MODULE_STATE
@@ -2767,7 +2755,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_DecryptError __pyx_mstate_global->__pyx_n_s_DecryptError
 #define __pyx_n_s_ENCODING __pyx_mstate_global->__pyx_n_s_ENCODING
 #define __pyx_n_s_EncryptError __pyx_mstate_global->__pyx_n_s_EncryptError
-#define __pyx_kp_s_Error_code_s_not_known __pyx_mstate_global->__pyx_kp_s_Error_code_s_not_known
+#define __pyx_kp_u_Error_code_s_not_known __pyx_mstate_global->__pyx_kp_u_Error_code_s_not_known
 #define __pyx_n_s_FileError __pyx_mstate_global->__pyx_n_s_FileError
 #define __pyx_n_s_HostkeyInitError __pyx_mstate_global->__pyx_n_s_HostkeyInitError
 #define __pyx_n_s_HostkeySignError __pyx_mstate_global->__pyx_n_s_HostkeySignError
@@ -2814,7 +2802,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_handle_error_codes __pyx_mstate_global->__pyx_n_s_handle_error_codes
 #define __pyx_n_s_import __pyx_mstate_global->__pyx_n_s_import
 #define __pyx_n_s_index __pyx_mstate_global->__pyx_n_s_index
-#define __pyx_n_s_initializing __pyx_mstate_global->__pyx_n_s_initializing
 #define __pyx_n_s_is_coroutine __pyx_mstate_global->__pyx_n_s_is_coroutine
 #define __pyx_n_s_main __pyx_mstate_global->__pyx_n_s_main
 #define __pyx_n_s_name __pyx_mstate_global->__pyx_n_s_name
@@ -2825,13 +2812,12 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_select __pyx_mstate_global->__pyx_n_s_select
 #define __pyx_n_s_session __pyx_mstate_global->__pyx_n_s_session
 #define __pyx_n_s_socket __pyx_mstate_global->__pyx_n_s_socket
-#define __pyx_n_s_spec __pyx_mstate_global->__pyx_n_s_spec
 #define __pyx_n_s_ssh2_exit __pyx_mstate_global->__pyx_n_s_ssh2_exit
 #define __pyx_n_s_ssh2_utils __pyx_mstate_global->__pyx_n_s_ssh2_utils
 #define __pyx_kp_s_ssh2_utils_pyx __pyx_mstate_global->__pyx_kp_s_ssh2_utils_pyx
 #define __pyx_n_s_test __pyx_mstate_global->__pyx_n_s_test
 #define __pyx_n_s_timeout __pyx_mstate_global->__pyx_n_s_timeout
-#define __pyx_kp_s_utf_8 __pyx_mstate_global->__pyx_kp_s_utf_8
+#define __pyx_kp_u_utf_8 __pyx_mstate_global->__pyx_kp_u_utf_8
 #define __pyx_n_s_version __pyx_mstate_global->__pyx_n_s_version
 #define __pyx_n_s_wait_socket __pyx_mstate_global->__pyx_n_s_wait_socket
 #define __pyx_n_s_writefds __pyx_mstate_global->__pyx_n_s_writefds
@@ -5560,7 +5546,7 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes(int __pyx_v_errcode, CYTHON_U
       }
       #endif
       {
-        PyObject *__pyx_callargs[3] = {__pyx_t_5, __pyx_kp_s_Error_code_s_not_known, __pyx_t_1};
+        PyObject *__pyx_callargs[3] = {__pyx_t_5, __pyx_kp_u_Error_code_s_not_known, __pyx_t_1};
         __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_6, 2+__pyx_t_6);
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5775,7 +5761,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_DecryptError, __pyx_k_DecryptError, sizeof(__pyx_k_DecryptError), 0, 0, 1, 1},
     {&__pyx_n_s_ENCODING, __pyx_k_ENCODING, sizeof(__pyx_k_ENCODING), 0, 0, 1, 1},
     {&__pyx_n_s_EncryptError, __pyx_k_EncryptError, sizeof(__pyx_k_EncryptError), 0, 0, 1, 1},
-    {&__pyx_kp_s_Error_code_s_not_known, __pyx_k_Error_code_s_not_known, sizeof(__pyx_k_Error_code_s_not_known), 0, 0, 1, 0},
+    {&__pyx_kp_u_Error_code_s_not_known, __pyx_k_Error_code_s_not_known, sizeof(__pyx_k_Error_code_s_not_known), 0, 1, 0, 0},
     {&__pyx_n_s_FileError, __pyx_k_FileError, sizeof(__pyx_k_FileError), 0, 0, 1, 1},
     {&__pyx_n_s_HostkeyInitError, __pyx_k_HostkeyInitError, sizeof(__pyx_k_HostkeyInitError), 0, 0, 1, 1},
     {&__pyx_n_s_HostkeySignError, __pyx_k_HostkeySignError, sizeof(__pyx_k_HostkeySignError), 0, 0, 1, 1},
@@ -5822,7 +5808,6 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_handle_error_codes, __pyx_k_handle_error_codes, sizeof(__pyx_k_handle_error_codes), 0, 0, 1, 1},
     {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
     {&__pyx_n_s_index, __pyx_k_index, sizeof(__pyx_k_index), 0, 0, 1, 1},
-    {&__pyx_n_s_initializing, __pyx_k_initializing, sizeof(__pyx_k_initializing), 0, 0, 1, 1},
     {&__pyx_n_s_is_coroutine, __pyx_k_is_coroutine, sizeof(__pyx_k_is_coroutine), 0, 0, 1, 1},
     {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
     {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
@@ -5833,13 +5818,12 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_select, __pyx_k_select, sizeof(__pyx_k_select), 0, 0, 1, 1},
     {&__pyx_n_s_session, __pyx_k_session, sizeof(__pyx_k_session), 0, 0, 1, 1},
     {&__pyx_n_s_socket, __pyx_k_socket, sizeof(__pyx_k_socket), 0, 0, 1, 1},
-    {&__pyx_n_s_spec, __pyx_k_spec, sizeof(__pyx_k_spec), 0, 0, 1, 1},
     {&__pyx_n_s_ssh2_exit, __pyx_k_ssh2_exit, sizeof(__pyx_k_ssh2_exit), 0, 0, 1, 1},
     {&__pyx_n_s_ssh2_utils, __pyx_k_ssh2_utils, sizeof(__pyx_k_ssh2_utils), 0, 0, 1, 1},
     {&__pyx_kp_s_ssh2_utils_pyx, __pyx_k_ssh2_utils_pyx, sizeof(__pyx_k_ssh2_utils_pyx), 0, 0, 1, 0},
     {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
     {&__pyx_n_s_timeout, __pyx_k_timeout, sizeof(__pyx_k_timeout), 0, 0, 1, 1},
-    {&__pyx_kp_s_utf_8, __pyx_k_utf_8, sizeof(__pyx_k_utf_8), 0, 0, 1, 0},
+    {&__pyx_kp_u_utf_8, __pyx_k_utf_8, sizeof(__pyx_k_utf_8), 0, 1, 0, 0},
     {&__pyx_n_s_version, __pyx_k_version, sizeof(__pyx_k_version), 0, 0, 1, 1},
     {&__pyx_n_s_wait_socket, __pyx_k_wait_socket, sizeof(__pyx_k_wait_socket), 0, 0, 1, 1},
     {&__pyx_n_s_writefds, __pyx_k_writefds, sizeof(__pyx_k_writefds), 0, 0, 1, 1},
@@ -6318,7 +6302,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_INCREF(__pyx_n_s_select);
   __Pyx_GIVEREF(__pyx_n_s_select);
   if (__Pyx_PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_select)) __PYX_ERR(0, 17, __pyx_L1_error);
-  __pyx_t_3 = __Pyx_Import(__pyx_n_s_select, __pyx_t_2, -1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Import(__pyx_n_s_select, __pyx_t_2, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_3, __pyx_n_s_select); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 17, __pyx_L1_error)
@@ -6329,15 +6313,24 @@ if (!__Pyx_RefNanny) {
 
   /* "ssh2/utils.pyx":22
  * 
- * from session cimport Session
- * import exceptions             # <<<<<<<<<<<<<<
- * cimport c_ssh2
- * cimport error_codes
+ * from .session cimport Session
+ * from . import exceptions             # <<<<<<<<<<<<<<
+ * from . cimport c_ssh2
+ * from . cimport error_codes
  */
-  __pyx_t_3 = __Pyx_ImportDottedModuleRelFirst(__pyx_n_s_exceptions, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_t_3 = PyList_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_INCREF(__pyx_n_s_exceptions);
+  __Pyx_GIVEREF(__pyx_n_s_exceptions);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_3, 0, __pyx_n_s_exceptions)) __PYX_ERR(0, 22, __pyx_L1_error);
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s__2, __pyx_t_3, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_exceptions); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_exceptions, __pyx_t_3) < 0) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "ssh2/utils.pyx":27
  * 
@@ -6346,7 +6339,7 @@ if (!__Pyx_RefNanny) {
  * 
  * 
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ENCODING, __pyx_kp_s_utf_8) < 0) __PYX_ERR(0, 27, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ENCODING, __pyx_kp_u_utf_8) < 0) __PYX_ERR(0, 27, __pyx_L1_error)
 
   /* "ssh2/utils.pyx":51
  * 
@@ -6355,10 +6348,10 @@ if (!__Pyx_RefNanny) {
  *     """Find end-of-line in buffer from position and return end position of
  *     line and where next find_eol should start from.
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_5utils_1find_eol, 0, __pyx_n_s_find_eol, NULL, __pyx_n_s_ssh2_utils, __pyx_d, ((PyObject *)__pyx_codeobj__4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 51, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_find_eol, __pyx_t_3) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_5utils_1find_eol, 0, __pyx_n_s_find_eol, NULL, __pyx_n_s_ssh2_utils, __pyx_d, ((PyObject *)__pyx_codeobj__4)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_find_eol, __pyx_t_2) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "ssh2/utils.pyx":78
  * 
@@ -6367,19 +6360,19 @@ if (!__Pyx_RefNanny) {
  *     """Get libssh2 version string.
  * 
  */
-  __pyx_t_3 = __Pyx_PyInt_From_int(((int)0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 78, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(((int)0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3)) __PYX_ERR(0, 78, __pyx_L1_error);
-  __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_5utils_3version, 0, __pyx_n_s_version, NULL, __pyx_n_s_ssh2_utils, __pyx_d, ((PyObject *)__pyx_codeobj__6)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_t_2);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_version, __pyx_t_3) < 0) __PYX_ERR(0, 78, __pyx_L1_error)
+  __Pyx_GIVEREF(__pyx_t_2);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2)) __PYX_ERR(0, 78, __pyx_L1_error);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_5utils_3version, 0, __pyx_n_s_version, NULL, __pyx_n_s_ssh2_utils, __pyx_d, ((PyObject *)__pyx_codeobj__6)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_2, __pyx_t_3);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_version, __pyx_t_2) < 0) __PYX_ERR(0, 78, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "ssh2/utils.pyx":95
  * 
@@ -6388,10 +6381,10 @@ if (!__Pyx_RefNanny) {
  *     """Call libssh2_exit"""
  *     c_ssh2.libssh2_exit()
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_5utils_5ssh2_exit, 0, __pyx_n_s_ssh2_exit, NULL, __pyx_n_s_ssh2_utils, __pyx_d, ((PyObject *)__pyx_codeobj__7)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 95, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ssh2_exit, __pyx_t_3) < 0) __PYX_ERR(0, 95, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_5utils_5ssh2_exit, 0, __pyx_n_s_ssh2_exit, NULL, __pyx_n_s_ssh2_utils, __pyx_d, ((PyObject *)__pyx_codeobj__7)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ssh2_exit, __pyx_t_2) < 0) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "ssh2/utils.pyx":100
  * 
@@ -6400,11 +6393,11 @@ if (!__Pyx_RefNanny) {
  *     """Helper function for testing non-blocking mode.
  * 
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_5utils_7wait_socket, 0, __pyx_n_s_wait_socket, NULL, __pyx_n_s_ssh2_utils, __pyx_d, ((PyObject *)__pyx_codeobj__9)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 100, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__10);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_wait_socket, __pyx_t_3) < 0) __PYX_ERR(0, 100, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_5utils_7wait_socket, 0, __pyx_n_s_wait_socket, NULL, __pyx_n_s_ssh2_utils, __pyx_d, ((PyObject *)__pyx_codeobj__9)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_2, __pyx_tuple__10);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_wait_socket, __pyx_t_2) < 0) __PYX_ERR(0, 100, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "ssh2/utils.pyx":116
  * 
@@ -6413,20 +6406,20 @@ if (!__Pyx_RefNanny) {
  *     """Raise appropriate exception for given error code.
  * 
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_5utils_9handle_error_codes, 0, __pyx_n_s_handle_error_codes, NULL, __pyx_n_s_ssh2_utils, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_handle_error_codes, __pyx_t_3) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_5utils_9handle_error_codes, 0, __pyx_n_s_handle_error_codes, NULL, __pyx_n_s_ssh2_utils, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_handle_error_codes, __pyx_t_2) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "ssh2/utils.pyx":1
  * # This file is part of ssh2-python.             # <<<<<<<<<<<<<<
  * # Copyright (C) 2017-2020 Panos Kittenis
  * #
  */
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_3) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_2) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /*--- Wrapped vars code ---*/
 
@@ -7775,162 +7768,6 @@ static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name) {
         #endif
     }
     return value;
-}
-
-/* ImportDottedModule */
-#if PY_MAJOR_VERSION >= 3
-static PyObject *__Pyx__ImportDottedModule_Error(PyObject *name, PyObject *parts_tuple, Py_ssize_t count) {
-    PyObject *partial_name = NULL, *slice = NULL, *sep = NULL;
-    if (unlikely(PyErr_Occurred())) {
-        PyErr_Clear();
-    }
-    if (likely(PyTuple_GET_SIZE(parts_tuple) == count)) {
-        partial_name = name;
-    } else {
-        slice = PySequence_GetSlice(parts_tuple, 0, count);
-        if (unlikely(!slice))
-            goto bad;
-        sep = PyUnicode_FromStringAndSize(".", 1);
-        if (unlikely(!sep))
-            goto bad;
-        partial_name = PyUnicode_Join(sep, slice);
-    }
-    PyErr_Format(
-#if PY_MAJOR_VERSION < 3
-        PyExc_ImportError,
-        "No module named '%s'", PyString_AS_STRING(partial_name));
-#else
-#if PY_VERSION_HEX >= 0x030600B1
-        PyExc_ModuleNotFoundError,
-#else
-        PyExc_ImportError,
-#endif
-        "No module named '%U'", partial_name);
-#endif
-bad:
-    Py_XDECREF(sep);
-    Py_XDECREF(slice);
-    Py_XDECREF(partial_name);
-    return NULL;
-}
-#endif
-#if PY_MAJOR_VERSION >= 3
-static PyObject *__Pyx__ImportDottedModule_Lookup(PyObject *name) {
-    PyObject *imported_module;
-#if PY_VERSION_HEX < 0x030700A1 || (CYTHON_COMPILING_IN_PYPY && PYPY_VERSION_NUM  < 0x07030400)
-    PyObject *modules = PyImport_GetModuleDict();
-    if (unlikely(!modules))
-        return NULL;
-    imported_module = __Pyx_PyDict_GetItemStr(modules, name);
-    Py_XINCREF(imported_module);
-#else
-    imported_module = PyImport_GetModule(name);
-#endif
-    return imported_module;
-}
-#endif
-#if PY_MAJOR_VERSION >= 3
-static PyObject *__Pyx_ImportDottedModule_WalkParts(PyObject *module, PyObject *name, PyObject *parts_tuple) {
-    Py_ssize_t i, nparts;
-    nparts = PyTuple_GET_SIZE(parts_tuple);
-    for (i=1; i < nparts && module; i++) {
-        PyObject *part, *submodule;
-#if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        part = PyTuple_GET_ITEM(parts_tuple, i);
-#else
-        part = PySequence_ITEM(parts_tuple, i);
-#endif
-        submodule = __Pyx_PyObject_GetAttrStrNoError(module, part);
-#if !(CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS)
-        Py_DECREF(part);
-#endif
-        Py_DECREF(module);
-        module = submodule;
-    }
-    if (unlikely(!module)) {
-        return __Pyx__ImportDottedModule_Error(name, parts_tuple, i);
-    }
-    return module;
-}
-#endif
-static PyObject *__Pyx__ImportDottedModule(PyObject *name, PyObject *parts_tuple) {
-#if PY_MAJOR_VERSION < 3
-    PyObject *module, *from_list, *star = __pyx_n_s__2;
-    CYTHON_UNUSED_VAR(parts_tuple);
-    from_list = PyList_New(1);
-    if (unlikely(!from_list))
-        return NULL;
-    Py_INCREF(star);
-    PyList_SET_ITEM(from_list, 0, star);
-    module = __Pyx_Import(name, from_list, 0);
-    Py_DECREF(from_list);
-    return module;
-#else
-    PyObject *imported_module;
-    PyObject *module = __Pyx_Import(name, NULL, 0);
-    if (!parts_tuple || unlikely(!module))
-        return module;
-    imported_module = __Pyx__ImportDottedModule_Lookup(name);
-    if (likely(imported_module)) {
-        Py_DECREF(module);
-        return imported_module;
-    }
-    PyErr_Clear();
-    return __Pyx_ImportDottedModule_WalkParts(module, name, parts_tuple);
-#endif
-}
-static PyObject *__Pyx_ImportDottedModule(PyObject *name, PyObject *parts_tuple) {
-#if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030400B1
-    PyObject *module = __Pyx__ImportDottedModule_Lookup(name);
-    if (likely(module)) {
-        PyObject *spec = __Pyx_PyObject_GetAttrStrNoError(module, __pyx_n_s_spec);
-        if (likely(spec)) {
-            PyObject *unsafe = __Pyx_PyObject_GetAttrStrNoError(spec, __pyx_n_s_initializing);
-            if (likely(!unsafe || !__Pyx_PyObject_IsTrue(unsafe))) {
-                Py_DECREF(spec);
-                spec = NULL;
-            }
-            Py_XDECREF(unsafe);
-        }
-        if (likely(!spec)) {
-            PyErr_Clear();
-            return module;
-        }
-        Py_DECREF(spec);
-        Py_DECREF(module);
-    } else if (PyErr_Occurred()) {
-        PyErr_Clear();
-    }
-#endif
-    return __Pyx__ImportDottedModule(name, parts_tuple);
-}
-
-/* ImportDottedModuleRelFirst */
-static PyObject *__Pyx_ImportDottedModuleRelFirst(PyObject *name, PyObject *parts_tuple) {
-    PyObject *module;
-    PyObject *from_list = NULL;
-#if PY_MAJOR_VERSION < 3
-    PyObject *star = __pyx_n_s__2;
-    from_list = PyList_New(1);
-    if (unlikely(!from_list))
-        return NULL;
-    Py_INCREF(star);
-    PyList_SET_ITEM(from_list, 0, star);
-#endif
-    module = __Pyx_Import(name, from_list, -1);
-    Py_XDECREF(from_list);
-    if (module) {
-        #if PY_MAJOR_VERSION >= 3
-        if (parts_tuple) {
-            module = __Pyx_ImportDottedModule_WalkParts(module, name, parts_tuple);
-        }
-        #endif
-        return module;
-    }
-    if (unlikely(!PyErr_ExceptionMatches(PyExc_ImportError)))
-        return NULL;
-    PyErr_Clear();
-    return __Pyx_ImportDottedModule(name, parts_tuple);
 }
 
 /* FixUpExtensionType */
