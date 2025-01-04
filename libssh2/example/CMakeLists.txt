@@ -1,4 +1,5 @@
-# Copyright (c) 2014, 2015 Alexander Lamaison <alexander.lamaison@gmail.com>
+# Copyright (C) Alexander Lamaison <alexander.lamaison@gmail.com>
+# Copyright (C) Viktor Szakats
 #
 # Redistribution and use in source and binary forms,
 # with or without modification, are permitted provided
@@ -32,70 +33,29 @@
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
 # USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 # OF SUCH DAMAGE.
+#
+# SPDX-License-Identifier: BSD-3-Clause
 
-include(CheckIncludeFiles)
-include(CheckSymbolExists)
 include(CopyRuntimeDependencies)
-include(SocketLibraries)
 
-set(EXAMPLES
-  direct_tcpip
-  ssh2
-  scp
-  scp_nonblock
-  scp_write
-  scp_write_nonblock
-  sftp
-  sftp_nonblock
-  sftp_write
-  sftp_write_nonblock
-  sftp_mkdir
-  sftp_mkdir_nonblock
-  sftp_RW_nonblock
-  sftp_write_sliding
-  sftpdir
-  sftpdir_nonblock
-  ssh2_exec
-  ssh2_agent
-  ssh2_agent_forwarding
-  ssh2_echo
-  sftp_append
-  subsystem_netconf
-  tcpip-forward)
+list(APPEND LIBSSH2_LIBS ${LIBSSH2_LIBS_SOCKET})
 
-append_needed_socket_libraries(LIBRARIES)
+transform_makefile_inc("Makefile.inc" "${CMAKE_CURRENT_BINARY_DIR}/Makefile.inc.cmake")
+# Get 'noinst_PROGRAMS' variable
+include("${CMAKE_CURRENT_BINARY_DIR}/Makefile.inc.cmake")
 
-foreach(example ${EXAMPLES})
-  add_executable(example-${example} ${example}.c)
-  list(APPEND EXAMPLE_TARGETS example-${example})
+foreach(_example IN LISTS noinst_PROGRAMS)
+  add_executable(${_example} "${_example}.c")
+  list(APPEND _example_targets ${_example})
   # to find generated header
-  target_include_directories(example-${example} PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
-  target_link_libraries(example-${example} libssh2 ${LIBRARIES})
+  target_include_directories(${_example} PRIVATE
+    "${CMAKE_CURRENT_BINARY_DIR}/../src"
+    "../src")
+  target_link_libraries(${_example} ${LIB_SELECTED} ${LIBSSH2_LIBS})
+  set_target_properties(${_example} PROPERTIES UNITY_BUILD OFF)
 endforeach()
+
 add_target_to_copy_dependencies(
   TARGET copy_example_dependencies
   DEPENDENCIES ${RUNTIME_DEPENDENCIES}
-  BEFORE_TARGETS ${EXAMPLE_TARGETS})
-
-## Platform checks
-check_include_files(inttypes.h HAVE_INTTYPES_H)
-check_include_files(unistd.h HAVE_UNISTD_H)
-check_include_files(stdlib.h HAVE_STDLIB_H)
-check_include_files(sys/select.h HAVE_SYS_SELECT_H)
-check_include_files(sys/socket.h HAVE_SYS_SOCKET_H)
-check_include_files(sys/time.h HAVE_SYS_TIME_H)
-check_include_files(arpa/inet.h HAVE_ARPA_INET_H)
-check_include_files(netinet/in.h HAVE_NETINET_IN_H)
-check_include_files(winsock2.h HAVE_WINSOCK2_H)
-
-check_symbol_exists(strcasecmp strings.h HAVE_STRCASECMP)
-check_symbol_exists(_stricmp string.h HAVE__STRICMP)
-check_symbol_exists(snprintf stdio.h HAVE_SNPRINTF)
-check_symbol_exists(_snprintf stdio.h HAVE__SNPRINTF)
-
-check_symbol_exists(__func__ "" HAVE___FUNC__)
-check_symbol_exists(__FUNCTION__ "" HAVE___FUNCTION__)
-
-configure_file(
-  ${CMAKE_CURRENT_SOURCE_DIR}/libssh2_config_cmake.h.in
-  ${CMAKE_CURRENT_BINARY_DIR}/libssh2_config.h)
+  BEFORE_TARGETS ${_example_targets})
