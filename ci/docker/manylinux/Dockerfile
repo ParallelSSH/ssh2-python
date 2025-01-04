@@ -17,7 +17,7 @@ FROM quay.io/pypa/manylinux2010_x86_64
 
 ENV OPENSSL openssl-1.1.1q
 ENV SYSTEM_LIBSSH2 1
-ENV LIBSSH2_VERSION 1.10.0
+ENV LIBSSH2_VERSION 1.11.1
 
 RUN yum install zlib-devel -y
 

@@ -32,7 +32,7 @@ def build_ssh2():
         os.mkdir('build_dir')
 
     os.chdir('build_dir')
-    check_call('cmake ../libssh2/libssh2 -DBUILD_SHARED_LIBS=ON \
+    check_call('cmake ../libssh2 -DBUILD_SHARED_LIBS=ON \
     -DENABLE_ZLIB_COMPRESSION=ON -DENABLE_CRYPT_NONE=ON \
     -DENABLE_MAC_NONE=ON -DCRYPTO_BACKEND=OpenSSL',
                shell=True, env=os.environ)
