@@ -15,11 +15,11 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 FROM quay.io/pypa/manylinux2010_x86_64
 
-ENV OPENSSL openssl-1.1.1q
+ENV OPENSSL openssl-3.4.0
 ENV SYSTEM_LIBSSH2 1
 ENV LIBSSH2_VERSION 1.11.1
 
-RUN yum install zlib-devel -y
+RUN yum install zlib-devel perl-IPC-Cmd -y
 
 ADD libssh2-${LIBSSH2_VERSION}.tar.gz libssh2-${LIBSSH2_VERSION}.tar.gz
 ADD https://www.openssl.org/source/${OPENSSL}.tar.gz ${OPENSSL}.tar.gz

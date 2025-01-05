@@ -17,7 +17,7 @@
 
 # Compile wheels
 # For testing
-# for PYBIN in `ls -1d /opt/python/cp36-cp36m/bin | grep -v cpython`; do
+# for PYBIN in `ls -1d /opt/python/cp310-cp310/bin | grep -v cpython`; do
 for PYBIN in $(ls -1d /opt/python/*/bin | grep -v cpython); do
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
 done
@@ -29,6 +29,8 @@ done
 
 # Install packages and test
 for PYBIN in $(ls -1d /opt/python/*/bin | grep -v cpython); do
+# for PYBIN in `ls -1d /opt/python/cp310-cp310/bin | grep -v cpython`; do
   "${PYBIN}/pip" install ssh2-python --no-index -f /io/wheelhouse
-  (cd "$HOME"; "${PYBIN}/python" -c 'from ssh2.session import Session; Session()')
+  (cd "$HOME"; "${PYBIN}/python" -c 'from ssh2.session import Session; Session()' &&
+  echo "Import sanity check succeeded.")
 done
