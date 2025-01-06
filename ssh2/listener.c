@@ -2207,7 +2207,7 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 static PyObject *(*__pyx_f_4ssh2_7channel_PyChannel)(LIBSSH2_CHANNEL *, struct __pyx_obj_4ssh2_7session_Session *); /*proto*/
 
 /* Module declarations from "ssh2.utils" */
-static int (*__pyx_f_4ssh2_5utils_handle_error_codes)(int, int __pyx_skip_dispatch); /*proto*/
+static int (*__pyx_f_4ssh2_5utils_handle_error_codes_msg)(struct __pyx_obj_4ssh2_7session_Session *, int __pyx_skip_dispatch); /*proto*/
 
 /* Module declarations from "ssh2.listener" */
 /* #### Code section: typeinfo ### */
@@ -2220,9 +2220,8 @@ int __pyx_module_is_main_ssh2__listener = 0;
 /* #### Code section: global_var ### */
 static PyObject *__pyx_builtin_TypeError;
 /* #### Code section: string_decls ### */
-static const char __pyx_k__9[] = "?";
+static const char __pyx_k__8[] = "?";
 static const char __pyx_k_gc[] = "gc";
-static const char __pyx_k_rc[] = "rc";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_self[] = "self";
@@ -2317,7 +2316,7 @@ typedef struct {
   PyObject *__pyx_n_s_Listener_forward_accept;
   PyObject *__pyx_n_s_Listener_forward_cancel;
   PyObject *__pyx_n_s_TypeError;
-  PyObject *__pyx_n_s__9;
+  PyObject *__pyx_n_s__8;
   PyObject *__pyx_n_s_asyncio_coroutines;
   PyObject *__pyx_n_s_channel;
   PyObject *__pyx_n_s_cline_in_traceback;
@@ -2333,7 +2332,6 @@ typedef struct {
   PyObject *__pyx_n_s_name;
   PyObject *__pyx_kp_s_no_default___reduce___due_to_non;
   PyObject *__pyx_n_s_pyx_state;
-  PyObject *__pyx_n_s_rc;
   PyObject *__pyx_n_s_reduce;
   PyObject *__pyx_n_s_reduce_cython;
   PyObject *__pyx_n_s_reduce_ex;
@@ -2347,12 +2345,11 @@ typedef struct {
   PyObject *__pyx_n_s_test;
   PyObject *__pyx_tuple_;
   PyObject *__pyx_tuple__3;
-  PyObject *__pyx_tuple__5;
-  PyObject *__pyx_tuple__7;
+  PyObject *__pyx_tuple__6;
   PyObject *__pyx_codeobj__2;
   PyObject *__pyx_codeobj__4;
-  PyObject *__pyx_codeobj__6;
-  PyObject *__pyx_codeobj__8;
+  PyObject *__pyx_codeobj__5;
+  PyObject *__pyx_codeobj__7;
 } __pyx_mstate;
 
 #if CYTHON_USE_MODULE_STATE
@@ -2406,7 +2403,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_Listener_forward_accept);
   Py_CLEAR(clear_module_state->__pyx_n_s_Listener_forward_cancel);
   Py_CLEAR(clear_module_state->__pyx_n_s_TypeError);
-  Py_CLEAR(clear_module_state->__pyx_n_s__9);
+  Py_CLEAR(clear_module_state->__pyx_n_s__8);
   Py_CLEAR(clear_module_state->__pyx_n_s_asyncio_coroutines);
   Py_CLEAR(clear_module_state->__pyx_n_s_channel);
   Py_CLEAR(clear_module_state->__pyx_n_s_cline_in_traceback);
@@ -2422,7 +2419,6 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_name);
   Py_CLEAR(clear_module_state->__pyx_kp_s_no_default___reduce___due_to_non);
   Py_CLEAR(clear_module_state->__pyx_n_s_pyx_state);
-  Py_CLEAR(clear_module_state->__pyx_n_s_rc);
   Py_CLEAR(clear_module_state->__pyx_n_s_reduce);
   Py_CLEAR(clear_module_state->__pyx_n_s_reduce_cython);
   Py_CLEAR(clear_module_state->__pyx_n_s_reduce_ex);
@@ -2436,12 +2432,11 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_test);
   Py_CLEAR(clear_module_state->__pyx_tuple_);
   Py_CLEAR(clear_module_state->__pyx_tuple__3);
-  Py_CLEAR(clear_module_state->__pyx_tuple__5);
-  Py_CLEAR(clear_module_state->__pyx_tuple__7);
+  Py_CLEAR(clear_module_state->__pyx_tuple__6);
   Py_CLEAR(clear_module_state->__pyx_codeobj__2);
   Py_CLEAR(clear_module_state->__pyx_codeobj__4);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__6);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__8);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__5);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__7);
   return 0;
 }
 #endif
@@ -2473,7 +2468,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_Listener_forward_accept);
   Py_VISIT(traverse_module_state->__pyx_n_s_Listener_forward_cancel);
   Py_VISIT(traverse_module_state->__pyx_n_s_TypeError);
-  Py_VISIT(traverse_module_state->__pyx_n_s__9);
+  Py_VISIT(traverse_module_state->__pyx_n_s__8);
   Py_VISIT(traverse_module_state->__pyx_n_s_asyncio_coroutines);
   Py_VISIT(traverse_module_state->__pyx_n_s_channel);
   Py_VISIT(traverse_module_state->__pyx_n_s_cline_in_traceback);
@@ -2489,7 +2484,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_name);
   Py_VISIT(traverse_module_state->__pyx_kp_s_no_default___reduce___due_to_non);
   Py_VISIT(traverse_module_state->__pyx_n_s_pyx_state);
-  Py_VISIT(traverse_module_state->__pyx_n_s_rc);
   Py_VISIT(traverse_module_state->__pyx_n_s_reduce);
   Py_VISIT(traverse_module_state->__pyx_n_s_reduce_cython);
   Py_VISIT(traverse_module_state->__pyx_n_s_reduce_ex);
@@ -2503,12 +2497,11 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_test);
   Py_VISIT(traverse_module_state->__pyx_tuple_);
   Py_VISIT(traverse_module_state->__pyx_tuple__3);
-  Py_VISIT(traverse_module_state->__pyx_tuple__5);
-  Py_VISIT(traverse_module_state->__pyx_tuple__7);
+  Py_VISIT(traverse_module_state->__pyx_tuple__6);
   Py_VISIT(traverse_module_state->__pyx_codeobj__2);
   Py_VISIT(traverse_module_state->__pyx_codeobj__4);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__6);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__8);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__5);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__7);
   return 0;
 }
 #endif
@@ -2566,7 +2559,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_Listener_forward_accept __pyx_mstate_global->__pyx_n_s_Listener_forward_accept
 #define __pyx_n_s_Listener_forward_cancel __pyx_mstate_global->__pyx_n_s_Listener_forward_cancel
 #define __pyx_n_s_TypeError __pyx_mstate_global->__pyx_n_s_TypeError
-#define __pyx_n_s__9 __pyx_mstate_global->__pyx_n_s__9
+#define __pyx_n_s__8 __pyx_mstate_global->__pyx_n_s__8
 #define __pyx_n_s_asyncio_coroutines __pyx_mstate_global->__pyx_n_s_asyncio_coroutines
 #define __pyx_n_s_channel __pyx_mstate_global->__pyx_n_s_channel
 #define __pyx_n_s_cline_in_traceback __pyx_mstate_global->__pyx_n_s_cline_in_traceback
@@ -2582,7 +2575,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_name __pyx_mstate_global->__pyx_n_s_name
 #define __pyx_kp_s_no_default___reduce___due_to_non __pyx_mstate_global->__pyx_kp_s_no_default___reduce___due_to_non
 #define __pyx_n_s_pyx_state __pyx_mstate_global->__pyx_n_s_pyx_state
-#define __pyx_n_s_rc __pyx_mstate_global->__pyx_n_s_rc
 #define __pyx_n_s_reduce __pyx_mstate_global->__pyx_n_s_reduce
 #define __pyx_n_s_reduce_cython __pyx_mstate_global->__pyx_n_s_reduce_cython
 #define __pyx_n_s_reduce_ex __pyx_mstate_global->__pyx_n_s_reduce_ex
@@ -2596,12 +2588,11 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_test __pyx_mstate_global->__pyx_n_s_test
 #define __pyx_tuple_ __pyx_mstate_global->__pyx_tuple_
 #define __pyx_tuple__3 __pyx_mstate_global->__pyx_tuple__3
-#define __pyx_tuple__5 __pyx_mstate_global->__pyx_tuple__5
-#define __pyx_tuple__7 __pyx_mstate_global->__pyx_tuple__7
+#define __pyx_tuple__6 __pyx_mstate_global->__pyx_tuple__6
 #define __pyx_codeobj__2 __pyx_mstate_global->__pyx_codeobj__2
 #define __pyx_codeobj__4 __pyx_mstate_global->__pyx_codeobj__4
-#define __pyx_codeobj__6 __pyx_mstate_global->__pyx_codeobj__6
-#define __pyx_codeobj__8 __pyx_mstate_global->__pyx_codeobj__8
+#define __pyx_codeobj__5 __pyx_mstate_global->__pyx_codeobj__5
+#define __pyx_codeobj__7 __pyx_mstate_global->__pyx_codeobj__7
 /* #### Code section: module_code ### */
 
 /* "ssh2/listener.pyx":24
@@ -2879,8 +2870,8 @@ static PyObject *__pyx_pf_4ssh2_8listener_8Listener_2forward_accept(struct __pyx
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
-  int __pyx_t_2;
-  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_t_3;
   PyObject *__pyx_t_4 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -2936,8 +2927,8 @@ static PyObject *__pyx_pf_4ssh2_8listener_8Listener_2forward_accept(struct __pyx
  *             channel = c_ssh2.libssh2_channel_forward_accept(
  *                 self._listener)
  *         if channel is NULL:             # <<<<<<<<<<<<<<
- *             return handle_error_codes(c_ssh2.libssh2_session_last_errno(
- *                 self._session._session))
+ *             return handle_error_codes_msg(self._session)
+ *         return PyChannel(channel, self._session)
  */
   __pyx_t_1 = (__pyx_v_channel == NULL);
   if (__pyx_t_1) {
@@ -2945,56 +2936,43 @@ static PyObject *__pyx_pf_4ssh2_8listener_8Listener_2forward_accept(struct __pyx
     /* "ssh2/listener.pyx":42
  *                 self._listener)
  *         if channel is NULL:
- *             return handle_error_codes(c_ssh2.libssh2_session_last_errno(             # <<<<<<<<<<<<<<
- *                 self._session._session))
- *         return PyChannel(channel, self._session)
- */
-    __Pyx_XDECREF(__pyx_r);
-
-    /* "ssh2/listener.pyx":43
- *         if channel is NULL:
- *             return handle_error_codes(c_ssh2.libssh2_session_last_errno(
- *                 self._session._session))             # <<<<<<<<<<<<<<
+ *             return handle_error_codes_msg(self._session)             # <<<<<<<<<<<<<<
  *         return PyChannel(channel, self._session)
  * 
  */
-    __pyx_t_2 = __pyx_f_4ssh2_5utils_handle_error_codes(libssh2_session_last_errno(__pyx_v_self->_session->_session), 0); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(1, 42, __pyx_L1_error)
-
-    /* "ssh2/listener.pyx":42
- *                 self._listener)
- *         if channel is NULL:
- *             return handle_error_codes(c_ssh2.libssh2_session_last_errno(             # <<<<<<<<<<<<<<
- *                 self._session._session))
- *         return PyChannel(channel, self._session)
- */
-    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 42, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_r = __pyx_t_3;
-    __pyx_t_3 = 0;
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_t_2 = ((PyObject *)__pyx_v_self->_session);
+    __Pyx_INCREF(__pyx_t_2);
+    __pyx_t_3 = __pyx_f_4ssh2_5utils_handle_error_codes_msg(((struct __pyx_obj_4ssh2_7session_Session *)__pyx_t_2), 0); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(1, 42, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 42, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_r = __pyx_t_2;
+    __pyx_t_2 = 0;
     goto __pyx_L0;
 
     /* "ssh2/listener.pyx":41
  *             channel = c_ssh2.libssh2_channel_forward_accept(
  *                 self._listener)
  *         if channel is NULL:             # <<<<<<<<<<<<<<
- *             return handle_error_codes(c_ssh2.libssh2_session_last_errno(
- *                 self._session._session))
+ *             return handle_error_codes_msg(self._session)
+ *         return PyChannel(channel, self._session)
  */
   }
 
-  /* "ssh2/listener.pyx":44
- *             return handle_error_codes(c_ssh2.libssh2_session_last_errno(
- *                 self._session._session))
+  /* "ssh2/listener.pyx":43
+ *         if channel is NULL:
+ *             return handle_error_codes_msg(self._session)
  *         return PyChannel(channel, self._session)             # <<<<<<<<<<<<<<
  * 
  *     def forward_cancel(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = ((PyObject *)__pyx_v_self->_session);
-  __Pyx_INCREF(__pyx_t_3);
-  __pyx_t_4 = __pyx_f_4ssh2_7channel_PyChannel(__pyx_v_channel, ((struct __pyx_obj_4ssh2_7session_Session *)__pyx_t_3)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 44, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_v_self->_session);
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_4 = __pyx_f_4ssh2_7channel_PyChannel(__pyx_v_channel, ((struct __pyx_obj_4ssh2_7session_Session *)__pyx_t_2)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 43, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
@@ -3009,7 +2987,7 @@ static PyObject *__pyx_pf_4ssh2_8listener_8Listener_2forward_accept(struct __pyx
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_AddTraceback("ssh2.listener.Listener.forward_accept", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
@@ -3019,12 +2997,12 @@ static PyObject *__pyx_pf_4ssh2_8listener_8Listener_2forward_accept(struct __pyx
   return __pyx_r;
 }
 
-/* "ssh2/listener.pyx":46
+/* "ssh2/listener.pyx":45
  *         return PyChannel(channel, self._session)
  * 
  *     def forward_cancel(self):             # <<<<<<<<<<<<<<
- *         cdef int rc
  *         with nogil:
+ *             c_ssh2.libssh2_channel_forward_cancel(
  */
 
 /* Python wrapper */
@@ -3070,21 +3048,20 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 }
 
 static PyObject *__pyx_pf_4ssh2_8listener_8Listener_4forward_cancel(struct __pyx_obj_4ssh2_8listener_Listener *__pyx_v_self) {
-  int __pyx_v_rc;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  int __pyx_t_1;
-  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_t_2;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("forward_cancel", 1);
 
-  /* "ssh2/listener.pyx":48
+  /* "ssh2/listener.pyx":46
+ * 
  *     def forward_cancel(self):
- *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
- *             rc = c_ssh2.libssh2_channel_forward_cancel(
+ *             c_ssh2.libssh2_channel_forward_cancel(
  *                 self._listener)
  */
   {
@@ -3096,21 +3073,21 @@ static PyObject *__pyx_pf_4ssh2_8listener_8Listener_4forward_cancel(struct __pyx
       #endif
       /*try:*/ {
 
-        /* "ssh2/listener.pyx":49
- *         cdef int rc
+        /* "ssh2/listener.pyx":47
+ *     def forward_cancel(self):
  *         with nogil:
- *             rc = c_ssh2.libssh2_channel_forward_cancel(             # <<<<<<<<<<<<<<
+ *             c_ssh2.libssh2_channel_forward_cancel(             # <<<<<<<<<<<<<<
  *                 self._listener)
- *         return handle_error_codes(rc)
+ *         return handle_error_codes_msg(self._session)
  */
-        __pyx_v_rc = libssh2_channel_forward_cancel(__pyx_v_self->_listener);
+        (void)(libssh2_channel_forward_cancel(__pyx_v_self->_listener));
       }
 
-      /* "ssh2/listener.pyx":48
+      /* "ssh2/listener.pyx":46
+ * 
  *     def forward_cancel(self):
- *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
- *             rc = c_ssh2.libssh2_channel_forward_cancel(
+ *             c_ssh2.libssh2_channel_forward_cancel(
  *                 self._listener)
  */
       /*finally:*/ {
@@ -3125,30 +3102,33 @@ static PyObject *__pyx_pf_4ssh2_8listener_8Listener_4forward_cancel(struct __pyx
       }
   }
 
-  /* "ssh2/listener.pyx":51
- *             rc = c_ssh2.libssh2_channel_forward_cancel(
+  /* "ssh2/listener.pyx":49
+ *             c_ssh2.libssh2_channel_forward_cancel(
  *                 self._listener)
- *         return handle_error_codes(rc)             # <<<<<<<<<<<<<<
+ *         return handle_error_codes_msg(self._session)             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_4ssh2_5utils_handle_error_codes(__pyx_v_rc, 0); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(1, 51, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 51, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_r = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __pyx_t_1 = ((PyObject *)__pyx_v_self->_session);
+  __Pyx_INCREF(__pyx_t_1);
+  __pyx_t_2 = __pyx_f_4ssh2_5utils_handle_error_codes_msg(((struct __pyx_obj_4ssh2_7session_Session *)__pyx_t_1), 0); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(1, 49, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 49, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "ssh2/listener.pyx":46
+  /* "ssh2/listener.pyx":45
  *         return PyChannel(channel, self._session)
  * 
  *     def forward_cancel(self):             # <<<<<<<<<<<<<<
- *         cdef int rc
  *         with nogil:
+ *             c_ssh2.libssh2_channel_forward_cancel(
  */
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_1);
   __Pyx_AddTraceback("ssh2.listener.Listener.forward_cancel", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -3567,7 +3547,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_Listener_forward_accept, __pyx_k_Listener_forward_accept, sizeof(__pyx_k_Listener_forward_accept), 0, 0, 1, 1},
     {&__pyx_n_s_Listener_forward_cancel, __pyx_k_Listener_forward_cancel, sizeof(__pyx_k_Listener_forward_cancel), 0, 0, 1, 1},
     {&__pyx_n_s_TypeError, __pyx_k_TypeError, sizeof(__pyx_k_TypeError), 0, 0, 1, 1},
-    {&__pyx_n_s__9, __pyx_k__9, sizeof(__pyx_k__9), 0, 0, 1, 1},
+    {&__pyx_n_s__8, __pyx_k__8, sizeof(__pyx_k__8), 0, 0, 1, 1},
     {&__pyx_n_s_asyncio_coroutines, __pyx_k_asyncio_coroutines, sizeof(__pyx_k_asyncio_coroutines), 0, 0, 1, 1},
     {&__pyx_n_s_channel, __pyx_k_channel, sizeof(__pyx_k_channel), 0, 0, 1, 1},
     {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
@@ -3583,7 +3563,6 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
     {&__pyx_kp_s_no_default___reduce___due_to_non, __pyx_k_no_default___reduce___due_to_non, sizeof(__pyx_k_no_default___reduce___due_to_non), 0, 0, 1, 0},
     {&__pyx_n_s_pyx_state, __pyx_k_pyx_state, sizeof(__pyx_k_pyx_state), 0, 0, 1, 1},
-    {&__pyx_n_s_rc, __pyx_k_rc, sizeof(__pyx_k_rc), 0, 0, 1, 1},
     {&__pyx_n_s_reduce, __pyx_k_reduce, sizeof(__pyx_k_reduce), 0, 0, 1, 1},
     {&__pyx_n_s_reduce_cython, __pyx_k_reduce_cython, sizeof(__pyx_k_reduce_cython), 0, 0, 1, 1},
     {&__pyx_n_s_reduce_ex, __pyx_k_reduce_ex, sizeof(__pyx_k_reduce_ex), 0, 0, 1, 1},
@@ -3624,27 +3603,24 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple_);
   __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ssh2_listener_pyx, __pyx_n_s_forward_accept, 36, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(1, 36, __pyx_L1_error)
 
-  /* "ssh2/listener.pyx":46
+  /* "ssh2/listener.pyx":45
  *         return PyChannel(channel, self._session)
  * 
  *     def forward_cancel(self):             # <<<<<<<<<<<<<<
- *         cdef int rc
  *         with nogil:
+ *             c_ssh2.libssh2_channel_forward_cancel(
  */
-  __pyx_tuple__3 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_rc); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(1, 46, __pyx_L1_error)
+  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(1, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
-  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ssh2_listener_pyx, __pyx_n_s_forward_cancel, 46, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(1, 46, __pyx_L1_error)
+  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ssh2_listener_pyx, __pyx_n_s_forward_cancel, 45, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(1, 45, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  * def __setstate_cython__(self, __pyx_state):
  */
-  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__5);
-  __Pyx_GIVEREF(__pyx_tuple__5);
-  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) __PYX_ERR(0, 1, __pyx_L1_error)
 
   /* "(tree fragment)":3
  * def __reduce_cython__(self):
@@ -3652,10 +3628,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  */
-  __pyx_tuple__7 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__7);
-  __Pyx_GIVEREF(__pyx_tuple__7);
-  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 3, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__6);
+  __Pyx_GIVEREF(__pyx_tuple__6);
+  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 3, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -3800,7 +3776,7 @@ static int __Pyx_modinit_function_import_code(void) {
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = PyImport_ImportModule("ssh2.utils"); if (!__pyx_t_1) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_ImportFunction_3_0_11(__pyx_t_1, "handle_error_codes", (void (**)(void))&__pyx_f_4ssh2_5utils_handle_error_codes, "int (int, int __pyx_skip_dispatch)") < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  if (__Pyx_ImportFunction_3_0_11(__pyx_t_1, "handle_error_codes_msg", (void (**)(void))&__pyx_f_4ssh2_5utils_handle_error_codes_msg, "int (struct __pyx_obj_4ssh2_7session_Session *, int __pyx_skip_dispatch)") < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -4101,16 +4077,16 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_8listener_Listener);
 
-  /* "ssh2/listener.pyx":46
+  /* "ssh2/listener.pyx":45
  *         return PyChannel(channel, self._session)
  * 
  *     def forward_cancel(self):             # <<<<<<<<<<<<<<
- *         cdef int rc
  *         with nogil:
+ *             c_ssh2.libssh2_channel_forward_cancel(
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_8listener_8Listener_5forward_cancel, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Listener_forward_cancel, NULL, __pyx_n_s_ssh2_listener, __pyx_d, ((PyObject *)__pyx_codeobj__4)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 46, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_8listener_8Listener_5forward_cancel, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Listener_forward_cancel, NULL, __pyx_n_s_ssh2_listener, __pyx_d, ((PyObject *)__pyx_codeobj__4)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_8listener_Listener, __pyx_n_s_forward_cancel, __pyx_t_2) < 0) __PYX_ERR(1, 46, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_8listener_Listener, __pyx_n_s_forward_cancel, __pyx_t_2) < 0) __PYX_ERR(1, 45, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_8listener_Listener);
 
@@ -4119,7 +4095,7 @@ if (!__Pyx_RefNanny) {
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  * def __setstate_cython__(self, __pyx_state):
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_8listener_8Listener_7__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Listener___reduce_cython, NULL, __pyx_n_s_ssh2_listener, __pyx_d, ((PyObject *)__pyx_codeobj__6)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_8listener_8Listener_7__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Listener___reduce_cython, NULL, __pyx_n_s_ssh2_listener, __pyx_d, ((PyObject *)__pyx_codeobj__5)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_reduce_cython, __pyx_t_2) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -4130,7 +4106,7 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_8listener_8Listener_9__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Listener___setstate_cython, NULL, __pyx_n_s_ssh2_listener, __pyx_d, ((PyObject *)__pyx_codeobj__8)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_8listener_8Listener_9__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Listener___setstate_cython, NULL, __pyx_n_s_ssh2_listener, __pyx_d, ((PyObject *)__pyx_codeobj__7)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_setstate_cython, __pyx_t_2) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -7515,7 +7491,7 @@ __Pyx_PyType_GetName(PyTypeObject* tp)
     if (unlikely(name == NULL) || unlikely(!PyUnicode_Check(name))) {
         PyErr_Clear();
         Py_XDECREF(name);
-        name = __Pyx_NewRef(__pyx_n_s__9);
+        name = __Pyx_NewRef(__pyx_n_s__8);
     }
     return name;
 }

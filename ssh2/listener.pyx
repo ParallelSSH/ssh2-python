@@ -16,7 +16,7 @@
 
 from .session cimport Session
 from .channel cimport PyChannel
-from .utils cimport handle_error_codes
+from .utils cimport handle_error_codes_msg
 
 from . cimport c_ssh2
 
@@ -39,13 +39,11 @@ cdef class Listener:
             channel = c_ssh2.libssh2_channel_forward_accept(
                 self._listener)
         if channel is NULL:
-            return handle_error_codes(c_ssh2.libssh2_session_last_errno(
-                self._session._session))
+            return handle_error_codes_msg(self._session)
         return PyChannel(channel, self._session)
 
     def forward_cancel(self):
-        cdef int rc
         with nogil:
-            rc = c_ssh2.libssh2_channel_forward_cancel(
+            c_ssh2.libssh2_channel_forward_cancel(
                 self._listener)
-        return handle_error_codes(rc)
+        return handle_error_codes_msg(self._session)
