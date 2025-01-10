@@ -228,7 +228,12 @@ cdef class Channel:
         Note that ``0`` is also failure code for this function.
 
         Best used in non-blocking mode to avoid it being impossible to tell if
-        ``0`` indicates failure or an actual exit status of ``0``"""
+        ``0`` indicates failure or an actual exit status of ``0``.
+
+        Exceptions are raised as with all functions in case of an SSH2Error.
+
+        :rtype: int
+        """
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_get_exit_status(self._channel)
@@ -241,7 +246,8 @@ cdef class Channel:
         Returns (`returncode``, ``exit signal``, ``error message``,
           ``language tag``) tuple.
 
-        :rtype: tuple(int, bytes, bytes, bytes)"""
+        :rtype: tuple(int, bytes, bytes, bytes)
+        """
         cdef char *exitsignal = <char *>b'none'
         cdef size_t *exitsignal_len = <size_t *>0
         cdef char *errmsg = <char *>b'none'
