@@ -14,8 +14,6 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-from cython.cimports.cpython.ref import PyObject
-
 from select import select
 
 from cpython.version cimport PY_MAJOR_VERSION
@@ -115,7 +113,7 @@ def wait_socket(_socket not None, Session session, timeout=1):
     return select(readfds, writefds, (), timeout)
 
 
-cdef PyObject _get_exc_from_errcode(int errcode):
+def _get_exc_from_errcode(int errcode):
     if errcode == 0:
         return None
     elif errcode == error_codes._LIBSSH2_ERROR_EAGAIN:
@@ -237,7 +235,7 @@ cpdef int handle_error_codes(int errcode) except -1:
     """
     exc_or_errcode = _get_exc_from_errcode(errcode)
     if exc_or_errcode is None:
-        return exc_or_errcode
+        return errcode
     raise exc_or_errcode(errcode)
 
 
@@ -256,5 +254,5 @@ cpdef int handle_error_codes_msg(Session session) except -1:
     cdef str errmsg = session.last_error()
     exc_or_errcode = _get_exc_from_errcode(errcode)
     if exc_or_errcode is None:
-        return exc_or_errcode
+        return errcode
     raise exc_or_errcode(errcode, errmsg)
