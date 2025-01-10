@@ -218,6 +218,7 @@ def _get_exc_from_errcode(int errcode):
             return exceptions.UnknownError
         return None
 
+
 cpdef int handle_error_codes(int errcode) except -1:
     """This function is now deprecated - use handle_error_codes_msg to
     include error message in any exceptions raised.
