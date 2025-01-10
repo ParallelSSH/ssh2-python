@@ -229,9 +229,11 @@ cdef class Channel:
 
         Best used in non-blocking mode to avoid it being impossible to tell if
         ``0`` indicates failure or an actual exit status of ``0``"""
+        cdef int rc
         with nogil:
-            c_ssh2.libssh2_channel_get_exit_status(self._channel)
-        return handle_error_codes_msg(self._session)
+            rc = c_ssh2.libssh2_channel_get_exit_status(self._channel)
+        handle_error_codes_msg(self._session)
+        return rc
 
     def get_exit_signal(self):
         """Get exit signal, message and language tag, if any, for command.
