@@ -3,6 +3,11 @@ UsePAM yes
 HostbasedAuthentication no
 IgnoreUserKnownHosts yes
 ListenAddress 127.0.0.1
+MaxAuthTries 99999
+MaxSessions 99999
+MaxStartups 99999
+PerSourceMaxStartups 99999
+PerSourcePenaltyExemptList *.*.*.*
 
 AcceptEnv LANG LC_*
 Subsystem sftp internal-sftp

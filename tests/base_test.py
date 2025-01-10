@@ -6,6 +6,8 @@ from sys import version_info
 
 from .embedded_server.openssh import OpenSSHServer
 from ssh2.session import Session
+from ssh2.exceptions import SSH2Error
+
 
 
 PKEY_FILENAME = os.path.sep.join([os.path.dirname(__file__), 'unit_test_key'])
@@ -41,8 +43,12 @@ class SSH2TestCase(unittest.TestCase):
         self.session.handshake(self.sock)
 
     def tearDown(self):
-        self.session.disconnect()
-        self.sock.close()
+        try:
+            self.session.disconnect()
+        except SSH2Error:
+            return
+        else:
+            self.sock.close()
 
     def _auth(self):
         return self.session.userauth_publickey_fromfile(

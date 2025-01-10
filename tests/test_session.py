@@ -10,7 +10,8 @@ from ssh2.channel import Channel
 from ssh2.error_codes import LIBSSH2_ERROR_EAGAIN
 from ssh2.exceptions import AuthenticationError, AgentAuthenticationError, \
     SCPProtocolError, RequestDeniedError, InvalidRequestError, \
-    SocketSendError, FileError, PublickeyUnverifiedError, MethodNotSupported
+    SocketSendError, FileError, PublickeyUnverifiedError, MethodNotSupported, \
+    ChannelFailure
 from ssh2.utils import wait_socket
 from ssh2.listener import Listener
 
@@ -47,8 +48,8 @@ class SessionTestCase(SSH2TestCase):
         )
 
     def test_set_get_error(self):
-        msg = b'my error message'
-        self.assertEqual(b'', self.session.last_error())
+        msg = 'my error message'
+        self.assertEqual('', self.session.last_error())
         self.assertEqual(self.session.set_last_error(255, msg), 255)
         self.assertEqual(msg, self.session.last_error())
 
