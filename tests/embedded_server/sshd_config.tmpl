@@ -1,8 +1,9 @@
 Protocol 2
-UsePAM yes
+UsePAM no
 HostbasedAuthentication no
 IgnoreUserKnownHosts yes
-ListenAddress 127.0.0.1
+ListenAddress {{listen_ip}}
+HostKey {{parent_dir}}/ca_host_key
 MaxAuthTries 99999
 MaxSessions 99999
 MaxStartups 99999
@@ -12,3 +13,4 @@ PerSourcePenaltyExemptList *.*.*.*
 AcceptEnv LANG LC_*
 Subsystem sftp internal-sftp
 AuthorizedKeysFile {{parent_dir}}/authorized_keys
+PidFile {{parent_dir}}/{{random_server}}.pid

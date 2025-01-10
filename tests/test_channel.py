@@ -35,10 +35,12 @@ class ChannelTestCase(SSH2TestCase):
         self.assertEqual(self._auth(), 0)
         chan = self.session.open_session()
         chan.execute('exit 2')
+        chan.send_eof()
         chan.wait_eof()
         chan.close()
         chan.wait_closed()
         exit_code = chan.get_exit_status()
+        # import ipdb; ipdb.set_trace()
         self.assertEqual(exit_code, 2)
 
     def test_long_running_execute(self):
@@ -139,6 +141,8 @@ class ChannelTestCase(SSH2TestCase):
         self.assertTrue(lines, [self.resp])
         self.assertTrue(chan.close() == 0)
         self.assertTrue(chan.wait_eof() == 0)
+        # import ipdb; ipdb.set_trace()
+        # pass
 
     def test_process_startup(self):
         self.assertEqual(self._auth(), 0)

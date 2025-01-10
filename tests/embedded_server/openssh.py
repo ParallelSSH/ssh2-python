@@ -16,6 +16,8 @@
 
 import os
 import socket
+import random
+import string
 from subprocess import Popen
 from time import sleep
 from sys import version_info
@@ -33,10 +35,13 @@ SSHD_CONFIG = os.path.abspath(os.path.sep.join([DIR_NAME, 'sshd_config']))
 
 class OpenSSHServer(object):
 
-    def __init__(self, port=2222):
+    def __init__(self, listen_ip='127.0.0.1', port=2222):
+        self.listen_ip = listen_ip
         self.port = port
         self.server_proc = None
         self._fix_masks()
+        self.random_server = ''.join(random.choice(string.ascii_lowercase + string.digits)
+                                     for _ in range(8))
         self.make_config()
 
     def _fix_masks(self):
@@ -51,7 +56,11 @@ class OpenSSHServer(object):
             tmpl = fh.read()
         template = Template(tmpl)
         with open(SSHD_CONFIG, 'w') as fh:
-            fh.write(template.render(parent_dir=os.path.abspath(DIR_NAME)))
+            fh.write(template.render(
+                parent_dir=os.path.abspath(DIR_NAME),
+                listen_ip=self.listen_ip,
+                random_server=self.random_server,
+            ))
             fh.write(os.linesep)
 
     def start_server(self):
@@ -63,7 +72,7 @@ class OpenSSHServer(object):
 
     def _wait_for_port(self):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        while sock.connect_ex(('127.0.0.1', self.port)) != 0:
+        while sock.connect_ex((self.listen_ip, self.port)) != 0:
             sleep(.1)
         sock.close()
 
