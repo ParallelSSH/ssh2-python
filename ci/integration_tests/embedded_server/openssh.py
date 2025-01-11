@@ -15,12 +15,12 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 import os
-import socket
 import random
+import socket
 import string
 from subprocess import Popen
-from time import sleep
 from sys import version_info
+from time import sleep
 
 from jinja2 import Template
 
