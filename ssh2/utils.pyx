@@ -220,12 +220,7 @@ def _get_exc_from_errcode(int errcode):
 
 
 cpdef int handle_error_codes(int errcode) except -1:
-    """This function is now deprecated - use handle_error_codes_msg to
-    include error message in any exceptions raised.
-    
-    Will be removed in future versions.
-    
-    Raise appropriate exception for given error code.
+    """Raise appropriate exception for given error code.
 
     Returns 0 on no error and ``LIBSSH2_ERROR_EAGAIN`` on ``EAGAIN``.
 

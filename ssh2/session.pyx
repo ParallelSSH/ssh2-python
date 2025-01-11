@@ -26,7 +26,7 @@ from .exceptions import SessionHostKeyError, KnownHostError, \
 from .listener cimport PyListener
 from .sftp cimport PySFTP
 from .publickey cimport PyPublicKeySystem
-from .utils cimport to_bytes, to_str, handle_error_codes_msg
+from .utils cimport to_bytes, to_str, handle_error_codes, handle_error_codes_msg
 from .statinfo cimport StatInfo
 from .knownhost cimport PyKnownHost
 from .fileinfo cimport FileInfo
@@ -386,7 +386,7 @@ cdef class Session:
             channel = c_ssh2.libssh2_channel_open_session(
                 self._session)
         if channel is NULL:
-            return handle_error_codes_msg(self)
+            return handle_error_codes(self.last_errno())
         return PyChannel(channel, self)
 
     def direct_tcpip_ex(self, host not None, int port,
@@ -400,7 +400,7 @@ cdef class Session:
             channel = c_ssh2.libssh2_channel_direct_tcpip_ex(
                 self._session, _host, port, _shost, sport)
         if channel is NULL:
-            return handle_error_codes_msg(self)
+            return handle_error_codes(self.last_errno())
         return PyChannel(channel, self)
 
     def direct_tcpip(self, host not None, int port):
@@ -416,7 +416,7 @@ cdef class Session:
             channel = c_ssh2.libssh2_channel_direct_tcpip(
                 self._session, _host, port)
         if channel is NULL:
-            return handle_error_codes_msg(self)
+            return handle_error_codes(self.last_errno())
         return PyChannel(channel, self)
 
     def block_directions(self):
@@ -458,7 +458,7 @@ cdef class Session:
             listener = c_ssh2.libssh2_channel_forward_listen(
                 self._session, port)
         if listener is NULL:
-            return handle_error_codes_msg(self)
+            return handle_error_codes(self.last_errno())
         return PyListener(listener, self)
 
     def forward_listen_ex(self, int queue_maxsize, host=None, int port=0):
@@ -493,7 +493,7 @@ cdef class Session:
             listener = c_ssh2.libssh2_channel_forward_listen_ex(
                 self._session, _host, port, &bound_port, queue_maxsize)
         if listener is NULL:
-            return handle_error_codes_msg(self)
+            return handle_error_codes(self.last_errno())
         return (PyListener(listener, self), bound_port)
 
     def sftp_init(self):
@@ -505,7 +505,7 @@ cdef class Session:
         with nogil:
             _sftp = c_sftp.libssh2_sftp_init(self._session)
         if _sftp is NULL:
-            return handle_error_codes_msg(self)
+            return handle_error_codes(self.last_errno())
         return PySFTP(_sftp, self)
 
     def last_error(self, size_t msg_size=1024):
@@ -567,7 +567,7 @@ cdef class Session:
             channel = c_ssh2.libssh2_scp_recv(
                 self._session, _path, statinfo._stat)
         if channel is NULL:
-            return handle_error_codes_msg(self)
+            return handle_error_codes(self.last_errno())
         return PyChannel(channel, self), statinfo
 
     def scp_recv2(self, path not None):
@@ -586,7 +586,7 @@ cdef class Session:
             channel = c_ssh2.libssh2_scp_recv2(
                 self._session, _path, fileinfo._stat)
         if channel is NULL:
-            return handle_error_codes_msg(self)
+            return handle_error_codes(self.last_errno())
         return PyChannel(channel, self), fileinfo
 
     def scp_send(self, path not None, int mode, size_t size):
@@ -607,7 +607,7 @@ cdef class Session:
             channel = c_ssh2.libssh2_scp_send(
                 self._session, _path, mode, size)
         if channel is NULL:
-            return handle_error_codes_msg(self)
+            return handle_error_codes(self.last_errno())
         return PyChannel(channel, self)
 
     def scp_send64(self, path not None, int mode, c_ssh2.libssh2_uint64_t size,
@@ -629,7 +629,7 @@ cdef class Session:
             channel = c_ssh2.libssh2_scp_send64(
                 self._session, _path, mode, size, mtime, atime)
         if channel is NULL:
-            return handle_error_codes_msg(self)
+            return handle_error_codes(self.last_errno())
         return PyChannel(channel, self)
 
     def publickey_init(self):

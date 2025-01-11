@@ -5747,8 +5747,8 @@ static PyObject *__pyx_pf_4ssh2_5utils_8_get_exc_from_errcode(CYTHON_UNUSED PyOb
  * 
  * 
  * cpdef int handle_error_codes(int errcode) except -1:             # <<<<<<<<<<<<<<
- *     """This function is now deprecated - use handle_error_codes_msg to
- *     include error message in any exceptions raised.
+ *     """Raise appropriate exception for given error code.
+ * 
  */
 
 static PyObject *__pyx_pw_4ssh2_5utils_11handle_error_codes(PyObject *__pyx_self, 
@@ -5773,16 +5773,16 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes(int __pyx_v_errcode, CYTHON_U
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("handle_error_codes", 1);
 
-  /* "ssh2/utils.pyx":237
+  /* "ssh2/utils.pyx":232
  *       :py:func:`ssh2.session.Session.last_errno`
  *     """
  *     exc_or_errcode = _get_exc_from_errcode(errcode)             # <<<<<<<<<<<<<<
  *     if exc_or_errcode is None:
  *         return errcode
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_get_exc_from_errcode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 237, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_get_exc_from_errcode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_errcode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 237, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_errcode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -5803,14 +5803,14 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes(int __pyx_v_errcode, CYTHON_U
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 237, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 232, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __pyx_v_exc_or_errcode = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "ssh2/utils.pyx":238
+  /* "ssh2/utils.pyx":233
  *     """
  *     exc_or_errcode = _get_exc_from_errcode(errcode)
  *     if exc_or_errcode is None:             # <<<<<<<<<<<<<<
@@ -5820,7 +5820,7 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes(int __pyx_v_errcode, CYTHON_U
   __pyx_t_6 = (__pyx_v_exc_or_errcode == Py_None);
   if (__pyx_t_6) {
 
-    /* "ssh2/utils.pyx":239
+    /* "ssh2/utils.pyx":234
  *     exc_or_errcode = _get_exc_from_errcode(errcode)
  *     if exc_or_errcode is None:
  *         return errcode             # <<<<<<<<<<<<<<
@@ -5830,7 +5830,7 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes(int __pyx_v_errcode, CYTHON_U
     __pyx_r = __pyx_v_errcode;
     goto __pyx_L0;
 
-    /* "ssh2/utils.pyx":238
+    /* "ssh2/utils.pyx":233
  *     """
  *     exc_or_errcode = _get_exc_from_errcode(errcode)
  *     if exc_or_errcode is None:             # <<<<<<<<<<<<<<
@@ -5839,14 +5839,14 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes(int __pyx_v_errcode, CYTHON_U
  */
   }
 
-  /* "ssh2/utils.pyx":240
+  /* "ssh2/utils.pyx":235
  *     if exc_or_errcode is None:
  *         return errcode
  *     raise exc_or_errcode(errcode)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_errcode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_errcode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 235, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_v_exc_or_errcode);
   __pyx_t_3 = __pyx_v_exc_or_errcode; __pyx_t_4 = NULL;
@@ -5868,20 +5868,20 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes(int __pyx_v_errcode, CYTHON_U
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 240, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 235, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __PYX_ERR(0, 240, __pyx_L1_error)
+  __PYX_ERR(0, 235, __pyx_L1_error)
 
   /* "ssh2/utils.pyx":222
  * 
  * 
  * cpdef int handle_error_codes(int errcode) except -1:             # <<<<<<<<<<<<<<
- *     """This function is now deprecated - use handle_error_codes_msg to
- *     include error message in any exceptions raised.
+ *     """Raise appropriate exception for given error code.
+ * 
  */
 
   /* function exit code */
@@ -5906,7 +5906,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_5utils_10handle_error_codes, "handle_error_codes(int errcode) -> int\nThis function is now deprecated - use handle_error_codes_msg to\n    include error message in any exceptions raised.\n    \n    Will be removed in future versions.\n    \n    Raise appropriate exception for given error code.\n\n    Returns 0 on no error and ``LIBSSH2_ERROR_EAGAIN`` on ``EAGAIN``.\n\n    :raises: Appropriate exception from :py:mod:`ssh2.exceptions`.\n\n    :param errcode: Error code as returned by\n      :py:func:`ssh2.session.Session.last_errno`\n    ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_5utils_10handle_error_codes, "handle_error_codes(int errcode) -> int\nRaise appropriate exception for given error code.\n\n    Returns 0 on no error and ``LIBSSH2_ERROR_EAGAIN`` on ``EAGAIN``.\n\n    :raises: Appropriate exception from :py:mod:`ssh2.exceptions`.\n\n    :param errcode: Error code as returned by\n      :py:func:`ssh2.session.Session.last_errno`\n    ");
 static PyMethodDef __pyx_mdef_4ssh2_5utils_11handle_error_codes = {"handle_error_codes", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_5utils_11handle_error_codes, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_5utils_10handle_error_codes};
 static PyObject *__pyx_pw_4ssh2_5utils_11handle_error_codes(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
@@ -6023,7 +6023,7 @@ static PyObject *__pyx_pf_4ssh2_5utils_10handle_error_codes(CYTHON_UNUSED PyObje
   return __pyx_r;
 }
 
-/* "ssh2/utils.pyx":243
+/* "ssh2/utils.pyx":238
  * 
  * 
  * cpdef int handle_error_codes_msg(Session session) except -1:             # <<<<<<<<<<<<<<
@@ -6056,14 +6056,14 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes_msg(struct __pyx_obj_4ssh2_7s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("handle_error_codes_msg", 1);
 
-  /* "ssh2/utils.pyx":254
+  /* "ssh2/utils.pyx":249
  *     """
  *     # Cython generates a C switch from this code - only use equality checks
  *     cdef int errcode = session.last_errno()             # <<<<<<<<<<<<<<
  *     cdef str errmsg = session.last_error()
  *     exc_or_errcode = _get_exc_from_errcode(errcode)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_session), __pyx_n_s_last_errno); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 254, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_session), __pyx_n_s_last_errno); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 249, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -6083,22 +6083,22 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes_msg(struct __pyx_obj_4ssh2_7s
     PyObject *__pyx_callargs[2] = {__pyx_t_3, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 0+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 254, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 249, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
-  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 254, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 249, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_errcode = __pyx_t_5;
 
-  /* "ssh2/utils.pyx":255
+  /* "ssh2/utils.pyx":250
  *     # Cython generates a C switch from this code - only use equality checks
  *     cdef int errcode = session.last_errno()
  *     cdef str errmsg = session.last_error()             # <<<<<<<<<<<<<<
  *     exc_or_errcode = _get_exc_from_errcode(errcode)
  *     if exc_or_errcode is None:
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_session), __pyx_n_s_last_error); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 255, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_session), __pyx_n_s_last_error); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 250, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -6118,24 +6118,24 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes_msg(struct __pyx_obj_4ssh2_7s
     PyObject *__pyx_callargs[2] = {__pyx_t_3, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 0+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 255, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 250, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
-  if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_t_1))) __PYX_ERR(0, 255, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_t_1))) __PYX_ERR(0, 250, __pyx_L1_error)
   __pyx_v_errmsg = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ssh2/utils.pyx":256
+  /* "ssh2/utils.pyx":251
  *     cdef int errcode = session.last_errno()
  *     cdef str errmsg = session.last_error()
  *     exc_or_errcode = _get_exc_from_errcode(errcode)             # <<<<<<<<<<<<<<
  *     if exc_or_errcode is None:
  *         return errcode
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_get_exc_from_errcode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 256, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_get_exc_from_errcode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 251, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_errcode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 256, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_errcode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 251, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_6 = NULL;
   __pyx_t_4 = 0;
@@ -6156,14 +6156,14 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes_msg(struct __pyx_obj_4ssh2_7s
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 256, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 251, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __pyx_v_exc_or_errcode = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "ssh2/utils.pyx":257
+  /* "ssh2/utils.pyx":252
  *     cdef str errmsg = session.last_error()
  *     exc_or_errcode = _get_exc_from_errcode(errcode)
  *     if exc_or_errcode is None:             # <<<<<<<<<<<<<<
@@ -6173,7 +6173,7 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes_msg(struct __pyx_obj_4ssh2_7s
   __pyx_t_7 = (__pyx_v_exc_or_errcode == Py_None);
   if (__pyx_t_7) {
 
-    /* "ssh2/utils.pyx":258
+    /* "ssh2/utils.pyx":253
  *     exc_or_errcode = _get_exc_from_errcode(errcode)
  *     if exc_or_errcode is None:
  *         return errcode             # <<<<<<<<<<<<<<
@@ -6182,7 +6182,7 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes_msg(struct __pyx_obj_4ssh2_7s
     __pyx_r = __pyx_v_errcode;
     goto __pyx_L0;
 
-    /* "ssh2/utils.pyx":257
+    /* "ssh2/utils.pyx":252
  *     cdef str errmsg = session.last_error()
  *     exc_or_errcode = _get_exc_from_errcode(errcode)
  *     if exc_or_errcode is None:             # <<<<<<<<<<<<<<
@@ -6191,12 +6191,12 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes_msg(struct __pyx_obj_4ssh2_7s
  */
   }
 
-  /* "ssh2/utils.pyx":259
+  /* "ssh2/utils.pyx":254
  *     if exc_or_errcode is None:
  *         return errcode
  *     raise exc_or_errcode(errcode, errmsg)             # <<<<<<<<<<<<<<
  */
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_errcode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 259, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_errcode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 254, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_v_exc_or_errcode);
   __pyx_t_3 = __pyx_v_exc_or_errcode; __pyx_t_6 = NULL;
@@ -6218,15 +6218,15 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes_msg(struct __pyx_obj_4ssh2_7s
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_4, 2+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 259, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 254, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __PYX_ERR(0, 259, __pyx_L1_error)
+  __PYX_ERR(0, 254, __pyx_L1_error)
 
-  /* "ssh2/utils.pyx":243
+  /* "ssh2/utils.pyx":238
  * 
  * 
  * cpdef int handle_error_codes_msg(Session session) except -1:             # <<<<<<<<<<<<<<
@@ -6303,12 +6303,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 243, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 238, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "handle_error_codes_msg") < 0)) __PYX_ERR(0, 243, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "handle_error_codes_msg") < 0)) __PYX_ERR(0, 238, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -6319,7 +6319,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("handle_error_codes_msg", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 243, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("handle_error_codes_msg", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 238, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6333,7 +6333,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_session), __pyx_ptype_4ssh2_7session_Session, 1, "session", 0))) __PYX_ERR(0, 243, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_session), __pyx_ptype_4ssh2_7session_Session, 1, "session", 0))) __PYX_ERR(0, 238, __pyx_L1_error)
   __pyx_r = __pyx_pf_4ssh2_5utils_12handle_error_codes_msg(__pyx_self, __pyx_v_session);
 
   /* function exit code */
@@ -6361,8 +6361,8 @@ static PyObject *__pyx_pf_4ssh2_5utils_12handle_error_codes_msg(CYTHON_UNUSED Py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("handle_error_codes_msg", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_4ssh2_5utils_handle_error_codes_msg(__pyx_v_session, 0); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 243, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 243, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_4ssh2_5utils_handle_error_codes_msg(__pyx_v_session, 0); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 238, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 238, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -6564,22 +6564,22 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * 
  * cpdef int handle_error_codes(int errcode) except -1:             # <<<<<<<<<<<<<<
- *     """This function is now deprecated - use handle_error_codes_msg to
- *     include error message in any exceptions raised.
+ *     """Raise appropriate exception for given error code.
+ * 
  */
   __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ssh2_utils_pyx, __pyx_n_s_handle_error_codes, 222, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 222, __pyx_L1_error)
 
-  /* "ssh2/utils.pyx":243
+  /* "ssh2/utils.pyx":238
  * 
  * 
  * cpdef int handle_error_codes_msg(Session session) except -1:             # <<<<<<<<<<<<<<
  *     """Raise appropriate exception for given error code with
  *     (error code, last error message) as the exception arguments.
  */
-  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_n_s_session); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 243, __pyx_L1_error)
+  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_n_s_session); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 238, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__14);
   __Pyx_GIVEREF(__pyx_tuple__14);
-  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ssh2_utils_pyx, __pyx_n_s_handle_error_codes_msg, 243, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 243, __pyx_L1_error)
+  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ssh2_utils_pyx, __pyx_n_s_handle_error_codes_msg, 238, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 238, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -7096,24 +7096,24 @@ if (!__Pyx_RefNanny) {
  * 
  * 
  * cpdef int handle_error_codes(int errcode) except -1:             # <<<<<<<<<<<<<<
- *     """This function is now deprecated - use handle_error_codes_msg to
- *     include error message in any exceptions raised.
+ *     """Raise appropriate exception for given error code.
+ * 
  */
   __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_5utils_11handle_error_codes, 0, __pyx_n_s_handle_error_codes, NULL, __pyx_n_s_ssh2_utils, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_handle_error_codes, __pyx_t_2) < 0) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "ssh2/utils.pyx":243
+  /* "ssh2/utils.pyx":238
  * 
  * 
  * cpdef int handle_error_codes_msg(Session session) except -1:             # <<<<<<<<<<<<<<
  *     """Raise appropriate exception for given error code with
  *     (error code, last error message) as the exception arguments.
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_5utils_13handle_error_codes_msg, 0, __pyx_n_s_handle_error_codes_msg, NULL, __pyx_n_s_ssh2_utils, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 243, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_5utils_13handle_error_codes_msg, 0, __pyx_n_s_handle_error_codes_msg, NULL, __pyx_n_s_ssh2_utils, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 238, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_handle_error_codes_msg, __pyx_t_2) < 0) __PYX_ERR(0, 243, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_handle_error_codes_msg, __pyx_t_2) < 0) __PYX_ERR(0, 238, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "ssh2/utils.pyx":1
