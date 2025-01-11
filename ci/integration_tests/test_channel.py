@@ -179,3 +179,17 @@ class ChannelTestCase(SSH2TestCase):
             size, data = chan.read()
         lines = [line for line in tot_data.splitlines()]
         self.assertEqual(len(lines), int(wc_output))
+
+    def test_multi_execute(self):
+        self.assertEqual(self._auth(), 0)
+        chan = self.session.open_session()
+        self.assertTrue(chan is not None)
+        self.assertTrue(chan.execute(self.cmd) == 0)
+        size, data = chan.read()
+        self.assertTrue(size > 0)
+        self.assertEqual(chan.wait_eof(), 0)
+        chan = self.session.open_session()
+        self.assertTrue(chan is not None)
+        self.assertTrue(chan.execute(self.cmd) == 0)
+        size, data = chan.read()
+        self.assertTrue(size > 0)

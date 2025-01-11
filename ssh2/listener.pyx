@@ -16,7 +16,7 @@
 
 from .session cimport Session
 from .channel cimport PyChannel
-from .utils cimport handle_error_codes_msg
+from .utils cimport handle_error_codes
 
 from . cimport c_ssh2
 
@@ -29,7 +29,7 @@ cdef object PyListener(c_ssh2.LIBSSH2_LISTENER *listener, Session session):
 
 cdef class Listener:
 
-    def __cinit__(self, session):
+    def __cinit__(self, Session session):
         self._listener = NULL
         self._session = session
 
@@ -39,11 +39,13 @@ cdef class Listener:
             channel = c_ssh2.libssh2_channel_forward_accept(
                 self._listener)
         if channel is NULL:
-            return handle_error_codes_msg(self._session)
+            return handle_error_codes(c_ssh2.libssh2_session_last_errno(
+                self._session._session))
         return PyChannel(channel, self._session)
 
     def forward_cancel(self):
+        cdef int rc
         with nogil:
-            c_ssh2.libssh2_channel_forward_cancel(
+            rc = c_ssh2.libssh2_channel_forward_cancel(
                 self._listener)
-        return handle_error_codes_msg(self._session)
+        return handle_error_codes(rc)
