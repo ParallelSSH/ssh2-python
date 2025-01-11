@@ -14,12 +14,9 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-from .session cimport Session
-
 cdef extern from "ext/find_eol.h" nogil:
     int c_find_eol "find_eol" (char* data, int* new_pos)
 cdef bytes to_bytes(_str)
 cdef object to_str(char *c_str)
 cdef object to_str_len(char *c_str, int length)
 cpdef int handle_error_codes(int errcode) except -1
-cpdef int handle_error_codes_msg(Session session) except -1
