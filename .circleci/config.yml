@@ -51,6 +51,7 @@ jobs:
             ls -lhtr ssh2/
             pwd
             pytest tests
+            pytest ci/integration_tests
             flake8 ssh2
             python setup.py sdist
             cd dist; pip install *; python -c 'from ssh2.session import Session; Session()'; cd ..
