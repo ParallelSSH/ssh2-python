@@ -1,12 +1,12 @@
-import platform
 import os
-import sys
+import platform
 from glob import glob
 
-from _setup_libssh2 import build_ssh2
+import sys
+from setuptools import setup, find_packages
 
 import versioneer
-from setuptools import setup, find_packages
+from _setup_libssh2 import build_ssh2
 
 cpython = platform.python_implementation() == 'CPython'
 
@@ -119,11 +119,11 @@ setup(
         'Programming Language :: C',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
         'Topic :: System :: Shells',
         'Topic :: System :: Networking',
         'Topic :: Software Development :: Libraries',

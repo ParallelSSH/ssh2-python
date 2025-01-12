@@ -14,11 +14,11 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 import os
-
-from sys import stderr
-from subprocess import check_call
 from glob import glob
 from shutil import copy2
+from subprocess import check_call
+
+from sys import stderr
 
 
 def build_ssh2():
