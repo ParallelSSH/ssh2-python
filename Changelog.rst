@@ -1,8 +1,8 @@
 Change Log
 =============
 
-1.1.0 (unreleased)
-++++++++++++++++++
+1.1.0
++++++
 
 Changes
 --------
@@ -16,7 +16,8 @@ Packaging
 ----------
 
 * Added binary wheels for Python versions 3.11, 3.12.
-* Added OSX 12.0 and 13.0 wheels, Apple Silicon.
+* Added OSX 12.0, 13.0 and 14.0 wheels, Apple Silicon.
+* Support OSX brew OpenSSL from source builds.
 
 
 1.0.0
