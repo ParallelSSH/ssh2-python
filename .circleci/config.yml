@@ -46,7 +46,7 @@ jobs:
             ls -lhtr ssh2/
             pwd
             python -m pytest tests
-          name: Unit Tests
+          name: Test
       - run:
           command: |
             python -m pytest ci/integration_tests
