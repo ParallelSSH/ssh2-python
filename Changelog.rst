@@ -23,6 +23,8 @@ Packaging
 * Added binary wheels for Python versions 3.11, 3.12 and 3.13 on support manylinux wheel builds.
 * Added OSX 12.0, 13.0 and 14.0 wheels, Apple Silicon.
 * Support OSX brew OpenSSL from source builds.
+* Top level tests directory is now cross platform and can be run by vendors.
+* Moved CI specific integration tests to their own space.
 
 
 1.0.0

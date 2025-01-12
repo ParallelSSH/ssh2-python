@@ -27,7 +27,7 @@ if [[ $(uname -m) == "aarch64" ]]; then
 fi
 
 for docker_file in "${docker_files[@]}"; do
-    if [[ ${docker_file} == "ci/docker/manylinux/Dockerfile_2014_x86_64" ]]; then
+    if [[ ${docker_file} == "ci/docker/manylinux/Dockerfile.2014_x86_64" ]]; then
         docker_tag="${docker_tag}:2014_x86_64"
     fi
     docker pull $docker_tag || echo
