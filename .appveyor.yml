@@ -67,11 +67,13 @@ install:
 
 build_script:
   - dir %OPENSSL_DIR%\lib\VC\x64\MD\
+  - for %%I in (%PYTHONVERS%) do cp %OPENSSL_DIR%/lib/VC/x64/MD/libcrypto.lib %%I/libs/libcrypto64MD.lib
+  - for %%I in (%PYTHONVERS%) do cp %OPENSSL_DIR%/lib/VC/x64/MD/libssl.lib %%I/libs/libssl64MD.lib
   - ci\\appveyor\\build_zlib.bat
   - for %%I in (%PYTHONVERS%) do cp C:/zlib/lib/zlibstatic.lib %%I/libs/
   - for %%I in (%PYTHONVERS%) do ls %%I/libs/
   - ci\\appveyor\\build_ssh2.bat
-  - for %%I in (%PYTHONVERS%) do cp build_dir/src/libssh2.lib %%I/libs/ || cp build_dir/src/Release/libssh2.lib %%I/libs/
+  - for %%I in (%PYTHONVERS%) do cp build_dir/src/Release/libssh2.lib %%I/libs/
   - for %%I in (%PYTHONVERS%) do ls %%I/libs/
   - rm -f ssh2/*.c
 
