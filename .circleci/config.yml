@@ -145,10 +145,11 @@ workflows:
           matrix:
             parameters:
               python_ver:
-                - "3.6"
                 - "3.8"
                 - "3.9"
                 - "3.10"
+                - "3.11"
+                - "3.12"
           filters:
             tags:
               ignore: /.*/
@@ -157,8 +158,8 @@ workflows:
           filters:
             tags:
               only: /.*/
-            branches:
-              ignore: /.*/
+#            branches:
+#              ignore: /.*/
       - manylinux2014-aarch64: *manylinux-wf
       - osx:
           matrix:
@@ -169,5 +170,5 @@ workflows:
           filters:
             tags:
               only: /.*/
-            branches:
-              ignore: /.*/
+#            branches:
+#              ignore: /.*/
