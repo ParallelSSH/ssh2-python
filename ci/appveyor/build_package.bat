@@ -1,5 +1,3 @@
-IF NOT "%APPVEYOR_REPO_TAG%" == "true" (exit 0)
-
 dir ssh2/
 
 for %%I in (%PYTHONVERS%) do %%I\python.exe -V

@@ -32,7 +32,8 @@ environment:
     PYTHON_DEF: "C:\\Python38-x64"
     PYTHON_VERSION: "3.8"
     # Python versions to build wheels for
-    PYTHONVERS: C:\Python38-x64 C:\Python39-x64 C:\Python310-x64 C:\Python311-x64 C:\Python312-x64
+    PYTHONVERS: C:\Python310-x64
+    # PYTHONVERS: C:\Python38-x64 C:\Python39-x64 C:\Python310-x64 C:\Python311-x64 C:\Python312-x64
     PYTHON_ARCH: "64"
     MSVC: "Visual Studio 16 2019"
 
@@ -61,24 +62,25 @@ install:
   # specific code.
   # Fix version used by versioneer to current git tag so the generated .c files
   # do not cause a version change.
-  # -
-#  - "%PYTHON_DEF%\\python.exe ci/appveyor/fix_version.py ."
-#  - mv -f .git .git.bak
-#  - 7z x ci\appveyor\zlib1211.zip
+  - "%PYTHON_DEF%\\python.exe ci/appveyor/fix_version.py ."
+  - mv -f .git .git.bak
+  - 7z x ci\appveyor\zlib1211.zip
 
 build_script:
   - dir %OPENSSL_DIR%\lib\VC\x64\MD\
   - dir %OPENSSL_DIR%\lib\VC\
-#  - ci\\appveyor\\build_zlib.bat
-#  - for %%I in (%PYTHONVERS%) do cp C:/zlib/lib/zlibstatic.lib %%I/libs/
-#  - for %%I in (%PYTHONVERS%) do ls %%I/libs/
-#  - ci\\appveyor\\build_ssh2.bat
-#  - for %%I in (%PYTHONVERS%) do cp build_dir/src/Release/libssh2.lib %%I/libs/
-#  - for %%I in (%PYTHONVERS%) do ls %%I/libs/
-#  - rm -f ssh2/*.c
+  - for %%I in (%PYTHONVERS%) do cp %OPENSSL_DIR%/lib/VC/x64/MD/libcrypto.lib %%I/libs/
+  - for %%I in (%PYTHONVERS%) do cp %OPENSSL_DIR%/lib/VC/x64/MD/libssl.lib %%I/libs/
+  - ci\\appveyor\\build_zlib.bat
+  - for %%I in (%PYTHONVERS%) do cp C:/zlib/lib/zlibstatic.lib %%I/libs/
+  - for %%I in (%PYTHONVERS%) do ls %%I/libs/
+  - ci\\appveyor\\build_ssh2.bat
+  - for %%I in (%PYTHONVERS%) do cp build_dir/src/Release/libssh2.lib %%I/libs/
+  - for %%I in (%PYTHONVERS%) do ls %%I/libs/
+  - rm -f ssh2/*.c
 
 test_script:
-#  - ci\\appveyor\\build_package.bat
+  - ci\\appveyor\\build_package.bat
 
 artifacts:
   - path: "*.whl"
