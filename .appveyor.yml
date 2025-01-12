@@ -52,6 +52,7 @@ install:
   - cp %VCLIBDIR%/msvcp*.dll ssh2/
   - cp %VCLIBDIR%/msvcr*.dll ssh2/
   - cp %OPENSSL_DIR%/bin/*.dll ssh2/
+  - ps: ls ssh2/*.dll
 
   - for %%I in (%PYTHONVERS%) do %%I\python.exe -V
   - for %%I in (%PYTHONVERS%) do %%I\Scripts\pip install -U wheel setuptools twine cython
@@ -65,12 +66,13 @@ install:
   - 7z x ci\appveyor\zlib1211.zip
 
 build_script:
-  - dir %OPENSSL_DIR%\lib\VC\x64\MD
+  - dir %OPENSSL_DIR%\lib\VC\x64\MD\
   - ci\\appveyor\\build_zlib.bat
   - for %%I in (%PYTHONVERS%) do cp C:/zlib/lib/zlibstatic.lib %%I/libs/
   - for %%I in (%PYTHONVERS%) do ls %%I/libs/
   - ci\\appveyor\\build_ssh2.bat
   - for %%I in (%PYTHONVERS%) do cp build_dir/src/libssh2.lib %%I/libs/ || cp build_dir/src/Release/libssh2.lib %%I/libs/
+  - for %%I in (%PYTHONVERS%) do ls %%I/libs/
   - rm -f ssh2/*.c
 
 test_script:

@@ -16,8 +16,10 @@ cmake ..\libssh2 -G "NMake Makefiles" ^
        -DOPENSSL_ROOT_DIR=%OPENSSL_DIR%
 )
 
-cp %OPENSSL_DIR%\lib\VC\x64\MD\libcrypto.lib %APPVEYOR_BUILD_FOLDER%
-cp %OPENSSL_DIR%\lib\VC\x64\MD\libssl.lib %APPVEYOR_BUILD_FOLDER%
+cp %OPENSSL_DIR%\lib\VC\x64\MD\libcrypto*.lib %APPVEYOR_BUILD_FOLDER%
+cp %OPENSSL_DIR%\lib\VC\x64\MD\libssl*.lib %APPVEYOR_BUILD_FOLDER%
+
+dir %APPVEYOR_BUILD_FOLDER%\
 
 cmake --build . --config Release
 cd ..

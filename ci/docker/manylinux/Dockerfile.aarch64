@@ -19,7 +19,7 @@ ENV OPENSSL openssl-3.4.0
 ENV SYSTEM_LIBSSH2 1
 ENV LIBSSH2_VERSION 1.11.1
 
-RUN yum install zlib-devel -y
+RUN yum install zlib-devel perl-IPC-Cmd -y
 
 ADD libssh2-${LIBSSH2_VERSION}.tar.gz libssh2-${LIBSSH2_VERSION}.tar.gz
 ADD https://www.openssl.org/source/${OPENSSL}.tar.gz ${OPENSSL}.tar.gz
