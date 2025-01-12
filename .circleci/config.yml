@@ -16,7 +16,7 @@
 version: 2.1
 
 orbs:
-  python: cimg/python@3.0.0
+  python: cimg/python@3.12
 
 jobs:
   python_test:
