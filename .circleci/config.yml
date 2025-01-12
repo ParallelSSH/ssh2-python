@@ -46,14 +46,26 @@ jobs:
             ls -lhtr ssh2/
             pwd
             python -m pytest tests
+          name: Unit Tests
+      - run:
+          command: |
             python -m pytest ci/integration_tests
+        name: Integration Tests
+      - run:
+          command: |
             flake8 ssh2
+          name: Flake
+      - run:
+          command: |
             python setup.py sdist
             cd dist; pip install *; python -c 'from ssh2.session import Session; Session()'; cd ..
+          name: Source dist build and install
+      - run:
+          command: |
             cd doc
             make html
             cd ..
-          name: Test
+          name: Docs build
 
   osx:
     parameters:
