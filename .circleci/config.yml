@@ -16,7 +16,7 @@
 version: 2.1
 
 orbs:
-  python: circleci/python@0.3.2
+  python: circleci/python@3.0.0
 
 jobs:
   python_test:
@@ -28,18 +28,14 @@ jobs:
       - image: circleci/python:<< parameters.python_ver >>
     steps:
       - checkout
-      - python/load-cache:
-          dependency-file: requirements_dev.txt
-          key: depsv3-{{ .Branch }}.{{ arch }}-PY<< parameters.python_ver >>
       - run:
           name: Deps
           command: |
             sudo apt-get update
             sudo apt-get install cmake openssh-server
-            pip install -r requirements_dev.txt
-      - python/save-cache:
-          dependency-file: requirements_dev.txt
-          key: depsv3-{{ .Branch }}.{{ arch }}-PY<< parameters.python_ver >>
+      - python/install-packages:
+          pip-dependency-file: requirements_dev.txt
+          pkg-manager: pip
       - run:
           command: |
             python setup.py build_ext --inplace
@@ -148,8 +144,6 @@ workflows:
                 - "3.8"
                 - "3.9"
                 - "3.10"
-                - "3.11"
-                - "3.12"
           filters:
             tags:
               ignore: /.*/
@@ -158,17 +152,16 @@ workflows:
           filters:
             tags:
               only: /.*/
-#            branches:
-#              ignore: /.*/
+            branches:
+              ignore: /.*/
       - manylinux2014-aarch64: *manylinux-wf
       - osx:
           matrix:
             parameters:
               xcode_ver:
                 - "14.0.0"
-                - "13.1.0"
           filters:
             tags:
               only: /.*/
-#            branches:
-#              ignore: /.*/
+            branches:
+              ignore: /.*/
