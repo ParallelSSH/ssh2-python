@@ -19,7 +19,7 @@ cmake ..\libssh2 -G "NMake Makefiles" ^
        -DOPENSSL_LIBRARIES=%OPENSSL_DIR%/lib/VC/x64/MD
 
 
-dir %OPENSSL_DIR%\lib\VC\x64\
+dir %OPENSSL_DIR%\lib\VC\x64\MD\
 cp %OPENSSL_DIR%\lib\VC\x64\MD\libcrypto.lib %APPVEYOR_BUILD_FOLDER%\libcrypto64MD.lib
 cp %OPENSSL_DIR%\lib\VC\x64\MD\libssl.lib %APPVEYOR_BUILD_FOLDER%\libssl64MD.lib
 

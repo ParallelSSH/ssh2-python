@@ -32,8 +32,7 @@ environment:
     PYTHON_DEF: "C:\\Python38-x64"
     PYTHON_VERSION: "3.8"
     # Python versions to build wheels for
-    PYTHONVERS: C:\Python310-x64
-    # PYTHONVERS: C:\Python38-x64 C:\Python39-x64 C:\Python310-x64 C:\Python311-x64 C:\Python312-x64
+    PYTHONVERS: C:\Python38-x64 C:\Python39-x64 C:\Python310-x64 C:\Python311-x64 C:\Python312-x64
     PYTHON_ARCH: "64"
     MSVC: "Visual Studio 16 2019"
 
@@ -47,7 +46,7 @@ install:
         https://ci.appveyor.com/api/projects/$env:APPVEYOR_ACCOUNT_NAME/$env:APPVEYOR_PROJECT_SLUG/history?recordsNumber=50).builds | `
         Where-Object pullRequestId -eq $env:APPVEYOR_PULL_REQUEST_NUMBER)[0].buildNumber) { `
           throw "There are newer queued builds for this pull request, failing early." }
-  - set OPENSSL_DIR="C:\OpenSSL-v33-Win64"
+  - set OPENSSL_DIR="C:\OpenSSL-v34-Win64"
   - set VCLIBDIR=%WINDIR%\System32
   - cp %VCLIBDIR%/vcruntime*.dll ssh2/
   - cp %VCLIBDIR%/msvcp*.dll ssh2/
@@ -68,7 +67,6 @@ install:
 
 build_script:
   - dir %OPENSSL_DIR%\lib\VC\x64\MD\
-  - dir %OPENSSL_DIR%\lib\VC\
   - for %%I in (%PYTHONVERS%) do cp %OPENSSL_DIR%/lib/VC/x64/MD/libcrypto.lib %%I/libs/libcrypto64MD.lib
   - for %%I in (%PYTHONVERS%) do cp %OPENSSL_DIR%/lib/VC/x64/MD/libssl.lib %%I/libs/libssl64MD.lib
   - ci\\appveyor\\build_zlib.bat
