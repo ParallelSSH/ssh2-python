@@ -16,7 +16,7 @@
 version: 2.1
 
 orbs:
-  python: circleci/python@3.0.0
+  python: cimg/python@3.0.0
 
 jobs:
   python_test:
@@ -87,7 +87,7 @@ jobs:
 
   manylinux-x86_64:
     machine:
-      image: ubuntu-2004:202201-02
+      image: ubuntu-2004:current
     steps: &manylinux-steps
       - checkout
       - run:
@@ -124,7 +124,7 @@ jobs:
 
   manylinux2014-aarch64:
     machine:
-      image: ubuntu-2004:202101-01
+      image: ubuntu-2004:current
     resource_class: arm.medium
     steps: *manylinux-steps
 
@@ -139,6 +139,8 @@ workflows:
                 - "3.8"
                 - "3.9"
                 - "3.10"
+                - "3.11"
+                - "3.12"
           filters:
             tags:
               ignore: /.*/
