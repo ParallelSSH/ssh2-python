@@ -14,11 +14,11 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 import os
-
-from sys import stderr
-from subprocess import check_call
 from glob import glob
 from shutil import copy2
+from subprocess import check_call
+
+from sys import stderr
 
 
 def build_ssh2():
@@ -27,12 +27,14 @@ def build_ssh2():
         return
     if os.path.exists('/usr/local/opt/openssl'):
         os.environ['OPENSSL_ROOT_DIR'] = '/usr/local/opt/openssl'
+    if os.path.exists('/opt/homebrew/opt/openssl'):
+        os.environ['OPENSSL_ROOT_DIR'] = '/opt/homebrew/opt/openssl'
 
     if not os.path.exists('build_dir'):
         os.mkdir('build_dir')
 
     os.chdir('build_dir')
-    check_call('cmake ../libssh2/libssh2 -DBUILD_SHARED_LIBS=ON \
+    check_call('cmake ../libssh2 -DBUILD_SHARED_LIBS=ON \
     -DENABLE_ZLIB_COMPRESSION=ON -DENABLE_CRYPT_NONE=ON \
     -DENABLE_MAC_NONE=ON -DCRYPTO_BACKEND=OpenSSL',
                shell=True, env=os.environ)

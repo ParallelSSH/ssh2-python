@@ -18,10 +18,10 @@
 
 from libc.stdlib cimport malloc, free
 
-from utils cimport handle_error_codes
+from .utils cimport handle_error_codes
 
-cimport c_ssh2
-cimport c_sftp
+from . cimport c_ssh2
+from . cimport c_sftp
 
 
 cdef object PySFTPHandle(c_sftp.LIBSSH2_SFTP_HANDLE *handle, SFTP sftp):

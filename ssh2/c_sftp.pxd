@@ -14,7 +14,7 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-from c_ssh2 cimport LIBSSH2_SESSION, LIBSSH2_CHANNEL, libssh2_uint64_t
+from .c_ssh2 cimport LIBSSH2_SESSION, LIBSSH2_CHANNEL, libssh2_uint64_t
 
 
 cdef extern from "libssh2_sftp.h" nogil:

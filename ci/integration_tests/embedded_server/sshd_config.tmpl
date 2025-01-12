@@ -1,0 +1,17 @@
+Protocol 2
+UsePAM no
+HostbasedAuthentication no
+IgnoreUserKnownHosts yes
+ListenAddress {{listen_ip}}
+HostKey {{parent_dir}}/ca_host_key
+
+MaxAuthTries 999
+MaxSessions 999
+MaxStartups 999
+# PerSourceMaxStartups 999
+# PerSourcePenaltyExemptList *.*.*.*
+
+AcceptEnv LANG LC_*
+Subsystem sftp internal-sftp
+AuthorizedKeysFile {{parent_dir}}/authorized_keys
+PidFile {{parent_dir}}/{{random_server}}.pid

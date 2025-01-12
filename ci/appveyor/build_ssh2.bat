@@ -2,7 +2,7 @@ mkdir build_dir
 cd build_dir
 
 ECHO "Building with platform %MSVC%"
-cmake ..\libssh2\libssh2 -G "NMake Makefiles" ^
+cmake ..\libssh2 -G "NMake Makefiles" ^
        -DCMAKE_BUILD_TYPE=Release             ^
        -DCRYPTO_BACKEND=OpenSSL               ^
        -G"%MSVC%"                             ^
@@ -16,8 +16,8 @@ cmake ..\libssh2\libssh2 -G "NMake Makefiles" ^
        -DOPENSSL_ROOT_DIR=%OPENSSL_DIR%
 )
 
-cp %OPENSSL_DIR%\lib\VC\libcrypto%PYTHON_ARCH%MD.lib %APPVEYOR_BUILD_FOLDER%
-cp %OPENSSL_DIR%\lib\VC\libssl%PYTHON_ARCH%MD.lib %APPVEYOR_BUILD_FOLDER%
+cp %OPENSSL_DIR%\lib\VC\x64\MD\libcrypto.lib %APPVEYOR_BUILD_FOLDER%
+cp %OPENSSL_DIR%\lib\VC\x64\MD\libssl.lib %APPVEYOR_BUILD_FOLDER%
 
 cmake --build . --config Release
 cd ..

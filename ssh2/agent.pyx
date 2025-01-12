@@ -14,17 +14,17 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-from pkey cimport PublicKey, PyPublicKey
-from utils cimport to_bytes
+from .pkey cimport PublicKey, PyPublicKey
+from .utils cimport to_bytes
 
 from .exceptions import AgentConnectionError, AgentListIdentitiesError, \
     AgentGetIdentityError, AgentAuthenticationError, AgentError
 
-cimport c_ssh2
+from . cimport c_ssh2
 
 
 cdef int agent_auth(char * _username,
-                    c_ssh2.LIBSSH2_AGENT * agent) nogil except 1:
+                    c_ssh2.LIBSSH2_AGENT * agent) except 1 nogil:
     cdef c_ssh2.libssh2_agent_publickey *identity = NULL
     cdef c_ssh2.libssh2_agent_publickey *prev = NULL
     if c_ssh2.libssh2_agent_list_identities(agent) != 0:
@@ -49,7 +49,7 @@ cdef int agent_auth(char * _username,
 cdef int auth_identity(const char *username,
                        c_ssh2.LIBSSH2_AGENT *agent,
                        c_ssh2.libssh2_agent_publickey **identity,
-                       c_ssh2.libssh2_agent_publickey *prev) nogil except -1:
+                       c_ssh2.libssh2_agent_publickey *prev) except -1 nogil:
     cdef int rc
     rc = c_ssh2.libssh2_agent_get_identity(
         agent, identity, prev)
@@ -65,7 +65,7 @@ cdef int auth_identity(const char *username,
 
 
 cdef c_ssh2.LIBSSH2_AGENT * agent_init(
-        c_ssh2.LIBSSH2_SESSION *_session) nogil except NULL:
+        c_ssh2.LIBSSH2_SESSION *_session) except NULL nogil:
     cdef c_ssh2.LIBSSH2_AGENT *agent = c_ssh2.libssh2_agent_init(
         _session)
     if agent is NULL:
@@ -75,7 +75,7 @@ cdef c_ssh2.LIBSSH2_AGENT * agent_init(
 
 
 cdef c_ssh2.LIBSSH2_AGENT * init_connect_agent(
-        c_ssh2.LIBSSH2_SESSION *_session) nogil except NULL:
+        c_ssh2.LIBSSH2_SESSION *_session) except NULL nogil:
     cdef c_ssh2.LIBSSH2_AGENT *agent
     agent = c_ssh2.libssh2_agent_init(_session)
     if c_ssh2.libssh2_agent_connect(agent) != 0:

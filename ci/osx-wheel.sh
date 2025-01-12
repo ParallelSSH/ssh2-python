@@ -14,6 +14,10 @@
 # You should have received a copy of the GNU Lesser General Public
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+LIBSSH2_DIR="/opt/homebrew/opt/libssh2/lib"
+LIBSSH2_INCLUDE_DIR="/opt/homebrew/opt/libssh2/include"
+export LDFLAGS="-L${LIBSSH2_DIR}"
+export CPPFLAGS="-I${LIBSSH2_INCLUDE_DIR}"
 
 pip3 install -U virtualenv
 python3 -m virtualenv -p "$(which python3)" venv
@@ -26,13 +30,13 @@ python -V
 pip3 install -U setuptools pip
 pip3 install -U delocate wheel
 SYSTEM_LIBSSH2=1 python3 setup.py bdist_wheel
-ls -lhtr /usr/local/lib/
+ls -lhtr ${LIBSSH2_DIR}
 delocate-listdeps dist/*.whl
 delocate-wheel -v -w wheels dist/*.whl
 delocate-listdeps wheels/*.whl
 
 ls -l wheels/*.whl
-rm -f /usr/local/lib/libssh2*
+rm -f ${LIBSSH2_DIR}/libssh2*
 pip3 install -v wheels/*.whl
 pwd; mkdir -p temp; cd temp; pwd
 python3 -c "from ssh2.session import Session; Session()" && echo "Import successful"

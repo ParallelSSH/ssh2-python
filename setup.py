@@ -1,12 +1,12 @@
-import platform
 import os
-import sys
+import platform
 from glob import glob
 
-from _setup_libssh2 import build_ssh2
+import sys
+from setuptools import setup, find_packages
 
 import versioneer
-from setuptools import setup, find_packages
+from _setup_libssh2 import build_ssh2
 
 cpython = platform.python_implementation() == 'CPython'
 
@@ -48,7 +48,7 @@ cython_directives = {'embedsignature': True,
                      'boundscheck': False,
                      'optimize.use_switch': True,
                      'wraparound': False,
-                     'language_level': 2,
+                     'language_level': 3,
 }
 cython_args = {
     'cython_directives': cython_directives,
@@ -61,7 +61,10 @@ if USING_CYTHON:
 
 runtime_library_dirs = ["$ORIGIN/."] if not SYSTEM_LIBSSH2 else None
 _lib_dir = os.path.abspath("./build_dir/src") if not SYSTEM_LIBSSH2 else "/usr/local/lib"
-include_dirs = ["libssh2/include"] if ON_WINDOWS or not SYSTEM_LIBSSH2 else ["/usr/local/include"]
+include_dirs = ["libssh2/include"] if ON_WINDOWS or not SYSTEM_LIBSSH2 else [
+    "/usr/local/include",
+    "/opt/local/include",
+]
 
 extensions = [
     Extension(sources[i].split('.')[0].replace(os.path.sep, '.'),
@@ -116,11 +119,11 @@ setup(
         'Programming Language :: C',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
         'Topic :: System :: Shells',
         'Topic :: System :: Networking',
         'Topic :: Software Development :: Libraries',

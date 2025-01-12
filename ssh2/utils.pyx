@@ -18,10 +18,10 @@ from select import select
 
 from cpython.version cimport PY_MAJOR_VERSION
 
-from session cimport Session
-import exceptions
-cimport c_ssh2
-cimport error_codes
+from .session cimport Session
+from . import exceptions
+from . cimport c_ssh2
+from . cimport error_codes
 
 
 ENCODING='utf-8'

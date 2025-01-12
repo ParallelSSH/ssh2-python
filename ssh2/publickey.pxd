@@ -14,8 +14,8 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-from session cimport Session
-cimport c_pkey
+from .session cimport Session
+from . cimport c_pkey
 
 
 cdef object PyPublicKeyList(c_pkey.libssh2_publickey_list *_list)

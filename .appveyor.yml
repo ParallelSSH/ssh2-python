@@ -32,7 +32,7 @@ environment:
     PYTHON_DEF: "C:\\Python38-x64"
     PYTHON_VERSION: "3.8"
     # Python versions to build wheels for
-    PYTHONVERS: C:\Python36-x64 C:\Python37-x64 C:\Python38-x64 C:\Python39-x64 C:\Python310-x64
+    PYTHONVERS: C:\Python38-x64 C:\Python39-x64 C:\Python310-x64 C:\Python311-x64 C:\Python312-x64
     PYTHON_ARCH: "64"
     MSVC: "Visual Studio 16 2019"
 
@@ -46,7 +46,7 @@ install:
         https://ci.appveyor.com/api/projects/$env:APPVEYOR_ACCOUNT_NAME/$env:APPVEYOR_PROJECT_SLUG/history?recordsNumber=50).builds | `
         Where-Object pullRequestId -eq $env:APPVEYOR_PULL_REQUEST_NUMBER)[0].buildNumber) { `
           throw "There are newer queued builds for this pull request, failing early." }
-  - set OPENSSL_DIR="C:\OpenSSL-v11-Win%PYTHON_ARCH%"
+  - set OPENSSL_DIR="C:\OpenSSL-v34-Win64"
   - set VCLIBDIR=%WINDIR%\System32
   - cp %VCLIBDIR%/vcruntime*.dll ssh2/
   - cp %VCLIBDIR%/msvcp*.dll ssh2/
@@ -65,27 +65,16 @@ install:
   - 7z x ci\appveyor\zlib1211.zip
 
 build_script:
+  - dir %OPENSSL_DIR%\lib\VC\x64\MD
   - ci\\appveyor\\build_zlib.bat
   - for %%I in (%PYTHONVERS%) do cp C:/zlib/lib/zlibstatic.lib %%I/libs/
   - for %%I in (%PYTHONVERS%) do ls %%I/libs/
   - ci\\appveyor\\build_ssh2.bat
   - for %%I in (%PYTHONVERS%) do cp build_dir/src/libssh2.lib %%I/libs/ || cp build_dir/src/Release/libssh2.lib %%I/libs/
   - rm -f ssh2/*.c
-  - ps: ls ssh2
-  - for %%I in (%PYTHONVERS%) do %%I\python.exe -V
-  - for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py build_ext
-  - for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py build
-  - for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py install
-  - ps: ls ssh2
 
 test_script:
-  - cd dist
-  - for %%I in (%PYTHONVERS%) do %%I\python.exe -c "from ssh2.session import Session; Session()"
-  - cd ..
-
-after_test:
-  - for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py bdist_wheel
-  - mv dist/* .
+  - ci\\appveyor\\build_package.bat
 
 artifacts:
   - path: "*.whl"

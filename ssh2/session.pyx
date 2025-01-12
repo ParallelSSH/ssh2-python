@@ -19,22 +19,22 @@ from libc.stdlib cimport malloc, free
 from libc.time cimport time_t
 from cython.operator cimport dereference as c_dereference
 
-from agent cimport PyAgent, agent_auth, agent_init, init_connect_agent
-from channel cimport PyChannel
-from exceptions import SessionHostKeyError, KnownHostError, \
+from .agent cimport PyAgent, agent_auth, agent_init, init_connect_agent
+from .channel cimport PyChannel
+from .exceptions import SessionHostKeyError, KnownHostError, \
     PublicKeyInitError, ChannelError
-from listener cimport PyListener
-from sftp cimport PySFTP
-from publickey cimport PyPublicKeySystem
-from utils cimport to_bytes, to_str, handle_error_codes
-from statinfo cimport StatInfo
-from knownhost cimport PyKnownHost
-from fileinfo cimport FileInfo
+from .listener cimport PyListener
+from .sftp cimport PySFTP
+from .publickey cimport PyPublicKeySystem
+from .utils cimport to_bytes, to_str, handle_error_codes
+from .statinfo cimport StatInfo
+from .knownhost cimport PyKnownHost
+from .fileinfo cimport FileInfo
 
 
-cimport c_ssh2
-cimport c_sftp
-cimport c_pkey
+from . cimport c_ssh2
+from . cimport c_sftp
+from . cimport c_pkey
 
 
 LIBSSH2_SESSION_BLOCK_INBOUND = c_ssh2.LIBSSH2_SESSION_BLOCK_INBOUND
@@ -130,8 +130,7 @@ cdef class Session:
     def startup(self, sock):
         """Deprecated - use self.handshake"""
         cdef int _sock = PyObject_AsFileDescriptor(sock)
-        cdef int rc
-        rc = c_ssh2.libssh2_session_startup(self._session, _sock)
+        cdef int rc = c_ssh2.libssh2_session_startup(self._session, _sock)
         return handle_error_codes(rc)
 
     def set_blocking(self, bint blocking):
@@ -181,7 +180,7 @@ cdef class Session:
         return bool(rc)
 
     def userauth_list(self, username not None):
-        """Retrieve available authentication methods list.
+        """Retrieve available authentication methodslist.
 
         :rtype: list"""
         cdef bytes b_username = to_bytes(username)
@@ -530,7 +529,7 @@ cdef class Session:
         try:
             if errmsg_len > 0:
                 msg = _error_msg[:errmsg_len]
-            return msg
+            return to_str(msg)
         finally:
             free(_error_msg)
 
@@ -763,6 +762,8 @@ cdef class Session:
 
         :rtype: str
         """
+        if not self.sock:
+            return
         with nogil:
             methods = c_ssh2.libssh2_session_methods(
                 self._session, method_type.value)

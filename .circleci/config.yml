@@ -15,33 +15,26 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 version: 2.1
 
-orbs:
-  python: circleci/python@0.3.2
 
 jobs:
   python_test:
     parameters:
       python_ver:
         type: string
-        default: "3.6"
+        default: "3.10"
     docker:
-      - image: circleci/python:<< parameters.python_ver >>
+      - image: cimg/python:<< parameters.python_ver >>
     steps:
       - checkout
-      - python/load-cache:
-          dependency-file: requirements_dev.txt
-          key: depsv3-{{ .Branch }}.{{ arch }}-PY<< parameters.python_ver >>
       - run:
           name: Deps
           command: |
             sudo apt-get update
             sudo apt-get install cmake openssh-server
             pip install -r requirements_dev.txt
-      - python/save-cache:
-          dependency-file: requirements_dev.txt
-          key: depsv3-{{ .Branch }}.{{ arch }}-PY<< parameters.python_ver >>
       - run:
           command: |
+            pip uninstall -y cython
             python setup.py build_ext --inplace
             eval "$(ssh-agent -s)"
           name: Build
@@ -50,20 +43,32 @@ jobs:
             set -x
             ls -lhtr ssh2/
             pwd
-            pytest tests
+            python -m pytest tests
+          name: Test
+      - run:
+          command: |
+            python -m pytest ci/integration_tests
+          name: Integration
+      - run:
+          command: |
             flake8 ssh2
+          name: Flake
+      - run:
+          command: |
             python setup.py sdist
             cd dist; pip install *; python -c 'from ssh2.session import Session; Session()'; cd ..
+          name: Sdist Install
+      - run:
+          command: |
             cd doc
             make html
             cd ..
-          name: Test
+          name: Docs
 
   osx:
     parameters:
       xcode_ver:
         type: string
-        default: "11.6.0"
     macos:
       xcode: << parameters.xcode_ver >>
     environment:
@@ -75,6 +80,8 @@ jobs:
           name: deps
           command: |
             brew install cmake git-lfs python libssh2
+            brew link --force openssl
+            brew link --force libssh2
             pip3 install twine
             which twine
       - run:
@@ -90,12 +97,9 @@ jobs:
 
   manylinux-x86_64:
     machine:
-      image: ubuntu-2004:202201-02
+      image: ubuntu-2004:current
     steps: &manylinux-steps
       - checkout
-      - python/load-cache:
-          key: manylinuxdepsv6-{{ .Branch }}.{{ arch }}
-          dependency-file: requirements_dev.txt
       - run:
           name: Git LFS
           command: |
@@ -110,11 +114,7 @@ jobs:
             pip install -U pip
             pip install twine
             which twine
-            which python
             which python3
-      - python/save-cache:
-          key: manylinuxdepsv6-{{ .Branch }}.{{ arch }}
-          dependency-file: requirements_dev.txt
       - run:
           name: Build Wheels
           command: |
@@ -134,22 +134,22 @@ jobs:
 
   manylinux2014-aarch64:
     machine:
-      image: ubuntu-2004:202101-01
+      image: ubuntu-2004:current
     resource_class: arm.medium
     steps: *manylinux-steps
 
 workflows:
-  version: 2.1
+  version: 2
   main:
     jobs:
       - python_test:
           matrix:
             parameters:
               python_ver:
-                - "3.6"
                 - "3.8"
-                - "3.9"
                 - "3.10"
+                - "3.11"
+                - "3.12"
           filters:
             tags:
               ignore: /.*/
@@ -166,7 +166,8 @@ workflows:
             parameters:
               xcode_ver:
                 - "14.0.0"
-                - "13.1.0"
+                - "15.0.0"
+                - "16.0.0"
           filters:
             tags:
               only: /.*/
