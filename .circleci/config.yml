@@ -160,8 +160,9 @@ workflows:
               xcode_ver:
                 - "14.0.0"
                 - "15.0.0"
+                - "16.0.0"
           filters:
             tags:
               only: /.*/
-            branches:
-              ignore: /.*/
+#            branches:
+#              ignore: /.*/
