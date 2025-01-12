@@ -149,8 +149,8 @@ workflows:
           filters:
             tags:
               only: /.*/
-            branches:
-              ignore: /.*/
+#            branches:
+#              ignore: /.*/
       - manylinux2014-aarch64: *manylinux-wf
       - osx:
           matrix:
@@ -160,5 +160,5 @@ workflows:
           filters:
             tags:
               only: /.*/
-            branches:
-              ignore: /.*/
+#            branches:
+#              ignore: /.*/
