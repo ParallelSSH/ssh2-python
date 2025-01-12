@@ -1,6 +1,24 @@
 Change Log
 =============
 
+1.1.0 (unreleased)
+++++++++++++++++++
+
+Changes
+--------
+
+* Support for Python >=3.12.
+* Upgraded embedded and wheel ``libssh2`` to ``1.11.1``.
+* Upgraded wheel OpenSSL to 3.4.0.
+* Removed testing for Python versions <3.8.
+
+Packaging
+----------
+
+* Added binary wheels for Python versions 3.11, 3.12.
+* Added OSX 12.0 and 13.0 wheels, Apple Silicon.
+
+
 1.0.0
 ++++++
 
