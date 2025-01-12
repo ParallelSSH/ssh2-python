@@ -72,21 +72,9 @@ build_script:
   - ci\\appveyor\\build_ssh2.bat
   - for %%I in (%PYTHONVERS%) do cp build_dir/src/libssh2.lib %%I/libs/ || cp build_dir/src/Release/libssh2.lib %%I/libs/
   - rm -f ssh2/*.c
-  - ps: ls ssh2
-  - for %%I in (%PYTHONVERS%) do %%I\python.exe -V
-  - if "%APPVEYOR_REPO_TAG%"== "true" (for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py build_ext) else ()
-  - if "%APPVEYOR_REPO_TAG%"== "true" (for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py build) else ()
-  - if "%APPVEYOR_REPO_TAG%"== "true" (for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py install) else ()
-  - ps: ls ssh2
 
 test_script:
-  - if "%APPVEYOR_REPO_TAG%"== "true" (cd dist) else ()
-  - if "%APPVEYOR_REPO_TAG%"== "true" ((for %%I in (%PYTHONVERS%) do %%I\python.exe -c "from ssh2.session import Session; Session()") else ()
-  - if "%APPVEYOR_REPO_TAG%"== "true" (cd ..) else ()
-
-after_test:
-  - if "%APPVEYOR_REPO_TAG%"== "true" (for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py bdist_wheel) else ()
-  - if "%APPVEYOR_REPO_TAG%"== "true" (mv dist/* .) else ()
+  - ci\\appveyor\\build_package.bat
 
 artifacts:
   - path: "*.whl"
