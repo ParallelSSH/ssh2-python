@@ -16,16 +16,16 @@
 version: 2.1
 
 orbs:
-  python: circleci/python@3.10.0
+  python: cimg/python@3.10
 
 jobs:
   python_test:
     parameters:
       python_ver:
         type: string
-        default: "3.10.0"
+        default: "3.10"
     docker:
-      - image: circleci/python:<< parameters.python_ver >>
+      - image: cimg/python:<< parameters.python_ver >>
     steps:
       - checkout
       - run:
@@ -136,11 +136,11 @@ workflows:
           matrix:
             parameters:
               python_ver:
-                - "3.8.0"
-                - "3.9.0"
-                - "3.10.0"
-                - "3.11.0"
-                - "3.12.0"
+                - "3.8"
+                - "3.9"
+                - "3.10"
+                - "3.11"
+                - "3.12"
           filters:
             tags:
               ignore: /.*/
