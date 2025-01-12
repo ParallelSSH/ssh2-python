@@ -73,6 +73,8 @@ jobs:
           name: deps
           command: |
             brew install cmake git-lfs python libssh2
+            brew link --force openssl
+            brew link --force libssh2
             pip3 install twine
             which twine
       - run:
@@ -149,14 +151,15 @@ workflows:
           filters:
             tags:
               only: /.*/
-#            branches:
-#              ignore: /.*/
+            branches:
+              ignore: /.*/
       - manylinux2014-aarch64: *manylinux-wf
       - osx:
           matrix:
             parameters:
               xcode_ver:
                 - "14.0.0"
+                - "15.0.0"
           filters:
             tags:
               only: /.*/
