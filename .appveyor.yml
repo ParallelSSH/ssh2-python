@@ -69,8 +69,8 @@ install:
 build_script:
   - dir %OPENSSL_DIR%\lib\VC\x64\MD\
   - dir %OPENSSL_DIR%\lib\VC\
-  - for %%I in (%PYTHONVERS%) do cp %OPENSSL_DIR%/lib/VC/x64/MD/libcrypto.lib %%I/libs/
-  - for %%I in (%PYTHONVERS%) do cp %OPENSSL_DIR%/lib/VC/x64/MD/libssl.lib %%I/libs/
+  - for %%I in (%PYTHONVERS%) do cp %OPENSSL_DIR%/lib/VC/x64/MD/libcrypto.lib %%I/libs/libcrypto64MD.lib
+  - for %%I in (%PYTHONVERS%) do cp %OPENSSL_DIR%/lib/VC/x64/MD/libssl.lib %%I/libs/libssl64MD.lib
   - ci\\appveyor\\build_zlib.bat
   - for %%I in (%PYTHONVERS%) do cp C:/zlib/lib/zlibstatic.lib %%I/libs/
   - for %%I in (%PYTHONVERS%) do ls %%I/libs/

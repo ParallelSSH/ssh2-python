@@ -13,13 +13,15 @@ cmake ..\libssh2 -G "NMake Makefiles" ^
        -DENABLE_MAC_NONE=ON                   ^
        -DZLIB_LIBRARY=C:/zlib/lib/zlib.lib    ^
        -DZLIB_INCLUDE_DIR=C:/zlib/include     ^
+       -DBUILD_EXAMPLES=OFF                   ^
+       -DBUILD_TESTING=OFF                    ^
        -DOPENSSL_ROOT_DIR=%OPENSSL_DIR%       ^
        -DOPENSSL_LIBRARIES=%OPENSSL_DIR%/lib/VC/x64/MD
 
 
 dir %OPENSSL_DIR%\lib\VC\x64\
-cp %OPENSSL_DIR%\lib\VC\x64\MD\libcrypto.lib %APPVEYOR_BUILD_FOLDER%
-cp %OPENSSL_DIR%\lib\VC\x64\MD\libssl.lib %APPVEYOR_BUILD_FOLDER%
+cp %OPENSSL_DIR%\lib\VC\x64\MD\libcrypto.lib %APPVEYOR_BUILD_FOLDER%\libcrypto64MD.lib
+cp %OPENSSL_DIR%\lib\VC\x64\MD\libssl.lib %APPVEYOR_BUILD_FOLDER%\libssl64MD.lib
 
 dir %APPVEYOR_BUILD_FOLDER%\
 
