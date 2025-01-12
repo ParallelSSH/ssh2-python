@@ -15,8 +15,6 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 version: 2.1
 
-#orbs:
-#  python: cimg/python:3.8
 
 jobs:
   python_test:
@@ -143,6 +141,7 @@ workflows:
                 - "3.10"
                 - "3.11"
                 - "3.12"
+                - "3.13"
           filters:
             tags:
               ignore: /.*/
@@ -164,5 +163,5 @@ workflows:
           filters:
             tags:
               only: /.*/
-#            branches:
-#              ignore: /.*/
+            branches:
+              ignore: /.*/
