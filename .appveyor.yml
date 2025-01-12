@@ -74,15 +74,15 @@ build_script:
   - rm -f ssh2/*.c
   - ps: ls ssh2
   - for %%I in (%PYTHONVERS%) do %%I\python.exe -V
-  - for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py build_ext
-  - for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py build
-  - for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py install
+  - if "%APPVEYOR_REPO_TAG%"== "true" (for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py build_ext) else ()
+  - if "%APPVEYOR_REPO_TAG%"== "true" (for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py build) else ()
+  - if "%APPVEYOR_REPO_TAG%"== "true" (for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py install) else ()
   - ps: ls ssh2
 
 test_script:
-  - cd dist
-  - for %%I in (%PYTHONVERS%) do %%I\python.exe -c "from ssh2.session import Session; Session()"
-  - cd ..
+  - if "%APPVEYOR_REPO_TAG%"== "true" (cd dist) else ()
+  - if "%APPVEYOR_REPO_TAG%"== "true" ((for %%I in (%PYTHONVERS%) do %%I\python.exe -c "from ssh2.session import Session; Session()") else ()
+  - if "%APPVEYOR_REPO_TAG%"== "true" (cd ..) else ()
 
 after_test:
   - if "%APPVEYOR_REPO_TAG%"== "true" (for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py bdist_wheel) else ()
