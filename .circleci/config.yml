@@ -33,9 +33,7 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt-get install cmake openssh-server
-      - python/install-packages:
-          pip-dependency-file: requirements_dev.txt
-          pkg-manager: pip
+            pip install -r requirements_dev.txt
       - run:
           command: |
             pip uninstall -y cython
