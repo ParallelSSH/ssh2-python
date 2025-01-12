@@ -52,6 +52,7 @@ install:
   - cp %VCLIBDIR%/msvcp*.dll ssh2/
   - cp %VCLIBDIR%/msvcr*.dll ssh2/
   - cp %OPENSSL_DIR%/bin/*.dll ssh2/
+  - ps: ls ssh2/*.dll
 
   - for %%I in (%PYTHONVERS%) do %%I\python.exe -V
   - for %%I in (%PYTHONVERS%) do %%I\Scripts\pip install -U wheel setuptools twine cython
