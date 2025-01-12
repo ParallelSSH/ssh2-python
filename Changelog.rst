@@ -12,10 +12,15 @@ Changes
 * Upgraded wheel OpenSSL to 3.4.0.
 * Removed testing for Python versions <3.8.
 
+Fixes
+-----
+
+* Calling ``ssh2.session.Session.methods`` without a valid connection would cause a segfault - #203.
+
 Packaging
 ----------
 
-* Added binary wheels for Python versions 3.11, 3.12.
+* Added binary wheels for Python versions 3.11, 3.12 and 3.13 on support manylinux wheel builds.
 * Added OSX 12.0, 13.0 and 14.0 wheels, Apple Silicon.
 * Support OSX brew OpenSSL from source builds.
 
