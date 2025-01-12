@@ -180,7 +180,7 @@ cdef class Session:
         return bool(rc)
 
     def userauth_list(self, username not None):
-        """Retrieve available authentication methods list.
+        """Retrieve available authentication methodslist.
 
         :rtype: list"""
         cdef bytes b_username = to_bytes(username)
@@ -762,6 +762,8 @@ cdef class Session:
 
         :rtype: str
         """
+        if not self.sock:
+            return
         with nogil:
             methods = c_ssh2.libssh2_session_methods(
                 self._session, method_type.value)
