@@ -48,13 +48,22 @@ jobs:
       - run:
           command: |
             python -m pytest ci/integration_tests
+          name: Integration
+      - run:
+          command: |
             flake8 ssh2
+          name: Flake
+      - run:
+          command: |
             python setup.py sdist
             cd dist; pip install *; python -c 'from ssh2.session import Session; Session()'; cd ..
+          name: Sdist Install
+      - run:
+          command: |
             cd doc
             make html
             cd ..
-          name: Integration
+          name: Docs
 
   osx:
     parameters:
