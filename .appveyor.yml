@@ -65,7 +65,7 @@ install:
   - 7z x ci\appveyor\zlib1211.zip
 
 build_script:
-  - dir %OPENSSL_DIR%\lib\VC\x64\
+  - dir %OPENSSL_DIR%\lib\VC\x64\MD
   - ci\\appveyor\\build_zlib.bat
   - for %%I in (%PYTHONVERS%) do cp C:/zlib/lib/zlibstatic.lib %%I/libs/
   - for %%I in (%PYTHONVERS%) do ls %%I/libs/
