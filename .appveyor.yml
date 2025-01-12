@@ -65,18 +65,21 @@ install:
   - 7z x ci\appveyor\zlib1211.zip
 
 build_script:
-  - ci\\appveyor\\build_zlib.bat
-  - for %%I in (%PYTHONVERS%) do cp C:/zlib/lib/zlibstatic.lib %%I/libs/
-  - for %%I in (%PYTHONVERS%) do ls %%I/libs/
-  - ci\\appveyor\\build_ssh2.bat
-  - for %%I in (%PYTHONVERS%) do cp build_dir/src/libssh2.lib %%I/libs/ || cp build_dir/src/Release/libssh2.lib %%I/libs/
-  - rm -f ssh2/*.c
-  - ps: ls ssh2
-  - for %%I in (%PYTHONVERS%) do %%I\python.exe -V
-  - for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py build_ext
-  - for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py build
-  - for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py install
-  - ps: ls ssh2
+  - ps: ls C:\OpenSSL-v34-Win64
+  - ps: ls C:\OpenSSL-v34-Win64\lib*
+  - ps: ls C:\OpenSSL-v34-Win64\lib*\VC
+#  - ci\\appveyor\\build_zlib.bat
+#  - for %%I in (%PYTHONVERS%) do cp C:/zlib/lib/zlibstatic.lib %%I/libs/
+#  - for %%I in (%PYTHONVERS%) do ls %%I/libs/
+#  - ci\\appveyor\\build_ssh2.bat
+#  - for %%I in (%PYTHONVERS%) do cp build_dir/src/libssh2.lib %%I/libs/ || cp build_dir/src/Release/libssh2.lib %%I/libs/
+#  - rm -f ssh2/*.c
+#  - ps: ls ssh2
+#  - for %%I in (%PYTHONVERS%) do %%I\python.exe -V
+#  - for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py build_ext
+#  - for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py build
+#  - for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py install
+#  - ps: ls ssh2
 
 test_script:
   - cd dist
