@@ -85,6 +85,10 @@ test_script:
   - cd ..
 
 after_test:
+  - provider: Environment
+    name: production
+    on:
+      APPVEYOR_REPO_TAG: true
   - for %%I in (%PYTHONVERS%) do %%I\python.exe setup.py bdist_wheel
   - mv dist/* .
 
@@ -92,6 +96,10 @@ artifacts:
   - path: "*.whl"
 
 deploy_script:
+  - provider: Environment
+    name: production
+    on:
+      APPVEYOR_REPO_TAG: true
   # Calling twine requires we set path
   - "SET PATH=%PYTHON_DEF%;%PYTHON_DEF%\\Scripts;%PATH%"
   - python ci/appveyor/pypi_upload.py *.whl
