@@ -15,8 +15,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 version: 2.1
 
-orbs:
-  python: circleci/python@3.0.0
+#orbs:
+#  python: cimg/python:3.8
 
 jobs:
   python_test:
@@ -25,7 +25,7 @@ jobs:
         type: string
         default: "3.10"
     docker:
-      - image: circleci/python:<< parameters.python_ver >>
+      - image: cimg/python:<< parameters.python_ver >>
     steps:
       - checkout
       - run:
@@ -139,8 +139,8 @@ workflows:
                 # - "3.8"
                 # - "3.9"
                 - "3.10"
-                #  - "3.11"
-                - "3.12"
+                - "3.11"
+                # - "3.12"
           filters:
             tags:
               ignore: /.*/
