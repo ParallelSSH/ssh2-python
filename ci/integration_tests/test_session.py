@@ -18,6 +18,13 @@ from .base_test import SSH2TestCase
 
 class SessionTestCase(SSH2TestCase):
 
+    def _wait_eagain(self, func, *args):
+        rc = func(*args)
+        while rc == LIBSSH2_ERROR_EAGAIN:
+            wait_socket(self.sock, self.session)
+            rc = func(*args)
+        return rc
+
     def test_pubkey_auth(self):
         self.assertEqual(self.session.userauth_publickey_fromfile(
             self.user, self.user_key, publickey=self.user_pub_key,
@@ -312,3 +319,19 @@ class SessionTestCase(SSH2TestCase):
             MethodNotSupported,
             self.session.method_pref, LIBSSH2_METHOD_CRYPT_CS, 'invalid algorithm')
         self.assertRaises(TypeError, self.session.method_pref, 0, 'fake')
+
+    def test_non_blocking_multi_chan(self):
+        self.assertEqual(self._auth(), 0)
+        self.session.set_blocking(False)
+        self.assertFalse(self.session.get_blocking())
+        chan = self._wait_eagain(self.session.open_session)
+        self.assertIsInstance(chan, Channel)
+        self._wait_eagain(chan.execute, self.cmd)
+        rc, buff = chan.read()
+        while rc == LIBSSH2_ERROR_EAGAIN:
+            wait_socket(self.sock, self.session)
+            rc, buff = chan.read()
+        self._wait_eagain(chan.close)
+        self._wait_eagain(chan.wait_closed)
+        chan = self._wait_eagain(self.session.open_session)
+        self.assertIsInstance(chan, Channel)
