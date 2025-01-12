@@ -89,9 +89,6 @@ jobs:
       image: ubuntu-2004:202201-02
     steps: &manylinux-steps
       - checkout
-      - python/load-cache:
-          key: manylinuxdepsv6-{{ .Branch }}.{{ arch }}
-          dependency-file: requirements_dev.txt
       - run:
           name: Git LFS
           command: |
@@ -107,9 +104,6 @@ jobs:
             pip install twine
             which twine
             which python3
-      - python/save-cache:
-          key: manylinuxdepsv6-{{ .Branch }}.{{ arch }}
-          dependency-file: requirements_dev.txt
       - run:
           name: Build Wheels
           command: |
