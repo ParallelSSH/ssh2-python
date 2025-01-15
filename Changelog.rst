@@ -1,7 +1,19 @@
 Change Log
 =============
 
-1.1.0
+1.1.2
+++++++
+
+Changes
+--------
+
+Packaging
+----------
+
+* Added Windows Python 3.6 and 3.7 binary wheels.
+* Removed manylinux2010 binary wheels.
+
+1.1.1
 +++++
 
 Changes
