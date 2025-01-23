@@ -93,7 +93,9 @@ jobs:
       - run:
           name: Upload Wheel
           command: |
-            twine upload --skip-existing -u $PYPI_USER -p $PYPI_PASSWORD wheels/*
+            if [[ ! -z "$CIRCLE_TAG" ]]; then
+              twine upload --skip-existing -u $PYPI_USER -p $PYPI_PASSWORD wheels/*
+            fi
 
   manylinux-x86_64:
     machine:
@@ -124,7 +126,9 @@ jobs:
       - run:
           name: Upload Wheels
           command: |
-            twine upload --skip-existing -u $PYPI_USER -p $PYPI_PASSWORD dist/* wheelhouse/*
+            if [[ ! -z "$CIRCLE_TAG" ]]; then
+              twine upload --skip-existing -u $PYPI_USER -p $PYPI_PASSWORD dist/* wheelhouse/*
+            fi
 
   manylinux2014-aarch64:
     machine:
