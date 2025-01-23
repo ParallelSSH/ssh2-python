@@ -79,7 +79,7 @@ jobs:
       - run:
           name: deps
           command: |
-            set +x
+            set -x
             export HOMEBREW_NO_INSTALL_CLEANUP=1
             brew install cmake python libssh2
             brew link --force openssl
