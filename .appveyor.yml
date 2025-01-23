@@ -97,15 +97,3 @@ deploy_script:
   # Calling twine requires we set path
   - "SET PATH=%PYTHON_DEF%;%PYTHON_DEF%\\Scripts;%PATH%"
   - python ci/appveyor/pypi_upload.py *.whl
-
-
-deploy:
-  - provider: Environment
-    name: production
-    on:
-      branch: master
-
-  - provider: Environment
-    name: production
-    on:
-      APPVEYOR_REPO_TAG: true
