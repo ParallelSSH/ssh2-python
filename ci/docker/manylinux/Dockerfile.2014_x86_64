@@ -15,9 +15,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 FROM quay.io/pypa/manylinux2014_x86_64
 
-ENV OPENSSL openssl-3.4.0
-ENV SYSTEM_LIBSSH2 1
-ENV LIBSSH2_VERSION 1.11.1
+ENV OPENSSL=openssl-3.4.0
+ENV SYSTEM_LIBSSH2=1
+ENV LIBSSH2_VERSION=1.11.1
 
 RUN yum install zlib-devel perl-IPC-Cmd -y
 
@@ -32,9 +32,10 @@ RUN cd ${OPENSSL} && \
 
 # Libssh2
 RUN mkdir -p build_libssh2 && cd build_libssh2 && \
-    cmake ../libssh2-${LIBSSH2_VERSION}.tar.gz/libssh2-${LIBSSH2_VERSION} \
+    cmake ../libssh2-${LIBSSH2_VERSION}.tar.gz/libssh2 \
     -DBUILD_SHARED_LIBS=ON -DENABLE_ZLIB_COMPRESSION=ON \
-    -DENABLE_CRYPT_NONE=ON -DENABLE_MAC_NONE=ON -DCMAKE_INSTALL_PREFIX=/usr && \
+    -DENABLE_CRYPT_NONE=ON -DENABLE_MAC_NONE=ON -DCMAKE_INSTALL_PREFIX=/usr \
+    -DBUILD_EXAMPLES=OFF -DBUILD_TESTING=OFF && \
     cmake --build . --config Release --target install
 
 RUN rm -rf ${OPENSSL}* build_libssh2 libssh2.tar.gz

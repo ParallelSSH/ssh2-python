@@ -43,7 +43,7 @@ jobs:
             set -x
             ls -lhtr ssh2/
             pwd
-            python -m pytest tests
+            python -m pytest --junit-xml=results.xml tests
           name: Test
       - run:
           command: |
@@ -64,6 +64,8 @@ jobs:
             make html
             cd ..
           name: Docs
+      - store_test_results:
+          path: results.xml
 
   osx:
     parameters:
@@ -79,7 +81,9 @@ jobs:
       - run:
           name: deps
           command: |
-            brew install cmake git-lfs python libssh2
+            set -x
+            export HOMEBREW_NO_INSTALL_CLEANUP=1
+            brew install cmake python libssh2
             brew link --force openssl
             brew link --force libssh2
             pip3 install twine
@@ -93,20 +97,15 @@ jobs:
       - run:
           name: Upload Wheel
           command: |
-            twine upload --skip-existing -u $PYPI_USER -p $PYPI_PASSWORD wheels/*
+            if [[ ! -z "$CIRCLE_TAG" ]]; then
+              twine upload --skip-existing -u $PYPI_USER -p $PYPI_PASSWORD wheels/*
+            fi
 
   manylinux-x86_64:
     machine:
       image: ubuntu-2004:current
     steps: &manylinux-steps
       - checkout
-      - run:
-          name: Git LFS
-          command: |
-            curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
-            sudo apt-get install git-lfs
-            git lfs install
-            git lfs pull
       - run:
           name: Deps
           command: |
@@ -118,6 +117,7 @@ jobs:
       - run:
           name: Build Wheels
           command: |
+            export LIBSSH2_VERSION=1.11.1
             if [[ -z "${CIRCLE_PULL_REQUEST}" ]]; then
               echo "$DOCKER_PASSWORD" | docker login -u="$DOCKER_USERNAME" --password-stdin;
             fi
@@ -130,7 +130,9 @@ jobs:
       - run:
           name: Upload Wheels
           command: |
-            twine upload --skip-existing -u $PYPI_USER -p $PYPI_PASSWORD dist/* wheelhouse/*
+            if [[ ! -z "$CIRCLE_TAG" ]]; then
+              twine upload --skip-existing -u $PYPI_USER -p $PYPI_PASSWORD dist/* wheelhouse/*
+            fi
 
   manylinux2014-aarch64:
     machine:

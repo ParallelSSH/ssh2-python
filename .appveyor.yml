@@ -19,6 +19,7 @@ build:
   verbosity: minimal
 skip_branch_with_pr: true
 image: Visual Studio 2019
+clone_script: echo Skip AppVeyor Clone
 
 environment:
   global:
@@ -32,7 +33,7 @@ environment:
     PYTHON_DEF: "C:\\Python38-x64"
     PYTHON_VERSION: "3.8"
     # Python versions to build wheels for
-    PYTHONVERS: C:\Python38-x64 C:\Python39-x64 C:\Python310-x64 C:\Python311-x64 C:\Python312-x64
+    PYTHONVERS: C:\Python37-x64 C:\Python38-x64 C:\Python39-x64 C:\Python310-x64 C:\Python311-x64 C:\Python312-x64 C:\Python313-x64
     PYTHON_ARCH: "64"
     MSVC: "Visual Studio 16 2019"
 
@@ -46,11 +47,21 @@ install:
         https://ci.appveyor.com/api/projects/$env:APPVEYOR_ACCOUNT_NAME/$env:APPVEYOR_PROJECT_SLUG/history?recordsNumber=50).builds | `
         Where-Object pullRequestId -eq $env:APPVEYOR_PULL_REQUEST_NUMBER)[0].buildNumber) { `
           throw "There are newer queued builds for this pull request, failing early." }
+
+  # Git checkout
+  - git config --global filter.lfs.smudge "git-lfs smudge --skip -- %f"
+  - git config --global filter.lfs.process "git-lfs filter-process --skip"
+  - git init %APPVEYOR_BUILD_FOLDER%
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - git remote add origin https://github.com/%APPVEYOR_REPO_NAME%.git
+  - git fetch -q origin %APPVEYOR_REPO_COMMIT%
+  - git fetch --tags
+  - git checkout -qf %APPVEYOR_REPO_COMMIT%
+
   - set OPENSSL_DIR="C:\OpenSSL-v34-Win64"
   - set VCLIBDIR=%WINDIR%\System32
-  - cp %VCLIBDIR%/vcruntime*.dll ssh2/
-  - cp %VCLIBDIR%/msvcp*.dll ssh2/
-  - cp %VCLIBDIR%/msvcr*.dll ssh2/
+  - cp %VCLIBDIR%/vcruntime140.dll ssh2/
+  - cp %VCLIBDIR%/msvcr120.dll ssh2/
   - cp %OPENSSL_DIR%/bin/*.dll ssh2/
   - ps: ls ssh2/*.dll
 
@@ -63,7 +74,6 @@ install:
   # do not cause a version change.
   - "%PYTHON_DEF%\\python.exe ci/appveyor/fix_version.py ."
   - mv -f .git .git.bak
-  - 7z x ci\appveyor\zlib1211.zip
 
 build_script:
   - dir %OPENSSL_DIR%\lib\VC\x64\MD\
