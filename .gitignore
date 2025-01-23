@@ -11,3 +11,4 @@ ssh2/libssh2.so*
 doc/_build
 venv
 ci/docker/manylinux/*.gz
+results.xml

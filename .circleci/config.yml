@@ -43,7 +43,7 @@ jobs:
             set -x
             ls -lhtr ssh2/
             pwd
-            python -m pytest tests
+            python -m pytest --junit-xml=results.xml tests
           name: Test
       - run:
           command: |
@@ -64,6 +64,8 @@ jobs:
             make html
             cd ..
           name: Docs
+      - store_test_results:
+          path: results.xml
 
   osx:
     parameters:
