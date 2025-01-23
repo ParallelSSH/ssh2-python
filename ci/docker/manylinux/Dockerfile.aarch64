@@ -32,7 +32,7 @@ RUN cd ${OPENSSL} && \
 
 # Libssh2
 RUN mkdir -p build_libssh2 && cd build_libssh2 && \
-    cmake ../libssh2-${LIBSSH2_VERSION}.tar.gz/libssh2-${LIBSSH2_VERSION} \
+    cmake ../libssh2-${LIBSSH2_VERSION}.tar.gz/libssh2 \
     -DBUILD_SHARED_LIBS=ON -DENABLE_ZLIB_COMPRESSION=ON \
     -DENABLE_CRYPT_NONE=ON -DENABLE_MAC_NONE=ON -DCMAKE_INSTALL_PREFIX=/usr \
     -DBUILD_EXAMPLES=OFF -DBUILD_TESTING=OFF && \

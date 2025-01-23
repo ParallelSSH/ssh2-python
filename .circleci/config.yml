@@ -79,6 +79,8 @@ jobs:
       - run:
           name: deps
           command: |
+            set +x
+            export HOMEBREW_NO_INSTALL_CLEANUP=1
             brew install cmake python libssh2
             brew link --force openssl
             brew link --force libssh2
@@ -166,8 +168,8 @@ workflows:
                 - "14.0.0"
                 - "15.0.0"
                 - "16.0.0"
-#          filters:
-#            tags:
-#              only: /.*/
-#            branches:
-#              ignore: /.*/
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
