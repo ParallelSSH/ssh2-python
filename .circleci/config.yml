@@ -155,11 +155,11 @@ workflows:
               ignore: /.*/
       - manylinux-x86_64: &manylinux-wf
           context: Docker
-#          filters:
-#            tags:
-#              only: /.*/
-#            branches:
-#              ignore: /.*/
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
       - manylinux2014-aarch64: *manylinux-wf
       - osx:
           matrix:
