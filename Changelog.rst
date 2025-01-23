@@ -7,11 +7,16 @@ Change Log
 Changes
 --------
 
+No code changes.
+
+
 Packaging
 ----------
 
-* Added Windows Python 3.6 and 3.7 binary wheels.
-* Removed manylinux2010 binary wheels.
+* Added Windows Python 3.7 and 3.13 wheel builds.
+* Removed manylinux 2010 wheels.
+* Wheel builds now use embedded libssh.
+* Dockerfiles and scripts updates.
 
 1.1.1
 +++++
