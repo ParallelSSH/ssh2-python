@@ -1,7 +1,9 @@
 ### Directions
 
 _Issue tracker is for actionable bug reports, issues with the code and feature requests._
-_For general questions use the [mail group](https://groups.google.com/forum/#!forum/ssh2-python)._
+
+_See [Discussions](https://github.com/ParallelSSH/ssh2-python/discussions) section for questions and discussions._
+
 _Remove this section and everything on and above this line._
 
 ### Bug reports
