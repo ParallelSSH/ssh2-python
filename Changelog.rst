@@ -15,7 +15,7 @@ Packaging
 
 * Added Windows Python 3.7 and 3.13 wheel builds.
 * Removed manylinux 2010 wheels.
-* Wheel builds now use embedded libssh and zlib.
+* Wheel builds now use embedded libssh2 and zlib.
 * Dockerfiles and scripts updates.
 
 1.1.1
