@@ -76,12 +76,12 @@ def find_eol(bytes buf, Py_ssize_t pos):
 
 
 def readline(buf):
-    """Returns a generator of line by line output in given buffer.
+    """Returns a generator of line by line output in given iterable buffer.
 
     :param buf: The iterable buffer to read from. Should yield a block of data per iteration.
     """
     cdef size_t pos
-    cdef size_t size
+    cdef Py_ssize_t size
     cdef bytes remainder = b""
     cdef size_t remainder_len = 0
     cdef int linesep

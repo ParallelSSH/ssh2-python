@@ -1561,7 +1561,7 @@ struct __pyx_obj_4ssh2_7session_MethodType {
  * 
  * 
  * def readline(buf):             # <<<<<<<<<<<<<<
- *     """Returns a generator of line by line output in given buffer.
+ *     """Returns a generator of line by line output in given iterable buffer.
  * 
  */
 struct __pyx_obj_4ssh2_5utils___pyx_scope_struct__readline {
@@ -1575,7 +1575,7 @@ struct __pyx_obj_4ssh2_5utils___pyx_scope_struct__readline {
   size_t __pyx_v_pos;
   PyObject *__pyx_v_remainder;
   size_t __pyx_v_remainder_len;
-  size_t __pyx_v_size;
+  Py_ssize_t __pyx_v_size;
   PyObject *__pyx_t_0;
   Py_ssize_t __pyx_t_1;
   PyObject *(*__pyx_t_2)(PyObject *);
@@ -3859,7 +3859,7 @@ static PyObject *__pyx_gb_4ssh2_5utils_4generator(__pyx_CoroutineObject *__pyx_g
  * 
  * 
  * def readline(buf):             # <<<<<<<<<<<<<<
- *     """Returns a generator of line by line output in given buffer.
+ *     """Returns a generator of line by line output in given iterable buffer.
  * 
  */
 
@@ -3871,7 +3871,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_5utils_2readline, "readline(buf)\nReturns a generator of line by line output in given buffer.\n\n    :param buf: The iterable buffer to read from. Should yield a block of data per iteration.\n    ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_5utils_2readline, "readline(buf)\nReturns a generator of line by line output in given iterable buffer.\n\n    :param buf: The iterable buffer to read from. Should yield a block of data per iteration.\n    ");
 static PyMethodDef __pyx_mdef_4ssh2_5utils_3readline = {"readline", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_5utils_3readline, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_5utils_2readline};
 static PyObject *__pyx_pw_4ssh2_5utils_3readline(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
@@ -4031,7 +4031,7 @@ static PyObject *__pyx_gb_4ssh2_5utils_4generator(__pyx_CoroutineObject *__pyx_g
 
   /* "ssh2/utils.pyx":85
  *     cdef size_t pos
- *     cdef size_t size
+ *     cdef Py_ssize_t size
  *     cdef bytes remainder = b""             # <<<<<<<<<<<<<<
  *     cdef size_t remainder_len = 0
  *     cdef int linesep
@@ -4041,7 +4041,7 @@ static PyObject *__pyx_gb_4ssh2_5utils_4generator(__pyx_CoroutineObject *__pyx_g
   __pyx_cur_scope->__pyx_v_remainder = __pyx_kp_b__2;
 
   /* "ssh2/utils.pyx":86
- *     cdef size_t size
+ *     cdef Py_ssize_t size
  *     cdef bytes remainder = b""
  *     cdef size_t remainder_len = 0             # <<<<<<<<<<<<<<
  *     cdef int linesep
@@ -4464,7 +4464,7 @@ static PyObject *__pyx_gb_4ssh2_5utils_4generator(__pyx_CoroutineObject *__pyx_g
  * 
  * 
  * def readline(buf):             # <<<<<<<<<<<<<<
- *     """Returns a generator of line by line output in given buffer.
+ *     """Returns a generator of line by line output in given iterable buffer.
  * 
  */
 
@@ -6983,7 +6983,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * 
  * def readline(buf):             # <<<<<<<<<<<<<<
- *     """Returns a generator of line by line output in given buffer.
+ *     """Returns a generator of line by line output in given iterable buffer.
  * 
  */
   __pyx_tuple__6 = PyTuple_Pack(10, __pyx_n_s_buf, __pyx_n_s_pos, __pyx_n_s_size, __pyx_n_s_remainder, __pyx_n_s_remainder_len, __pyx_n_s_linesep, __pyx_n_s_new_line_pos, __pyx_n_s_data, __pyx_n_s_end_of_line, __pyx_n_s_line); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 78, __pyx_L1_error)
@@ -7520,7 +7520,7 @@ if (!__Pyx_RefNanny) {
  * 
  * 
  * def readline(buf):             # <<<<<<<<<<<<<<
- *     """Returns a generator of line by line output in given buffer.
+ *     """Returns a generator of line by line output in given iterable buffer.
  * 
  */
   __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_5utils_3readline, 0, __pyx_n_s_readline, NULL, __pyx_n_s_ssh2_utils, __pyx_d, ((PyObject *)__pyx_codeobj_)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 78, __pyx_L1_error)
