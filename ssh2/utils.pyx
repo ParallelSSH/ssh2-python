@@ -75,6 +75,40 @@ def find_eol(bytes buf, Py_ssize_t pos):
     return index, new_pos
 
 
+def readline(buf):
+    """Returns a generator of line by line output in given buffer.
+
+    :param buf: The iterable buffer to read from. Should yield a block of data per iteration.
+    """
+    cdef size_t pos
+    cdef size_t size
+    cdef bytes remainder = b""
+    cdef size_t remainder_len = 0
+    cdef int linesep
+    cdef int new_line_pos
+    for data in buf:
+        pos = 0
+        size = len(data)
+        while pos < size:
+            linesep, new_line_pos = find_eol(data, pos)
+            if linesep == -1:
+                remainder += data[pos:]
+                remainder_len = len(remainder)
+                break
+            end_of_line = pos + linesep
+            if remainder_len > 0:
+                line = remainder + data[pos:end_of_line]
+                remainder = b""
+                remainder_len = 0
+            else:
+                line = data[pos:end_of_line]
+            yield line
+            pos += linesep + new_line_pos
+    if remainder_len > 0:
+        # Finished reading without finding ending linesep
+        yield remainder
+
+
 def version(int required_version=0):
     """Get libssh2 version string.
 

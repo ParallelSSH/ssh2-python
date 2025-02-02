@@ -1,6 +1,7 @@
 import unittest
+from unittest.mock import MagicMock
 
-from ssh2.utils import find_eol
+from ssh2.utils import find_eol, readline
 
 
 class UtilsTest(unittest.TestCase):
@@ -70,3 +71,16 @@ class UtilsTest(unittest.TestCase):
         linesep, new_line_pos = find_eol(b"\r", 0)
         self.assertEqual(linesep, -1)
         self.assertEqual(new_line_pos, 0)
+
+    def test_read_line_gen(self):
+        lines = [b'a line', b'another line', b'third']
+        lines_data = [b'a lin', b'e\nanother', b' line\nthird']
+
+        class MyBuf:
+            def __iter__(self):
+                for data in lines_data:
+                    yield data
+
+        lines_buf = MyBuf()
+        out_data = [line for line in readline(lines_buf)]
+        self.assertListEqual(lines, out_data)
