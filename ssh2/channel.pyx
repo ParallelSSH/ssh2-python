@@ -362,7 +362,8 @@ cdef class Channel:
         ``bytes_written`` *can be less than* ``len(buf)``.
 
         Clients should resume from that point on next call to ``write``, ie
-        ``buf[bytes_written_in_last_call:]``.
+        ``write(buf[bytes_written_in_last_call:])`` with each subsequent call to write
+        incrementing buffer offset by the last's bytes_written.
 
         .. note::
           While this function handles unicode strings for ``buf``

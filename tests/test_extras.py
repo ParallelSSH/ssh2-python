@@ -47,3 +47,16 @@ class ExtrasTest(TestCase):
         self.assertIsNone(rc)
         self.assertEqual(my_write_func.call_count, 2)
         my_write_func.assert_called_with(some_data[offset:])
+
+    def test_eagain_write_no_call(self):
+        some_data = b'some data'
+        my_write_func = MagicMock()
+        my_write_func.side_effect = [
+            (len(some_data), len(some_data)),
+        ]
+        poller = MagicMock()
+        rc = eagain_write_errcode(my_write_func, poller, some_data)
+        poller.assert_not_called()
+        self.assertIsNone(rc)
+        self.assertEqual(my_write_func.call_count, 1)
+        my_write_func.assert_called_once_with(some_data)
