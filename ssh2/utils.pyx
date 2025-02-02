@@ -97,39 +97,6 @@ def ssh2_exit():
     c_ssh2.libssh2_exit()
 
 
-def eagain_errcode(func, poller_func, *args, **kwargs):
-    """Helper function for reading in non-blocking mode.
-
-    Any additional arguments and keyword arguments provided are used as arguments to the session function `func`.
-
-    :param func: The session function to call to read data from.
-    :param poller_func: A python function to handle socket polling that takes no arguments.
-
-    :rtype:
-    """
-    ret = func(*args, **kwargs)
-    while ret == error_codes._LIBSSH2_ERROR_EAGAIN:
-        poller_func()
-        ret = func(*args, **kwargs)
-    return ret
-
-
-def eagain_write_errcode(write_func, poller_func, data):
-    """Helper function for writing in non-blocking mode.
-
-    Any additional arguments and keyword arguments provided are used as arguments to the session function `func`.
-
-    :param func: The session function to call to read data from.
-    :param poller_func: A python function to handle socket polling that takes no arguments.
-    """
-    cdef size_t data_len = len(data)
-    cdef size_t total_written = 0
-    while total_written < data_len:
-        rc, bytes_written = write_func(data[total_written:])
-        total_written += bytes_written
-        if rc == error_codes._LIBSSH2_ERROR_EAGAIN:
-            poller_func()
-
 
 def wait_socket(_socket not None, Session session, timeout=1):
     """Helper function for testing non-blocking mode.
