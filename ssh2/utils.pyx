@@ -15,6 +15,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 from select import select
+from typing import Iterable, Tuple
 
 from cpython.version cimport PY_MAJOR_VERSION
 
@@ -48,7 +49,7 @@ cdef object to_str_len(char *c_str, int length):
     return c_str[:length].decode(ENCODING)
 
 
-def find_eol(bytes buf, Py_ssize_t pos):
+def find_eol(bytes buf: bytes, Py_ssize_t pos: Py_ssize_t) -> Tuple(int, int):
     """Find end-of-line in buffer from position and return end position of
     line and where next find_eol should start from.
 
@@ -75,7 +76,7 @@ def find_eol(bytes buf, Py_ssize_t pos):
     return index, new_pos
 
 
-def readline(buf):
+def readline(buf: Iterable) -> Iterable:
     """Returns a generator of line by line output in given iterable buffer.
 
     :param buf: The iterable buffer to read from. Should yield a block of data per iteration.
@@ -109,7 +110,7 @@ def readline(buf):
         yield remainder
 
 
-def version(int required_version=0):
+def version(int required_version=0) -> str:
     """Get libssh2 version string.
 
     Passing in a non-zero required_version causes the function to return
@@ -123,7 +124,7 @@ def version(int required_version=0):
         version = c_ssh2.libssh2_version(required_version)
     if version is NULL:
         return
-    return version
+    return to_str(version)
 
 
 def ssh2_exit():
@@ -131,8 +132,7 @@ def ssh2_exit():
     c_ssh2.libssh2_exit()
 
 
-
-def wait_socket(_socket not None, Session session, timeout=1):
+def wait_socket(_socket not None, Session session: "Session", timeout=1):
     """Helper function for testing non-blocking mode.
 
     This function blocks the calling thread for <timeout> seconds -

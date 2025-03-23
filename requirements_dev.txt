@@ -1,5 +1,7 @@
 cython
-flake8
+flake8>=3.0.0
+flake8-annotations
+flake-type-annotations-plugin
 jinja2
 pytest
 pytest-rerunfailures

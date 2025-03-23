@@ -1,6 +1,19 @@
 Change Log
 =============
 
+1.1.3
+++++++
+
+Changes
+--------
+
+* ``ssh2.utils.version()`` now returns a string.
+
+Fixes
+-------
+
+
+
 1.1.2
 ++++++
 
