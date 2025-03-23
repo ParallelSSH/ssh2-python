@@ -8,5 +8,6 @@ recursive-exclude ci *
 include LICENSE
 include ssh2/*.pyx
 include ssh2/*.pxd
+include ssh2/*.pyi
 include ssh2/ext/find_eol*
 include ssh2/*.c

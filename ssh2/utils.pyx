@@ -15,7 +15,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 from select import select
-from typing import Iterable, Tuple
+from typing import Any, Iterable, Tuple
 
 from cpython.version cimport PY_MAJOR_VERSION
 
@@ -127,12 +127,12 @@ def version(int required_version=0) -> str:
     return to_str(version)
 
 
-def ssh2_exit():
+def ssh2_exit() -> None:
     """Call libssh2_exit"""
     c_ssh2.libssh2_exit()
 
 
-def wait_socket(_socket not None, Session session: "Session", timeout=1):
+def wait_socket(_socket not None, Session session: "Session", timeout=1) -> None:
     """Helper function for testing non-blocking mode.
 
     This function blocks the calling thread for <timeout> seconds -

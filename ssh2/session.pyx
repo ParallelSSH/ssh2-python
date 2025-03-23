@@ -14,6 +14,8 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
+from typing import Any
+
 from cpython cimport PyObject_AsFileDescriptor
 from libc.stdlib cimport malloc, free
 from libc.time cimport time_t
@@ -109,16 +111,18 @@ cdef class Session:
             c_ssh2.libssh2_session_free(self._session)
         self._session = NULL
 
-    def disconnect(self):
+    def disconnect(self) -> None:
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_session_disconnect(self._session, b"end")
         return handle_error_codes(rc)
 
-    def handshake(self, sock not None):
+    def handshake(self, sock not None) -> Any:
         """Perform SSH handshake.
 
-        Must be called after Session initialisation."""
+        Must be called after Session initialisation.
+        :param sock: A python compatible socket object.
+        """
         cdef int _sock = PyObject_AsFileDescriptor(sock)
         cdef int rc
         with nogil:
@@ -133,7 +137,7 @@ cdef class Session:
         cdef int rc = c_ssh2.libssh2_session_startup(self._session, _sock)
         return handle_error_codes(rc)
 
-    def set_blocking(self, bint blocking):
+    def set_blocking(self, bint blocking: bool) -> None:
         """Set session blocking mode on/off.
 
         :param blocking: ``False`` for non-blocking, ``True`` for blocking.
@@ -143,7 +147,7 @@ cdef class Session:
             c_ssh2.libssh2_session_set_blocking(
                 self._session, blocking)
 
-    def get_blocking(self):
+    def get_blocking(self) -> bool:
         """Get session blocking mode enabled True/False.
 
         :rtype: bool"""
@@ -152,7 +156,7 @@ cdef class Session:
             rc = c_ssh2.libssh2_session_get_blocking(self._session)
         return bool(rc)
 
-    def set_timeout(self, long timeout):
+    def set_timeout(self, long timeout) -> None:
         """Set the timeout in milliseconds for how long a blocking
         call may wait until the situation is considered an error and
         :py:class:`ssh2.error_codes.LIBSSH2_ERROR_TIMEOUT` is returned.
@@ -163,7 +167,7 @@ cdef class Session:
         with nogil:
             c_ssh2.libssh2_session_set_timeout(self._session, timeout)
 
-    def get_timeout(self):
+    def get_timeout(self) -> Any:
         """Get current session timeout setting"""
         cdef long timeout
         with nogil:

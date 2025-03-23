@@ -82,7 +82,13 @@ for ext in extensions:
     if ext.name == 'ssh2.utils':
         ext.sources.append('ssh2/ext/find_eol.c')
 
-package_data = {'ssh2': ['*.pxd', 'libssh2.so*']}
+package_data = {
+    'ssh2': [
+        '*.pxd',
+        'libssh2.so*',
+        'py.typed',
+    ]
+}
 
 if ON_WINDOWS:
     package_data['ssh2'].extend([

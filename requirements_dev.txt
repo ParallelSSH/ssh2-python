@@ -5,4 +5,5 @@ flake-type-annotations-plugin
 jinja2
 pytest
 pytest-rerunfailures
+mypy
 -r doc/requirements.txt
