@@ -87,6 +87,7 @@ package_data = {
     'ssh2': [
         '*.pxd',
         'libssh2.so*',
+        'py.typed',
     ]
 }
 
