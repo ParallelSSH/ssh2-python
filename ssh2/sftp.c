@@ -3738,7 +3738,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_4get_channel, "SFTP.get_channel(self)\nGet new channel from the SFTP session");
+PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_4get_channel, "get_channel(self)\nGet new channel from the SFTP session");
 static PyMethodDef __pyx_mdef_4ssh2_4sftp_4SFTP_5get_channel = {"get_channel", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_4sftp_4SFTP_5get_channel, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_4sftp_4SFTP_4get_channel};
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_5get_channel(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -3933,7 +3933,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_6open_ex, "SFTP.open_ex(self, const char *filename, unsigned int filename_len, unsigned long flags, long mode, int open_type)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_6open_ex, "open_ex(self, filename: bytes, filename_len: int, flags: int, mode: int, open_type: int)");
 static PyMethodDef __pyx_mdef_4ssh2_4sftp_4SFTP_7open_ex = {"open_ex", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_4sftp_4SFTP_7open_ex, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_4sftp_4SFTP_6open_ex};
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_7open_ex(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -4251,7 +4251,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_8open, "SFTP.open(self, filename, unsigned long flags, long mode)\nOpen file handle for file name.\n\n        :param filename: Name of file to open.\n        :type filename: str\n        :param flags: One or more LIBSSH2_FXF_* flags.\n\n          Eg for reading flags is ``LIBSSH2_FXF_READ``,\n\n          for writing ``LIBSSH2_FXF_WRITE``,\n\n          for both ``LIBSSH2_FXF_READ`` | ``LIBSSH2_FXF_WRITE``.\n        :type flags: int\n        :param mode: File permissions mode. ``LIBSSH2_SFTP_S_IRUSR`` for\n          reading.\n\n          For writing one or more ``LIBSSH2_SFTP_S_*`` flags.\n\n          Eg, for 664 permission mask (read/write owner/group, read other),\n\n          mode is\n\n          ``LIBSSH2_SFTP_S_IRUSR | LIBSSH2_SFTP_S_IWUSR | \\``\n          ``LIBSSH2_SFTP_S_IRGRP | LIBSSH2_SFTP_S_IWGRP | \\``\n          ``LIBSSH2_SFTP_S_IROTH``\n        :type mode: int\n\n        :rtype: :py:class:`ssh2.sftp.SFTPHandle` or `None`\n\n        :raises: :py:class:`ssh2.exceptions.SFTPHandleError` on errors opening\n          file.\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_8open, "open(self, filename, flags: int, mode: int)\nOpen file handle for file name.\n\n        :param filename: Name of file to open.\n        :type filename: str\n        :param flags: One or more LIBSSH2_FXF_* flags.\n\n          Eg for reading flags is ``LIBSSH2_FXF_READ``,\n\n          for writing ``LIBSSH2_FXF_WRITE``,\n\n          for both ``LIBSSH2_FXF_READ`` | ``LIBSSH2_FXF_WRITE``.\n        :type flags: int\n        :param mode: File permissions mode. ``LIBSSH2_SFTP_S_IRUSR`` for\n          reading.\n\n          For writing one or more ``LIBSSH2_SFTP_S_*`` flags.\n\n          Eg, for 664 permission mask (read/write owner/group, read other),\n\n          mode is\n\n          ``LIBSSH2_SFTP_S_IRUSR | LIBSSH2_SFTP_S_IWUSR | \\``\n          ``LIBSSH2_SFTP_S_IRGRP | LIBSSH2_SFTP_S_IWGRP | \\``\n          ``LIBSSH2_SFTP_S_IROTH``\n        :type mode: int\n\n        :rtype: :py:class:`ssh2.sftp.SFTPHandle` or `None`\n\n        :raises: :py:class:`ssh2.exceptions.SFTPHandleError` on errors opening\n          file.\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_4sftp_4SFTP_9open = {"open", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_4sftp_4SFTP_9open, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_4sftp_4SFTP_8open};
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_9open(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -4563,7 +4563,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_10opendir, "SFTP.opendir(self, path)\nOpen handle to directory path.\n\n        :param path: Path of directory\n        :type path: str\n\n        :rtype: :py:class:`ssh2.sftp.SFTPHandle` or `None`\n\n        :raises: :py:class:`ssh2.exceptions.SFTPHandleError` on errors opening\n          directory.\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_10opendir, "opendir(self, path)\nOpen handle to directory path.\n\n        :param path: Path of directory\n        :type path: str\n\n        :rtype: :py:class:`ssh2.sftp.SFTPHandle` or `None`\n\n        :raises: :py:class:`ssh2.exceptions.SFTPHandleError` on errors opening\n          directory.\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_4sftp_4SFTP_11opendir = {"opendir", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_4sftp_4SFTP_11opendir, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_4sftp_4SFTP_10opendir};
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_11opendir(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -4845,7 +4845,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_12rename_ex, "SFTP.rename_ex(self, const char *source_filename, unsigned int source_filename_len, const char *dest_filename, unsigned int dest_filename_len, long flags)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_12rename_ex, "rename_ex(self, source_filename: bytes, source_filename_len: int, dest_filename: bytes, dest_filename_len: int, flags: int)");
 static PyMethodDef __pyx_mdef_4ssh2_4sftp_4SFTP_13rename_ex = {"rename_ex", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_4sftp_4SFTP_13rename_ex, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_4sftp_4SFTP_12rename_ex};
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_13rename_ex(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5100,7 +5100,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_14rename, "SFTP.rename(self, source_filename, dest_filename)\nRename file.\n\n        :param source_filename: Old name of file.\n        :type source_filename: str\n        :param dest_filename: New name of file.\n        :type dest_filename: str");
+PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_14rename, "rename(self, source_filename, dest_filename)\nRename file.\n\n        :param source_filename: Old name of file.\n        :type source_filename: str\n        :param dest_filename: New name of file.\n        :type dest_filename: str");
 static PyMethodDef __pyx_mdef_4ssh2_4sftp_4SFTP_15rename = {"rename", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_4sftp_4SFTP_15rename, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_4sftp_4SFTP_14rename};
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_15rename(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5379,7 +5379,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_16unlink, "SFTP.unlink(self, filename)\nDelete/unlink file.\n\n        :param filename: Name of file to delete/unlink.\n        :type filename: str");
+PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_16unlink, "unlink(self, filename)\nDelete/unlink file.\n\n        :param filename: Name of file to delete/unlink.\n        :type filename: str");
 static PyMethodDef __pyx_mdef_4ssh2_4sftp_4SFTP_17unlink = {"unlink", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_4sftp_4SFTP_17unlink, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_4sftp_4SFTP_16unlink};
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_17unlink(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5611,7 +5611,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_18statvfs, "SFTP.statvfs(self, path)\nGet file system statistics from path.\n\n        :rtype: `ssh2.sftp.SFTPStatVFS` or int of error code");
+PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_18statvfs, "statvfs(self, path)\nGet file system statistics from path.\n\n        :rtype: `ssh2.sftp.SFTPStatVFS` or int of error code");
 static PyMethodDef __pyx_mdef_4ssh2_4sftp_4SFTP_19statvfs = {"statvfs", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_4sftp_4SFTP_19statvfs, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_4sftp_4SFTP_18statvfs};
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_19statvfs(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5877,7 +5877,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_20mkdir, "SFTP.mkdir(self, path, long mode)\nMake directory.\n\n        :param path: Path of directory to create.\n        :type path: str\n        :param mode: Permissions mode of new directory.\n        :type mode: int\n\n        :rtype: int\n\n        :raises: Appropriate exception from :py:mod:`ssh2.exceptions` on errors.\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_20mkdir, "mkdir(self, path, mode: int)\nMake directory.\n\n        :param path: Path of directory to create.\n        :type path: str\n        :param mode: Permissions mode of new directory.\n        :type mode: int\n\n        :rtype: int\n\n        :raises: Appropriate exception from :py:mod:`ssh2.exceptions` on errors.\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_4sftp_4SFTP_21mkdir = {"mkdir", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_4sftp_4SFTP_21mkdir, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_4sftp_4SFTP_20mkdir};
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_21mkdir(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6124,7 +6124,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_22rmdir, "SFTP.rmdir(self, path)\nRemove directory.\n\n        :param path: Directory path to remove.\n        :type path: str\n\n        :rtype: int");
+PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_22rmdir, "rmdir(self, path)\nRemove directory.\n\n        :param path: Directory path to remove.\n        :type path: str\n\n        :rtype: int");
 static PyMethodDef __pyx_mdef_4ssh2_4sftp_4SFTP_23rmdir = {"rmdir", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_4sftp_4SFTP_23rmdir, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_4sftp_4SFTP_22rmdir};
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_23rmdir(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6356,7 +6356,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_24stat, "SFTP.stat(self, path)\nStat file.\n\n        :param path: Path of file to stat.\n        :type path: str\n\n        :rtype: :py:class:`ssh2.sftp_handle.SFTPAttributes` or\n          LIBSSH2_ERROR_EAGAIN");
+PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_24stat, "stat(self, path)\nStat file.\n\n        :param path: Path of file to stat.\n        :type path: str\n\n        :rtype: :py:class:`ssh2.sftp_handle.SFTPAttributes` or\n          LIBSSH2_ERROR_EAGAIN");
 static PyMethodDef __pyx_mdef_4ssh2_4sftp_4SFTP_25stat = {"stat", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_4sftp_4SFTP_25stat, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_4sftp_4SFTP_24stat};
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_25stat(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6613,7 +6613,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_26lstat, "SFTP.lstat(self, path)\nLink stat a file.");
+PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_26lstat, "lstat(self, path)\nLink stat a file.");
 static PyMethodDef __pyx_mdef_4ssh2_4sftp_4SFTP_27lstat = {"lstat", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_4sftp_4SFTP_27lstat, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_4sftp_4SFTP_26lstat};
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_27lstat(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6870,7 +6870,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_28setstat, "SFTP.setstat(self, path, SFTPAttributes attrs)\nSet file attributes.\n\n        :param path: File path.\n        :type path: str\n        :param attrs: File attributes to set.\n        :type attrs: :py:class:`ssh2.sftp_handle.SFTPAttributes`\n\n        :rtype: int");
+PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_28setstat, "setstat(self, path, attrs: SFTPAttributes)\nSet file attributes.\n\n        :param path: File path.\n        :type path: str\n        :param attrs: File attributes to set.\n        :type attrs: :py:class:`ssh2.sftp_handle.SFTPAttributes`\n\n        :rtype: int");
 static PyMethodDef __pyx_mdef_4ssh2_4sftp_4SFTP_29setstat = {"setstat", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_4sftp_4SFTP_29setstat, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_4sftp_4SFTP_28setstat};
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_29setstat(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -7118,7 +7118,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_30symlink, "SFTP.symlink(self, path, target)\nCreate symlink.\n\n        :param path: Source file path.\n        :type path: str\n        :param target: Target file path.\n        :type target: str\n\n        :rtype: int");
+PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_30symlink, "symlink(self, path, target)\nCreate symlink.\n\n        :param path: Source file path.\n        :type path: str\n        :param target: Target file path.\n        :type target: str\n\n        :rtype: int");
 static PyMethodDef __pyx_mdef_4ssh2_4sftp_4SFTP_31symlink = {"symlink", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_4sftp_4SFTP_31symlink, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_4sftp_4SFTP_30symlink};
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_31symlink(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -7397,7 +7397,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_32realpath, "SFTP.realpath(self, path, size_t max_len=256)\nGet real path for path.\n\n        :param: Path name to get real path for.\n        :type param: str\n        :param max_len: Max size of returned real path.\n        :type max_len: int\n\n        :raises: :py:class:`ssh2.exceptions.SFTPHandleError` on errors getting\n          real path.\n        :raises: :py:class:`ssh2.exceptions.SFTPBufferTooSmall` on max_len less\n          than real path length.");
+PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_32realpath, "realpath(self, path, max_len: int = 256)\nGet real path for path.\n\n        :param: Path name to get real path for.\n        :type param: str\n        :param max_len: Max size of returned real path.\n        :type max_len: int\n\n        :raises: :py:class:`ssh2.exceptions.SFTPHandleError` on errors getting\n          real path.\n        :raises: :py:class:`ssh2.exceptions.SFTPBufferTooSmall` on max_len less\n          than real path length.");
 static PyMethodDef __pyx_mdef_4ssh2_4sftp_4SFTP_33realpath = {"realpath", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_4sftp_4SFTP_33realpath, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_4sftp_4SFTP_32realpath};
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_33realpath(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -7839,7 +7839,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_34last_error, "SFTP.last_error(self)\nGet last error code from SFTP channel.\n\n        :rtype: int");
+PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_34last_error, "last_error(self)\nGet last error code from SFTP channel.\n\n        :rtype: int");
 static PyMethodDef __pyx_mdef_4ssh2_4sftp_4SFTP_35last_error = {"last_error", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_4sftp_4SFTP_35last_error, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_4sftp_4SFTP_34last_error};
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_35last_error(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -7972,7 +7972,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_36__reduce_cython__, "SFTP.__reduce_cython__(self)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_36__reduce_cython__, "__reduce_cython__(self)");
 static PyMethodDef __pyx_mdef_4ssh2_4sftp_4SFTP_37__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_4sftp_4SFTP_37__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_4sftp_4SFTP_36__reduce_cython__};
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_37__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -8053,7 +8053,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_38__setstate_cython__, "SFTP.__setstate_cython__(self, __pyx_state)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_4sftp_4SFTP_38__setstate_cython__, "__setstate_cython__(self, __pyx_state)");
 static PyMethodDef __pyx_mdef_4ssh2_4sftp_4SFTP_39__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_4sftp_4SFTP_39__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_4sftp_4SFTP_38__setstate_cython__};
 static PyObject *__pyx_pw_4ssh2_4sftp_4SFTP_39__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL

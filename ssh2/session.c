@@ -2625,6 +2625,7 @@ static const char __pyx_k_sftp[] = "_sftp";
 static const char __pyx_k_size[] = "size";
 static const char __pyx_k_sock[] = "sock";
 static const char __pyx_k_test[] = "__test__";
+static const char __pyx_k_Any_2[] = "'Any'";
 static const char __pyx_k_agent[] = "agent";
 static const char __pyx_k_atime[] = "atime";
 static const char __pyx_k_key_2[] = "_key";
@@ -2698,6 +2699,7 @@ static const char __pyx_k_b_hostname[] = "b_hostname";
 static const char __pyx_k_b_password[] = "b_password";
 static const char __pyx_k_b_username[] = "b_username";
 static const char __pyx_k_bound_port[] = "bound_port";
+static const char __pyx_k_bytes_None[] = "bytes | None";
 static const char __pyx_k_disconnect[] = "disconnect";
 static const char __pyx_k_errmsg_len[] = "errmsg_len";
 static const char __pyx_k_exceptions[] = "exceptions";
@@ -3056,6 +3058,7 @@ typedef struct {
   PyTypeObject *__pyx_ptype_4ssh2_7session___pyx_scope_struct__userauth_keyboardinteractive;
   PyObject *__pyx_kp_u_;
   PyObject *__pyx_n_s_Any;
+  PyObject *__pyx_kp_s_Any_2;
   PyObject *__pyx_n_s_ChannelError;
   PyObject *__pyx_kp_u_Error_retrieving_server_host_key;
   PyObject *__pyx_n_s_KnownHostError;
@@ -3160,6 +3163,7 @@ typedef struct {
   PyObject *__pyx_n_s_blocking;
   PyObject *__pyx_n_s_bool;
   PyObject *__pyx_n_s_bound_port;
+  PyObject *__pyx_kp_s_bytes_None;
   PyObject *__pyx_n_s_c_algs;
   PyObject *__pyx_n_s_c_prefs;
   PyObject *__pyx_n_s_c_seconds;
@@ -3442,6 +3446,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_type_4ssh2_7session___pyx_scope_struct__userauth_keyboardinteractive);
   Py_CLEAR(clear_module_state->__pyx_kp_u_);
   Py_CLEAR(clear_module_state->__pyx_n_s_Any);
+  Py_CLEAR(clear_module_state->__pyx_kp_s_Any_2);
   Py_CLEAR(clear_module_state->__pyx_n_s_ChannelError);
   Py_CLEAR(clear_module_state->__pyx_kp_u_Error_retrieving_server_host_key);
   Py_CLEAR(clear_module_state->__pyx_n_s_KnownHostError);
@@ -3546,6 +3551,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_blocking);
   Py_CLEAR(clear_module_state->__pyx_n_s_bool);
   Py_CLEAR(clear_module_state->__pyx_n_s_bound_port);
+  Py_CLEAR(clear_module_state->__pyx_kp_s_bytes_None);
   Py_CLEAR(clear_module_state->__pyx_n_s_c_algs);
   Py_CLEAR(clear_module_state->__pyx_n_s_c_prefs);
   Py_CLEAR(clear_module_state->__pyx_n_s_c_seconds);
@@ -3806,6 +3812,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_type_4ssh2_7session___pyx_scope_struct__userauth_keyboardinteractive);
   Py_VISIT(traverse_module_state->__pyx_kp_u_);
   Py_VISIT(traverse_module_state->__pyx_n_s_Any);
+  Py_VISIT(traverse_module_state->__pyx_kp_s_Any_2);
   Py_VISIT(traverse_module_state->__pyx_n_s_ChannelError);
   Py_VISIT(traverse_module_state->__pyx_kp_u_Error_retrieving_server_host_key);
   Py_VISIT(traverse_module_state->__pyx_n_s_KnownHostError);
@@ -3910,6 +3917,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_blocking);
   Py_VISIT(traverse_module_state->__pyx_n_s_bool);
   Py_VISIT(traverse_module_state->__pyx_n_s_bound_port);
+  Py_VISIT(traverse_module_state->__pyx_kp_s_bytes_None);
   Py_VISIT(traverse_module_state->__pyx_n_s_c_algs);
   Py_VISIT(traverse_module_state->__pyx_n_s_c_prefs);
   Py_VISIT(traverse_module_state->__pyx_n_s_c_seconds);
@@ -4298,6 +4306,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_ptype_4ssh2_7session___pyx_scope_struct__userauth_keyboardinteractive __pyx_mstate_global->__pyx_ptype_4ssh2_7session___pyx_scope_struct__userauth_keyboardinteractive
 #define __pyx_kp_u_ __pyx_mstate_global->__pyx_kp_u_
 #define __pyx_n_s_Any __pyx_mstate_global->__pyx_n_s_Any
+#define __pyx_kp_s_Any_2 __pyx_mstate_global->__pyx_kp_s_Any_2
 #define __pyx_n_s_ChannelError __pyx_mstate_global->__pyx_n_s_ChannelError
 #define __pyx_kp_u_Error_retrieving_server_host_key __pyx_mstate_global->__pyx_kp_u_Error_retrieving_server_host_key
 #define __pyx_n_s_KnownHostError __pyx_mstate_global->__pyx_n_s_KnownHostError
@@ -4402,6 +4411,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_blocking __pyx_mstate_global->__pyx_n_s_blocking
 #define __pyx_n_s_bool __pyx_mstate_global->__pyx_n_s_bool
 #define __pyx_n_s_bound_port __pyx_mstate_global->__pyx_n_s_bound_port
+#define __pyx_kp_s_bytes_None __pyx_mstate_global->__pyx_kp_s_bytes_None
 #define __pyx_n_s_c_algs __pyx_mstate_global->__pyx_n_s_c_algs
 #define __pyx_n_s_c_prefs __pyx_mstate_global->__pyx_n_s_c_prefs
 #define __pyx_n_s_c_seconds __pyx_mstate_global->__pyx_n_s_c_seconds
@@ -5054,7 +5064,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_10MethodType_2__reduce_cython__, "MethodType.__reduce_cython__(self)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_10MethodType_2__reduce_cython__, "__reduce_cython__(self)");
 static PyMethodDef __pyx_mdef_4ssh2_7session_10MethodType_3__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_10MethodType_3__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_10MethodType_2__reduce_cython__};
 static PyObject *__pyx_pw_4ssh2_7session_10MethodType_3__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5135,7 +5145,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_10MethodType_4__setstate_cython__, "MethodType.__setstate_cython__(self, __pyx_state)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_10MethodType_4__setstate_cython__, "__setstate_cython__(self, __pyx_state)");
 static PyMethodDef __pyx_mdef_4ssh2_7session_10MethodType_5__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_10MethodType_5__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_10MethodType_4__setstate_cython__};
 static PyObject *__pyx_pw_4ssh2_7session_10MethodType_5__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5702,7 +5712,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_4disconnect, "Session.disconnect(self) -> None");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_4disconnect, "disconnect(self) -> None");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_5disconnect = {"disconnect", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_5disconnect, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_4disconnect};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_5disconnect(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5842,7 +5852,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_6handshake, "Session.handshake(self, sock) -> Any\nPerform SSH handshake.\n\n        Must be called after Session initialisation.\n        :param sock: A python compatible socket object.\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_6handshake, "handshake(self, sock) -> Any\nPerform SSH handshake.\n\n        Must be called after Session initialisation.\n        :param sock: A python compatible socket object.\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_7handshake = {"handshake", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_7handshake, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_6handshake};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_7handshake(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6077,7 +6087,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_8startup, "Session.startup(self, sock)\nDeprecated - use self.handshake");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_8startup, "startup(self, sock)\nDeprecated - use self.handshake");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_9startup = {"startup", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_9startup, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_8startup};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_9startup(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6247,7 +6257,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_10set_blocking, "Session.set_blocking(self, bool blocking: bool) -> None\nSet session blocking mode on/off.\n\n        :param blocking: ``False`` for non-blocking, ``True`` for blocking.\n          Session default is blocking unless set otherwise.\n        :type blocking: bool");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_10set_blocking, "set_blocking(self, blocking: bool) -> None\nSet session blocking mode on/off.\n\n        :param blocking: ``False`` for non-blocking, ``True`` for blocking.\n          Session default is blocking unless set otherwise.\n        :type blocking: bool");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_11set_blocking = {"set_blocking", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_11set_blocking, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_10set_blocking};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_11set_blocking(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6417,7 +6427,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_12get_blocking, "Session.get_blocking(self) -> bool\nGet session blocking mode enabled True/False.\n\n        :rtype: bool");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_12get_blocking, "get_blocking(self) -> bool\nGet session blocking mode enabled True/False.\n\n        :rtype: bool");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_13get_blocking = {"get_blocking", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_13get_blocking, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_12get_blocking};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_13get_blocking(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6560,7 +6570,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_14set_timeout, "Session.set_timeout(self, long timeout) -> None\nSet the timeout in milliseconds for how long a blocking\n        call may wait until the situation is considered an error and\n        :py:class:`ssh2.error_codes.LIBSSH2_ERROR_TIMEOUT` is returned.\n\n        By default or if timeout set is zero, blocking calls do not\n        time out.\n        :param timeout: Milliseconds to wait before timeout.");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_14set_timeout, "set_timeout(self, timeout: int) -> None\nSet the timeout in milliseconds for how long a blocking\n        call may wait until the situation is considered an error and\n        :py:class:`ssh2.error_codes.LIBSSH2_ERROR_TIMEOUT` is returned.\n\n        By default or if timeout set is zero, blocking calls do not\n        time out.\n        :param timeout: Milliseconds to wait before timeout.");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_15set_timeout = {"set_timeout", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_15set_timeout, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_14set_timeout};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_15set_timeout(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6675,7 +6685,7 @@ static PyObject *__pyx_pf_4ssh2_7session_7Session_14set_timeout(struct __pyx_obj
  *         with nogil:
  *             c_ssh2.libssh2_session_set_timeout(self._session, timeout)             # <<<<<<<<<<<<<<
  * 
- *     def get_timeout(self) -> Any:
+ *     def get_timeout(self) -> 'Any':
  */
         libssh2_session_set_timeout(__pyx_v_self->_session, __pyx_v_timeout);
       }
@@ -6717,7 +6727,7 @@ static PyObject *__pyx_pf_4ssh2_7session_7Session_14set_timeout(struct __pyx_obj
 /* "ssh2/session.pyx":170
  *             c_ssh2.libssh2_session_set_timeout(self._session, timeout)
  * 
- *     def get_timeout(self) -> Any:             # <<<<<<<<<<<<<<
+ *     def get_timeout(self) -> 'Any':             # <<<<<<<<<<<<<<
  *         """Get current session timeout setting"""
  *         cdef long timeout
  */
@@ -6730,7 +6740,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_16get_timeout, "Session.get_timeout(self) -> Any\nGet current session timeout setting");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_16get_timeout, "get_timeout(self) -> 'Any'\nGet current session timeout setting");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_17get_timeout = {"get_timeout", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_17get_timeout, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_16get_timeout};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_17get_timeout(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6836,7 +6846,7 @@ static PyObject *__pyx_pf_4ssh2_7session_7Session_16get_timeout(struct __pyx_obj
   /* "ssh2/session.pyx":170
  *             c_ssh2.libssh2_session_set_timeout(self._session, timeout)
  * 
- *     def get_timeout(self) -> Any:             # <<<<<<<<<<<<<<
+ *     def get_timeout(self) -> 'Any':             # <<<<<<<<<<<<<<
  *         """Get current session timeout setting"""
  *         cdef long timeout
  */
@@ -6868,7 +6878,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_18userauth_authenticated, "Session.userauth_authenticated(self)\nTrue/False for is user authenticated or not.\n\n        :rtype: bool");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_18userauth_authenticated, "userauth_authenticated(self)\nTrue/False for is user authenticated or not.\n\n        :rtype: bool");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_19userauth_authenticated = {"userauth_authenticated", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_19userauth_authenticated, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_18userauth_authenticated};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_19userauth_authenticated(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -7008,7 +7018,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_20userauth_list, "Session.userauth_list(self, username)\nRetrieve available authentication methodslist.\n\n        :rtype: list");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_20userauth_list, "userauth_list(self, username)\nRetrieve available authentication methodslist.\n\n        :rtype: list");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_21userauth_list = {"userauth_list", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_21userauth_list, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_20userauth_list};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_21userauth_list(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -7304,7 +7314,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_22userauth_publickey_fromfile, "Session.userauth_publickey_fromfile(self, username, privatekey, passphrase=u'', publickey=None)\nAuthenticate with public key from file.\n\n        :rtype: int");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_22userauth_publickey_fromfile, "userauth_publickey_fromfile(self, username, privatekey, passphrase=u'', publickey=None)\nAuthenticate with public key from file.\n\n        :rtype: int");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_23userauth_publickey_fromfile = {"userauth_publickey_fromfile", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_23userauth_publickey_fromfile, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_22userauth_publickey_fromfile};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_23userauth_publickey_fromfile(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -7751,7 +7761,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_24userauth_publickey, "Session.userauth_publickey(self, username, bytes pubkeydata)\nPerform public key authentication with provided public key data\n\n        :param username: User name to authenticate as\n        :type username: str\n        :param pubkeydata: Public key data\n        :type pubkeydata: bytes\n\n        :rtype: int");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_24userauth_publickey, "userauth_publickey(self, username, pubkeydata: bytes)\nPerform public key authentication with provided public key data\n\n        :param username: User name to authenticate as\n        :type username: str\n        :param pubkeydata: Public key data\n        :type pubkeydata: bytes\n\n        :rtype: int");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_25userauth_publickey = {"userauth_publickey", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_25userauth_publickey, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_24userauth_publickey};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_25userauth_publickey(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -8023,7 +8033,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_26userauth_hostbased_fromfile, "Session.userauth_hostbased_fromfile(self, username, privatekey, hostname, publickey=None, passphrase=u'')");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_26userauth_hostbased_fromfile, "userauth_hostbased_fromfile(self, username, privatekey, hostname, publickey=None, passphrase=u'')");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_27userauth_hostbased_fromfile = {"userauth_hostbased_fromfile", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_27userauth_hostbased_fromfile, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_26userauth_hostbased_fromfile};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_27userauth_hostbased_fromfile(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -8506,7 +8516,7 @@ static PyObject *__pyx_pf_4ssh2_7session_7Session_26userauth_hostbased_fromfile(
  * 
  *     def userauth_publickey_frommemory(             # <<<<<<<<<<<<<<
  *             self, username, bytes privatekeyfiledata,
- *             passphrase='', bytes publickeyfiledata=None):
+ *             passphrase='', bytes publickeyfiledata: bytes | None=None):
  */
 
 /* Python wrapper */
@@ -8517,7 +8527,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_28userauth_publickey_frommemory, "Session.userauth_publickey_frommemory(self, username, bytes privatekeyfiledata, passphrase=u'', bytes publickeyfiledata=None)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_28userauth_publickey_frommemory, "userauth_publickey_frommemory(self, username, privatekeyfiledata: bytes, passphrase=u'', publickeyfiledata: bytes | None = None)");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_29userauth_publickey_frommemory = {"userauth_publickey_frommemory", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_29userauth_publickey_frommemory, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_28userauth_publickey_frommemory};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_29userauth_publickey_frommemory(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -8556,7 +8566,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
     /* "ssh2/session.pyx":276
  *     def userauth_publickey_frommemory(
  *             self, username, bytes privatekeyfiledata,
- *             passphrase='', bytes publickeyfiledata=None):             # <<<<<<<<<<<<<<
+ *             passphrase='', bytes publickeyfiledata: bytes | None=None):             # <<<<<<<<<<<<<<
  *         cdef int rc
  *         cdef bytes b_username = to_bytes(username)
  */
@@ -8655,7 +8665,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
  * 
  *     def userauth_publickey_frommemory(             # <<<<<<<<<<<<<<
  *             self, username, bytes privatekeyfiledata,
- *             passphrase='', bytes publickeyfiledata=None):
+ *             passphrase='', bytes publickeyfiledata: bytes | None=None):
  */
 
   /* function exit code */
@@ -8698,7 +8708,7 @@ static PyObject *__pyx_pf_4ssh2_7session_7Session_28userauth_publickey_frommemor
   __Pyx_RefNannySetupContext("userauth_publickey_frommemory", 1);
 
   /* "ssh2/session.pyx":278
- *             passphrase='', bytes publickeyfiledata=None):
+ *             passphrase='', bytes publickeyfiledata: bytes | None=None):
  *         cdef int rc
  *         cdef bytes b_username = to_bytes(username)             # <<<<<<<<<<<<<<
  *         cdef bytes b_passphrase = to_bytes(passphrase)
@@ -8913,7 +8923,7 @@ static PyObject *__pyx_pf_4ssh2_7session_7Session_28userauth_publickey_frommemor
  * 
  *     def userauth_publickey_frommemory(             # <<<<<<<<<<<<<<
  *             self, username, bytes privatekeyfiledata,
- *             passphrase='', bytes publickeyfiledata=None):
+ *             passphrase='', bytes publickeyfiledata: bytes | None=None):
  */
 
   /* function exit code */
@@ -8945,7 +8955,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_30userauth_password, "Session.userauth_password(self, username, password)\nPerform password authentication\n\n        :param username: User name to authenticate.\n        :type username: str\n        :param password: Password\n        :type password: str");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_30userauth_password, "userauth_password(self, username, password)\nPerform password authentication\n\n        :param username: User name to authenticate.\n        :type username: str\n        :param password: Password\n        :type password: str");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_31userauth_password = {"userauth_password", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_31userauth_password, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_30userauth_password};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_31userauth_password(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -9225,7 +9235,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_32userauth_keyboardinteractive, "Session.userauth_keyboardinteractive(self, username, password)\nPerform keyboard-interactive authentication\n\n        :param username: User name to authenticate.\n        :type username: str\n        :param password: Password\n        :type password: str\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_32userauth_keyboardinteractive, "userauth_keyboardinteractive(self, username, password)\nPerform keyboard-interactive authentication\n\n        :param username: User name to authenticate.\n        :type username: str\n        :param password: Password\n        :type password: str\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_33userauth_keyboardinteractive = {"userauth_keyboardinteractive", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_33userauth_keyboardinteractive, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_32userauth_keyboardinteractive};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_33userauth_keyboardinteractive(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -9567,7 +9577,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_34agent_init, "Session.agent_init(self)\nInitialise SSH agent.\n\n        :rtype: :py:class:`ssh2.agent.Agent`\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_34agent_init, "agent_init(self)\nInitialise SSH agent.\n\n        :rtype: :py:class:`ssh2.agent.Agent`\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_35agent_init = {"agent_init", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_35agent_init, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_34agent_init};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_35agent_init(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -9714,7 +9724,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_36agent_auth, "Session.agent_auth(self, username)\nConvenience function for performing user authentication via SSH Agent.\n\n        Initialises, connects to, gets list of identities from and attempts\n        authentication with each identity from SSH agent.\n\n        Note that agent connections cannot be used in non-blocking mode -\n        clients should call `set_blocking(0)` *after* calling this function.\n\n        On completion, or any errors, agent is disconnected and resources freed.\n\n        All steps are performed in C space which makes this function perform\n        better than calling the individual Agent class functions from\n        Python.\n\n        :raises: :py:class:`MemoryError` on error initialising agent\n        :raises: :py:class:`ssh2.exceptions.AgentConnectionError` on error\n          connecting to agent\n        :raises: :py:class:`ssh2.exceptions.AgentListIdentitiesError` on error\n          getting identities from agent\n        :raises: :py:class:`ssh2.exceptions.AgentAuthenticationError` on no\n          successful authentication with all available identities.\n        :raises: :py:class:`ssh2.exceptions.AgentGetIdentityError` on error\n          getting known identity from agent\n\n        :rtype: None");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_36agent_auth, "agent_auth(self, username)\nConvenience function for performing user authentication via SSH Agent.\n\n        Initialises, connects to, gets list of identities from and attempts\n        authentication with each identity from SSH agent.\n\n        Note that agent connections cannot be used in non-blocking mode -\n        clients should call `set_blocking(0)` *after* calling this function.\n\n        On completion, or any errors, agent is disconnected and resources freed.\n\n        All steps are performed in C space which makes this function perform\n        better than calling the individual Agent class functions from\n        Python.\n\n        :raises: :py:class:`MemoryError` on error initialising agent\n        :raises: :py:class:`ssh2.exceptions.AgentConnectionError` on error\n          connecting to agent\n        :raises: :py:class:`ssh2.exceptions.AgentListIdentitiesError` on error\n          getting identities from agent\n        :raises: :py:class:`ssh2.exceptions.AgentAuthenticationError` on no\n          successful authentication with all available identities.\n        :raises: :py:class:`ssh2.exceptions.AgentGetIdentityError` on error\n          getting known identity from agent\n\n        :rtype: None");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_37agent_auth = {"agent_auth", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_37agent_auth, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_36agent_auth};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_37agent_auth(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -9980,7 +9990,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_38open_session, "Session.open_session(self)\nOpen new channel session.\n\n        :rtype: :py:class:`ssh2.channel.Channel`\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_38open_session, "open_session(self)\nOpen new channel session.\n\n        :rtype: :py:class:`ssh2.channel.Channel`\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_39open_session = {"open_session", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_39open_session, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_38open_session};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_39open_session(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -10170,7 +10180,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_40direct_tcpip_ex, "Session.direct_tcpip_ex(self, host, int port, shost, int sport)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_40direct_tcpip_ex, "direct_tcpip_ex(self, host, port: int, shost, sport: int)");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_41direct_tcpip_ex = {"direct_tcpip_ex", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_41direct_tcpip_ex, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_40direct_tcpip_ex};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_41direct_tcpip_ex(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -10529,7 +10539,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_42direct_tcpip, "Session.direct_tcpip(self, host, int port)\nOpen direct TCP/IP channel to host:port\n\n        Channel will be listening on an available open port on client side\n        as assigned by OS.\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_42direct_tcpip, "direct_tcpip(self, host, port: int)\nOpen direct TCP/IP channel to host:port\n\n        Channel will be listening on an available open port on client side\n        as assigned by OS.\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_43direct_tcpip = {"direct_tcpip", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_43direct_tcpip, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_42direct_tcpip};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_43direct_tcpip(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -10826,7 +10836,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_44block_directions, "Session.block_directions(self)\nGet blocked directions for the current session.\n\n        From libssh2 documentation:\n\n        Can be a combination of:\n\n        ``ssh2.session.LIBSSH2_SESSION_BLOCK_INBOUND``: Inbound direction\n        blocked.\n\n        ``ssh2.session.LIBSSH2_SESSION_BLOCK_OUTBOUND``: Outbound direction\n        blocked.\n\n        Application should wait for data to be available for socket prior to\n        calling a libssh2 function again. If ``LIBSSH2_SESSION_BLOCK_INBOUND``\n        is set select should contain the session socket in readfds set.\n\n        Correspondingly in case of ``LIBSSH2_SESSION_BLOCK_OUTBOUND`` writefds\n        set should contain the socket.\n\n        :rtype: int");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_44block_directions, "block_directions(self)\nGet blocked directions for the current session.\n\n        From libssh2 documentation:\n\n        Can be a combination of:\n\n        ``ssh2.session.LIBSSH2_SESSION_BLOCK_INBOUND``: Inbound direction\n        blocked.\n\n        ``ssh2.session.LIBSSH2_SESSION_BLOCK_OUTBOUND``: Outbound direction\n        blocked.\n\n        Application should wait for data to be available for socket prior to\n        calling a libssh2 function again. If ``LIBSSH2_SESSION_BLOCK_INBOUND``\n        is set select should contain the session socket in readfds set.\n\n        Correspondingly in case of ``LIBSSH2_SESSION_BLOCK_OUTBOUND`` writefds\n        set should contain the socket.\n\n        :rtype: int");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_45block_directions = {"block_directions", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_45block_directions, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_44block_directions};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_45block_directions(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -10964,7 +10974,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_46forward_listen, "Session.forward_listen(self, int port)\nCreate forward listener on port.\n\n        :param port: Port to listen on.\n        :type port: int\n\n        :rtype: :py:class:`ssh2.listener.Listener` or None");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_46forward_listen, "forward_listen(self, port: int)\nCreate forward listener on port.\n\n        :param port: Port to listen on.\n        :type port: int\n\n        :rtype: :py:class:`ssh2.listener.Listener` or None");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_47forward_listen = {"forward_listen", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_47forward_listen, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_46forward_listen};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_47forward_listen(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -11209,7 +11219,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_48forward_listen_ex, "Session.forward_listen_ex(self, int queue_maxsize, host=None, int port=0)\n\n        Instruct the remote SSH server to begin listening for inbound\n        TCP/IP connections. New connections will be queued by the library\n        until accepted by ``ssh2.channel.Channel.forward_accept``.\n\n        :param queue_maxsize: Maximum number of pending connections to queue\n          before rejecting further attempts.\n        :type queue_maxsize: int\n        :param host:  Address to bind to on the remote host. Binding\n          to 0.0.0.0 (default when `None` is passed) will bind to all available\n          addresses.\n        :type host: str\n        :param port: port to bind to on the remote host. When 0 is passed\n          (the default), the remote host will select the first available\n          dynamic port.\n        :type port: int\n        :returns: (listener, bound_port) tuple where bound_port is the\n          listen port bound on the remote host. Useful when requesting\n          dynamic port numbers.\n        :rtype: (:py:class:`ssh2.listener.Listener`, int)\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_48forward_listen_ex, "forward_listen_ex(self, queue_maxsize: int, host=None, port: int = 0)\n\n        Instruct the remote SSH server to begin listening for inbound\n        TCP/IP connections. New connections will be queued by the library\n        until accepted by ``ssh2.channel.Channel.forward_accept``.\n\n        :param queue_maxsize: Maximum number of pending connections to queue\n          before rejecting further attempts.\n        :type queue_maxsize: int\n        :param host:  Address to bind to on the remote host. Binding\n          to 0.0.0.0 (default when `None` is passed) will bind to all available\n          addresses.\n        :type host: str\n        :param port: port to bind to on the remote host. When 0 is passed\n          (the default), the remote host will select the first available\n          dynamic port.\n        :type port: int\n        :returns: (listener, bound_port) tuple where bound_port is the\n          listen port bound on the remote host. Useful when requesting\n          dynamic port numbers.\n        :rtype: (:py:class:`ssh2.listener.Listener`, int)\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_49forward_listen_ex = {"forward_listen_ex", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_49forward_listen_ex, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_48forward_listen_ex};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_49forward_listen_ex(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -11586,7 +11596,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_50sftp_init, "Session.sftp_init(self)\nInitialise SFTP channel.\n\n        :rtype: :py:class:`ssh2.sftp.SFTP`\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_50sftp_init, "sftp_init(self)\nInitialise SFTP channel.\n\n        :rtype: :py:class:`ssh2.sftp.SFTP`\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_51sftp_init = {"sftp_init", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_51sftp_init, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_50sftp_init};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_51sftp_init(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -11776,7 +11786,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_52last_error, "Session.last_error(self, size_t msg_size=1024)\nRetrieve last error message from libssh2, if any.\n        Returns empty string on no error message.\n\n        :rtype: str\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_52last_error, "last_error(self, msg_size: int = 1024)\nRetrieve last error message from libssh2, if any.\n        Returns empty string on no error message.\n\n        :rtype: str\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_53last_error = {"last_error", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_53last_error, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_52last_error};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_53last_error(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -12109,7 +12119,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_54last_errno, "Session.last_errno(self)\nRetrieve last error number from libssh2, if any.\n        Returns 0 on no last error.\n\n        :rtype: int\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_54last_errno, "last_errno(self)\nRetrieve last error number from libssh2, if any.\n        Returns 0 on no last error.\n\n        :rtype: int\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_55last_errno = {"last_errno", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_55last_errno, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_54last_errno};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_55last_errno(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -12247,7 +12257,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_56set_last_error, "Session.set_last_error(self, int errcode, errmsg)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_56set_last_error, "set_last_error(self, errcode: int, errmsg)");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_57set_last_error = {"set_last_error", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_57set_last_error, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_56set_last_error};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_57set_last_error(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -12492,7 +12502,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_58scp_recv, "Session.scp_recv(self, path)\nReceive file via SCP.\n\n        Deprecated in favour or recv2 (requires libssh2 >= 1.7).\n\n        :param path: File path to receive.\n        :type path: str\n\n        :rtype: tuple(:py:class:`ssh2.channel.Channel`,\n          :py:class:`ssh2.statinfo.StatInfo`) or None");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_58scp_recv, "scp_recv(self, path)\nReceive file via SCP.\n\n        Deprecated in favour or recv2 (requires libssh2 >= 1.7).\n\n        :param path: File path to receive.\n        :type path: str\n\n        :rtype: tuple(:py:class:`ssh2.channel.Channel`,\n          :py:class:`ssh2.statinfo.StatInfo`) or None");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_59scp_recv = {"scp_recv", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_59scp_recv, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_58scp_recv};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_59scp_recv(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -12798,7 +12808,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_60scp_recv2, "Session.scp_recv2(self, path)\nReceive file via SCP.\n\n        :param path: File path to receive.\n        :type path: str\n\n        :rtype: tuple(:py:class:`ssh2.channel.Channel`,\n          :py:class:`ssh2.fileinfo.FileInfo`) or ``None``");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_60scp_recv2, "scp_recv2(self, path)\nReceive file via SCP.\n\n        :param path: File path to receive.\n        :type path: str\n\n        :rtype: tuple(:py:class:`ssh2.channel.Channel`,\n          :py:class:`ssh2.fileinfo.FileInfo`) or ``None``");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_61scp_recv2 = {"scp_recv2", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_61scp_recv2, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_60scp_recv2};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_61scp_recv2(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -13104,7 +13114,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_62scp_send, "Session.scp_send(self, path, int mode, size_t size)\nDeprecated in favour of scp_send64. Send file via SCP.\n\n        :param path: Local file path to send.\n        :type path: str\n        :param mode: File mode.\n        :type mode: int\n        :param size: size of file\n        :type size: int\n\n        :rtype: :py:class:`ssh2.channel.Channel`");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_62scp_send, "scp_send(self, path, mode: int, size: int)\nDeprecated in favour of scp_send64. Send file via SCP.\n\n        :param path: Local file path to send.\n        :type path: str\n        :param mode: File mode.\n        :type mode: int\n        :param size: size of file\n        :type size: int\n\n        :rtype: :py:class:`ssh2.channel.Channel`");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_63scp_send = {"scp_send", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_63scp_send, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_62scp_send};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_63scp_send(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -13416,7 +13426,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_64scp_send64, "Session.scp_send64(self, path, int mode, libssh2_uint64_t size, time_t mtime, time_t atime)\nSend file via SCP.\n\n        :param path: Local file path to send.\n        :type path: str\n        :param mode: File mode.\n        :type mode: int\n        :param size: size of file\n        :type size: int\n\n        :rtype: :py:class:`ssh2.channel.Channel`");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_64scp_send64, "scp_send64(self, path, mode: int, size: int, mtime: int, atime: int)\nSend file via SCP.\n\n        :param path: Local file path to send.\n        :type path: str\n        :param mode: File mode.\n        :type mode: int\n        :param size: size of file\n        :type size: int\n\n        :rtype: :py:class:`ssh2.channel.Channel`");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_65scp_send64 = {"scp_send64", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_65scp_send64, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_64scp_send64};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_65scp_send64(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -13758,7 +13768,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_66publickey_init, "Session.publickey_init(self)\nInitialise public key subsystem for managing remote server\n        public keys");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_66publickey_init, "publickey_init(self)\nInitialise public key subsystem for managing remote server\n        public keys");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_67publickey_init = {"publickey_init", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_67publickey_init, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_66publickey_init};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_67publickey_init(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -13929,7 +13939,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_68hostkey_hash, "Session.hostkey_hash(self, int hash_type)\nGet computed digest of the remote system's host key.\n\n        :param hash_type: One of ``ssh2.session.LIBSSH2_HOSTKEY_HASH_MD5`` or\n          ``ssh2.session.LIBSSH2_HOSTKEY_HASH_SHA1``\n        :type hash_type: int\n\n        :rtype: bytes");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_68hostkey_hash, "hostkey_hash(self, hash_type: int)\nGet computed digest of the remote system's host key.\n\n        :param hash_type: One of ``ssh2.session.LIBSSH2_HOSTKEY_HASH_MD5`` or\n          ``ssh2.session.LIBSSH2_HOSTKEY_HASH_SHA1``\n        :type hash_type: int\n\n        :rtype: bytes");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_69hostkey_hash = {"hostkey_hash", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_69hostkey_hash, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_68hostkey_hash};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_69hostkey_hash(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -14165,7 +14175,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_70hostkey, "Session.hostkey(self)\nGet server host key for this session.\n\n        Returns key, key_type tuple where key_type is one of\n        :py:class:`ssh2.session.LIBSSH2_HOSTKEY_TYPE_RSA`,\n        :py:class:`ssh2.session.LIBSSH2_HOSTKEY_TYPE_DSS`, or\n        :py:class:`ssh2.session.LIBSSH2_HOSTKEY_TYPE_UNKNOWN`\n\n        :rtype: tuple(bytes, int)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_70hostkey, "hostkey(self)\nGet server host key for this session.\n\n        Returns key, key_type tuple where key_type is one of\n        :py:class:`ssh2.session.LIBSSH2_HOSTKEY_TYPE_RSA`,\n        :py:class:`ssh2.session.LIBSSH2_HOSTKEY_TYPE_DSS`, or\n        :py:class:`ssh2.session.LIBSSH2_HOSTKEY_TYPE_UNKNOWN`\n\n        :rtype: tuple(bytes, int)");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_71hostkey = {"hostkey", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_71hostkey, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_70hostkey};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_71hostkey(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -14415,7 +14425,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_72knownhost_init, "Session.knownhost_init(self)\nInitialise a collection of known hosts for this session.\n\n        :rtype: :py:class:`ssh2.knownhost.KnownHost`");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_72knownhost_init, "knownhost_init(self)\nInitialise a collection of known hosts for this session.\n\n        :rtype: :py:class:`ssh2.knownhost.KnownHost`");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_73knownhost_init = {"knownhost_init", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_73knownhost_init, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_72knownhost_init};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_73knownhost_init(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -14586,7 +14596,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_74keepalive_config, "Session.keepalive_config(self, bool want_reply, unsigned int interval)\n\n        Configure keep alive settings.\n\n        :param want_reply: True/False for reply wanted from server on keep\n          alive messages being sent or not.\n        :type want_reply: bool\n        :param interval: Required keep alive interval. Set to ``0`` to disable\n          keepalives.\n        :type interval: int");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_74keepalive_config, "keepalive_config(self, want_reply: bool, interval: int)\n\n        Configure keep alive settings.\n\n        :param want_reply: True/False for reply wanted from server on keep\n          alive messages being sent or not.\n        :type want_reply: bool\n        :param interval: Required keep alive interval. Set to ``0`` to disable\n          keepalives.\n        :type interval: int");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_75keepalive_config = {"keepalive_config", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_75keepalive_config, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_74keepalive_config};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_75keepalive_config(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -14771,7 +14781,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_76keepalive_send, "Session.keepalive_send(self)\nSend keepalive.\n\n        Returns seconds remaining before next keep alive should be sent.\n\n        :rtype: int");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_76keepalive_send, "keepalive_send(self)\nSend keepalive.\n\n        Returns seconds remaining before next keep alive should be sent.\n\n        :rtype: int");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_77keepalive_send = {"keepalive_send", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_77keepalive_send, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_76keepalive_send};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_77keepalive_send(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -14939,7 +14949,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_78supported_algs, "Session.supported_algs(self, MethodType method_type)\nGet supportd algorithms for method type.\n\n        :param method_type: Type of method to get\n        :type method_type: :py:class:`MethodType`\n\n        :returns: List of supported algorithms.\n        :rtype: list(str)\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_78supported_algs, "supported_algs(self, method_type: MethodType)\nGet supportd algorithms for method type.\n\n        :param method_type: Type of method to get\n        :type method_type: :py:class:`MethodType`\n\n        :returns: List of supported algorithms.\n        :rtype: list(str)\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_79supported_algs = {"supported_algs", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_79supported_algs, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_78supported_algs};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_79supported_algs(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -15372,7 +15382,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_80methods, "Session.methods(self, MethodType method_type)\nGet currently active algorithms for method type.\n\n        :param method_type: Type of method to get\n        :type method_type: :py:class:`MethodType`\n\n        :rtype: str\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_80methods, "methods(self, method_type: MethodType)\nGet currently active algorithms for method type.\n\n        :param method_type: Type of method to get\n        :type method_type: :py:class:`MethodType`\n\n        :rtype: str\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_81methods = {"methods", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_81methods, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_80methods};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_81methods(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -15603,7 +15613,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_82method_pref, "Session.method_pref(self, MethodType method_type, prefs)\nSet preference for session method.\n\n        See :py:func:`Session.supported_algs` for supported algorithms\n        for method type.\n\n        :param method_type: A supported session method LIBSSH2_METHOD_*\n        :type method_type: :py:class:`MethodType`\n        :param prefs: Algorithm preference for method type provided.\n        :type prefs: str\n\n        :rtype: int\n        :raises: :py:class:`ssh2.exceptions.MethodNotSupported`\n          on unsupported method preference\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_82method_pref, "method_pref(self, method_type: MethodType, prefs)\nSet preference for session method.\n\n        See :py:func:`Session.supported_algs` for supported algorithms\n        for method type.\n\n        :param method_type: A supported session method LIBSSH2_METHOD_*\n        :type method_type: :py:class:`MethodType`\n        :param prefs: Algorithm preference for method type provided.\n        :type prefs: str\n\n        :rtype: int\n        :raises: :py:class:`ssh2.exceptions.MethodNotSupported`\n          on unsupported method preference\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_83method_pref = {"method_pref", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_83method_pref, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_82method_pref};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_83method_pref(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -15932,7 +15942,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_84__reduce_cython__, "Session.__reduce_cython__(self)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_84__reduce_cython__, "__reduce_cython__(self)");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_85__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_85__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_84__reduce_cython__};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_85__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -16013,7 +16023,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_86__setstate_cython__, "Session.__setstate_cython__(self, __pyx_state)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7session_7Session_86__setstate_cython__, "__setstate_cython__(self, __pyx_state)");
 static PyMethodDef __pyx_mdef_4ssh2_7session_7Session_87__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7session_7Session_87__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7session_7Session_86__setstate_cython__};
 static PyObject *__pyx_pw_4ssh2_7session_7Session_87__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -16712,6 +16722,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
   __Pyx_StringTabEntry __pyx_string_tab[] = {
     {&__pyx_kp_u_, __pyx_k_, sizeof(__pyx_k_), 0, 1, 0, 0},
     {&__pyx_n_s_Any, __pyx_k_Any, sizeof(__pyx_k_Any), 0, 0, 1, 1},
+    {&__pyx_kp_s_Any_2, __pyx_k_Any_2, sizeof(__pyx_k_Any_2), 0, 0, 1, 0},
     {&__pyx_n_s_ChannelError, __pyx_k_ChannelError, sizeof(__pyx_k_ChannelError), 0, 0, 1, 1},
     {&__pyx_kp_u_Error_retrieving_server_host_key, __pyx_k_Error_retrieving_server_host_key, sizeof(__pyx_k_Error_retrieving_server_host_key), 0, 1, 0, 0},
     {&__pyx_n_s_KnownHostError, __pyx_k_KnownHostError, sizeof(__pyx_k_KnownHostError), 0, 0, 1, 1},
@@ -16816,6 +16827,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_blocking, __pyx_k_blocking, sizeof(__pyx_k_blocking), 0, 0, 1, 1},
     {&__pyx_n_s_bool, __pyx_k_bool, sizeof(__pyx_k_bool), 0, 0, 1, 1},
     {&__pyx_n_s_bound_port, __pyx_k_bound_port, sizeof(__pyx_k_bound_port), 0, 0, 1, 1},
+    {&__pyx_kp_s_bytes_None, __pyx_k_bytes_None, sizeof(__pyx_k_bytes_None), 0, 0, 1, 0},
     {&__pyx_n_s_c_algs, __pyx_k_c_algs, sizeof(__pyx_k_c_algs), 0, 0, 1, 1},
     {&__pyx_n_s_c_prefs, __pyx_k_c_prefs, sizeof(__pyx_k_c_prefs), 0, 0, 1, 1},
     {&__pyx_n_s_c_seconds, __pyx_k_c_seconds, sizeof(__pyx_k_c_seconds), 0, 0, 1, 1},
@@ -17068,7 +17080,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "ssh2/session.pyx":170
  *             c_ssh2.libssh2_session_set_timeout(self._session, timeout)
  * 
- *     def get_timeout(self) -> Any:             # <<<<<<<<<<<<<<
+ *     def get_timeout(self) -> 'Any':             # <<<<<<<<<<<<<<
  *         """Get current session timeout setting"""
  *         cdef long timeout
  */
@@ -17142,7 +17154,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  *     def userauth_publickey_frommemory(             # <<<<<<<<<<<<<<
  *             self, username, bytes privatekeyfiledata,
- *             passphrase='', bytes publickeyfiledata=None):
+ *             passphrase='', bytes publickeyfiledata: bytes | None=None):
  */
   __pyx_tuple__31 = PyTuple_Pack(15, __pyx_n_s_self, __pyx_n_s_username, __pyx_n_s_privatekeyfiledata, __pyx_n_s_passphrase, __pyx_n_s_publickeyfiledata, __pyx_n_s_rc, __pyx_n_s_b_username, __pyx_n_s_b_passphrase, __pyx_n_s_username_2, __pyx_n_s_passphrase_2, __pyx_n_s_publickeyfiledata_2, __pyx_n_s_privatekeyfiledata_2, __pyx_n_s_username_len, __pyx_n_s_privatekeydata_len, __pyx_n_s_pubkeydata_len); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(1, 274, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__31);
@@ -18507,13 +18519,13 @@ if (!__Pyx_RefNanny) {
   /* "ssh2/session.pyx":170
  *             c_ssh2.libssh2_session_set_timeout(self._session, timeout)
  * 
- *     def get_timeout(self) -> Any:             # <<<<<<<<<<<<<<
+ *     def get_timeout(self) -> 'Any':             # <<<<<<<<<<<<<<
  *         """Get current session timeout setting"""
  *         cdef long timeout
  */
   __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_return, __pyx_n_s_Any) < 0) __PYX_ERR(1, 170, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_return, __pyx_kp_s_Any_2) < 0) __PYX_ERR(1, 170, __pyx_L1_error)
   __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_17get_timeout, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_get_timeout, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__19)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_2, __pyx_t_3);
@@ -18594,13 +18606,18 @@ if (!__Pyx_RefNanny) {
  * 
  *     def userauth_publickey_frommemory(             # <<<<<<<<<<<<<<
  *             self, username, bytes privatekeyfiledata,
- *             passphrase='', bytes publickeyfiledata=None):
+ *             passphrase='', bytes publickeyfiledata: bytes | None=None):
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_29userauth_publickey_frommemory, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_userauth_publickey_fromm, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__32)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 274, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 274, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_2, __pyx_tuple__25);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_userauth_publickey_frommemory, __pyx_t_2) < 0) __PYX_ERR(1, 274, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_publickeyfiledata, __pyx_kp_s_bytes_None) < 0) __PYX_ERR(1, 274, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_29userauth_publickey_frommemory, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_userauth_publickey_fromm, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__32)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 274, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__25);
+  __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_3, __pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_userauth_publickey_frommemory, __pyx_t_3) < 0) __PYX_ERR(1, 274, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":298
@@ -18610,10 +18627,10 @@ if (!__Pyx_RefNanny) {
  *         """Perform password authentication
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_31userauth_password, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_userauth_password, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__34)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 298, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_userauth_password, __pyx_t_2) < 0) __PYX_ERR(1, 298, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_31userauth_password, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_userauth_password, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__34)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 298, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_userauth_password, __pyx_t_3) < 0) __PYX_ERR(1, 298, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":315
@@ -18623,10 +18640,10 @@ if (!__Pyx_RefNanny) {
  *                                      password not None):
  *         """Perform keyboard-interactive authentication
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_33userauth_keyboardinteractive, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_userauth_keyboardinterac, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 315, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_userauth_keyboardinteractive, __pyx_t_2) < 0) __PYX_ERR(1, 315, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_33userauth_keyboardinteractive, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_userauth_keyboardinterac, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 315, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_userauth_keyboardinteractive, __pyx_t_3) < 0) __PYX_ERR(1, 315, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":337
@@ -18636,10 +18653,10 @@ if (!__Pyx_RefNanny) {
  *         """Initialise SSH agent.
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_35agent_init, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_agent_init, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__38)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 337, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_agent_init, __pyx_t_2) < 0) __PYX_ERR(1, 337, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_35agent_init, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_agent_init, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__38)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 337, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_agent_init, __pyx_t_3) < 0) __PYX_ERR(1, 337, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":347
@@ -18649,10 +18666,10 @@ if (!__Pyx_RefNanny) {
  *         """Convenience function for performing user authentication via SSH Agent.
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_37agent_auth, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_agent_auth, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__40)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 347, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_agent_auth, __pyx_t_2) < 0) __PYX_ERR(1, 347, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_37agent_auth, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_agent_auth, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__40)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 347, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_agent_auth, __pyx_t_3) < 0) __PYX_ERR(1, 347, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":382
@@ -18662,10 +18679,10 @@ if (!__Pyx_RefNanny) {
  *         """Open new channel session.
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_39open_session, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_open_session, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__42)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 382, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_open_session, __pyx_t_2) < 0) __PYX_ERR(1, 382, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_39open_session, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_open_session, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__42)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 382, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_open_session, __pyx_t_3) < 0) __PYX_ERR(1, 382, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":396
@@ -18675,10 +18692,10 @@ if (!__Pyx_RefNanny) {
  *                         shost not None, int sport):
  *         cdef c_ssh2.LIBSSH2_CHANNEL *channel
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_41direct_tcpip_ex, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_direct_tcpip_ex, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__44)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 396, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_direct_tcpip_ex, __pyx_t_2) < 0) __PYX_ERR(1, 396, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_41direct_tcpip_ex, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_direct_tcpip_ex, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__44)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 396, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_direct_tcpip_ex, __pyx_t_3) < 0) __PYX_ERR(1, 396, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":411
@@ -18688,10 +18705,10 @@ if (!__Pyx_RefNanny) {
  *         """Open direct TCP/IP channel to host:port
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_43direct_tcpip, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_direct_tcpip, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__46)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 411, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_direct_tcpip, __pyx_t_2) < 0) __PYX_ERR(1, 411, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_43direct_tcpip, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_direct_tcpip, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__46)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 411, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_direct_tcpip, __pyx_t_3) < 0) __PYX_ERR(1, 411, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":428
@@ -18701,10 +18718,10 @@ if (!__Pyx_RefNanny) {
  *         """Get blocked directions for the current session.
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_45block_directions, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_block_directions, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__47)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 428, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_block_directions, __pyx_t_2) < 0) __PYX_ERR(1, 428, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_45block_directions, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_block_directions, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__47)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 428, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_block_directions, __pyx_t_3) < 0) __PYX_ERR(1, 428, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":455
@@ -18714,10 +18731,10 @@ if (!__Pyx_RefNanny) {
  *         """Create forward listener on port.
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_47forward_listen, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_forward_listen, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__49)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 455, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_forward_listen, __pyx_t_2) < 0) __PYX_ERR(1, 455, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_47forward_listen, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_forward_listen, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__49)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 455, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_forward_listen, __pyx_t_3) < 0) __PYX_ERR(1, 455, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":471
@@ -18727,11 +18744,11 @@ if (!__Pyx_RefNanny) {
  *         """
  *         Instruct the remote SSH server to begin listening for inbound
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_49forward_listen_ex, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_forward_listen_ex, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__51)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 471, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_2, __pyx_tuple__52);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_forward_listen_ex, __pyx_t_2) < 0) __PYX_ERR(1, 471, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_49forward_listen_ex, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_forward_listen_ex, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__51)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 471, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__52);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_forward_listen_ex, __pyx_t_3) < 0) __PYX_ERR(1, 471, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":507
@@ -18741,10 +18758,10 @@ if (!__Pyx_RefNanny) {
  *         """Initialise SFTP channel.
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_51sftp_init, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_sftp_init, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__54)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 507, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_sftp_init, __pyx_t_2) < 0) __PYX_ERR(1, 507, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_51sftp_init, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_sftp_init, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__54)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 507, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_sftp_init, __pyx_t_3) < 0) __PYX_ERR(1, 507, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":520
@@ -18754,11 +18771,11 @@ if (!__Pyx_RefNanny) {
  *         """Retrieve last error message from libssh2, if any.
  *         Returns empty string on no error message.
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_53last_error, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_last_error, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__56)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 520, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_2, __pyx_tuple__57);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_last_error, __pyx_t_2) < 0) __PYX_ERR(1, 520, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_53last_error, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_last_error, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__56)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 520, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__57);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_last_error, __pyx_t_3) < 0) __PYX_ERR(1, 520, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":540
@@ -18768,10 +18785,10 @@ if (!__Pyx_RefNanny) {
  *         """Retrieve last error number from libssh2, if any.
  *         Returns 0 on no last error.
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_55last_errno, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_last_errno, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__58)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 540, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_last_errno, __pyx_t_2) < 0) __PYX_ERR(1, 540, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_55last_errno, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_last_errno, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__58)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 540, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_last_errno, __pyx_t_3) < 0) __PYX_ERR(1, 540, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":552
@@ -18781,10 +18798,10 @@ if (!__Pyx_RefNanny) {
  *         cdef bytes b_errmsg = to_bytes(errmsg)
  *         cdef char *_errmsg = b_errmsg
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_57set_last_error, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_set_last_error, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__60)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 552, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_set_last_error, __pyx_t_2) < 0) __PYX_ERR(1, 552, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_57set_last_error, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_set_last_error, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__60)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 552, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_set_last_error, __pyx_t_3) < 0) __PYX_ERR(1, 552, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":561
@@ -18794,10 +18811,10 @@ if (!__Pyx_RefNanny) {
  *         """Receive file via SCP.
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_59scp_recv, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_scp_recv, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__62)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 561, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_scp_recv, __pyx_t_2) < 0) __PYX_ERR(1, 561, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_59scp_recv, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_scp_recv, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__62)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 561, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_scp_recv, __pyx_t_3) < 0) __PYX_ERR(1, 561, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":583
@@ -18807,10 +18824,10 @@ if (!__Pyx_RefNanny) {
  *         """Receive file via SCP.
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_61scp_recv2, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_scp_recv2, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__64)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 583, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_scp_recv2, __pyx_t_2) < 0) __PYX_ERR(1, 583, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_61scp_recv2, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_scp_recv2, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__64)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 583, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_scp_recv2, __pyx_t_3) < 0) __PYX_ERR(1, 583, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":603
@@ -18820,10 +18837,10 @@ if (!__Pyx_RefNanny) {
  *         """Deprecated in favour of scp_send64. Send file via SCP.
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_63scp_send, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_scp_send, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__66)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 603, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_scp_send, __pyx_t_2) < 0) __PYX_ERR(1, 603, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_63scp_send, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_scp_send, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__66)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 603, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_scp_send, __pyx_t_3) < 0) __PYX_ERR(1, 603, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":625
@@ -18833,10 +18850,10 @@ if (!__Pyx_RefNanny) {
  *                    time_t mtime, time_t atime):
  *         """Send file via SCP.
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_65scp_send64, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_scp_send64, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__68)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 625, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_scp_send64, __pyx_t_2) < 0) __PYX_ERR(1, 625, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_65scp_send64, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_scp_send64, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__68)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 625, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_scp_send64, __pyx_t_3) < 0) __PYX_ERR(1, 625, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":648
@@ -18846,10 +18863,10 @@ if (!__Pyx_RefNanny) {
  *         """Initialise public key subsystem for managing remote server
  *         public keys"""
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_67publickey_init, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_publickey_init, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__70)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 648, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_publickey_init, __pyx_t_2) < 0) __PYX_ERR(1, 648, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_67publickey_init, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_publickey_init, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__70)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 648, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_publickey_init, __pyx_t_3) < 0) __PYX_ERR(1, 648, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":658
@@ -18859,10 +18876,10 @@ if (!__Pyx_RefNanny) {
  *         """Get computed digest of the remote system's host key.
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_69hostkey_hash, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_hostkey_hash, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__72)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 658, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_hostkey_hash, __pyx_t_2) < 0) __PYX_ERR(1, 658, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_69hostkey_hash, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_hostkey_hash, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__72)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 658, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_hostkey_hash, __pyx_t_3) < 0) __PYX_ERR(1, 658, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":675
@@ -18872,10 +18889,10 @@ if (!__Pyx_RefNanny) {
  *         """Get server host key for this session.
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_71hostkey, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_hostkey, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__74)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 675, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_hostkey, __pyx_t_2) < 0) __PYX_ERR(1, 675, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_71hostkey, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_hostkey, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__74)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 675, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_hostkey, __pyx_t_3) < 0) __PYX_ERR(1, 675, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":697
@@ -18885,10 +18902,10 @@ if (!__Pyx_RefNanny) {
  *         """Initialise a collection of known hosts for this session.
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_73knownhost_init, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_knownhost_init, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__76)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 697, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_knownhost_init, __pyx_t_2) < 0) __PYX_ERR(1, 697, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_73knownhost_init, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_knownhost_init, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__76)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 697, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_knownhost_init, __pyx_t_3) < 0) __PYX_ERR(1, 697, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":709
@@ -18898,10 +18915,10 @@ if (!__Pyx_RefNanny) {
  *         """
  *         Configure keep alive settings.
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_75keepalive_config, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_keepalive_config, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__78)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 709, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_keepalive_config, __pyx_t_2) < 0) __PYX_ERR(1, 709, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_75keepalive_config, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_keepalive_config, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__78)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 709, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_keepalive_config, __pyx_t_3) < 0) __PYX_ERR(1, 709, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":722
@@ -18911,10 +18928,10 @@ if (!__Pyx_RefNanny) {
  *         """Send keepalive.
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_77keepalive_send, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_keepalive_send, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__80)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 722, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_keepalive_send, __pyx_t_2) < 0) __PYX_ERR(1, 722, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_77keepalive_send, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_keepalive_send, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__80)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 722, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_keepalive_send, __pyx_t_3) < 0) __PYX_ERR(1, 722, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":736
@@ -18924,10 +18941,10 @@ if (!__Pyx_RefNanny) {
  *         """Get supportd algorithms for method type.
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_79supported_algs, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_supported_algs, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__82)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 736, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_supported_algs, __pyx_t_2) < 0) __PYX_ERR(1, 736, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_79supported_algs, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_supported_algs, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__82)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 736, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_supported_algs, __pyx_t_3) < 0) __PYX_ERR(1, 736, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":761
@@ -18937,10 +18954,10 @@ if (!__Pyx_RefNanny) {
  *         """Get currently active algorithms for method type.
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_81methods, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_methods, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__84)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 761, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_methods, __pyx_t_2) < 0) __PYX_ERR(1, 761, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_81methods, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_methods, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__84)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 761, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_methods, __pyx_t_3) < 0) __PYX_ERR(1, 761, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "ssh2/session.pyx":776
@@ -18950,10 +18967,10 @@ if (!__Pyx_RefNanny) {
  *         """Set preference for session method.
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_83method_pref, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_method_pref, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__86)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 776, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_method_pref, __pyx_t_2) < 0) __PYX_ERR(1, 776, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_83method_pref, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session_method_pref, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__86)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 776, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_4ssh2_7session_Session, __pyx_n_s_method_pref, __pyx_t_3) < 0) __PYX_ERR(1, 776, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_4ssh2_7session_Session);
 
   /* "(tree fragment)":1
@@ -18961,10 +18978,10 @@ if (!__Pyx_RefNanny) {
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  * def __setstate_cython__(self, __pyx_state):
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_85__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session___reduce_cython, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__87)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_reduce_cython, __pyx_t_2) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_85__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session___reduce_cython, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__87)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "(tree fragment)":3
  * def __reduce_cython__(self):
@@ -18972,20 +18989,20 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_87__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session___setstate_cython, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__88)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_setstate_cython, __pyx_t_2) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7session_7Session_87__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Session___setstate_cython, NULL, __pyx_n_s_ssh2_session, __pyx_d, ((PyObject *)__pyx_codeobj__88)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "ssh2/session.pyx":1
  * # This file is part of ssh2-python.             # <<<<<<<<<<<<<<
  * # Copyright (C) 2017-2020 Panos Kittenis
  * #
  */
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /*--- Wrapped vars code ---*/
 

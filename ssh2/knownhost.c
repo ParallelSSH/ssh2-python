@@ -3884,7 +3884,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_14KnownHostEntry_4_dealloc__, "KnownHostEntry._dealloc__(self)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_14KnownHostEntry_4_dealloc__, "_dealloc__(self)");
 static PyMethodDef __pyx_mdef_4ssh2_9knownhost_14KnownHostEntry_5_dealloc__ = {"_dealloc__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9knownhost_14KnownHostEntry_5_dealloc__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9knownhost_14KnownHostEntry_4_dealloc__};
 static PyObject *__pyx_pw_4ssh2_9knownhost_14KnownHostEntry_5_dealloc__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -4372,7 +4372,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_14KnownHostEntry_6__reduce_cython__, "KnownHostEntry.__reduce_cython__(self)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_14KnownHostEntry_6__reduce_cython__, "__reduce_cython__(self)");
 static PyMethodDef __pyx_mdef_4ssh2_9knownhost_14KnownHostEntry_7__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9knownhost_14KnownHostEntry_7__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9knownhost_14KnownHostEntry_6__reduce_cython__};
 static PyObject *__pyx_pw_4ssh2_9knownhost_14KnownHostEntry_7__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -4453,7 +4453,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_14KnownHostEntry_8__setstate_cython__, "KnownHostEntry.__setstate_cython__(self, __pyx_state)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_14KnownHostEntry_8__setstate_cython__, "__setstate_cython__(self, __pyx_state)");
 static PyMethodDef __pyx_mdef_4ssh2_9knownhost_14KnownHostEntry_9__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9knownhost_14KnownHostEntry_9__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9knownhost_14KnownHostEntry_8__setstate_cython__};
 static PyObject *__pyx_pw_4ssh2_9knownhost_14KnownHostEntry_9__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -4810,7 +4810,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_4add, "KnownHost.add(self, bytes host, bytes salt, bytes key, int typemask)\nDeprecated - use ``self.addc``");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_4add, "add(self, host: bytes, salt: bytes, key: bytes, typemask: int)\nDeprecated - use ``self.addc``");
 static PyMethodDef __pyx_mdef_4ssh2_9knownhost_9KnownHost_5add = {"add", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9knownhost_9KnownHost_5add, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9knownhost_9KnownHost_4add};
 static PyObject *__pyx_pw_4ssh2_9knownhost_9KnownHost_5add(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5002,7 +5002,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_6addc, "KnownHost.addc(self, bytes host, bytes key, int typemask, bytes salt=None, bytes comment=None)\nAdds a host and its key to known hosts collection.\n\n        Note - ``libssh2`` expects correct use of hashed hosts when\n        ``LIBSSH2_KNOWNHOST_TYPE_SHA1`` is part of typemask. Incorrect use of\n        hashed host typemask without appropriate hashed host and salt values\n        will result in host entries being added to the collection without a\n        host name.\n\n        :param host: Host to add key for.\n        :type host: bytes\n        :param key: Key to add.\n        :type key: bytes\n        :param typemask: Bitmask of one of each from\n          ``ssh2.knownhost.LIBSSH2_KNOWNHOST_TYPE_*``,\n          ``ssh2.knownhost.LIBSSH2_KNOWNHOST_KEYENC_*`` and\n          ``ssh2.knownhost.LIBSSH2_KNOWNHOST_KEY_*`` for example for plain text\n          host, raw key encoding and SSH RSA key ``type`` would be\n          ``LIBSSH2_KNOWNHOST_TYPE_PLAIN | LIBSSH2_KNOWNHOST_KEYENC_RAW |\n          LIBSSH2_KNOWNHOST_KEY_SSHRSA``.\n        :param salt: Salt used for host hashing if host is hashed.\n          Defaults to ``None``.\n        :type salt: bytes\n        :param comment: Comment to add for host. Defaults to ``None``.\n        :type comment: bytes\n\n        :raises: :py:class:`ssh2.exceptions.KnownHostAddError` on errors adding\n          known host entry.");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_6addc, "addc(self, host: bytes, key: bytes, typemask: int, salt: bytes = None, comment: bytes = None)\nAdds a host and its key to known hosts collection.\n\n        Note - ``libssh2`` expects correct use of hashed hosts when\n        ``LIBSSH2_KNOWNHOST_TYPE_SHA1`` is part of typemask. Incorrect use of\n        hashed host typemask without appropriate hashed host and salt values\n        will result in host entries being added to the collection without a\n        host name.\n\n        :param host: Host to add key for.\n        :type host: bytes\n        :param key: Key to add.\n        :type key: bytes\n        :param typemask: Bitmask of one of each from\n          ``ssh2.knownhost.LIBSSH2_KNOWNHOST_TYPE_*``,\n          ``ssh2.knownhost.LIBSSH2_KNOWNHOST_KEYENC_*`` and\n          ``ssh2.knownhost.LIBSSH2_KNOWNHOST_KEY_*`` for example for plain text\n          host, raw key encoding and SSH RSA key ``type`` would be\n          ``LIBSSH2_KNOWNHOST_TYPE_PLAIN | LIBSSH2_KNOWNHOST_KEYENC_RAW |\n          LIBSSH2_KNOWNHOST_KEY_SSHRSA``.\n        :param salt: Salt used for host hashing if host is hashed.\n          Defaults to ``None``.\n        :type salt: bytes\n        :param comment: Comment to add for host. Defaults to ``None``.\n        :type comment: bytes\n\n        :raises: :py:class:`ssh2.exceptions.KnownHostAddError` on errors adding\n          known host entry.");
 static PyMethodDef __pyx_mdef_4ssh2_9knownhost_9KnownHost_7addc = {"addc", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9knownhost_9KnownHost_7addc, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9knownhost_9KnownHost_6addc};
 static PyObject *__pyx_pw_4ssh2_9knownhost_9KnownHost_7addc(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5515,7 +5515,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_8check, "KnownHost.check(self, bytes host, bytes key, int typemask)\nDeprecated - use ``self.checkp``");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_8check, "check(self, host: bytes, key: bytes, typemask: int)\nDeprecated - use ``self.checkp``");
 static PyMethodDef __pyx_mdef_4ssh2_9knownhost_9KnownHost_9check = {"check", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9knownhost_9KnownHost_9check, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9knownhost_9KnownHost_8check};
 static PyObject *__pyx_pw_4ssh2_9knownhost_9KnownHost_9check(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5691,7 +5691,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_10checkp, "KnownHost.checkp(self, bytes host, int port, bytes key, int typemask)\nCheck a host and its key against the known hosts collection and\n        return known host entry, if any.\n\n        Note that server key provided to this function must be base64 encoded\n        only if checking against a ``self.addc`` added known public key.\n        When using ``self.readfile`` and a known_hosts file, encoding is not\n        needed.\n\n        :py:class:`ssh2.exceptions.KnownHostCheckError` is base class for all\n        host check error exceptions and can be used to catch all host check\n        errors.\n\n        :param host: Host to check.\n        :type host: bytes\n        :param key: Key of host to check.\n        :type key: bytes\n        :param typemask: Bitmask of one of each from\n          ``ssh2.knownhost.LIBSSH2_KNOWNHOST_TYPE_*``,\n          ``ssh2.knownhost.LIBSSH2_KNOWNHOST_KEYENC_*`` and\n          ``ssh2.knownhost.LIBSSH2_KNOWNHOST_KEY_*`` for example for plain text\n          host, raw key encoding and SSH RSA key ``type`` would be\n          ``LIBSSH2_KNOWNHOST_TYPE_PLAIN | LIBSSH2_KNOWNHOST_KEYENC_RAW |\n          LIBSSH2_KNOWNHOST_KEY_SSHRSA``.\n\n        :raises: :py:class:`ssh2.exceptions.KnownHostCheckMisMatchError` on\n          provided key mis-match error with found key from known hosts.\n        :raises: :py:class:`ssh2.exceptions.KnownHostCheckNotFoundError` on\n          host not found in known hosts.\n        :raises: :py:class:`ssh2.exceptions.KnownHostCheckFailure` on failure\n          checking known host entry.\n        :raises: :py:class:`ssh2.exceptions.KnownHostCheckError` on unknown\n          errors checking known host.\n\n        :rtype: :py:class:`ssh2.knownhost.KnownHostEntry`");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_10checkp, "checkp(self, host: bytes, port: int, key: bytes, typemask: int)\nCheck a host and its key against the known hosts collection and\n        return known host entry, if any.\n\n        Note that server key provided to this function must be base64 encoded\n        only if checking against a ``self.addc`` added known public key.\n        When using ``self.readfile`` and a known_hosts file, encoding is not\n        needed.\n\n        :py:class:`ssh2.exceptions.KnownHostCheckError` is base class for all\n        host check error exceptions and can be used to catch all host check\n        errors.\n\n        :param host: Host to check.\n        :type host: bytes\n        :param key: Key of host to check.\n        :type key: bytes\n        :param typemask: Bitmask of one of each from\n          ``ssh2.knownhost.LIBSSH2_KNOWNHOST_TYPE_*``,\n          ``ssh2.knownhost.LIBSSH2_KNOWNHOST_KEYENC_*`` and\n          ``ssh2.knownhost.LIBSSH2_KNOWNHOST_KEY_*`` for example for plain text\n          host, raw key encoding and SSH RSA key ``type`` would be\n          ``LIBSSH2_KNOWNHOST_TYPE_PLAIN | LIBSSH2_KNOWNHOST_KEYENC_RAW |\n          LIBSSH2_KNOWNHOST_KEY_SSHRSA``.\n\n        :raises: :py:class:`ssh2.exceptions.KnownHostCheckMisMatchError` on\n          provided key mis-match error with found key from known hosts.\n        :raises: :py:class:`ssh2.exceptions.KnownHostCheckNotFoundError` on\n          host not found in known hosts.\n        :raises: :py:class:`ssh2.exceptions.KnownHostCheckFailure` on failure\n          checking known host entry.\n        :raises: :py:class:`ssh2.exceptions.KnownHostCheckError` on unknown\n          errors checking known host.\n\n        :rtype: :py:class:`ssh2.knownhost.KnownHostEntry`");
 static PyMethodDef __pyx_mdef_4ssh2_9knownhost_9KnownHost_11checkp = {"checkp", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9knownhost_9KnownHost_11checkp, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9knownhost_9KnownHost_10checkp};
 static PyObject *__pyx_pw_4ssh2_9knownhost_9KnownHost_11checkp(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6228,7 +6228,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_12delete, "KnownHost.delete(self, KnownHostEntry entry)\nDelete given known host entry from collection of known hosts.\n\n        :param entry: Known host entry to delete.\n        :type entry: :py:class:`ssh2.knownhost.KnownHostEntry`\n\n        :raises: :py:class:`ssh2.exceptions.KnownHostDeleteError` on errors\n          deleting host entry.");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_12delete, "delete(self, entry: KnownHostEntry)\nDelete given known host entry from collection of known hosts.\n\n        :param entry: Known host entry to delete.\n        :type entry: :py:class:`ssh2.knownhost.KnownHostEntry`\n\n        :raises: :py:class:`ssh2.exceptions.KnownHostDeleteError` on errors\n          deleting host entry.");
 static PyMethodDef __pyx_mdef_4ssh2_9knownhost_9KnownHost_13delete = {"delete", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9knownhost_9KnownHost_13delete, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9knownhost_9KnownHost_12delete};
 static PyObject *__pyx_pw_4ssh2_9knownhost_9KnownHost_13delete(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6487,7 +6487,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_14readline, "KnownHost.readline(self, bytes line, int f_type=c_ssh2.LIBSSH2_KNOWNHOST_FILE_OPENSSH)\nRead line from known hosts file and add to known hosts\n        collection. Only OpenSSH known hosts file format is currently supported.\n\n        Note - When using readline, the key values returned by ``self.get`` will\n        need to be base64 encoded as libssh2's readline does not encode them\n        when adding, unlike ``self.readfile`` and ``self.addc``.\n\n        :param line: Byte string representing line to read.\n        :type line: bytes\n\n        :raises: :py:class:`ssh2.exceptions.KnownHostReadLineError` on errors\n          reading line.");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_14readline, "readline(self, line: bytes, f_type: int = c_ssh2.LIBSSH2_KNOWNHOST_FILE_OPENSSH)\nRead line from known hosts file and add to known hosts\n        collection. Only OpenSSH known hosts file format is currently supported.\n\n        Note - When using readline, the key values returned by ``self.get`` will\n        need to be base64 encoded as libssh2's readline does not encode them\n        when adding, unlike ``self.readfile`` and ``self.addc``.\n\n        :param line: Byte string representing line to read.\n        :type line: bytes\n\n        :raises: :py:class:`ssh2.exceptions.KnownHostReadLineError` on errors\n          reading line.");
 static PyMethodDef __pyx_mdef_4ssh2_9knownhost_9KnownHost_15readline = {"readline", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9knownhost_9KnownHost_15readline, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9knownhost_9KnownHost_14readline};
 static PyObject *__pyx_pw_4ssh2_9knownhost_9KnownHost_15readline(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6789,7 +6789,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_16readfile, "KnownHost.readfile(self, filename, int f_type=c_ssh2.LIBSSH2_KNOWNHOST_FILE_OPENSSH)\nRead known hosts file and add hosts to known hosts collection.\n        Only OpenSSH known hosts file format is currently supported.\n\n        Returns number of successfully read host entries.\n\n        :param filename: File name to read.\n        :type filename: str\n\n        :raises: :py:class:`ssh2.exceptions.KnownHostReadFileError` on errors\n          reading file.\n\n        :rtype: int");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_16readfile, "readfile(self, filename, f_type: int = c_ssh2.LIBSSH2_KNOWNHOST_FILE_OPENSSH)\nRead known hosts file and add hosts to known hosts collection.\n        Only OpenSSH known hosts file format is currently supported.\n\n        Returns number of successfully read host entries.\n\n        :param filename: File name to read.\n        :type filename: str\n\n        :raises: :py:class:`ssh2.exceptions.KnownHostReadFileError` on errors\n          reading file.\n\n        :rtype: int");
 static PyMethodDef __pyx_mdef_4ssh2_9knownhost_9KnownHost_17readfile = {"readfile", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9knownhost_9KnownHost_17readfile, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9knownhost_9KnownHost_16readfile};
 static PyObject *__pyx_pw_4ssh2_9knownhost_9KnownHost_17readfile(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -7111,7 +7111,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_18writeline, "KnownHost.writeline(self, KnownHostEntry entry, int f_type=c_ssh2.LIBSSH2_KNOWNHOST_FILE_OPENSSH, size_t buf_len=1024)\nConvert a single known host entry to a single line of output\n        for writing. Only OpenSSH known hosts file format is currently\n        supported.\n\n        :param entry: Known host entry to write line for.\n        :type entry: :py:class:`ssh2.knownhost.KnownHostEntry`\n\n        :raises: :py:class:`ssh2.exceptions.KnownHostWriteLineError` on errors\n          writing line.\n\n        :rtype: bytes");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_18writeline, "writeline(self, entry: KnownHostEntry, f_type: int = c_ssh2.LIBSSH2_KNOWNHOST_FILE_OPENSSH, buf_len: int = 1024)\nConvert a single known host entry to a single line of output\n        for writing. Only OpenSSH known hosts file format is currently\n        supported.\n\n        :param entry: Known host entry to write line for.\n        :type entry: :py:class:`ssh2.knownhost.KnownHostEntry`\n\n        :raises: :py:class:`ssh2.exceptions.KnownHostWriteLineError` on errors\n          writing line.\n\n        :rtype: bytes");
 static PyMethodDef __pyx_mdef_4ssh2_9knownhost_9KnownHost_19writeline = {"writeline", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9knownhost_9KnownHost_19writeline, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9knownhost_9KnownHost_18writeline};
 static PyObject *__pyx_pw_4ssh2_9knownhost_9KnownHost_19writeline(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -7671,7 +7671,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_20writefile, "KnownHost.writefile(self, filename, int f_type=c_ssh2.LIBSSH2_KNOWNHOST_FILE_OPENSSH)\nWrite all known host entries to file. Only OpenSSH known hosts file\n        format is currently supported.\n\n        :param filename: File name to write known hosts to.\n        :type filename: str\n\n        :raises: :py:class:`ssh2.exceptions.KnownHostWriteFileError` on errors\n          writing to file.");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_20writefile, "writefile(self, filename, f_type: int = c_ssh2.LIBSSH2_KNOWNHOST_FILE_OPENSSH)\nWrite all known host entries to file. Only OpenSSH known hosts file\n        format is currently supported.\n\n        :param filename: File name to write known hosts to.\n        :type filename: str\n\n        :raises: :py:class:`ssh2.exceptions.KnownHostWriteFileError` on errors\n          writing to file.");
 static PyMethodDef __pyx_mdef_4ssh2_9knownhost_9KnownHost_21writefile = {"writefile", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9knownhost_9KnownHost_21writefile, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9knownhost_9KnownHost_20writefile};
 static PyObject *__pyx_pw_4ssh2_9knownhost_9KnownHost_21writefile(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -7976,7 +7976,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_22get, "KnownHost.get(self, KnownHostEntry prev=None)\nRetrieve all host entries in known hosts collection.\n\n        :param prev: (Optional) Existing known host entry to start retrieval\n          from. All hosts are retrieved when prev is ``None`` which is the\n          default.\n\n        :raises: :py:class:`ssh2.exceptions.KnownHostGetError` on errors\n          retrieving known host collection.\n\n        :rtype: list(:py:class:`ssh2.knownhost.KnownHostEntry`)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_22get, "get(self, prev: KnownHostEntry = None)\nRetrieve all host entries in known hosts collection.\n\n        :param prev: (Optional) Existing known host entry to start retrieval\n          from. All hosts are retrieved when prev is ``None`` which is the\n          default.\n\n        :raises: :py:class:`ssh2.exceptions.KnownHostGetError` on errors\n          retrieving known host collection.\n\n        :rtype: list(:py:class:`ssh2.knownhost.KnownHostEntry`)");
 static PyMethodDef __pyx_mdef_4ssh2_9knownhost_9KnownHost_23get = {"get", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9knownhost_9KnownHost_23get, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9knownhost_9KnownHost_22get};
 static PyObject *__pyx_pw_4ssh2_9knownhost_9KnownHost_23get(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -8386,7 +8386,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_24__reduce_cython__, "KnownHost.__reduce_cython__(self)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_24__reduce_cython__, "__reduce_cython__(self)");
 static PyMethodDef __pyx_mdef_4ssh2_9knownhost_9KnownHost_25__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9knownhost_9KnownHost_25__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9knownhost_9KnownHost_24__reduce_cython__};
 static PyObject *__pyx_pw_4ssh2_9knownhost_9KnownHost_25__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -8467,7 +8467,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_26__setstate_cython__, "KnownHost.__setstate_cython__(self, __pyx_state)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9knownhost_9KnownHost_26__setstate_cython__, "__setstate_cython__(self, __pyx_state)");
 static PyMethodDef __pyx_mdef_4ssh2_9knownhost_9KnownHost_27__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9knownhost_9KnownHost_27__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9knownhost_9KnownHost_26__setstate_cython__};
 static PyObject *__pyx_pw_4ssh2_9knownhost_9KnownHost_27__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL

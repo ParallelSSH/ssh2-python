@@ -167,7 +167,7 @@ cdef class Session:
         with nogil:
             c_ssh2.libssh2_session_set_timeout(self._session, timeout)
 
-    def get_timeout(self) -> Any:
+    def get_timeout(self) -> 'Any':
         """Get current session timeout setting"""
         cdef long timeout
         with nogil:
@@ -273,7 +273,7 @@ cdef class Session:
 
     def userauth_publickey_frommemory(
             self, username, bytes privatekeyfiledata,
-            passphrase='', bytes publickeyfiledata=None):
+            passphrase='', bytes publickeyfiledata: bytes | None=None):
         cdef int rc
         cdef bytes b_username = to_bytes(username)
         cdef bytes b_passphrase = to_bytes(passphrase)

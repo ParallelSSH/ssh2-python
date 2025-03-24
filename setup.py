@@ -45,6 +45,7 @@ _fwd_default = 0
 _comp_args = ["-O2"] if not ON_WINDOWS else None
 
 cython_directives = {'embedsignature': True,
+                     'embedsignature.format': 'python',
                      'boundscheck': False,
                      'optimize.use_switch': True,
                      'wraparound': False,
@@ -86,7 +87,6 @@ package_data = {
     'ssh2': [
         '*.pxd',
         'libssh2.so*',
-        'py.typed',
     ]
 }
 

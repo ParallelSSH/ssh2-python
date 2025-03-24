@@ -4247,7 +4247,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_13PublicKeyList_4__reduce_cython__, "PublicKeyList.__reduce_cython__(self)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_13PublicKeyList_4__reduce_cython__, "__reduce_cython__(self)");
 static PyMethodDef __pyx_mdef_4ssh2_9publickey_13PublicKeyList_5__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9publickey_13PublicKeyList_5__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9publickey_13PublicKeyList_4__reduce_cython__};
 static PyObject *__pyx_pw_4ssh2_9publickey_13PublicKeyList_5__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -4328,7 +4328,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_13PublicKeyList_6__setstate_cython__, "PublicKeyList.__setstate_cython__(self, __pyx_state)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_13PublicKeyList_6__setstate_cython__, "__setstate_cython__(self, __pyx_state)");
 static PyMethodDef __pyx_mdef_4ssh2_9publickey_13PublicKeyList_7__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9publickey_13PublicKeyList_7__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9publickey_13PublicKeyList_6__setstate_cython__};
 static PyObject *__pyx_pw_4ssh2_9publickey_13PublicKeyList_7__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5020,7 +5020,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_18PublicKeyAttribute_2__reduce_cython__, "PublicKeyAttribute.__reduce_cython__(self)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_18PublicKeyAttribute_2__reduce_cython__, "__reduce_cython__(self)");
 static PyMethodDef __pyx_mdef_4ssh2_9publickey_18PublicKeyAttribute_3__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9publickey_18PublicKeyAttribute_3__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9publickey_18PublicKeyAttribute_2__reduce_cython__};
 static PyObject *__pyx_pw_4ssh2_9publickey_18PublicKeyAttribute_3__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5101,7 +5101,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_18PublicKeyAttribute_4__setstate_cython__, "PublicKeyAttribute.__setstate_cython__(self, __pyx_state)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_18PublicKeyAttribute_4__setstate_cython__, "__setstate_cython__(self, __pyx_state)");
 static PyMethodDef __pyx_mdef_4ssh2_9publickey_18PublicKeyAttribute_5__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9publickey_18PublicKeyAttribute_5__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9publickey_18PublicKeyAttribute_4__setstate_cython__};
 static PyObject *__pyx_pw_4ssh2_9publickey_18PublicKeyAttribute_5__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5828,7 +5828,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_15PublicKeySystem_4add, "PublicKeySystem.add(self, bytes name, bytes blob, char overwrite, list attrs)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_15PublicKeySystem_4add, "add(self, name: bytes, blob: bytes, overwrite: int, attrs: list)");
 static PyMethodDef __pyx_mdef_4ssh2_9publickey_15PublicKeySystem_5add = {"add", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9publickey_15PublicKeySystem_5add, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9publickey_15PublicKeySystem_4add};
 static PyObject *__pyx_pw_4ssh2_9publickey_15PublicKeySystem_5add(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6222,7 +6222,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_15PublicKeySystem_6remove, "PublicKeySystem.remove(self, bytes name, bytes blob)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_15PublicKeySystem_6remove, "remove(self, name: bytes, blob: bytes)");
 static PyMethodDef __pyx_mdef_4ssh2_9publickey_15PublicKeySystem_7remove = {"remove", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9publickey_15PublicKeySystem_7remove, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9publickey_15PublicKeySystem_6remove};
 static PyObject *__pyx_pw_4ssh2_9publickey_15PublicKeySystem_7remove(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6501,7 +6501,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_15PublicKeySystem_8list_fetch, "PublicKeySystem.list_fetch(self)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_15PublicKeySystem_8list_fetch, "list_fetch(self)");
 static PyMethodDef __pyx_mdef_4ssh2_9publickey_15PublicKeySystem_9list_fetch = {"list_fetch", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9publickey_15PublicKeySystem_9list_fetch, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9publickey_15PublicKeySystem_8list_fetch};
 static PyObject *__pyx_pw_4ssh2_9publickey_15PublicKeySystem_9list_fetch(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6757,7 +6757,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_15PublicKeySystem_10list_free, "PublicKeySystem.list_free(self)\nNo-op - list_free called automatically by\n        :py:class:`ssh2.publickey.PublicKeyList` destructor");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_15PublicKeySystem_10list_free, "list_free(self)\nNo-op - list_free called automatically by\n        :py:class:`ssh2.publickey.PublicKeyList` destructor");
 static PyMethodDef __pyx_mdef_4ssh2_9publickey_15PublicKeySystem_11list_free = {"list_free", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9publickey_15PublicKeySystem_11list_free, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9publickey_15PublicKeySystem_10list_free};
 static PyObject *__pyx_pw_4ssh2_9publickey_15PublicKeySystem_11list_free(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6819,7 +6819,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_15PublicKeySystem_12shutdown, "PublicKeySystem.shutdown(self)\nShutdown public key subsystem.\n        Called automatically by object destructor");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_15PublicKeySystem_12shutdown, "shutdown(self)\nShutdown public key subsystem.\n        Called automatically by object destructor");
 static PyMethodDef __pyx_mdef_4ssh2_9publickey_15PublicKeySystem_13shutdown = {"shutdown", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9publickey_15PublicKeySystem_13shutdown, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9publickey_15PublicKeySystem_12shutdown};
 static PyObject *__pyx_pw_4ssh2_9publickey_15PublicKeySystem_13shutdown(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6954,7 +6954,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_15PublicKeySystem_14__reduce_cython__, "PublicKeySystem.__reduce_cython__(self)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_15PublicKeySystem_14__reduce_cython__, "__reduce_cython__(self)");
 static PyMethodDef __pyx_mdef_4ssh2_9publickey_15PublicKeySystem_15__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9publickey_15PublicKeySystem_15__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9publickey_15PublicKeySystem_14__reduce_cython__};
 static PyObject *__pyx_pw_4ssh2_9publickey_15PublicKeySystem_15__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -7035,7 +7035,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_15PublicKeySystem_16__setstate_cython__, "PublicKeySystem.__setstate_cython__(self, __pyx_state)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_9publickey_15PublicKeySystem_16__setstate_cython__, "__setstate_cython__(self, __pyx_state)");
 static PyMethodDef __pyx_mdef_4ssh2_9publickey_15PublicKeySystem_17__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_9publickey_15PublicKeySystem_17__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_9publickey_15PublicKeySystem_16__setstate_cython__};
 static PyObject *__pyx_pw_4ssh2_9publickey_15PublicKeySystem_17__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL

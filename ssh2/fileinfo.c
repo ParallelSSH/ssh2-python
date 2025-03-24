@@ -3396,7 +3396,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_8fileinfo_8FileInfo_4__reduce_cython__, "FileInfo.__reduce_cython__(self)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_8fileinfo_8FileInfo_4__reduce_cython__, "__reduce_cython__(self)");
 static PyMethodDef __pyx_mdef_4ssh2_8fileinfo_8FileInfo_5__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_8fileinfo_8FileInfo_5__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_8fileinfo_8FileInfo_4__reduce_cython__};
 static PyObject *__pyx_pw_4ssh2_8fileinfo_8FileInfo_5__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -3477,7 +3477,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_8fileinfo_8FileInfo_6__setstate_cython__, "FileInfo.__setstate_cython__(self, __pyx_state)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_8fileinfo_8FileInfo_6__setstate_cython__, "__setstate_cython__(self, __pyx_state)");
 static PyMethodDef __pyx_mdef_4ssh2_8fileinfo_8FileInfo_7__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_8fileinfo_8FileInfo_7__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_8fileinfo_8FileInfo_6__setstate_cython__};
 static PyObject *__pyx_pw_4ssh2_8fileinfo_8FileInfo_7__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL

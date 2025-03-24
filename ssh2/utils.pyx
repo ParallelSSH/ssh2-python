@@ -15,7 +15,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 from select import select
-from typing import Any, Iterable, Tuple
+from typing import Any, Iterable, Tuple, Generator
 
 from cpython.version cimport PY_MAJOR_VERSION
 
@@ -76,7 +76,7 @@ def find_eol(bytes buf: bytes, Py_ssize_t pos: Py_ssize_t) -> Tuple(int, int):
     return index, new_pos
 
 
-def readline(buf: Iterable) -> Iterable:
+def readline(buf: Iterable) -> Generator:
     """Returns a generator of line by line output in given iterable buffer.
 
     :param buf: The iterable buffer to read from. Should yield a block of data per iteration.
@@ -132,7 +132,7 @@ def ssh2_exit() -> None:
     c_ssh2.libssh2_exit()
 
 
-def wait_socket(_socket not None, Session session: "Session", timeout=1) -> None:
+def wait_socket(_socket not None, Session session: Session, timeout=1) -> None:
     """Helper function for testing non-blocking mode.
 
     This function blocks the calling thread for <timeout> seconds -

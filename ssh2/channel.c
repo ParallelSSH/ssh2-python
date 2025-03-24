@@ -3940,7 +3940,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_4pty, "Channel.pty(self, term=u'vt100')\nRequest a PTY (physical terminal emulation) on the channel.\n\n        :param term: Terminal type to emulate.\n        :type term: str\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_4pty, "pty(self, term=u'vt100')\nRequest a PTY (physical terminal emulation) on the channel.\n\n        :param term: Terminal type to emulate.\n        :type term: str\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_5pty = {"pty", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_5pty, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_4pty};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_5pty(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -4168,7 +4168,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_6execute, "Channel.execute(self, command)\nExecute command.\n\n        :param command: Command to execute\n        :type command: str\n\n        :raises: :py:class:`ssh2.exceptions.ChannelError` on errors executing\n          command\n\n        :rtype: int\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_6execute, "execute(self, command)\nExecute command.\n\n        :param command: Command to execute\n        :type command: str\n\n        :raises: :py:class:`ssh2.exceptions.ChannelError` on errors executing\n          command\n\n        :rtype: int\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_7execute = {"execute", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_7execute, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_6execute};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_7execute(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -4400,7 +4400,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_8subsystem, "Channel.subsystem(self, subsystem)\nRequest subsystem from channel.\n\n        :param subsystem: Name of subsystem\n        :type subsystem: str");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_8subsystem, "subsystem(self, subsystem)\nRequest subsystem from channel.\n\n        :param subsystem: Name of subsystem\n        :type subsystem: str");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_9subsystem = {"subsystem", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_9subsystem, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_8subsystem};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_9subsystem(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -4632,7 +4632,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_10shell, "Channel.shell(self)\nRequest interactive shell from channel.\n\n        :raises: :py:class:`ssh2.exceptions.ChannelError` on errors requesting\n          interactive shell.\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_10shell, "shell(self)\nRequest interactive shell from channel.\n\n        :raises: :py:class:`ssh2.exceptions.ChannelError` on errors requesting\n          interactive shell.\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_11shell = {"shell", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_11shell, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_10shell};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_11shell(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -4772,7 +4772,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_12read, "Channel.read(self, size_t size=1024)\nRead the stdout stream.\n        Returns return code and output buffer tuple.\n\n        Return code is the size of the buffer when positive.\n        Negative values are error codes.\n\n        :param size: Max buffer size to read.\n        :type size: int\n\n        :rtype: (int, bytes)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_12read, "read(self, size: int = 1024)\nRead the stdout stream.\n        Returns return code and output buffer tuple.\n\n        Return code is the size of the buffer when positive.\n        Negative values are error codes.\n\n        :param size: Max buffer size to read.\n        :type size: int\n\n        :rtype: (int, bytes)");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_13read = {"read", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_13read, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_12read};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_13read(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -4940,7 +4940,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_14read_ex, "Channel.read_ex(self, size_t size=1024, int stream_id=0)\nRead the stream with given id.\n        Returns return code and output buffer tuple.\n\n        Return code is the size of the buffer when positive.\n        Negative values are error codes.\n\n        :param size: Max buffer size to read.\n        :type size: int\n\n        :rtype: (int, bytes)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_14read_ex, "read_ex(self, size: int = 1024, stream_id: int = 0)\nRead the stream with given id.\n        Returns return code and output buffer tuple.\n\n        Return code is the size of the buffer when positive.\n        Negative values are error codes.\n\n        :param size: Max buffer size to read.\n        :type size: int\n\n        :rtype: (int, bytes)");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_15read_ex = {"read_ex", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_15read_ex, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_14read_ex};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_15read_ex(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5361,7 +5361,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_16read_stderr, "Channel.read_stderr(self, size_t size=1024)\nRead the stderr stream.\n        Returns return code and output buffer tuple.\n\n        Return code is the size of the buffer when positive.\n        Negative values are error codes.\n\n        :rtype: (int, bytes)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_16read_stderr, "read_stderr(self, size: int = 1024)\nRead the stderr stream.\n        Returns return code and output buffer tuple.\n\n        Return code is the size of the buffer when positive.\n        Negative values are error codes.\n\n        :rtype: (int, bytes)");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_17read_stderr = {"read_stderr", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_17read_stderr, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_16read_stderr};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_17read_stderr(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5548,7 +5548,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_18eof, "Channel.eof(self)\nGet channel EOF status.\n\n        :rtype: bool");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_18eof, "eof(self)\nGet channel EOF status.\n\n        :rtype: bool");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_19eof = {"eof", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_19eof, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_18eof};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_19eof(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5691,7 +5691,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_20send_eof, "Channel.send_eof(self)\nTell the remote host that no further data will be sent on the\n        specified channel. Processes typically interpret this as a closed stdin\n        descriptor.\n\n        Returns 0 on success or negative on failure.\n        It returns ``LIBSSH2_ERROR_EAGAIN`` when it would otherwise block.\n\n        :rtype: int\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_20send_eof, "send_eof(self)\nTell the remote host that no further data will be sent on the\n        specified channel. Processes typically interpret this as a closed stdin\n        descriptor.\n\n        Returns 0 on success or negative on failure.\n        It returns ``LIBSSH2_ERROR_EAGAIN`` when it would otherwise block.\n\n        :rtype: int\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_21send_eof = {"send_eof", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_21send_eof, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_20send_eof};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_21send_eof(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5831,7 +5831,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_22wait_eof, "Channel.wait_eof(self)\nWait for the remote end to acknowledge an EOF request.\n\n        Returns 0 on success or negative on failure. It returns\n        :py:class:`ssh2.error_codes.LIBSSH2_ERROR_EAGAIN` when it\n        would otherwise block.\n\n        :rtype: int\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_22wait_eof, "wait_eof(self)\nWait for the remote end to acknowledge an EOF request.\n\n        Returns 0 on success or negative on failure. It returns\n        :py:class:`ssh2.error_codes.LIBSSH2_ERROR_EAGAIN` when it\n        would otherwise block.\n\n        :rtype: int\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_23wait_eof = {"wait_eof", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_23wait_eof, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_22wait_eof};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_23wait_eof(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5971,7 +5971,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_24close, "Channel.close(self)\nClose channel. Typically done to be able to get exit status.");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_24close, "close(self)\nClose channel. Typically done to be able to get exit status.");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_25close = {"close", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_25close, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_24close};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_25close(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6111,7 +6111,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_26flush, "Channel.flush(self)\nFlush stdout stream");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_26flush, "flush(self)\nFlush stdout stream");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_27flush = {"flush", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_27flush, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_26flush};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_27flush(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6251,7 +6251,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_28flush_ex, "Channel.flush_ex(self, int stream_id)\nFlush stream with id");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_28flush_ex, "flush_ex(self, stream_id: int)\nFlush stream with id");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_29flush_ex = {"flush_ex", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_29flush_ex, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_28flush_ex};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_29flush_ex(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6446,7 +6446,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_30flush_stderr, "Channel.flush_stderr(self)\nFlush stderr stream");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_30flush_stderr, "flush_stderr(self)\nFlush stderr stream");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_31flush_stderr = {"flush_stderr", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_31flush_stderr, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_30flush_stderr};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_31flush_stderr(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6586,7 +6586,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_32wait_closed, "Channel.wait_closed(self)\nWait for server to acknowledge channel close command.");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_32wait_closed, "wait_closed(self)\nWait for server to acknowledge channel close command.");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_33wait_closed = {"wait_closed", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_33wait_closed, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_32wait_closed};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_33wait_closed(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6726,7 +6726,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_34get_exit_status, "Channel.get_exit_status(self)\nGet exit status of command.\n\n        Note that ``0`` is also failure code for this function.\n\n        Best used in non-blocking mode to avoid it being impossible to tell if\n        ``0`` indicates failure or an actual exit status of ``0``.\n\n        Exceptions are raised as with all functions in case of an SSH2Error.\n\n        :rtype: int\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_34get_exit_status, "get_exit_status(self)\nGet exit status of command.\n\n        Note that ``0`` is also failure code for this function.\n\n        Best used in non-blocking mode to avoid it being impossible to tell if\n        ``0`` indicates failure or an actual exit status of ``0``.\n\n        Exceptions are raised as with all functions in case of an SSH2Error.\n\n        :rtype: int\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_35get_exit_status = {"get_exit_status", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_35get_exit_status, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_34get_exit_status};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_35get_exit_status(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -6874,7 +6874,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_36get_exit_signal, "Channel.get_exit_signal(self)\nGet exit signal, message and language tag, if any, for command.\n\n        Returns (`returncode``, ``exit signal``, ``error message``,\n          ``language tag``) tuple.\n\n        :rtype: tuple(int, bytes, bytes, bytes)\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_36get_exit_signal, "get_exit_signal(self)\nGet exit signal, message and language tag, if any, for command.\n\n        Returns (`returncode``, ``exit signal``, ``error message``,\n          ``language tag``) tuple.\n\n        :rtype: tuple(int, bytes, bytes, bytes)\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_37get_exit_signal = {"get_exit_signal", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_37get_exit_signal, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_36get_exit_signal};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_37get_exit_signal(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -7342,7 +7342,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_38setenv, "Channel.setenv(self, varname, value)\nSet environment variable on channel.\n\n        :param varname: Name of variable to set.\n        :type varname: str\n        :param value: Value of variable.\n        :type value: str\n\n        :rtype: int");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_38setenv, "setenv(self, varname, value)\nSet environment variable on channel.\n\n        :param varname: Name of variable to set.\n        :type varname: str\n        :param value: Value of variable.\n        :type value: str\n\n        :rtype: int");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_39setenv = {"setenv", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_39setenv, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_38setenv};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_39setenv(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -7621,7 +7621,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_40window_read_ex, "Channel.window_read_ex(self, unsigned long read_avail, unsigned long window_size_initial)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_40window_read_ex, "window_read_ex(self, read_avail: int, window_size_initial: int)");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_41window_read_ex = {"window_read_ex", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_41window_read_ex, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_40window_read_ex};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_41window_read_ex(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -7831,7 +7831,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_42window_read, "Channel.window_read(self)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_42window_read, "window_read(self)");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_43window_read = {"window_read", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_43window_read, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_42window_read};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_43window_read(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -7971,7 +7971,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_44window_write_ex, "Channel.window_write_ex(self, unsigned long window_size_initial)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_44window_write_ex, "window_write_ex(self, window_size_initial: int)");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_45window_write_ex = {"window_write_ex", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_45window_write_ex, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_44window_write_ex};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_45window_write_ex(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -8166,7 +8166,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_46window_write, "Channel.window_write(self)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_46window_write, "window_write(self)");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_47window_write = {"window_write", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_47window_write, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_46window_write};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_47window_write(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -8306,7 +8306,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_48receive_window_adjust, "Channel.receive_window_adjust(self, unsigned long adjustment, unsigned long force)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_48receive_window_adjust, "receive_window_adjust(self, adjustment: int, force: int)");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_49receive_window_adjust = {"receive_window_adjust", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_49receive_window_adjust, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_48receive_window_adjust};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_49receive_window_adjust(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -8516,7 +8516,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_50receive_window_adjust2, "Channel.receive_window_adjust2(self, unsigned long adjustment, unsigned long force)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_50receive_window_adjust2, "receive_window_adjust2(self, adjustment: int, force: int)");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_51receive_window_adjust2 = {"receive_window_adjust2", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_51receive_window_adjust2, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_50receive_window_adjust2};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_51receive_window_adjust2(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -8736,7 +8736,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_52write, "Channel.write(self, buf)\nWrite buffer to stdin.\n\n        Returns tuple of (``return_code``, ``bytes_written``).\n\n        In blocking mode ``bytes_written`` will always equal ``len(buf)`` if no\n        errors have occurred which would raise exception.\n\n        In non-blocking mode ``return_code`` can be LIBSSH2_ERROR_EAGAIN and\n        ``bytes_written`` *can be less than* ``len(buf)``.\n\n        Clients should resume from that point on next call to the function, ie\n        ``buf[bytes_written_in_last_call:]``.\n\n        .. note::\n          While this function handles unicode strings for ``buf``\n          argument, ``bytes_written`` offset will always be for the *bytes*\n          representation thereof as returned by the C function calls which only\n          handle byte strings.\n\n        :param buf: Buffer to write\n        :type buf: str\n\n        :rtype: tuple(int, int)\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_52write, "write(self, buf)\nWrite buffer to stdin.\n\n        Returns tuple of (``return_code``, ``bytes_written``).\n\n        In blocking mode ``bytes_written`` will always equal ``len(buf)`` if no\n        errors have occurred which would raise exception.\n\n        In non-blocking mode ``return_code`` can be LIBSSH2_ERROR_EAGAIN and\n        ``bytes_written`` *can be less than* ``len(buf)``.\n\n        Clients should resume from that point on next call to the function, ie\n        ``buf[bytes_written_in_last_call:]``.\n\n        .. note::\n          While this function handles unicode strings for ``buf``\n          argument, ``bytes_written`` offset will always be for the *bytes*\n          representation thereof as returned by the C function calls which only\n          handle byte strings.\n\n        :param buf: Buffer to write\n        :type buf: str\n\n        :rtype: tuple(int, int)\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_53write = {"write", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_53write, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_52write};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_53write(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -9180,7 +9180,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_54write_ex, "Channel.write_ex(self, int stream_id, buf)\nWrite buffer to specified stream id.\n\n        Returns tuple of (``return_code``, ``bytes_written``).\n\n        In blocking mode ``bytes_written`` will always equal ``len(buf)`` if no\n        errors have occurred which would raise exception.\n\n        In non-blocking mode ``return_code`` can be LIBSSH2_ERROR_EAGAIN and\n        ``bytes_written`` *can be less than* ``len(buf)``.\n\n        Clients should resume from that point on next call to the function, ie\n        ``buf[bytes_written_in_last_call:]``.\n\n        .. note::\n          While this function handles unicode strings for ``buf``\n          argument, ``bytes_written`` offset will always be for the *bytes*\n          representation thereof as returned by the C function calls which only\n          handle byte strings.\n\n        :param stream_id: Id of stream to write to\n        :type stream_id: int\n        :param buf: Buffer to write\n        :type buf: str\n\n        :rtype: tuple(int, int)\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_54write_ex, "write_ex(self, stream_id: int, buf)\nWrite buffer to specified stream id.\n\n        Returns tuple of (``return_code``, ``bytes_written``).\n\n        In blocking mode ``bytes_written`` will always equal ``len(buf)`` if no\n        errors have occurred which would raise exception.\n\n        In non-blocking mode ``return_code`` can be LIBSSH2_ERROR_EAGAIN and\n        ``bytes_written`` *can be less than* ``len(buf)``.\n\n        Clients should resume from that point on next call to the function, ie\n        ``buf[bytes_written_in_last_call:]``.\n\n        .. note::\n          While this function handles unicode strings for ``buf``\n          argument, ``bytes_written`` offset will always be for the *bytes*\n          representation thereof as returned by the C function calls which only\n          handle byte strings.\n\n        :param stream_id: Id of stream to write to\n        :type stream_id: int\n        :param buf: Buffer to write\n        :type buf: str\n\n        :rtype: tuple(int, int)\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_55write_ex = {"write_ex", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_55write_ex, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_54write_ex};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_55write_ex(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -9639,7 +9639,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_56write_stderr, "Channel.write_stderr(self, buf)\nWrite buffer to stderr.\n\n        Returns tuple of (``return_code``, ``bytes_written``).\n\n        In blocking mode ``bytes_written`` will always equal ``len(buf)`` if no\n        errors have occurred which would raise exception.\n\n        In non-blocking mode ``return_code`` can be LIBSSH2_ERROR_EAGAIN and\n        ``bytes_written`` *can be less than* ``len(buf)``.\n\n        Clients should resume from that point on next call to ``write``, ie\n        ``buf[bytes_written_in_last_call:]``.\n\n        .. note::\n          While this function handles unicode strings for ``buf``\n          argument, ``bytes_written`` offset will always be for the *bytes*\n          representation thereof as returned by the C function calls which only\n          handle byte strings.\n\n        :param buf: Buffer to write\n        :type buf: str\n\n        :rtype: tuple(int, int)\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_56write_stderr, "write_stderr(self, buf)\nWrite buffer to stderr.\n\n        Returns tuple of (``return_code``, ``bytes_written``).\n\n        In blocking mode ``bytes_written`` will always equal ``len(buf)`` if no\n        errors have occurred which would raise exception.\n\n        In non-blocking mode ``return_code`` can be LIBSSH2_ERROR_EAGAIN and\n        ``bytes_written`` *can be less than* ``len(buf)``.\n\n        Clients should resume from that point on next call to ``write``, ie\n        ``buf[bytes_written_in_last_call:]``.\n\n        .. note::\n          While this function handles unicode strings for ``buf``\n          argument, ``bytes_written`` offset will always be for the *bytes*\n          representation thereof as returned by the C function calls which only\n          handle byte strings.\n\n        :param buf: Buffer to write\n        :type buf: str\n\n        :rtype: tuple(int, int)\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_57write_stderr = {"write_stderr", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_57write_stderr, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_56write_stderr};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_57write_stderr(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -10083,7 +10083,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_58x11_req, "Channel.x11_req(self, int screen_number)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_58x11_req, "x11_req(self, screen_number: int)");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_59x11_req = {"x11_req", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_59x11_req, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_58x11_req};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_59x11_req(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -10278,7 +10278,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_60x11_req_ex, "Channel.x11_req_ex(self, int single_connection, const char *auth_proto, const char *auth_cookie, int screen_number)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_60x11_req_ex, "x11_req_ex(self, single_connection: int, auth_proto: bytes, auth_cookie: bytes, screen_number: int)");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_61x11_req_ex = {"x11_req_ex", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_61x11_req_ex, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_60x11_req_ex};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_61x11_req_ex(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -10518,7 +10518,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_62process_startup, "Channel.process_startup(self, request, message=None)\nStartup process on server for request with message.\n\n        Request is a supported SSH subsystem and clients would typically use\n        one of execute/shell/subsystem functions depending on request type.\n\n        :param request: Request type (exec/shell/subsystem).\n        :type request: str\n        :param message: Request message. Content depends on request type\n          and can be ``None``.\n        :type message: str or ``None``\n        ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_62process_startup, "process_startup(self, request, message=None)\nStartup process on server for request with message.\n\n        Request is a supported SSH subsystem and clients would typically use\n        one of execute/shell/subsystem functions depending on request type.\n\n        :param request: Request type (exec/shell/subsystem).\n        :type request: str\n        :param message: Request message. Content depends on request type\n          and can be ``None``.\n        :type message: str or ``None``\n        ");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_63process_startup = {"process_startup", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_63process_startup, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_62process_startup};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_63process_startup(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -10867,7 +10867,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_64poll_channel_read, "Channel.poll_channel_read(self, int extended)\nDeprecated - use session.block_directions and socket polling\n        instead");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_64poll_channel_read, "poll_channel_read(self, extended: int)\nDeprecated - use session.block_directions and socket polling\n        instead");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_65poll_channel_read = {"poll_channel_read", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_65poll_channel_read, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_64poll_channel_read};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_65poll_channel_read(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -11062,7 +11062,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_66handle_extended_data, "Channel.handle_extended_data(self, int ignore_mode)\nDeprecated, use handle_extended_data2");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_66handle_extended_data, "handle_extended_data(self, ignore_mode: int)\nDeprecated, use handle_extended_data2");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_67handle_extended_data = {"handle_extended_data", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_67handle_extended_data, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_66handle_extended_data};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_67handle_extended_data(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -11232,7 +11232,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_68handle_extended_data2, "Channel.handle_extended_data2(self, int ignore_mode)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_68handle_extended_data2, "handle_extended_data2(self, ignore_mode: int)");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_69handle_extended_data2 = {"handle_extended_data2", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_69handle_extended_data2, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_68handle_extended_data2};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_69handle_extended_data2(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -11427,7 +11427,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_70ignore_extended_data, "Channel.ignore_extended_data(self, int ignore_mode)\nDeprecated, use handle_extended_data2");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_70ignore_extended_data, "ignore_extended_data(self, ignore_mode: int)\nDeprecated, use handle_extended_data2");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_71ignore_extended_data = {"ignore_extended_data", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_71ignore_extended_data, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_70ignore_extended_data};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_71ignore_extended_data(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -11597,7 +11597,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_72request_auth_agent, "Channel.request_auth_agent(self)\nRequest SSH agent authentication forwarding on channel.");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_72request_auth_agent, "request_auth_agent(self)\nRequest SSH agent authentication forwarding on channel.");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_73request_auth_agent = {"request_auth_agent", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_73request_auth_agent, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_72request_auth_agent};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_73request_auth_agent(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -11732,7 +11732,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_74__reduce_cython__, "Channel.__reduce_cython__(self)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_74__reduce_cython__, "__reduce_cython__(self)");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_75__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_75__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_74__reduce_cython__};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_75__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -11813,7 +11813,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_76__setstate_cython__, "Channel.__setstate_cython__(self, __pyx_state)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_76__setstate_cython__, "__setstate_cython__(self, __pyx_state)");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_77__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_77__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_76__setstate_cython__};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_77__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL

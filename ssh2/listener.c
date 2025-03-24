@@ -2835,7 +2835,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_8listener_8Listener_2forward_accept, "Listener.forward_accept(self)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_8listener_8Listener_2forward_accept, "forward_accept(self)");
 static PyMethodDef __pyx_mdef_4ssh2_8listener_8Listener_3forward_accept = {"forward_accept", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_8listener_8Listener_3forward_accept, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_8listener_8Listener_2forward_accept};
 static PyObject *__pyx_pw_4ssh2_8listener_8Listener_3forward_accept(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -3030,7 +3030,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_8listener_8Listener_4forward_cancel, "Listener.forward_cancel(self)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_8listener_8Listener_4forward_cancel, "forward_cancel(self)");
 static PyMethodDef __pyx_mdef_4ssh2_8listener_8Listener_5forward_cancel = {"forward_cancel", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_8listener_8Listener_5forward_cancel, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_8listener_8Listener_4forward_cancel};
 static PyObject *__pyx_pw_4ssh2_8listener_8Listener_5forward_cancel(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -3166,7 +3166,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_8listener_8Listener_6__reduce_cython__, "Listener.__reduce_cython__(self)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_8listener_8Listener_6__reduce_cython__, "__reduce_cython__(self)");
 static PyMethodDef __pyx_mdef_4ssh2_8listener_8Listener_7__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_8listener_8Listener_7__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_8listener_8Listener_6__reduce_cython__};
 static PyObject *__pyx_pw_4ssh2_8listener_8Listener_7__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -3247,7 +3247,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_8listener_8Listener_8__setstate_cython__, "Listener.__setstate_cython__(self, __pyx_state)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_8listener_8Listener_8__setstate_cython__, "__setstate_cython__(self, __pyx_state)");
 static PyMethodDef __pyx_mdef_4ssh2_8listener_8Listener_9__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_8listener_8Listener_9__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_8listener_8Listener_8__setstate_cython__};
 static PyObject *__pyx_pw_4ssh2_8listener_8Listener_9__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL

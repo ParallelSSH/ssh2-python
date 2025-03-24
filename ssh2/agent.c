@@ -4123,7 +4123,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_5agent_5Agent_4list_identities, "Agent.list_identities(self)\nThis method is a no-op - use\n        :py:func:`ssh2.agent.Agent.get_identities()` to list and retrieve\n        identities.");
+PyDoc_STRVAR(__pyx_doc_4ssh2_5agent_5Agent_4list_identities, "list_identities(self)\nThis method is a no-op - use\n        :py:func:`ssh2.agent.Agent.get_identities()` to list and retrieve\n        identities.");
 static PyMethodDef __pyx_mdef_4ssh2_5agent_5Agent_5list_identities = {"list_identities", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_5agent_5Agent_5list_identities, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_5agent_5Agent_4list_identities};
 static PyObject *__pyx_pw_4ssh2_5agent_5Agent_5list_identities(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -4185,7 +4185,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_5agent_5Agent_6get_identities, "Agent.get_identities(self)\nList and get identities from agent\n\n        :rtype: list(:py:class:`ssh2.pkey.PublicKey`)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_5agent_5Agent_6get_identities, "get_identities(self)\nList and get identities from agent\n\n        :rtype: list(:py:class:`ssh2.pkey.PublicKey`)");
 static PyMethodDef __pyx_mdef_4ssh2_5agent_5Agent_7get_identities = {"get_identities", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_5agent_5Agent_7get_identities, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_5agent_5Agent_6get_identities};
 static PyObject *__pyx_pw_4ssh2_5agent_5Agent_7get_identities(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -4411,7 +4411,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_5agent_5Agent_8userauth, "Agent.userauth(self, username, PublicKey pkey)\nPerform user authentication with specific public key\n\n        :param username: User name to authenticate as\n        :type username: str\n        :param pkey: Public key to authenticate with\n        :type pkey: :py:class:`ssh2.pkey.PublicKey`\n\n        :raises: :py:class:`ssh2.exceptions.AgentAuthenticationError` on errors\n          authenticating.\n\n        :rtype: int");
+PyDoc_STRVAR(__pyx_doc_4ssh2_5agent_5Agent_8userauth, "userauth(self, username, pkey: PublicKey)\nPerform user authentication with specific public key\n\n        :param username: User name to authenticate as\n        :type username: str\n        :param pkey: Public key to authenticate with\n        :type pkey: :py:class:`ssh2.pkey.PublicKey`\n\n        :raises: :py:class:`ssh2.exceptions.AgentAuthenticationError` on errors\n          authenticating.\n\n        :rtype: int");
 static PyMethodDef __pyx_mdef_4ssh2_5agent_5Agent_9userauth = {"userauth", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_5agent_5Agent_9userauth, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_5agent_5Agent_8userauth};
 static PyObject *__pyx_pw_4ssh2_5agent_5Agent_9userauth(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -4771,7 +4771,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_5agent_5Agent_10disconnect, "Agent.disconnect(self)\nDisconnect from agent.\n\n        :rtype: int");
+PyDoc_STRVAR(__pyx_doc_4ssh2_5agent_5Agent_10disconnect, "disconnect(self)\nDisconnect from agent.\n\n        :rtype: int");
 static PyMethodDef __pyx_mdef_4ssh2_5agent_5Agent_11disconnect = {"disconnect", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_5agent_5Agent_11disconnect, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_5agent_5Agent_10disconnect};
 static PyObject *__pyx_pw_4ssh2_5agent_5Agent_11disconnect(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -4909,7 +4909,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_5agent_5Agent_12connect, "Agent.connect(self)\nConnect to agent.\n\n        :raises: :py:class:`ssh2.exceptions.AgentConnectionError` on errors\n          connecting to agent.\n\n        :rtype: int");
+PyDoc_STRVAR(__pyx_doc_4ssh2_5agent_5Agent_12connect, "connect(self)\nConnect to agent.\n\n        :raises: :py:class:`ssh2.exceptions.AgentConnectionError` on errors\n          connecting to agent.\n\n        :rtype: int");
 static PyMethodDef __pyx_mdef_4ssh2_5agent_5Agent_13connect = {"connect", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_5agent_5Agent_13connect, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_5agent_5Agent_12connect};
 static PyObject *__pyx_pw_4ssh2_5agent_5Agent_13connect(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5071,7 +5071,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_5agent_5Agent_14get_identity_path, "Agent.get_identity_path(self)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_5agent_5Agent_14get_identity_path, "get_identity_path(self)");
 static PyMethodDef __pyx_mdef_4ssh2_5agent_5Agent_15get_identity_path = {"get_identity_path", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_5agent_5Agent_15get_identity_path, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_5agent_5Agent_14get_identity_path};
 static PyObject *__pyx_pw_4ssh2_5agent_5Agent_15get_identity_path(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5261,7 +5261,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_5agent_5Agent_16set_identity_path, "Agent.set_identity_path(self, path)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_5agent_5Agent_16set_identity_path, "set_identity_path(self, path)");
 static PyMethodDef __pyx_mdef_4ssh2_5agent_5Agent_17set_identity_path = {"set_identity_path", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_5agent_5Agent_17set_identity_path, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_5agent_5Agent_16set_identity_path};
 static PyObject *__pyx_pw_4ssh2_5agent_5Agent_17set_identity_path(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5475,7 +5475,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_5agent_5Agent_18__reduce_cython__, "Agent.__reduce_cython__(self)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_5agent_5Agent_18__reduce_cython__, "__reduce_cython__(self)");
 static PyMethodDef __pyx_mdef_4ssh2_5agent_5Agent_19__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_5agent_5Agent_19__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_5agent_5Agent_18__reduce_cython__};
 static PyObject *__pyx_pw_4ssh2_5agent_5Agent_19__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -5556,7 +5556,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_5agent_5Agent_20__setstate_cython__, "Agent.__setstate_cython__(self, __pyx_state)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_5agent_5Agent_20__setstate_cython__, "__setstate_cython__(self, __pyx_state)");
 static PyMethodDef __pyx_mdef_4ssh2_5agent_5Agent_21__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_5agent_5Agent_21__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_5agent_5Agent_20__setstate_cython__};
 static PyObject *__pyx_pw_4ssh2_5agent_5Agent_21__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
