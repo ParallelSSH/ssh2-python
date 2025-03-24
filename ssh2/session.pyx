@@ -14,7 +14,7 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-from typing import Any
+from typing import Any, AnyStr, List, Tuple, BinaryIO
 
 from cpython cimport PyObject_AsFileDescriptor
 from libc.stdlib cimport malloc, free
@@ -111,13 +111,17 @@ cdef class Session:
             c_ssh2.libssh2_session_free(self._session)
         self._session = NULL
 
-    def disconnect(self) -> None:
+    def disconnect(self) -> int:
+        """Disconnect session.
+
+        :rtype: int
+        """
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_session_disconnect(self._session, b"end")
         return handle_error_codes(rc)
 
-    def handshake(self, sock not None) -> Any:
+    def handshake(self, sock not None: BinaryIO) -> int:
         """Perform SSH handshake.
 
         Must be called after Session initialisation.
@@ -167,14 +171,16 @@ cdef class Session:
         with nogil:
             c_ssh2.libssh2_session_set_timeout(self._session, timeout)
 
-    def get_timeout(self) -> 'Any':
-        """Get current session timeout setting"""
+    def get_timeout(self) -> int:
+        """Get current session timeout setting in milliseconds.
+
+        :rtype: int"""
         cdef long timeout
         with nogil:
             timeout = c_ssh2.libssh2_session_get_timeout(self._session)
         return timeout
 
-    def userauth_authenticated(self):
+    def userauth_authenticated(self) -> bool:
         """True/False for is user authenticated or not.
 
         :rtype: bool"""
@@ -183,7 +189,7 @@ cdef class Session:
             rc = c_ssh2.libssh2_userauth_authenticated(self._session)
         return bool(rc)
 
-    def userauth_list(self, username not None):
+    def userauth_list(self, username not None: AnyStr) -> List[str]:
         """Retrieve available authentication methodslist.
 
         :rtype: list"""
@@ -200,10 +206,10 @@ cdef class Session:
         auth = to_str(_auth)
         return auth.split(',')
 
-    def userauth_publickey_fromfile(self, username not None,
-                                    privatekey not None,
-                                    passphrase='',
-                                    publickey=None):
+    def userauth_publickey_fromfile(self, username not None: AnyStr,
+                                    privatekey not None: AnyStr,
+                                    passphrase: AnyStr='',
+                                    publickey: AnyStr | None=None) -> int:
         """Authenticate with public key from file.
 
         :rtype: int"""
@@ -224,8 +230,8 @@ cdef class Session:
                 self._session, _username, _publickey, _privatekey, _passphrase)
         return handle_error_codes(rc)
 
-    def userauth_publickey(self, username not None,
-                           bytes pubkeydata not None):
+    def userauth_publickey(self, username not None: AnyStr,
+                           bytes pubkeydata not None) -> int:
         """Perform public key authentication with provided public key data
 
         :param username: User name to authenticate as
@@ -246,11 +252,11 @@ cdef class Session:
         return handle_error_codes(rc)
 
     def userauth_hostbased_fromfile(self,
-                                    username not None,
-                                    privatekey not None,
-                                    hostname not None,
-                                    publickey=None,
-                                    passphrase=''):
+                                    username not None: AnyStr,
+                                    privatekey not None: AnyStr,
+                                    hostname not None: AnyStr,
+                                    publickey: AnyStr | None=None,
+                                    passphrase: str='') -> int:
         cdef int rc
         cdef bytes b_username = to_bytes(username)
         cdef bytes b_publickey = to_bytes(publickey) \
@@ -272,8 +278,8 @@ cdef class Session:
         return handle_error_codes(rc)
 
     def userauth_publickey_frommemory(
-            self, username, bytes privatekeyfiledata,
-            passphrase='', bytes publickeyfiledata: bytes | None=None):
+            self, username: AnyStr, bytes privatekeyfiledata,
+            passphrase: str='', bytes publickeyfiledata: bytes | None=None) -> int:
         cdef int rc
         cdef bytes b_username = to_bytes(username)
         cdef bytes b_passphrase = to_bytes(passphrase)
@@ -295,7 +301,7 @@ cdef class Session:
                 privatekeydata_len, _passphrase)
         return handle_error_codes(rc)
 
-    def userauth_password(self, username not None, password not None):
+    def userauth_password(self, username not None: AnyStr, password not None: AnyStr) -> int:
         """Perform password authentication
 
         :param username: User name to authenticate.
@@ -312,8 +318,8 @@ cdef class Session:
                 self._session, _username, _password)
         return handle_error_codes(rc)
 
-    def userauth_keyboardinteractive(self, username not None,
-                                     password not None):
+    def userauth_keyboardinteractive(self, username not None: AnyStr,
+                                     password not None: AnyStr) -> int:
         """Perform keyboard-interactive authentication
 
         :param username: User name to authenticate.
@@ -334,7 +340,7 @@ cdef class Session:
         self._kbd_callback = None
         return handle_error_codes(rc)
 
-    def agent_init(self):
+    def agent_init(self) -> "Agent":
         """Initialise SSH agent.
 
         :rtype: :py:class:`ssh2.agent.Agent`
@@ -344,11 +350,11 @@ cdef class Session:
             agent = agent_init(self._session)
         return PyAgent(agent, self)
 
-    def agent_auth(self, username not None):
+    def agent_auth(self, username not None: AnyStr) -> None:
         """Convenience function for performing user authentication via SSH Agent.
 
         Initialises, connects to, gets list of identities from and attempts
-        authentication with each identity from SSH agent.
+        authentication with each identity from SSH agent in order.
 
         Note that agent connections cannot be used in non-blocking mode -
         clients should call `set_blocking(0)` *after* calling this function.
@@ -358,6 +364,8 @@ cdef class Session:
         All steps are performed in C space which makes this function perform
         better than calling the individual Agent class functions from
         Python.
+
+        :param username: The username to connect to agent as.
 
         :raises: :py:class:`MemoryError` on error initialising agent
         :raises: :py:class:`ssh2.exceptions.AgentConnectionError` on error
@@ -379,7 +387,7 @@ cdef class Session:
         with nogil:
             agent_auth(_username, agent)
 
-    def open_session(self):
+    def open_session(self) -> "Channel" | None:
         """Open new channel session.
 
         :rtype: :py:class:`ssh2.channel.Channel`
@@ -393,8 +401,16 @@ cdef class Session:
                 self._session))
         return PyChannel(channel, self)
 
-    def direct_tcpip_ex(self, host not None, int port,
-                        shost not None, int sport):
+    def direct_tcpip_ex(self, host not None: AnyStr, int port,
+                        shost not None: AnyStr, int sport) -> "Channel" | None:
+        """Open direct TCP/IP channel to host:port and open listening connection
+        on shost:sport on the source host, meaning client side.
+
+        Resulting connection is therefor shost:sport -> host:port.
+
+        :rtype: :py:class:`ssh2.channel.Channel` or None
+        """
+
         cdef c_ssh2.LIBSSH2_CHANNEL *channel
         cdef bytes b_host = to_bytes(host)
         cdef bytes b_shost = to_bytes(shost)
@@ -408,11 +424,13 @@ cdef class Session:
                 self._session))
         return PyChannel(channel, self)
 
-    def direct_tcpip(self, host not None, int port):
+    def direct_tcpip(self, host not None: AnyStr, int port) -> "Channel" | None:
         """Open direct TCP/IP channel to host:port
 
         Channel will be listening on an available open port on client side
-        as assigned by OS.
+        as assigned by OS, if available.
+
+        :rtype: :py:class:`ssh2.channel.Channel or None
         """
         cdef c_ssh2.LIBSSH2_CHANNEL *channel
         cdef bytes b_host = to_bytes(host)
@@ -425,7 +443,7 @@ cdef class Session:
                 self._session))
         return PyChannel(channel, self)
 
-    def block_directions(self):
+    def block_directions(self) -> int:
         """Get blocked directions for the current session.
 
         From libssh2 documentation:
@@ -440,7 +458,7 @@ cdef class Session:
 
         Application should wait for data to be available for socket prior to
         calling a libssh2 function again. If ``LIBSSH2_SESSION_BLOCK_INBOUND``
-        is set select should contain the session socket in readfds set.
+        is set select/poll should contain the session socket in readfds set.
 
         Correspondingly in case of ``LIBSSH2_SESSION_BLOCK_OUTBOUND`` writefds
         set should contain the socket.
@@ -452,7 +470,7 @@ cdef class Session:
                 self._session)
         return rc
 
-    def forward_listen(self, int port):
+    def forward_listen(self, int port) -> "Listener" | None:
         """Create forward listener on port.
 
         :param port: Port to listen on.
@@ -468,7 +486,8 @@ cdef class Session:
                 self._session))
         return PyListener(listener, self)
 
-    def forward_listen_ex(self, int queue_maxsize, host=None, int port=0):
+    def forward_listen_ex(self, int queue_maxsize, host: AnyStr | None=None,
+                          int port=0) -> Tuple["Listener", int] | None:
         """
         Instruct the remote SSH server to begin listening for inbound
         TCP/IP connections. New connections will be queued by the library
@@ -488,7 +507,7 @@ cdef class Session:
         :returns: (listener, bound_port) tuple where bound_port is the
           listen port bound on the remote host. Useful when requesting
           dynamic port numbers.
-        :rtype: (:py:class:`ssh2.listener.Listener`, int)
+        :rtype: (:py:class:`ssh2.listener.Listener`, int) or None
         """
         cdef c_ssh2.LIBSSH2_LISTENER *listener
         cdef bytes b_host = None if host is None else to_bytes(host)
@@ -504,7 +523,7 @@ cdef class Session:
                 self._session)), 0)
         return (PyListener(listener, self), bound_port)
 
-    def sftp_init(self):
+    def sftp_init(self) -> "SFTP":
         """Initialise SFTP channel.
 
         :rtype: :py:class:`ssh2.sftp.SFTP`
@@ -537,7 +556,7 @@ cdef class Session:
         finally:
             free(_error_msg)
 
-    def last_errno(self):
+    def last_errno(self) -> int:
         """Retrieve last error number from libssh2, if any.
         Returns 0 on no last error.
 
@@ -549,7 +568,7 @@ cdef class Session:
                 self._session)
         return rc
 
-    def set_last_error(self, int errcode, errmsg not None):
+    def set_last_error(self, int errcode, errmsg not None: AnyStr) -> int:
         cdef bytes b_errmsg = to_bytes(errmsg)
         cdef char *_errmsg = b_errmsg
         cdef int rc
@@ -580,7 +599,7 @@ cdef class Session:
                 self._session))
         return PyChannel(channel, self), statinfo
 
-    def scp_recv2(self, path not None):
+    def scp_recv2(self, path not None: AnyStr) -> Tuple["Channel", "FileInfo"] | None:
         """Receive file via SCP.
 
         :param path: File path to receive.
@@ -622,8 +641,8 @@ cdef class Session:
                 self._session))
         return PyChannel(channel, self)
 
-    def scp_send64(self, path not None, int mode, c_ssh2.libssh2_uint64_t size,
-                   time_t mtime, time_t atime):
+    def scp_send64(self, path not None: AnyStr, int mode, c_ssh2.libssh2_uint64_t size,
+                   time_t mtime, time_t atime) -> "Channel":
         """Send file via SCP.
 
         :param path: Local file path to send.
@@ -645,7 +664,7 @@ cdef class Session:
                 self._session))
         return PyChannel(channel, self)
 
-    def publickey_init(self):
+    def publickey_init(self) -> "PublicKeySystem":
         """Initialise public key subsystem for managing remote server
         public keys"""
         cdef c_pkey.LIBSSH2_PUBLICKEY *_pkey
@@ -655,7 +674,7 @@ cdef class Session:
             raise PublicKeyInitError
         return PyPublicKeySystem(_pkey, self)
 
-    def hostkey_hash(self, int hash_type):
+    def hostkey_hash(self, int hash_type) -> bytes:
         """Get computed digest of the remote system's host key.
 
         :param hash_type: One of ``ssh2.session.LIBSSH2_HOSTKEY_HASH_MD5`` or
@@ -672,7 +691,7 @@ cdef class Session:
         b_hash = _hash
         return b_hash
 
-    def hostkey(self):
+    def hostkey(self) -> Tuple[bytes, int]:
         """Get server host key for this session.
 
         Returns key, key_type tuple where key_type is one of
@@ -694,7 +713,7 @@ cdef class Session:
         key = _key[:key_len]
         return key, key_type
 
-    def knownhost_init(self):
+    def knownhost_init(self) -> "KnownHost":
         """Initialise a collection of known hosts for this session.
 
         :rtype: :py:class:`ssh2.knownhost.KnownHost`"""
@@ -706,7 +725,7 @@ cdef class Session:
             raise KnownHostError
         return PyKnownHost(self, known_hosts)
 
-    def keepalive_config(self, bint want_reply, unsigned interval):
+    def keepalive_config(self, bint want_reply, unsigned interval) -> None:
         """
         Configure keep alive settings.
 
@@ -719,7 +738,7 @@ cdef class Session:
         with nogil:
             c_ssh2.libssh2_keepalive_config(self._session, want_reply, interval)
 
-    def keepalive_send(self):
+    def keepalive_send(self) -> int:
         """Send keepalive.
 
         Returns seconds remaining before next keep alive should be sent.
@@ -733,7 +752,7 @@ cdef class Session:
         handle_error_codes(rc)
         return c_seconds
 
-    def supported_algs(self, MethodType method_type):
+    def supported_algs(self, MethodType method_type) -> List[str]:
         """Get supportd algorithms for method type.
 
         :param method_type: Type of method to get
@@ -758,7 +777,7 @@ cdef class Session:
                 c_ssh2.libssh2_free(self._session, c_algs)
         return algs
 
-    def methods(self, MethodType method_type):
+    def methods(self, MethodType method_type) -> str:
         """Get currently active algorithms for method type.
 
         :param method_type: Type of method to get
@@ -773,7 +792,7 @@ cdef class Session:
                 self._session, method_type.value)
         return to_str(methods)
 
-    def method_pref(self, MethodType method_type, prefs not None):
+    def method_pref(self, MethodType method_type, prefs not None) -> int:
         """Set preference for session method.
 
         See :py:func:`Session.supported_algs` for supported algorithms
