@@ -2564,7 +2564,7 @@ static int __pyx_pf_4ssh2_4pkey_9PublicKey___cinit__(struct __pyx_obj_4ssh2_4pke
  *         self._pkey = NULL
  * 
  *     @property             # <<<<<<<<<<<<<<
- *     def blob(self):
+ *     def blob(self) -> bytes:
  *         """Blob of public key data.
  */
 
@@ -2641,7 +2641,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_4blob___get__(struct __pyx_obj_
  *         self._pkey = NULL
  * 
  *     @property             # <<<<<<<<<<<<<<
- *     def blob(self):
+ *     def blob(self) -> bytes:
  *         """Blob of public key data.
  */
 
@@ -2660,7 +2660,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_4blob___get__(struct __pyx_obj_
  *         return self._pkey.blob[:self._pkey.blob_len]
  * 
  *     @property             # <<<<<<<<<<<<<<
- *     def magic(self):
+ *     def magic(self) -> int:
  *         """Magic number of public key.
  */
 
@@ -2737,7 +2737,7 @@ static PyObject *__pyx_pf_4ssh2_4pkey_9PublicKey_5magic___get__(struct __pyx_obj
  *         return self._pkey.blob[:self._pkey.blob_len]
  * 
  *     @property             # <<<<<<<<<<<<<<
- *     def magic(self):
+ *     def magic(self) -> int:
  *         """Magic number of public key.
  */
 
@@ -3218,8 +3218,8 @@ static PyMethodDef __pyx_methods_4ssh2_4pkey_PublicKey[] = {
 };
 
 static struct PyGetSetDef __pyx_getsets_4ssh2_4pkey_PublicKey[] = {
-  {(char *)"blob", __pyx_getprop_4ssh2_4pkey_9PublicKey_blob, 0, (char *)PyDoc_STR("Blob of public key data.\n\n        :rtype: bytes\n        "), 0},
-  {(char *)"magic", __pyx_getprop_4ssh2_4pkey_9PublicKey_magic, 0, (char *)PyDoc_STR("Magic number of public key.\n\n        :rtype: int\n        "), 0},
+  {(char *)"blob", __pyx_getprop_4ssh2_4pkey_9PublicKey_blob, 0, (char *)PyDoc_STR("blob: bytes\nBlob of public key data.\n\n        :rtype: bytes\n        "), 0},
+  {(char *)"magic", __pyx_getprop_4ssh2_4pkey_9PublicKey_magic, 0, (char *)PyDoc_STR("magic: int\nMagic number of public key.\n\n        :rtype: int\n        "), 0},
   {(char *)"blob_len", __pyx_getprop_4ssh2_4pkey_9PublicKey_blob_len, 0, (char *)PyDoc_STR("Blob length of public key.\n\n        :rtype: int\n        "), 0},
   {(char *)"comment", __pyx_getprop_4ssh2_4pkey_9PublicKey_comment, 0, (char *)PyDoc_STR("Public key comment\n\n        :rtype: bytes\n        "), 0},
   {0, 0, 0, 0, 0}

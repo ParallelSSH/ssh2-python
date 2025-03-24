@@ -16,6 +16,8 @@
 
 """SFTP handle, attributes and stat VFS classes."""
 
+from typing import Generator, Tuple
+
 from libc.stdlib cimport malloc, free
 
 from .utils cimport handle_error_codes
@@ -52,7 +54,7 @@ cdef class SFTPAttributes:
             free(self._attrs)
 
     @property
-    def flags(self):
+    def flags(self) -> int:
         return self._attrs.flags
 
     @flags.setter
@@ -60,7 +62,7 @@ cdef class SFTPAttributes:
         self._attrs.flags = flags
 
     @property
-    def filesize(self):
+    def filesize(self) -> int:
         return self._attrs.filesize
 
     @filesize.setter
@@ -68,7 +70,7 @@ cdef class SFTPAttributes:
         self._attrs.filesize = filesize
 
     @property
-    def uid(self):
+    def uid(self) -> int:
         return self._attrs.uid
 
     @uid.setter
@@ -76,7 +78,7 @@ cdef class SFTPAttributes:
         self._attrs.uid = uid
 
     @property
-    def gid(self):
+    def gid(self) -> int:
         return self._attrs.gid
 
     @gid.setter
@@ -84,7 +86,7 @@ cdef class SFTPAttributes:
         self._attrs.gid = gid
 
     @property
-    def permissions(self):
+    def permissions(self) -> int:
         return self._attrs.permissions
 
     @permissions.setter
@@ -92,7 +94,7 @@ cdef class SFTPAttributes:
         self._attrs.permissions = permissions
 
     @property
-    def atime(self):
+    def atime(self) -> int:
         return self._attrs.atime
 
     @atime.setter
@@ -100,7 +102,7 @@ cdef class SFTPAttributes:
         self._attrs.atime = atime
 
     @property
-    def mtime(self):
+    def mtime(self) -> int:
         return self._attrs.mtime
 
     @mtime.setter
@@ -124,7 +126,7 @@ cdef class SFTPHandle:
     def __iter__(self):
         return self
 
-    def __next__(self):
+    def __next__(self) -> Tuple[int, bytes]:
         cdef int rc
         cdef bytes data
         rc, data = self.read()
@@ -138,9 +140,10 @@ cdef class SFTPHandle:
     def __exit__(self, *args):
         self.close()
 
-    def close(self):
-        """Close handle. Called automatically when object is deleted
-        and/or garbage collected.
+    def close(self) -> int:
+        """Close handle.
+
+        Called automatically when object is de-allocated if not already closed.
 
         :rtype: int"""
         cdef int rc
@@ -152,7 +155,7 @@ cdef class SFTPHandle:
             return
         return rc
 
-    def read(self, size_t buffer_maxlen=c_ssh2.LIBSSH2_CHANNEL_WINDOW_DEFAULT):
+    def read(self, size_t buffer_maxlen=c_ssh2.LIBSSH2_CHANNEL_WINDOW_DEFAULT) -> Tuple[int, bytes]:
         """Read buffer from file handle.
 
         :param buffer_maxlen: Max length of buffer to return.
@@ -179,7 +182,7 @@ cdef class SFTPHandle:
 
     def readdir_ex(self,
                    size_t longentry_maxlen=1024,
-                   size_t buffer_maxlen=1024):
+                   size_t buffer_maxlen=1024) -> Generator[Tuple[int, bytes, bytes, SFTPAttributes]]:
         """Get directory listing from file handle, if any.
 
         File handle *must* be opened with :py:func:`ssh2.sftp.SFTP.readdir()`
@@ -226,7 +229,7 @@ cdef class SFTPHandle:
             free(longentry)
         return rc, buf, b_longentry, attrs
 
-    def readdir(self, size_t buffer_maxlen=1024):
+    def readdir(self, size_t buffer_maxlen=1024) -> Generator[Tuple[int, bytes, SFTPAttributes]]:
         """Get directory listing from file handle, if any.
 
         This function is a generator and should be iterated on.
@@ -260,7 +263,7 @@ cdef class SFTPHandle:
             free(cbuf)
         return rc, buf, attrs
 
-    def write(self, bytes buf):
+    def write(self, bytes buf) -> Tuple[int, bytes]:
         """Write buffer to file handle.
 
         Returns tuple of (``error code``, ``bytes written``).
@@ -297,7 +300,7 @@ cdef class SFTPHandle:
             bytes_written = tot_size - _size
         return rc, bytes_written
 
-    def fsync(self):
+    def fsync(self) -> int:
         """Sync file handle data.
 
         :rtype: int"""
@@ -306,7 +309,7 @@ cdef class SFTPHandle:
             rc = c_sftp.libssh2_sftp_fsync(self._handle)
         return handle_error_codes(rc)
 
-    def seek(self, size_t offset):
+    def seek(self, size_t offset) -> None:
         """Deprecated, use seek64.
 
         Seek file to given offset.
@@ -318,7 +321,7 @@ cdef class SFTPHandle:
         with nogil:
             c_sftp.libssh2_sftp_seek(self._handle, offset)
 
-    def seek64(self, c_ssh2.libssh2_uint64_t offset):
+    def seek64(self, c_ssh2.libssh2_uint64_t offset) -> None:
         """Seek file to given 64-bit offset.
 
         :param offset: Offset to seek to.
@@ -328,7 +331,7 @@ cdef class SFTPHandle:
         with nogil:
             c_sftp.libssh2_sftp_seek64(self._handle, offset)
 
-    def rewind(self):
+    def rewind(self) -> None:
         """Rewind file handle to beginning of file.
 
         :rtype: None"""
@@ -346,7 +349,7 @@ cdef class SFTPHandle:
             rc = c_sftp.libssh2_sftp_tell(self._handle)
         return handle_error_codes(rc)
 
-    def tell64(self):
+    def tell64(self) -> int:
         """Get current file handle 64-bit offset.
 
         :rtype: int"""
@@ -355,7 +358,7 @@ cdef class SFTPHandle:
             rc = c_sftp.libssh2_sftp_tell(self._handle)
         return handle_error_codes(rc)
 
-    def fstat_ex(self, SFTPAttributes attrs, int setstat):
+    def fstat_ex(self, SFTPAttributes attrs, int setstat) -> int:
         """Get or set file attributes. Clients would typically use one of the
         fstat or fsetstat functions instead"""
         cdef int rc
@@ -364,7 +367,7 @@ cdef class SFTPHandle:
                 self._handle, attrs._attrs, setstat)
         return handle_error_codes(rc)
 
-    def fstat(self):
+    def fstat(self) -> SFTPAttributes:
         """Get file stat attributes from handle.
 
         :rtype: :py:class:`ssh2.sftp.SFTPAttributes` or LIBSSH2_ERROR_EAGAIN"""
@@ -376,7 +379,7 @@ cdef class SFTPHandle:
             return handle_error_codes(rc)
         return attrs
 
-    def fsetstat(self, SFTPAttributes attrs):
+    def fsetstat(self, SFTPAttributes attrs) -> int:
         """Set file handle attributes.
 
         :param attrs: Attributes to set.
@@ -386,7 +389,7 @@ cdef class SFTPHandle:
             rc = c_sftp.libssh2_sftp_fsetstat(self._handle, attrs._attrs)
         return handle_error_codes(rc)
 
-    def fstatvfs(self):
+    def fstatvfs(self) -> SFTPStatVFS:
         """Get file system statistics for handle
 
         :rtype: `ssh2.sftp.SFTPStatVFS`"""
@@ -428,52 +431,52 @@ cdef class SFTPStatVFS:
                 free(self._ptr)
 
     @property
-    def f_bsize(self):
+    def f_bsize(self) -> int:
         """File system block size"""
         return self._ptr.f_bsize
 
     @property
-    def f_frsize(self):
+    def f_frsize(self) -> int:
         """Fragment size"""
         return self._ptr.f_frsize
 
     @property
-    def f_blocks(self):
+    def f_blocks(self) -> int:
         """Size of fs in f_frsize units"""
         return self._ptr.f_blocks
 
     @property
-    def f_bfree(self):
+    def f_bfree(self) -> int:
         """Free blocks"""
         return self._ptr.f_bfree
 
     @property
-    def f_bavail(self):
+    def f_bavail(self) -> int:
         """Free blocks for non-root"""
         return self._ptr.f_bavail
 
     @property
-    def f_files(self):
+    def f_files(self) -> int:
         """Inodes"""
         return self._ptr.f_files
 
     @property
-    def f_ffree(self):
+    def f_ffree(self) -> int:
         """Free inodes"""
         return self._ptr.f_ffree
 
     @property
-    def f_favail(self):
+    def f_favail(self) -> int:
         """Free inodes for non-root"""
         return self._ptr.f_favail
 
     @property
-    def f_fsid(self):
+    def f_fsid(self) -> int:
         """File system ID"""
         return self._ptr.f_fsid
 
     @property
-    def f_flag(self):
+    def f_flag(self) -> int:
         """File system mount flags.
 
         This property is a bit mask with defined bits
@@ -481,6 +484,6 @@ cdef class SFTPStatVFS:
         return self._ptr.f_flag
 
     @property
-    def f_namemax(self):
+    def f_namemax(self) -> int:
         """Maximum filename length"""
         return self._ptr.f_namemax

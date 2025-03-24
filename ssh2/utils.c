@@ -2436,7 +2436,7 @@ static const char __pyx_k_new_line_pos[] = "new_line_pos";
 static const char __pyx_k_CompressError[] = "CompressError";
 static const char __pyx_k_ProtocolError[] = "ProtocolError";
 static const char __pyx_k_SocketTimeout[] = "SocketTimeout";
-static const char __pyx_k_Tuple_int_int[] = "Tuple(int, int)";
+static const char __pyx_k_Tuple_int_int[] = "Tuple[int, int]";
 static const char __pyx_k_remainder_len[] = "remainder_len";
 static const char __pyx_k_BadSocketError[] = "BadSocketError";
 static const char __pyx_k_ChannelFailure[] = "ChannelFailure";
@@ -3593,7 +3593,7 @@ static PyObject *__pyx_f_4ssh2_5utils_to_str_len(char *__pyx_v_c_str, int __pyx_
 /* "ssh2/utils.pyx":52
  * 
  * 
- * def find_eol(bytes buf: bytes, Py_ssize_t pos: Py_ssize_t) -> Tuple(int, int):             # <<<<<<<<<<<<<<
+ * def find_eol(bytes buf: bytes, Py_ssize_t pos: Py_ssize_t) -> Tuple[int, int]:             # <<<<<<<<<<<<<<
  *     """Find end-of-line in buffer from position and return end position of
  *     line and where next find_eol should start from.
  */
@@ -3606,7 +3606,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_5utils_find_eol, "find_eol(buf: bytes, pos: Py_ssize_t) -> Tuple(int, int)\nFind end-of-line in buffer from position and return end position of\n    line and where next find_eol should start from.\n\n    Eg - find_eol(b'line\nline2', 0) would return (5, 6), next call should be\n    find_eol(b'line\nline2', 6) for next line where 6 was added to previous\n    position.\n\n    :param buf: Data buffer to parse for line.\n    :type buf: bytes\n    :param pos: Starting position to parse from\n    :type pos: int\n\n    :rtype: (int, int)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_5utils_find_eol, "find_eol(buf: bytes, pos: Py_ssize_t) -> Tuple[int, int]\nFind end-of-line in buffer from position and return end position of\n    line and where next find_eol should start from.\n\n    Eg - find_eol(b'line\nline2', 0) would return (5, 6), next call should be\n    find_eol(b'line\nline2', 6) for next line where 6 was added to previous\n    position.\n\n    :param buf: Data buffer to parse for line.\n    :type buf: bytes\n    :param pos: Starting position to parse from\n    :type pos: int\n\n    :rtype: (int, int)");
 static PyMethodDef __pyx_mdef_4ssh2_5utils_1find_eol = {"find_eol", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_5utils_1find_eol, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_5utils_find_eol};
 static PyObject *__pyx_pw_4ssh2_5utils_1find_eol(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
@@ -3772,7 +3772,7 @@ static PyObject *__pyx_pf_4ssh2_5utils_find_eol(CYTHON_UNUSED PyObject *__pyx_se
     __Pyx_GIVEREF(__pyx_t_3);
     if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error);
     __pyx_t_3 = 0;
-    __pyx_r = __pyx_t_4;
+    __pyx_r = ((PyObject*)__pyx_t_4);
     __pyx_t_4 = 0;
     goto __pyx_L0;
 
@@ -3881,14 +3881,14 @@ static PyObject *__pyx_pf_4ssh2_5utils_find_eol(CYTHON_UNUSED PyObject *__pyx_se
   if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_3)) __PYX_ERR(0, 76, __pyx_L1_error);
   __pyx_t_4 = 0;
   __pyx_t_3 = 0;
-  __pyx_r = __pyx_t_6;
+  __pyx_r = ((PyObject*)__pyx_t_6);
   __pyx_t_6 = 0;
   goto __pyx_L0;
 
   /* "ssh2/utils.pyx":52
  * 
  * 
- * def find_eol(bytes buf: bytes, Py_ssize_t pos: Py_ssize_t) -> Tuple(int, int):             # <<<<<<<<<<<<<<
+ * def find_eol(bytes buf: bytes, Py_ssize_t pos: Py_ssize_t) -> Tuple[int, int]:             # <<<<<<<<<<<<<<
  *     """Find end-of-line in buffer from position and return end position of
  *     line and where next find_eol should start from.
  */
@@ -7036,7 +7036,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "ssh2/utils.pyx":52
  * 
  * 
- * def find_eol(bytes buf: bytes, Py_ssize_t pos: Py_ssize_t) -> Tuple(int, int):             # <<<<<<<<<<<<<<
+ * def find_eol(bytes buf: bytes, Py_ssize_t pos: Py_ssize_t) -> Tuple[int, int]:             # <<<<<<<<<<<<<<
  *     """Find end-of-line in buffer from position and return end position of
  *     line and where next find_eol should start from.
  */
@@ -7616,7 +7616,7 @@ if (!__Pyx_RefNanny) {
   /* "ssh2/utils.pyx":52
  * 
  * 
- * def find_eol(bytes buf: bytes, Py_ssize_t pos: Py_ssize_t) -> Tuple(int, int):             # <<<<<<<<<<<<<<
+ * def find_eol(bytes buf: bytes, Py_ssize_t pos: Py_ssize_t) -> Tuple[int, int]:             # <<<<<<<<<<<<<<
  *     """Find end-of-line in buffer from position and return end position of
  *     line and where next find_eol should start from.
  */

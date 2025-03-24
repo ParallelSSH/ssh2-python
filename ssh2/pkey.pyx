@@ -32,7 +32,7 @@ cdef class PublicKey:
         self._pkey = NULL
 
     @property
-    def blob(self):
+    def blob(self) -> bytes:
         """Blob of public key data.
 
         :rtype: bytes
@@ -42,7 +42,7 @@ cdef class PublicKey:
         return self._pkey.blob[:self._pkey.blob_len]
 
     @property
-    def magic(self):
+    def magic(self) -> int:
         """Magic number of public key.
 
         :rtype: int
