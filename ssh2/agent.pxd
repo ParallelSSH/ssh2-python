@@ -31,7 +31,7 @@ cdef int auth_identity(const char *username,
                        c_ssh2.libssh2_agent_publickey **identity,
                        c_ssh2.libssh2_agent_publickey *prev) except -1 nogil
 
-cdef void clear_agent(c_ssh2.LIBSSH2_AGENT *agent) nogil
+cdef void clear_agent(c_ssh2.LIBSSH2_AGENT *agent) noexcept nogil
 
 cdef int agent_auth(char * _username,
                     c_ssh2.LIBSSH2_AGENT * agent) except 1 nogil

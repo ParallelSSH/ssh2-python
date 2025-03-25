@@ -1742,9 +1742,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, P
 /* GetBuiltinName.proto */
 static PyObject *__Pyx_GetBuiltinName(PyObject *name);
 
-/* ErrOccurredWithGIL.proto */
-static CYTHON_INLINE int __Pyx_ErrOccurredWithGIL(void);
-
 /* PyDictVersioning.proto */
 #if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_TYPE_SLOTS
 #define __PYX_DICT_VERSION_INIT  ((PY_UINT64_T) -1)
@@ -1928,11 +1925,6 @@ static void __Pyx_RaiseArgtupleInvalid(const char* func_name, int exact,
     ((likely(__Pyx_IS_TYPE(obj, type) | (none_allowed && (obj == Py_None)))) ? 1 :\
         __Pyx__ArgTypeTest(obj, type, name, exact))
 static int __Pyx__ArgTypeTest(PyObject *obj, PyTypeObject *type, const char *name, int exact);
-
-/* WriteUnraisableException.proto */
-static void __Pyx_WriteUnraisable(const char *name, int clineno,
-                                  int lineno, const char *filename,
-                                  int full_traceback, int nogil);
 
 /* KeywordStringCheck.proto */
 static int __Pyx_CheckKeywordStrings(PyObject *kw, const char* function_name, int kw_allowed);
@@ -2952,7 +2944,7 @@ static int __pyx_f_4ssh2_5agent_agent_auth(char *__pyx_v__username, LIBSSH2_AGEN
  *         with gil:
  *             raise AgentListIdentitiesError(
  */
-    __pyx_f_4ssh2_5agent_clear_agent(__pyx_v_agent); if (unlikely(__Pyx_ErrOccurredWithGIL())) __PYX_ERR(1, 31, __pyx_L1_error)
+    __pyx_f_4ssh2_5agent_clear_agent(__pyx_v_agent);
 
     /* "ssh2/agent.pyx":32
  *     if c_ssh2.libssh2_agent_list_identities(agent) != 0:
@@ -3160,7 +3152,7 @@ static int __pyx_f_4ssh2_5agent_agent_auth(char *__pyx_v__username, LIBSSH2_AGEN
  *             return 0
  *         prev = identity
  */
-      __pyx_f_4ssh2_5agent_clear_agent(__pyx_v_agent); if (unlikely(__Pyx_ErrOccurredWithGIL())) __PYX_ERR(1, 43, __pyx_L1_error)
+      __pyx_f_4ssh2_5agent_clear_agent(__pyx_v_agent);
 
       /* "ssh2/agent.pyx":44
  *                 agent, _username, identity) == 0:
@@ -3280,7 +3272,7 @@ static int __pyx_f_4ssh2_5agent_auth_identity(char const *__pyx_v_username, LIBS
  *     elif rc < 0:
  *         clear_agent(agent)
  */
-    __pyx_f_4ssh2_5agent_clear_agent(__pyx_v_agent); if (unlikely(__Pyx_ErrOccurredWithGIL())) __PYX_ERR(1, 57, __pyx_L1_error)
+    __pyx_f_4ssh2_5agent_clear_agent(__pyx_v_agent);
 
     /* "ssh2/agent.pyx":56
  *     rc = c_ssh2.libssh2_agent_get_identity(
@@ -3309,7 +3301,7 @@ static int __pyx_f_4ssh2_5agent_auth_identity(char const *__pyx_v_username, LIBS
  *         with gil:
  *             raise AgentGetIdentityError(
  */
-    __pyx_f_4ssh2_5agent_clear_agent(__pyx_v_agent); if (unlikely(__Pyx_ErrOccurredWithGIL())) __PYX_ERR(1, 59, __pyx_L1_error)
+    __pyx_f_4ssh2_5agent_clear_agent(__pyx_v_agent);
 
     /* "ssh2/agent.pyx":60
  *     elif rc < 0:
@@ -3757,7 +3749,7 @@ static LIBSSH2_AGENT *__pyx_f_4ssh2_5agent_init_connect_agent(LIBSSH2_SESSION *_
 /* "ssh2/agent.pyx":88
  * 
  * 
- * cdef void clear_agent(c_ssh2.LIBSSH2_AGENT *agent) nogil:             # <<<<<<<<<<<<<<
+ * cdef void clear_agent(c_ssh2.LIBSSH2_AGENT *agent) noexcept nogil:             # <<<<<<<<<<<<<<
  *     c_ssh2.libssh2_agent_disconnect(agent)
  *     c_ssh2.libssh2_agent_free(agent)
  */
@@ -3766,7 +3758,7 @@ static void __pyx_f_4ssh2_5agent_clear_agent(LIBSSH2_AGENT *__pyx_v_agent) {
 
   /* "ssh2/agent.pyx":89
  * 
- * cdef void clear_agent(c_ssh2.LIBSSH2_AGENT *agent) nogil:
+ * cdef void clear_agent(c_ssh2.LIBSSH2_AGENT *agent) noexcept nogil:
  *     c_ssh2.libssh2_agent_disconnect(agent)             # <<<<<<<<<<<<<<
  *     c_ssh2.libssh2_agent_free(agent)
  * 
@@ -3774,7 +3766,7 @@ static void __pyx_f_4ssh2_5agent_clear_agent(LIBSSH2_AGENT *__pyx_v_agent) {
   (void)(libssh2_agent_disconnect(__pyx_v_agent));
 
   /* "ssh2/agent.pyx":90
- * cdef void clear_agent(c_ssh2.LIBSSH2_AGENT *agent) nogil:
+ * cdef void clear_agent(c_ssh2.LIBSSH2_AGENT *agent) noexcept nogil:
  *     c_ssh2.libssh2_agent_disconnect(agent)
  *     c_ssh2.libssh2_agent_free(agent)             # <<<<<<<<<<<<<<
  * 
@@ -3785,7 +3777,7 @@ static void __pyx_f_4ssh2_5agent_clear_agent(LIBSSH2_AGENT *__pyx_v_agent) {
   /* "ssh2/agent.pyx":88
  * 
  * 
- * cdef void clear_agent(c_ssh2.LIBSSH2_AGENT *agent) nogil:             # <<<<<<<<<<<<<<
+ * cdef void clear_agent(c_ssh2.LIBSSH2_AGENT *agent) noexcept nogil:             # <<<<<<<<<<<<<<
  *     c_ssh2.libssh2_agent_disconnect(agent)
  *     c_ssh2.libssh2_agent_free(agent)
  */
@@ -4049,9 +4041,6 @@ static void __pyx_pw_4ssh2_5agent_5Agent_3__dealloc__(PyObject *__pyx_v_self) {
 static void __pyx_pf_4ssh2_5agent_5Agent_2__dealloc__(struct __pyx_obj_4ssh2_5agent_Agent *__pyx_v_self) {
   int __pyx_t_1;
   int __pyx_t_2;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
 
   /* "ssh2/agent.pyx":107
  * 
@@ -4084,7 +4073,7 @@ static void __pyx_pf_4ssh2_5agent_5Agent_2__dealloc__(struct __pyx_obj_4ssh2_5ag
  *         self._agent = NULL
  * 
  */
-    __pyx_f_4ssh2_5agent_clear_agent(__pyx_v_self->_agent); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 108, __pyx_L1_error)
+    __pyx_f_4ssh2_5agent_clear_agent(__pyx_v_self->_agent);
 
     /* "ssh2/agent.pyx":107
  * 
@@ -4113,10 +4102,6 @@ static void __pyx_pf_4ssh2_5agent_5Agent_2__dealloc__(struct __pyx_obj_4ssh2_5ag
  */
 
   /* function exit code */
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_WriteUnraisable("ssh2.agent.Agent.__dealloc__", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
-  __pyx_L0:;
 }
 
 /* "ssh2/agent.pyx":111
@@ -6911,19 +6896,6 @@ static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
     return result;
 }
 
-/* ErrOccurredWithGIL */
-static CYTHON_INLINE int __Pyx_ErrOccurredWithGIL(void) {
-  int err;
-  #ifdef WITH_THREAD
-  PyGILState_STATE _save = PyGILState_Ensure();
-  #endif
-  err = !!PyErr_Occurred();
-  #ifdef WITH_THREAD
-  PyGILState_Release(_save);
-  #endif
-  return err;
-}
-
 /* PyDictVersioning */
 #if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_TYPE_SLOTS
 static CYTHON_INLINE PY_UINT64_T __Pyx_get_tp_dict_version(PyObject *obj) {
@@ -7851,50 +7823,6 @@ static int __Pyx__ArgTypeTest(PyObject *obj, PyTypeObject *type, const char *nam
     __Pyx_DECREF_TypeName(type_name);
     __Pyx_DECREF_TypeName(obj_type_name);
     return 0;
-}
-
-/* WriteUnraisableException */
-static void __Pyx_WriteUnraisable(const char *name, int clineno,
-                                  int lineno, const char *filename,
-                                  int full_traceback, int nogil) {
-    PyObject *old_exc, *old_val, *old_tb;
-    PyObject *ctx;
-    __Pyx_PyThreadState_declare
-#ifdef WITH_THREAD
-    PyGILState_STATE state;
-    if (nogil)
-        state = PyGILState_Ensure();
-    else state = (PyGILState_STATE)0;
-#endif
-    CYTHON_UNUSED_VAR(clineno);
-    CYTHON_UNUSED_VAR(lineno);
-    CYTHON_UNUSED_VAR(filename);
-    CYTHON_MAYBE_UNUSED_VAR(nogil);
-    __Pyx_PyThreadState_assign
-    __Pyx_ErrFetch(&old_exc, &old_val, &old_tb);
-    if (full_traceback) {
-        Py_XINCREF(old_exc);
-        Py_XINCREF(old_val);
-        Py_XINCREF(old_tb);
-        __Pyx_ErrRestore(old_exc, old_val, old_tb);
-        PyErr_PrintEx(0);
-    }
-    #if PY_MAJOR_VERSION < 3
-    ctx = PyString_FromString(name);
-    #else
-    ctx = PyUnicode_FromString(name);
-    #endif
-    __Pyx_ErrRestore(old_exc, old_val, old_tb);
-    if (!ctx) {
-        PyErr_WriteUnraisable(Py_None);
-    } else {
-        PyErr_WriteUnraisable(ctx);
-        Py_DECREF(ctx);
-    }
-#ifdef WITH_THREAD
-    if (nogil)
-        PyGILState_Release(state);
-#endif
 }
 
 /* KeywordStringCheck */

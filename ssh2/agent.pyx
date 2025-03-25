@@ -85,7 +85,7 @@ cdef c_ssh2.LIBSSH2_AGENT * init_connect_agent(
     return agent
 
 
-cdef void clear_agent(c_ssh2.LIBSSH2_AGENT *agent) nogil:
+cdef void clear_agent(c_ssh2.LIBSSH2_AGENT *agent) noexcept nogil:
     c_ssh2.libssh2_agent_disconnect(agent)
     c_ssh2.libssh2_agent_free(agent)
 
