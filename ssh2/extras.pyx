@@ -1,13 +1,13 @@
 """
 Additional functionality not part of the libssh2 API.
 """
-from typing import Callable, Any
+from typing import Callable, Any, ParamSpecArgs, ParamSpecKwargs
 
 from . cimport error_codes
 from .utils import find_eol
 
 
-def eagain_errcode(func: Callable, poller_func: Callable, *args, **kwargs) -> Any:
+def eagain_errcode(func: Callable, poller_func: Callable, *args: ParamSpecArgs, **kwargs: ParamSpecKwargs) -> Any:
     """Helper function for reading in non-blocking mode.
 
     Any additional arguments and keyword arguments provided are used as arguments to the session function `func`.
@@ -26,7 +26,7 @@ def eagain_errcode(func: Callable, poller_func: Callable, *args, **kwargs) -> An
     return ret
 
 
-def eagain_write_errcode(write_func: Callable, poller_func: Callable, bytes data: bytes) -> None:
+def eagain_write_errcode(write_func: Callable, poller_func: Callable, bytes data) -> None:
     """Helper function for writing in non-blocking mode.
 
     Any additional arguments and keyword arguments provided are used as arguments to the session function `write_func`.

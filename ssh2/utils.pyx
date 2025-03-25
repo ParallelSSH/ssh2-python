@@ -49,7 +49,7 @@ cdef object to_str_len(char *c_str, int length):
     return c_str[:length].decode(ENCODING)
 
 
-def find_eol(bytes buf: bytes, Py_ssize_t pos: Py_ssize_t) -> Tuple[int, int]:
+cpdef (int, int) find_eol(bytes buf: bytes, Py_ssize_t pos: Py_ssize_t):
     """Find end-of-line in buffer from position and return end position of
     line and where next find_eol should start from.
 

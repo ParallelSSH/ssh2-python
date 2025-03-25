@@ -2090,7 +2090,6 @@ static const char __pyx_k_func[] = "func";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_test[] = "__test__";
-static const char __pyx_k_bytes[] = "bytes";
 static const char __pyx_k_utils[] = "utils";
 static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_kwargs[] = "kwargs";
@@ -2103,9 +2102,11 @@ static const char __pyx_k_write_func[] = "write_func";
 static const char __pyx_k_poller_func[] = "poller_func";
 static const char __pyx_k_ssh2_extras[] = "ssh2.extras";
 static const char __pyx_k_is_coroutine[] = "_is_coroutine";
+static const char __pyx_k_ParamSpecArgs[] = "ParamSpecArgs";
 static const char __pyx_k_bytes_written[] = "bytes_written";
 static const char __pyx_k_total_written[] = "total_written";
 static const char __pyx_k_eagain_errcode[] = "eagain_errcode";
+static const char __pyx_k_ParamSpecKwargs[] = "ParamSpecKwargs";
 static const char __pyx_k_ssh2_extras_pyx[] = "ssh2/extras.pyx";
 static const char __pyx_k_asyncio_coroutines[] = "asyncio.coroutines";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
@@ -2151,10 +2152,11 @@ typedef struct {
   PyObject *__pyx_n_s_Any;
   PyObject *__pyx_n_s_Callable;
   PyObject *__pyx_n_s_None;
+  PyObject *__pyx_n_s_ParamSpecArgs;
+  PyObject *__pyx_n_s_ParamSpecKwargs;
   PyObject *__pyx_n_s__6;
   PyObject *__pyx_n_s_args;
   PyObject *__pyx_n_s_asyncio_coroutines;
-  PyObject *__pyx_n_s_bytes;
   PyObject *__pyx_n_s_bytes_written;
   PyObject *__pyx_n_s_cline_in_traceback;
   PyObject *__pyx_n_s_data;
@@ -2229,10 +2231,11 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_Any);
   Py_CLEAR(clear_module_state->__pyx_n_s_Callable);
   Py_CLEAR(clear_module_state->__pyx_n_s_None);
+  Py_CLEAR(clear_module_state->__pyx_n_s_ParamSpecArgs);
+  Py_CLEAR(clear_module_state->__pyx_n_s_ParamSpecKwargs);
   Py_CLEAR(clear_module_state->__pyx_n_s__6);
   Py_CLEAR(clear_module_state->__pyx_n_s_args);
   Py_CLEAR(clear_module_state->__pyx_n_s_asyncio_coroutines);
-  Py_CLEAR(clear_module_state->__pyx_n_s_bytes);
   Py_CLEAR(clear_module_state->__pyx_n_s_bytes_written);
   Py_CLEAR(clear_module_state->__pyx_n_s_cline_in_traceback);
   Py_CLEAR(clear_module_state->__pyx_n_s_data);
@@ -2285,10 +2288,11 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_Any);
   Py_VISIT(traverse_module_state->__pyx_n_s_Callable);
   Py_VISIT(traverse_module_state->__pyx_n_s_None);
+  Py_VISIT(traverse_module_state->__pyx_n_s_ParamSpecArgs);
+  Py_VISIT(traverse_module_state->__pyx_n_s_ParamSpecKwargs);
   Py_VISIT(traverse_module_state->__pyx_n_s__6);
   Py_VISIT(traverse_module_state->__pyx_n_s_args);
   Py_VISIT(traverse_module_state->__pyx_n_s_asyncio_coroutines);
-  Py_VISIT(traverse_module_state->__pyx_n_s_bytes);
   Py_VISIT(traverse_module_state->__pyx_n_s_bytes_written);
   Py_VISIT(traverse_module_state->__pyx_n_s_cline_in_traceback);
   Py_VISIT(traverse_module_state->__pyx_n_s_data);
@@ -2355,10 +2359,11 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_Any __pyx_mstate_global->__pyx_n_s_Any
 #define __pyx_n_s_Callable __pyx_mstate_global->__pyx_n_s_Callable
 #define __pyx_n_s_None __pyx_mstate_global->__pyx_n_s_None
+#define __pyx_n_s_ParamSpecArgs __pyx_mstate_global->__pyx_n_s_ParamSpecArgs
+#define __pyx_n_s_ParamSpecKwargs __pyx_mstate_global->__pyx_n_s_ParamSpecKwargs
 #define __pyx_n_s__6 __pyx_mstate_global->__pyx_n_s__6
 #define __pyx_n_s_args __pyx_mstate_global->__pyx_n_s_args
 #define __pyx_n_s_asyncio_coroutines __pyx_mstate_global->__pyx_n_s_asyncio_coroutines
-#define __pyx_n_s_bytes __pyx_mstate_global->__pyx_n_s_bytes
 #define __pyx_n_s_bytes_written __pyx_mstate_global->__pyx_n_s_bytes_written
 #define __pyx_n_s_cline_in_traceback __pyx_mstate_global->__pyx_n_s_cline_in_traceback
 #define __pyx_n_s_data __pyx_mstate_global->__pyx_n_s_data
@@ -2392,7 +2397,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 /* "ssh2/extras.pyx":10
  * 
  * 
- * def eagain_errcode(func: Callable, poller_func: Callable, *args, **kwargs) -> Any:             # <<<<<<<<<<<<<<
+ * def eagain_errcode(func: Callable, poller_func: Callable, *args: ParamSpecArgs, **kwargs: ParamSpecKwargs) -> Any:             # <<<<<<<<<<<<<<
  *     """Helper function for reading in non-blocking mode.
  * 
  */
@@ -2405,7 +2410,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_6extras_eagain_errcode, "eagain_errcode(func: Callable, poller_func: Callable, *args, **kwargs) -> Any\nHelper function for reading in non-blocking mode.\n\n    Any additional arguments and keyword arguments provided are used as arguments to the session function `func`.\n    `func` should return an integer return code.\n\n    :param func: The session function to call to read data from.\n    :param poller_func: A python function to handle socket polling that takes no arguments.\n\n    :returns: Output of func.\n    :rtype: int\n    ");
+PyDoc_STRVAR(__pyx_doc_4ssh2_6extras_eagain_errcode, "eagain_errcode(func: Callable, poller_func: Callable, *args: ParamSpecArgs, **kwargs: ParamSpecKwargs) -> Any\nHelper function for reading in non-blocking mode.\n\n    Any additional arguments and keyword arguments provided are used as arguments to the session function `func`.\n    `func` should return an integer return code.\n\n    :param func: The session function to call to read data from.\n    :param poller_func: A python function to handle socket polling that takes no arguments.\n\n    :returns: Output of func.\n    :rtype: int\n    ");
 static PyMethodDef __pyx_mdef_4ssh2_6extras_1eagain_errcode = {"eagain_errcode", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_6extras_1eagain_errcode, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_6extras_eagain_errcode};
 static PyObject *__pyx_pw_4ssh2_6extras_1eagain_errcode(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
@@ -2633,7 +2638,7 @@ static PyObject *__pyx_pf_4ssh2_6extras_eagain_errcode(CYTHON_UNUSED PyObject *_
   /* "ssh2/extras.pyx":10
  * 
  * 
- * def eagain_errcode(func: Callable, poller_func: Callable, *args, **kwargs) -> Any:             # <<<<<<<<<<<<<<
+ * def eagain_errcode(func: Callable, poller_func: Callable, *args: ParamSpecArgs, **kwargs: ParamSpecKwargs) -> Any:             # <<<<<<<<<<<<<<
  *     """Helper function for reading in non-blocking mode.
  * 
  */
@@ -2655,7 +2660,7 @@ static PyObject *__pyx_pf_4ssh2_6extras_eagain_errcode(CYTHON_UNUSED PyObject *_
 /* "ssh2/extras.pyx":29
  * 
  * 
- * def eagain_write_errcode(write_func: Callable, poller_func: Callable, bytes data: bytes) -> None:             # <<<<<<<<<<<<<<
+ * def eagain_write_errcode(write_func: Callable, poller_func: Callable, bytes data) -> None:             # <<<<<<<<<<<<<<
  *     """Helper function for writing in non-blocking mode.
  * 
  */
@@ -2774,7 +2779,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_data), (&PyBytes_Type), 0, "data", 1))) __PYX_ERR(0, 29, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_data), (&PyBytes_Type), 1, "data", 1))) __PYX_ERR(0, 29, __pyx_L1_error)
   __pyx_r = __pyx_pf_4ssh2_6extras_2eagain_write_errcode(__pyx_self, __pyx_v_write_func, __pyx_v_poller_func, __pyx_v_data);
 
   /* function exit code */
@@ -2820,6 +2825,10 @@ static PyObject *__pyx_pf_4ssh2_6extras_2eagain_write_errcode(CYTHON_UNUSED PyOb
  *     cdef size_t total_written = 0
  *     cdef rc
  */
+  if (unlikely(__pyx_v_data == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
+    __PYX_ERR(0, 40, __pyx_L1_error)
+  }
   __pyx_t_1 = __Pyx_PyBytes_GET_SIZE(__pyx_v_data); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 40, __pyx_L1_error)
   __pyx_v_data_len = __pyx_t_1;
 
@@ -2850,6 +2859,10 @@ static PyObject *__pyx_pf_4ssh2_6extras_2eagain_write_errcode(CYTHON_UNUSED PyOb
  *         total_written += bytes_written
  *         if rc == error_codes._LIBSSH2_ERROR_EAGAIN:
  */
+    if (unlikely(__pyx_v_data == Py_None)) {
+      PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+      __PYX_ERR(0, 45, __pyx_L1_error)
+    }
     __pyx_t_4 = PySequence_GetSlice(__pyx_v_data, __pyx_v_total_written, PY_SSIZE_T_MAX); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 45, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_INCREF(__pyx_v_write_func);
@@ -2993,7 +3006,7 @@ static PyObject *__pyx_pf_4ssh2_6extras_2eagain_write_errcode(CYTHON_UNUSED PyOb
   /* "ssh2/extras.pyx":29
  * 
  * 
- * def eagain_write_errcode(write_func: Callable, poller_func: Callable, bytes data: bytes) -> None:             # <<<<<<<<<<<<<<
+ * def eagain_write_errcode(write_func: Callable, poller_func: Callable, bytes data) -> None:             # <<<<<<<<<<<<<<
  *     """Helper function for writing in non-blocking mode.
  * 
  */
@@ -3035,10 +3048,11 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_Any, __pyx_k_Any, sizeof(__pyx_k_Any), 0, 0, 1, 1},
     {&__pyx_n_s_Callable, __pyx_k_Callable, sizeof(__pyx_k_Callable), 0, 0, 1, 1},
     {&__pyx_n_s_None, __pyx_k_None, sizeof(__pyx_k_None), 0, 0, 1, 1},
+    {&__pyx_n_s_ParamSpecArgs, __pyx_k_ParamSpecArgs, sizeof(__pyx_k_ParamSpecArgs), 0, 0, 1, 1},
+    {&__pyx_n_s_ParamSpecKwargs, __pyx_k_ParamSpecKwargs, sizeof(__pyx_k_ParamSpecKwargs), 0, 0, 1, 1},
     {&__pyx_n_s__6, __pyx_k__6, sizeof(__pyx_k__6), 0, 0, 1, 1},
     {&__pyx_n_s_args, __pyx_k_args, sizeof(__pyx_k_args), 0, 0, 1, 1},
     {&__pyx_n_s_asyncio_coroutines, __pyx_k_asyncio_coroutines, sizeof(__pyx_k_asyncio_coroutines), 0, 0, 1, 1},
-    {&__pyx_n_s_bytes, __pyx_k_bytes, sizeof(__pyx_k_bytes), 0, 0, 1, 1},
     {&__pyx_n_s_bytes_written, __pyx_k_bytes_written, sizeof(__pyx_k_bytes_written), 0, 0, 1, 1},
     {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
     {&__pyx_n_s_data, __pyx_k_data, sizeof(__pyx_k_data), 0, 0, 1, 1},
@@ -3080,7 +3094,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "ssh2/extras.pyx":10
  * 
  * 
- * def eagain_errcode(func: Callable, poller_func: Callable, *args, **kwargs) -> Any:             # <<<<<<<<<<<<<<
+ * def eagain_errcode(func: Callable, poller_func: Callable, *args: ParamSpecArgs, **kwargs: ParamSpecKwargs) -> Any:             # <<<<<<<<<<<<<<
  *     """Helper function for reading in non-blocking mode.
  * 
  */
@@ -3092,7 +3106,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "ssh2/extras.pyx":29
  * 
  * 
- * def eagain_write_errcode(write_func: Callable, poller_func: Callable, bytes data: bytes) -> None:             # <<<<<<<<<<<<<<
+ * def eagain_write_errcode(write_func: Callable, poller_func: Callable, bytes data) -> None:             # <<<<<<<<<<<<<<
  *     """Helper function for writing in non-blocking mode.
  * 
  */
@@ -3467,11 +3481,11 @@ if (!__Pyx_RefNanny) {
   /* "ssh2/extras.pyx":4
  * Additional functionality not part of the libssh2 API.
  * """
- * from typing import Callable, Any             # <<<<<<<<<<<<<<
+ * from typing import Callable, Any, ParamSpecArgs, ParamSpecKwargs             # <<<<<<<<<<<<<<
  * 
  * from . cimport error_codes
  */
-  __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __pyx_t_2 = PyList_New(4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_n_s_Callable);
   __Pyx_GIVEREF(__pyx_n_s_Callable);
@@ -3479,6 +3493,12 @@ if (!__Pyx_RefNanny) {
   __Pyx_INCREF(__pyx_n_s_Any);
   __Pyx_GIVEREF(__pyx_n_s_Any);
   if (__Pyx_PyList_SET_ITEM(__pyx_t_2, 1, __pyx_n_s_Any)) __PYX_ERR(0, 4, __pyx_L1_error);
+  __Pyx_INCREF(__pyx_n_s_ParamSpecArgs);
+  __Pyx_GIVEREF(__pyx_n_s_ParamSpecArgs);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_2, 2, __pyx_n_s_ParamSpecArgs)) __PYX_ERR(0, 4, __pyx_L1_error);
+  __Pyx_INCREF(__pyx_n_s_ParamSpecKwargs);
+  __Pyx_GIVEREF(__pyx_n_s_ParamSpecKwargs);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_2, 3, __pyx_n_s_ParamSpecKwargs)) __PYX_ERR(0, 4, __pyx_L1_error);
   __pyx_t_3 = __Pyx_Import(__pyx_n_s_typing, __pyx_t_2, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -3489,6 +3509,14 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_3, __pyx_n_s_Any); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_Any, __pyx_t_2) < 0) __PYX_ERR(0, 4, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_3, __pyx_n_s_ParamSpecArgs); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ParamSpecArgs, __pyx_t_2) < 0) __PYX_ERR(0, 4, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_3, __pyx_n_s_ParamSpecKwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ParamSpecKwargs, __pyx_t_2) < 0) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
@@ -3516,14 +3544,16 @@ if (!__Pyx_RefNanny) {
   /* "ssh2/extras.pyx":10
  * 
  * 
- * def eagain_errcode(func: Callable, poller_func: Callable, *args, **kwargs) -> Any:             # <<<<<<<<<<<<<<
+ * def eagain_errcode(func: Callable, poller_func: Callable, *args: ParamSpecArgs, **kwargs: ParamSpecKwargs) -> Any:             # <<<<<<<<<<<<<<
  *     """Helper function for reading in non-blocking mode.
  * 
  */
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 10, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 10, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_func, __pyx_n_s_Callable) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_poller_func, __pyx_n_s_Callable) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_args, __pyx_n_s_ParamSpecArgs) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_kwargs, __pyx_n_s_ParamSpecKwargs) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_return, __pyx_n_s_Any) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
   __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_6extras_1eagain_errcode, 0, __pyx_n_s_eagain_errcode, NULL, __pyx_n_s_ssh2_extras, __pyx_d, ((PyObject *)__pyx_codeobj__3)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 10, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -3535,15 +3565,14 @@ if (!__Pyx_RefNanny) {
   /* "ssh2/extras.pyx":29
  * 
  * 
- * def eagain_write_errcode(write_func: Callable, poller_func: Callable, bytes data: bytes) -> None:             # <<<<<<<<<<<<<<
+ * def eagain_write_errcode(write_func: Callable, poller_func: Callable, bytes data) -> None:             # <<<<<<<<<<<<<<
  *     """Helper function for writing in non-blocking mode.
  * 
  */
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_write_func, __pyx_n_s_Callable) < 0) __PYX_ERR(0, 29, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_poller_func, __pyx_n_s_Callable) < 0) __PYX_ERR(0, 29, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_data, __pyx_n_s_bytes) < 0) __PYX_ERR(0, 29, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_return, __pyx_n_s_None) < 0) __PYX_ERR(0, 29, __pyx_L1_error)
   __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_6extras_3eagain_write_errcode, 0, __pyx_n_s_eagain_write_errcode, NULL, __pyx_n_s_ssh2_extras, __pyx_d, ((PyObject *)__pyx_codeobj__5)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
