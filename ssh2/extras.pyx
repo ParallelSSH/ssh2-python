@@ -17,7 +17,7 @@
 """
 Additional functionality not part of the libssh2 API.
 """
-from . cimport error_codes
+from . import error_codes
 
 
 def eagain_errcode(func, poller_func, *args, **kwargs):
@@ -33,7 +33,7 @@ def eagain_errcode(func, poller_func, *args, **kwargs):
     :rtype: int
     """
     ret = func(*args, **kwargs)
-    while ret == error_codes._LIBSSH2_ERROR_EAGAIN:
+    while ret == error_codes.LIBSSH2_ERROR_EAGAIN:
         poller_func()
         ret = func(*args, **kwargs)
     return ret
@@ -57,5 +57,5 @@ def eagain_write_errcode(write_func, poller_func, bytes data):
     while total_written < data_len:
         rc, bytes_written = write_func(data[total_written:])
         total_written += bytes_written
-        if rc == error_codes._LIBSSH2_ERROR_EAGAIN:
+        if rc == error_codes.LIBSSH2_ERROR_EAGAIN:
             poller_func()

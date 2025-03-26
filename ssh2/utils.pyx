@@ -66,7 +66,7 @@ cpdef (int, int) find_eol(bytes buf, Py_ssize_t pos):
     if buf_len == 0:
         return -1, pos
     cdef bytes cur_buf = buf[pos:buf_len]
-    cdef char* c_buf = cur_buf
+    cdef const char* c_buf = cur_buf
     cdef int index
     cdef int new_pos
     with nogil:
@@ -80,12 +80,14 @@ def readline(buf):
 
     :param buf: The iterable buffer to read from. Should yield a block of data per iteration.
     """
-    cdef size_t pos
+    cdef Py_ssize_t pos
     cdef Py_ssize_t size
     cdef bytes remainder = b""
-    cdef size_t remainder_len = 0
+    cdef Py_ssize_t remainder_len = 0
     cdef int linesep
     cdef int new_line_pos
+    cdef bytes line
+    cdef bytes data
     for data in buf:
         pos = 0
         size = len(data)
@@ -96,12 +98,11 @@ def readline(buf):
                 remainder_len = len(remainder)
                 break
             end_of_line = pos + linesep
+            line = data[pos:end_of_line]
             if remainder_len > 0:
-                line = remainder + data[pos:end_of_line]
+                line = remainder + line
                 remainder = b""
                 remainder_len = 0
-            else:
-                line = data[pos:end_of_line]
             yield line
             pos += linesep + new_line_pos
     if remainder_len > 0:

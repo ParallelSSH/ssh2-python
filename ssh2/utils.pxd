@@ -15,7 +15,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 cdef extern from "ext/find_eol.h" nogil:
-    int c_find_eol "find_eol" (char* data, int* new_pos)
+    int c_find_eol "find_eol" (const char* data, int* new_pos)
 cdef bytes to_bytes(_str)
 cdef object to_str(char *c_str)
 cdef object to_str_len(char *c_str, int length)
