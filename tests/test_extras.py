@@ -2,6 +2,7 @@ from unittest import TestCase
 from unittest.mock import MagicMock
 
 from ssh2.error_codes import LIBSSH2_ERROR_EAGAIN
+from ssh2.exceptions import SSH2Error
 from ssh2.extras import eagain_errcode, eagain_write_errcode
 
 
@@ -42,9 +43,8 @@ class ExtrasTest(TestCase):
             (0, len(some_data) - offset),
         ]
         poller = MagicMock()
-        rc = eagain_write_errcode(my_write_func, poller, some_data)
+        self.assertIsNone(eagain_write_errcode(my_write_func, poller, some_data))
         poller.assert_called_once()
-        self.assertIsNone(rc)
         self.assertEqual(my_write_func.call_count, 2)
         my_write_func.assert_called_with(some_data[offset:])
 
@@ -55,8 +55,26 @@ class ExtrasTest(TestCase):
             (len(some_data), len(some_data)),
         ]
         poller = MagicMock()
-        rc = eagain_write_errcode(my_write_func, poller, some_data)
+        self.assertIsNone(eagain_write_errcode(my_write_func, poller, some_data))
         poller.assert_not_called()
-        self.assertIsNone(rc)
+
         self.assertEqual(my_write_func.call_count, 1)
         my_write_func.assert_called_once_with(some_data)
+
+    def test_eagain_read_error(self):
+        poller = MagicMock()
+        my_func = MagicMock()
+        my_func.side_effect = [LIBSSH2_ERROR_EAGAIN, SSH2Error]
+        self.assertRaises(SSH2Error, eagain_errcode, my_func, poller)
+        poller.assert_called_once()
+
+    def test_eagain_write_error(self):
+        my_write_func = MagicMock()
+        my_write_func.side_effect = [
+            (LIBSSH2_ERROR_EAGAIN, 1),
+            SSH2Error,
+        ]
+        poller = MagicMock()
+        self.assertRaises(SSH2Error, eagain_write_errcode, my_write_func, poller, b"data")
+        poller.assert_called_once()
+        self.assertEqual(my_write_func.call_count, 2)

@@ -1528,10 +1528,10 @@ static const char *__pyx_filename;
 static const char *__pyx_f[] = {
   "<stringsource>",
   "ssh2/session.pyx",
-  "contextvars.pxd",
-  "type.pxd",
-  "bool.pxd",
-  "complex.pxd",
+  "env/lib/python3.12/site-packages/Cython/Includes/cpython/contextvars.pxd",
+  "env/lib/python3.12/site-packages/Cython/Includes/cpython/type.pxd",
+  "env/lib/python3.12/site-packages/Cython/Includes/cpython/bool.pxd",
+  "env/lib/python3.12/site-packages/Cython/Includes/cpython/complex.pxd",
   "ssh2/agent.pxd",
   "ssh2/channel.pxd",
   "ssh2/listener.pxd",
@@ -1594,6 +1594,18 @@ struct __pyx_opt_args_7cpython_11contextvars_get_value {
 struct __pyx_opt_args_7cpython_11contextvars_get_value_no_default {
   int __pyx_n;
   PyObject *default_value;
+};
+struct __pyx_ctuple_int__and_int;
+typedef struct __pyx_ctuple_int__and_int __pyx_ctuple_int__and_int;
+
+/* "utils.pxd":23
+ * cdef object to_str_len(char *c_str, int length)
+ * cpdef int handle_error_codes(int errcode) except -1
+ * cpdef (int, int) find_eol(bytes buf, Py_ssize_t pos)             # <<<<<<<<<<<<<<
+ */
+struct __pyx_ctuple_int__and_int {
+  int f0;
+  int f1;
 };
 
 /* "agent.pxd":24

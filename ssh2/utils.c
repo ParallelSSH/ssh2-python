@@ -1528,6 +1528,18 @@ static const char *__pyx_f[] = {
 struct __pyx_obj_4ssh2_7session_Session;
 struct __pyx_obj_4ssh2_7session_MethodType;
 struct __pyx_obj_4ssh2_5utils___pyx_scope_struct__readline;
+struct __pyx_ctuple_int__and_int;
+typedef struct __pyx_ctuple_int__and_int __pyx_ctuple_int__and_int;
+
+/* "ssh2/utils.pxd":23
+ * cdef object to_str_len(char *c_str, int length)
+ * cpdef int handle_error_codes(int errcode) except -1
+ * cpdef (int, int) find_eol(bytes buf, Py_ssize_t pos)             # <<<<<<<<<<<<<<
+ */
+struct __pyx_ctuple_int__and_int {
+  int f0;
+  int f1;
+};
 
 /* "session.pxd":19
  * from . cimport c_ssh2
@@ -1911,18 +1923,6 @@ static int __Pyx_ParseOptionalKeywords(PyObject *kwds, PyObject *const *kwvalues
         __Pyx__ArgTypeTest(obj, type, name, exact))
 static int __Pyx__ArgTypeTest(PyObject *obj, PyTypeObject *type, const char *name, int exact);
 
-/* RaiseTooManyValuesToUnpack.proto */
-static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected);
-
-/* RaiseNeedMoreValuesToUnpack.proto */
-static CYTHON_INLINE void __Pyx_RaiseNeedMoreValuesError(Py_ssize_t index);
-
-/* IterFinish.proto */
-static CYTHON_INLINE int __Pyx_IterFinish(void);
-
-/* UnpackItemEndCheck.proto */
-static int __Pyx_IternextUnpackEndCheck(PyObject *retval, Py_ssize_t expected);
-
 /* SliceObject.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(
         PyObject* obj, Py_ssize_t cstart, Py_ssize_t cstop,
@@ -2176,6 +2176,9 @@ static void __Pyx_AddTraceback(const char *funcname, int c_line,
 #define __Pyx_HAS_GCC_DIAGNOSTIC
 #endif
 
+/* ToPyCTupleUtility.proto */
+static PyObject* __pyx_convert__to_py___pyx_ctuple_int__and_int(__pyx_ctuple_int__and_int);
+
 /* CIntFromPy.proto */
 static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *);
 
@@ -2354,6 +2357,7 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 /* Module declarations from "ssh2.utils" */
 static int __pyx_f_4ssh2_5utils_handle_error_codes(int, int __pyx_skip_dispatch); /*proto*/
+static __pyx_ctuple_int__and_int __pyx_f_4ssh2_5utils_find_eol(PyObject *, Py_ssize_t, int __pyx_skip_dispatch); /*proto*/
 /* #### Code section: typeinfo ### */
 /* #### Code section: before_global_var ### */
 #define __Pyx_MODULE_NAME "ssh2.utils"
@@ -2377,9 +2381,7 @@ static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_send[] = "send";
 static const char __pyx_k_size[] = "size";
 static const char __pyx_k_test[] = "__test__";
-static const char __pyx_k_c_buf[] = "c_buf";
 static const char __pyx_k_close[] = "close";
-static const char __pyx_k_index[] = "index";
 static const char __pyx_k_throw[] = "throw";
 static const char __pyx_k_utf_8[] = "utf-8";
 static const char __pyx_k_decode[] = "decode";
@@ -2389,12 +2391,9 @@ static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_select[] = "select";
 static const char __pyx_k_socket[] = "_socket";
 static const char __pyx_k_Timeout[] = "Timeout";
-static const char __pyx_k_buf_len[] = "buf_len";
-static const char __pyx_k_cur_buf[] = "cur_buf";
 static const char __pyx_k_disable[] = "disable";
 static const char __pyx_k_errcode[] = "errcode";
 static const char __pyx_k_linesep[] = "linesep";
-static const char __pyx_k_new_pos[] = "new_pos";
 static const char __pyx_k_readfds[] = "readfds";
 static const char __pyx_k_session[] = "session";
 static const char __pyx_k_timeout[] = "timeout";
@@ -2583,11 +2582,8 @@ typedef struct {
   PyObject *__pyx_n_s_asyncio_coroutines;
   PyObject *__pyx_n_s_block_directions;
   PyObject *__pyx_n_s_buf;
-  PyObject *__pyx_n_s_buf_len;
-  PyObject *__pyx_n_s_c_buf;
   PyObject *__pyx_n_s_cline_in_traceback;
   PyObject *__pyx_n_s_close;
-  PyObject *__pyx_n_s_cur_buf;
   PyObject *__pyx_n_s_data;
   PyObject *__pyx_n_s_decode;
   PyObject *__pyx_n_s_directions;
@@ -2601,7 +2597,6 @@ typedef struct {
   PyObject *__pyx_kp_u_gc;
   PyObject *__pyx_n_s_handle_error_codes;
   PyObject *__pyx_n_s_import;
-  PyObject *__pyx_n_s_index;
   PyObject *__pyx_n_s_is_coroutine;
   PyObject *__pyx_kp_u_isenabled;
   PyObject *__pyx_n_s_line;
@@ -2609,7 +2604,6 @@ typedef struct {
   PyObject *__pyx_n_s_main;
   PyObject *__pyx_n_s_name;
   PyObject *__pyx_n_s_new_line_pos;
-  PyObject *__pyx_n_s_new_pos;
   PyObject *__pyx_n_s_pos;
   PyObject *__pyx_n_s_readfds;
   PyObject *__pyx_n_s_readline;
@@ -2633,7 +2627,6 @@ typedef struct {
   PyObject *__pyx_n_s_writefds;
   PyObject *__pyx_int_0;
   PyObject *__pyx_int_1;
-  PyObject *__pyx_int_neg_1;
   PyObject *__pyx_codeobj_;
   PyObject *__pyx_tuple__4;
   PyObject *__pyx_tuple__6;
@@ -2750,11 +2743,8 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_asyncio_coroutines);
   Py_CLEAR(clear_module_state->__pyx_n_s_block_directions);
   Py_CLEAR(clear_module_state->__pyx_n_s_buf);
-  Py_CLEAR(clear_module_state->__pyx_n_s_buf_len);
-  Py_CLEAR(clear_module_state->__pyx_n_s_c_buf);
   Py_CLEAR(clear_module_state->__pyx_n_s_cline_in_traceback);
   Py_CLEAR(clear_module_state->__pyx_n_s_close);
-  Py_CLEAR(clear_module_state->__pyx_n_s_cur_buf);
   Py_CLEAR(clear_module_state->__pyx_n_s_data);
   Py_CLEAR(clear_module_state->__pyx_n_s_decode);
   Py_CLEAR(clear_module_state->__pyx_n_s_directions);
@@ -2768,7 +2758,6 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_kp_u_gc);
   Py_CLEAR(clear_module_state->__pyx_n_s_handle_error_codes);
   Py_CLEAR(clear_module_state->__pyx_n_s_import);
-  Py_CLEAR(clear_module_state->__pyx_n_s_index);
   Py_CLEAR(clear_module_state->__pyx_n_s_is_coroutine);
   Py_CLEAR(clear_module_state->__pyx_kp_u_isenabled);
   Py_CLEAR(clear_module_state->__pyx_n_s_line);
@@ -2776,7 +2765,6 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_main);
   Py_CLEAR(clear_module_state->__pyx_n_s_name);
   Py_CLEAR(clear_module_state->__pyx_n_s_new_line_pos);
-  Py_CLEAR(clear_module_state->__pyx_n_s_new_pos);
   Py_CLEAR(clear_module_state->__pyx_n_s_pos);
   Py_CLEAR(clear_module_state->__pyx_n_s_readfds);
   Py_CLEAR(clear_module_state->__pyx_n_s_readline);
@@ -2800,7 +2788,6 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_writefds);
   Py_CLEAR(clear_module_state->__pyx_int_0);
   Py_CLEAR(clear_module_state->__pyx_int_1);
-  Py_CLEAR(clear_module_state->__pyx_int_neg_1);
   Py_CLEAR(clear_module_state->__pyx_codeobj_);
   Py_CLEAR(clear_module_state->__pyx_tuple__4);
   Py_CLEAR(clear_module_state->__pyx_tuple__6);
@@ -2895,11 +2882,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_asyncio_coroutines);
   Py_VISIT(traverse_module_state->__pyx_n_s_block_directions);
   Py_VISIT(traverse_module_state->__pyx_n_s_buf);
-  Py_VISIT(traverse_module_state->__pyx_n_s_buf_len);
-  Py_VISIT(traverse_module_state->__pyx_n_s_c_buf);
   Py_VISIT(traverse_module_state->__pyx_n_s_cline_in_traceback);
   Py_VISIT(traverse_module_state->__pyx_n_s_close);
-  Py_VISIT(traverse_module_state->__pyx_n_s_cur_buf);
   Py_VISIT(traverse_module_state->__pyx_n_s_data);
   Py_VISIT(traverse_module_state->__pyx_n_s_decode);
   Py_VISIT(traverse_module_state->__pyx_n_s_directions);
@@ -2913,7 +2897,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_kp_u_gc);
   Py_VISIT(traverse_module_state->__pyx_n_s_handle_error_codes);
   Py_VISIT(traverse_module_state->__pyx_n_s_import);
-  Py_VISIT(traverse_module_state->__pyx_n_s_index);
   Py_VISIT(traverse_module_state->__pyx_n_s_is_coroutine);
   Py_VISIT(traverse_module_state->__pyx_kp_u_isenabled);
   Py_VISIT(traverse_module_state->__pyx_n_s_line);
@@ -2921,7 +2904,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_main);
   Py_VISIT(traverse_module_state->__pyx_n_s_name);
   Py_VISIT(traverse_module_state->__pyx_n_s_new_line_pos);
-  Py_VISIT(traverse_module_state->__pyx_n_s_new_pos);
   Py_VISIT(traverse_module_state->__pyx_n_s_pos);
   Py_VISIT(traverse_module_state->__pyx_n_s_readfds);
   Py_VISIT(traverse_module_state->__pyx_n_s_readline);
@@ -2945,7 +2927,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_writefds);
   Py_VISIT(traverse_module_state->__pyx_int_0);
   Py_VISIT(traverse_module_state->__pyx_int_1);
-  Py_VISIT(traverse_module_state->__pyx_int_neg_1);
   Py_VISIT(traverse_module_state->__pyx_codeobj_);
   Py_VISIT(traverse_module_state->__pyx_tuple__4);
   Py_VISIT(traverse_module_state->__pyx_tuple__6);
@@ -3066,11 +3047,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_asyncio_coroutines __pyx_mstate_global->__pyx_n_s_asyncio_coroutines
 #define __pyx_n_s_block_directions __pyx_mstate_global->__pyx_n_s_block_directions
 #define __pyx_n_s_buf __pyx_mstate_global->__pyx_n_s_buf
-#define __pyx_n_s_buf_len __pyx_mstate_global->__pyx_n_s_buf_len
-#define __pyx_n_s_c_buf __pyx_mstate_global->__pyx_n_s_c_buf
 #define __pyx_n_s_cline_in_traceback __pyx_mstate_global->__pyx_n_s_cline_in_traceback
 #define __pyx_n_s_close __pyx_mstate_global->__pyx_n_s_close
-#define __pyx_n_s_cur_buf __pyx_mstate_global->__pyx_n_s_cur_buf
 #define __pyx_n_s_data __pyx_mstate_global->__pyx_n_s_data
 #define __pyx_n_s_decode __pyx_mstate_global->__pyx_n_s_decode
 #define __pyx_n_s_directions __pyx_mstate_global->__pyx_n_s_directions
@@ -3084,7 +3062,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_kp_u_gc __pyx_mstate_global->__pyx_kp_u_gc
 #define __pyx_n_s_handle_error_codes __pyx_mstate_global->__pyx_n_s_handle_error_codes
 #define __pyx_n_s_import __pyx_mstate_global->__pyx_n_s_import
-#define __pyx_n_s_index __pyx_mstate_global->__pyx_n_s_index
 #define __pyx_n_s_is_coroutine __pyx_mstate_global->__pyx_n_s_is_coroutine
 #define __pyx_kp_u_isenabled __pyx_mstate_global->__pyx_kp_u_isenabled
 #define __pyx_n_s_line __pyx_mstate_global->__pyx_n_s_line
@@ -3092,7 +3069,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_main __pyx_mstate_global->__pyx_n_s_main
 #define __pyx_n_s_name __pyx_mstate_global->__pyx_n_s_name
 #define __pyx_n_s_new_line_pos __pyx_mstate_global->__pyx_n_s_new_line_pos
-#define __pyx_n_s_new_pos __pyx_mstate_global->__pyx_n_s_new_pos
 #define __pyx_n_s_pos __pyx_mstate_global->__pyx_n_s_pos
 #define __pyx_n_s_readfds __pyx_mstate_global->__pyx_n_s_readfds
 #define __pyx_n_s_readline __pyx_mstate_global->__pyx_n_s_readline
@@ -3116,7 +3092,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_writefds __pyx_mstate_global->__pyx_n_s_writefds
 #define __pyx_int_0 __pyx_mstate_global->__pyx_int_0
 #define __pyx_int_1 __pyx_mstate_global->__pyx_int_1
-#define __pyx_int_neg_1 __pyx_mstate_global->__pyx_int_neg_1
 #define __pyx_codeobj_ __pyx_mstate_global->__pyx_codeobj_
 #define __pyx_tuple__4 __pyx_mstate_global->__pyx_tuple__4
 #define __pyx_tuple__6 __pyx_mstate_global->__pyx_tuple__6
@@ -3532,10 +3507,191 @@ static PyObject *__pyx_f_4ssh2_5utils_to_str_len(char *__pyx_v_c_str, int __pyx_
 /* "ssh2/utils.pyx":51
  * 
  * 
- * def find_eol(bytes buf, Py_ssize_t pos):             # <<<<<<<<<<<<<<
+ * cpdef (int, int) find_eol(bytes buf, Py_ssize_t pos):             # <<<<<<<<<<<<<<
  *     """Find end-of-line in buffer from position and return end position of
  *     line and where next find_eol should start from.
  */
+
+static PyObject *__pyx_pw_4ssh2_5utils_1find_eol(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static __pyx_ctuple_int__and_int __pyx_f_4ssh2_5utils_find_eol(PyObject *__pyx_v_buf, Py_ssize_t __pyx_v_pos, CYTHON_UNUSED int __pyx_skip_dispatch) {
+  Py_ssize_t __pyx_v_buf_len;
+  PyObject *__pyx_v_cur_buf = 0;
+  char *__pyx_v_c_buf;
+  int __pyx_v_index;
+  int __pyx_v_new_pos;
+  __pyx_ctuple_int__and_int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  Py_ssize_t __pyx_t_1;
+  int __pyx_t_2;
+  __pyx_ctuple_int__and_int __pyx_t_3;
+  PyObject *__pyx_t_4 = NULL;
+  char *__pyx_t_5;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("find_eol", 1);
+
+  /* "ssh2/utils.pyx":65
+ * 
+ *     :rtype: (int, int)"""
+ *     cdef Py_ssize_t buf_len = len(buf)             # <<<<<<<<<<<<<<
+ *     if buf_len == 0:
+ *         return -1, pos
+ */
+  if (unlikely(__pyx_v_buf == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
+    __PYX_ERR(0, 65, __pyx_L1_error)
+  }
+  __pyx_t_1 = __Pyx_PyBytes_GET_SIZE(__pyx_v_buf); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_v_buf_len = __pyx_t_1;
+
+  /* "ssh2/utils.pyx":66
+ *     :rtype: (int, int)"""
+ *     cdef Py_ssize_t buf_len = len(buf)
+ *     if buf_len == 0:             # <<<<<<<<<<<<<<
+ *         return -1, pos
+ *     cdef bytes cur_buf = buf[pos:buf_len]
+ */
+  __pyx_t_2 = (__pyx_v_buf_len == 0);
+  if (__pyx_t_2) {
+
+    /* "ssh2/utils.pyx":67
+ *     cdef Py_ssize_t buf_len = len(buf)
+ *     if buf_len == 0:
+ *         return -1, pos             # <<<<<<<<<<<<<<
+ *     cdef bytes cur_buf = buf[pos:buf_len]
+ *     cdef char* c_buf = cur_buf
+ */
+    __pyx_t_3.f0 = -1;
+    __pyx_t_3.f1 = __pyx_v_pos;
+    __pyx_r = __pyx_t_3;
+    goto __pyx_L0;
+
+    /* "ssh2/utils.pyx":66
+ *     :rtype: (int, int)"""
+ *     cdef Py_ssize_t buf_len = len(buf)
+ *     if buf_len == 0:             # <<<<<<<<<<<<<<
+ *         return -1, pos
+ *     cdef bytes cur_buf = buf[pos:buf_len]
+ */
+  }
+
+  /* "ssh2/utils.pyx":68
+ *     if buf_len == 0:
+ *         return -1, pos
+ *     cdef bytes cur_buf = buf[pos:buf_len]             # <<<<<<<<<<<<<<
+ *     cdef char* c_buf = cur_buf
+ *     cdef int index
+ */
+  if (unlikely(__pyx_v_buf == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+    __PYX_ERR(0, 68, __pyx_L1_error)
+  }
+  __pyx_t_4 = PySequence_GetSlice(__pyx_v_buf, __pyx_v_pos, __pyx_v_buf_len); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_v_cur_buf = ((PyObject*)__pyx_t_4);
+  __pyx_t_4 = 0;
+
+  /* "ssh2/utils.pyx":69
+ *         return -1, pos
+ *     cdef bytes cur_buf = buf[pos:buf_len]
+ *     cdef char* c_buf = cur_buf             # <<<<<<<<<<<<<<
+ *     cdef int index
+ *     cdef int new_pos
+ */
+  __pyx_t_5 = __Pyx_PyBytes_AsWritableString(__pyx_v_cur_buf); if (unlikely((!__pyx_t_5) && PyErr_Occurred())) __PYX_ERR(0, 69, __pyx_L1_error)
+  __pyx_v_c_buf = __pyx_t_5;
+
+  /* "ssh2/utils.pyx":72
+ *     cdef int index
+ *     cdef int new_pos
+ *     with nogil:             # <<<<<<<<<<<<<<
+ *         new_pos = 0
+ *         index = c_find_eol(c_buf, &new_pos)
+ */
+  {
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      _save = NULL;
+      Py_UNBLOCK_THREADS
+      __Pyx_FastGIL_Remember();
+      #endif
+      /*try:*/ {
+
+        /* "ssh2/utils.pyx":73
+ *     cdef int new_pos
+ *     with nogil:
+ *         new_pos = 0             # <<<<<<<<<<<<<<
+ *         index = c_find_eol(c_buf, &new_pos)
+ *     return index, new_pos
+ */
+        __pyx_v_new_pos = 0;
+
+        /* "ssh2/utils.pyx":74
+ *     with nogil:
+ *         new_pos = 0
+ *         index = c_find_eol(c_buf, &new_pos)             # <<<<<<<<<<<<<<
+ *     return index, new_pos
+ * 
+ */
+        __pyx_v_index = find_eol(__pyx_v_c_buf, (&__pyx_v_new_pos));
+      }
+
+      /* "ssh2/utils.pyx":72
+ *     cdef int index
+ *     cdef int new_pos
+ *     with nogil:             # <<<<<<<<<<<<<<
+ *         new_pos = 0
+ *         index = c_find_eol(c_buf, &new_pos)
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          __Pyx_FastGIL_Forget();
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L6;
+        }
+        __pyx_L6:;
+      }
+  }
+
+  /* "ssh2/utils.pyx":75
+ *         new_pos = 0
+ *         index = c_find_eol(c_buf, &new_pos)
+ *     return index, new_pos             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __pyx_t_3.f0 = __pyx_v_index;
+  __pyx_t_3.f1 = __pyx_v_new_pos;
+  __pyx_r = __pyx_t_3;
+  goto __pyx_L0;
+
+  /* "ssh2/utils.pyx":51
+ * 
+ * 
+ * cpdef (int, int) find_eol(bytes buf, Py_ssize_t pos):             # <<<<<<<<<<<<<<
+ *     """Find end-of-line in buffer from position and return end position of
+ *     line and where next find_eol should start from.
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_AddTraceback("ssh2.utils.find_eol", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_pretend_to_initialize(&__pyx_r);
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_cur_buf);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
 
 /* Python wrapper */
 static PyObject *__pyx_pw_4ssh2_5utils_1find_eol(PyObject *__pyx_self, 
@@ -3545,7 +3701,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_5utils_find_eol, "find_eol(bytes buf, Py_ssize_t pos)\nFind end-of-line in buffer from position and return end position of\n    line and where next find_eol should start from.\n\n    Eg - find_eol(b'line\nline2', 0) would return (5, 6), next call should be\n    find_eol(b'line\nline2', 6) for next line where 6 was added to previous\n    position.\n\n    :param buf: Data buffer to parse for line.\n    :type buf: bytes\n    :param pos: Starting position to parse from\n    :type pos: int\n\n    :rtype: (int, int)");
+PyDoc_STRVAR(__pyx_doc_4ssh2_5utils_find_eol, "find_eol(bytes buf, Py_ssize_t pos) -> (int, int) \nFind end-of-line in buffer from position and return end position of\n    line and where next find_eol should start from.\n\n    Eg - find_eol(b'line\nline2', 0) would return (5, 6), next call should be\n    find_eol(b'line\nline2', 6) for next line where 6 was added to previous\n    position.\n\n    :param buf: Data buffer to parse for line.\n    :type buf: bytes\n    :param pos: Starting position to parse from\n    :type pos: int\n\n    :rtype: (int, int)");
 static PyMethodDef __pyx_mdef_4ssh2_5utils_1find_eol = {"find_eol", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_5utils_1find_eol, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_5utils_find_eol};
 static PyObject *__pyx_pw_4ssh2_5utils_1find_eol(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
@@ -3655,200 +3811,28 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 }
 
 static PyObject *__pyx_pf_4ssh2_5utils_find_eol(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_buf, Py_ssize_t __pyx_v_pos) {
-  Py_ssize_t __pyx_v_buf_len;
-  PyObject *__pyx_v_cur_buf = 0;
-  char *__pyx_v_c_buf;
-  int __pyx_v_index;
-  int __pyx_v_new_pos;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  Py_ssize_t __pyx_t_1;
-  int __pyx_t_2;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  char *__pyx_t_5;
-  PyObject *__pyx_t_6 = NULL;
+  __pyx_ctuple_int__and_int __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("find_eol", 1);
-
-  /* "ssh2/utils.pyx":65
- * 
- *     :rtype: (int, int)"""
- *     cdef Py_ssize_t buf_len = len(buf)             # <<<<<<<<<<<<<<
- *     if buf_len == 0:
- *         return -1, pos
- */
-  if (unlikely(__pyx_v_buf == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 65, __pyx_L1_error)
-  }
-  __pyx_t_1 = __Pyx_PyBytes_GET_SIZE(__pyx_v_buf); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 65, __pyx_L1_error)
-  __pyx_v_buf_len = __pyx_t_1;
-
-  /* "ssh2/utils.pyx":66
- *     :rtype: (int, int)"""
- *     cdef Py_ssize_t buf_len = len(buf)
- *     if buf_len == 0:             # <<<<<<<<<<<<<<
- *         return -1, pos
- *     cdef bytes cur_buf = buf[pos:buf_len]
- */
-  __pyx_t_2 = (__pyx_v_buf_len == 0);
-  if (__pyx_t_2) {
-
-    /* "ssh2/utils.pyx":67
- *     cdef Py_ssize_t buf_len = len(buf)
- *     if buf_len == 0:
- *         return -1, pos             # <<<<<<<<<<<<<<
- *     cdef bytes cur_buf = buf[pos:buf_len]
- *     cdef char* c_buf = cur_buf
- */
-    __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_pos); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 67, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 67, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_INCREF(__pyx_int_neg_1);
-    __Pyx_GIVEREF(__pyx_int_neg_1);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_int_neg_1)) __PYX_ERR(0, 67, __pyx_L1_error);
-    __Pyx_GIVEREF(__pyx_t_3);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(0, 67, __pyx_L1_error);
-    __pyx_t_3 = 0;
-    __pyx_r = __pyx_t_4;
-    __pyx_t_4 = 0;
-    goto __pyx_L0;
-
-    /* "ssh2/utils.pyx":66
- *     :rtype: (int, int)"""
- *     cdef Py_ssize_t buf_len = len(buf)
- *     if buf_len == 0:             # <<<<<<<<<<<<<<
- *         return -1, pos
- *     cdef bytes cur_buf = buf[pos:buf_len]
- */
-  }
-
-  /* "ssh2/utils.pyx":68
- *     if buf_len == 0:
- *         return -1, pos
- *     cdef bytes cur_buf = buf[pos:buf_len]             # <<<<<<<<<<<<<<
- *     cdef char* c_buf = cur_buf
- *     cdef int index
- */
-  if (unlikely(__pyx_v_buf == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 68, __pyx_L1_error)
-  }
-  __pyx_t_4 = PySequence_GetSlice(__pyx_v_buf, __pyx_v_pos, __pyx_v_buf_len); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 68, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_v_cur_buf = ((PyObject*)__pyx_t_4);
-  __pyx_t_4 = 0;
-
-  /* "ssh2/utils.pyx":69
- *         return -1, pos
- *     cdef bytes cur_buf = buf[pos:buf_len]
- *     cdef char* c_buf = cur_buf             # <<<<<<<<<<<<<<
- *     cdef int index
- *     cdef int new_pos
- */
-  __pyx_t_5 = __Pyx_PyBytes_AsWritableString(__pyx_v_cur_buf); if (unlikely((!__pyx_t_5) && PyErr_Occurred())) __PYX_ERR(0, 69, __pyx_L1_error)
-  __pyx_v_c_buf = __pyx_t_5;
-
-  /* "ssh2/utils.pyx":72
- *     cdef int index
- *     cdef int new_pos
- *     with nogil:             # <<<<<<<<<<<<<<
- *         new_pos = 0
- *         index = c_find_eol(c_buf, &new_pos)
- */
-  {
-      #ifdef WITH_THREAD
-      PyThreadState *_save;
-      _save = NULL;
-      Py_UNBLOCK_THREADS
-      __Pyx_FastGIL_Remember();
-      #endif
-      /*try:*/ {
-
-        /* "ssh2/utils.pyx":73
- *     cdef int new_pos
- *     with nogil:
- *         new_pos = 0             # <<<<<<<<<<<<<<
- *         index = c_find_eol(c_buf, &new_pos)
- *     return index, new_pos
- */
-        __pyx_v_new_pos = 0;
-
-        /* "ssh2/utils.pyx":74
- *     with nogil:
- *         new_pos = 0
- *         index = c_find_eol(c_buf, &new_pos)             # <<<<<<<<<<<<<<
- *     return index, new_pos
- * 
- */
-        __pyx_v_index = find_eol(__pyx_v_c_buf, (&__pyx_v_new_pos));
-      }
-
-      /* "ssh2/utils.pyx":72
- *     cdef int index
- *     cdef int new_pos
- *     with nogil:             # <<<<<<<<<<<<<<
- *         new_pos = 0
- *         index = c_find_eol(c_buf, &new_pos)
- */
-      /*finally:*/ {
-        /*normal exit:*/{
-          #ifdef WITH_THREAD
-          __Pyx_FastGIL_Forget();
-          Py_BLOCK_THREADS
-          #endif
-          goto __pyx_L6;
-        }
-        __pyx_L6:;
-      }
-  }
-
-  /* "ssh2/utils.pyx":75
- *         new_pos = 0
- *         index = c_find_eol(c_buf, &new_pos)
- *     return index, new_pos             # <<<<<<<<<<<<<<
- * 
- * 
- */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_index); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 75, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_new_pos); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 75, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 75, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4)) __PYX_ERR(0, 75, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_3)) __PYX_ERR(0, 75, __pyx_L1_error);
-  __pyx_t_4 = 0;
-  __pyx_t_3 = 0;
-  __pyx_r = __pyx_t_6;
-  __pyx_t_6 = 0;
+  __pyx_t_1 = __pyx_f_4ssh2_5utils_find_eol(__pyx_v_buf, __pyx_v_pos, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_2 = __pyx_convert__to_py___pyx_ctuple_int__and_int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
   goto __pyx_L0;
-
-  /* "ssh2/utils.pyx":51
- * 
- * 
- * def find_eol(bytes buf, Py_ssize_t pos):             # <<<<<<<<<<<<<<
- *     """Find end-of-line in buffer from position and return end position of
- *     line and where next find_eol should start from.
- */
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_2);
   __Pyx_AddTraceback("ssh2.utils.find_eol", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_cur_buf);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -4006,13 +3990,10 @@ static PyObject *__pyx_gb_4ssh2_5utils_4generator(__pyx_CoroutineObject *__pyx_g
   PyObject *__pyx_t_4 = NULL;
   Py_ssize_t __pyx_t_5;
   int __pyx_t_6;
-  PyObject *__pyx_t_7 = NULL;
-  PyObject *__pyx_t_8 = NULL;
-  PyObject *__pyx_t_9 = NULL;
-  unsigned int __pyx_t_10;
-  PyObject *(*__pyx_t_11)(PyObject *);
-  int __pyx_t_12;
-  int __pyx_t_13;
+  __pyx_ctuple_int__and_int __pyx_t_7;
+  int __pyx_t_8;
+  int __pyx_t_9;
+  PyObject *__pyx_t_10 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -4020,8 +4001,8 @@ static PyObject *__pyx_gb_4ssh2_5utils_4generator(__pyx_CoroutineObject *__pyx_g
   __Pyx_RefNannySetupContext("readline", 0);
   switch (__pyx_generator->resume_label) {
     case 0: goto __pyx_L3_first_run;
-    case 1: goto __pyx_L12_resume_from_yield;
-    case 2: goto __pyx_L15_resume_from_yield;
+    case 1: goto __pyx_L10_resume_from_yield;
+    case 2: goto __pyx_L13_resume_from_yield;
     default: /* CPython raises the right error here */
     __Pyx_RefNannyFinishContext();
     return NULL;
@@ -4150,85 +4131,12 @@ static PyObject *__pyx_gb_4ssh2_5utils_4generator(__pyx_CoroutineObject *__pyx_g
  *             if linesep == -1:
  *                 remainder += data[pos:]
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_find_eol); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 93, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_8 = __Pyx_PyInt_FromSize_t(__pyx_cur_scope->__pyx_v_pos); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 93, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_9 = NULL;
-      __pyx_t_10 = 0;
-      #if CYTHON_UNPACK_METHODS
-      if (unlikely(PyMethod_Check(__pyx_t_7))) {
-        __pyx_t_9 = PyMethod_GET_SELF(__pyx_t_7);
-        if (likely(__pyx_t_9)) {
-          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
-          __Pyx_INCREF(__pyx_t_9);
-          __Pyx_INCREF(function);
-          __Pyx_DECREF_SET(__pyx_t_7, function);
-          __pyx_t_10 = 1;
-        }
-      }
-      #endif
-      {
-        PyObject *__pyx_callargs[3] = {__pyx_t_9, __pyx_cur_scope->__pyx_v_data, __pyx_t_8};
-        __pyx_t_4 = __Pyx_PyObject_FastCall(__pyx_t_7, __pyx_callargs+1-__pyx_t_10, 2+__pyx_t_10);
-        __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-        __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 93, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      }
-      if ((likely(PyTuple_CheckExact(__pyx_t_4))) || (PyList_CheckExact(__pyx_t_4))) {
-        PyObject* sequence = __pyx_t_4;
-        Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
-        if (unlikely(size != 2)) {
-          if (size > 2) __Pyx_RaiseTooManyValuesError(2);
-          else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 93, __pyx_L1_error)
-        }
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        if (likely(PyTuple_CheckExact(sequence))) {
-          __pyx_t_7 = PyTuple_GET_ITEM(sequence, 0); 
-          __pyx_t_8 = PyTuple_GET_ITEM(sequence, 1); 
-        } else {
-          __pyx_t_7 = PyList_GET_ITEM(sequence, 0); 
-          __pyx_t_8 = PyList_GET_ITEM(sequence, 1); 
-        }
-        __Pyx_INCREF(__pyx_t_7);
-        __Pyx_INCREF(__pyx_t_8);
-        #else
-        __pyx_t_7 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 93, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_7);
-        __pyx_t_8 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 93, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_8);
-        #endif
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      } else {
-        Py_ssize_t index = -1;
-        __pyx_t_9 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 93, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_9);
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_11 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_9);
-        index = 0; __pyx_t_7 = __pyx_t_11(__pyx_t_9); if (unlikely(!__pyx_t_7)) goto __pyx_L8_unpacking_failed;
-        __Pyx_GOTREF(__pyx_t_7);
-        index = 1; __pyx_t_8 = __pyx_t_11(__pyx_t_9); if (unlikely(!__pyx_t_8)) goto __pyx_L8_unpacking_failed;
-        __Pyx_GOTREF(__pyx_t_8);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_11(__pyx_t_9), 2) < 0) __PYX_ERR(0, 93, __pyx_L1_error)
-        __pyx_t_11 = NULL;
-        __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-        goto __pyx_L9_unpacking_done;
-        __pyx_L8_unpacking_failed:;
-        __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-        __pyx_t_11 = NULL;
-        if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 93, __pyx_L1_error)
-        __pyx_L9_unpacking_done:;
-      }
-      __pyx_t_12 = __Pyx_PyInt_As_int(__pyx_t_7); if (unlikely((__pyx_t_12 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 93, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __pyx_t_13 = __Pyx_PyInt_As_int(__pyx_t_8); if (unlikely((__pyx_t_13 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 93, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __pyx_cur_scope->__pyx_v_linesep = __pyx_t_12;
-      __pyx_cur_scope->__pyx_v_new_line_pos = __pyx_t_13;
+      if (!(likely(PyBytes_CheckExact(__pyx_cur_scope->__pyx_v_data))||((__pyx_cur_scope->__pyx_v_data) == Py_None) || __Pyx_RaiseUnexpectedTypeError("bytes", __pyx_cur_scope->__pyx_v_data))) __PYX_ERR(0, 93, __pyx_L1_error)
+      __pyx_t_7 = __pyx_f_4ssh2_5utils_find_eol(((PyObject*)__pyx_cur_scope->__pyx_v_data), __pyx_cur_scope->__pyx_v_pos, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 93, __pyx_L1_error)
+      __pyx_t_8 = __pyx_t_7.f0;
+      __pyx_t_9 = __pyx_t_7.f1;
+      __pyx_cur_scope->__pyx_v_linesep = __pyx_t_8;
+      __pyx_cur_scope->__pyx_v_new_line_pos = __pyx_t_9;
 
       /* "ssh2/utils.pyx":94
  *         while pos < size:
@@ -4249,14 +4157,14 @@ static PyObject *__pyx_gb_4ssh2_5utils_4generator(__pyx_CoroutineObject *__pyx_g
  */
         __pyx_t_4 = __Pyx_PyObject_GetSlice(__pyx_cur_scope->__pyx_v_data, __pyx_cur_scope->__pyx_v_pos, 0, NULL, NULL, NULL, 1, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 95, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_8 = PyNumber_InPlaceAdd(__pyx_cur_scope->__pyx_v_remainder, __pyx_t_4); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 95, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_8);
+        __pyx_t_10 = PyNumber_InPlaceAdd(__pyx_cur_scope->__pyx_v_remainder, __pyx_t_4); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 95, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_10);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (!(likely(PyBytes_CheckExact(__pyx_t_8))||((__pyx_t_8) == Py_None) || __Pyx_RaiseUnexpectedTypeError("bytes", __pyx_t_8))) __PYX_ERR(0, 95, __pyx_L1_error)
+        if (!(likely(PyBytes_CheckExact(__pyx_t_10))||((__pyx_t_10) == Py_None) || __Pyx_RaiseUnexpectedTypeError("bytes", __pyx_t_10))) __PYX_ERR(0, 95, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_cur_scope->__pyx_v_remainder);
-        __Pyx_DECREF_SET(__pyx_cur_scope->__pyx_v_remainder, ((PyObject*)__pyx_t_8));
-        __Pyx_GIVEREF(__pyx_t_8);
-        __pyx_t_8 = 0;
+        __Pyx_DECREF_SET(__pyx_cur_scope->__pyx_v_remainder, ((PyObject*)__pyx_t_10));
+        __Pyx_GIVEREF(__pyx_t_10);
+        __pyx_t_10 = 0;
 
         /* "ssh2/utils.pyx":96
  *             if linesep == -1:
@@ -4316,11 +4224,11 @@ static PyObject *__pyx_gb_4ssh2_5utils_4generator(__pyx_CoroutineObject *__pyx_g
  *                 remainder = b""
  *                 remainder_len = 0
  */
-        __pyx_t_8 = __Pyx_PyObject_GetSlice(__pyx_cur_scope->__pyx_v_data, __pyx_cur_scope->__pyx_v_pos, __pyx_cur_scope->__pyx_v_end_of_line, NULL, NULL, NULL, 1, 1, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 100, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_4 = PyNumber_Add(__pyx_cur_scope->__pyx_v_remainder, __pyx_t_8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 100, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyObject_GetSlice(__pyx_cur_scope->__pyx_v_data, __pyx_cur_scope->__pyx_v_pos, __pyx_cur_scope->__pyx_v_end_of_line, NULL, NULL, NULL, 1, 1, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 100, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_10);
+        __pyx_t_4 = PyNumber_Add(__pyx_cur_scope->__pyx_v_remainder, __pyx_t_10); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 100, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_XGOTREF(__pyx_cur_scope->__pyx_v_line);
         __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_line, __pyx_t_4);
         __Pyx_GIVEREF(__pyx_t_4);
@@ -4354,7 +4262,7 @@ static PyObject *__pyx_gb_4ssh2_5utils_4generator(__pyx_CoroutineObject *__pyx_g
  *                 line = remainder + data[pos:end_of_line]
  *                 remainder = b""
  */
-        goto __pyx_L11;
+        goto __pyx_L9;
       }
 
       /* "ssh2/utils.pyx":104
@@ -4372,7 +4280,7 @@ static PyObject *__pyx_gb_4ssh2_5utils_4generator(__pyx_CoroutineObject *__pyx_g
         __Pyx_GIVEREF(__pyx_t_4);
         __pyx_t_4 = 0;
       }
-      __pyx_L11:;
+      __pyx_L9:;
 
       /* "ssh2/utils.pyx":105
  *             else:
@@ -4393,7 +4301,7 @@ static PyObject *__pyx_gb_4ssh2_5utils_4generator(__pyx_CoroutineObject *__pyx_g
       /* return from generator, yielding value */
       __pyx_generator->resume_label = 1;
       return __pyx_r;
-      __pyx_L12_resume_from_yield:;
+      __pyx_L10_resume_from_yield:;
       __pyx_t_1 = __pyx_cur_scope->__pyx_t_0;
       __pyx_cur_scope->__pyx_t_0 = 0;
       __Pyx_XGOTREF(__pyx_t_1);
@@ -4447,7 +4355,7 @@ static PyObject *__pyx_gb_4ssh2_5utils_4generator(__pyx_CoroutineObject *__pyx_g
     /* return from generator, yielding value */
     __pyx_generator->resume_label = 2;
     return __pyx_r;
-    __pyx_L15_resume_from_yield:;
+    __pyx_L13_resume_from_yield:;
     if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 109, __pyx_L1_error)
 
     /* "ssh2/utils.pyx":107
@@ -4475,9 +4383,7 @@ static PyObject *__pyx_gb_4ssh2_5utils_4generator(__pyx_CoroutineObject *__pyx_g
   __Pyx_Generator_Replace_StopIteration(0);
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_XDECREF(__pyx_t_9);
+  __Pyx_XDECREF(__pyx_t_10);
   __Pyx_AddTraceback("readline", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_r); __pyx_r = 0;
@@ -6905,11 +6811,8 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_asyncio_coroutines, __pyx_k_asyncio_coroutines, sizeof(__pyx_k_asyncio_coroutines), 0, 0, 1, 1},
     {&__pyx_n_s_block_directions, __pyx_k_block_directions, sizeof(__pyx_k_block_directions), 0, 0, 1, 1},
     {&__pyx_n_s_buf, __pyx_k_buf, sizeof(__pyx_k_buf), 0, 0, 1, 1},
-    {&__pyx_n_s_buf_len, __pyx_k_buf_len, sizeof(__pyx_k_buf_len), 0, 0, 1, 1},
-    {&__pyx_n_s_c_buf, __pyx_k_c_buf, sizeof(__pyx_k_c_buf), 0, 0, 1, 1},
     {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
     {&__pyx_n_s_close, __pyx_k_close, sizeof(__pyx_k_close), 0, 0, 1, 1},
-    {&__pyx_n_s_cur_buf, __pyx_k_cur_buf, sizeof(__pyx_k_cur_buf), 0, 0, 1, 1},
     {&__pyx_n_s_data, __pyx_k_data, sizeof(__pyx_k_data), 0, 0, 1, 1},
     {&__pyx_n_s_decode, __pyx_k_decode, sizeof(__pyx_k_decode), 0, 0, 1, 1},
     {&__pyx_n_s_directions, __pyx_k_directions, sizeof(__pyx_k_directions), 0, 0, 1, 1},
@@ -6923,7 +6826,6 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_kp_u_gc, __pyx_k_gc, sizeof(__pyx_k_gc), 0, 1, 0, 0},
     {&__pyx_n_s_handle_error_codes, __pyx_k_handle_error_codes, sizeof(__pyx_k_handle_error_codes), 0, 0, 1, 1},
     {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
-    {&__pyx_n_s_index, __pyx_k_index, sizeof(__pyx_k_index), 0, 0, 1, 1},
     {&__pyx_n_s_is_coroutine, __pyx_k_is_coroutine, sizeof(__pyx_k_is_coroutine), 0, 0, 1, 1},
     {&__pyx_kp_u_isenabled, __pyx_k_isenabled, sizeof(__pyx_k_isenabled), 0, 1, 0, 0},
     {&__pyx_n_s_line, __pyx_k_line, sizeof(__pyx_k_line), 0, 0, 1, 1},
@@ -6931,7 +6833,6 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
     {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
     {&__pyx_n_s_new_line_pos, __pyx_k_new_line_pos, sizeof(__pyx_k_new_line_pos), 0, 0, 1, 1},
-    {&__pyx_n_s_new_pos, __pyx_k_new_pos, sizeof(__pyx_k_new_pos), 0, 0, 1, 1},
     {&__pyx_n_s_pos, __pyx_k_pos, sizeof(__pyx_k_pos), 0, 0, 1, 1},
     {&__pyx_n_s_readfds, __pyx_k_readfds, sizeof(__pyx_k_readfds), 0, 0, 1, 1},
     {&__pyx_n_s_readline, __pyx_k_readline, sizeof(__pyx_k_readline), 0, 0, 1, 1},
@@ -6970,14 +6871,14 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "ssh2/utils.pyx":51
  * 
  * 
- * def find_eol(bytes buf, Py_ssize_t pos):             # <<<<<<<<<<<<<<
+ * cpdef (int, int) find_eol(bytes buf, Py_ssize_t pos):             # <<<<<<<<<<<<<<
  *     """Find end-of-line in buffer from position and return end position of
  *     line and where next find_eol should start from.
  */
-  __pyx_tuple__4 = PyTuple_Pack(7, __pyx_n_s_buf, __pyx_n_s_pos, __pyx_n_s_buf_len, __pyx_n_s_cur_buf, __pyx_n_s_c_buf, __pyx_n_s_index, __pyx_n_s_new_pos); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_tuple__4 = PyTuple_Pack(2, __pyx_n_s_buf, __pyx_n_s_pos); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
-  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ssh2_utils_pyx, __pyx_n_s_find_eol, 51, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ssh2_utils_pyx, __pyx_n_s_find_eol, 51, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) __PYX_ERR(0, 51, __pyx_L1_error)
 
   /* "ssh2/utils.pyx":78
  * 
@@ -7050,7 +6951,6 @@ static CYTHON_SMALL_CODE int __Pyx_InitConstants(void) {
   if (__Pyx_CreateStringTabAndInitStrings() < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_1 = PyInt_FromLong(1); if (unlikely(!__pyx_int_1)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_int_neg_1 = PyInt_FromLong(-1); if (unlikely(!__pyx_int_neg_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -7097,6 +6997,7 @@ static int __Pyx_modinit_function_export_code(void) {
   if (__Pyx_ExportFunction("to_str", (void (*)(void))__pyx_f_4ssh2_5utils_to_str, "PyObject *(char *)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   if (__Pyx_ExportFunction("to_str_len", (void (*)(void))__pyx_f_4ssh2_5utils_to_str_len, "PyObject *(char *, int)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   if (__Pyx_ExportFunction("handle_error_codes", (void (*)(void))__pyx_f_4ssh2_5utils_handle_error_codes, "int (int, int __pyx_skip_dispatch)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("find_eol", (void (*)(void))__pyx_f_4ssh2_5utils_find_eol, "__pyx_ctuple_int__and_int (PyObject *, Py_ssize_t, int __pyx_skip_dispatch)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -7507,7 +7408,7 @@ if (!__Pyx_RefNanny) {
   /* "ssh2/utils.pyx":51
  * 
  * 
- * def find_eol(bytes buf, Py_ssize_t pos):             # <<<<<<<<<<<<<<
+ * cpdef (int, int) find_eol(bytes buf, Py_ssize_t pos):             # <<<<<<<<<<<<<<
  *     """Find end-of-line in buffer from position and return end position of
  *     line and where next find_eol should start from.
  */
@@ -8601,44 +8502,6 @@ static int __Pyx__ArgTypeTest(PyObject *obj, PyTypeObject *type, const char *nam
     __Pyx_DECREF_TypeName(type_name);
     __Pyx_DECREF_TypeName(obj_type_name);
     return 0;
-}
-
-/* RaiseTooManyValuesToUnpack */
-static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected) {
-    PyErr_Format(PyExc_ValueError,
-                 "too many values to unpack (expected %" CYTHON_FORMAT_SSIZE_T "d)", expected);
-}
-
-/* RaiseNeedMoreValuesToUnpack */
-static CYTHON_INLINE void __Pyx_RaiseNeedMoreValuesError(Py_ssize_t index) {
-    PyErr_Format(PyExc_ValueError,
-                 "need more than %" CYTHON_FORMAT_SSIZE_T "d value%.1s to unpack",
-                 index, (index == 1) ? "" : "s");
-}
-
-/* IterFinish */
-static CYTHON_INLINE int __Pyx_IterFinish(void) {
-    PyObject* exc_type;
-    __Pyx_PyThreadState_declare
-    __Pyx_PyThreadState_assign
-    exc_type = __Pyx_PyErr_CurrentExceptionType();
-    if (unlikely(exc_type)) {
-        if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration)))
-            return -1;
-        __Pyx_PyErr_Clear();
-        return 0;
-    }
-    return 0;
-}
-
-/* UnpackItemEndCheck */
-static int __Pyx_IternextUnpackEndCheck(PyObject *retval, Py_ssize_t expected) {
-    if (unlikely(retval)) {
-        Py_DECREF(retval);
-        __Pyx_RaiseTooManyValuesError(expected);
-        return -1;
-    }
-    return __Pyx_IterFinish();
 }
 
 /* SliceObject */
@@ -11141,6 +11004,24 @@ bad:
         }\
         return (target_type) value;\
     }
+
+/* ToPyCTupleUtility */
+static PyObject* __pyx_convert__to_py___pyx_ctuple_int__and_int(__pyx_ctuple_int__and_int value) {
+    PyObject* item = NULL;
+    PyObject* result = PyTuple_New(2);
+    if (!result) goto bad;
+        item = __Pyx_PyInt_From_int(value.f0);
+        if (!item) goto bad;
+        PyTuple_SET_ITEM(result, 0, item);
+        item = __Pyx_PyInt_From_int(value.f1);
+        if (!item) goto bad;
+        PyTuple_SET_ITEM(result, 1, item);
+    return result;
+bad:
+    Py_XDECREF(item);
+    Py_XDECREF(result);
+    return NULL;
+}
 
 /* CIntFromPy */
 static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *x) {

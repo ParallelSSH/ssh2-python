@@ -1,5 +1,4 @@
 import unittest
-from unittest.mock import MagicMock
 
 from ssh2.utils import find_eol, readline
 

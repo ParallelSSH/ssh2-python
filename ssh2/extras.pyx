@@ -18,7 +18,6 @@
 Additional functionality not part of the libssh2 API.
 """
 from . cimport error_codes
-from .utils import find_eol
 
 
 def eagain_errcode(func, poller_func, *args, **kwargs):

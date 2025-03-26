@@ -1533,6 +1533,18 @@ struct __pyx_obj_4ssh2_7session_Session;
 struct __pyx_obj_4ssh2_7session_MethodType;
 struct __pyx_obj_4ssh2_4sftp_SFTP;
 struct __pyx_obj_4ssh2_7channel_Channel;
+struct __pyx_ctuple_int__and_int;
+typedef struct __pyx_ctuple_int__and_int __pyx_ctuple_int__and_int;
+
+/* "utils.pxd":23
+ * cdef object to_str_len(char *c_str, int length)
+ * cpdef int handle_error_codes(int errcode) except -1
+ * cpdef (int, int) find_eol(bytes buf, Py_ssize_t pos)             # <<<<<<<<<<<<<<
+ */
+struct __pyx_ctuple_int__and_int {
+  int f0;
+  int f1;
+};
 
 /* "session.pxd":19
  * from . cimport c_ssh2
