@@ -18,6 +18,8 @@
 """SFTP handle, attributes and stat VFS classes."""
 
 from libc.stdlib cimport malloc, free
+from cpython.buffer cimport Py_buffer, PyObject_GetBuffer, PyBuffer_Release, PyBUF_SIMPLE
+
 
 from .utils cimport handle_error_codes
 
@@ -270,7 +272,7 @@ cdef class SFTPHandle:
             free(cbuf)
         return rc, buf, attrs
 
-    def write(self, bytes buf):
+    def write(self, object buf):
         """Write buffer to file handle.
 
         Returns tuple of (``error code``, ``bytes written``).
@@ -288,11 +290,17 @@ cdef class SFTPHandle:
         :type buf: bytes
 
         :rtype: tuple(int, int)"""
-        cdef size_t _size = len(buf)
+        cdef Py_buffer view
+
+        if PyObject_GetBuffer(buf, &view, PyBUF_SIMPLE) < 0:
+            return
+
+        cdef size_t _size = view.len
         cdef size_t tot_size = _size
         cdef size_t bytes_written = 0
-        cdef char *cbuf = buf
+        cdef const char *cbuf = <const char *>view.buf
         cdef ssize_t rc = 0
+
         with nogil:
             while _size > 0:
                 rc = c_sftp.libssh2_sftp_write(self._handle, cbuf, _size)
@@ -305,6 +313,8 @@ cdef class SFTPHandle:
                 cbuf += rc
                 _size -= rc
             bytes_written = tot_size - _size
+
+        PyBuffer_Release(&view)
         return rc, bytes_written
 
     def fsync(self):
