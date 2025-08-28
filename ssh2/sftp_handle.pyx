@@ -113,13 +113,13 @@ cdef class SFTPHandle:
     def __cinit__(self, sftp):
         self._handle = NULL
         self._sftp = sftp
-        self.closed = 0
+        self._closed = 0
 
     def __dealloc__(self):
-        if self.closed == 0:
+        if self._closed == 0:
             with nogil:
                 c_sftp.libssh2_sftp_close_handle(self._handle)
-            self.closed = 1
+            self._closed = 1
 
     def __iter__(self):
         return self
@@ -144,13 +144,17 @@ cdef class SFTPHandle:
 
         :rtype: int"""
         cdef int rc
-        if self.closed == 0:
+        if self._closed == 0:
             with nogil:
                 rc = c_sftp.libssh2_sftp_close_handle(self._handle)
-            self.closed = 1
+            self._closed = 1
         else:
             return
         return rc
+
+    @property
+    def closed(self):
+        return self._closed
 
     def read(self, size_t buffer_maxlen=c_ssh2.LIBSSH2_CHANNEL_WINDOW_DEFAULT):
         """Read buffer from file handle.

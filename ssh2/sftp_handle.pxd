@@ -25,7 +25,7 @@ cdef object PySFTPHandle(c_sftp.LIBSSH2_SFTP_HANDLE *handle, SFTP sftp)
 cdef class SFTPHandle:
     cdef c_sftp.LIBSSH2_SFTP_HANDLE *_handle
     cdef SFTP _sftp
-    cdef bint closed
+    cdef bint _closed
 
 
 cdef class SFTPAttributes:
