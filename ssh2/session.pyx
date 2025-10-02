@@ -466,25 +466,26 @@ cdef class Session:
         """
         Enable/Disable flag for session.
 
-        Flag can be one of :py:class:`ssh2.session.LIBSSH2_FLAG_SIGPIPE`
+        Flag must be one of :py:class:`ssh2.session.LIBSSH2_FLAG_SIGPIPE`
           or :py:class:`ssh2.session.LIBSSH2_FLAG_COMPRESS`.
 
-        Flags *must* be set before session.handshake is called for the library
-        to use them.
+        Flags *must* be set before :py:func:`Session.handshake` is called for the library to use them.
 
-        `ssh2.session.LIBSSH2_FLAG_SIGPIPE` - Library will not block SIGPIPE signal from triggering from the socket
-          from triggering from the socket used. Meaning if the socket connection is terminated unexpectedly,
-          using library functions will trigger a SIGPIPE from the associated socket.
+        :py:class:`ssh2.session.LIBSSH2_FLAG_SIGPIPE` - Library will not block SIGPIPE signal from triggering from the
+          socket used. Meaning if the socket connection is terminated unexpectedly, using library functions will
+          trigger a SIGPIPE signal from the associated socket. Default is off.
 
-        `ssh2.session.LIBSSH2_FLAG_COMPRESS` - Library will enable compression for the session.
+        :py:class:`ssh2.session.LIBSSH2_FLAG_COMPRESS` - Library will enable compression for the session.
+          Default is off.
 
-        Use `Session.supported_algs(LIBSSH2_METHOD_COMP_CS)` to get a list of supported compression algorithms, if any.
+        Use `Session.supported_algs(LIBSSH2_METHOD_COMP_CS)` to get a list of supported compression algorithms after
+        enabling compression, if any.
 
         Default is to enable the flag - `enabled=True`.
 
         Set `enabled=False` to disable a previously enabled flag.
 
-        :raises ValueError: On incorrect FlagType passed.
+        :raises ValueError: On incorrect :py:class:`ssh2.session.FlagType` passed.
         :returns: None
         """
         cdef int rc
