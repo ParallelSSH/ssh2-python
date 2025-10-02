@@ -1,6 +1,16 @@
 Change Log
 =============
 
+1.2.0
+++++++
+
+Changes
+--------
+
+* Added `ssh2.flags` module for session related flags and python constants for libssh2 flag types.
+* Added `ssh2.session.Session.flag` function for enabling/disabling session flags.
+
+
 1.1.2
 ++++++
 
