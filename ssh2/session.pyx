@@ -1,5 +1,5 @@
 # This file is part of ssh2-python.
-# Copyright (C) 2017-2020 Panos Kittenis
+# Copyright (C) 2017-2025 Panos Kittenis
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -30,7 +30,6 @@ from .utils cimport to_bytes, to_str, handle_error_codes
 from .statinfo cimport StatInfo
 from .knownhost cimport PyKnownHost
 from .fileinfo cimport FileInfo
-from .flags cimport FlagType
 
 
 from . cimport c_ssh2
@@ -54,6 +53,7 @@ LIBSSH2_HOSTKEY_TYPE_RSA = c_ssh2.LIBSSH2_HOSTKEY_TYPE_RSA
 LIBSSH2_HOSTKEY_TYPE_DSS = c_ssh2.LIBSSH2_HOSTKEY_TYPE_DSS
 
 
+## Method types and definitions
 cdef class MethodType:
     def __cinit__(self, value):
         self.value = value
@@ -69,6 +69,19 @@ LIBSSH2_METHOD_COMP_CS = MethodType(c_ssh2.LIBSSH2_METHOD_COMP_CS)
 LIBSSH2_METHOD_COMP_SC = MethodType(c_ssh2.LIBSSH2_METHOD_COMP_SC)
 LIBSSH2_METHOD_LANG_CS = MethodType(c_ssh2.LIBSSH2_METHOD_LANG_CS)
 LIBSSH2_METHOD_LANG_SC = MethodType(c_ssh2.LIBSSH2_METHOD_LANG_SC)
+
+
+## Flag types and definitions
+cdef class FlagType:
+    def __cinit__(self, value):
+        self.value = value
+
+
+LIBSSH2_FLAG_SIGPIPE = FlagType(c_ssh2.LIBSSH2_FLAG_SIGPIPE)
+LIBSSH2_FLAG_COMPRESS = FlagType(c_ssh2.LIBSSH2_FLAG_COMPRESS)
+LIBSSH2_FLAG_QUOTE_PATHS = FlagType(c_ssh2.LIBSSH2_FLAG_QUOTE_PATHS)
+LIBSSH2_FLAG_SK_PRESENCE_REQUIRED = FlagType(c_ssh2.LIBSSH2_SK_PRESENCE_REQUIRED)
+LIBSSH2_FLAG_SK_VERIFICATION_REQUIRED = FlagType(c_ssh2.LIBSSH2_SK_VERIFICATION_REQUIRED)
 
 
 cdef void kbd_callback(const char *name, int name_len,
@@ -453,17 +466,34 @@ cdef class Session:
         """
         Enable/Disable flag for session.
 
-        Flag can be one of :py:class:`ssh2.flags.FLAG_SIGPIPE` or :py:class:`ssh2.flags.FLAG_COMPRESS`.
+        Flag can be one of :py:class:`ssh2.session.LIBSSH2_FLAG_SIGPIPE`
+          or :py:class:`ssh2.session.LIBSSH2_FLAG_COMPRESS`.
+
+        Flags *must* be set before session.handshake is called for the library
+        to use them.
+
+        `ssh2.session.LIBSSH2_FLAG_SIGPIPE` - Library will not block SIGPIPE signal from triggering from the socket
+          from triggering from the socket used. Meaning if the socket connection is terminated unexpectedly,
+          using library functions will trigger a SIGPIPE from the associated socket.
+
+        `ssh2.session.LIBSSH2_FLAG_COMPRESS` - Library will enable compression for the session.
+
+        Use `Session.supported_algs(LIBSSH2_METHOD_COMP_CS)` to get a list of supported compression algorithms, if any.
 
         Default is to enable the flag - `enabled=True`.
 
         Set `enabled=False` to disable a previously enabled flag.
+
+        :raises ValueError: On incorrect FlagType passed.
+        :returns: None
         """
         cdef int rc
         cdef bint value = enabled
+        if not flag in (LIBSSH2_FLAG_SIGPIPE, LIBSSH2_FLAG_COMPRESS):
+            raise ValueError("Provided flag must be one of LIBSSH2_FLAG_SIGPIPE or LIBSSH2_FLAG_COMPRESS")
         with nogil:
             rc = c_ssh2.libssh2_session_flag(self._session, flag.value, value)
-        return rc
+        handle_error_codes(rc)
 
     def forward_listen(self, int port):
         """Create forward listener on port.

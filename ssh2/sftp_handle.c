@@ -1548,6 +1548,7 @@ static const char* const __pyx_f[] = {
 /*--- Type declarations ---*/
 struct __pyx_obj_4ssh2_7session_Session;
 struct __pyx_obj_4ssh2_7session_MethodType;
+struct __pyx_obj_4ssh2_7session_FlagType;
 struct __pyx_obj_4ssh2_4sftp_SFTP;
 struct __pyx_obj_4ssh2_11sftp_handle_SFTPHandle;
 struct __pyx_obj_4ssh2_11sftp_handle_SFTPAttributes;
@@ -1576,8 +1577,21 @@ struct __pyx_obj_4ssh2_7session_Session {
  * 
  * cdef class MethodType:             # <<<<<<<<<<<<<<
  *     cdef int value
+ * 
 */
 struct __pyx_obj_4ssh2_7session_MethodType {
+  PyObject_HEAD
+  int value;
+};
+
+
+/* "session.pxd":30
+ * 
+ * 
+ * cdef class FlagType:             # <<<<<<<<<<<<<<
+ *     cdef int value
+*/
+struct __pyx_obj_4ssh2_7session_FlagType {
   PyObject_HEAD
   int value;
 };
@@ -2820,6 +2834,7 @@ typedef struct {
   #endif
   PyTypeObject *__pyx_ptype_4ssh2_7session_Session;
   PyTypeObject *__pyx_ptype_4ssh2_7session_MethodType;
+  PyTypeObject *__pyx_ptype_4ssh2_7session_FlagType;
   PyTypeObject *__pyx_ptype_4ssh2_4sftp_SFTP;
   PyObject *__pyx_type_4ssh2_11sftp_handle_SFTPHandle;
   PyObject *__pyx_type_4ssh2_11sftp_handle_SFTPAttributes;
@@ -3016,6 +3031,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   #endif
   Py_CLEAR(clear_module_state->__pyx_ptype_4ssh2_7session_Session);
   Py_CLEAR(clear_module_state->__pyx_ptype_4ssh2_7session_MethodType);
+  Py_CLEAR(clear_module_state->__pyx_ptype_4ssh2_7session_FlagType);
   Py_CLEAR(clear_module_state->__pyx_ptype_4ssh2_4sftp_SFTP);
   Py_CLEAR(clear_module_state->__pyx_ptype_4ssh2_11sftp_handle_SFTPHandle);
   Py_CLEAR(clear_module_state->__pyx_type_4ssh2_11sftp_handle_SFTPHandle);
@@ -3054,6 +3070,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   #endif
   Py_VISIT(traverse_module_state->__pyx_ptype_4ssh2_7session_Session);
   Py_VISIT(traverse_module_state->__pyx_ptype_4ssh2_7session_MethodType);
+  Py_VISIT(traverse_module_state->__pyx_ptype_4ssh2_7session_FlagType);
   Py_VISIT(traverse_module_state->__pyx_ptype_4ssh2_4sftp_SFTP);
   Py_VISIT(traverse_module_state->__pyx_ptype_4ssh2_11sftp_handle_SFTPHandle);
   Py_VISIT(traverse_module_state->__pyx_type_4ssh2_11sftp_handle_SFTPHandle);
@@ -12428,6 +12445,15 @@ static int __Pyx_modinit_type_import_code(__pyx_mstatetype *__pyx_mstate) {
   sizeof(struct __pyx_obj_4ssh2_7session_MethodType), __PYX_GET_STRUCT_ALIGNMENT_3_1_4(struct __pyx_obj_4ssh2_7session_MethodType),
   #endif
   __Pyx_ImportType_CheckSize_Warn_3_1_4); if (!__pyx_mstate->__pyx_ptype_4ssh2_7session_MethodType) __PYX_ERR(2, 26, __pyx_L1_error)
+  __pyx_mstate->__pyx_ptype_4ssh2_7session_FlagType = __Pyx_ImportType_3_1_4(__pyx_t_1, "ssh2.session", "FlagType",
+  #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
+  sizeof(struct __pyx_obj_4ssh2_7session_FlagType), __PYX_GET_STRUCT_ALIGNMENT_3_1_4(struct __pyx_obj_4ssh2_7session_FlagType),
+  #elif CYTHON_COMPILING_IN_LIMITED_API
+  sizeof(struct __pyx_obj_4ssh2_7session_FlagType), __PYX_GET_STRUCT_ALIGNMENT_3_1_4(struct __pyx_obj_4ssh2_7session_FlagType),
+  #else
+  sizeof(struct __pyx_obj_4ssh2_7session_FlagType), __PYX_GET_STRUCT_ALIGNMENT_3_1_4(struct __pyx_obj_4ssh2_7session_FlagType),
+  #endif
+  __Pyx_ImportType_CheckSize_Warn_3_1_4); if (!__pyx_mstate->__pyx_ptype_4ssh2_7session_FlagType) __PYX_ERR(2, 30, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = PyImport_ImportModule("ssh2.sftp"); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);

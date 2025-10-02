@@ -1,6 +1,7 @@
-from ssh2.session import Session, LIBSSH2_METHOD_HOSTKEY
-from ssh2.flags import (FLAG_SIGPIPE, FLAG_COMPRESS, FLAG_QUOTE_PATHS, FLAG_SK_PRESENCE_REQUIRED,
-                        FLAG_SK_VERIFICATION_REQUIRED)
+from ssh2.session import (Session, LIBSSH2_METHOD_HOSTKEY, LIBSSH2_FLAG_SIGPIPE, LIBSSH2_FLAG_COMPRESS,
+                          LIBSSH2_FLAG_QUOTE_PATHS, LIBSSH2_FLAG_SK_PRESENCE_REQUIRED,
+                          LIBSSH2_FLAG_SK_VERIFICATION_REQUIRED,
+                          )
 
 from .base_test import SSH2TestCase
 
@@ -17,8 +18,9 @@ class SessionTestCase(SSH2TestCase):
 
     def test_flags(self):
         session = Session()
-        for flag in [FLAG_SIGPIPE, FLAG_COMPRESS, FLAG_QUOTE_PATHS]:
-            rc = session.flag(flag)
-            self.assertEqual(rc, 0)
-            rc = session.flag(flag, enabled=False)
-            self.assertEqual(rc, 0)
+        for flag in [LIBSSH2_FLAG_SIGPIPE, LIBSSH2_FLAG_COMPRESS]:
+            session.flag(flag)
+            session.flag(flag, enabled=False)
+        for bad_flag in (LIBSSH2_FLAG_QUOTE_PATHS, LIBSSH2_FLAG_SK_PRESENCE_REQUIRED,
+                         LIBSSH2_FLAG_SK_VERIFICATION_REQUIRED):
+            self.assertRaises(ValueError, session.flag, bad_flag)

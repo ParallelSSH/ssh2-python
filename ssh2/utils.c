@@ -1544,6 +1544,7 @@ static const char* const __pyx_f[] = {
 /*--- Type declarations ---*/
 struct __pyx_obj_4ssh2_7session_Session;
 struct __pyx_obj_4ssh2_7session_MethodType;
+struct __pyx_obj_4ssh2_7session_FlagType;
 
 /* "session.pxd":19
  * from . cimport c_ssh2
@@ -1566,8 +1567,21 @@ struct __pyx_obj_4ssh2_7session_Session {
  * 
  * cdef class MethodType:             # <<<<<<<<<<<<<<
  *     cdef int value
+ * 
 */
 struct __pyx_obj_4ssh2_7session_MethodType {
+  PyObject_HEAD
+  int value;
+};
+
+
+/* "session.pxd":30
+ * 
+ * 
+ * cdef class FlagType:             # <<<<<<<<<<<<<<
+ *     cdef int value
+*/
+struct __pyx_obj_4ssh2_7session_FlagType {
   PyObject_HEAD
   int value;
 };
@@ -2446,6 +2460,7 @@ typedef struct {
   #endif
   PyTypeObject *__pyx_ptype_4ssh2_7session_Session;
   PyTypeObject *__pyx_ptype_4ssh2_7session_MethodType;
+  PyTypeObject *__pyx_ptype_4ssh2_7session_FlagType;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_pop;
   PyObject *__pyx_tuple[1];
   PyObject *__pyx_codeobj_tab[5];
@@ -2606,6 +2621,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   #endif
   Py_CLEAR(clear_module_state->__pyx_ptype_4ssh2_7session_Session);
   Py_CLEAR(clear_module_state->__pyx_ptype_4ssh2_7session_MethodType);
+  Py_CLEAR(clear_module_state->__pyx_ptype_4ssh2_7session_FlagType);
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
   for (int i=0; i<5; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
   for (int i=0; i<94; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
@@ -2634,6 +2650,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   #endif
   Py_VISIT(traverse_module_state->__pyx_ptype_4ssh2_7session_Session);
   Py_VISIT(traverse_module_state->__pyx_ptype_4ssh2_7session_MethodType);
+  Py_VISIT(traverse_module_state->__pyx_ptype_4ssh2_7session_FlagType);
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
   for (int i=0; i<5; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
   for (int i=0; i<94; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
@@ -5508,6 +5525,15 @@ static int __Pyx_modinit_type_import_code(__pyx_mstatetype *__pyx_mstate) {
   sizeof(struct __pyx_obj_4ssh2_7session_MethodType), __PYX_GET_STRUCT_ALIGNMENT_3_1_4(struct __pyx_obj_4ssh2_7session_MethodType),
   #endif
   __Pyx_ImportType_CheckSize_Warn_3_1_4); if (!__pyx_mstate->__pyx_ptype_4ssh2_7session_MethodType) __PYX_ERR(1, 26, __pyx_L1_error)
+  __pyx_mstate->__pyx_ptype_4ssh2_7session_FlagType = __Pyx_ImportType_3_1_4(__pyx_t_1, "ssh2.session", "FlagType",
+  #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
+  sizeof(struct __pyx_obj_4ssh2_7session_FlagType), __PYX_GET_STRUCT_ALIGNMENT_3_1_4(struct __pyx_obj_4ssh2_7session_FlagType),
+  #elif CYTHON_COMPILING_IN_LIMITED_API
+  sizeof(struct __pyx_obj_4ssh2_7session_FlagType), __PYX_GET_STRUCT_ALIGNMENT_3_1_4(struct __pyx_obj_4ssh2_7session_FlagType),
+  #else
+  sizeof(struct __pyx_obj_4ssh2_7session_FlagType), __PYX_GET_STRUCT_ALIGNMENT_3_1_4(struct __pyx_obj_4ssh2_7session_FlagType),
+  #endif
+  __Pyx_ImportType_CheckSize_Warn_3_1_4); if (!__pyx_mstate->__pyx_ptype_4ssh2_7session_FlagType) __PYX_ERR(1, 30, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_RefNannyFinishContext();
   return 0;

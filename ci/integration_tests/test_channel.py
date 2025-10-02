@@ -1,10 +1,13 @@
 import os
+import socket
 from subprocess import check_output
 from unittest import skipUnless
 
+
+from ssh2.session import Session
 from ssh2.channel import Channel
 from ssh2.exceptions import SocketSendError
-from ssh2.flags import FLAG_COMPRESS
+from ssh2.session import LIBSSH2_METHOD_COMP_CS, LIBSSH2_FLAG_COMPRESS
 
 from .base_test import SSH2TestCase
 
@@ -196,10 +199,16 @@ class ChannelTestCase(SSH2TestCase):
         self.assertTrue(size > 0)
 
     def test_execute_with_session_compression(self):
-        rc = self.session.flag(FLAG_COMPRESS)
-        self.assertEqual(rc, 0)
-        self.assertEqual(self._auth(), 0)
-        chan = self.session.open_session()
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.connect((self.host, self.port))
+        session = Session()
+        session.flag(LIBSSH2_FLAG_COMPRESS)
+        algs = session.supported_algs(LIBSSH2_METHOD_COMP_CS)
+        self.assertTrue('zlib' in algs)
+        session.handshake(sock)
+        session.userauth_publickey_fromfile(
+            self.user, self.user_key)
+        chan = session.open_session()
         self.assertTrue(chan is not None)
         self.assertTrue(chan.execute(self.cmd) == 0)
         size, data = chan.read()
