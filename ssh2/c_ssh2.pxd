@@ -51,6 +51,15 @@ cdef extern from "libssh2.h" nogil:
         LIBSSH2_METHOD_COMP_SC
         LIBSSH2_METHOD_LANG_CS
         LIBSSH2_METHOD_LANG_SC
+        # Session flags
+        LIBSSH2_FLAG_SIGPIPE
+        LIBSSH2_FLAG_COMPRESS
+        # Path flags
+        LIBSSH2_FLAG_QUOTE_PATHS
+        # Flags for SK authentication
+        LIBSSH2_SK_PRESENCE_REQUIRED
+        LIBSSH2_SK_VERIFICATION_REQUIRED
+
 
     ctypedef struct_stat libssh2_struct_stat
     ctypedef struct LIBSSH2_USERAUTH_KBDINT_PROMPT:

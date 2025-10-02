@@ -30,6 +30,7 @@ from .utils cimport to_bytes, to_str, handle_error_codes
 from .statinfo cimport StatInfo
 from .knownhost cimport PyKnownHost
 from .fileinfo cimport FileInfo
+from .flags cimport FlagType
 
 
 from . cimport c_ssh2
@@ -446,6 +447,22 @@ cdef class Session:
         with nogil:
             rc = c_ssh2.libssh2_session_block_directions(
                 self._session)
+        return rc
+
+    def flag(self, FlagType flag, enabled=True):
+        """
+        Enable/Disable flag for session.
+
+        Flag can be one of :py:class:`ssh2.flags.FLAG_SIGPIPE` or :py:class:`ssh2.flags.FLAG_COMPRESS`.
+
+        Default is to enable the flag - `enabled=True`.
+
+        Set `enabled=False` to disable a previously enabled flag.
+        """
+        cdef int rc
+        cdef bint value = enabled
+        with nogil:
+            rc = c_ssh2.libssh2_session_flag(self._session, flag.value, value)
         return rc
 
     def forward_listen(self, int port):
