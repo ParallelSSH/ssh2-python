@@ -4,6 +4,7 @@ from unittest import skipUnless
 
 from ssh2.channel import Channel
 from ssh2.exceptions import SocketSendError
+from ssh2.flags import FLAG_COMPRESS
 
 from .base_test import SSH2TestCase
 
@@ -193,3 +194,14 @@ class ChannelTestCase(SSH2TestCase):
         self.assertTrue(chan.execute(self.cmd) == 0)
         size, data = chan.read()
         self.assertTrue(size > 0)
+
+    def test_execute_with_session_compression(self):
+        rc = self.session.flag(FLAG_COMPRESS)
+        self.assertEqual(rc, 0)
+        self.assertEqual(self._auth(), 0)
+        chan = self.session.open_session()
+        self.assertTrue(chan is not None)
+        self.assertTrue(chan.execute(self.cmd) == 0)
+        size, data = chan.read()
+        lines = [line.decode('utf-8') for line in data.splitlines()]
+        self.assertTrue(lines, [self.resp])
