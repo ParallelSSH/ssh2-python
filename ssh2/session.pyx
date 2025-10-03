@@ -27,7 +27,7 @@ from .exceptions import SessionHostKeyError, KnownHostError, \
 from .listener cimport PyListener
 from .sftp cimport PySFTP
 from .publickey cimport PyPublicKeySystem
-from .utils cimport to_bytes, to_str, handle_error_codes
+from .utils cimport to_bytes, to_str, to_str_len, handle_error_codes
 from .statinfo cimport StatInfo
 from .knownhost cimport PyKnownHost
 from .fileinfo cimport FileInfo
@@ -98,21 +98,22 @@ cdef void kbd_callback(const char *name, int name_len,
     cdef list py_prompts = []
     for i in range(num_prompts):
         prompt_len = prompts[i].length
-        py_prompts.append(to_str_len(prompts[i].text,prompt_len))
+        py_prompts.append(to_str_len(prompts[i].text, prompt_len))
 
-    cdef list py_responses = py_sess._kbd_callback(<bytes> name[:name_len], <bytes> instruction[:instruction_len], py_prompts)
+    cdef list py_responses = py_sess._kbd_callback(
+        <bytes> name[:name_len], <bytes> instruction[:instruction_len], py_prompts)
 
     cdef bytes response
     for i in range(num_prompts):
         response = to_bytes(py_responses[i])
 
-        _len = len(response)
-        _buff = <char *>calloc(sizeof(char), _len)
-        for j in range(_len):
-            _buff[j] = response[j]
+        cur_buf_len = len(response)
+        cur_buff = <char *> calloc(sizeof(char), cur_buf_len)
+        for j in range(cur_buf_len):
+            cur_buff[j] = response[j]
 
-        responses[i].text = _buff
-        responses[i].length = _len
+        responses[i].text = cur_buff
+        responses[i].length = cur_buf_len
 
 
 cdef class Session:
@@ -345,14 +346,28 @@ cdef class Session:
             return [password]
         return self.userauth_keyboardinteractive_callback(username, passwd)
 
-    def userauth_keyboardinteractive_callback(self, username not None,
-                                     callback not None):
-        """Perform keyboard-interactive authentication
+    def userauth_keyboardinteractive_callback(
+            self, username not None, callback not None):
+        """
+        Perform keyboard-interactive authentication with provided Python callback function.
 
-        :param username: User name to authenticate.
+        Callback function *must* have signature `(name, instruction, prompts, password, *args)`
+          where `*args` is any additional user-provided authentication data needed for authentication.
+          For example `oauth_handler(name, instruction, prompts, password, oauth)` can be used as a callback
+          to provide an oauth token for 2FA in addition to a password.
+
+          Callback function *must* return a python list of bytes of user-provided prompts required for authentication.
+          Any number of prompts may be used.
+
+          Authentication is not required to be keyboard interactive.
+
+          Callbacks must go through the existing keyboardinteractive mechanism for things like 2FA and oauth
+          authentication to work correctly with SSH.
+
+        :param username: Username to authenticate as.
         :type username: str
-        :param password: Password
-        :type password: str
+        :param callback: Python callback function to be called to get additional authentication prompts.
+        :type callback: callable(str|bytes, str|bytes, list[str|bytes], str|bytes, *args[str|bytes])
         """
         cdef int rc
         cdef bytes b_username = to_bytes(username)

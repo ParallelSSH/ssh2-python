@@ -1,3 +1,6 @@
+import random
+from functools import partial
+from unittest.mock import MagicMock
 import os
 import socket
 from unittest import skipUnless
@@ -335,3 +338,7 @@ class SessionTestCase(SSH2TestCase):
         self._wait_eagain(chan.wait_closed)
         chan = self._wait_eagain(self.session.open_session)
         self.assertIsInstance(chan, Channel)
+
+    def test_userauth_kb_with_callback(self):
+        my_cb = MagicMock()
+        self.assertRaises(AuthenticationError, self.session.userauth_keyboardinteractive_callback, self.user, my_cb)
