@@ -15,7 +15,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 from cpython cimport PyObject_AsFileDescriptor
-from libc.stdlib cimport malloc, free
+from libc.stdlib cimport calloc, malloc, free
+from libc.string cimport memcpy
 from libc.time cimport time_t
 from cython.operator cimport dereference as c_dereference
 
@@ -26,7 +27,7 @@ from .exceptions import SessionHostKeyError, KnownHostError, \
 from .listener cimport PyListener
 from .sftp cimport PySFTP
 from .publickey cimport PyPublicKeySystem
-from .utils cimport to_bytes, to_str, handle_error_codes
+from .utils cimport to_bytes, to_str, to_str_len, handle_error_codes
 from .statinfo cimport StatInfo
 from .knownhost cimport PyKnownHost
 from .fileinfo cimport FileInfo
@@ -93,16 +94,26 @@ cdef void kbd_callback(const char *name, int name_len,
     py_sess = (<Session>c_dereference(abstract))
     if py_sess._kbd_callback is None:
         return
-    cdef bytes b_password = to_bytes(py_sess._kbd_callback())
-    cdef size_t _len = len(b_password)
-    cdef char *_password = b_password
-    cdef char *_password_copy
-    if num_prompts == 1:
-        _password_copy = <char *>malloc(sizeof(char) * _len)
-        for i in range(_len):
-            _password_copy[i] = _password[i]
-        responses[0].text = _password_copy
-        responses[0].length = _len
+
+    cdef list py_prompts = []
+    for i in range(num_prompts):
+        prompt_len = prompts[i].length
+        py_prompts.append(to_str_len(prompts[i].text, prompt_len))
+
+    cdef list py_responses = py_sess._kbd_callback(
+        <bytes> name[:name_len], <bytes> instruction[:instruction_len], py_prompts)
+
+    cdef bytes response
+    for i in range(num_prompts):
+        response = to_bytes(py_responses[i])
+
+        cur_buf_len = len(response)
+        cur_buff = <char *> calloc(sizeof(char), cur_buf_len)
+        for j in range(cur_buf_len):
+            cur_buff[j] = response[j]
+
+        responses[i].text = cur_buff
+        responses[i].length = cur_buf_len
 
 
 cdef class Session:
@@ -331,14 +342,41 @@ cdef class Session:
         :param password: Password
         :type password: str
         """
+        def passwd(*args, password=password):
+            return [password]
+        return self.userauth_keyboardinteractive_callback(username, passwd)
+
+    def userauth_keyboardinteractive_callback(
+            self, username not None, callback not None):
+        """
+        Perform keyboard-interactive authentication with provided Python callback function.
+
+        Callback function *must* have signature compatible with `(name, instruction, prompts, password, *args)`
+        where `*args` is any additional user-provided authentication data needed for authentication.
+        For example `oauth_handler(name, instruction, prompts, password, oauth)` can be used as a callback
+        to provide an oauth token for 2FA in addition to a password.
+
+        Callback function *must* return a python list of bytes of user-provided prompts required for authentication.
+        Any number of prompts may be used as required by the server.
+
+        Authentication is not required to be actually be keyboard interactive, in the requiring a human typing
+        manually sense.
+
+        Callbacks must go through the existing keyboardinteractive mechanism for things like 2FA and oauth
+        authentication to work correctly with SSH, hence this function.
+
+        This function is `ssh2-python` specific and is not part of upstream libssh2.
+
+        :param username: Username to authenticate as.
+        :type username: str
+        :param callback: Python callback function to be called to get additional authentication prompts.
+        :type callback: callable(str|bytes, str|bytes, list[str|bytes], str|bytes, *args[str|bytes])
+        """
         cdef int rc
         cdef bytes b_username = to_bytes(username)
         cdef const char *_username = b_username
 
-        def passwd():
-            return password
-
-        self._kbd_callback = passwd
+        self._kbd_callback = callback
         rc = c_ssh2.libssh2_userauth_keyboard_interactive(
             self._session, _username, &kbd_callback)
         self._kbd_callback = None
