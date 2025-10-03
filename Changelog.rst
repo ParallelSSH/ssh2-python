@@ -7,8 +7,8 @@ Change Log
 Changes
 --------
 
-* Added `ssh2.flags` module for session related flags and python constants for libssh2 flag types.
-* Added `ssh2.session.Session.flag` function for enabling/disabling session flags.
+* Added constants for session related flags under `ssh2.session`.
+* Added `ssh2.session.Session.flag` function for enabling/disabling session flags like compression support.
 
 
 1.1.2
