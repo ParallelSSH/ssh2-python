@@ -491,7 +491,8 @@ cdef class Session:
         cdef int rc
         cdef bint value = enabled
         if not flag in (LIBSSH2_FLAG_SIGPIPE, LIBSSH2_FLAG_COMPRESS):
-            raise ValueError("Provided flag must be one of LIBSSH2_FLAG_SIGPIPE or LIBSSH2_FLAG_COMPRESS")
+            raise ValueError("Provided flag must be one of LIBSSH2_FLAG_SIGPIPE or LIBSSH2_FLAG_COMPRESS - got %s",
+                             flag)
         with nogil:
             rc = c_ssh2.libssh2_session_flag(self._session, flag.value, value)
         handle_error_codes(rc)
