@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-"""Example script for authentication with password"""
+"""Example script for authentication with Python callback function using an OAuth token"""
 
 from __future__ import print_function
 
