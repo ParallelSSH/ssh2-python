@@ -99,9 +99,10 @@ setup(
     version=versioneer.get_version(),
     cmdclass=cmdclass,
     url='https://github.com/ParallelSSH/ssh2-python',
-    license='LGPLv2',
+    license='LGPL-2.1-only',
+    license_files=['LICENSE', 'COPYING'],
     author='Panos Kittenis',
-    author_email='22e889d8@opayq.com',
+    author_email='danst@tutanota.com',
     description='Bindings for libssh2 C library',
     long_description=open('README.rst').read(),
     packages=find_packages(
@@ -113,7 +114,6 @@ setup(
     platforms='any',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
-        'License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)',
         'Intended Audience :: Developers',
         'Operating System :: OS Independent',
         'Programming Language :: C',
@@ -124,6 +124,7 @@ setup(
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: 3.12',
+        'Programming Language :: Python :: 3.13',
         'Topic :: System :: Shells',
         'Topic :: System :: Networking',
         'Topic :: Software Development :: Libraries',

@@ -25,3 +25,7 @@ cdef class Session:
 
 cdef class MethodType:
     cdef int value
+
+
+cdef class FlagType:
+    cdef int value

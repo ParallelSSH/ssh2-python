@@ -1,6 +1,16 @@
 Change Log
 =============
 
+1.2.0
+++++++
+
+Changes
+--------
+
+* Added constants for session related flags under `ssh2.session`.
+* Added `ssh2.session.Session.flag` function for enabling/disabling session flags like compression support.
+
+
 1.1.2
 ++++++
 
