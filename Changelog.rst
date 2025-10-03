@@ -1,6 +1,59 @@
 Change Log
 =============
 
+1.2.0
+++++++
+
+Changes
+--------
+
+* Added constants for session related flags under `ssh2.session`.
+* Added `ssh2.session.Session.flag` function for enabling/disabling session flags like compression support.
+
+
+1.1.2
+++++++
+
+Changes
+--------
+
+No code changes.
+
+
+Packaging
+----------
+
+* Added Windows Python 3.7 and 3.13 wheel builds.
+* Removed manylinux 2010 wheels.
+* Wheel builds now use embedded libssh2 and zlib.
+* Dockerfiles and scripts updates.
+
+1.1.1
++++++
+
+Changes
+--------
+
+* Support for Python >=3.12.
+* Upgraded embedded and wheel ``libssh2`` to ``1.11.1``.
+* Upgraded wheel OpenSSL to 3.4.0.
+* Removed testing for Python versions <3.8.
+
+Fixes
+-----
+
+* Calling ``ssh2.session.Session.methods`` without a valid connection would cause a segfault - #203.
+
+Packaging
+----------
+
+* Added binary wheels for Python versions 3.11, 3.12 and 3.13 on support manylinux wheel builds.
+* Added OSX 12.0, 13.0 and 14.0 wheels, Apple Silicon.
+* Support OSX brew OpenSSL from source builds.
+* Top level tests directory is now cross platform and can be run by vendors.
+* Moved CI specific integration tests to their own space.
+
+
 1.0.0
 ++++++
 

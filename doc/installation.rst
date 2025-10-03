@@ -44,13 +44,7 @@ To use the built packages, install via the system's package manager, for example
 Conda package
 ===============
 
-A `conda <https://conda.io/miniconda.html>`_ package is available in the ``conda-forge`` channel.
-
-To install, run the following.
-
-.. code-block:: shell
-
-   conda install -c conda-forge ssh2-python
+No longer built.
 
 Installation from Source
 ==========================

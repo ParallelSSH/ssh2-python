@@ -1,8 +1,6 @@
 cython
 flake8
 jinja2
-sphinx
-sphinx_rtd_theme
 pytest
 pytest-rerunfailures
--e .
+-r doc/requirements.txt

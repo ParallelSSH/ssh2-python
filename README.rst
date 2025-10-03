@@ -42,6 +42,26 @@ Most developers will want to use the `high level clients <https://parallel-ssh.r
 in `parallel-ssh <https://github.com/ParallelSSH/parallel-ssh>`_
 based on this library.
 
+
+.. code-block:: shell
+
+   pip install parallel-ssh
+
+
+.. code-block:: python
+
+   from pssh.clients import SSHClient
+
+   host = 'localhost'
+   cmd = 'uname'
+   client = SSHClient(host)
+
+   host_out = client.run_command(cmd)
+   for line in host_out.stdout:
+       print(line)
+   exit_code = host_out.exit_code
+
+
 This library provides bindings to the low-level libssh2 C-API. It is *not* high level, nor easy to use. A *lot* of code
 would need to be written to use this library that is already provided by `parallel-ssh`.
 

@@ -4,8 +4,10 @@ import subprocess
 import json
 import sys
 
+
 def get_describe_tag():
-    return subprocess.check_output(['git', 'describe', '--tags']).strip().decode('utf-8')
+    return subprocess.check_output(['git', 'describe', '--tags']).strip().decode('utf-8').split('-')[0]
+
 
 def make_version_file(basedir):
     rev = os.environ.get('APPVEYOR_REPO_COMMIT',

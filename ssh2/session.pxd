@@ -14,7 +14,7 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-cimport c_ssh2
+from . cimport c_ssh2
 
 cdef class Session:
     cdef c_ssh2.LIBSSH2_SESSION *_session
@@ -24,4 +24,8 @@ cdef class Session:
 
 
 cdef class MethodType:
+    cdef int value
+
+
+cdef class FlagType:
     cdef int value

@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 # This file is part of ssh2-python.
-# Copyright (C) 2017-2022 Panos Kittenis and contributors.
+# Copyright (C) 2017-2025 Panos Kittenis and contributors.
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -17,8 +17,9 @@
 
 # Compile wheels
 # For testing
-# for PYBIN in `ls -1d /opt/python/cp36-cp36m/bin | grep -v cpython`; do
-for PYBIN in $(ls -1d /opt/python/*/bin | grep -v cpython); do
+# for PYBIN in `ls -1d /opt/python/cp310-cp310/bin | grep -v cpython`; do
+for PYBIN in $(ls -1d /opt/python/*/bin | grep -v cpython | grep -v cp313t); do
+    echo "Building for Python binary ${PYBIN}"
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
 done
 
@@ -28,7 +29,10 @@ for whl in wheelhouse/*.whl; do
 done
 
 # Install packages and test
-for PYBIN in $(ls -1d /opt/python/*/bin | grep -v cpython); do
-  "${PYBIN}/pip" install ssh2-python --no-index -f /io/wheelhouse
-  (cd "$HOME"; "${PYBIN}/python" -c 'from ssh2.session import Session; Session()')
+for PYBIN in $(ls -1d /opt/python/*/bin | grep -v cpython | grep -v cp313t); do
+# for PYBIN in `ls -1d /opt/python/cp310-cp310/bin | grep -v cpython`; do
+    echo "Installing for Python binary ${PYBIN}"
+    "${PYBIN}/pip" install ssh2-python --no-index -f /io/wheelhouse
+    (cd "$HOME"; "${PYBIN}/python" -c 'from ssh2.session import Session; Session()' &&
+    echo "Import sanity check succeeded.")
 done

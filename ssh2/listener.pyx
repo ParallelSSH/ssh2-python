@@ -14,11 +14,11 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-from session cimport Session
-from channel cimport PyChannel
-from utils cimport handle_error_codes
+from .session cimport Session
+from .channel cimport PyChannel
+from .utils cimport handle_error_codes
 
-cimport c_ssh2
+from . cimport c_ssh2
 
 
 cdef object PyListener(c_ssh2.LIBSSH2_LISTENER *listener, Session session):
@@ -29,7 +29,7 @@ cdef object PyListener(c_ssh2.LIBSSH2_LISTENER *listener, Session session):
 
 cdef class Listener:
 
-    def __cinit__(self, session):
+    def __cinit__(self, Session session):
         self._listener = NULL
         self._session = session
 

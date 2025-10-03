@@ -15,8 +15,12 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
+tar -czf ci/docker/manylinux/libssh2-${LIBSSH2_VERSION}.tar.gz libssh2
+
 docker_tag="parallelssh/ssh2-manylinux"
-docker_files=("ci/docker/manylinux/Dockerfile" "ci/docker/manylinux/Dockerfile.2014_x86_64")
+docker_files=(
+    "ci/docker/manylinux/Dockerfile.2014_x86_64"
+)
 
 rm -rf build ssh2/libssh2.* ssh2/*.so
 python ci/appveyor/fix_version.py .
@@ -27,7 +31,7 @@ if [[ $(uname -m) == "aarch64" ]]; then
 fi
 
 for docker_file in "${docker_files[@]}"; do
-    if [[ ${docker_file} == "ci/docker/manylinux/Dockerfile_2014_x86_64" ]]; then
+    if [[ ${docker_file} == "ci/docker/manylinux/Dockerfile.2014_x86_64" ]]; then
         docker_tag="${docker_tag}:2014_x86_64"
     fi
     docker pull $docker_tag || echo

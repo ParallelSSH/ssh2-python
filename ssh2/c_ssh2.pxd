@@ -15,7 +15,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 from libc.time cimport time_t
-from c_stat cimport struct_stat
+from .c_stat cimport struct_stat
 
 
 cdef extern from "libssh2.h" nogil:
@@ -51,6 +51,15 @@ cdef extern from "libssh2.h" nogil:
         LIBSSH2_METHOD_COMP_SC
         LIBSSH2_METHOD_LANG_CS
         LIBSSH2_METHOD_LANG_SC
+        # Session flags
+        LIBSSH2_FLAG_SIGPIPE
+        LIBSSH2_FLAG_COMPRESS
+        # Path flags
+        LIBSSH2_FLAG_QUOTE_PATHS
+        # Flags for SK authentication
+        LIBSSH2_SK_PRESENCE_REQUIRED
+        LIBSSH2_SK_VERIFICATION_REQUIRED
+
 
     ctypedef struct_stat libssh2_struct_stat
     ctypedef struct LIBSSH2_USERAUTH_KBDINT_PROMPT:

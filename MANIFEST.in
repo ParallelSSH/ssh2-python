@@ -3,7 +3,8 @@ recursive-exclude docker *
 include _setup_libssh2.py
 include versioneer.py
 include ssh2/_version.py
-recursive-exclude .circleci
+recursive-exclude .circleci *
+recursive-exclude ci *
 include LICENSE
 include ssh2/*.pyx
 include ssh2/*.pxd

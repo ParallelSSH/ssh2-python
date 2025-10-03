@@ -18,7 +18,7 @@
 
 from libc.stdlib cimport malloc, free
 
-cimport c_ssh2
+from . cimport c_ssh2
 
 
 cdef class FileInfo:

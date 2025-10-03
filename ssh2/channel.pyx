@@ -15,13 +15,14 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 from libc.stdlib cimport malloc, free
-from session cimport Session
-from exceptions import ChannelError
-from utils cimport to_bytes, handle_error_codes
 
-cimport c_ssh2
-cimport sftp
-cimport error_codes
+from .exceptions import ChannelError
+
+from .session cimport Session
+from .utils cimport to_bytes, handle_error_codes
+from . cimport c_ssh2
+from . cimport sftp
+from . cimport error_codes
 
 
 cdef object PyChannel(c_ssh2.LIBSSH2_CHANNEL *channel, Session session):
@@ -234,11 +235,17 @@ cdef class Channel:
         Note that ``0`` is also failure code for this function.
 
         Best used in non-blocking mode to avoid it being impossible to tell if
-        ``0`` indicates failure or an actual exit status of ``0``"""
+        ``0`` indicates failure or an actual exit status of ``0``.
+
+        Exceptions are raised as with all functions in case of an SSH2Error.
+
+        :rtype: int
+        """
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_get_exit_status(self._channel)
-        return handle_error_codes(rc)
+        handle_error_codes(rc)
+        return rc
 
     def get_exit_signal(self):
         """Get exit signal, message and language tag, if any, for command.
@@ -246,7 +253,8 @@ cdef class Channel:
         Returns (`returncode``, ``exit signal``, ``error message``,
           ``language tag``) tuple.
 
-        :rtype: tuple(int, bytes, bytes, bytes)"""
+        :rtype: tuple(int, bytes, bytes, bytes)
+        """
         cdef char *exitsignal = <char *>b'none'
         cdef size_t *exitsignal_len = <size_t *>0
         cdef char *errmsg = <char *>b'none'
@@ -276,7 +284,8 @@ cdef class Channel:
             py_errmsg = errmsg[:py_errlen]
         if py_langlen > 0:
             py_langtag = langtag[:py_langlen]
-        return handle_error_codes(rc), py_exitsignal, py_errmsg, py_langtag
+        handle_error_codes(rc)
+        return rc, py_exitsignal, py_errmsg, py_langtag
 
     def setenv(self, varname not None, value not None):
         """Set environment variable on channel.
