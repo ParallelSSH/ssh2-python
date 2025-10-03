@@ -1,5 +1,3 @@
-import random
-from functools import partial
 from unittest.mock import MagicMock
 import os
 import socket

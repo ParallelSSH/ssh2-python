@@ -9,6 +9,8 @@ Changes
 
 * Added constants for session related flags under `ssh2.session`.
 * Added `ssh2.session.Session.flag` function for enabling/disabling session flags like compression support.
+* Added `ssh2.session.userauth_keyboardinteractive_callback` for authentication using Python callback function,
+  for example for Oauth and other two-factor (2FA) or more factor authentication. Thanks @MattCatz .
 
 
 1.1.2

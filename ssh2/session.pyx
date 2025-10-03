@@ -342,7 +342,7 @@ cdef class Session:
         :param password: Password
         :type password: str
         """
-        def passwd(*args,password=password):
+        def passwd(*args, password=password):
             return [password]
         return self.userauth_keyboardinteractive_callback(username, passwd)
 
@@ -351,18 +351,21 @@ cdef class Session:
         """
         Perform keyboard-interactive authentication with provided Python callback function.
 
-        Callback function *must* have signature `(name, instruction, prompts, password, *args)`
-          where `*args` is any additional user-provided authentication data needed for authentication.
-          For example `oauth_handler(name, instruction, prompts, password, oauth)` can be used as a callback
-          to provide an oauth token for 2FA in addition to a password.
+        Callback function *must* have signature compatible with `(name, instruction, prompts, password, *args)`
+        where `*args` is any additional user-provided authentication data needed for authentication.
+        For example `oauth_handler(name, instruction, prompts, password, oauth)` can be used as a callback
+        to provide an oauth token for 2FA in addition to a password.
 
-          Callback function *must* return a python list of bytes of user-provided prompts required for authentication.
-          Any number of prompts may be used.
+        Callback function *must* return a python list of bytes of user-provided prompts required for authentication.
+        Any number of prompts may be used as required by the server.
 
-          Authentication is not required to be keyboard interactive.
+        Authentication is not required to be actually be keyboard interactive, in the requiring a human typing
+        manually sense.
 
-          Callbacks must go through the existing keyboardinteractive mechanism for things like 2FA and oauth
-          authentication to work correctly with SSH.
+        Callbacks must go through the existing keyboardinteractive mechanism for things like 2FA and oauth
+        authentication to work correctly with SSH, hence this function.
+
+        This function is `ssh2-python` specific and is not part of upstream libssh2.
 
         :param username: Username to authenticate as.
         :type username: str
