@@ -473,6 +473,35 @@ cdef class Session:
                 self._session))
         return PyChannel(channel, self)
 
+    def direct_streamlocal_ex(self, socket_path not None, shost not None, int sport):
+        """
+        From libssh2 documentation:
+          Tunnel a UNIX socket connection through the SSH transport via the remote host to a third party.
+          Communication from the client to the SSH server remains encrypted, communication from the server to the
+          3rd party host travels in cleartext.
+
+        :param socket_path: Unix socket path to connect to using the SSH host as a proxy.
+        :type socket_path: str
+        :param shost: Host to tell the SSH server the connection originated on.
+        :type shost: str
+        :param sport: Port to tell the SSH server the connection originated from.
+        :type sport: int
+        :returns: A `Channel` object for the server intiated connection to the third party or an exception is raised
+          on any error.
+        :rtype: `ssh2.channel.Channel`
+        """
+        cdef bytes b_socket_path = to_bytes(socket_path)
+        cdef bytes b_shost = to_bytes(shost)
+        cdef const char *c_socket_path = b_socket_path
+        cdef const char *c_shost = b_shost
+        cdef c_ssh2.LIBSSH2_CHANNEL *channel
+        with nogil:
+            channel = c_ssh2.libssh2_channel_direct_streamlocal_ex(self._session, c_socket_path, c_shost, sport)
+        if channel is NULL:
+            return handle_error_codes(c_ssh2.libssh2_session_last_errno(
+                self._session))
+        return PyChannel(channel, self)
+
     def block_directions(self):
         """Get blocked directions for the current session.
 

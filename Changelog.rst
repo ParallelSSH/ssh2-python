@@ -14,6 +14,8 @@ Changes
 * `ssh2.sftp_handle.SFTPHandle.closed` is now a public property indicating whether `ssh2.sftp_handle.SFTPHandle.close`
   was called on a `SFTPHandle` or not.
 * Added `ssh2.channel.Channel.signal` function for sending signals over SSH to an open channel - #221
+* Added `ssh2.session.Session.direct_streamlocal_ex` for creating `Channel` objects tunneling a local UNIX socket
+  via the remote host to a third party.
 
 
 1.1.2

@@ -340,3 +340,21 @@ class SessionTestCase(SSH2TestCase):
     def test_userauth_kb_with_callback(self):
         my_cb = MagicMock()
         self.assertRaises(AuthenticationError, self.session.userauth_keyboardinteractive_callback, self.user, my_cb)
+
+    def test_direct_streamlocal(self):
+        unix_sock_path = '/tmp/my_sock'
+        try:
+            os.unlink(unix_sock_path)
+        except OSError:
+            pass
+        unix_sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        unix_sock.bind(unix_sock_path)
+        try:
+            unix_sock.listen(1)
+            self.assertEqual(self._auth(), 0)
+            chan = self.session.direct_streamlocal_ex(unix_sock_path, '127.0.0.1', 12345)
+            self.assertTrue(chan is not None)
+            self.assertIsInstance(chan, Channel)
+        finally:
+            unix_sock.close()
+            os.unlink(unix_sock_path)
