@@ -13,6 +13,7 @@ Changes
   for example for Oauth and other two-factor (2FA) or more factor authentication. Thanks @MattCatz .
 * `ssh2.sftp_handle.SFTPHandle.closed` is now a public property indicating whether `ssh2.sftp_handle.SFTPHandle.close`
   was called on a `SFTPHandle` or not.
+* Added `ssh2.channel.Channel.signal` function for sending signals over SSH to an open channel - #221
 
 
 1.1.2
