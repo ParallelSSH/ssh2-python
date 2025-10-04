@@ -10716,7 +10716,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_74signal, "Channel.signal(self, signame)\n\nSend signal to channel.\n\nSigname must be a free form signal name without the leading SIG. Eg 'HUP', 'INT', TERM' and so forth.\n\nSee :py:mod:`signal.Signals`.\n\n:param signame: Signal name to send to channel.\n:type signame: str");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_74signal, "Channel.signal(self, signame)\n\nSend signal to channel.\n\nSigname must be a free form signal name without the leading SIG. Eg 'HUP', 'INT', 'TERM' and so forth.\n\nSee :py:mod:`signal.Signals`.\n\n:param signame: Signal name to send to channel.\n:type signame: str");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_75signal = {"signal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_75signal, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_74signal};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_75signal(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
