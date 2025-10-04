@@ -43,7 +43,7 @@ delocate-listdeps wheels/*.whl
 
 ls -l wheels/*.whl
 rm -f ${SYSTEM_LIBSSH2_DIR}/libssh2*
-rm -f build_dir
+rm -rf build_dir
 ls -lhtr ${SYSTEM_LIBSSH2_DIR}
 
 pip3 install -v wheels/*.whl
