@@ -221,6 +221,9 @@ cdef extern from "libssh2.h" nogil:
     LIBSSH2_CHANNEL *libssh2_channel_direct_tcpip(
         LIBSSH2_SESSION *session, const char *host,
         int port)
+    LIBSSH2_CHANNEL *libssh2_channel_direct_streamlocal_ex(
+        LIBSSH2_SESSION * session, const char *socket_path,
+        const char *shost, int sport)
     LIBSSH2_LISTENER *libssh2_channel_forward_listen_ex(
         LIBSSH2_SESSION *session, const char *host,
         int port, int *bound_port, int queue_maxsize)
