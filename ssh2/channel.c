@@ -2569,7 +2569,7 @@ static const char __pyx_k_get_exit_status[] = "get_exit_status";
 static const char __pyx_k_process_startup[] = "process_startup";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
 static const char __pyx_k_window_write_ex[] = "window_write_ex";
-static const char __pyx_k_A_xq_Q_s_1_1_k_A[] = "\200A\360\020\000\t \230x\240q\250\001\330\010%\240Q\330\010\037\230s\240!\2401\330\r\016\330\014\027\320\0271\260\021\260$\260k\300\033\310A\330\010\017\320\017!\240\021\240!";
+static const char __pyx_k_A_xq_Q_s_1_1_k_A[] = "\200A\360\030\000\t \230x\240q\250\001\330\010%\240Q\330\010\037\230s\240!\2401\330\r\016\330\014\027\320\0271\260\021\260$\260k\300\033\310A\330\010\017\320\017!\240\021\240!";
 static const char __pyx_k_Channel_flush_ex[] = "Channel.flush_ex";
 static const char __pyx_k_Channel_send_eof[] = "Channel.send_eof";
 static const char __pyx_k_Channel_wait_eof[] = "Channel.wait_eof";
@@ -10716,7 +10716,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_74signal, "Channel.signal(self, signame)\n\nSend signal to channel.\n\n:param signame: Signal name to send to channel.\n:type signame: str");
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_74signal, "Channel.signal(self, signame)\n\nSend signal to channel.\n\nSigname must be a free form signal name without the leading SIG. Eg 'HUP', 'INT', TERM' and so forth.\n\nSee :py:mod:`signal.Signals`.\n\n:param signame: Signal name to send to channel.\n:type signame: str");
 static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_75signal = {"signal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_75signal, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_74signal};
 static PyObject *__pyx_pw_4ssh2_7channel_7Channel_75signal(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
@@ -10822,19 +10822,19 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_74signal(struct __pyx_obj_4ssh
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("signal", 0);
 
-  /* "ssh2/channel.pyx":582
+  /* "ssh2/channel.pyx":586
  *         """
  *         cdef int rc
  *         cdef bytes b_signame = to_bytes(signame)             # <<<<<<<<<<<<<<
  *         cdef const char *c_signame = b_signame
  *         cdef int signame_len = len(signame)
 */
-  __pyx_t_1 = __pyx_f_4ssh2_5utils_to_bytes(__pyx_v_signame); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 582, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_4ssh2_5utils_to_bytes(__pyx_v_signame); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 586, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_b_signame = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ssh2/channel.pyx":583
+  /* "ssh2/channel.pyx":587
  *         cdef int rc
  *         cdef bytes b_signame = to_bytes(signame)
  *         cdef const char *c_signame = b_signame             # <<<<<<<<<<<<<<
@@ -10843,22 +10843,22 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_74signal(struct __pyx_obj_4ssh
 */
   if (unlikely(__pyx_v_b_signame == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
-    __PYX_ERR(0, 583, __pyx_L1_error)
+    __PYX_ERR(0, 587, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_PyBytes_AsString(__pyx_v_b_signame); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 583, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBytes_AsString(__pyx_v_b_signame); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 587, __pyx_L1_error)
   __pyx_v_c_signame = __pyx_t_2;
 
-  /* "ssh2/channel.pyx":584
+  /* "ssh2/channel.pyx":588
  *         cdef bytes b_signame = to_bytes(signame)
  *         cdef const char *c_signame = b_signame
  *         cdef int signame_len = len(signame)             # <<<<<<<<<<<<<<
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_signal_ex(self._channel, c_signame, signame_len)
 */
-  __pyx_t_3 = PyObject_Length(__pyx_v_signame); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 584, __pyx_L1_error)
+  __pyx_t_3 = PyObject_Length(__pyx_v_signame); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 588, __pyx_L1_error)
   __pyx_v_signame_len = __pyx_t_3;
 
-  /* "ssh2/channel.pyx":585
+  /* "ssh2/channel.pyx":589
  *         cdef const char *c_signame = b_signame
  *         cdef int signame_len = len(signame)
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -10872,7 +10872,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_74signal(struct __pyx_obj_4ssh
       __Pyx_FastGIL_Remember();
       /*try:*/ {
 
-        /* "ssh2/channel.pyx":586
+        /* "ssh2/channel.pyx":590
  *         cdef int signame_len = len(signame)
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_signal_ex(self._channel, c_signame, signame_len)             # <<<<<<<<<<<<<<
@@ -10881,7 +10881,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_74signal(struct __pyx_obj_4ssh
         __pyx_v_rc = libssh2_channel_signal_ex(__pyx_v_self->_channel, __pyx_v_c_signame, __pyx_v_signame_len);
       }
 
-      /* "ssh2/channel.pyx":585
+      /* "ssh2/channel.pyx":589
  *         cdef const char *c_signame = b_signame
  *         cdef int signame_len = len(signame)
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -10898,14 +10898,14 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_74signal(struct __pyx_obj_4ssh
       }
   }
 
-  /* "ssh2/channel.pyx":587
+  /* "ssh2/channel.pyx":591
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_signal_ex(self._channel, c_signame, signame_len)
  *         return handle_error_codes(rc)             # <<<<<<<<<<<<<<
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = __pyx_f_4ssh2_5utils_handle_error_codes(__pyx_v_rc, 0); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 587, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 587, __pyx_L1_error)
+  __pyx_t_4 = __pyx_f_4ssh2_5utils_handle_error_codes(__pyx_v_rc, 0); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 591, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 591, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;

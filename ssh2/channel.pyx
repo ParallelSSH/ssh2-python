@@ -575,6 +575,10 @@ cdef class Channel:
         """
         Send signal to channel.
 
+        Signame must be a free form signal name without the leading SIG. Eg 'HUP', 'INT', TERM' and so forth.
+
+        See :py:mod:`signal.Signals`.
+
         :param signame: Signal name to send to channel.
         :type signame: str
         """
