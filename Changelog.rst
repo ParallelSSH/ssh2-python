@@ -18,6 +18,12 @@ Changes
   via the remote host to a third party.
 
 
+Packaging
+----------
+
+* Removed Windows Python 3.7 wheel builds.
+
+
 1.1.2
 ++++++
 
