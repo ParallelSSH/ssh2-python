@@ -22,8 +22,7 @@ from ssh2.error_codes import LIBSSH2_ERROR_NONE, LIBSSH2_ERROR_SOCKET_NONE, \
     LIBSSH2_ERROR_AGENT_PROTOCOL, LIBSSH2_ERROR_SOCKET_RECV, \
     LIBSSH2_ERROR_SOCKET_SEND, LIBSSH2_ERROR_ENCRYPT, \
     LIBSSH2_ERROR_BAD_SOCKET, LIBSSH2_ERROR_KNOWN_HOSTS, \
-    LIBSSH2_ERROR_RANDGEN, LIBSSH2_ERROR_MISSING_USERAUTH_BANNER, LIBSSH2_ERROR_ALGO_UNSUPPORTED, \
-    LIBSSH2_ERROR_MAC_FAILURE, LIBSSH2_ERROR_HASH_INIT, LIBSSH2_ERROR_HASH_CALC
+    LIBSSH2_ERROR_RANDGEN, LIBSSH2_ERROR_MISSING_USERAUTH_BANNER, LIBSSH2_ERROR_ALGO_UNSUPPORTED
 from ssh2.exceptions import SSH2Error, AgentError, AuthenticationError, \
     AgentConnectionError, AgentAuthenticationError, AgentListIdentitiesError, \
     AgentGetIdentityError, AgentProtocolError, SessionError, \
@@ -41,7 +40,7 @@ from ssh2.exceptions import SSH2Error, AgentError, AuthenticationError, \
     BadUseError, CompressError, OutOfBoundaryError, SocketRecvError, \
     SocketSendError, EncryptError, BadSocketError, SFTPError, SFTPProtocolError, \
     KnownHostError, UnknownError, RandGenError, MissingUserAuthBannerError, \
-    AlgoUnsupportedError, MacFailureError, HashInitError, HashCalcError
+    AlgoUnsupportedError
 from ssh2.utils import handle_error_codes
 
 
@@ -71,9 +70,6 @@ class ErrorCodeExceptionsTest(unittest.TestCase):
         self.assertRaises(RandGenError, handle_error_codes, LIBSSH2_ERROR_RANDGEN)
         self.assertRaises(MissingUserAuthBannerError, handle_error_codes, LIBSSH2_ERROR_MISSING_USERAUTH_BANNER)
         self.assertRaises(AlgoUnsupportedError, handle_error_codes, LIBSSH2_ERROR_ALGO_UNSUPPORTED)
-        self.assertRaises(MacFailureError, handle_error_codes, LIBSSH2_ERROR_MAC_FAILURE)
-        self.assertRaises(HashInitError, handle_error_codes, LIBSSH2_ERROR_HASH_INIT)
-        self.assertRaises(HashCalcError, handle_error_codes, LIBSSH2_ERROR_HASH_CALC)
 
     def test_channel_errors(self):
         self.assertRaises(ChannelOutOfOrderError, handle_error_codes, LIBSSH2_ERROR_CHANNEL_OUTOFORDER)

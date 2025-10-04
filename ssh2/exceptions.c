@@ -1971,8 +1971,6 @@ static const char __pyx_k_RandGenError[] = "RandGenError";
 static const char __pyx_k_SessionError[] = "SessionError";
 static const char __pyx_k_UnknownError[] = "UnknownError";
 static const char __pyx_k_CompressError[] = "CompressError";
-static const char __pyx_k_HashCalcError[] = "HashCalcError";
-static const char __pyx_k_HashInitError[] = "HashInitError";
 static const char __pyx_k_ProtocolError[] = "ProtocolError";
 static const char __pyx_k_SocketTimeout[] = "SocketTimeout";
 static const char __pyx_k_BadSocketError[] = "BadSocketError";
@@ -1983,7 +1981,6 @@ static const char __pyx_k_BannerRecvError[] = "BannerRecvError";
 static const char __pyx_k_BannerSendError[] = "BannerSendError";
 static const char __pyx_k_InvalidMACError[] = "InvalidMACError";
 static const char __pyx_k_KexFailureError[] = "KexFailureError";
-static const char __pyx_k_MacFailureError[] = "MacFailureError";
 static const char __pyx_k_MethodNoneError[] = "MethodNoneError";
 static const char __pyx_k_SFTPHandleError[] = "SFTPHandleError";
 static const char __pyx_k_SocketRecvError[] = "SocketRecvError";
@@ -2047,7 +2044,6 @@ static const char __pyx_k_Raised_on_allocation_error[] = "Raised on allocation e
 static const char __pyx_k_Raised_on_channel_failures[] = "Raised on channel failures";
 static const char __pyx_k_KnownHostCheckMisMatchError[] = "KnownHostCheckMisMatchError";
 static const char __pyx_k_KnownHostCheckNotFoundError[] = "KnownHostCheckNotFoundError";
-static const char __pyx_k_Raised_on_MAC_failure_error[] = "Raised on MAC failure error";
 static const char __pyx_k_Raised_on_decryption_errors[] = "Raised on decryption errors";
 static const char __pyx_k_Raised_on_encryption_errors[] = "Raised on encryption errors";
 static const char __pyx_k_Raised_on_API_bad_use_errors[] = "Raised on API bad use errors";
@@ -2097,8 +2093,6 @@ static const char __pyx_k_Raised_on_errors_retrieving_know[] = "Raised on errors
 static const char __pyx_k_Raised_on_errors_signing_host_ke[] = "Raised on errors signing host key";
 static const char __pyx_k_Raised_on_errors_writing_line_to[] = "Raised on errors writing line to known hosts file";
 static const char __pyx_k_Raised_on_errors_writing_to_know[] = "Raised on errors writing to known hosts file";
-static const char __pyx_k_Raised_on_hash_calculation_error[] = "Raised on hash calculation error";
-static const char __pyx_k_Raised_on_hash_initialisation_er[] = "Raised on hash initialisation error";
 static const char __pyx_k_Raised_on_invalid_poll_type_erro[] = "Raised on invalid poll type errors";
 static const char __pyx_k_Raised_on_invalid_request_errors[] = "Raised on invalid request errors";
 static const char __pyx_k_Raised_on_key_file_authenticatio[] = "Raised on key file authentication error";
@@ -2155,7 +2149,7 @@ typedef struct {
   #ifdef __Pyx_Coroutine_USED
   PyTypeObject *__pyx_CoroutineType;
   #endif
-  PyObject *__pyx_string_tab[170];
+  PyObject *__pyx_string_tab[164];
 /* #### Code section: module_state_contents ### */
 /* CodeObjectCache.module_state_decls */
 struct __Pyx_CodeObjectCache __pyx_code_cache;
@@ -2222,139 +2216,133 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_DecryptError __pyx_string_tab[34]
 #define __pyx_n_u_EncryptError __pyx_string_tab[35]
 #define __pyx_n_u_FileError __pyx_string_tab[36]
-#define __pyx_n_u_HashCalcError __pyx_string_tab[37]
-#define __pyx_n_u_HashInitError __pyx_string_tab[38]
-#define __pyx_n_u_HostkeyInitError __pyx_string_tab[39]
-#define __pyx_n_u_HostkeySignError __pyx_string_tab[40]
-#define __pyx_n_u_InvalidMACError __pyx_string_tab[41]
-#define __pyx_n_u_InvalidPollTypeError __pyx_string_tab[42]
-#define __pyx_n_u_InvalidRequestError __pyx_string_tab[43]
-#define __pyx_n_u_KexFailureError __pyx_string_tab[44]
-#define __pyx_n_u_KeyExchangeError __pyx_string_tab[45]
-#define __pyx_n_u_KeyfileAuthFailedError __pyx_string_tab[46]
-#define __pyx_n_u_KnownHostAddError __pyx_string_tab[47]
-#define __pyx_n_u_KnownHostCheckError __pyx_string_tab[48]
-#define __pyx_n_u_KnownHostCheckFailure __pyx_string_tab[49]
-#define __pyx_n_u_KnownHostCheckMisMatchError __pyx_string_tab[50]
-#define __pyx_n_u_KnownHostCheckNotFoundError __pyx_string_tab[51]
-#define __pyx_n_u_KnownHostDeleteError __pyx_string_tab[52]
-#define __pyx_n_u_KnownHostError __pyx_string_tab[53]
-#define __pyx_n_u_KnownHostGetError __pyx_string_tab[54]
-#define __pyx_n_u_KnownHostReadFileError __pyx_string_tab[55]
-#define __pyx_n_u_KnownHostReadLineError __pyx_string_tab[56]
-#define __pyx_n_u_KnownHostWriteFileError __pyx_string_tab[57]
-#define __pyx_n_u_KnownHostWriteLineError __pyx_string_tab[58]
-#define __pyx_n_u_MacFailureError __pyx_string_tab[59]
-#define __pyx_n_u_MethodNoneError __pyx_string_tab[60]
-#define __pyx_n_u_MethodNotSupported __pyx_string_tab[61]
-#define __pyx_n_u_MissingUserAuthBannerError __pyx_string_tab[62]
-#define __pyx_n_u_OutOfBoundaryError __pyx_string_tab[63]
-#define __pyx_n_u_PasswordExpiredError __pyx_string_tab[64]
-#define __pyx_n_u_ProtocolError __pyx_string_tab[65]
-#define __pyx_n_u_PublicKeyError __pyx_string_tab[66]
-#define __pyx_n_u_PublicKeyInitError __pyx_string_tab[67]
-#define __pyx_n_u_PublicKeyProtocolError __pyx_string_tab[68]
-#define __pyx_n_u_PublickeyUnverifiedError __pyx_string_tab[69]
-#define __pyx_kp_u_Raised_on_API_bad_use_errors __pyx_string_tab[70]
-#define __pyx_kp_u_Raised_on_KEX_failure __pyx_string_tab[71]
-#define __pyx_kp_u_Raised_on_MAC_failure_error __pyx_string_tab[72]
-#define __pyx_kp_u_Raised_on_SCP_protocol_errors __pyx_string_tab[73]
-#define __pyx_kp_u_Raised_on_SFTP_handle_errors __pyx_string_tab[74]
-#define __pyx_kp_u_Raised_on_SFTP_protocol_errors __pyx_string_tab[75]
-#define __pyx_kp_u_Raised_on_SSH_Agent_authenticati __pyx_string_tab[76]
-#define __pyx_kp_u_Raised_on_SSH_Agent_connection_e __pyx_string_tab[77]
-#define __pyx_kp_u_Raised_on_SSH_Agent_get_identity __pyx_string_tab[78]
-#define __pyx_kp_u_Raised_on_SSH_Agent_list_identit __pyx_string_tab[79]
-#define __pyx_kp_u_Raised_on_SSH_agent_protocol_err __pyx_string_tab[80]
-#define __pyx_kp_u_Raised_on_allocation_error __pyx_string_tab[81]
-#define __pyx_kp_u_Raised_on_any_known_host_check_e __pyx_string_tab[82]
-#define __pyx_kp_u_Raised_on_authentication_method __pyx_string_tab[83]
-#define __pyx_kp_u_Raised_on_buffer_too_small_error __pyx_string_tab[84]
-#define __pyx_kp_u_Raised_on_channel_EOF_errors __pyx_string_tab[85]
-#define __pyx_kp_u_Raised_on_channel_closed_errors __pyx_string_tab[86]
-#define __pyx_kp_u_Raised_on_channel_commands_out_o __pyx_string_tab[87]
-#define __pyx_kp_u_Raised_on_channel_failures __pyx_string_tab[88]
-#define __pyx_kp_u_Raised_on_channel_max_packet_len __pyx_string_tab[89]
-#define __pyx_kp_u_Raised_on_channel_request_denied __pyx_string_tab[90]
-#define __pyx_kp_u_Raised_on_channel_window_exceede __pyx_string_tab[91]
-#define __pyx_kp_u_Raised_on_channel_window_full_er __pyx_string_tab[92]
-#define __pyx_kp_u_Raised_on_compression_errors __pyx_string_tab[93]
-#define __pyx_kp_u_Raised_on_decryption_errors __pyx_string_tab[94]
-#define __pyx_kp_u_Raised_on_encryption_errors __pyx_string_tab[95]
-#define __pyx_kp_u_Raised_on_errors_adding_known_ho __pyx_string_tab[96]
-#define __pyx_kp_u_Raised_on_errors_deleting_known __pyx_string_tab[97]
-#define __pyx_kp_u_Raised_on_errors_exchanging_keys __pyx_string_tab[98]
-#define __pyx_kp_u_Raised_on_errors_getting_server __pyx_string_tab[99]
-#define __pyx_kp_u_Raised_on_errors_initialiasing_h __pyx_string_tab[100]
-#define __pyx_kp_u_Raised_on_errors_initialising_pu __pyx_string_tab[101]
-#define __pyx_kp_u_Raised_on_errors_reading_from_kn __pyx_string_tab[102]
-#define __pyx_kp_u_Raised_on_errors_reading_line_fr __pyx_string_tab[103]
-#define __pyx_kp_u_Raised_on_errors_receiving_banne __pyx_string_tab[104]
-#define __pyx_kp_u_Raised_on_errors_retrieving_know __pyx_string_tab[105]
-#define __pyx_kp_u_Raised_on_errors_sending_banner __pyx_string_tab[106]
-#define __pyx_kp_u_Raised_on_errors_signing_host_ke __pyx_string_tab[107]
-#define __pyx_kp_u_Raised_on_errors_writing_line_to __pyx_string_tab[108]
-#define __pyx_kp_u_Raised_on_errors_writing_to_know __pyx_string_tab[109]
-#define __pyx_kp_u_Raised_on_file_errors __pyx_string_tab[110]
-#define __pyx_kp_u_Raised_on_hash_calculation_error __pyx_string_tab[111]
-#define __pyx_kp_u_Raised_on_hash_initialisation_er __pyx_string_tab[112]
-#define __pyx_kp_u_Raised_on_invalid_MAC __pyx_string_tab[113]
-#define __pyx_kp_u_Raised_on_invalid_method_errors __pyx_string_tab[114]
-#define __pyx_kp_u_Raised_on_invalid_poll_type_erro __pyx_string_tab[115]
-#define __pyx_kp_u_Raised_on_invalid_request_errors __pyx_string_tab[116]
-#define __pyx_kp_u_Raised_on_key_file_authenticatio __pyx_string_tab[117]
-#define __pyx_kp_u_Raised_on_keys_do_not_match_for __pyx_string_tab[118]
-#define __pyx_kp_u_Raised_on_missing_user_authentic __pyx_string_tab[119]
-#define __pyx_kp_u_Raised_on_no_match_for_known_hos __pyx_string_tab[120]
-#define __pyx_kp_u_Raised_on_non_specific_or_unknow __pyx_string_tab[121]
-#define __pyx_kp_u_Raised_on_out_of_boundary_errors __pyx_string_tab[122]
-#define __pyx_kp_u_Raised_on_password_expired_error __pyx_string_tab[123]
-#define __pyx_kp_u_Raised_on_protocol_errors __pyx_string_tab[124]
-#define __pyx_kp_u_Raised_on_public_key_protocol_er __pyx_string_tab[125]
-#define __pyx_kp_u_Raised_on_public_key_verificatio __pyx_string_tab[126]
-#define __pyx_kp_u_Raised_on_randon_number_generato __pyx_string_tab[127]
-#define __pyx_kp_u_Raised_on_request_denied_errors __pyx_string_tab[128]
-#define __pyx_kp_u_Raised_on_session_handshake_erro __pyx_string_tab[129]
-#define __pyx_kp_u_Raised_on_session_startup_errors __pyx_string_tab[130]
-#define __pyx_kp_u_Raised_on_socket_disconnection_e __pyx_string_tab[131]
-#define __pyx_kp_u_Raised_on_socket_receive_errors __pyx_string_tab[132]
-#define __pyx_kp_u_Raised_on_socket_send_errors __pyx_string_tab[133]
-#define __pyx_kp_u_Raised_on_socket_timeouts __pyx_string_tab[134]
-#define __pyx_kp_u_Raised_on_something_preventing_k __pyx_string_tab[135]
-#define __pyx_kp_u_Raised_on_timeouts __pyx_string_tab[136]
-#define __pyx_kp_u_Raised_on_unknown_channel_errors __pyx_string_tab[137]
-#define __pyx_kp_u_Raised_on_unsupported_algorithm __pyx_string_tab[138]
-#define __pyx_kp_u_Raised_on_use_of_bad_socket_erro __pyx_string_tab[139]
-#define __pyx_kp_u_Raised_on_zlib_errors __pyx_string_tab[140]
-#define __pyx_n_u_RandGenError __pyx_string_tab[141]
-#define __pyx_n_u_RequestDeniedError __pyx_string_tab[142]
-#define __pyx_n_u_SCPProtocolError __pyx_string_tab[143]
-#define __pyx_n_u_SFTPError __pyx_string_tab[144]
-#define __pyx_n_u_SFTPHandleError __pyx_string_tab[145]
-#define __pyx_n_u_SFTPProtocolError __pyx_string_tab[146]
-#define __pyx_n_u_SSH2Error __pyx_string_tab[147]
-#define __pyx_n_u_SessionError __pyx_string_tab[148]
-#define __pyx_n_u_SessionHandshakeError __pyx_string_tab[149]
-#define __pyx_n_u_SessionHostKeyError __pyx_string_tab[150]
-#define __pyx_n_u_SessionStartupError __pyx_string_tab[151]
-#define __pyx_n_u_SocketDisconnectError __pyx_string_tab[152]
-#define __pyx_n_u_SocketRecvError __pyx_string_tab[153]
-#define __pyx_n_u_SocketSendError __pyx_string_tab[154]
-#define __pyx_n_u_SocketTimeout __pyx_string_tab[155]
-#define __pyx_n_u_Timeout __pyx_string_tab[156]
-#define __pyx_n_u_UnknownError __pyx_string_tab[157]
-#define __pyx_n_u_ZlibError __pyx_string_tab[158]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[159]
-#define __pyx_n_u_doc __pyx_string_tab[160]
-#define __pyx_n_u_main __pyx_string_tab[161]
-#define __pyx_n_u_metaclass __pyx_string_tab[162]
-#define __pyx_n_u_module __pyx_string_tab[163]
-#define __pyx_n_u_mro_entries __pyx_string_tab[164]
-#define __pyx_n_u_name __pyx_string_tab[165]
-#define __pyx_n_u_prepare __pyx_string_tab[166]
-#define __pyx_n_u_qualname __pyx_string_tab[167]
-#define __pyx_n_u_ssh2_exceptions __pyx_string_tab[168]
-#define __pyx_n_u_test __pyx_string_tab[169]
+#define __pyx_n_u_HostkeyInitError __pyx_string_tab[37]
+#define __pyx_n_u_HostkeySignError __pyx_string_tab[38]
+#define __pyx_n_u_InvalidMACError __pyx_string_tab[39]
+#define __pyx_n_u_InvalidPollTypeError __pyx_string_tab[40]
+#define __pyx_n_u_InvalidRequestError __pyx_string_tab[41]
+#define __pyx_n_u_KexFailureError __pyx_string_tab[42]
+#define __pyx_n_u_KeyExchangeError __pyx_string_tab[43]
+#define __pyx_n_u_KeyfileAuthFailedError __pyx_string_tab[44]
+#define __pyx_n_u_KnownHostAddError __pyx_string_tab[45]
+#define __pyx_n_u_KnownHostCheckError __pyx_string_tab[46]
+#define __pyx_n_u_KnownHostCheckFailure __pyx_string_tab[47]
+#define __pyx_n_u_KnownHostCheckMisMatchError __pyx_string_tab[48]
+#define __pyx_n_u_KnownHostCheckNotFoundError __pyx_string_tab[49]
+#define __pyx_n_u_KnownHostDeleteError __pyx_string_tab[50]
+#define __pyx_n_u_KnownHostError __pyx_string_tab[51]
+#define __pyx_n_u_KnownHostGetError __pyx_string_tab[52]
+#define __pyx_n_u_KnownHostReadFileError __pyx_string_tab[53]
+#define __pyx_n_u_KnownHostReadLineError __pyx_string_tab[54]
+#define __pyx_n_u_KnownHostWriteFileError __pyx_string_tab[55]
+#define __pyx_n_u_KnownHostWriteLineError __pyx_string_tab[56]
+#define __pyx_n_u_MethodNoneError __pyx_string_tab[57]
+#define __pyx_n_u_MethodNotSupported __pyx_string_tab[58]
+#define __pyx_n_u_MissingUserAuthBannerError __pyx_string_tab[59]
+#define __pyx_n_u_OutOfBoundaryError __pyx_string_tab[60]
+#define __pyx_n_u_PasswordExpiredError __pyx_string_tab[61]
+#define __pyx_n_u_ProtocolError __pyx_string_tab[62]
+#define __pyx_n_u_PublicKeyError __pyx_string_tab[63]
+#define __pyx_n_u_PublicKeyInitError __pyx_string_tab[64]
+#define __pyx_n_u_PublicKeyProtocolError __pyx_string_tab[65]
+#define __pyx_n_u_PublickeyUnverifiedError __pyx_string_tab[66]
+#define __pyx_kp_u_Raised_on_API_bad_use_errors __pyx_string_tab[67]
+#define __pyx_kp_u_Raised_on_KEX_failure __pyx_string_tab[68]
+#define __pyx_kp_u_Raised_on_SCP_protocol_errors __pyx_string_tab[69]
+#define __pyx_kp_u_Raised_on_SFTP_handle_errors __pyx_string_tab[70]
+#define __pyx_kp_u_Raised_on_SFTP_protocol_errors __pyx_string_tab[71]
+#define __pyx_kp_u_Raised_on_SSH_Agent_authenticati __pyx_string_tab[72]
+#define __pyx_kp_u_Raised_on_SSH_Agent_connection_e __pyx_string_tab[73]
+#define __pyx_kp_u_Raised_on_SSH_Agent_get_identity __pyx_string_tab[74]
+#define __pyx_kp_u_Raised_on_SSH_Agent_list_identit __pyx_string_tab[75]
+#define __pyx_kp_u_Raised_on_SSH_agent_protocol_err __pyx_string_tab[76]
+#define __pyx_kp_u_Raised_on_allocation_error __pyx_string_tab[77]
+#define __pyx_kp_u_Raised_on_any_known_host_check_e __pyx_string_tab[78]
+#define __pyx_kp_u_Raised_on_authentication_method __pyx_string_tab[79]
+#define __pyx_kp_u_Raised_on_buffer_too_small_error __pyx_string_tab[80]
+#define __pyx_kp_u_Raised_on_channel_EOF_errors __pyx_string_tab[81]
+#define __pyx_kp_u_Raised_on_channel_closed_errors __pyx_string_tab[82]
+#define __pyx_kp_u_Raised_on_channel_commands_out_o __pyx_string_tab[83]
+#define __pyx_kp_u_Raised_on_channel_failures __pyx_string_tab[84]
+#define __pyx_kp_u_Raised_on_channel_max_packet_len __pyx_string_tab[85]
+#define __pyx_kp_u_Raised_on_channel_request_denied __pyx_string_tab[86]
+#define __pyx_kp_u_Raised_on_channel_window_exceede __pyx_string_tab[87]
+#define __pyx_kp_u_Raised_on_channel_window_full_er __pyx_string_tab[88]
+#define __pyx_kp_u_Raised_on_compression_errors __pyx_string_tab[89]
+#define __pyx_kp_u_Raised_on_decryption_errors __pyx_string_tab[90]
+#define __pyx_kp_u_Raised_on_encryption_errors __pyx_string_tab[91]
+#define __pyx_kp_u_Raised_on_errors_adding_known_ho __pyx_string_tab[92]
+#define __pyx_kp_u_Raised_on_errors_deleting_known __pyx_string_tab[93]
+#define __pyx_kp_u_Raised_on_errors_exchanging_keys __pyx_string_tab[94]
+#define __pyx_kp_u_Raised_on_errors_getting_server __pyx_string_tab[95]
+#define __pyx_kp_u_Raised_on_errors_initialiasing_h __pyx_string_tab[96]
+#define __pyx_kp_u_Raised_on_errors_initialising_pu __pyx_string_tab[97]
+#define __pyx_kp_u_Raised_on_errors_reading_from_kn __pyx_string_tab[98]
+#define __pyx_kp_u_Raised_on_errors_reading_line_fr __pyx_string_tab[99]
+#define __pyx_kp_u_Raised_on_errors_receiving_banne __pyx_string_tab[100]
+#define __pyx_kp_u_Raised_on_errors_retrieving_know __pyx_string_tab[101]
+#define __pyx_kp_u_Raised_on_errors_sending_banner __pyx_string_tab[102]
+#define __pyx_kp_u_Raised_on_errors_signing_host_ke __pyx_string_tab[103]
+#define __pyx_kp_u_Raised_on_errors_writing_line_to __pyx_string_tab[104]
+#define __pyx_kp_u_Raised_on_errors_writing_to_know __pyx_string_tab[105]
+#define __pyx_kp_u_Raised_on_file_errors __pyx_string_tab[106]
+#define __pyx_kp_u_Raised_on_invalid_MAC __pyx_string_tab[107]
+#define __pyx_kp_u_Raised_on_invalid_method_errors __pyx_string_tab[108]
+#define __pyx_kp_u_Raised_on_invalid_poll_type_erro __pyx_string_tab[109]
+#define __pyx_kp_u_Raised_on_invalid_request_errors __pyx_string_tab[110]
+#define __pyx_kp_u_Raised_on_key_file_authenticatio __pyx_string_tab[111]
+#define __pyx_kp_u_Raised_on_keys_do_not_match_for __pyx_string_tab[112]
+#define __pyx_kp_u_Raised_on_missing_user_authentic __pyx_string_tab[113]
+#define __pyx_kp_u_Raised_on_no_match_for_known_hos __pyx_string_tab[114]
+#define __pyx_kp_u_Raised_on_non_specific_or_unknow __pyx_string_tab[115]
+#define __pyx_kp_u_Raised_on_out_of_boundary_errors __pyx_string_tab[116]
+#define __pyx_kp_u_Raised_on_password_expired_error __pyx_string_tab[117]
+#define __pyx_kp_u_Raised_on_protocol_errors __pyx_string_tab[118]
+#define __pyx_kp_u_Raised_on_public_key_protocol_er __pyx_string_tab[119]
+#define __pyx_kp_u_Raised_on_public_key_verificatio __pyx_string_tab[120]
+#define __pyx_kp_u_Raised_on_randon_number_generato __pyx_string_tab[121]
+#define __pyx_kp_u_Raised_on_request_denied_errors __pyx_string_tab[122]
+#define __pyx_kp_u_Raised_on_session_handshake_erro __pyx_string_tab[123]
+#define __pyx_kp_u_Raised_on_session_startup_errors __pyx_string_tab[124]
+#define __pyx_kp_u_Raised_on_socket_disconnection_e __pyx_string_tab[125]
+#define __pyx_kp_u_Raised_on_socket_receive_errors __pyx_string_tab[126]
+#define __pyx_kp_u_Raised_on_socket_send_errors __pyx_string_tab[127]
+#define __pyx_kp_u_Raised_on_socket_timeouts __pyx_string_tab[128]
+#define __pyx_kp_u_Raised_on_something_preventing_k __pyx_string_tab[129]
+#define __pyx_kp_u_Raised_on_timeouts __pyx_string_tab[130]
+#define __pyx_kp_u_Raised_on_unknown_channel_errors __pyx_string_tab[131]
+#define __pyx_kp_u_Raised_on_unsupported_algorithm __pyx_string_tab[132]
+#define __pyx_kp_u_Raised_on_use_of_bad_socket_erro __pyx_string_tab[133]
+#define __pyx_kp_u_Raised_on_zlib_errors __pyx_string_tab[134]
+#define __pyx_n_u_RandGenError __pyx_string_tab[135]
+#define __pyx_n_u_RequestDeniedError __pyx_string_tab[136]
+#define __pyx_n_u_SCPProtocolError __pyx_string_tab[137]
+#define __pyx_n_u_SFTPError __pyx_string_tab[138]
+#define __pyx_n_u_SFTPHandleError __pyx_string_tab[139]
+#define __pyx_n_u_SFTPProtocolError __pyx_string_tab[140]
+#define __pyx_n_u_SSH2Error __pyx_string_tab[141]
+#define __pyx_n_u_SessionError __pyx_string_tab[142]
+#define __pyx_n_u_SessionHandshakeError __pyx_string_tab[143]
+#define __pyx_n_u_SessionHostKeyError __pyx_string_tab[144]
+#define __pyx_n_u_SessionStartupError __pyx_string_tab[145]
+#define __pyx_n_u_SocketDisconnectError __pyx_string_tab[146]
+#define __pyx_n_u_SocketRecvError __pyx_string_tab[147]
+#define __pyx_n_u_SocketSendError __pyx_string_tab[148]
+#define __pyx_n_u_SocketTimeout __pyx_string_tab[149]
+#define __pyx_n_u_Timeout __pyx_string_tab[150]
+#define __pyx_n_u_UnknownError __pyx_string_tab[151]
+#define __pyx_n_u_ZlibError __pyx_string_tab[152]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[153]
+#define __pyx_n_u_doc __pyx_string_tab[154]
+#define __pyx_n_u_main __pyx_string_tab[155]
+#define __pyx_n_u_metaclass __pyx_string_tab[156]
+#define __pyx_n_u_module __pyx_string_tab[157]
+#define __pyx_n_u_mro_entries __pyx_string_tab[158]
+#define __pyx_n_u_name __pyx_string_tab[159]
+#define __pyx_n_u_prepare __pyx_string_tab[160]
+#define __pyx_n_u_qualname __pyx_string_tab[161]
+#define __pyx_n_u_ssh2_exceptions __pyx_string_tab[162]
+#define __pyx_n_u_test __pyx_string_tab[163]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -2375,7 +2363,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   #if CYTHON_PEP489_MULTI_PHASE_INIT
   __Pyx_State_RemoveModule(NULL);
   #endif
-  for (int i=0; i<170; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<164; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
   return 0;
 }
 #endif
@@ -2396,7 +2384,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   #ifdef __Pyx_FusedFunction_USED
   Py_VISIT(traverse_module_state->__pyx_FusedFunctionType);
   #endif
-  for (int i=0; i<170; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<164; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
   return 0;
 }
 #endif
@@ -5019,9 +5007,8 @@ __Pyx_RefNannySetupContext("PyInit_exceptions", 0);
   /* "ssh2/exceptions.pyx":318
  * 
  * 
- * class MacFailureError(SSH2Error):             # <<<<<<<<<<<<<<
- *     """Raised on MAC failure error"""
- * 
+ * class UnknownError(SSH2Error):             # <<<<<<<<<<<<<<
+ *     """Raised on non-specific or unknown errors"""
 */
   __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_SSH2Error); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 318, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -5032,104 +5019,15 @@ __Pyx_RefNannySetupContext("PyInit_exceptions", 0);
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = __Pyx_CalculateMetaclass(NULL, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 318, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_Py3MetaclassPrepare(__pyx_t_4, __pyx_t_3, __pyx_mstate_global->__pyx_n_u_MacFailureError, __pyx_mstate_global->__pyx_n_u_MacFailureError, (PyObject *) NULL, __pyx_mstate_global->__pyx_n_u_ssh2_exceptions, __pyx_mstate_global->__pyx_kp_u_Raised_on_MAC_failure_error); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 318, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_Py3MetaclassPrepare(__pyx_t_4, __pyx_t_3, __pyx_mstate_global->__pyx_n_u_UnknownError, __pyx_mstate_global->__pyx_n_u_UnknownError, (PyObject *) NULL, __pyx_mstate_global->__pyx_n_u_ssh2_exceptions, __pyx_mstate_global->__pyx_kp_u_Raised_on_non_specific_or_unknow); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 318, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   if (__pyx_t_3 != __pyx_t_2) {
     if (unlikely((PyDict_SetItemString(__pyx_t_5, "__orig_bases__", __pyx_t_2) < 0))) __PYX_ERR(0, 318, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_Py3ClassCreate(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_MacFailureError, __pyx_t_3, __pyx_t_5, NULL, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 318, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Py3ClassCreate(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_UnknownError, __pyx_t_3, __pyx_t_5, NULL, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 318, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_MacFailureError, __pyx_t_2) < 0) __PYX_ERR(0, 318, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-  /* "ssh2/exceptions.pyx":322
- * 
- * 
- * class HashInitError(SSH2Error):             # <<<<<<<<<<<<<<
- *     """Raised on hash initialisation error"""
- * 
-*/
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_SSH2Error); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 322, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_Pack(1, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 322, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PEP560_update_bases(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 322, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_CalculateMetaclass(NULL, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 322, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = __Pyx_Py3MetaclassPrepare(__pyx_t_5, __pyx_t_3, __pyx_mstate_global->__pyx_n_u_HashInitError, __pyx_mstate_global->__pyx_n_u_HashInitError, (PyObject *) NULL, __pyx_mstate_global->__pyx_n_u_ssh2_exceptions, __pyx_mstate_global->__pyx_kp_u_Raised_on_hash_initialisation_er); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 322, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__pyx_t_3 != __pyx_t_4) {
-    if (unlikely((PyDict_SetItemString(__pyx_t_2, "__orig_bases__", __pyx_t_4) < 0))) __PYX_ERR(0, 322, __pyx_L1_error)
-  }
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_HashInitError, __pyx_t_3, __pyx_t_2, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 322, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_HashInitError, __pyx_t_4) < 0) __PYX_ERR(0, 322, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-  /* "ssh2/exceptions.pyx":326
- * 
- * 
- * class HashCalcError(SSH2Error):             # <<<<<<<<<<<<<<
- *     """Raised on hash calculation error"""
- * 
-*/
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_SSH2Error); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 326, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = PyTuple_Pack(1, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 326, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PEP560_update_bases(__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 326, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 326, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_3, __pyx_mstate_global->__pyx_n_u_HashCalcError, __pyx_mstate_global->__pyx_n_u_HashCalcError, (PyObject *) NULL, __pyx_mstate_global->__pyx_n_u_ssh2_exceptions, __pyx_mstate_global->__pyx_kp_u_Raised_on_hash_calculation_error); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 326, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__pyx_t_3 != __pyx_t_5) {
-    if (unlikely((PyDict_SetItemString(__pyx_t_4, "__orig_bases__", __pyx_t_5) < 0))) __PYX_ERR(0, 326, __pyx_L1_error)
-  }
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_HashCalcError, __pyx_t_3, __pyx_t_4, NULL, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 326, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_HashCalcError, __pyx_t_5) < 0) __PYX_ERR(0, 326, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-  /* "ssh2/exceptions.pyx":330
- * 
- * 
- * class UnknownError(SSH2Error):             # <<<<<<<<<<<<<<
- *     """Raised on non-specific or unknown errors"""
-*/
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_SSH2Error); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 330, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyTuple_Pack(1, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 330, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PEP560_update_bases(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 330, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_CalculateMetaclass(NULL, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 330, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_Py3MetaclassPrepare(__pyx_t_4, __pyx_t_3, __pyx_mstate_global->__pyx_n_u_UnknownError, __pyx_mstate_global->__pyx_n_u_UnknownError, (PyObject *) NULL, __pyx_mstate_global->__pyx_n_u_ssh2_exceptions, __pyx_mstate_global->__pyx_kp_u_Raised_on_non_specific_or_unknow); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 330, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  if (__pyx_t_3 != __pyx_t_2) {
-    if (unlikely((PyDict_SetItemString(__pyx_t_5, "__orig_bases__", __pyx_t_2) < 0))) __PYX_ERR(0, 330, __pyx_L1_error)
-  }
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_Py3ClassCreate(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_UnknownError, __pyx_t_3, __pyx_t_5, NULL, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 330, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_UnknownError, __pyx_t_2) < 0) __PYX_ERR(0, 330, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_UnknownError, __pyx_t_2) < 0) __PYX_ERR(0, 318, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -5243,8 +5141,6 @@ static const __Pyx_StringTabEntry __pyx_string_tab[] = {
   {__pyx_k_DecryptError, sizeof(__pyx_k_DecryptError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_DecryptError */
   {__pyx_k_EncryptError, sizeof(__pyx_k_EncryptError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_EncryptError */
   {__pyx_k_FileError, sizeof(__pyx_k_FileError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_FileError */
-  {__pyx_k_HashCalcError, sizeof(__pyx_k_HashCalcError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_HashCalcError */
-  {__pyx_k_HashInitError, sizeof(__pyx_k_HashInitError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_HashInitError */
   {__pyx_k_HostkeyInitError, sizeof(__pyx_k_HostkeyInitError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_HostkeyInitError */
   {__pyx_k_HostkeySignError, sizeof(__pyx_k_HostkeySignError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_HostkeySignError */
   {__pyx_k_InvalidMACError, sizeof(__pyx_k_InvalidMACError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_InvalidMACError */
@@ -5265,7 +5161,6 @@ static const __Pyx_StringTabEntry __pyx_string_tab[] = {
   {__pyx_k_KnownHostReadLineError, sizeof(__pyx_k_KnownHostReadLineError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_KnownHostReadLineError */
   {__pyx_k_KnownHostWriteFileError, sizeof(__pyx_k_KnownHostWriteFileError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_KnownHostWriteFileError */
   {__pyx_k_KnownHostWriteLineError, sizeof(__pyx_k_KnownHostWriteLineError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_KnownHostWriteLineError */
-  {__pyx_k_MacFailureError, sizeof(__pyx_k_MacFailureError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_MacFailureError */
   {__pyx_k_MethodNoneError, sizeof(__pyx_k_MethodNoneError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_MethodNoneError */
   {__pyx_k_MethodNotSupported, sizeof(__pyx_k_MethodNotSupported), 0, 1, 1}, /* PyObject cname: __pyx_n_u_MethodNotSupported */
   {__pyx_k_MissingUserAuthBannerError, sizeof(__pyx_k_MissingUserAuthBannerError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_MissingUserAuthBannerError */
@@ -5278,7 +5173,6 @@ static const __Pyx_StringTabEntry __pyx_string_tab[] = {
   {__pyx_k_PublickeyUnverifiedError, sizeof(__pyx_k_PublickeyUnverifiedError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_PublickeyUnverifiedError */
   {__pyx_k_Raised_on_API_bad_use_errors, sizeof(__pyx_k_Raised_on_API_bad_use_errors), 0, 1, 0}, /* PyObject cname: __pyx_kp_u_Raised_on_API_bad_use_errors */
   {__pyx_k_Raised_on_KEX_failure, sizeof(__pyx_k_Raised_on_KEX_failure), 0, 1, 0}, /* PyObject cname: __pyx_kp_u_Raised_on_KEX_failure */
-  {__pyx_k_Raised_on_MAC_failure_error, sizeof(__pyx_k_Raised_on_MAC_failure_error), 0, 1, 0}, /* PyObject cname: __pyx_kp_u_Raised_on_MAC_failure_error */
   {__pyx_k_Raised_on_SCP_protocol_errors, sizeof(__pyx_k_Raised_on_SCP_protocol_errors), 0, 1, 0}, /* PyObject cname: __pyx_kp_u_Raised_on_SCP_protocol_errors */
   {__pyx_k_Raised_on_SFTP_handle_errors, sizeof(__pyx_k_Raised_on_SFTP_handle_errors), 0, 1, 0}, /* PyObject cname: __pyx_kp_u_Raised_on_SFTP_handle_errors */
   {__pyx_k_Raised_on_SFTP_protocol_errors, sizeof(__pyx_k_Raised_on_SFTP_protocol_errors), 0, 1, 0}, /* PyObject cname: __pyx_kp_u_Raised_on_SFTP_protocol_errors */
@@ -5317,8 +5211,6 @@ static const __Pyx_StringTabEntry __pyx_string_tab[] = {
   {__pyx_k_Raised_on_errors_writing_line_to, sizeof(__pyx_k_Raised_on_errors_writing_line_to), 0, 1, 0}, /* PyObject cname: __pyx_kp_u_Raised_on_errors_writing_line_to */
   {__pyx_k_Raised_on_errors_writing_to_know, sizeof(__pyx_k_Raised_on_errors_writing_to_know), 0, 1, 0}, /* PyObject cname: __pyx_kp_u_Raised_on_errors_writing_to_know */
   {__pyx_k_Raised_on_file_errors, sizeof(__pyx_k_Raised_on_file_errors), 0, 1, 0}, /* PyObject cname: __pyx_kp_u_Raised_on_file_errors */
-  {__pyx_k_Raised_on_hash_calculation_error, sizeof(__pyx_k_Raised_on_hash_calculation_error), 0, 1, 0}, /* PyObject cname: __pyx_kp_u_Raised_on_hash_calculation_error */
-  {__pyx_k_Raised_on_hash_initialisation_er, sizeof(__pyx_k_Raised_on_hash_initialisation_er), 0, 1, 0}, /* PyObject cname: __pyx_kp_u_Raised_on_hash_initialisation_er */
   {__pyx_k_Raised_on_invalid_MAC, sizeof(__pyx_k_Raised_on_invalid_MAC), 0, 1, 0}, /* PyObject cname: __pyx_kp_u_Raised_on_invalid_MAC */
   {__pyx_k_Raised_on_invalid_method_errors, sizeof(__pyx_k_Raised_on_invalid_method_errors), 0, 1, 0}, /* PyObject cname: __pyx_kp_u_Raised_on_invalid_method_errors */
   {__pyx_k_Raised_on_invalid_poll_type_erro, sizeof(__pyx_k_Raised_on_invalid_poll_type_erro), 0, 1, 0}, /* PyObject cname: __pyx_kp_u_Raised_on_invalid_poll_type_erro */

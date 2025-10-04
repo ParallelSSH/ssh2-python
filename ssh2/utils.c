@@ -2366,8 +2366,6 @@ static const char __pyx_k_RandGenError[] = "RandGenError";
 static const char __pyx_k_UnknownError[] = "UnknownError";
 static const char __pyx_k_is_coroutine[] = "_is_coroutine";
 static const char __pyx_k_CompressError[] = "CompressError";
-static const char __pyx_k_HashCalcError[] = "HashCalcError";
-static const char __pyx_k_HashInitError[] = "HashInitError";
 static const char __pyx_k_ProtocolError[] = "ProtocolError";
 static const char __pyx_k_SocketTimeout[] = "SocketTimeout";
 static const char __pyx_k_BadSocketError[] = "BadSocketError";
@@ -2378,7 +2376,6 @@ static const char __pyx_k_BannerRecvError[] = "BannerRecvError";
 static const char __pyx_k_BannerSendError[] = "BannerSendError";
 static const char __pyx_k_InvalidMACError[] = "InvalidMACError";
 static const char __pyx_k_KexFailureError[] = "KexFailureError";
-static const char __pyx_k_MacFailureError[] = "MacFailureError";
 static const char __pyx_k_MethodNoneError[] = "MethodNoneError";
 static const char __pyx_k_SocketRecvError[] = "SocketRecvError";
 static const char __pyx_k_SocketSendError[] = "SocketSendError";
@@ -2418,7 +2415,7 @@ static const char __pyx_k_PublicKeyProtocolError[] = "PublicKeyProtocolError";
 static const char __pyx_k_PublickeyUnverifiedError[] = "PublickeyUnverifiedError";
 static const char __pyx_k_MissingUserAuthBannerError[] = "MissingUserAuthBannerError";
 static const char __pyx_k_31_2_Q_q_aq_x_DA_q_x_EQ_6_T[] = "\320\0003\2601\360\014\000\005\033\230'\320!2\260!\330\004\007\200{\220#\220Q\330\010\017\210q\330\004\016\210a\210q\330\014\027\220x\320\037D\300A\330\004\017\210q\220\001\330\014\027\220x\320\037E\300Q\330\004\013\2106\220\021\220)\230:\240T\250\021";
-static const char __pyx_k_2_xs_q_q_q_q_j_q_j_q_j_q_j_q_j[] = "\320\0002\260!\360\026\000\005\010\200x\210s\220!\330\010\017\210q\330\t\021\220\036\230q\330\010\017\210q\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036""\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\360\006\000\t\014\2108\2202\220Q\330\014\022\220*\230M\250\021\320*E\300Q\330\010\017\210q";
+static const char __pyx_k_2_xs_q_q_q_q_j_q_j_q_j_q_j_q_j[] = "\320\0002\260!\360\026\000\005\010\200x\210s\220!\330\010\017\210q\330\t\021\220\036\230q\330\010\017\210q\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036""\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\330\t\021\220\036\230q\330\010\016\210j\230\001\360\006\000\t\014\2108\2202\220Q\330\014\022\220*\230M\250\021\320*E\300Q\330\010\017\210q";
 static const char __pyx_k_Note_that_Cython_is_deliberately[] = "Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.";
 /* #### Code section: decls ### */
 static PyObject *__pyx_pf_4ssh2_5utils_find_eol(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_buf, Py_ssize_t __pyx_v_pos); /* proto */
@@ -2470,7 +2467,7 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_pop;
   PyObject *__pyx_tuple[1];
   PyObject *__pyx_codeobj_tab[5];
-  PyObject *__pyx_string_tab[100];
+  PyObject *__pyx_string_tab[97];
   PyObject *__pyx_int_0;
   PyObject *__pyx_int_1;
   PyObject *__pyx_int_neg_1;
@@ -2536,81 +2533,78 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_EncryptError __pyx_string_tab[22]
 #define __pyx_kp_u_Error_code_s_not_known __pyx_string_tab[23]
 #define __pyx_n_u_FileError __pyx_string_tab[24]
-#define __pyx_n_u_HashCalcError __pyx_string_tab[25]
-#define __pyx_n_u_HashInitError __pyx_string_tab[26]
-#define __pyx_n_u_HostkeyInitError __pyx_string_tab[27]
-#define __pyx_n_u_HostkeySignError __pyx_string_tab[28]
-#define __pyx_n_u_InvalidMACError __pyx_string_tab[29]
-#define __pyx_n_u_InvalidPollTypeError __pyx_string_tab[30]
-#define __pyx_n_u_InvalidRequestError __pyx_string_tab[31]
-#define __pyx_n_u_KexFailureError __pyx_string_tab[32]
-#define __pyx_n_u_KeyExchangeError __pyx_string_tab[33]
-#define __pyx_n_u_KeyfileAuthFailedError __pyx_string_tab[34]
-#define __pyx_n_u_KnownHostError __pyx_string_tab[35]
-#define __pyx_n_u_MacFailureError __pyx_string_tab[36]
-#define __pyx_n_u_MethodNoneError __pyx_string_tab[37]
-#define __pyx_n_u_MethodNotSupported __pyx_string_tab[38]
-#define __pyx_n_u_MissingUserAuthBannerError __pyx_string_tab[39]
-#define __pyx_kp_u_Note_that_Cython_is_deliberately __pyx_string_tab[40]
-#define __pyx_n_u_OutOfBoundaryError __pyx_string_tab[41]
-#define __pyx_n_u_PasswordExpiredError __pyx_string_tab[42]
-#define __pyx_n_u_ProtocolError __pyx_string_tab[43]
-#define __pyx_n_u_PublicKeyProtocolError __pyx_string_tab[44]
-#define __pyx_n_u_PublickeyUnverifiedError __pyx_string_tab[45]
-#define __pyx_n_u_RandGenError __pyx_string_tab[46]
-#define __pyx_n_u_RequestDeniedError __pyx_string_tab[47]
-#define __pyx_n_u_SCPProtocolError __pyx_string_tab[48]
-#define __pyx_n_u_SFTPProtocolError __pyx_string_tab[49]
-#define __pyx_n_u_SSH2Error __pyx_string_tab[50]
-#define __pyx_n_u_SocketDisconnectError __pyx_string_tab[51]
-#define __pyx_n_u_SocketRecvError __pyx_string_tab[52]
-#define __pyx_n_u_SocketSendError __pyx_string_tab[53]
-#define __pyx_n_u_SocketTimeout __pyx_string_tab[54]
-#define __pyx_n_u_Timeout __pyx_string_tab[55]
-#define __pyx_n_u_UnknownError __pyx_string_tab[56]
-#define __pyx_n_u_ZlibError __pyx_string_tab[57]
-#define __pyx_n_u__2 __pyx_string_tab[58]
-#define __pyx_kp_u__3 __pyx_string_tab[59]
-#define __pyx_kp_u_add_note __pyx_string_tab[60]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[61]
-#define __pyx_n_u_block_directions __pyx_string_tab[62]
-#define __pyx_n_u_buf __pyx_string_tab[63]
-#define __pyx_n_u_buf_len __pyx_string_tab[64]
-#define __pyx_n_u_c_buf __pyx_string_tab[65]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[66]
-#define __pyx_n_u_cur_buf __pyx_string_tab[67]
-#define __pyx_n_u_decode __pyx_string_tab[68]
-#define __pyx_n_u_directions __pyx_string_tab[69]
-#define __pyx_n_u_encode __pyx_string_tab[70]
-#define __pyx_n_u_errcode __pyx_string_tab[71]
-#define __pyx_n_u_exceptions __pyx_string_tab[72]
-#define __pyx_n_u_find_eol __pyx_string_tab[73]
-#define __pyx_n_u_func __pyx_string_tab[74]
-#define __pyx_n_u_handle_error_codes __pyx_string_tab[75]
-#define __pyx_n_u_index __pyx_string_tab[76]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[77]
-#define __pyx_n_u_main __pyx_string_tab[78]
-#define __pyx_n_u_module __pyx_string_tab[79]
-#define __pyx_n_u_name __pyx_string_tab[80]
-#define __pyx_n_u_new_pos __pyx_string_tab[81]
-#define __pyx_n_u_pop __pyx_string_tab[82]
-#define __pyx_n_u_pos __pyx_string_tab[83]
-#define __pyx_n_u_qualname __pyx_string_tab[84]
-#define __pyx_n_u_readfds __pyx_string_tab[85]
-#define __pyx_n_u_required_version __pyx_string_tab[86]
-#define __pyx_n_u_select __pyx_string_tab[87]
-#define __pyx_n_u_session __pyx_string_tab[88]
-#define __pyx_n_u_set_name __pyx_string_tab[89]
-#define __pyx_n_u_socket __pyx_string_tab[90]
-#define __pyx_n_u_ssh2_exit __pyx_string_tab[91]
-#define __pyx_n_u_ssh2_utils __pyx_string_tab[92]
-#define __pyx_kp_u_ssh2_utils_pyx __pyx_string_tab[93]
-#define __pyx_n_u_test __pyx_string_tab[94]
-#define __pyx_n_u_timeout __pyx_string_tab[95]
-#define __pyx_kp_u_utf_8 __pyx_string_tab[96]
-#define __pyx_n_u_version __pyx_string_tab[97]
-#define __pyx_n_u_wait_socket __pyx_string_tab[98]
-#define __pyx_n_u_writefds __pyx_string_tab[99]
+#define __pyx_n_u_HostkeyInitError __pyx_string_tab[25]
+#define __pyx_n_u_HostkeySignError __pyx_string_tab[26]
+#define __pyx_n_u_InvalidMACError __pyx_string_tab[27]
+#define __pyx_n_u_InvalidPollTypeError __pyx_string_tab[28]
+#define __pyx_n_u_InvalidRequestError __pyx_string_tab[29]
+#define __pyx_n_u_KexFailureError __pyx_string_tab[30]
+#define __pyx_n_u_KeyExchangeError __pyx_string_tab[31]
+#define __pyx_n_u_KeyfileAuthFailedError __pyx_string_tab[32]
+#define __pyx_n_u_KnownHostError __pyx_string_tab[33]
+#define __pyx_n_u_MethodNoneError __pyx_string_tab[34]
+#define __pyx_n_u_MethodNotSupported __pyx_string_tab[35]
+#define __pyx_n_u_MissingUserAuthBannerError __pyx_string_tab[36]
+#define __pyx_kp_u_Note_that_Cython_is_deliberately __pyx_string_tab[37]
+#define __pyx_n_u_OutOfBoundaryError __pyx_string_tab[38]
+#define __pyx_n_u_PasswordExpiredError __pyx_string_tab[39]
+#define __pyx_n_u_ProtocolError __pyx_string_tab[40]
+#define __pyx_n_u_PublicKeyProtocolError __pyx_string_tab[41]
+#define __pyx_n_u_PublickeyUnverifiedError __pyx_string_tab[42]
+#define __pyx_n_u_RandGenError __pyx_string_tab[43]
+#define __pyx_n_u_RequestDeniedError __pyx_string_tab[44]
+#define __pyx_n_u_SCPProtocolError __pyx_string_tab[45]
+#define __pyx_n_u_SFTPProtocolError __pyx_string_tab[46]
+#define __pyx_n_u_SSH2Error __pyx_string_tab[47]
+#define __pyx_n_u_SocketDisconnectError __pyx_string_tab[48]
+#define __pyx_n_u_SocketRecvError __pyx_string_tab[49]
+#define __pyx_n_u_SocketSendError __pyx_string_tab[50]
+#define __pyx_n_u_SocketTimeout __pyx_string_tab[51]
+#define __pyx_n_u_Timeout __pyx_string_tab[52]
+#define __pyx_n_u_UnknownError __pyx_string_tab[53]
+#define __pyx_n_u_ZlibError __pyx_string_tab[54]
+#define __pyx_n_u__2 __pyx_string_tab[55]
+#define __pyx_kp_u__3 __pyx_string_tab[56]
+#define __pyx_kp_u_add_note __pyx_string_tab[57]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[58]
+#define __pyx_n_u_block_directions __pyx_string_tab[59]
+#define __pyx_n_u_buf __pyx_string_tab[60]
+#define __pyx_n_u_buf_len __pyx_string_tab[61]
+#define __pyx_n_u_c_buf __pyx_string_tab[62]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[63]
+#define __pyx_n_u_cur_buf __pyx_string_tab[64]
+#define __pyx_n_u_decode __pyx_string_tab[65]
+#define __pyx_n_u_directions __pyx_string_tab[66]
+#define __pyx_n_u_encode __pyx_string_tab[67]
+#define __pyx_n_u_errcode __pyx_string_tab[68]
+#define __pyx_n_u_exceptions __pyx_string_tab[69]
+#define __pyx_n_u_find_eol __pyx_string_tab[70]
+#define __pyx_n_u_func __pyx_string_tab[71]
+#define __pyx_n_u_handle_error_codes __pyx_string_tab[72]
+#define __pyx_n_u_index __pyx_string_tab[73]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[74]
+#define __pyx_n_u_main __pyx_string_tab[75]
+#define __pyx_n_u_module __pyx_string_tab[76]
+#define __pyx_n_u_name __pyx_string_tab[77]
+#define __pyx_n_u_new_pos __pyx_string_tab[78]
+#define __pyx_n_u_pop __pyx_string_tab[79]
+#define __pyx_n_u_pos __pyx_string_tab[80]
+#define __pyx_n_u_qualname __pyx_string_tab[81]
+#define __pyx_n_u_readfds __pyx_string_tab[82]
+#define __pyx_n_u_required_version __pyx_string_tab[83]
+#define __pyx_n_u_select __pyx_string_tab[84]
+#define __pyx_n_u_session __pyx_string_tab[85]
+#define __pyx_n_u_set_name __pyx_string_tab[86]
+#define __pyx_n_u_socket __pyx_string_tab[87]
+#define __pyx_n_u_ssh2_exit __pyx_string_tab[88]
+#define __pyx_n_u_ssh2_utils __pyx_string_tab[89]
+#define __pyx_kp_u_ssh2_utils_pyx __pyx_string_tab[90]
+#define __pyx_n_u_test __pyx_string_tab[91]
+#define __pyx_n_u_timeout __pyx_string_tab[92]
+#define __pyx_kp_u_utf_8 __pyx_string_tab[93]
+#define __pyx_n_u_version __pyx_string_tab[94]
+#define __pyx_n_u_wait_socket __pyx_string_tab[95]
+#define __pyx_n_u_writefds __pyx_string_tab[96]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -2636,7 +2630,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_4ssh2_7session_FlagType);
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
   for (int i=0; i<5; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<100; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<97; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
   Py_CLEAR(clear_module_state->__pyx_int_0);
   Py_CLEAR(clear_module_state->__pyx_int_1);
   Py_CLEAR(clear_module_state->__pyx_int_neg_1);
@@ -2665,7 +2659,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_ptype_4ssh2_7session_FlagType);
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
   for (int i=0; i<5; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<100; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<97; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_int_0);
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_int_1);
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_int_neg_1);
@@ -5296,8 +5290,8 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes(int __pyx_v_errcode, CYTHON_U
  *         raise exceptions.MissingUserAuthBannerError
  *     elif errcode == error_codes._LIBSSH2_ERROR_ALGO_UNSUPPORTED:
  *         raise exceptions.AlgoUnsupportedError             # <<<<<<<<<<<<<<
- *     elif errcode == error_codes._LIBSSH2_ERROR_MAC_FAILURE:
- *         raise exceptions.MacFailureError
+ *     else:
+ *         # Switch default
 */
     __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_exceptions); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 230, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
@@ -5313,90 +5307,12 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes(int __pyx_v_errcode, CYTHON_U
  *         raise exceptions.MissingUserAuthBannerError
  *     elif errcode == error_codes._LIBSSH2_ERROR_ALGO_UNSUPPORTED:             # <<<<<<<<<<<<<<
  *         raise exceptions.AlgoUnsupportedError
- *     elif errcode == error_codes._LIBSSH2_ERROR_MAC_FAILURE:
-*/
-    break;
-    case LIBSSH2_ERROR_MAC_FAILURE:
-
-    /* "ssh2/utils.pyx":232
- *         raise exceptions.AlgoUnsupportedError
- *     elif errcode == error_codes._LIBSSH2_ERROR_MAC_FAILURE:
- *         raise exceptions.MacFailureError             # <<<<<<<<<<<<<<
- *     elif errcode == error_codes._LIBSSH2_ERROR_HASH_INIT:
- *         raise exceptions.HashInitError
-*/
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_exceptions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 232, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_MacFailureError); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 232, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_Raise(__pyx_t_2, 0, 0, 0);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 232, __pyx_L1_error)
-
-    /* "ssh2/utils.pyx":231
- *     elif errcode == error_codes._LIBSSH2_ERROR_ALGO_UNSUPPORTED:
- *         raise exceptions.AlgoUnsupportedError
- *     elif errcode == error_codes._LIBSSH2_ERROR_MAC_FAILURE:             # <<<<<<<<<<<<<<
- *         raise exceptions.MacFailureError
- *     elif errcode == error_codes._LIBSSH2_ERROR_HASH_INIT:
-*/
-    break;
-    case LIBSSH2_ERROR_HASH_INIT:
-
-    /* "ssh2/utils.pyx":234
- *         raise exceptions.MacFailureError
- *     elif errcode == error_codes._LIBSSH2_ERROR_HASH_INIT:
- *         raise exceptions.HashInitError             # <<<<<<<<<<<<<<
- *     elif errcode == error_codes._LIBSSH2_ERROR_HASH_CALC:
- *         raise exceptions.HashCalcError
-*/
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_exceptions); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 234, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_HashInitError); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_Raise(__pyx_t_1, 0, 0, 0);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 234, __pyx_L1_error)
-
-    /* "ssh2/utils.pyx":233
- *     elif errcode == error_codes._LIBSSH2_ERROR_MAC_FAILURE:
- *         raise exceptions.MacFailureError
- *     elif errcode == error_codes._LIBSSH2_ERROR_HASH_INIT:             # <<<<<<<<<<<<<<
- *         raise exceptions.HashInitError
- *     elif errcode == error_codes._LIBSSH2_ERROR_HASH_CALC:
-*/
-    break;
-    case LIBSSH2_ERROR_HASH_CALC:
-
-    /* "ssh2/utils.pyx":236
- *         raise exceptions.HashInitError
- *     elif errcode == error_codes._LIBSSH2_ERROR_HASH_CALC:
- *         raise exceptions.HashCalcError             # <<<<<<<<<<<<<<
- *     else:
- *         # Switch default
-*/
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_exceptions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 236, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_HashCalcError); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 236, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_Raise(__pyx_t_2, 0, 0, 0);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 236, __pyx_L1_error)
-
-    /* "ssh2/utils.pyx":235
- *     elif errcode == error_codes._LIBSSH2_ERROR_HASH_INIT:
- *         raise exceptions.HashInitError
- *     elif errcode == error_codes._LIBSSH2_ERROR_HASH_CALC:             # <<<<<<<<<<<<<<
- *         raise exceptions.HashCalcError
  *     else:
 */
     break;
     default:
 
-    /* "ssh2/utils.pyx":239
+    /* "ssh2/utils.pyx":233
  *     else:
  *         # Switch default
  *         if errcode < 0:             # <<<<<<<<<<<<<<
@@ -5406,46 +5322,46 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes(int __pyx_v_errcode, CYTHON_U
     __pyx_t_3 = (__pyx_v_errcode < 0);
     if (unlikely(__pyx_t_3)) {
 
-      /* "ssh2/utils.pyx":240
+      /* "ssh2/utils.pyx":234
  *         # Switch default
  *         if errcode < 0:
  *             raise exceptions.UnknownError("Error code %s not known", errcode)             # <<<<<<<<<<<<<<
  *         return errcode
 */
-      __pyx_t_1 = NULL;
-      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_exceptions); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 240, __pyx_L1_error)
+      __pyx_t_2 = NULL;
+      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_exceptions); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 234, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_UnknownError); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 240, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_UnknownError); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 234, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_errcode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 240, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_errcode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 234, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_t_6 = 1;
       #if CYTHON_UNPACK_METHODS
       if (unlikely(PyMethod_Check(__pyx_t_5))) {
-        __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_5);
-        assert(__pyx_t_1);
+        __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_5);
+        assert(__pyx_t_2);
         PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_5);
-        __Pyx_INCREF(__pyx_t_1);
+        __Pyx_INCREF(__pyx_t_2);
         __Pyx_INCREF(__pyx__function);
         __Pyx_DECREF_SET(__pyx_t_5, __pyx__function);
         __pyx_t_6 = 0;
       }
       #endif
       {
-        PyObject *__pyx_callargs[3] = {__pyx_t_1, __pyx_mstate_global->__pyx_kp_u_Error_code_s_not_known, __pyx_t_4};
-        __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_5, __pyx_callargs+__pyx_t_6, (3-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-        __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+        PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_mstate_global->__pyx_kp_u_Error_code_s_not_known, __pyx_t_4};
+        __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_5, __pyx_callargs+__pyx_t_6, (3-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+        __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
       }
-      __Pyx_Raise(__pyx_t_2, 0, 0, 0);
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __PYX_ERR(0, 240, __pyx_L1_error)
+      __Pyx_Raise(__pyx_t_1, 0, 0, 0);
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __PYX_ERR(0, 234, __pyx_L1_error)
 
-      /* "ssh2/utils.pyx":239
+      /* "ssh2/utils.pyx":233
  *     else:
  *         # Switch default
  *         if errcode < 0:             # <<<<<<<<<<<<<<
@@ -5454,7 +5370,7 @@ static int __pyx_f_4ssh2_5utils_handle_error_codes(int __pyx_v_errcode, CYTHON_U
 */
     }
 
-    /* "ssh2/utils.pyx":241
+    /* "ssh2/utils.pyx":235
  *         if errcode < 0:
  *             raise exceptions.UnknownError("Error code %s not known", errcode)
  *         return errcode             # <<<<<<<<<<<<<<
@@ -6219,8 +6135,6 @@ static const __Pyx_StringTabEntry __pyx_string_tab[] = {
   {__pyx_k_EncryptError, sizeof(__pyx_k_EncryptError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_EncryptError */
   {__pyx_k_Error_code_s_not_known, sizeof(__pyx_k_Error_code_s_not_known), 0, 1, 0}, /* PyObject cname: __pyx_kp_u_Error_code_s_not_known */
   {__pyx_k_FileError, sizeof(__pyx_k_FileError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_FileError */
-  {__pyx_k_HashCalcError, sizeof(__pyx_k_HashCalcError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_HashCalcError */
-  {__pyx_k_HashInitError, sizeof(__pyx_k_HashInitError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_HashInitError */
   {__pyx_k_HostkeyInitError, sizeof(__pyx_k_HostkeyInitError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_HostkeyInitError */
   {__pyx_k_HostkeySignError, sizeof(__pyx_k_HostkeySignError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_HostkeySignError */
   {__pyx_k_InvalidMACError, sizeof(__pyx_k_InvalidMACError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_InvalidMACError */
@@ -6230,7 +6144,6 @@ static const __Pyx_StringTabEntry __pyx_string_tab[] = {
   {__pyx_k_KeyExchangeError, sizeof(__pyx_k_KeyExchangeError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_KeyExchangeError */
   {__pyx_k_KeyfileAuthFailedError, sizeof(__pyx_k_KeyfileAuthFailedError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_KeyfileAuthFailedError */
   {__pyx_k_KnownHostError, sizeof(__pyx_k_KnownHostError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_KnownHostError */
-  {__pyx_k_MacFailureError, sizeof(__pyx_k_MacFailureError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_MacFailureError */
   {__pyx_k_MethodNoneError, sizeof(__pyx_k_MethodNoneError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_MethodNoneError */
   {__pyx_k_MethodNotSupported, sizeof(__pyx_k_MethodNotSupported), 0, 1, 1}, /* PyObject cname: __pyx_n_u_MethodNotSupported */
   {__pyx_k_MissingUserAuthBannerError, sizeof(__pyx_k_MissingUserAuthBannerError), 0, 1, 1}, /* PyObject cname: __pyx_n_u_MissingUserAuthBannerError */
@@ -6388,7 +6301,7 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
     __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_ssh2_utils_pyx, __pyx_mstate->__pyx_n_u_wait_socket, __pyx_k_31_2_Q_q_aq_x_DA_q_x_EQ_6_T, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 116, 805};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 116, 763};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_errcode};
     __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_ssh2_utils_pyx, __pyx_mstate->__pyx_n_u_handle_error_codes, __pyx_k_2_xs_q_q_q_q_j_q_j_q_j_q_j_q_j, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
