@@ -17,20 +17,23 @@
 SYSTEM_LIBSSH2_DIR="/opt/homebrew/opt/libssh2/lib"
 MY_LIBSSH2_DIR="build_dir/src/"
 LIBSSH2_INCLUDE_DIR="/opt/homebrew/opt/libssh2/include"
+set +x
+
 export CPPFLAGS="-I${LIBSSH2_INCLUDE_DIR}"
 sudo cp -a libssh2/include/* /opt/homebrew/opt/libssh2/include/
 
 pip3 install -U virtualenv
 python3 -m virtualenv -p "$(which python3)" venv
 
-set +x
 source venv/bin/activate
-set -x
 
 python -V
 pip3 install -U setuptools pip
 pip3 install -U delocate wheel
+unset SYSTEM_LIBSSH2
+
 python3 setup.py bdist_wheel
+
 sudo cp -a ${MY_LIBSSH2_DIR}/libssh2* ${SYSTEM_LIBSSH2_DIR}/
 ls -lhtr ${SYSTEM_LIBSSH2_DIR}
 
@@ -42,9 +45,11 @@ ls -l wheels/*.whl
 rm -f ${SYSTEM_LIBSSH2_DIR}/libssh2*
 rm -f ${MY_LIBSSH2_DIR}/libssh2*
 pip3 install -v wheels/*.whl
+
 pwd; mkdir -p temp; cd temp; pwd
 python3 -c "from ssh2.session import Session; Session()" && echo "Import successful"
 cd ..; pwd
-set +x
+
 deactivate
+
 set -x

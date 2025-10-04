@@ -22,7 +22,7 @@ from sys import stderr
 
 
 def build_ssh2():
-    if bool(os.environ.get('SYSTEM_LIBSSH', False)):
+    if bool(os.environ.get('SYSTEM_LIbBSSH2', False)):
         stderr.write("Using system libssh2..%s" % (os.sep))
         return
     if os.path.exists('/usr/local/opt/openssl'):
