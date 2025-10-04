@@ -16,6 +16,8 @@ Changes
 * Added `ssh2.channel.Channel.signal` function for sending signals over SSH to an open channel - #221
 * Added `ssh2.session.Session.direct_streamlocal_ex` for creating `Channel` objects tunneling a local UNIX socket
   via the remote host to a third party.
+* Added new `libssh2` error codes under `ssh2.error_codes`, equivalent Python exceptions under `ssh2.exceptions`
+  and updated error code handling for all functions.
 
 
 Packaging

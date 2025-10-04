@@ -304,7 +304,7 @@ class KeyfileAuthFailedError(SSH2Error):
 
 
 class RandGenError(SSH2Error):
-    """Raised on randon number generator errors"""
+    """Raised on randon number generator error"""
 
 
 class MissingUserAuthBannerError(SSH2Error):
