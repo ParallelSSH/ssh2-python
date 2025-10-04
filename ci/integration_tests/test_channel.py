@@ -2,6 +2,7 @@ import os
 import socket
 from subprocess import check_output
 from unittest import skipUnless
+from signal import Signals
 
 
 from ssh2.session import Session
@@ -214,3 +215,16 @@ class ChannelTestCase(SSH2TestCase):
         size, data = chan.read()
         lines = [line.decode('utf-8') for line in data.splitlines()]
         self.assertTrue(lines, [self.resp])
+
+    def test_channel_signal(self):
+        self.assertEqual(self._auth(), 0)
+        my_sig = Signals.SIGTERM
+        chan = self.session.open_session()
+        chan.execute('sleep 10 && exit 2')
+        self.assertTrue(chan.signal(my_sig.name[3:]) == 0)
+        chan.send_eof()
+        chan.wait_eof()
+        chan.close()
+        chan.wait_closed()
+        exit_code = chan.get_exit_status()
+        self.assertNotEqual(exit_code, 2)

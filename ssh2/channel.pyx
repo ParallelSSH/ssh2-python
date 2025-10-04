@@ -570,3 +570,18 @@ cdef class Channel:
         with nogil:
             rc = c_ssh2.libssh2_channel_request_auth_agent(self._channel)
         return handle_error_codes(rc)
+
+    def signal(self, signame not None):
+        """
+        Send signal to channel.
+
+        :param signame: Signal name to send to channel.
+        :type signame: str
+        """
+        cdef int rc
+        cdef bytes b_signame = to_bytes(signame)
+        cdef const char *c_signame = b_signame
+        cdef int signame_len = len(signame)
+        with nogil:
+            rc = c_ssh2.libssh2_channel_signal_ex(self._channel, c_signame, signame_len)
+        return handle_error_codes(rc)

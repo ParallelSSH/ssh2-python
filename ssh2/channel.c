@@ -2457,6 +2457,7 @@ static const char __pyx_k_errmsg[] = "errmsg";
 static const char __pyx_k_module[] = "__module__";
 static const char __pyx_k_reduce[] = "__reduce__";
 static const char __pyx_k_setenv[] = "setenv";
+static const char __pyx_k_signal[] = "signal";
 static const char __pyx_k_term_2[] = "_term";
 static const char __pyx_k_A_0_Q_2[] = "\200A\360\024\000\016\017\330\014\027\320\0270\260\001\260\024\260Q\330\010\017\320\017!\240\021\240!";
 static const char __pyx_k_A_31D_2[] = "\200A\340\r\016\330\014\027\320\0273\2601\260D\270\001\330\010\017\320\017!\240\021\240!";
@@ -2474,6 +2475,7 @@ static const char __pyx_k_message[] = "message";
 static const char __pyx_k_read_ex[] = "read_ex";
 static const char __pyx_k_request[] = "request";
 static const char __pyx_k_session[] = "session";
+static const char __pyx_k_signame[] = "signame";
 static const char __pyx_k_value_2[] = "_value";
 static const char __pyx_k_varname[] = "varname";
 static const char __pyx_k_x11_req[] = "x11_req";
@@ -2496,7 +2498,9 @@ static const char __pyx_k_TypeError[] = "TypeError";
 static const char __pyx_k_b_command[] = "b_command";
 static const char __pyx_k_b_message[] = "b_message";
 static const char __pyx_k_b_request[] = "b_request";
+static const char __pyx_k_b_signame[] = "b_signame";
 static const char __pyx_k_b_varname[] = "b_varname";
+static const char __pyx_k_c_signame[] = "c_signame";
 static const char __pyx_k_command_2[] = "_command";
 static const char __pyx_k_isenabled[] = "isenabled";
 static const char __pyx_k_message_2[] = "_message";
@@ -2530,6 +2534,7 @@ static const char __pyx_k_ignore_mode[] = "ignore_mode";
 static const char __pyx_k_langtag_len[] = "langtag_len";
 static const char __pyx_k_q_HAQ_31_Kq[] = "\320\004\027\220q\360\014\000\t\035\230H\240A\240Q\330\010!\240\021\340\r\016\330\014\027\320\0273\2601\330\020\024\220K\230q\330\010\017\320\017!\240\021\240!";
 static const char __pyx_k_read_stderr[] = "read_stderr";
+static const char __pyx_k_signame_len[] = "signame_len";
 static const char __pyx_k_storewindow[] = "storewindow";
 static const char __pyx_k_subsystem_2[] = "_subsystem";
 static const char __pyx_k_wait_closed[] = "wait_closed";
@@ -2553,6 +2558,7 @@ static const char __pyx_k_py_exitsignal[] = "py_exitsignal";
 static const char __pyx_k_reduce_cython[] = "__reduce_cython__";
 static const char __pyx_k_screen_number[] = "screen_number";
 static const char __pyx_k_Channel_setenv[] = "Channel.setenv";
+static const char __pyx_k_Channel_signal[] = "Channel.signal";
 static const char __pyx_k_exitsignal_len[] = "exitsignal_len";
 static const char __pyx_k_window_read_ex[] = "window_read_ex";
 static const char __pyx_k_Channel_execute[] = "Channel.execute";
@@ -2563,6 +2569,7 @@ static const char __pyx_k_get_exit_status[] = "get_exit_status";
 static const char __pyx_k_process_startup[] = "process_startup";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
 static const char __pyx_k_window_write_ex[] = "window_write_ex";
+static const char __pyx_k_A_xq_Q_s_1_1_k_A[] = "\200A\360\020\000\t \230x\240q\250\001\330\010%\240Q\330\010\037\230s\240!\2401\330\r\016\330\014\027\320\0271\260\021\260$\260k\300\033\310A\330\010\017\320\017!\240\021\240!";
 static const char __pyx_k_Channel_flush_ex[] = "Channel.flush_ex";
 static const char __pyx_k_Channel_send_eof[] = "Channel.send_eof";
 static const char __pyx_k_Channel_wait_eof[] = "Channel.wait_eof";
@@ -2649,8 +2656,9 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_66handle_extended_data(struct 
 static PyObject *__pyx_pf_4ssh2_7channel_7Channel_68handle_extended_data2(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_ignore_mode); /* proto */
 static PyObject *__pyx_pf_4ssh2_7channel_7Channel_70ignore_extended_data(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, int __pyx_v_ignore_mode); /* proto */
 static PyObject *__pyx_pf_4ssh2_7channel_7Channel_72request_auth_agent(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_74__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_76__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_74signal(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_signame); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_76__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_78__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_4ssh2_7channel_Channel(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 /* #### Code section: late_includes ### */
 /* #### Code section: module_state ### */
@@ -2698,8 +2706,8 @@ typedef struct {
   PyTypeObject *__pyx_ptype_4ssh2_7channel_Channel;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_pop;
   PyObject *__pyx_tuple[4];
-  PyObject *__pyx_codeobj_tab[37];
-  PyObject *__pyx_string_tab[166];
+  PyObject *__pyx_codeobj_tab[38];
+  PyObject *__pyx_string_tab[172];
   PyObject *__pyx_int_0;
   PyObject *__pyx_int_1024;
 /* #### Code section: module_state_contents ### */
@@ -2767,144 +2775,150 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_Channel_send_eof __pyx_string_tab[25]
 #define __pyx_n_u_Channel_setenv __pyx_string_tab[26]
 #define __pyx_n_u_Channel_shell __pyx_string_tab[27]
-#define __pyx_n_u_Channel_subsystem __pyx_string_tab[28]
-#define __pyx_n_u_Channel_wait_closed __pyx_string_tab[29]
-#define __pyx_n_u_Channel_wait_eof __pyx_string_tab[30]
-#define __pyx_n_u_Channel_window_read __pyx_string_tab[31]
-#define __pyx_n_u_Channel_window_read_ex __pyx_string_tab[32]
-#define __pyx_n_u_Channel_window_write __pyx_string_tab[33]
-#define __pyx_n_u_Channel_window_write_ex __pyx_string_tab[34]
-#define __pyx_n_u_Channel_write __pyx_string_tab[35]
-#define __pyx_n_u_Channel_write_ex __pyx_string_tab[36]
-#define __pyx_n_u_Channel_write_stderr __pyx_string_tab[37]
-#define __pyx_n_u_Channel_x11_req __pyx_string_tab[38]
-#define __pyx_n_u_Channel_x11_req_ex __pyx_string_tab[39]
-#define __pyx_n_u_MemoryError __pyx_string_tab[40]
-#define __pyx_kp_u_Note_that_Cython_is_deliberately __pyx_string_tab[41]
-#define __pyx_n_u_TypeError __pyx_string_tab[42]
-#define __pyx_kp_u__2 __pyx_string_tab[43]
-#define __pyx_kp_u__3 __pyx_string_tab[44]
-#define __pyx_kp_u_add_note __pyx_string_tab[45]
-#define __pyx_n_u_adjustment __pyx_string_tab[46]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[47]
-#define __pyx_n_u_auth_cookie __pyx_string_tab[48]
-#define __pyx_n_u_auth_proto __pyx_string_tab[49]
-#define __pyx_n_u_b_buf __pyx_string_tab[50]
-#define __pyx_n_u_b_command __pyx_string_tab[51]
-#define __pyx_n_u_b_message __pyx_string_tab[52]
-#define __pyx_n_u_b_request __pyx_string_tab[53]
-#define __pyx_n_u_b_subsystem __pyx_string_tab[54]
-#define __pyx_n_u_b_term __pyx_string_tab[55]
-#define __pyx_n_u_b_value __pyx_string_tab[56]
-#define __pyx_n_u_b_varname __pyx_string_tab[57]
-#define __pyx_n_u_buf __pyx_string_tab[58]
-#define __pyx_n_u_buf_2 __pyx_string_tab[59]
-#define __pyx_n_u_buf_remainder __pyx_string_tab[60]
-#define __pyx_n_u_buf_tot_size __pyx_string_tab[61]
-#define __pyx_n_u_bytes_written __pyx_string_tab[62]
-#define __pyx_n_u_cbuf __pyx_string_tab[63]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[64]
-#define __pyx_n_u_close __pyx_string_tab[65]
-#define __pyx_n_u_command __pyx_string_tab[66]
-#define __pyx_n_u_command_2 __pyx_string_tab[67]
-#define __pyx_kp_u_disable __pyx_string_tab[68]
-#define __pyx_kp_u_enable __pyx_string_tab[69]
-#define __pyx_n_u_eof __pyx_string_tab[70]
-#define __pyx_n_u_errmsg __pyx_string_tab[71]
-#define __pyx_n_u_errmsg_len __pyx_string_tab[72]
-#define __pyx_n_u_exceptions __pyx_string_tab[73]
-#define __pyx_n_u_execute __pyx_string_tab[74]
-#define __pyx_n_u_exitsignal __pyx_string_tab[75]
-#define __pyx_n_u_exitsignal_len __pyx_string_tab[76]
-#define __pyx_n_u_extended __pyx_string_tab[77]
-#define __pyx_n_u_flush __pyx_string_tab[78]
-#define __pyx_n_u_flush_ex __pyx_string_tab[79]
-#define __pyx_n_u_flush_stderr __pyx_string_tab[80]
-#define __pyx_n_u_force __pyx_string_tab[81]
-#define __pyx_n_u_func __pyx_string_tab[82]
-#define __pyx_kp_u_gc __pyx_string_tab[83]
-#define __pyx_n_u_get_exit_signal __pyx_string_tab[84]
-#define __pyx_n_u_get_exit_status __pyx_string_tab[85]
-#define __pyx_n_u_getstate __pyx_string_tab[86]
-#define __pyx_n_u_handle_extended_data __pyx_string_tab[87]
-#define __pyx_n_u_handle_extended_data2 __pyx_string_tab[88]
-#define __pyx_n_u_ignore_extended_data __pyx_string_tab[89]
-#define __pyx_n_u_ignore_mode __pyx_string_tab[90]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[91]
-#define __pyx_kp_u_isenabled __pyx_string_tab[92]
-#define __pyx_n_u_langtag __pyx_string_tab[93]
-#define __pyx_n_u_langtag_len __pyx_string_tab[94]
-#define __pyx_n_u_m_len __pyx_string_tab[95]
-#define __pyx_n_u_main __pyx_string_tab[96]
-#define __pyx_n_u_message __pyx_string_tab[97]
-#define __pyx_n_u_message_2 __pyx_string_tab[98]
-#define __pyx_n_u_module __pyx_string_tab[99]
-#define __pyx_n_u_name __pyx_string_tab[100]
-#define __pyx_kp_u_no_default___reduce___due_to_non __pyx_string_tab[101]
-#define __pyx_n_u_poll_channel_read __pyx_string_tab[102]
-#define __pyx_n_u_pop __pyx_string_tab[103]
-#define __pyx_n_u_process_startup __pyx_string_tab[104]
-#define __pyx_n_u_pty __pyx_string_tab[105]
-#define __pyx_n_u_py_errlen __pyx_string_tab[106]
-#define __pyx_n_u_py_errmsg __pyx_string_tab[107]
-#define __pyx_n_u_py_exitsignal __pyx_string_tab[108]
-#define __pyx_n_u_py_langlen __pyx_string_tab[109]
-#define __pyx_n_u_py_langtag __pyx_string_tab[110]
-#define __pyx_n_u_py_siglen __pyx_string_tab[111]
-#define __pyx_n_u_pyx_state __pyx_string_tab[112]
-#define __pyx_n_u_qualname __pyx_string_tab[113]
-#define __pyx_n_u_r_len __pyx_string_tab[114]
-#define __pyx_n_u_rc __pyx_string_tab[115]
-#define __pyx_n_u_read __pyx_string_tab[116]
-#define __pyx_n_u_read_avail __pyx_string_tab[117]
-#define __pyx_n_u_read_ex __pyx_string_tab[118]
-#define __pyx_n_u_read_stderr __pyx_string_tab[119]
-#define __pyx_n_u_receive_window_adjust __pyx_string_tab[120]
-#define __pyx_n_u_receive_window_adjust2 __pyx_string_tab[121]
-#define __pyx_n_u_reduce __pyx_string_tab[122]
-#define __pyx_n_u_reduce_cython __pyx_string_tab[123]
-#define __pyx_n_u_reduce_ex __pyx_string_tab[124]
-#define __pyx_n_u_request __pyx_string_tab[125]
-#define __pyx_n_u_request_2 __pyx_string_tab[126]
-#define __pyx_n_u_request_auth_agent __pyx_string_tab[127]
-#define __pyx_n_u_screen_number __pyx_string_tab[128]
-#define __pyx_n_u_self __pyx_string_tab[129]
-#define __pyx_n_u_send_eof __pyx_string_tab[130]
-#define __pyx_n_u_session __pyx_string_tab[131]
-#define __pyx_n_u_set_name __pyx_string_tab[132]
-#define __pyx_n_u_setenv __pyx_string_tab[133]
-#define __pyx_n_u_setstate __pyx_string_tab[134]
-#define __pyx_n_u_setstate_cython __pyx_string_tab[135]
-#define __pyx_n_u_shell __pyx_string_tab[136]
-#define __pyx_n_u_single_connection __pyx_string_tab[137]
-#define __pyx_n_u_size __pyx_string_tab[138]
-#define __pyx_n_u_ssh2_channel __pyx_string_tab[139]
-#define __pyx_kp_u_ssh2_channel_pyx __pyx_string_tab[140]
-#define __pyx_n_u_storewindow __pyx_string_tab[141]
-#define __pyx_n_u_stream_id __pyx_string_tab[142]
-#define __pyx_kp_u_stringsource __pyx_string_tab[143]
-#define __pyx_n_u_subsystem __pyx_string_tab[144]
-#define __pyx_n_u_subsystem_2 __pyx_string_tab[145]
-#define __pyx_n_u_term __pyx_string_tab[146]
-#define __pyx_n_u_term_2 __pyx_string_tab[147]
-#define __pyx_n_u_test __pyx_string_tab[148]
-#define __pyx_n_u_value __pyx_string_tab[149]
-#define __pyx_n_u_value_2 __pyx_string_tab[150]
-#define __pyx_n_u_varname __pyx_string_tab[151]
-#define __pyx_n_u_varname_2 __pyx_string_tab[152]
-#define __pyx_n_u_vt100 __pyx_string_tab[153]
-#define __pyx_n_u_wait_closed __pyx_string_tab[154]
-#define __pyx_n_u_wait_eof __pyx_string_tab[155]
-#define __pyx_n_u_window_read __pyx_string_tab[156]
-#define __pyx_n_u_window_read_ex __pyx_string_tab[157]
-#define __pyx_n_u_window_size_initial __pyx_string_tab[158]
-#define __pyx_n_u_window_write __pyx_string_tab[159]
-#define __pyx_n_u_window_write_ex __pyx_string_tab[160]
-#define __pyx_n_u_write __pyx_string_tab[161]
-#define __pyx_n_u_write_ex __pyx_string_tab[162]
-#define __pyx_n_u_write_stderr __pyx_string_tab[163]
-#define __pyx_n_u_x11_req __pyx_string_tab[164]
-#define __pyx_n_u_x11_req_ex __pyx_string_tab[165]
+#define __pyx_n_u_Channel_signal __pyx_string_tab[28]
+#define __pyx_n_u_Channel_subsystem __pyx_string_tab[29]
+#define __pyx_n_u_Channel_wait_closed __pyx_string_tab[30]
+#define __pyx_n_u_Channel_wait_eof __pyx_string_tab[31]
+#define __pyx_n_u_Channel_window_read __pyx_string_tab[32]
+#define __pyx_n_u_Channel_window_read_ex __pyx_string_tab[33]
+#define __pyx_n_u_Channel_window_write __pyx_string_tab[34]
+#define __pyx_n_u_Channel_window_write_ex __pyx_string_tab[35]
+#define __pyx_n_u_Channel_write __pyx_string_tab[36]
+#define __pyx_n_u_Channel_write_ex __pyx_string_tab[37]
+#define __pyx_n_u_Channel_write_stderr __pyx_string_tab[38]
+#define __pyx_n_u_Channel_x11_req __pyx_string_tab[39]
+#define __pyx_n_u_Channel_x11_req_ex __pyx_string_tab[40]
+#define __pyx_n_u_MemoryError __pyx_string_tab[41]
+#define __pyx_kp_u_Note_that_Cython_is_deliberately __pyx_string_tab[42]
+#define __pyx_n_u_TypeError __pyx_string_tab[43]
+#define __pyx_kp_u__2 __pyx_string_tab[44]
+#define __pyx_kp_u__3 __pyx_string_tab[45]
+#define __pyx_kp_u_add_note __pyx_string_tab[46]
+#define __pyx_n_u_adjustment __pyx_string_tab[47]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[48]
+#define __pyx_n_u_auth_cookie __pyx_string_tab[49]
+#define __pyx_n_u_auth_proto __pyx_string_tab[50]
+#define __pyx_n_u_b_buf __pyx_string_tab[51]
+#define __pyx_n_u_b_command __pyx_string_tab[52]
+#define __pyx_n_u_b_message __pyx_string_tab[53]
+#define __pyx_n_u_b_request __pyx_string_tab[54]
+#define __pyx_n_u_b_signame __pyx_string_tab[55]
+#define __pyx_n_u_b_subsystem __pyx_string_tab[56]
+#define __pyx_n_u_b_term __pyx_string_tab[57]
+#define __pyx_n_u_b_value __pyx_string_tab[58]
+#define __pyx_n_u_b_varname __pyx_string_tab[59]
+#define __pyx_n_u_buf __pyx_string_tab[60]
+#define __pyx_n_u_buf_2 __pyx_string_tab[61]
+#define __pyx_n_u_buf_remainder __pyx_string_tab[62]
+#define __pyx_n_u_buf_tot_size __pyx_string_tab[63]
+#define __pyx_n_u_bytes_written __pyx_string_tab[64]
+#define __pyx_n_u_c_signame __pyx_string_tab[65]
+#define __pyx_n_u_cbuf __pyx_string_tab[66]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[67]
+#define __pyx_n_u_close __pyx_string_tab[68]
+#define __pyx_n_u_command __pyx_string_tab[69]
+#define __pyx_n_u_command_2 __pyx_string_tab[70]
+#define __pyx_kp_u_disable __pyx_string_tab[71]
+#define __pyx_kp_u_enable __pyx_string_tab[72]
+#define __pyx_n_u_eof __pyx_string_tab[73]
+#define __pyx_n_u_errmsg __pyx_string_tab[74]
+#define __pyx_n_u_errmsg_len __pyx_string_tab[75]
+#define __pyx_n_u_exceptions __pyx_string_tab[76]
+#define __pyx_n_u_execute __pyx_string_tab[77]
+#define __pyx_n_u_exitsignal __pyx_string_tab[78]
+#define __pyx_n_u_exitsignal_len __pyx_string_tab[79]
+#define __pyx_n_u_extended __pyx_string_tab[80]
+#define __pyx_n_u_flush __pyx_string_tab[81]
+#define __pyx_n_u_flush_ex __pyx_string_tab[82]
+#define __pyx_n_u_flush_stderr __pyx_string_tab[83]
+#define __pyx_n_u_force __pyx_string_tab[84]
+#define __pyx_n_u_func __pyx_string_tab[85]
+#define __pyx_kp_u_gc __pyx_string_tab[86]
+#define __pyx_n_u_get_exit_signal __pyx_string_tab[87]
+#define __pyx_n_u_get_exit_status __pyx_string_tab[88]
+#define __pyx_n_u_getstate __pyx_string_tab[89]
+#define __pyx_n_u_handle_extended_data __pyx_string_tab[90]
+#define __pyx_n_u_handle_extended_data2 __pyx_string_tab[91]
+#define __pyx_n_u_ignore_extended_data __pyx_string_tab[92]
+#define __pyx_n_u_ignore_mode __pyx_string_tab[93]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[94]
+#define __pyx_kp_u_isenabled __pyx_string_tab[95]
+#define __pyx_n_u_langtag __pyx_string_tab[96]
+#define __pyx_n_u_langtag_len __pyx_string_tab[97]
+#define __pyx_n_u_m_len __pyx_string_tab[98]
+#define __pyx_n_u_main __pyx_string_tab[99]
+#define __pyx_n_u_message __pyx_string_tab[100]
+#define __pyx_n_u_message_2 __pyx_string_tab[101]
+#define __pyx_n_u_module __pyx_string_tab[102]
+#define __pyx_n_u_name __pyx_string_tab[103]
+#define __pyx_kp_u_no_default___reduce___due_to_non __pyx_string_tab[104]
+#define __pyx_n_u_poll_channel_read __pyx_string_tab[105]
+#define __pyx_n_u_pop __pyx_string_tab[106]
+#define __pyx_n_u_process_startup __pyx_string_tab[107]
+#define __pyx_n_u_pty __pyx_string_tab[108]
+#define __pyx_n_u_py_errlen __pyx_string_tab[109]
+#define __pyx_n_u_py_errmsg __pyx_string_tab[110]
+#define __pyx_n_u_py_exitsignal __pyx_string_tab[111]
+#define __pyx_n_u_py_langlen __pyx_string_tab[112]
+#define __pyx_n_u_py_langtag __pyx_string_tab[113]
+#define __pyx_n_u_py_siglen __pyx_string_tab[114]
+#define __pyx_n_u_pyx_state __pyx_string_tab[115]
+#define __pyx_n_u_qualname __pyx_string_tab[116]
+#define __pyx_n_u_r_len __pyx_string_tab[117]
+#define __pyx_n_u_rc __pyx_string_tab[118]
+#define __pyx_n_u_read __pyx_string_tab[119]
+#define __pyx_n_u_read_avail __pyx_string_tab[120]
+#define __pyx_n_u_read_ex __pyx_string_tab[121]
+#define __pyx_n_u_read_stderr __pyx_string_tab[122]
+#define __pyx_n_u_receive_window_adjust __pyx_string_tab[123]
+#define __pyx_n_u_receive_window_adjust2 __pyx_string_tab[124]
+#define __pyx_n_u_reduce __pyx_string_tab[125]
+#define __pyx_n_u_reduce_cython __pyx_string_tab[126]
+#define __pyx_n_u_reduce_ex __pyx_string_tab[127]
+#define __pyx_n_u_request __pyx_string_tab[128]
+#define __pyx_n_u_request_2 __pyx_string_tab[129]
+#define __pyx_n_u_request_auth_agent __pyx_string_tab[130]
+#define __pyx_n_u_screen_number __pyx_string_tab[131]
+#define __pyx_n_u_self __pyx_string_tab[132]
+#define __pyx_n_u_send_eof __pyx_string_tab[133]
+#define __pyx_n_u_session __pyx_string_tab[134]
+#define __pyx_n_u_set_name __pyx_string_tab[135]
+#define __pyx_n_u_setenv __pyx_string_tab[136]
+#define __pyx_n_u_setstate __pyx_string_tab[137]
+#define __pyx_n_u_setstate_cython __pyx_string_tab[138]
+#define __pyx_n_u_shell __pyx_string_tab[139]
+#define __pyx_n_u_signal __pyx_string_tab[140]
+#define __pyx_n_u_signame __pyx_string_tab[141]
+#define __pyx_n_u_signame_len __pyx_string_tab[142]
+#define __pyx_n_u_single_connection __pyx_string_tab[143]
+#define __pyx_n_u_size __pyx_string_tab[144]
+#define __pyx_n_u_ssh2_channel __pyx_string_tab[145]
+#define __pyx_kp_u_ssh2_channel_pyx __pyx_string_tab[146]
+#define __pyx_n_u_storewindow __pyx_string_tab[147]
+#define __pyx_n_u_stream_id __pyx_string_tab[148]
+#define __pyx_kp_u_stringsource __pyx_string_tab[149]
+#define __pyx_n_u_subsystem __pyx_string_tab[150]
+#define __pyx_n_u_subsystem_2 __pyx_string_tab[151]
+#define __pyx_n_u_term __pyx_string_tab[152]
+#define __pyx_n_u_term_2 __pyx_string_tab[153]
+#define __pyx_n_u_test __pyx_string_tab[154]
+#define __pyx_n_u_value __pyx_string_tab[155]
+#define __pyx_n_u_value_2 __pyx_string_tab[156]
+#define __pyx_n_u_varname __pyx_string_tab[157]
+#define __pyx_n_u_varname_2 __pyx_string_tab[158]
+#define __pyx_n_u_vt100 __pyx_string_tab[159]
+#define __pyx_n_u_wait_closed __pyx_string_tab[160]
+#define __pyx_n_u_wait_eof __pyx_string_tab[161]
+#define __pyx_n_u_window_read __pyx_string_tab[162]
+#define __pyx_n_u_window_read_ex __pyx_string_tab[163]
+#define __pyx_n_u_window_size_initial __pyx_string_tab[164]
+#define __pyx_n_u_window_write __pyx_string_tab[165]
+#define __pyx_n_u_window_write_ex __pyx_string_tab[166]
+#define __pyx_n_u_write __pyx_string_tab[167]
+#define __pyx_n_u_write_ex __pyx_string_tab[168]
+#define __pyx_n_u_write_stderr __pyx_string_tab[169]
+#define __pyx_n_u_x11_req __pyx_string_tab[170]
+#define __pyx_n_u_x11_req_ex __pyx_string_tab[171]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -2932,8 +2946,8 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_4ssh2_7channel_Channel);
   Py_CLEAR(clear_module_state->__pyx_type_4ssh2_7channel_Channel);
   for (int i=0; i<4; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
-  for (int i=0; i<37; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<166; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<38; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<172; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
   Py_CLEAR(clear_module_state->__pyx_int_0);
   Py_CLEAR(clear_module_state->__pyx_int_1024);
   return 0;
@@ -2963,8 +2977,8 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_ptype_4ssh2_7channel_Channel);
   Py_VISIT(traverse_module_state->__pyx_type_4ssh2_7channel_Channel);
   for (int i=0; i<4; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
-  for (int i=0; i<37; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<166; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<38; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<172; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_int_0);
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_int_1024);
   return 0;
@@ -10630,6 +10644,7 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_72request_auth_agent(struct __
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_request_auth_agent(self._channel)             # <<<<<<<<<<<<<<
  *         return handle_error_codes(rc)
+ * 
 */
         __pyx_v_rc = libssh2_channel_request_auth_agent(__pyx_v_self->_channel);
       }
@@ -10655,6 +10670,8 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_72request_auth_agent(struct __
  *         with nogil:
  *             rc = c_ssh2.libssh2_channel_request_auth_agent(self._channel)
  *         return handle_error_codes(rc)             # <<<<<<<<<<<<<<
+ * 
+ *     def signal(self, signame not None):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __pyx_f_4ssh2_5utils_handle_error_codes(__pyx_v_rc, 0); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 572, __pyx_L1_error)
@@ -10683,6 +10700,237 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_72request_auth_agent(struct __
   return __pyx_r;
 }
 
+/* "ssh2/channel.pyx":574
+ *         return handle_error_codes(rc)
+ * 
+ *     def signal(self, signame not None):             # <<<<<<<<<<<<<<
+ *         """
+ *         Send signal to channel.
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_75signal(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_74signal, "Channel.signal(self, signame)\n\nSend signal to channel.\n\n:param signame: Signal name to send to channel.\n:type signame: str");
+static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_75signal = {"signal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_75signal, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_74signal};
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_75signal(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_signame = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[1] = {0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("signal (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_signame,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 574, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 574, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "signal", 0) < 0) __PYX_ERR(0, 574, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("signal", 1, 1, 1, i); __PYX_ERR(0, 574, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 1)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 574, __pyx_L3_error)
+    }
+    __pyx_v_signame = values[0];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("signal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 574, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("ssh2.channel.Channel.signal", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  if (unlikely(((PyObject *)__pyx_v_signame) == Py_None)) {
+    PyErr_Format(PyExc_TypeError, "Argument '%.200s' must not be None", "signame"); __PYX_ERR(0, 574, __pyx_L1_error)
+  }
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_74signal(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v_signame);
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  goto __pyx_L7_cleaned_up;
+  __pyx_L0:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __pyx_L7_cleaned_up:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_74signal(struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, PyObject *__pyx_v_signame) {
+  int __pyx_v_rc;
+  PyObject *__pyx_v_b_signame = 0;
+  char const *__pyx_v_c_signame;
+  int __pyx_v_signame_len;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  char const *__pyx_t_2;
+  Py_ssize_t __pyx_t_3;
+  int __pyx_t_4;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("signal", 0);
+
+  /* "ssh2/channel.pyx":582
+ *         """
+ *         cdef int rc
+ *         cdef bytes b_signame = to_bytes(signame)             # <<<<<<<<<<<<<<
+ *         cdef const char *c_signame = b_signame
+ *         cdef int signame_len = len(signame)
+*/
+  __pyx_t_1 = __pyx_f_4ssh2_5utils_to_bytes(__pyx_v_signame); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 582, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_b_signame = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "ssh2/channel.pyx":583
+ *         cdef int rc
+ *         cdef bytes b_signame = to_bytes(signame)
+ *         cdef const char *c_signame = b_signame             # <<<<<<<<<<<<<<
+ *         cdef int signame_len = len(signame)
+ *         with nogil:
+*/
+  if (unlikely(__pyx_v_b_signame == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
+    __PYX_ERR(0, 583, __pyx_L1_error)
+  }
+  __pyx_t_2 = __Pyx_PyBytes_AsString(__pyx_v_b_signame); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 583, __pyx_L1_error)
+  __pyx_v_c_signame = __pyx_t_2;
+
+  /* "ssh2/channel.pyx":584
+ *         cdef bytes b_signame = to_bytes(signame)
+ *         cdef const char *c_signame = b_signame
+ *         cdef int signame_len = len(signame)             # <<<<<<<<<<<<<<
+ *         with nogil:
+ *             rc = c_ssh2.libssh2_channel_signal_ex(self._channel, c_signame, signame_len)
+*/
+  __pyx_t_3 = PyObject_Length(__pyx_v_signame); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 584, __pyx_L1_error)
+  __pyx_v_signame_len = __pyx_t_3;
+
+  /* "ssh2/channel.pyx":585
+ *         cdef const char *c_signame = b_signame
+ *         cdef int signame_len = len(signame)
+ *         with nogil:             # <<<<<<<<<<<<<<
+ *             rc = c_ssh2.libssh2_channel_signal_ex(self._channel, c_signame, signame_len)
+ *         return handle_error_codes(rc)
+*/
+  {
+      PyThreadState *_save;
+      _save = NULL;
+      Py_UNBLOCK_THREADS
+      __Pyx_FastGIL_Remember();
+      /*try:*/ {
+
+        /* "ssh2/channel.pyx":586
+ *         cdef int signame_len = len(signame)
+ *         with nogil:
+ *             rc = c_ssh2.libssh2_channel_signal_ex(self._channel, c_signame, signame_len)             # <<<<<<<<<<<<<<
+ *         return handle_error_codes(rc)
+*/
+        __pyx_v_rc = libssh2_channel_signal_ex(__pyx_v_self->_channel, __pyx_v_c_signame, __pyx_v_signame_len);
+      }
+
+      /* "ssh2/channel.pyx":585
+ *         cdef const char *c_signame = b_signame
+ *         cdef int signame_len = len(signame)
+ *         with nogil:             # <<<<<<<<<<<<<<
+ *             rc = c_ssh2.libssh2_channel_signal_ex(self._channel, c_signame, signame_len)
+ *         return handle_error_codes(rc)
+*/
+      /*finally:*/ {
+        /*normal exit:*/{
+          __Pyx_FastGIL_Forget();
+          Py_BLOCK_THREADS
+          goto __pyx_L5;
+        }
+        __pyx_L5:;
+      }
+  }
+
+  /* "ssh2/channel.pyx":587
+ *         with nogil:
+ *             rc = c_ssh2.libssh2_channel_signal_ex(self._channel, c_signame, signame_len)
+ *         return handle_error_codes(rc)             # <<<<<<<<<<<<<<
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_4 = __pyx_f_4ssh2_5utils_handle_error_codes(__pyx_v_rc, 0); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 587, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 587, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "ssh2/channel.pyx":574
+ *         return handle_error_codes(rc)
+ * 
+ *     def signal(self, signame not None):             # <<<<<<<<<<<<<<
+ *         """
+ *         Send signal to channel.
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("ssh2.channel.Channel.signal", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_b_signame);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
 /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
@@ -10690,16 +10938,16 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_72request_auth_agent(struct __
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_75__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_77__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_74__reduce_cython__, "Channel.__reduce_cython__(self)");
-static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_75__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_75__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_74__reduce_cython__};
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_75__reduce_cython__(PyObject *__pyx_v_self, 
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_76__reduce_cython__, "Channel.__reduce_cython__(self)");
+static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_77__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_77__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_76__reduce_cython__};
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_77__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -10725,14 +10973,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
   if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("__reduce_cython__", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_74__reduce_cython__(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_76__reduce_cython__(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_74__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_76__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -10772,16 +11020,16 @@ static PyObject *__pyx_pf_4ssh2_7channel_7Channel_74__reduce_cython__(CYTHON_UNU
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_77__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_79__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_76__setstate_cython__, "Channel.__setstate_cython__(self, __pyx_state)");
-static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_77__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_77__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_76__setstate_cython__};
-static PyObject *__pyx_pw_4ssh2_7channel_7Channel_77__setstate_cython__(PyObject *__pyx_v_self, 
+PyDoc_STRVAR(__pyx_doc_4ssh2_7channel_7Channel_78__setstate_cython__, "Channel.__setstate_cython__(self, __pyx_state)");
+static PyMethodDef __pyx_mdef_4ssh2_7channel_7Channel_79__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_79__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_78__setstate_cython__};
+static PyObject *__pyx_pw_4ssh2_7channel_7Channel_79__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -10847,7 +11095,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_76__setstate_cython__(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_4ssh2_7channel_7Channel_78__setstate_cython__(((struct __pyx_obj_4ssh2_7channel_Channel *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -10857,7 +11105,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4ssh2_7channel_7Channel_76__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_4ssh2_7channel_7Channel_78__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_4ssh2_7channel_Channel *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -11004,8 +11252,9 @@ static PyMethodDef __pyx_methods_4ssh2_7channel_Channel[] = {
   {"handle_extended_data2", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_69handle_extended_data2, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_68handle_extended_data2},
   {"ignore_extended_data", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_71ignore_extended_data, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_70ignore_extended_data},
   {"request_auth_agent", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_73request_auth_agent, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_72request_auth_agent},
-  {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_75__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_74__reduce_cython__},
-  {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_77__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_76__setstate_cython__},
+  {"signal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_75signal, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_74signal},
+  {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_77__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_76__reduce_cython__},
+  {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4ssh2_7channel_7Channel_79__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_4ssh2_7channel_7Channel_78__setstate_cython__},
   {0, 0, 0, 0}
 };
 
@@ -12011,12 +12260,24 @@ __Pyx_RefNannySetupContext("PyInit_channel", 0);
   if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_4ssh2_7channel_Channel, __pyx_mstate_global->__pyx_n_u_request_auth_agent, __pyx_t_3) < 0) __PYX_ERR(0, 567, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
+  /* "ssh2/channel.pyx":574
+ *         return handle_error_codes(rc)
+ * 
+ *     def signal(self, signame not None):             # <<<<<<<<<<<<<<
+ *         """
+ *         Send signal to channel.
+*/
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7channel_7Channel_75signal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Channel_signal, NULL, __pyx_mstate_global->__pyx_n_u_ssh2_channel, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[35])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 574, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_4ssh2_7channel_Channel, __pyx_mstate_global->__pyx_n_u_signal, __pyx_t_3) < 0) __PYX_ERR(0, 574, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  * def __setstate_cython__(self, __pyx_state):
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7channel_7Channel_75__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Channel___reduce_cython, NULL, __pyx_mstate_global->__pyx_n_u_ssh2_channel, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[35])); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7channel_7Channel_77__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Channel___reduce_cython, NULL, __pyx_mstate_global->__pyx_n_u_ssh2_channel, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[36])); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -12027,7 +12288,7 @@ __Pyx_RefNannySetupContext("PyInit_channel", 0);
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7channel_7Channel_77__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Channel___setstate_cython, NULL, __pyx_mstate_global->__pyx_n_u_ssh2_channel, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[36])); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 3, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_4ssh2_7channel_7Channel_79__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Channel___setstate_cython, NULL, __pyx_mstate_global->__pyx_n_u_ssh2_channel, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[37])); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(1, 3, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -12129,6 +12390,7 @@ static const __Pyx_StringTabEntry __pyx_string_tab[] = {
   {__pyx_k_Channel_send_eof, sizeof(__pyx_k_Channel_send_eof), 0, 1, 1}, /* PyObject cname: __pyx_n_u_Channel_send_eof */
   {__pyx_k_Channel_setenv, sizeof(__pyx_k_Channel_setenv), 0, 1, 1}, /* PyObject cname: __pyx_n_u_Channel_setenv */
   {__pyx_k_Channel_shell, sizeof(__pyx_k_Channel_shell), 0, 1, 1}, /* PyObject cname: __pyx_n_u_Channel_shell */
+  {__pyx_k_Channel_signal, sizeof(__pyx_k_Channel_signal), 0, 1, 1}, /* PyObject cname: __pyx_n_u_Channel_signal */
   {__pyx_k_Channel_subsystem, sizeof(__pyx_k_Channel_subsystem), 0, 1, 1}, /* PyObject cname: __pyx_n_u_Channel_subsystem */
   {__pyx_k_Channel_wait_closed, sizeof(__pyx_k_Channel_wait_closed), 0, 1, 1}, /* PyObject cname: __pyx_n_u_Channel_wait_closed */
   {__pyx_k_Channel_wait_eof, sizeof(__pyx_k_Channel_wait_eof), 0, 1, 1}, /* PyObject cname: __pyx_n_u_Channel_wait_eof */
@@ -12155,6 +12417,7 @@ static const __Pyx_StringTabEntry __pyx_string_tab[] = {
   {__pyx_k_b_command, sizeof(__pyx_k_b_command), 0, 1, 1}, /* PyObject cname: __pyx_n_u_b_command */
   {__pyx_k_b_message, sizeof(__pyx_k_b_message), 0, 1, 1}, /* PyObject cname: __pyx_n_u_b_message */
   {__pyx_k_b_request, sizeof(__pyx_k_b_request), 0, 1, 1}, /* PyObject cname: __pyx_n_u_b_request */
+  {__pyx_k_b_signame, sizeof(__pyx_k_b_signame), 0, 1, 1}, /* PyObject cname: __pyx_n_u_b_signame */
   {__pyx_k_b_subsystem, sizeof(__pyx_k_b_subsystem), 0, 1, 1}, /* PyObject cname: __pyx_n_u_b_subsystem */
   {__pyx_k_b_term, sizeof(__pyx_k_b_term), 0, 1, 1}, /* PyObject cname: __pyx_n_u_b_term */
   {__pyx_k_b_value, sizeof(__pyx_k_b_value), 0, 1, 1}, /* PyObject cname: __pyx_n_u_b_value */
@@ -12164,6 +12427,7 @@ static const __Pyx_StringTabEntry __pyx_string_tab[] = {
   {__pyx_k_buf_remainder, sizeof(__pyx_k_buf_remainder), 0, 1, 1}, /* PyObject cname: __pyx_n_u_buf_remainder */
   {__pyx_k_buf_tot_size, sizeof(__pyx_k_buf_tot_size), 0, 1, 1}, /* PyObject cname: __pyx_n_u_buf_tot_size */
   {__pyx_k_bytes_written, sizeof(__pyx_k_bytes_written), 0, 1, 1}, /* PyObject cname: __pyx_n_u_bytes_written */
+  {__pyx_k_c_signame, sizeof(__pyx_k_c_signame), 0, 1, 1}, /* PyObject cname: __pyx_n_u_c_signame */
   {__pyx_k_cbuf, sizeof(__pyx_k_cbuf), 0, 1, 1}, /* PyObject cname: __pyx_n_u_cbuf */
   {__pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 1, 1}, /* PyObject cname: __pyx_n_u_cline_in_traceback */
   {__pyx_k_close, sizeof(__pyx_k_close), 0, 1, 1}, /* PyObject cname: __pyx_n_u_close */
@@ -12238,6 +12502,9 @@ static const __Pyx_StringTabEntry __pyx_string_tab[] = {
   {__pyx_k_setstate, sizeof(__pyx_k_setstate), 0, 1, 1}, /* PyObject cname: __pyx_n_u_setstate */
   {__pyx_k_setstate_cython, sizeof(__pyx_k_setstate_cython), 0, 1, 1}, /* PyObject cname: __pyx_n_u_setstate_cython */
   {__pyx_k_shell, sizeof(__pyx_k_shell), 0, 1, 1}, /* PyObject cname: __pyx_n_u_shell */
+  {__pyx_k_signal, sizeof(__pyx_k_signal), 0, 1, 1}, /* PyObject cname: __pyx_n_u_signal */
+  {__pyx_k_signame, sizeof(__pyx_k_signame), 0, 1, 1}, /* PyObject cname: __pyx_n_u_signame */
+  {__pyx_k_signame_len, sizeof(__pyx_k_signame_len), 0, 1, 1}, /* PyObject cname: __pyx_n_u_signame_len */
   {__pyx_k_single_connection, sizeof(__pyx_k_single_connection), 0, 1, 1}, /* PyObject cname: __pyx_n_u_single_connection */
   {__pyx_k_size, sizeof(__pyx_k_size), 0, 1, 1}, /* PyObject cname: __pyx_n_u_size */
   {__pyx_k_ssh2_channel, sizeof(__pyx_k_ssh2_channel), 0, 1, 1}, /* PyObject cname: __pyx_n_u_ssh2_channel */
@@ -12552,14 +12819,19 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
     __pyx_mstate_global->__pyx_codeobj_tab[34] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_ssh2_channel_pyx, __pyx_mstate->__pyx_n_u_request_auth_agent, __pyx_k_A_4q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[34])) goto bad;
   }
   {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 6, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 574, 56};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_signame, __pyx_mstate->__pyx_n_u_rc, __pyx_mstate->__pyx_n_u_b_signame, __pyx_mstate->__pyx_n_u_c_signame, __pyx_mstate->__pyx_n_u_signame_len};
+    __pyx_mstate_global->__pyx_codeobj_tab[35] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_ssh2_channel_pyx, __pyx_mstate->__pyx_n_u_signal, __pyx_k_A_xq_Q_s_1_1_k_A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[35])) goto bad;
+  }
+  {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 1, 9};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
-    __pyx_mstate_global->__pyx_codeobj_tab[35] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_reduce_cython, __pyx_k_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[35])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[36] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_reduce_cython, __pyx_k_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[36])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 3, 9};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_pyx_state};
-    __pyx_mstate_global->__pyx_codeobj_tab[36] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_setstate_cython, __pyx_k_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[36])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[37] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_setstate_cython, __pyx_k_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[37])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;

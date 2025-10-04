@@ -337,6 +337,7 @@ cdef extern from "libssh2.h" nogil:
     int libssh2_channel_close(LIBSSH2_CHANNEL *channel)
     int libssh2_channel_wait_closed(LIBSSH2_CHANNEL *channel)
     int libssh2_channel_free(LIBSSH2_CHANNEL *channel)
+    int libssh2_channel_signal_ex(LIBSSH2_CHANNEL *channel, const char *signame, size_t signame_len)
 
     # libssh2_scp_recv is DEPRECATED, do not use!
     LIBSSH2_CHANNEL *libssh2_scp_recv(LIBSSH2_SESSION *session,
