@@ -1,7 +1,6 @@
 from unittest.mock import MagicMock
 import os
 import socket
-from unittest import skipUnless
 
 from ssh2.channel import Channel
 from ssh2.error_codes import LIBSSH2_ERROR_EAGAIN
@@ -104,8 +103,6 @@ class SessionTestCase(SSH2TestCase):
                           self.user, 'EVEN MORE FAKE FILE',
                           publickey='FAKE FILE')
 
-    @skipUnless(hasattr(Session, 'scp_recv2'),
-                "Function not supported by libssh2")
     def test_scp_recv2(self):
         self.assertEqual(self._auth(), 0)
         test_data = b"data"
@@ -132,66 +129,6 @@ class SessionTestCase(SSH2TestCase):
             os.unlink(remote_filename)
         self.assertRaises(SCPProtocolError, self.session.scp_recv2, remote_filename)
 
-    def test_scp_recv(self):
-        self.assertEqual(self._auth(), 0)
-        test_data = b"data"
-        remote_filename = os.sep.join([os.path.dirname(__file__),
-                                       "remote_test_file"])
-        with open(remote_filename, 'wb') as fh:
-            fh.write(test_data)
-        try:
-            (file_chan, fileinfo) = self.session.scp_recv(remote_filename)
-        except TypeError:
-            os.unlink(remote_filename)
-            raise
-        try:
-            total = 0
-            size, data = file_chan.read(size=fileinfo.st_size)
-            total += size
-            while total < fileinfo.st_size:
-                total += size
-                size, data = file_chan.read()
-            self.assertEqual(total, fileinfo.st_size)
-        except Exception:
-            raise
-        finally:
-            os.unlink(remote_filename)
-        self.assertRaises(SCPProtocolError, self.session.scp_recv, remote_filename)
-
-    def test_scp_send(self):
-        self.assertEqual(self._auth(), 0)
-        test_data = b"data"
-        remote_filename = os.sep.join([os.path.dirname(__file__),
-                                       "remote_test_file"])
-        to_copy = os.sep.join([os.path.dirname(__file__),
-                               "copied"])
-        with open(remote_filename, 'wb') as fh:
-            fh.write(test_data)
-        fileinfo = os.stat(remote_filename)
-        try:
-            chan = self.session.scp_send(
-                to_copy, fileinfo.st_mode & 777, fileinfo.st_size)
-            with open(remote_filename, 'rb') as local_fh:
-                for data in local_fh:
-                    chan.write(data)
-            chan.send_eof()
-            chan.wait_eof()
-            chan.wait_closed()
-            self.assertEqual(os.stat(to_copy).st_size,
-                             os.stat(remote_filename).st_size)
-        except Exception:
-            raise
-        finally:
-            os.unlink(remote_filename)
-            try:
-                os.unlink(to_copy)
-            except OSError:
-                pass
-        self.assertRaises(SCPProtocolError, self.session.scp_send,
-                          '/cannot_write', 1 & 777, 1)
-
-    @skipUnless(hasattr(Session, 'scp_send64'),
-                "Function not supported by libssh2")
     def test_scp_send64(self):
         self.assertEqual(self._auth(), 0)
         test_data = b"data"
