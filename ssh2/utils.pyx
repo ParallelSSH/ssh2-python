@@ -222,6 +222,18 @@ cpdef int handle_error_codes(int errcode) except -1:
         raise exceptions.ChannelWindowFullError
     elif errcode == error_codes._LIBSSH2_ERROR_KEYFILE_AUTH_FAILED:
         raise exceptions.KeyfileAuthFailedError
+    elif errcode == error_codes._LIBSSH2_ERROR_RANDGEN:
+        raise exceptions.RandGenError
+    elif errcode == error_codes._LIBSSH2_ERROR_MISSING_USERAUTH_BANNER:
+        raise exceptions.MissingUserAuthBannerError
+    elif errcode == error_codes._LIBSSH2_ERROR_ALGO_UNSUPPORTED:
+        raise exceptions.AlgoUnsupportedError
+    elif errcode == error_codes._LIBSSH2_ERROR_MAC_FAILURE:
+        raise exceptions.MacFailureError
+    elif errcode == error_codes._LIBSSH2_ERROR_HASH_INIT:
+        raise exceptions.HashInitError
+    elif errcode == error_codes._LIBSSH2_ERROR_HASH_CALC:
+        raise exceptions.HashCalcError
     else:
         # Switch default
         if errcode < 0:
