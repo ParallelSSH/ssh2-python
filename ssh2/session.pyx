@@ -152,12 +152,6 @@ cdef class Session:
         self.sock = sock
         return handle_error_codes(rc)
 
-    def startup(self, sock):
-        """Deprecated - use self.handshake"""
-        cdef int _sock = PyObject_AsFileDescriptor(sock)
-        cdef int rc = c_ssh2.libssh2_session_startup(self._session, _sock)
-        return handle_error_codes(rc)
-
     def set_blocking(self, bint blocking):
         """Set session blocking mode on/off.
 
@@ -670,28 +664,6 @@ cdef class Session:
                 self._session, errcode, _errmsg)
         return rc
 
-    def scp_recv(self, path not None):
-        """Receive file via SCP.
-
-        Deprecated in favour or recv2 (requires libssh2 >= 1.7).
-
-        :param path: File path to receive.
-        :type path: str
-
-        :rtype: tuple(:py:class:`ssh2.channel.Channel`,
-          :py:class:`ssh2.statinfo.StatInfo`) or None"""
-        cdef bytes b_path = to_bytes(path)
-        cdef char *_path = b_path
-        cdef StatInfo statinfo = StatInfo()
-        cdef c_ssh2.LIBSSH2_CHANNEL *channel
-        with nogil:
-            channel = c_ssh2.libssh2_scp_recv(
-                self._session, _path, statinfo._stat)
-        if channel is NULL:
-            return handle_error_codes(c_ssh2.libssh2_session_last_errno(
-                self._session))
-        return PyChannel(channel, self), statinfo
-
     def scp_recv2(self, path not None):
         """Receive file via SCP.
 
@@ -711,28 +683,6 @@ cdef class Session:
             return handle_error_codes(c_ssh2.libssh2_session_last_errno(
                 self._session))
         return PyChannel(channel, self), fileinfo
-
-    def scp_send(self, path not None, int mode, size_t size):
-        """Deprecated in favour of scp_send64. Send file via SCP.
-
-        :param path: Local file path to send.
-        :type path: str
-        :param mode: File mode.
-        :type mode: int
-        :param size: size of file
-        :type size: int
-
-        :rtype: :py:class:`ssh2.channel.Channel`"""
-        cdef bytes b_path = to_bytes(path)
-        cdef char *_path = b_path
-        cdef c_ssh2.LIBSSH2_CHANNEL *channel
-        with nogil:
-            channel = c_ssh2.libssh2_scp_send(
-                self._session, _path, mode, size)
-        if channel is NULL:
-            return handle_error_codes(c_ssh2.libssh2_session_last_errno(
-                self._session))
-        return PyChannel(channel, self)
 
     def scp_send64(self, path not None, int mode, c_ssh2.libssh2_uint64_t size,
                    time_t mtime, time_t atime):

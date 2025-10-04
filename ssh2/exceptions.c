@@ -2109,7 +2109,7 @@ static const char __pyx_k_Raised_on_out_of_boundary_errors[] = "Raised on out of
 static const char __pyx_k_Raised_on_password_expired_error[] = "Raised on password expired errors";
 static const char __pyx_k_Raised_on_public_key_protocol_er[] = "Raised on public key protocol errors";
 static const char __pyx_k_Raised_on_public_key_verificatio[] = "Raised on public key verification errors";
-static const char __pyx_k_Raised_on_randon_number_generato[] = "Raised on randon number generator errors";
+static const char __pyx_k_Raised_on_randon_number_generato[] = "Raised on randon number generator error";
 static const char __pyx_k_Raised_on_session_handshake_erro[] = "Raised on session handshake errors";
 static const char __pyx_k_Raised_on_session_startup_errors[] = "Raised on session startup errors";
 static const char __pyx_k_Raised_on_socket_disconnection_e[] = "Raised on socket disconnection errors";
@@ -4930,7 +4930,7 @@ __Pyx_RefNannySetupContext("PyInit_exceptions", 0);
  * 
  * 
  * class RandGenError(SSH2Error):             # <<<<<<<<<<<<<<
- *     """Raised on randon number generator errors"""
+ *     """Raised on randon number generator error"""
  * 
 */
   __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_SSH2Error); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 306, __pyx_L1_error)

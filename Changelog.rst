@@ -18,6 +18,9 @@ Changes
   via the remote host to a third party.
 * Added new `libssh2` error codes under `ssh2.error_codes`, equivalent Python exceptions under `ssh2.exceptions`
   and updated error code handling for all functions.
+* Removed deprecated `libssh2` `ssh2.channel.Channel` functions `receive_window_adjust`, `handle_extended_data`
+  and `ignore_extended_data`.
+* Removed deprecated `libssh2` `ssh2.session.Session` functions `startup`, `scp_recv` and `scp_send`.
 
 
 Packaging
