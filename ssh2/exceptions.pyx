@@ -303,5 +303,29 @@ class KeyfileAuthFailedError(SSH2Error):
     """Raised on key file authentication error"""
 
 
+class RandGenError(SSH2Error):
+    """Raised on randon number generator error"""
+
+
+class MissingUserAuthBannerError(SSH2Error):
+    """Raised on missing user authentication banner error"""
+
+
+class AlgoUnsupportedError(SSH2Error):
+    """Raised on unsupported algorithm error"""
+
+
+class MacFailureError(SSH2Error):
+    """Raised on MAC failure error"""
+
+
+class HashInitError(SSH2Error):
+    """Raised on hash initialisation error"""
+
+
+class HashCalcError(SSH2Error):
+    """Raised on hash calculation error"""
+
+
 class UnknownError(SSH2Error):
     """Raised on non-specific or unknown errors"""
