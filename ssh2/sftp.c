@@ -1622,7 +1622,7 @@ struct __pyx_obj_4ssh2_11sftp_handle_SFTPHandle {
   PyObject_HEAD
   LIBSSH2_SFTP_HANDLE *_handle;
   struct __pyx_obj_4ssh2_4sftp_SFTP *_sftp;
-  int closed;
+  int _closed;
 };
 
 

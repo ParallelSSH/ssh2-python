@@ -27,6 +27,7 @@ from . cimport c_sftp
 cdef object PySFTPHandle(c_sftp.LIBSSH2_SFTP_HANDLE *handle, SFTP sftp):
     cdef SFTPHandle _handle = SFTPHandle.__new__(SFTPHandle, sftp)
     _handle._handle = handle
+    _handle._closed = 0
     return _handle
 
 
@@ -113,13 +114,18 @@ cdef class SFTPHandle:
     def __cinit__(self, sftp):
         self._handle = NULL
         self._sftp = sftp
-        self.closed = 0
+        self._closed = 0
 
     def __dealloc__(self):
-        if self.closed == 0:
+        if self._closed == 0:
             with nogil:
                 c_sftp.libssh2_sftp_close_handle(self._handle)
-            self.closed = 1
+            self._closed = 1
+
+    @property
+    def closed(self):
+        """Indicates whether :py:func:`SFTPHandle.close()` was called on the file handle or not."""
+        return self._closed
 
     def __iter__(self):
         return self
@@ -139,17 +145,20 @@ cdef class SFTPHandle:
         self.close()
 
     def close(self):
-        """Close handle. Called automatically when object is deleted
-        and/or garbage collected.
+        """
+        Close handle. Called automatically when object is deallocated or when context manager exits
+        if file handle is used in a `with` statement block.
 
-        :rtype: int"""
+        Calling close multiple times or on an already closed file handle is safe, but unecessary.
+
+        :rtype: int
+        """
         cdef int rc
-        if self.closed == 0:
-            with nogil:
-                rc = c_sftp.libssh2_sftp_close_handle(self._handle)
-            self.closed = 1
-        else:
+        if self._closed == 1:
             return
+        with nogil:
+            rc = c_sftp.libssh2_sftp_close_handle(self._handle)
+        self._closed = 1
         return rc
 
     def read(self, size_t buffer_maxlen=c_ssh2.LIBSSH2_CHANNEL_WINDOW_DEFAULT):
