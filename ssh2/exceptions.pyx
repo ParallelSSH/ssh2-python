@@ -315,17 +315,5 @@ class AlgoUnsupportedError(SSH2Error):
     """Raised on unsupported algorithm error"""
 
 
-class MacFailureError(SSH2Error):
-    """Raised on MAC failure error"""
-
-
-class HashInitError(SSH2Error):
-    """Raised on hash initialisation error"""
-
-
-class HashCalcError(SSH2Error):
-    """Raised on hash calculation error"""
-
-
 class UnknownError(SSH2Error):
     """Raised on non-specific or unknown errors"""
