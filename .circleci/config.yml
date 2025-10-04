@@ -21,7 +21,7 @@ jobs:
     parameters:
       python_ver:
         type: string
-        default: "3.10"
+        default: "3.12"
     docker:
       - image: cimg/python:<< parameters.python_ver >>
     steps:
@@ -49,6 +49,8 @@ jobs:
           command: |
             python -m pytest ci/integration_tests
           name: Integration
+          max_auto_reruns: 3
+          auto_rerun_delay: 5s
       - run:
           command: |
             flake8 ssh2
@@ -149,9 +151,9 @@ workflows:
             parameters:
               python_ver:
                 - "3.8"
-                - "3.10"
                 - "3.11"
                 - "3.12"
+                - "3.13"
           filters:
             tags:
               ignore: /.*/
