@@ -49,6 +49,8 @@ jobs:
           command: |
             python -m pytest ci/integration_tests
           name: Integration
+          max_auto_reruns: 3
+          auto_rerun_delay: 5s
       - run:
           command: |
             flake8 ssh2
