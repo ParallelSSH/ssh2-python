@@ -45,10 +45,13 @@ class SFTPTestCase(SSH2TestCase):
                 remote_data = b""
                 for rc, data in remote_fh:
                     remote_data += data
+                self.assertFalse(remote_fh.closed)
                 self.assertEqual(remote_fh.close(), 0)
+                self.assertTrue(remote_fh.closed)
                 self.assertEqual(remote_data, test_file_data)
             finally:
                 os.unlink(remote_filename)
+        self.assertTrue(remote_fh.closed)
 
     def test_sftp_write(self):
         self.assertEqual(self._auth(), 0)
@@ -65,6 +68,8 @@ class SFTPTestCase(SSH2TestCase):
                        LIBSSH2_FXF_CREAT | LIBSSH2_FXF_WRITE,
                        mode) as remote_fh:
             remote_fh.write(data)
+            self.assertFalse(remote_fh.closed)
+        self.assertTrue(remote_fh.closed)
         with open(remote_filename, 'rb') as fh:
             written_data = fh.read()
         _stat = os.stat(remote_filename)
