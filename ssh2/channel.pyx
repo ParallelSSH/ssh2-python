@@ -333,14 +333,6 @@ cdef class Channel:
             rc = c_ssh2.libssh2_channel_window_write(self._channel)
         return handle_error_codes(rc)
 
-    def receive_window_adjust(self, unsigned long adjustment,
-                              unsigned long force):
-        cdef unsigned long rc
-        with nogil:
-            rc = c_ssh2.libssh2_channel_receive_window_adjust(
-                self._channel, adjustment, force)
-        return handle_error_codes(rc)
-
     def receive_window_adjust2(self, unsigned long adjustment,
                                unsigned long force):
         cdef unsigned long rc
@@ -545,24 +537,12 @@ cdef class Channel:
             rc = c_ssh2.libssh2_poll_channel_read(self._channel, extended)
         return handle_error_codes(rc)
 
-    def handle_extended_data(self, int ignore_mode):
-        """Deprecated, use handle_extended_data2"""
-        with nogil:
-            c_ssh2.libssh2_channel_handle_extended_data(
-                self._channel, ignore_mode)
-
     def handle_extended_data2(self, int ignore_mode):
         cdef int rc
         with nogil:
             rc = c_ssh2.libssh2_channel_handle_extended_data2(
                 self._channel, ignore_mode)
         return handle_error_codes(rc)
-
-    def ignore_extended_data(self, int ignore_mode):
-        """Deprecated, use handle_extended_data2"""
-        with nogil:
-            c_ssh2.libssh2_channel_handle_extended_data(
-                self._channel, ignore_mode)
 
     def request_auth_agent(self):
         """Request SSH agent authentication forwarding on channel."""
