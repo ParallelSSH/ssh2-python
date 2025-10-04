@@ -33,7 +33,7 @@ environment:
     PYTHON_DEF: "C:\\Python38-x64"
     PYTHON_VERSION: "3.8"
     # Python versions to build wheels for
-    PYTHONVERS: C:\Python37-x64 C:\Python38-x64 C:\Python39-x64 C:\Python310-x64 C:\Python311-x64 C:\Python312-x64 C:\Python313-x64
+    PYTHONVERS: C:\Python38-x64 C:\Python39-x64 C:\Python310-x64 C:\Python311-x64 C:\Python312-x64 C:\Python313-x64
     PYTHON_ARCH: "64"
     MSVC: "Visual Studio 16 2019"
 
