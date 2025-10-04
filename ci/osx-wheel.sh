@@ -17,6 +17,7 @@
 SYSTEM_LIBSSH2_DIR="/opt/homebrew/opt/libssh2/lib"
 MY_LIBSSH2_DIR="build_dir/src/"
 LIBSSH2_INCLUDE_DIR="/opt/homebrew/opt/libssh2/include"
+export CPPFLAGS="-I${LIBSSH2_INCLUDE_DIR}"
 sudo cp -a libssh2/include/* /opt/homebrew/opt/libssh2/include/
 
 pip3 install -U virtualenv
