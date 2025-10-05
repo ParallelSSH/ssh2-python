@@ -42,5 +42,5 @@ def build_ssh2():
     check_call('cmake --build . --config Release', shell=True, env=os.environ)
     os.chdir('..')
 
-    for src in glob('build_dir/src/libssh2.{so,dylib}*'):
+    for src in glob('build_dir/src/libssh2.so*'):
         copy2(src, 'ssh2/')
