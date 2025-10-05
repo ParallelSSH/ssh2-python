@@ -23,7 +23,7 @@ from sys import stderr
 
 def build_ssh2():
     if bool(os.environ.get('SYSTEM_LIbBSSH2', False)):
-        stderr.write("Using system libssh2..%s" % (os.sep))
+        stderr.write("Using system libssh2..%s" % (os.sep,))
         return
     if os.path.exists('/usr/local/opt/openssl'):
         os.environ['OPENSSL_ROOT_DIR'] = '/usr/local/opt/openssl'
@@ -42,5 +42,5 @@ def build_ssh2():
     check_call('cmake --build . --config Release', shell=True, env=os.environ)
     os.chdir('..')
 
-    for src in glob('build_dir/src/libssh2.*'):
+    for src in glob('build_dir/src/libssh2.{so,dylib}*'):
         copy2(src, 'ssh2/')
