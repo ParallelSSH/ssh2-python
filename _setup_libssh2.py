@@ -22,8 +22,8 @@ from sys import stderr
 
 
 def build_ssh2():
-    if bool(os.environ.get('SYSTEM_LIBSSH', False)):
-        stderr.write("Using system libssh2..%s" % (os.sep))
+    if bool(os.environ.get('SYSTEM_LIbBSSH2', False)):
+        stderr.write("Using system libssh2..%s" % (os.sep,))
         return
     if os.path.exists('/usr/local/opt/openssl'):
         os.environ['OPENSSL_ROOT_DIR'] = '/usr/local/opt/openssl'

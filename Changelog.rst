@@ -15,7 +15,7 @@ Changes
   was called on a `SFTPHandle` or not.
 * Added `ssh2.channel.Channel.signal` function for sending signals over SSH to an open channel - #221
 * Added `ssh2.session.Session.direct_streamlocal_ex` for creating `Channel` objects tunneling a local UNIX socket
-  via the remote host to a third party.
+  via the remote host to a third party - #40
 * Added new `libssh2` error codes under `ssh2.error_codes`, equivalent Python exceptions under `ssh2.exceptions`
   and updated error code handling for all functions.
 * Removed deprecated `libssh2` `ssh2.channel.Channel` functions `receive_window_adjust`, `handle_extended_data`
@@ -27,6 +27,7 @@ Packaging
 ----------
 
 * Removed Windows Python 3.7 wheel builds.
+* OSX binary wheels now use embedded `libssh2` rather than brew package.
 
 
 1.1.2
