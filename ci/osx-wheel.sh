@@ -17,13 +17,15 @@
 SYSTEM_LIBSSH2_DIR="/opt/homebrew/opt/libssh2/lib"
 MY_LIBSSH2_DIR="build_dir/src/"
 LIBSSH2_INCLUDE_DIR="/opt/homebrew/opt/libssh2/include"
-set +x
+set -x
 
 export CPPFLAGS="-I${LIBSSH2_INCLUDE_DIR}"
 sudo cp -a libssh2/include/* /opt/homebrew/opt/libssh2/include/
 
+set +x
 pip3 install -U virtualenv
 python3 -m virtualenv -p "$(which python3)" venv
+set -x
 
 source venv/bin/activate
 
@@ -52,6 +54,6 @@ pwd; mkdir -p temp; cd temp; pwd
 python3 -c "from ssh2.session import Session; Session()" && echo "Import successful"
 cd ..; pwd
 
+set +x
 deactivate
-
 set -x
