@@ -8,7 +8,7 @@ from signal import Signals
 from ssh2.session import Session
 from ssh2.channel import Channel
 from ssh2.exceptions import SocketSendError
-from ssh2.session import LIBSSH2_METHOD_COMP_CS, LIBSSH2_FLAG_COMPRESS
+from ssh2.session import LIBSSH2_METHOD_COMP_CS, LIBSSH2_METHOD_COMP_SC, LIBSSH2_FLAG_COMPRESS
 
 from .base_test import SSH2TestCase
 
@@ -205,6 +205,8 @@ class ChannelTestCase(SSH2TestCase):
         session = Session()
         session.flag(LIBSSH2_FLAG_COMPRESS)
         algs = session.supported_algs(LIBSSH2_METHOD_COMP_CS)
+        self.assertTrue('zlib' in algs)
+        algs = session.supported_algs(LIBSSH2_METHOD_COMP_SC)
         self.assertTrue('zlib' in algs)
         session.handshake(sock)
         session.userauth_publickey_fromfile(
