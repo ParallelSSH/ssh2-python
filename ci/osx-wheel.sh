@@ -1,29 +1,32 @@
 #!/bin/bash -xe
-# This file is part of ssh2-python.
-# Copyright (C) 2017-2022 Panos Kittenis and contributors.
+#  This file is part of ssh2-python.
+#  Copyright (C) 2017-2025 Panos Kittenis
 #
-# This library is free software; you can redistribute it and/or
-# modify it under the terms of the GNU Lesser General Public
-# License as published by the Free Software Foundation, version 2.1.
+#  This library is free software; you can redistribute it and/or
+#  modify it under the terms of the GNU Lesser General Public
+#  License as published by the Free Software Foundation, version 2.1.
 #
-# This library is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-# Lesser General Public License for more details.
+#  This library is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#  Lesser General Public License for more details.
 #
-# You should have received a copy of the GNU Lesser General Public
-# License along with this library; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+#  You should have received a copy of the GNU Lesser General Public
+#  License along with this library; if not, write to the Free Software
+#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
 SYSTEM_LIBSSH2_DIR="/opt/homebrew/opt/libssh2/lib"
 MY_LIBSSH2_DIR="build_dir/src/"
 LIBSSH2_INCLUDE_DIR="/opt/homebrew/opt/libssh2/include"
-set +x
+set -x
 
 export CPPFLAGS="-I${LIBSSH2_INCLUDE_DIR}"
 sudo cp -a libssh2/include/* /opt/homebrew/opt/libssh2/include/
 
+set +x
 pip3 install -U virtualenv
 python3 -m virtualenv -p "$(which python3)" venv
+set -x
 
 source venv/bin/activate
 
@@ -52,6 +55,6 @@ pwd; mkdir -p temp; cd temp; pwd
 python3 -c "from ssh2.session import Session; Session()" && echo "Import successful"
 cd ..; pwd
 
+set +x
 deactivate
-
 set -x
