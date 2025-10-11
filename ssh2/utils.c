@@ -6013,7 +6013,7 @@ __Pyx_RefNannySetupContext("PyInit_utils", 0);
   /*--- Execution code ---*/
 
   /* "ssh2/utils.pyx":17
- * # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ * #  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  * 
  * from select import select             # <<<<<<<<<<<<<<
  * 
@@ -6126,8 +6126,8 @@ __Pyx_RefNannySetupContext("PyInit_utils", 0);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "ssh2/utils.pyx":1
- * # This file is part of ssh2-python.             # <<<<<<<<<<<<<<
- * # Copyright (C) 2017-2020 Panos Kittenis
+ * #  This file is part of ssh2-python.             # <<<<<<<<<<<<<<
+ * #  Copyright (C) 2017-2025 Panos Kittenis
  * #
 */
   __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)

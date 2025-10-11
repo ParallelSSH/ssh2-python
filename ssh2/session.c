@@ -17490,8 +17490,8 @@ __Pyx_RefNannySetupContext("PyInit_session", 0);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "ssh2/session.pyx":1
- * # This file is part of ssh2-python.             # <<<<<<<<<<<<<<
- * # Copyright (C) 2017-2025 Panos Kittenis
+ * #  This file is part of ssh2-python.             # <<<<<<<<<<<<<<
+ * #  Copyright (C) 2017-2025 Panos Kittenis
  * #
 */
   __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1, __pyx_L1_error)
