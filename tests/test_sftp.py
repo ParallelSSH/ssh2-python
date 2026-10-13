@@ -43,3 +43,10 @@ class SFTPTestCase(SSH2TestCase):
         sftp = SFTP(session)
         sftp_fh = SFTPHandle(sftp)
         self.assertFalse(sftp_fh.closed)
+
+    def test_sftp_handle_write_requires_buffer(self):
+        session = Session()
+        sftp = SFTP(session)
+        sftp_fh = SFTPHandle(sftp)
+        for buf in ('not a buffer', None, 42, [1, 2, 3]):
+            self.assertRaises(TypeError, sftp_fh.write, buf)

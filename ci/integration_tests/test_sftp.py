@@ -84,8 +84,12 @@ class SFTPTestCase(SSH2TestCase):
         with sftp.open(remote_filename,
                        LIBSSH2_FXF_CREAT | LIBSSH2_FXF_WRITE,
                        mode) as remote_fh:
-            remote_fh.write(data)
             self.assertFalse(remote_fh.closed)
+            # also test buffer protocol
+            for buf in (data, bytearray(data), memoryview(data)):
+                rc, written = remote_fh.write(buf)
+                self.assertGreaterEqual(rc, 0)
+                self.assertEqual(written, len(data))
         self.assertTrue(remote_fh.closed)
         with open(remote_filename, 'rb') as fh:
             written_data = fh.read()
@@ -93,7 +97,7 @@ class SFTPTestCase(SSH2TestCase):
         try:
             self.assertTrue(stat.S_IMODE(_stat.st_mode) > 400)
             self.assertTrue(fh.closed)
-            self.assertEqual(data, written_data)
+            self.assertEqual(data * 3, written_data)
         except Exception:
             raise
         finally:
